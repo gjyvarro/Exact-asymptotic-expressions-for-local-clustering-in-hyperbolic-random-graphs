@@ -1,0 +1,283 @@
+\documentclass[a4paper,10pt]{article}
+% * <m.f.schepers@rug.nl> 2018-10-12T08:13:57.409Z:
+%
+% ^.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%											Packages											  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{enumerate}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage[mathscr]{eucal}
+\usepackage{a4wide}
+\usepackage{authblk}
+\usepackage{appendix}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    urlcolor = {magenta},
+    citecolor = {green},
+    linkcolor = {blue}
+}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,backgrounds,patterns,decorations.markings,decorations.pathreplacing,intersections}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+\usepackage{subcaption}
+\usepackage{dsfont}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%											Macros												  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                        Probability                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\pr}{\mathbb{P}}								%	short hand for blackboard P
+\newcommand{\Pee}{\mathbb{P}}
+
+%% Probability commands %%
+
+\newcommand{\Prob}[1]{\pr\left(#1\right)}					%	Standard probability command, 
+															%	argument is event
+																
+\newcommand{\Probn}[1]{\pr_n\left(#1\right)}				%	Probability command with subscript n
+
+\newcommand{\Probc}[2]{\pr_{#2}\left(#1\right)}				%	Probability command conditioned on 
+															%	the points of the graph specified in
+															%	the second argument
+
+\newcommand{\CProb}[2]{\pr\left(\left.#1\right|#2\right)}	%	Conditional probability command, 
+															%	second argument is conditioned 
+															%	event/random variable
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                         Expectation                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+																
+
+\newcommand{\e}{\mathbb{E}}								%	short hand for blackboard E
+\newcommand{\E}{\mathbb{E}}
+
+%% Expectation commands %%
+
+\newcommand{\Exp}[1]{\e\left[#1\right]}					%	Standard expectation command, argument
+														%	is random variable
+															
+\newcommand{\Expn}[1]{\e_n\left[#1\right]}				%	Expectation with subscript n
+
+\newcommand{\Expc}[2]{\e_{#2}\left[#1\right]}			%	Expectation command conditioned on 
+														%	the points of the graph specified in
+														%	the second argument
+
+\newcommand{\CExp}[2]{\e\left[\left.#1\right|#2\right]}	%	Conditional expectation, second 
+														%	argument is conditioned event/random 
+														%	variable.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                     Probabilistic limits                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\plim}{\ensuremath{\stackrel{\pr}{\rightarrow}}}	%	Convergence in probability
+\newcommand{\dlim}{\ensuremath{\stackrel{d}{\rightarrow}}}		%	Convergence in distribution
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                        Scaling notations                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\bigO}[1]{O\left(#1\right)}				%	Big O notation
+\newcommand{\smallO}[1]{o\left(#1\right)}			%	Small o notation
+\newcommand{\bigT}[1]{\Theta\left(#1\right)}		%	Theta notation
+\newcommand{\bigOp}[1]{O_\pr \left(#1\right)}		%	Probabilistic big O notation
+\newcommand{\smallOp}[1]{o_\pr \left(#1\right)}		%	Probabilistic little o notation
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                        Indicator commands                                       $
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ind}[1]{\mathbbm{1}_{\left\{#1\right\}}}	%	Command for indicator where argument is a condition
+\newcommand{\indE}[1]{\mathbbm{1}_{#1}}					%	Command for indicator where the argument is an event 
+\newcommand{\1}{\mathds{1}}								%	Indication shorthand command
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                       Additional commands                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\N}{\mathbb{N}}							%	Natural numbers
+\newcommand{\R}{{\ensuremath{\mathbb R}}}			%	Real numbers
+
+%%	Short hand commands:
+
+\newcommand{\Kcal}{\ensuremath{{\mathcal K}}}		%	Mathcal K
+\newcommand{\Bcal}{\ensuremath{{\mathcal B}}}		%	Mathcal B
+\newcommand{\Ccal}{\ensuremath{{\mathcal C}}}		%	Mathcal C
+\newcommand{\Ncal}{\ensuremath{{\mathcal N}}}		%	Mathcal N	
+
+\newcommand{\eps}{\varepsilon}						%	varepsilon
+\DeclareMathOperator{\dd}{\, \mathrm{d}\hspace{-1pt}}			%	straight d for integration
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                     Paper specific commands                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\H}{\ensuremath{\mathbb{H}}}			%	H used for the hyperbolic plane and hyperbolic random graph
+\newcommand{\HP}{\ensuremath{\widetilde{\H}}}		%	Poisson hyperbolic random graph
+\newcommand{\Dcal}[0]{\ensuremath{{\mathcal D}}}	%	Hyperbolic disc
+\newcommand{\Rcal}[0]{\ensuremath{{\mathcal R}}}	%	Image of the hyperbolic disc under \Psi
+\newcommand{\Pcal}[0]{\ensuremath{{\mathcal P}}}	%	Point process
+\newcommand{\Po}[0]{\ensuremath{{\mathrm{Po}}}}		%	Poisson random variable
+
+\newcommand{\T}{\ensuremath{T}}						%	Symbol for triangles
+
+
+
+
+\newcommand{\BallHyp}[1]{\Bcal_{\H,n}\left(#1\right)}		%	The image of the hyperbolic ball around \Psi^{-1}(p)
+\newcommand{\BallPo}[1]{\Bcal_{\Pcal}\left(#1\right)}		%	The neighborhood of a point p in the infinite limit model
+\newcommand{\BallPon}[1]{\Bcal_{\Pcal,n}\left(#1\right)}	%	The neighborhood of a point p in the finit box model
+\newcommand{\FatBallHyp}[1]{\check{\Bcal}_{\H,n}(#1)}		%
+\newcommand{\BallSym}[1]{\Bcal_{\H \bigtriangleup \Pcal}\left(#1\right)}	%	Symmetric difference between balls in the 
+																			%	hyperbolic and infinite limit model
+\newcommand{\BallInter}[1]{\Bcal_{\H \cap \Pcal}\left(#1\right)}
+
+\newcommand{\Mu}[1]{\mu_{\alpha,\nu}\left(#1\right)}
+
+\newcommand{\hsym}[1]{h_{\H \bigtriangleup \Pcal}(#1)}
+\newcommand{\EdgeDiff}{E_{\H \setminus \mathcal{P}}}
+\newcommand{\expH}{\overline{n}_{\H}(k_n)}
+\newcommand{\expP}{\overline{n}_{\Pcal}(k_n)}
+
+
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}	%	Use to insert equation number 
+																		%	inside * environment
+
+\newcommand{\MeijerG}[7]{G_{#3,#4}^{#1,#2} \left(\begin{matrix}#5  \\ #6 \end{matrix} \bigg| #7 \right)}
+\newcommand{\MeijerGnew}[7]{G_{#3,#4}^{#1,#2} \left(#7 \bigg|\begin{matrix}#5  \\ #6 \end{matrix}\right)}
+
+\newcommand{\Real}{\operatorname{Re}}
+\newcommand{\Li}{\operatorname{Li}}
+
+\newcommand{\Ee}[0]{\ensuremath{{\mathbb E}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%								For leaving comments to each other:								  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{orange}{RGB}{255,127,0}
+\definecolor{pink}{RGB}{255,150,150}
+\newcommand{\BL}[1]{{{\color{blue} #1}}}
+\newcommand{\RD}[1]{{{\color{red} #1}}}
+\newcommand{\REMOVEME}[1]{{{\color{black} #1}}}
+\newcommand{\GR}[1]{{{\color{green} #1}}}
+\newcommand{\YW}[1]{{{\color{yellow} #1}}}
+\newcommand{\OR}[1]{{{\color{orange} #1}}}
+\newcommand{\NF}[1]{\YW{{\bf Nick:} #1}}
+\newcommand{\PvdH}[1]{{\OR{{\bf Pim:} #1}}}
+\newcommand{\TM}[1]{\BL{{\bf Tobias:} #1}}
+\newcommand{\MS}[1]{\GR{{\bf Markus: }#1}}
+\newcommand{\ToDo}[1]{{\color{red} {\bf To do:} #1}}
+
+
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%								Setup of the theorem environmnet								  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{remark}{Remark}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}[definition]{Assumption}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%											Authors												  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Exact asymptotic expressions for local clustering in hyperbolic random graphs}
+\author[1]{Nikolaos Fountoulakis}
+\author[2]{Pim van der Hoorn}
+\author[3]{Tobias M\"{u}ller}
+\author[3]{Markus Schepers}
+
+\affil[1]{University of Birmingham, School of Mathematics, United Kingdom}
+\affil[2]{Northeastern University, Department of Physics, United States}
+\affil[3]{University of Groningen, Bernoulli Institute for Mathematics, Computer Science and Artificial Inteligence, The Netherlands}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\PvdH{The abstract will be written at the end.}
+\end{abstract}
+
+
+\PvdH{Below is a list of high and low level to do items. Please add comments using the commands below.
+
+\noindent Comment commands:\\
+Markus: \textbackslash MS\\
+Nikolaos: \textbackslash NF\\
+Pim: \textbackslash PvdH\\
+Tobias: \textbackslash TM
+
+}
+
+\ToDo{High level list:
+
+\begin{itemize}
+\item Streamline notations and writing of some sections
+\item Finish introduction
+\item Complete bibliography list
+\item Add additional explanation for the Hyperbolic model.
+\item Add additional observations based on our main result
+\end{itemize}
+}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\input{introduction}
+
+\input{proof_overview}
+
+\input{concentration_argument}
+
+\input{clustering_infinite_model}
+
+\input{transition}
+
+\input{concentration}
+
+\input{coupling}
+
+\input{appendix}
+
+
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document} 

@@ -1,0 +1,343 @@
+\section{Concentration for $c_{\mathcal{P}, n}(k)$ (Proving Proposition \ref{prop:concentration_local_clustering_P_n})}
+\label{sec:concentration_c_P_n}
+
+\subsection{The main contribution of triangles}
+
+Recall the adjusted triangle count function \eqref{eq:def_tilde_triangle_indicator}
+\[
+	\widetilde{T}_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal}(p_1) \cap \Rcal_n}.
+\]
+and the concentration set
+\[
+	\Kcal_C(k) = \left\{p \in \R : \frac{k - C \sqrt{k \log(k)}}{\xi_{\alpha,\nu}} \le e^{\frac{y}{2}}
+		\le \frac{k + C \sqrt{k \log(k)}}{\xi_{\alpha,\nu}} \right\},
+\]
+We will define the corresponding triangle degree function
+\begin{equation}\label{eq:def_degree_triangle_count_in_K}
+	\widetilde{T}_{\Pcal,n}(k,C) = \sum_{p \in \Pcal_n \cap K_C(k)} \ind{D_{\Pcal,n}(p) = k} \widetilde{T}_{\Pcal,n}(p),
+\end{equation}
+where
+\[
+	\widetilde{T}_{\Pcal,n}(p) := \sum_{(p_1, p_2) \in 2^{\Pcal_n}} \widetilde{T}_{\Pcal,n}(p,p_1,p_2).
+\]
+
+By Lemma \ref{lem:clustering_error_T_term} and a concentration argument it follows that for $k_n \to \infty$
+\[
+	\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)} = (1+\smallO{1})\Exp{T_{\Pcal}(k_n)},
+\]
+for a appropriately selected $C > 0$. We conclude that the main contribution of triangles of degree $k_n$ is given by $\widetilde{T}_{\Pcal,n}(k_n,C)$. Therefore, in order to prove Proposition \ref{prop:concentration_local_clustering_P_n} we need to show that $\widetilde{T}_{\Pcal,n}(k_n,C)$ is sufficiently concentrated around its mean.
+
+\subsection{Proving Proposition \ref{prop:concentration_local_clustering_P_n}}
+
+We start with the concentration result for $\widetilde{T}_{\Pcal,n}(k_n,C)$.
+
+\begin{proposition}[Concentration $\widetilde{T}_{\Pcal,n}(k_n,C)$]\label{prop:concentration_tilde_T_P_n}
+Let $\alpha > \frac{1}{2}$, $0 < \varepsilon < \min\{2\alpha - 1,1\}$ and let $(k_n)_{n \ge 1}$ be any increasing sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha+1}}}$. Then, as $n \to \infty$,
+\[
+	\Exp{\widetilde{T}_{\Pcal,n}(k_n, C)^2} = \left(1 + \smallO{1}\right)\Exp{\widetilde{T}_{\Pcal,n}(k_n, C)}^2.
+\]
+\end{proposition}
+
+The proof of this proposition is lengthy and we therefore postpone it till Section \ref{ssec:concentration_tilde_T}. The remaining of this section will be devoted to prove Proposition \ref{prop:concentration_local_clustering_P_n}. We first show that $\Exp{c_{\Pcal,n}(k_n)} = (1+o(1))\Exp{c^\ast_{\Pcal,n}(k_n)}$.
+
+\begin{lemma}\label{lem:L1_convergence_c_Pcal_n}
+Let $\nu > 0$, $\alpha > \frac{1}{2}$ and $k_n = o\left(n^{\frac{1}{2\alpha + 1}}\right)$. Then, as $n \to \infty$,
+\[
+	\Exp{\left|c_{\Pcal, n}^\ast(k_n) - c_{\Pcal, n}(k_n)\right|} = \smallO{\Exp{c_{\Pcal,n}(k_n)^\ast}}.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $0 < \delta < 1$ and define the following two events
+\begin{align*}
+	A_n &= \left\{\left|N_{\Pcal,n}(k_n) - \Exp{N_{\Pcal,n}(k_n)}\right| \le \Exp{N_{\Pcal,n}(k_n)}^{\frac{1 + \delta}{2}}\right\}\\
+	B_n &= \left\{\left|N_{\Pcal,n}(k_n) - \Exp{N_{\Pcal,n}(k_n)}\right| \le n\right\},
+\end{align*}
+so that
+\[
+	1 = \ind{A_n} + \ind{A_n^c}\ind{B_n} + \ind{B_n^c}.
+\]
+Next we note that on the event $A_n$
+\[
+	\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right| 
+	\le \frac{\Exp{N_{\Pcal,n}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{\Pcal,n}(k_n)}+\Exp{N_{\Pcal,n}(k_n)}^{\frac{1 + \delta}{2}}}
+	\le \Exp{N_{\Pcal,n}(k_n)}^{-\frac{1 - \delta}{2}},
+\]
+and on the event $B_n$
+\[
+	\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right| 
+	\le \frac{n}{\Exp{N_{\Pcal,n}(k_n)} + n} \le 1.
+\]
+Therefore we have
+\begin{align*}
+	\Exp{\left|c_{\Pcal, n}^\ast(k_n) - c_{\Pcal, n}(k_n)\right|}
+	&= \Exp{c_{\Pcal, n}^\ast(k_n)\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right|}\\
+	&\le \Exp{c_{\Pcal, n}^\ast(k_n)\ind{A_n}}\Exp{N_{\Pcal,n}(k_n)}^{-\frac{1 - \delta}{2}} \\
+	&\hspace{10pt}+ \Exp{c_{\Pcal, n}^\ast(k_n)\ind{A_n^c}\ind{B_n}} \\
+	&\hspace{10pt}+ \Exp{c_{\Pcal, n}^\ast(k_n)\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right|\ind{B_n^c}}
+\end{align*}
+Since $\Exp{N_{\Pcal,n}(k_n)} \to \infty$, the first term is clearly $\smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}}$. For the third term we have
+\begin{align*}
+	\Exp{c_{\Pcal, n}^\ast(k_n)\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right|\ind{B_n^c}} 
+	&= \bigO{\Prob{B_n^c}}
+		= \bigO{\Prob{\left|N_{\Pcal,n}(k_n) - \Exp{N_{\Pcal,n}(k_n)}\right| > n}}\\
+	&= \bigO{e^{-\frac{n^2}{\Exp{N_{k_n}} + n}}} = \bigO{e^{-n}} = \smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}}.
+\end{align*}
+Hence we are left to show that
+\begin{equation}\label{eq:L1_convergence_second_term}
+	\Exp{c_{\Pcal, n}^\ast(k_n)\ind{A_n^c}\ind{B_n}} = \smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}}.
+\end{equation}
+By writing
+\begin{align*}
+	c_{\Pcal, n}^\ast(k_n) = \frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
+	+ \frac{T_{\Pcal,n}(k_n,\varepsilon)- \widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
+\end{align*}
+and using Lemma~\ref{lem:clustering_error_T_term} we get
+\begin{align*}
+	\Exp{c_{\Pcal, n}^\ast(k_n)\ind{A_n^c}\ind{B_n}}
+	&\le \Exp{\frac{(1+\smallO{1})\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
+		\ind{A_n^c}} + \smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}}.
+\end{align*}
+For the last step we use H\"{o}lder's inequality and Proposition \ref{prop:concentration_tilde_T_P_n} to get
+\begin{align*}
+	\Exp{\frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}\ind{A_n^c}}
+	&\le \Exp{\left(\frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}
+		{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}\right)^2}^{\frac{1}{2}} \Prob{A_n^c}^{\frac{1}{2}}\\
+	&= \left(1 + \smallO{1}\right) 	
+		\frac{\Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
+		\Prob{A_n^c}^{\frac{1}{2}}\\
+	&= \bigO{\Exp{c_{\Pcal, n}^\ast(k_n)}}\Prob{A_n^c}^{\frac{1}{2}} = \smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}},
+\end{align*}
+since $\Prob{A_n} = o(1)$. This establishes \eqref{eq:L1_convergence_second_term} and hence we conclude that
+\[
+	\Exp{\left|c_{\Pcal, n}^\ast(k_n) - c_{\Pcal, n}(k_n)\right|} = \smallO{\Exp{c_{\Pcal,n}(k_n)^\ast}}.
+\]
+\end{proof}
+
+We are now in shape to prove the main result of this section.
+
+\begin{proof}[Proof of Proposition \ref{prop:concentration_local_clustering_P_n}]
+Again, we write
+\begin{align*}
+	c_{\Pcal, n}^\ast(k_n) = \frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
+	+ \frac{\left(T_{\Pcal,n}(k_n)-\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)\right)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}},
+\end{align*}
+so that by Lemma \ref{lem:clustering_error_T_term},
+\[
+	\Exp{c_{\Pcal,n}^\ast(k_n)} = \frac{\Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
+	+ \smallO{\Exp{c_{\Pcal,n}^\ast(k_n)}}.
+\]
+Therefore, by Lemma \ref{lem:L1_convergence_c_Pcal_n},
+\begin{align*}
+	\Exp{\left|c_{\Pcal,n}(k_n) - \Exp{c_{\Pcal,n}^\ast(k_n)}\right|}
+	&\le \Exp{\left|c_{\Pcal,n}^\ast(k_n) - \Exp{c_{\Pcal,n}^\ast(k_n)}\right|}
+		+ \Exp{\left|c_{\Pcal,n}(k_n) - c_{\Pcal,n}^\ast(k_n)\right|}\\
+	&= \frac{\Exp{\left|\widetilde{T}_{\Pcal,n}(k_n,\varepsilon) - \Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}\right|}}
+		{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}} + \smallO{\Exp{c_{\Pcal,n}^\ast(k_n)}}.
+		\numberthis \label{eq:concentration_local_clustering_P_n_term1}
+\end{align*}
+Next, we use Proposition \ref{prop:concentration_tilde_T_P_n} to obtain
+\begin{align*}
+	\Exp{\left|\widetilde{T}_{\Pcal,n}(k_n,\varepsilon) - \Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}\right|}
+	&\le \left(\Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)^2} 
+		- \Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}^2\right)^{\frac{1}{2}}\\
+	&= \smallO{\Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}}.
+\end{align*}
+This implies
+\begin{align*}
+	\frac{\Exp{\left|\widetilde{T}_{\Pcal,n}(k_n,\varepsilon) - \Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}\right|}}
+		{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
+	&= \smallO{\Exp{c_{\Pcal,n}^\ast(k_n)}},
+\end{align*}
+which together with~\eqref{eq:concentration_local_clustering_P_n_term1} finishes the proof.
+\end{proof}
+
+\subsection{Concentration for main triangle contribution}\label{ssec:concentration_tilde_T}
+
+We now turn to Proposition \ref{prop:concentration_tilde_T_P_n}. Before we dive into the proof let us first give a high level overview of the strategy and the flow of the arguments. 
+
+Recall (see \eqref{eq:def_degree_triangle_count_in_K}) that for any $C > 0$
+\[
+	\widetilde{T}_{\Pcal,n}(k,C) = \sum_{p \in \Pcal_n \cap \Kcal_{C}(k)} \ind{D_{\Pcal,n}(p) = k}
+	\widetilde{T}_{\Pcal,n}(p)
+\]
+Then we have
+\[
+	\widetilde{T}_{\Pcal,n}(k,C)^2 = \sum_{p, p^\prime \in \Pcal_n \cap \Kcal_C(k)}
+		\ind{D_{\Pcal,n}(p), \, D_{\Pcal,n}(p^\prime) = k} 
+		\sum_{(p_1, p_2), (p_1^\prime, p_2^\prime) \in 2^{\Pcal_n}}
+		T_{\Pcal}(p,p_1,p_2) T_{\Pcal}(p^\prime, p_1^\prime, p_2^\prime),
+\]
+with $2^{\Pcal_n}$ denoting the distinct pairs in $\Pcal_n$.
+This expression can be written as the sums of several terms, depending on how $\{p, p_1, p_2\}$ and $\{p^\prime, p_1^\prime, p_2^\prime\}$ intersect. To this end we define, for $a \in \{0,1\}$ and $b \in \{0,1,2\}$,
+\[
+	I_{a,b} = \hspace{-3pt} \sum_{p, p^\prime \in \Pcal_n \cap \Kcal_C(k) \atop |\{p\} \cap \{p^\prime\}| = a}
+	\hspace{-5pt} \ind{D_{\Pcal,n}(p), \, D_{\Pcal,n}(p^\prime) = k} J_b(p,p^\prime),
+\]
+where
+\[
+	J_b(p,p^\prime) = \hspace{-10pt} \sum_{(p_1, p_2), (p_1^\prime, p_2^\prime) \in 2^{\Pcal_n} 
+		\atop |\{p_1, p_2\} \cap \{p_1^\prime, p_2^\prime\}| = b}
+		\hspace{-5pt} T_{\Pcal,n}(p,p_1,p_2) T_{\Pcal,n}(p^\prime, p_1^\prime, p_2^\prime).
+\]
+Then we have
+\[
+	\widetilde{T}_{\Pcal,n}(k, C)^2 = \sum_{a = 0}^1 \sum_{b = 0}^2 I_{a,b}.
+\]
+
+To prove Proposition \ref{prop:concentration_tilde_T_P_n} we will deal with each of the $I_{a,b}$ separately, showing that 
+\begin{equation}\label{eq:variance_T_I_00}
+	\Exp{I_{0,0}} = (1+\smallO{1})\Exp{\widetilde{T}_{\Pcal,n}(k_n)}^2
+\end{equation}
+and for all other combinations
+\begin{equation}\label{eq:variance_T_I_ab}
+	\Exp{I_{a,b}} = \smallO{\Exp{\widetilde{T}_{\Pcal,n}(k_n)}^2}.
+\end{equation}
+Note that $J_{b}(p,p^\prime) \le J_{0}(p,p^\prime)$ and, since $I_{1,2} = \widetilde{T}_{\Pcal,n}(k_n,C)$, \eqref{eq:variance_T_I_ab} holds for $I_{1,2}$. 
+
+
+
+\begin{proof}[Proof of Proposition \ref{prop:concentration_tilde_T_P_n}]
+The technical steps of this proof use Lemma \ref{lem:joint_degree_distribution_shift} and Lemma \ref{lem:joint_degree_distribution_P_n}, which deal with the joint degree distribution. Let $\Ncal_{\Pcal,n}^c(p,p^\prime)$ denote the number of nodes not connected to both $p$ and $p^\prime$ an fix $0 < \eps < (2\alpha - 1 \wedge 1)$. To be able to apply both lemmas, we first show that we only need to consider the case where $\Exp{\left|\Ncal_{\Pcal,n}^c(p,p^\prime)\right|} \ge k_n^{\varepsilon}$ and $|x - x^\prime| > k_n^{1+\eps}$. To this end define 
+\[
+	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \Kcal_C(k_n) \times \Kcal_C(k_n) 
+	\, : \, \Exp{\left|\Ncal_{\Pcal,n}^c(p,p^\prime)\right|} \ge k_n^{\varepsilon} \text{ and } |x - x^\prime| > k_n^{1 + \varepsilon} \right\}
+\]
+and let $I_{a,b}^\ast$ denote the the part of $I_{a,b}$ where $p,p^\prime \in \Pcal_n \cap \mathcal{E}_\varepsilon(k_n)$. We first show that
+\begin{eqnarray}\label{eq:I_ab_ast_main}
+	\Exp{I_{a,b} - I_{a,b}^\ast} = \smallO{\Exp{T_{\Pcal,n}(k_n)}^2},
+\end{eqnarray}
+so that for the remainder of the proof we only need to consider $p, p^\prime \in \mathcal{E}_\varepsilon(k_n)$ and hence, we can apply Lemma \ref{lem:joint_degree_distribution_shift} and Lemma \ref{lem:joint_degree_distribution_P_n} to the joint degree distribution inside the integral.
+
+Note that for all $p,p^\prime \in \Kcal_{\varepsilon}(k_n)$ we have that $e^{\frac{y^\ast}{2}}\left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right) = \bigT{k_n^2}$, where $y^\ast = \min\{y,y^\prime\}$. Hence by Lemma \ref{lem:disjoint_neighbors_P_n} and Lemma \ref{lem:disjoint_neighbors_P_n_large} we have for $p,p^\prime \in \Kcal_{\varepsilon}(k_n)$ with $\Exp{\left|\Ncal_{\Pcal,n}(p\Delta p^\prime)\right|} \le k_n^{\varepsilon}$ and $|x-x^\prime| > k_n^{1+\varepsilon}$ that either
+\[
+	|x - x^\prime| + \left|e^{\frac{y}{2}} - e^{\frac{y^\prime}{2}}\right| = O\left(k_n^\varepsilon\right)
+	\quad \text{or} \quad
+	\Exp{\left|\Ncal_{\Pcal,n}(p\Delta p^\prime)\right|} = \Omega(k_n).
+\]
+In particular $|x - x^\prime| \le k_n^{1+\varepsilon}$ for all $(p, p^\prime) \notin \mathcal{E}_{\varepsilon}(k_n)$. Therefore, we have
+\begin{align*}
+	&\Exp{I_{a,b} - I_{a,b}^\ast}\\
+	&\le \int_{\Kcal_C(k_n)^2 \setminus \mathcal{E}_\varepsilon(k_n)} \rho(p, p^\prime, k - i, k - i^\prime) 
+		\Exp{J_b(p,p^\prime)} f_{\alpha,\nu}(x,y) f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
+	&\le \int_{\Kcal_C(k_n)^2 \setminus \mathcal{E}_\varepsilon(k_n)} \rho(p, p^\prime, k - i, k - i^\prime) 
+		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f_{\alpha,\nu}(x,y) f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
+	&= \bigO{\int_{\Kcal_C(k_n)^2} \ind{|x-x^\prime| \le k_n^{1 + \varepsilon}} \rho_{y}(k) 
+		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f_{\alpha,\nu}(x,y) f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy}\\
+	&= \bigO{k_n^{1+\varepsilon} \binom{k_n}{2} \left(\int_{a_n^-}^{a_n^+} \Delta_{\Pcal}(y^\prime) 
+			e^{-\alpha y^\prime} \, dy^\prime\right) \Exp{T_{\Pcal,n}(k_n)}}\\
+	&= \bigO{k_n^{3 + \varepsilon -2\alpha} s_\alpha(k_n) \Exp{T_{\Pcal,n}(k_n)}}\\
+	&= \smallO{n k_n^{-(2\alpha - 1)}s_\alpha(k_n) \Exp{T_{\Pcal,n}(k_n)}} = \smallO{\Exp{T_{\Pcal,n}(k_n)}^2},
+\end{align*}
+which proves \eqref{eq:I_ab_ast_main}. Here we used that $k_n^{2 + \varepsilon} = \smallO{n}$ and $\Exp{T_{\Pcal,n}(k_n)} = \bigT{n k_n^{-(2\alpha - 1)}s_\alpha(k_n)}$ for the last line.
+
+
+We will now proceed to establish \eqref{eq:variance_T_I_00} and \eqref{eq:variance_T_I_ab}. We split these up into separate subsections because each term requires different bounding techniques.
+
+\vspace{5pt}
+
+\paragraph{I) $\bm{I_{0,0}^\ast}$:}
+Let $i = |\{p^\prime, p_1, p_2, p_1^\prime, p_2^\prime\} \cap B_{\Pcal,n}(p)|$ and $j = |\{p^\prime \cap B_{\Pcal,n}(p)\}|$ and let $i^\prime, j^\prime$ be defined, similarly, by interchanging the primed and non-primed variables. Then, by Lemma  \ref{lem:joint_degree_distribution_shift} and  Lemma \ref{lem:joint_degree_distribution_P_n}
+\[
+	\rho_(p,p^\prime, k_n-i,k_n-i^\prime) = (1+o(1))\rho(p,p^\prime, k_n-j,k_n-j^\prime) 
+	= (1+o(1))\rho_{n}(p, k_n)\rho_{n}(p^\prime,k_n) 
+\]
+which now no longer depends on the other four points $p_1, p_2, p_1^\prime, p_2^\prime$. Hence, using the Mecke formula, we get
+\[
+	\Exp{I_{0,0}^\ast} = \frac{1 + \smallO{1}}{4}\int_{\mathcal{E}_{\varepsilon}(k_n)}\rho_{n}(p, k_n)\rho_{n}(p^\prime,k_n)
+		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f_{\alpha,\nu}(x,y)
+		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy,
+\]
+where the factor $\frac{1}{4}$ is because we consider distinct pairs $(p_1,p_2)$ and $(p_1^\prime, p_2^\prime)$.
+
+Next, by Lemma \ref{lem:clustering_error_T_term} and Proposition~\ref{prop:asymptotics_average_clustering_ast_P} we have for $y \in K_C(k_n)$,
+\[
+	\Exp{\widetilde{T}_{\Pcal,n}(p)} = (1+\smallO{1})\Exp{\widetilde{T}_{\Pcal}(p)} = (1 + \smallO{1}) k_n^2 \Delta_{\Pcal}(y)
+\] 
+and similar result holds for $p^\prime$. Hence 
+\begin{align*}
+	&\hspace{-10pt}\frac{1 + \smallO{1}}{4} \int_{\mathcal{E}_\varepsilon(k_n)} \rho_{p,p^\prime}(k-j,k-j^\prime)
+		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f_{\alpha,\nu}(x,y)
+		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
+	&= (1+\smallO{1})\binom{k_n}{2}^2 \int_{\mathcal{E}_\varepsilon(k_n)} 
+		\rho_{p,p^\prime}(k-j,k-j^\prime) \Delta_{\Pcal}(y) \Delta_\Pcal(y^\prime) 	f_{\alpha,\nu}(x,y) 
+		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
+	&= (1+\smallO{1}) \left( \binom{k_n}{2} \int_{a_n^-}^{a_n^+}\int_{I_n} \rho_{y,n}(k_n)
+		\Delta_{\Pcal}(y) f_{\alpha,\nu}(x,y) \, dx \, dy\right)^2\\
+	&= (1 + \smallO{1})\left(\Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}\right)^2,
+\end{align*}
+which proves \eqref{eq:variance_T_I_00}.
+
+\paragraph{II) $\bm{I_{0,1}^\ast}$:}
+Without loss of generality we will assume that $p_1 = p_1^\prime$. Similar to the previous computations, we let $i = |\{p^\prime, p_1, p_2, p_2^\prime\} \cap B_{\Pcal,n}(p)|$ and $j = |\{p^\prime\} \cap B_{\Pcal,n}(p)|$ and let $i^\prime$, $j^\prime$ be defined, similarly, by interchanging the primed and non-primed variables. Then, if we define
+\[
+	T^{(0,1)}_{\Pcal,n}(p,p^\prime) = \sum_{(p_1,p_2) \in 2^{\Pcal_n}} \sum_{p_2^\prime \in \Pcal_n} \widetilde{T}_{\Pcal,n}(p,p_1,p_2) \widetilde{T}_{\Pcal,n}(p^\prime,p_1,p_2^\prime),
+\]
+we have
+\begin{align*}
+	\Exp{I_{0,1}^\ast} &= \frac{1+\smallO{1}}{2} \int_{\mathcal{E}_{\varepsilon}(k_n)} \rho_n(p,k)\rho_n(p^\prime,k)
+			\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)} f_{\alpha,\nu}(x,y)
+			f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy,
+\end{align*} 
+where we again used Lemma  \ref{lem:joint_degree_distribution_shift} and  Lemma \ref{lem:joint_degree_distribution_P_n}.
+We will show that 
+\[
+	\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)} = \smallO{k_n^4 s_\alpha(k_n)^2},
+\] 
+from which \eqref{eq:variance_T_I_ab} follows since $k_n^4 s_\alpha(k_n)^2 = \bigO{\Exp{\widetilde{T}_{\Pcal,n}(p)} \Exp{\widetilde{T}_{\Pcal,n}(p^\prime)}}$ on $\Kcal_{C}(k_n) \times \Kcal_{C}(k_n)$.
+
+First we consider the contribution coming from $y_1 > 4 \log(k_n)$. Since the integration of $T_\Pcal(p,p_1,p_2) T_\Pcal(p^\prime,p_1,p_2^\prime)$ over $x_1, x_2$ and $x_2^\prime$ is bounded by $\bigO{e^{y}e^{\frac{y^\prime}{2}} e^{\frac{y_1 + y_2 + y_2^\prime}{2}}}$ it follows that contribution to $\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)}$ is bounded by
+\begin{align*}
+	\bigO{e^{y}e^{\frac{y^\prime}{2}} \int_{4\log(k_n)}^{a_n^+} e^{-(\alpha - \frac{1}{2})y_1} \, dy_1}\\
+	&= \bigO{k_n^3 \int_{4\log(k_n)}^{a_n^+} e^{-(\alpha - \frac{1}{2})y_1} \, dy_1}\\
+	&= \bigO{k_n^{3 - (4\alpha - 2)}} = \smallO{k_n^4 s_\alpha(k_n)^2}.
+\end{align*}
+
+To deal with the case where $y_1 \le 4\log(k_n)$ we define $b_n = 2\varepsilon\log(k_n))$ and will consider different cases for $\Exp{T^\ast_{\Pcal,n}(p,p^\prime)}$, depending on whether $y_2 \le b_n$ or $y_2 > b_n$ and similar for $y_2^\prime$. 
+
+When $y_1 \le 4\log(k_n)$ and $y_2 > b_n$, the contribution to $\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)}$ is bounded by
+\begin{align*}
+	\Exp{\widetilde{T}_{\Pcal,n}(p)}
+		\bigO{e^{\frac{y^\prime}{2}}\int_{b_n}^{a_n^+} e^{-(\alpha -\frac{1}{2})y_2} \, dy_2}
+	&= \bigO{k_n^{1 - \varepsilon}}\Exp{\widetilde{T}_{\Pcal,n}(p)}
+	= \smallO{k_n^4 s_\alpha(k_n)^2}.
+\end{align*}
+Due to the symmetry in $p_2$ and $p_2^\prime$ the same results holds for the cases where $y_2 > b_n$.
+
+Finally, when $y_1 \le 4\log(k_n)$ and both $y_2, y_2^\prime \le b_n$ we have that
+\[
+	|x_2 - x_2^\prime| \le |x_1 - x_2| + |x_1 - x_2^\prime| \le e^{\frac{y_1}{2}}\left(e^{\frac{y_2}{2}} + e^{\frac{y_2^\prime}{2}}\right) \le 2k_n^{2+\varepsilon}
+\]
+whenever $T_\Pcal(p,p_1,p_2) T_\Pcal(p^\prime,p_1,p_2^\prime) > 0$ while both $|x - x_2|, |x^\prime - x_2^\prime| = \bigO{k_n^{1 + \varepsilon}}$. Hence it follows that
+\[
+	|x - x^\prime| \le |x - x_2| + |x_2 - x_2^\prime| + |x_2^\prime - x^\prime| = \bigO{k_n^{2 + \varepsilon}}.
+\]
+Next, by integrating only over $x_2^\prime$ and $y_2^\prime $ we get the contribution to $\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)}$ for this regime is bounded by
+\[
+	\bigO{e^{\frac{y^\prime}{2}} \Exp{\widetilde{T}_{\Pcal,n}(p)}}
+	= \bigO{k_n \Exp{\widetilde{T}_{\Pcal,n}(p)}} = \smallO{k_n^4 s_\alpha(k_n)^2}.
+\]
+
+The proofs for the other two cases $I_{0,2}^\ast$ and $I_{0,2}^\ast$ follows similar arguments.
+
+%\paragraph{III) $\bm{I_{0,2}^\ast}$:}
+%
+%\paragraph{IV) $\bm{I_{1,1}^\ast}$:}
+
+\end{proof}
+
+\PvdH{Stopped here with general pass}
+
+%\subsubsection{The case where $k_n = \bigO{1}$}
+%
+%Let $0 < \varepsilon < 1$, $\delta_n = (\varepsilon/k_n)^2$ and define
+%\[
+%	a_n = -\frac{1}{\alpha} \log\left(\delta_n\right)
+%\]
+%
+%Then, for all $p,p^\prime \in \Rcal_n$ with 
+%\[
+%	|x-x^\prime| > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)\max\{e^{\frac{a_n}{2}},e^{\frac{y^\ast}{2}}\}
+%	:= b_n(p,p^\prime)
+%\] 
+%we have that $h(p,p^\prime) > a_n$ and hence the neighborhoods of $p$ and $p^\prime$ below height $a_n$ are disjoint.
