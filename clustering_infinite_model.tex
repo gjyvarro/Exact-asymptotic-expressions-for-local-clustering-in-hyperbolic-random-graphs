@@ -378,6 +378,177 @@ P(y_0(z_0),y_1(z_1),y_2(z_2)) = \begin{cases}
 \end{align*}
 \end{lemma}
 
+\begin{figure}[!t]
+\centering
+\begin{tikzpicture}
+	%Define the coordinates 
+	%p = (\u,\v) and p^\prime = (\uu, \vv)
+	%Box \Rcal_n has width 2\r and height \t
+	\pgfmathsetmacro{\u}{0} %0
+	\pgfmathsetmacro{\v}{0.5} %1
+	\pgfmathsetmacro{\vv}{1.2} %0.8
+	\pgfmathsetmacro{\vvv}{2} %0.8
+	\pgfmathsetmacro{\uuu}{-3} %1.4	
+	\pgfmathsetmacro{\r}{6.5}
+	\pgfmathsetmacro{\t}{4}
+	
+	\pgfmathsetmacro{\ubound}{exp((\vv+\vvv)/2)-exp((\v+\vvv)/2)}
+	
+	\pgfmathsetmacro{\uu}{3*\ubound/4}
+	
+	\pgfmathsetmacro{\leftintvandvvv}{-exp((\v + \vvv)/2)}
+	\pgfmathsetmacro{\rightintvandvvv}{exp((\v + \vvv)/2)}
+	\pgfmathsetmacro{\leftintvvandvvv}{\uu-exp((\vv + \vvv)/2)}
+	\pgfmathsetmacro{\rightintvvandvvv}{\uu+exp((\vv + \vvv)/2)}
+		
+	%The box \Rcal_n
+	\draw[line width=1pt,dashed] (-\r,0) -- (\r,0) -- (\r,\t) -- (-\r,\t) -- (-\r,0);
+
+	%Dram all three nodes
+    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] (p1) at (\u,\v) {};
+    \path (p1)+(-0.2,0.2) node {$p_0$};
+    \draw node[fill,blue, circle, inner sep=0pt, minimum size=5pt] (p2) at (\uu,\vv) {};
+    \path (p2)+(0.2,0.2) node {\color{blue}$p_1$};	
+	
+	%Boundaries p_0 = (\u,\v)
+	
+	%Right boundary
+	\pgfmathsetmacro{\rightbounduv}{\u+exp((\v)/2)}
+	\draw[domain=\rightbounduv:\r,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(\x)-\v});
+    %Left boundary
+    \pgfmathsetmacro{\leftbounduv}{\u-exp((\v)/2)}
+    \draw[domain=\leftbounduv:-\r,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(-\x)-\v});
+    
+    %Boundaries p_1 = (\uu,\vv)
+    
+    %Right boundary
+    \pgfmathsetmacro{\rightbounduuvv}{\uu+exp((\vv)/2)}
+    \draw[domain=\rightbounduuvv:\r,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x-\uu)-\vv});
+%    %Shifted right boundary
+%    \pgfmathsetmacro{\shiftrightbounduuvv}{\uu+exp((\vv + \t)/2)-2*\r}
+%    \draw[domain=\shiftrightbounduuvv:-\r,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x+(2*\r-\uu))-\vv});
+    %Left boundary 
+    \pgfmathsetmacro{\leftbounduuvv}{\uu-exp((\vv)/2)}
+    \draw[domain=\leftbounduuvv:-\r,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\uu-\x)-\vv});
+%    %Shifted left boundary
+%    \pgfmathsetmacro{\shiftleftbounduuvv}{\uu-exp((\vv + \t)/2)+2*\r}
+%    \draw[domain=\shiftleftbounduuvv:\r,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(2*\r + \uu-\x)-\vv});
+   
+
+
+	\draw [red,dotted,line width=1pt] (\leftintvandvvv,\vvv) -- (\rightintvandvvv,\vvv);
+	
+	\draw [red,dotted,line width=1pt] (\leftintvvandvvv,\vvv) -- (\rightintvvandvvv,\vvv);
+
+	\draw [red,line width=1pt] (\leftintvandvvv,\vvv) -- (\rightintvandvvv,\vvv);
+
+    \draw node[fill,black!60!green, circle, inner sep=0pt, minimum size=5pt] (p2) at (\uuu,\vvv) {};
+    \path (p2)+(0.25,-0.2) node {\color{black!60!green}$p_2$};
+    
+	%Boundaries p_2 = (\uuu,\vvv)
+	
+	%Right boundary
+	\pgfmathsetmacro{\rightbounduuuvvv}{\uuu+exp((\vvv)/2)}
+	\draw[domain=\rightbounduuuvvv:\r,smooth,variable=\x,black!60!green,line width=1pt] plot (\x, {2*ln(\x-\uuu)-\vvv});
+    %Left boundary
+    \pgfmathsetmacro{\leftbounduuuvvv}{\uuu-exp((\vvv)/2)}
+    \draw[domain=\leftbounduuuvvv:-\r,smooth,variable=\x,black!60!green,line width=1pt] plot (\x, {2*ln(\uuu-\x)-\vvv});
+
+	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\leftintvandvvv,\vvv) {};
+	\path (\leftintvandvvv,\vvv)+(-0.5,-0.5) node[red] {$-e^{\frac{y_0 + y_2}{2}}$};
+	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\rightintvandvvv,\vvv) {};
+	\path (\rightintvandvvv,\vvv)+(0,-0.5) node[red] {$e^{\frac{y_0 + y_2}{2}}$};
+	
+	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\leftintvvandvvv,\vvv) {};
+	\path (\leftintvvandvvv,\vvv)+(0.75,0.5) node[red] {$x_1 - e^{\frac{y_0 + y_2}{2}}$};
+	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\rightintvvandvvv,\vvv) {};
+	\path (\rightintvvandvvv,\vvv)+(-0.5,0.5) node[red] {$x_1 + e^{\frac{y_0 + y_2}{2}}$};
+
+\end{tikzpicture}\\
+\vspace{0.5cm}
+\begin{tikzpicture}
+	%Define the coordinates 
+	%p = (\u,\v) and p^\prime = (\uu, \vv)
+	%Box \Rcal_n has width 2\r and height \t
+	\pgfmathsetmacro{\u}{0} %0
+	\pgfmathsetmacro{\v}{0.5} %1
+	\pgfmathsetmacro{\vv}{1.2} %0.8
+	\pgfmathsetmacro{\vvv}{1.8} %0.8
+	\pgfmathsetmacro{\uuu}{2.5} %1.4	
+	\pgfmathsetmacro{\r}{6.5}
+	\pgfmathsetmacro{\t}{4}
+	
+	\pgfmathsetmacro{\ubound}{exp((\vv+\vvv)/2)-exp((\v+\vvv)/2)}
+	
+	\pgfmathsetmacro{\uu}{5*\ubound/4}
+	
+	\pgfmathsetmacro{\leftintvandvvv}{-exp((\v + \vvv)/2)}
+	\pgfmathsetmacro{\rightintvandvvv}{exp((\v + \vvv)/2)}
+	\pgfmathsetmacro{\leftintvvandvvv}{\uu-exp((\vv + \vvv)/2)}
+	\pgfmathsetmacro{\rightintvvandvvv}{\uu+exp((\vv + \vvv)/2)}
+		
+	%The box \Rcal_n
+	\draw[line width=1pt,dashed] (-\r,0) -- (\r,0) -- (\r,\t) -- (-\r,\t) -- (-\r,0);
+
+	%Dram all three nodes
+    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] (p1) at (\u,\v) {};
+    \path (p1)+(-0.2,0.2) node {$p_0$};
+    \draw node[fill,blue, circle, inner sep=0pt, minimum size=5pt] (p2) at (\uu,\vv) {};
+    \path (p2)+(0.2,0.2) node {\color{blue}$p_1$};	
+	
+	%Boundaries p_0 = (\u,\v)
+	
+	%Right boundary
+	\pgfmathsetmacro{\rightbounduv}{\u+exp((\v)/2)}
+	\draw[domain=\rightbounduv:\r,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(\x)-\v});
+    %Left boundary
+    \pgfmathsetmacro{\leftbounduv}{\u-exp((\v)/2)}
+    \draw[domain=\leftbounduv:-\r,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(-\x)-\v});
+    
+    %Boundaries p_1 = (\uu,\vv)
+    
+    %Right boundary
+    \pgfmathsetmacro{\rightbounduuvv}{\uu+exp((\vv)/2)}
+    \draw[domain=\rightbounduuvv:\r,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x-\uu)-\vv});
+    %Left boundary 
+    \pgfmathsetmacro{\leftbounduuvv}{\uu-exp((\vv)/2)}
+    \draw[domain=\leftbounduuvv:-\r,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\uu-\x)-\vv});
+
+
+	\draw [red,dotted,line width=1pt] (\leftintvandvvv,\vvv) -- (\rightintvandvvv,\vvv);
+	
+	\draw [red,dotted,line width=1pt] (\leftintvvandvvv,\vvv) -- (\rightintvvandvvv,\vvv);
+
+	\draw [red,line width=1pt] (\leftintvvandvvv,\vvv) -- (\rightintvandvvv,\vvv);
+	
+
+
+    \draw node[fill,black!60!green, circle, inner sep=0pt, minimum size=5pt] (p2) at (\uuu,\vvv) {};
+    \path (p2)+(-0.2,0.2) node {\color{black!60!green}$p_2$};
+    
+	%Boundaries p_2 = (\uuu,\vvv)
+	
+	%Right boundary
+	\pgfmathsetmacro{\rightbounduuuvvv}{\uuu+exp((\vvv)/2)}
+	\draw[domain=\rightbounduuuvvv:\r,smooth,variable=\x,black!60!green,line width=1pt] plot (\x, {2*ln(\x-\uuu)-\vvv});
+    %Left boundary
+    \pgfmathsetmacro{\leftbounduuuvvv}{\uuu-exp((\vvv)/2)}
+    \draw[domain=\leftbounduuuvvv:-\r,smooth,variable=\x,black!60!green,line width=1pt] plot (\x, {2*ln(\uuu-\x)-\vvv});
+
+	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\leftintvandvvv,\vvv) {};
+	\path (\leftintvandvvv,\vvv)+(-0.5,-0.55) node[red] {$-e^{\frac{y_0 + y_2}{2}}$};
+	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\rightintvandvvv,\vvv) {};
+	\path (\rightintvandvvv,\vvv)+(0,-0.55) node[red] {$e^{\frac{y_0 + y_2}{2}}$};
+	
+	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\leftintvvandvvv,\vvv) {};
+	\path (\leftintvvandvvv,\vvv)+(0.75,0.5) node[red] {$x_1 - e^{\frac{y_0 + y_2}{2}}$};
+	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\rightintvvandvvv,\vvv) {};
+	\path (\rightintvvandvvv,\vvv)+(-0.5,0.5) node[red] {$x_1 + e^{\frac{y_0 + y_2}{2}}$};
+
+\end{tikzpicture}
+\caption{Example configuration of two points $p$ and $p^\prime$ for which $\BallPon{p} \cap \BallPon{p^\prime}$ is not a subset of $\BallPo{p} \cap \BallPo{p^\prime}$. The red region indicates the area of points belonging to $\BallPon{p} \cap \BallPon{p^\prime}$ but not to $\BallPo{p} \cap \BallPo{p^\prime}$.}
+\end{figure}
+
 \begin{figure}
 \centering
 \begin{tikzpicture}[scale=0.9]
