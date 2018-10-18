@@ -140,21 +140,20 @@ Using the above equation and the transformation of variables $z = \xi_{\alpha,\n
     &= \frac{(\xi_{\alpha,\nu})^{2\alpha}}{\Gamma(k+1)} \int_{\xi_{\alpha,\nu}}^{\infty} 
     	z^{k-2\alpha} e^{-z} \, dz\\
     &= (\xi_{\alpha,\nu})^{2\alpha}\frac{\Gamma(k-2\alpha)}{\Gamma(k+1)}
-    	\left(1 - \frac{\gamma(k-2\alpha, \xi_{\alpha,\nu})}{\Gamma(k - 2\alpha)}\right),
+    	\left(1 - \frac{\Gamma^{-}(k-2\alpha, \xi_{\alpha,\nu})}{\Gamma(k - 2\alpha)}\right),
         \numberthis \label{eq:degree_distribution_P}
 \end{align*}
-where $\Gamma$ denotes the Gamma-function and $\gamma$ the incomplete Gamma-function.
+where we recall that $\Gamma$ denotes the Gamma-function and $\Gamma^{-1}$ the lower-incomplete Gamma-function.
 
-Thus we deduce that, as $k \to \infty$,
+Since $\Gamma^{-}(k-2\alpha, \xi_{\alpha,\nu})\Gamma(k - 2\alpha) \to 0$ \PvdH{Find reference.} and $\Gamma(k-t)/\Gamma(k+1) \sim k^{-(t+1)}$ as $k \to \infty$ we deduce that
 \begin{equation}\label{eq:degree_distribution_P_asymptotics}
 	\Prob{D_\Pcal = k} = \int_0^\infty \rho_{y}(k) e^{-\alpha y} \, dy \sim (\xi_{\alpha,\nu})^{2\alpha} k^{-(2\alpha + 1)}.
 \end{equation}
 
-By a similar computation we have the following result, which will be useful later on. For any $\beta > 0$,
+By a similar computation we have the following result, which will be useful later on. For any $\beta > 0$, as $k \to \infty$
 \begin{equation}\label{eq:general_integral_rho_y_k}
 	\int_0^\infty e^{\beta y} \rho_y(k) e^{-\alpha y} \, dy
-    = \left(\xi_{\alpha,\nu}\right)^{2(\beta + \alpha)} \frac{\Gamma(k - 2(\beta + \alpha))}{\Gamma(k+1)}
-    	\left(1 - \frac{\gamma(k - 2(\beta + \alpha), \xi_{\alpha,\nu})}{\Gamma(k - 2(\beta + \alpha))}\right).
+    \sim \left(\xi_{\alpha,\nu}\right)^{2(\beta + \alpha)} k^{-2(\beta + \alpha)-1}.
 \end{equation}
 
 \subsection{Asymptotic behavior of $c_\infty(k)$}\label{ssec:asymptotics_local_clustering_P}
@@ -205,23 +204,23 @@ The asymptotic behavior for the denominator follows from~\eqref{eq:degree_distri
 and in particular the function $\Delta_\Pcal(y)$. The following result establishes the asymptotic behavior of the latter.
 
 \begin{proposition}[Asymptotic behavior of $\Delta_\Pcal(y)$]\label{prop:asymptotics_Delta_y_P}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $C_\alpha$ as defined in \eqref{eq:def_C_alpha}. Then there are three, eventually decreasing, functions $\varepsilon_i : \R_+ \mapsto \R$, $i = 1,2,3$, satisfying
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $C_\alpha$ as defined in \eqref{eq:def_C_alpha}. Then there are three, eventually decreasing, functions $\varphi_i : \R_+ \mapsto \R$, $i = 1,2,3$, satisfying
 \[
-	\lim_{y \to \infty} \varepsilon_i(y) = 0, 
+	\lim_{y \to \infty} \varphi_i(y) = 0, 
 \]
 such that 
 \begin{enumerate}
 \item for $\frac{1}{2} < \alpha < \frac{3}{4}$,
 \[
-	\Delta_{\Pcal}(y) = e^{-\frac{y}{2}(4\alpha - 2)} C_\alpha (1 + \varepsilon_1(y)),
+	\Delta_{\Pcal}(y) = e^{-\frac{y}{2}(4\alpha - 2)} C_\alpha (1 + \varphi_1(y)),
 \]
 \item for $\alpha = \frac{3}{4}$,
 \[
-	\Delta_\Pcal(y) = \log\left(\frac{y}{2}\right)e^{-\frac{y}{2}}(1 + \varepsilon_2(y)),
+	\Delta_\Pcal(y) = \log\left(\frac{y}{2}\right)e^{-\frac{y}{2}}(1 + \varphi_2(y)),
 \]
 \item and for $\alpha > \frac{3}{4}$,
 \[
-	\Delta_{\Pcal}(y) = e^{-\frac{y}{2}} \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} (1 + \varepsilon_3(y)).
+	\Delta_{\Pcal}(y) = e^{-\frac{y}{2}} \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} (1 + \varphi_3(y)).
 \]
 \end{enumerate}
 \end{proposition}
@@ -230,67 +229,62 @@ The proof of this proposition is involved and technical. We therefore postpone i
 
 \begin{proof}[Proof of Theorem \ref{thm:asymptotics_average_clustering_P}]
 
-\PvdH{Include concentration argument in this proof.}
-We only give the proof for the case $\frac{1}{2} < \alpha < \frac{3}{4}$. The proofs for the other two cases are similar. Let $\varepsilon_1(y)$ be defined as in Proposition \ref{prop:asymptotics_Delta_y_P} and define
+We only give the proof for the case $\frac{1}{2} < \alpha < \frac{3}{4}$. The proofs for the other two cases are similar. Let $\varphi_1(y)$ be defined as in Proposition \ref{prop:asymptotics_Delta_y_P} and define
 \[
-	\xi_1(k_n) = \int_0^{\infty} \varepsilon_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho_{y}(k_n) e^{-\alpha y} \, dy
+	\epsilon_1(k) = \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y
 \]
 Then we have that
 \[
-	\int_0^{\infty} \Delta_{\mathcal{P}}(y) \rho_{y}(k_n) e^{-\alpha y} \, dy
-	= C_\alpha \int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho_{y}(k_n) e^{-\alpha y} \, dy + \xi_1(k_n).
+	\int_0^{\infty} \Delta_{\mathcal{P}}(y) \rho(y,k) e^{-\alpha y} \dd y
+	= C_\alpha \int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y + \epsilon_1(k).
 \]
 
-Using \eqref{eq:general_integral_rho_y_k} with $\beta = 2\alpha - 1$ yields
-\[
-	\int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho_{y}(k_n) e^{-\alpha y} \, dy 
-    = 2\xi^{6\alpha - 2} \frac{\Gamma(k_n-(6\alpha-2)}{\Gamma(k_n+1)}
-	\left(1 - \frac{\gamma(k_n - (6\alpha - 2), \xi)}{\Gamma(k_n - (6\alpha-2))}\right).
-\]
-Since 
-\[
-	\lim_{n \to \infty} \frac{\gamma(k_n - 2\alpha, \xi)}{\Gamma(k_n - 2\alpha)} = 0,
-\]
-and $\Gamma(k_n - t)/\Gamma(k_n + 1) \sim k_n^{-(t+1)}$ as $n \to \infty$,
-it follows that, as $n \to \infty$,
+Using \eqref{eq:general_integral_rho_y_k} with $\beta = 2\alpha - 1$ yields,
+\begin{equation}\label{eq:asymptotics_clustering_integral}
+	\int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y 
+	\sim \xi_{\alpha,\nu}^{6\alpha - 2} k^{-(6\alpha - 1)},
+\end{equation}
+as $k \to \infty$. Therefore, by applying the asymptotic scaling for the denominator~\eqref{eq:degree_distribution_P_asymptotics} we get
 \begin{align*}
-	c_\infty(k_n) \sim C_\alpha \xi^{4\alpha - 2} \frac{k_n^{-(6\alpha - 1)}}{k_n^{-(2\alpha - 1)}}
-	+ \frac{\xi^{-2\alpha}\eta_1(k_n)}{2 k_n^{-(2\alpha - 1)}}
-	\sim C_\alpha \xi^{4\alpha - 2} k_n^{-4\alpha + 2} 
-    + \frac{\xi^{-2\alpha}\eta_1(k_n)}{2 k_n^{-(2\alpha - 1)}}.
+	c_\infty(k) &= \frac{\int_0^{\infty} \Delta_{\mathcal{P}}(y) \rho(y,k) e^{-\alpha y} \dd y}
+		{\int_0^\infty \rho_{y}(k) e^{-\alpha y} \dd y} \\
+	&\sim C_\alpha \xi_{\alpha,\nu}^{4\alpha - 2} \frac{k^{-(6\alpha - 1)}}{k^{-(2\alpha - 1)}}
+	+ \frac{\epsilon_1(k)}{\xi_{\alpha,\nu}^{2\alpha} k^{-(2\alpha - 1)}}\\
+	&= C_\alpha \xi_{\alpha,\nu}^{4\alpha - 2} k^{-4\alpha + 2} 
+    + \xi_{\alpha,\nu}^{-2\alpha} k^{2\alpha - 1}\epsilon_1(k).
 \end{align*}
 Hence, to prove the result it is enough to show that
 \[
-	\lim_{n \to \infty} k_n^{6\alpha - 1}\xi_1(k_n) = 0.
+	\lim_{k \to \infty} k^{6\alpha - 3}\epsilon_1(k) = 0.
 \]
-For this let $0 < \varepsilon < 1$, define $a_n = 2\log((1-\varepsilon)k_n)$ and split the integral into two pieces
+For this we fix $0 < \varphi < 1$, define $a(k) = 2\log((1-\varphi)k)$ and split the integral into two pieces
 \begin{align*}
-	\xi_1(k_n) &= \int_0^{\infty} \varepsilon_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho_{y}(k_n) e^{-\alpha y} \, dy\\
-	&= \int_0^{a_n} \varepsilon_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho_{y}(k_n) e^{-\alpha y} \, dy\\
-	&\hspace{10pt}+ \int_{a_n}^{\infty} \varepsilon_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
-    	\rho_{y}(k_n) e^{-\alpha y} \, dy.
+	\epsilon_1(k) &= \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y\\
+	&= \int_0^{a(k)} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y\\
+	&\hspace{10pt}+ \int_{a(k)}^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
+    	\rho(y,k) e^{-\alpha y} \dd y.
 \end{align*} 
-For the first integral we use that
+For the first integral we use that $\rho(y,k)$ is increasing on $[0,a(k)]$ and
 \[
-	k_n^{6\alpha - 1}\rho_{a_n}(k_n) = O\left(\frac{k_n^{6\alpha - 1 + (1-\varepsilon)k_n}}{k_n!} e^{-(1-\varepsilon)k_n}\right) = o(1),
+	k^{6\alpha - 3}\rho(a(k),k) = O\left(\frac{k^{6\alpha - 3 + (1-\varphi)k}}{k!} e^{-(1-\varphi)k}\right) = o(1),
 \]
-so that
+to obtain
 \begin{align*}
-	&\hspace{-30pt}\lim_{n \to \infty} k_n^{6\alpha - 1} \int_0^{a_n} \varepsilon_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
-    	\rho_{y}(k_n) e^{-\alpha y} \, dy\\
-	&\le \lim_{n \to \infty} \left(\max_{0 \le y \le a_n} \varepsilon_1(y)\right) k_n^{6\alpha - 1} 
-    	\rho_{a_n}(k_n) \int_0^\infty e^{-\alpha y} \, dy = 0.
+	&\hspace{-30pt}\lim_{k \to \infty} k^{6\alpha - 3} \int_0^{a_n} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
+    	\rho(y,k) e^{-\alpha y} \dd y\\
+	&\le \lim_{n \to \infty} \left(\max_{0 \le y \le a(k)} \varphi_1(y)\right) k^{6\alpha - 1} 
+    	\rho(a(k), k) \int_0^\infty e^{-\alpha y} \dd y = 0.
 \end{align*}
 For the second integral we first note that due to \eqref{eq:asymptotics_clustering_integral}
 \[
-	\int_0^\infty e^{-(4\alpha - 2)\frac{y}{2}} \rho_{y}(k_n) e^{-\alpha y} \, dy \sim k_n^{-(6\alpha - 1)}.
+	\int_0^\infty e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y = \bigT{k^{-(6\alpha - 1)}}.
 \] 
-Therefore, using that $\varepsilon_1(y)$ is eventually decreasing and $\lim_{n \to \infty} \varepsilon_1(a_n) = 0$, we obtain
+Therefore, using that $\varphi_1(y)$ is eventually decreasing and $\lim_{k \to \infty} \varphi_1(a(k)) = 0$, we obtain
 \begin{align*}
-	&\hspace{-30pt}\lim_{n \to \infty} k_n^{6\alpha - 1} \int_{a_n}^{\infty} \varepsilon_1(y) 
-    	e^{-(4\alpha - 2)\frac{y}{2}} \rho_{y}(k_n) e^{-\alpha y} \, dy\\
-	&\le \lim_{n \to \infty} \varepsilon_1(a_n) k_n^{6\alpha - 1} \int_0^\infty 
-    	e^{-(4\alpha - 2)\frac{y}{2}} \rho_{y}(k_n) e^{-\alpha y} \, dy = 0,
+	&\hspace{-30pt}\lim_{k \to \infty} k^{6\alpha - 3} \int_{a(k)}^{\infty} \varphi_1(y) 
+    	e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y\\
+	&\le \lim_{k \to \infty} \varphi_1(a(k)) k^{6\alpha - 3} \int_0^\infty 
+    	e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y = 0,
 \end{align*}
 which finishes the proof.
 \end{proof}
@@ -550,62 +544,6 @@ P(y_0(z_0),y_1(z_1),y_2(z_2)) = \begin{cases}
 \label{fig:triangle_prob_lemma}
 \end{figure}
 
-\begin{figure}
-\centering
-\begin{tikzpicture}[scale=0.9]
-
-	\draw node at (0,3.5) {\begin{minipage}{5cm}
-		\begin{center}
-		\begin{align*}
-			&\text{I) } e^{\frac{y_0 + y_1}{2}} < e^{\frac{y_1 + y_2}{2}} - e^{\frac{y_0 + y_2}{2}} \text{ or}\\
-			&\text{II) } 0 \le x_1 \le e^{\frac{y_1 + y_2}{2}} - e^{\frac{y_0 + y_2}{2}}
-		\end{align*}
-		\end{center}
-	\end{minipage}};
-
-	\draw[thick,red] (-2,1) -- (2,1);
-	\draw[thick] (-2,0.8) -- (-2,1.2);
-	\draw[thick] (2,0.8) -- (2,1.2);
-	\draw node at (-2,1.5) {$-e^{\frac{y_0 + y_2}{2}}$};
-	\draw node at (2,1.5) {$e^{\frac{y_0 + y_2}{2}}$};
-	
-	\draw[thick] (-3,0) -- (3,0);
-	\draw[thick,red] (-2,0) -- (2,0);
-	\draw[thick,red] (-2,-0.2) -- (-2,0.2);
-	\draw[thick,red] (2,-0.2) -- (2,0.2);
-	\draw[thick] (-3,-0.2) -- (-3,0.2);
-	\draw[thick] (3,-0.2) -- (3,0.2);
-	\draw node at (-3,-0.5) {$x_1 - e^{\frac{y_1 + y_2}{2}}$};
-	\draw node at (3,-0.5) {$x_1 + e^{\frac{y_1 + y_2}{2}}$};
-	
-\end{tikzpicture}
-\begin{tikzpicture}[scale=0.9]
-
-	\draw node at (0,3.5) {\begin{minipage}{5cm}
-		\begin{center}
-			$x_1 > e^{\frac{y_1 + y_2}{2}} - e^{\frac{y_0 + y_2}{2}}$
-		\end{center}
-	\end{minipage}};
-
-	\draw[thick] (-2,1) -- (2,1);
-	\draw[thick,red] (-1.5,1) -- (2,1);
-	\draw[thick] (-2,0.8) -- (-2,1.2);
-	\draw[thick] (2,0.8) -- (2,1.2);
-	\draw[thick,red] (-1.5,0.8) -- (-1.5,1.2);
-	\draw node at (-2,1.5) {$-e^{\frac{y_0 + y_2}{2}}$};
-	\draw node at (2,1.5) {$e^{\frac{y_0 + y_2}{2}}$};
-	
-	\draw[thick] (-1.5,0) -- (3,0);
-	\draw[thick,red] (-1.5,0) -- (2,0);
-	\draw[thick,red] (2,-0.2) -- (2,0.2);
-	\draw[thick] (-1.5,-0.2) -- (-1.5,0.2);
-	\draw[thick] (3,-0.2) -- (3,0.2);
-	\draw node at (-1.5,-0.5) {$x_1 - e^{\frac{y_1 + y_2}{2}}$};
-	\draw node at (3,-0.5) {$x_1 + e^{\frac{y_1 + y_2}{2}}$};
-	
-\end{tikzpicture}
-\end{figure}
-
 \begin{proof}
 %pim pass1: $P(y_0,y_1,y_2)$ is the probability that $(x_1,y_1)$ and $(x_2,y_2)$ (which are given by a Poisson process in the upper half-plane) are neighbours of each other, given that they are neighbours of $(0,y_0)$ (see figure \ref{fig:triangle_prob_lemma}). By the properties of the Poisson process and our connection rule (which defines the neighourhood area of $(0,y_0)$ in the upper half-plane), given $y_0, y_1, y_2$ we have that $x_i$ is chosen u.a.r.~from $[-e^{y_0/2+y_i/2}, +e^{y_0/2+y_i/2}]$ for $i=1,2$.
 Since the Poisson Point Process is translation invariant in the $x$-coordinate we can, without loss of generality, take $x_0 = 0$. By definition of the connection rule $P(y_0,y_1,y_2)$ is the probability that $|x_2-x_1| \leq  e^{(y_1+y_2)/2}$ (see figure \ref{fig:triangle_prob_lemma}). Consider $y_0, y_1, y_2$ and $x_1$ fixed. Then we are interested in computing the probability that $x_2$ falls into the interval $[x_1-e^{(y_1+y+2)/2},x_1+e^{(y_1+y_2)/2}]$ (given by the bottom interval in the Figure~\ref{fig:triangle_prob_lemma}), as well as into the interval $[-e^{(y_0+y_2)/2},e^{(y_0+y_2)/2}]$ (given by the top interval in the Figure~\ref{fig:triangle_prob_lemma}).
@@ -839,14 +777,14 @@ Next we compute $J_{a,b,c}(z_0)$.
 	J_{a,b,c} 
 	&= z_0^a \int_{z_0/2}^{z_0}\int_{z_0-z_1}^{z_1} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} {\dd}z_2{\dd}z_1
 		= z_0^a \int_{z_0/2}^{z_0} z_1^{b+2\alpha-2} \left[ \frac{ z_2^{c+2\alpha-1} }{ c+2\alpha-1 } \right]_{z_0-z_1}^{z_1} \dd z_1\\
-	&= \frac{z_0^a}{c+2\alpha-1} \cdot \left( \int_{z_0/2}^{z_0} z_1^{b+c+4\alpha-3} {\dd}z_1
+	&= \frac{z_0^a}{c+2\alpha-1} \cdot \left( \int_{z_0/2}^{z_0} z_1^{b+c+4\alpha-3} \dd z_1
 	   - \int_{z_0/2}^{z_0} z_1^{b+2\alpha-2} (z_0-z_1)^{c+2\alpha-1} {\dd}z_1 \right) \\
-	&= \frac{z_0^{a+b+c+4\alpha-2}(1-(1/2)^{b+c+4\alpha-2})}{(c+2\alpha-1)(b+c+4\alpha-2)} 
-		- \frac{z_0^{a+b+c+4\alpha-3}}{c+2\alpha-1} \int_{z_0/2}^{z_0}  \left(z_1/z_0\right)^{b+2\alpha-2} 
-	    \left(1-(z_1/z_0)\right)^{c+2\alpha-1} {\dd}z_1\\
+	&= \frac{z_0^{a+b+c+4\alpha-2}(1-(1/2)^{b+c+4\alpha-2})}{(c+2\alpha-1)(b+c+4\alpha-2)} \\
+	&\hspace{10pt}- \frac{z_0^{a+b+c+4\alpha-3}}{c+2\alpha-1} \int_{z_0/2}^{z_0}  \left(z_1/z_0\right)^{b+2\alpha-2} 
+	    \left(1-(z_1/z_0)\right)^{c+2\alpha-1} \dd z_1\\
 	&= \frac{z_0^{4\alpha-2}(1-(1/2)^{b+c+4\alpha-2})}{(c+2\alpha-1)(b+c+4\alpha-2)} 
 		- \frac{z_0^{4\alpha-2}}{c+2\alpha-1}
-	   \int_{1/2}^1  u^{b+2\alpha-2}(1-u)^{c+2\alpha-1} {\dd} u \\
+	   \int_{1/2}^1  u^{b+2\alpha-2}(1-u)^{c+2\alpha-1} \dd u \\
 	&= \frac{z_0^{4\alpha-2}(1-(1/2)^{b+c+4\alpha-2})}{(c+2\alpha-1)(b+c+4\alpha-2)} 
 		- \frac{z_0^{4\alpha-2}}{c+2\alpha-1} B^-(1/2;c+2\alpha, b+2\alpha-1),
 \end{align*}
@@ -933,8 +871,11 @@ To deal with $I_{22}(y_0)$ we consider the integral function
 \]
 and note that
 \begin{equation}\label{eq:Delta_P_computation_I22_J}
-	I_{2,2}(y_0) = \frac{1}{4}\left(J_{0,-1,1}^\prime(z_0) + J_{2,-1,-1}^\prime(z_0)
-	+ J_{0,1,-1}^\prime(z_0) + 2J_{1,-1,0}^\prime(z_0) - 2J_{0,0,0}^\prime(z_0) - 2J_{1,0,-1}^\prime(z_0)\right)
+\begin{aligned}
+		I_{2,2}(y_0) &= \frac{1}{4}\left(J_{0,-1,1}^\prime(z_0) + J_{2,-1,-1}^\prime(z_0)
+		+ J_{0,1,-1}^\prime(z_0)\right) \\
+		&\hspace{10pt}+ \frac{1}{2}\left( J_{1,-1,0}^\prime(z_0) - J_{0,0,0}^\prime(z_0) - J_{1,0,-1}^\prime(z_0)\right).
+\end{aligned}
 \end{equation}
 
 We know compute $J_{a,b,c}^\prime(z_0)$
@@ -1031,8 +972,6 @@ Note that the factor $\alpha-\frac{3}{4}$ does not occur in any denominator of t
 
 \paragraph{The case of $\bm{\alpha = 1}$}
 
-\PvdH{Realign formulas to fit them on page.}
-
 We want to compute the limit $\lim_{\alpha \rightarrow 1} \Delta_{\Pcal_{\alpha,\nu}}(y_0(z_0))$. For this, after factoring out $\frac{1}{\alpha-1}$ we compute the first two terms of the Taylor expansion of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$ in $\alpha$ based at $\alpha = 1$. The constant term of this Taylor expansion is verified to vanish whereas the linear term gives the expression searched (after cancellation with $\frac{1}{\alpha-1}$). Note that two terms of $P(y_0(z_0))$ contain $(\alpha-1)^2$ in their denominator, so for those two another $\frac{1}{\alpha-1}$ is factored out and the first three terms of the Taylor expansion are computed. Their constant terms cancel and after multiplication with $\frac{1}{\alpha-1}$ their linear and quadratic terms become part of the constant and linear term of the overall expansion.
 
 The first summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$,
@@ -1062,17 +1001,16 @@ and
 \end{align*}
 The fifth summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$,
 \begin{align*}
-z_0^{-2 + 4 \alpha} \frac{(\alpha - 
-	1/2 ) B^-(1/2; 1 + 2 \alpha, 
-	-2 + 2 \alpha)}{2\alpha} = \frac{z_0^2}{4} B^-(1/2;3,0) + z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0) \right. \\
- \left.+1/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \right)  (\alpha-1)+O( (\alpha-1)^2 )
+	&\hspace{-30pt}z_0^{-2 + 4 \alpha} \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2\alpha} \\
+	&= \frac{z_0^2}{4} B^-(1/2;3,0) + z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0) \right. \\
+ 	&\hspace{20pt}\left.+1/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \right)  (\alpha-1)+O( (\alpha-1)^2 )
 \end{align*}
 as
 \begin{align*}
-\frac{d}{d \alpha}\left( z_0^{-2 + 4 \alpha} \frac{(\alpha - 
-	1/2 )}{2\alpha} B^-(1/2; 1 + 2 \alpha, 
-	-2 + 2 \alpha)\right) = \ln(z_0) 4 z_0^{-2+4\alpha} \left(\frac{1}{2}-\frac{1}{4\alpha}\right)B^-(1/2;1+2\alpha,-2+2\alpha)\\
-+z_0^{-2+4\alpha}\frac{1}{4\alpha^2}B^-(1/2;1+2\alpha,-2+2\alpha)+z_0^{-2+4\alpha}\left(\frac{1}{2}-\frac{1}{4\alpha}\right)\int_0^{\frac{1}{2}} \frac{d}{d\alpha}(t^{2\alpha}(1-t)^{2\alpha-3})dt
+	&\hspace{-20pt}\frac{d}{d \alpha}\left( z_0^{-2 + 4 \alpha} \frac{(\alpha - 1/2 )}{2\alpha} 
+		B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)\right) \\
+	&= \ln(z_0) 4 z_0^{-2+4\alpha} \left(\frac{1}{2}-\frac{1}{4\alpha}\right)B^-(1/2;1+2\alpha,-2+2\alpha)\\
+	&+z_0^{-2+4\alpha}\frac{1}{4\alpha^2}B^-(1/2;1+2\alpha,-2+2\alpha)+z_0^{-2+4\alpha}\left(\frac{1}{2}-\frac{1}{4\alpha}\right)\int_0^{\frac{1}{2}} \frac{d}{d\alpha}(t^{2\alpha}(1-t)^{2\alpha-3})dt
 \end{align*}
 where
 \begin{align*}
@@ -1091,40 +1029,62 @@ The seventh and last summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$,
 We see that the constant coefficients cancel:
 \begin{align*}
 &-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(\frac{z_0}{2}) +\frac{z_0^2}{4}B^-(1/2;3,0)+\frac{(1-z_0)^2}{8}-\frac{z_0^2}{4}B^-(1-z_0;2,-1) \\
-&=-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(z_0)-\frac{z_0^2}{4}\ln 2 -\frac{5z_0^2}{32}+\frac{z_0^2}{4}\ln2 +\frac{1}{8}-\frac{z_0}{4}+\frac{z_0^2}{8}+\frac{z_0^2}{4}-\frac{z_0}{4}-\frac{z_0^2}{4}\ln z_0 =0
+&=-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(z_0)-\frac{z_0^2}{4}\ln 2 -\frac{5z_0^2}{32}+\frac{z_0^2}{4}\ln2 \\ &\hspace{10pt}+\frac{1}{8}-\frac{z_0}{4}+\frac{z_0^2}{8}+\frac{z_0^2}{4}-\frac{z_0}{4}-\frac{z_0^2}{4}\ln z_0 =0
 \end{align*}
 The expression for $\alpha=1$ is given by the sum of the linear coefficients:
 \begin{align*}
-&\frac{1}{8}+z_0-\frac{z_0^2}{4}+\frac{z_0^2}{8}(4(\ln\frac{z_0}{2})^2+\ln\frac{z_0}{2} - \frac{1}{4}) +\frac{(1-z_0)^2}{4} (\ln(1-z_0)-1/2 )\\
-&\qquad+z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0)+1/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \right) \\
-&\qquad- z_0^{2}\left(\ln(z_0)B^-(1-z_0;2,-1)+\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \right) \\
-&=\frac{1}{8}+z_0-\frac{z_0^2}{4}+\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} - \frac{z_0^2}{32} \\
-&\qquad-\frac{5}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2-\frac{5z_0^2}{32}+\frac{z_0^2 \ln2}{4}+z_0^2/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \\
-&\qquad+\frac{(1-z_0)^2}{4}\ln(1-z_0) -\frac{1}{8}+\frac{z_0}{4}-\frac{z_0^2}{8}\\
-&\qquad+ z_0^2\ln(z_0)-z_0 \ln z_0-z_0^2(\ln z_0)^2-z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \\
-&=\frac{5}{4}z_0-\frac{9}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} +\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
-&\qquad+\frac{3}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}+z_0^2/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \\
-&\qquad-z_0 \ln z_0-z_0^2(\ln z_0)^2-z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \\
-&=\frac{5}{4}z_0-\frac{9}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} +\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
-&\qquad+\frac{3}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}+z_0^2/2(11/8 -1/4 \ln 2 -3/2\ln(2)^2 -  \Li_2(1/2)) \\
-&\qquad-z_0 \ln z_0-z_0^2(\ln z_0)^2+z_0(1 + \frac{1}{2}(2-z_0) \ln(z_0) + \frac{1}{2}z_0 \ln(z_0)^2 - \frac{1}{2} (1-z_0) \ln(1-z_0) +\frac{1}{2}z_0 \Li_2(z_0))\\
-&\qquad-z_0^2   -\frac{1}{2}  z_0^2\Li_2(1) \\
-&=\frac{9}{4}z_0-\frac{25}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} +\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
-&\qquad-\frac{1}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}+z_0^2/2(11/8 -1/4 \ln 2 -3/2\ln(2)^2 -  \Li_2(1/2)-\Li_2(1)+\Li_2(z_0)) \\
-&\qquad-\frac{1}{2}z_0^2(\ln z_0)^2 - \frac{1}{2} z_0(1-z_0) \ln(1-z_0)
+	&\frac{1}{8}+z_0-\frac{z_0^2}{4}+\frac{z_0^2}{8}(4(\ln\frac{z_0}{2})^2+\ln\frac{z_0}{2} - \frac{1}{4}) 
+		+\frac{(1-z_0)^2}{4} (\ln(1-z_0)-1/2 )\\
+	&\hspace{10pt}+z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0)+1/2\int_0^{\frac{1}{2}} 
+		\ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \right) \\
+	&\hspace{10pt}- z_0^{2}\left(\ln(z_0)B^-(1-z_0;2,-1)+\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \right) \\
+	&=\frac{1}{8}+z_0-\frac{z_0^2}{4}+\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2
+		+\frac{z_0^2}{8}\ln\frac{z_0}{2} - \frac{z_0^2}{32} \\
+	&\hspace{10pt}-\frac{5}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2-\frac{5z_0^2}{32} +\frac{z_0^2 \ln2}{4}\\
+	&\hspace{10pt}+z_0^2/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}\dd t \\
+	&\hspace{10pt}+\frac{(1-z_0)^2}{4}\ln(1-z_0) -\frac{1}{8}+\frac{z_0}{4}-\frac{z_0^2}{8}\\
+	&\hspace{10pt}+ z_0^2\ln(z_0)-z_0 \ln z_0-z_0^2(\ln z_0)^2
+		-z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \\
+	&=\frac{5}{4}z_0-\frac{9}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} 
+		+\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
+	&\hspace{10pt}+\frac{3}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}
+		+z_0^2/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \\
+	&\hspace{10pt}-z_0 \ln z_0-z_0^2(\ln z_0)^2-z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \\
+	&=\frac{5}{4}z_0-\frac{9}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} 
+		+\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
+	&\hspace{10pt}+\frac{3}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}
+		+z_0^2/2(11/8 -1/4 \ln 2 -3/2\ln(2)^2 -  \Li_2(1/2)) \\
+	&\hspace{10pt}-z_0 \ln z_0-z_0^2(\ln z_0)^2+z_0(1 + \frac{1}{2}(2-z_0) \ln(z_0) 
+		+ \frac{1}{2}z_0 \ln(z_0)^2 - \frac{1}{2} (1-z_0) \ln(1-z_0) \\
+	&\hspace{10pt}+\frac{1}{2}z_0 \Li_2(z_0)) - z_0^2   -\frac{1}{2}  z_0^2\Li_2(1) \\
+	&=\frac{9}{4}z_0-\frac{25}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} 
+		+\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
+	&\hspace{10pt}-\frac{1}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}
+		+z_0^2/2(11/8 -1/4 \ln 2 -3/2\ln(2)^2 \\
+	&\hspace{10pt}- \Li_2(1/2)-\Li_2(1)+\Li_2(z_0)) -\frac{1}{2}z_0^2(\ln z_0)^2 - \frac{1}{2} z_0(1-z_0) \ln(1-z_0)
 \end{align*}
-where we used that the first integral is
+where we used that
 \begin{align*}
-[1/2 (-2 + 5 t + t^2 - \ln(1 - t)^2 - 2 t \ln t - t^2 \ln t - 
-   \ln(1 - t) (-3 + 2 t + t^2 + 2\ln t) - 2 \Li_2(t))]_0^{\frac{1}{2}} \\
-= 11/8 -1/4 \ln 2 -3/2\ln(2)^2 -  \Li_2(1/2)
+	z_0^2/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1} \dd t
+	&= 11/8 -1/4 \ln 2 -3/2\ln(2)^2 -  \Li_2(1/2),
 \end{align*}
-and the second one is
+and
 \begin{align*}
-[\frac{1}{-1+ t} (1 + \frac{1}{2}(1 + t) \ln(1 - t) + \frac{1}{2}(1 - t) \ln(
-1 -t)^2 - \frac{1}{2} t \ln(t) +\frac{1}{2} (1 - t) \Li_2(1 -t))]_0^{1-z_0} \\
-=-\frac{1}{z_0} (1 + \frac{1}{2}(2-z_0) \ln(z_0) + \frac{1}{2}z_0 \ln(z_0)^2 - \frac{1}{2} (1-z_0) \ln(1-z_0) +\frac{1}{2}z_0 Li_2(z_0))+1   +\frac{1}{2}  \Li_2(1)
+	&z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt\\
+	&= -\frac{1}{z_0} (1 + \frac{1}{2}(2-z_0) \ln(z_0) + \frac{1}{2}z_0 \ln(z_0)^2 - \frac{1}{2} (1-z_0) \ln(1-z_0) +\frac{1}{2}z_0 Li_2(z_0))+1   +\frac{1}{2}  \Li_2(1).
 \end{align*}
+% the first integral is
+%\begin{align*}
+%[1/2 (-2 + 5 t + t^2 - \ln(1 - t)^2 - 2 t \ln t - t^2 \ln t - 
+%   \ln(1 - t) (-3 + 2 t + t^2 + 2\ln t) - 2 \Li_2(t))]_0^{\frac{1}{2}} \\
+%= 11/8 -1/4 \ln 2 -3/2\ln(2)^2 -  \Li_2(1/2)
+%\end{align*}
+%and the second one is
+%\begin{align*}
+%[\frac{1}{-1+ t} (1 + \frac{1}{2}(1 + t) \ln(1 - t) + \frac{1}{2}(1 - t) \ln(
+%1 -t)^2 - \frac{1}{2} t \ln(t) +\frac{1}{2} (1 - t) \Li_2(1 -t))]_0^{1-z_0} \\
+%=-\frac{1}{z_0} (1 + \frac{1}{2}(2-z_0) \ln(z_0) + \frac{1}{2}z_0 \ln(z_0)^2 - \frac{1}{2} (1-z_0) \ln(1-z_0) +\frac{1}{2}z_0 Li_2(z_0))+1   +\frac{1}{2}  \Li_2(1)
+%\end{align*}
 By expanding the squares and collecting terms, the last expression can be simplified to
 \begin{align*}
 &\frac{9}{4} z_0 + \frac{1 - 4 z_0 + 3 z_0^2}{4}\ln(1 - z_0) + 
