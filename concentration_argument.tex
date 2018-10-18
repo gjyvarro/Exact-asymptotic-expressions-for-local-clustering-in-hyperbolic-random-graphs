@@ -169,8 +169,8 @@ Let $\eps \in (0, 1)$. Then for all $0 \le y \le (1 - \eps)R_n$
 \]
 where
 \[
-	\phi_{\H,n}^{(1)}(y) = \frac{2\alpha - 3}{2} e^{-(\alpha - \frac{1}{2})(R_n - y)} 
-		+ \frac{2\alpha - 1}{2}e^{-(\alpha - \frac{1}{2})R_n - y/2},
+	\phi_{\H,n}^{(1)}(y) = \frac{2\alpha - 1 - 4\pi}{4\pi} e^{-(\alpha - \frac{1}{2})(R_n - y)} 
+		+ \left(\alpha - \frac{1}{2}\right)\pi e^{-(\alpha - \frac{1}{2})R_n - y/2},
 \]
 and
 \[
@@ -186,7 +186,7 @@ and
 \end{lemma}
 
 \begin{proof}
-We will split the computation of $\Mu{\BallHyp{0,y}}$ over the case $y^\prime > R_n - y$ and $y^\prime \le R_n - y$ where for the latter we utilize Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. Recall that $\Mu{\BallPo{0,y}} = \xi_{\alpha,\nu} e^{y/2}$ where $\xi_{\alpha,\nu} = 4\nu \alpha/(2\alpha - 1)\pi$. \PvdH{Check computations below for new $\xi_{\alpha,\nu} = 4\nu \alpha/(2\alpha - 1)\pi$}
+We will split the computation of $\Mu{\BallHyp{0,y}}$ over the case $y^\prime > R_n - y$ and $y^\prime \le R_n - y$ where for the latter we utilize Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. Recall that $\Mu{\BallPo{0,y}} = \xi_{\alpha,\nu} e^{y/2}$ where $\xi_{\alpha,\nu} = 4\nu \alpha/(2\alpha - 1)\pi$.
 
 By~\eqref{eq:tail_inclusion_hyperbolic_ball}, we have $\BallHyp{(0,y)} \cap \Rcal_n ([R_n - y, R_n])= \Rcal_n([R_n-y,R_n])$. 
 Thus, 
@@ -194,7 +194,7 @@ Thus,
 	&\hspace{-30pt}\Mu{\BallHyp{(0,y)} \cap \Rcal_n ([R_n - y, R_n])} \\
 	&= \int_{R_n - y}^{R_n} \int_{I_n} f_{\alpha,\nu}(x^\prime, y^\prime) \dd x^\prime \dd y^\prime
 		= \nu \alpha e^{R_n/2}\left(e^{-\alpha(R_n - y)} - e^{-\alpha R_n}\right)\\
-	&= \Mu{\BallPo{0,y}} \frac{2\alpha - 1}{2}\left( e^{-(\alpha - \frac{1}{2})(R_n - y)}
+	&= \Mu{\BallPo{0,y}} \frac{2\alpha - 1}{4\pi} \left( e^{-(\alpha - \frac{1}{2})(R_n - y)}
 		- e^{-(\alpha - \frac{1}{2})R_n - y/2}\right) \numberthis \label{eq:mu_hyperbolic_ball_part_1}
 \end{align*}
 
@@ -202,10 +202,10 @@ Thus,
 Next we will establish upper and lower bounds on $\Mu{\BallHyp{(0,y)} \cap\Rcal_n[(0,R_n-y)]}$. Using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} we have 
 \begin{align*}
 	\Mu{\BallHyp{(0,y)} \cap\Rcal_n[(0,R_n-y)]} 
-	&\le \nu \alpha \int_{0}^{R_n - y} \left(e^{\frac{y + y^\prime}{2}} + K e^{\frac{3}{2}(y + y^\prime) - R_n}\right)
+	&\le \frac{2\nu \alpha}{\pi} \int_{0}^{R_n - y} \left(e^{\frac{y + y^\prime}{2}} + K e^{\frac{3}{2}(y + y^\prime) - R_n}\right)
 		e^{-\alpha y^\prime} \dd y^\prime\\
 	&= \Mu{\BallPo{0,y}}\left(1 - e^{-(\alpha - \frac{1}{2})(R_n - y)}\right) \\
-	&\hspace{10pt}+ \nu \alpha K e^{\frac{3 y}{2} - R_n}\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime
+	&\hspace{10pt}+ \frac{2\nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime
 \end{align*}
 The last integral depend on the value of $\alpha$,
 \[
@@ -218,7 +218,8 @@ The last integral depend on the value of $\alpha$,
 \]
 Therefore we get
 \begin{align*}
-	&\hspace{-30pt}\nu \alpha K e^{\frac{3 y}{2} - R_n}\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime\\
+	&\hspace{-30pt}\frac{2\nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}
+		\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime\\
 	&= \Mu{\BallPo{0,y}}\begin{cases}
 		\frac{(2\alpha - 1)K}{3 - 2\alpha}\left(e^{-(\alpha - \frac{1}{2})(R_n - y)} - e^{-(R_n - y)}\right)
 		&\mbox{if } 1/2 < \alpha < 3/2,\\
@@ -237,7 +238,7 @@ Combining this with~\eqref{eq:mu_hyperbolic_ball_part_1} yields the required upp
 
 The lower bound follows by observing that the only difference with the above computations is the change of sign in front of 
 \[
-	\nu \alpha K e^{\frac{3 y}{2} - R_n}\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime.
+	\frac{2 \nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime.
 \]
 \end{proof}
 
