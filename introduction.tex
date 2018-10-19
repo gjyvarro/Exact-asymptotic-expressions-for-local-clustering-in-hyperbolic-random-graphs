@@ -2,8 +2,8 @@
 
 \subsection{Motivation}
 
-\MS{I would not write a length introduction to complex networks here (because the paper is quite long already and we do not study networks in general in this paper). So, I would remove the first paragraph/list (or incorporate it as a single sentence in the ensuing paragraph). }
-\PvdH{I agree.}
+%\MS{I would not write a length introduction to complex networks here (because the paper is quite long already and we do not study networks in general in this paper). So, I would remove the first paragraph/list (or incorporate it as a single sentence in the ensuing paragraph). }
+%\PvdH{I agree.}
 
 Hyperbolic random graphs were suggested as a suitable model for complex networks by Krioukov et al.~\cite{krioukov2010hyperbolic}, exhibiting the three main characteristics commonly found in complex networks: 
 \begin{enumerate}[\upshape 1)]
@@ -11,7 +11,7 @@ Hyperbolic random graphs were suggested as a suitable model for complex networks
 \item Strong clustering (community structure),
 \item Small path lengths (small world phenomenon).
 \end{enumerate}
-Indeed, in their seminal paper they show that these graphs have a power-law degree distribution and exhibit strong clustering, while Bringmann et al.~\cite{bringmann2016average} showed that hyperbolic random graphs have doubly logarithmic shortest path lengths. Many other results regarding hyperbolic random graphs have since been established. One important feature of these graphs is that they allow for efficient routing algorithms~\cite{bringmann2017greedy}. Further results include the size of the largest component~\cite{BodeFountoulakisMuller2015},~\cite{fountoulakis2018law}, [More?] and number of cliques and largest clique~\cite{blasius2018cliques}.
+Indeed, in their seminal paper they showed that these graphs have a power-law degree distribution and exhibit strong clustering, while Bringmann et al.~\cite{bringmann2016average} showed that hyperbolic random graphs have doubly logarithmic shortest path lengths. Many other results regarding hyperbolic random graphs have since been established: for instance the existence of efficient routing algorithms~\cite{bringmann2017greedy}, the size of the largest component~\cite{BodeFountoulakisMuller2015},~\cite{fountoulakis2018law}, [More?] and the number of cliques and the largest clique~\cite{blasius2018cliques}.
 
 The aim of this paper is to study local clustering in hyperbolic random graphs. The first rigorous mathematical analysis of the local clustering coefficient was done by Gugelmann et al.~\cite{gugelmann2012random}. They show~\cite[Theorem 2.1]{gugelmann2012random} that the local clustering coefficient\footnote{Note that in~\cite{gugelmann2012random} this is called the global clustering coefficient. However, since this term is more often associated in the literature with the density of triangles compared to the number of paths of length 2, we use the term local clustering coefficient as is done, for instance, in~\cite{candellero2016clustering}.} is concentrated around its expectation which is shown to be $\bigT{1}$ as the number of vertices tends to infinity. In particular this results implies that the local clustering coefficient is asymptotically bounded away from zero. The convergence of this coefficient was not proven. In contrast, the global clustering coefficient was shown~\cite{candellero2016clustering} to converge in probability to some constant which can be explicitly stated as an integral expression, see Theorem 1.2 in \cite{candellero2016clustering}. The authors mention, however, that their analysis needs significant modification to be able to deal with convergence of the local clustering coefficient.
 
@@ -27,9 +27,11 @@ In this work we resolve these important open questions. We obtain the asymptotic
 
 \PvdH{I recall that J{\'u}lia told me that the results from~\cite{komjathy2018explosion} imply that the local clustering coefficient converges, although they do not mention it in the paper. Should we added a comment related to this?}
 
+\MS{Yes, I think this would probably be good. Either after the sentence `the convergence of this coefficient was not proven' add something like, as you say, the results form .. imply convergence, although not specifically mentioned there. Or drop that sentence about that the convergence was not shown and also rephrase the sentence in 1, to just what is the limit. It should just be clear to the reader that we are not claiming the credit for the convergence itself, but mostly for finding the exact limit (in an analytic expression) and with a very strong sense of convergence. So, let's better emphasize those last two points and hope that they are good enough.}
+
 \subsection{Outline of the paper}
 
-In the next two subsections \ref{ssec:hyperbolic_model} and \ref{ssec:local_clustering} of the introduction, we give the definitions of the hyperbolic random graph and of the local clustering coefficient and function as used in this paper. After this we present our main results in Section \ref{ssec:main_results} and discuss several insights that can be obtained from them and in Section \ref{ssec:simulations} show simulations which confirm these results. Section \ref{sec:proof_outline} contains a detailed high level outline of the proofs of our main results, split up into different propositions. The proofs of these propositions can be found in the last four sections while Section~\ref{sec:concentration_argument} contains a crucial technical result regarding that will be used through the other sections. 
+In the next two subsections \ref{ssec:hyperbolic_model} and \ref{ssec:local_clustering} of the introduction, we give the definitions of the hyperbolic random graph and of the local clustering coefficient and function as used in this paper. After this we present our main results in Section \ref{ssec:main_results} and discuss several insights that can be obtained from them and in Section \ref{ssec:simulations} show simulations which confirm these results. Section \ref{sec:proof_outline} contains a detailed high level outline of the proofs of our main results, split up into different propositions. The proofs of these propositions can be found in the last four sections. Section~\ref{sec:concentration_argument} contains a crucial technical result that will be used in the other sections. 
 
 \subsection{Hyperbolic random graphs}\label{ssec:hyperbolic_model}
 
@@ -56,9 +58,9 @@ as follows from the hyperbolic cosine rule[CITE?].
 
 \begin{figure}[!t]
 \centering
-\includegraphics[scale=0.5]{figures/HyperRGG_N5000L5.eps}
-\caption{Example of a Hyperbolic Random Graph $G_{\H,n}(\alpha, \nu)$ with $\alpha = ??$, $\nu = ??$ and $n = 5000$.
-\PvdH{@Tobias: this figure (HyperRGG\_N5000L5.eps) is taken from the figures you send me. Could you fill in the value of $\alpha$ and $\nu$ you used for the simulation.}
+\includegraphics[scale=0.3]{figures/KPKVB.png}
+\caption{Example of a Hyperbolic Random Graph $G_{\H,n}(\alpha, \nu)$ with $\alpha = 0.9$, $\nu = 0.2$ and $n = 5000$.
+%\PvdH{@Tobias: this figure (HyperRGG\_N5000L5.eps) is taken from the figures you send me. Could you fill in the value of $\alpha$ and $\nu$ you used for the simulation.}
 }
 \label{fig:H_graph_example}
 \end{figure}
@@ -76,13 +78,14 @@ Figure~\ref{fig:H_graph_example} shows an example of $G_{\H,n}(\alpha, \nu)$.
 \subsection{Clustering}\label{ssec:local_clustering}
 
 Clustering measures for networks consider the fraction of triangles (triples of connected vertices) in the network. 
-\MS{Do we need the definition of the global clustering coefficient? Also, I thought it was defined as 3 times number of triangles divided by number of length 2 paths and I do not see yet whether this agrees with the definition below.}
-\PvdH{You were right. I have updated the definition.}
-For instance, Let $G$ be a simple graph, with vertex set $V(G)$ and edge set $E(G)$, denote by $T_G$ and $\Lambda_G$, respectively, the total number of triangles and the total number of paths of length two in $G$. Then the \emph{global clustering coefficient} is defined as
+For instance, for a simple graph $G$, with vertex set $V(G)$ and edge set $E(G)$, denote by $T_G$ and $\Lambda_G$, respectively, the total number of triangles and the total number of paths of length two in $G$. Then its \emph{global clustering coefficient} is defined as
 \[
 	c_G = \frac{3 \T_G}{\Lambda_G}.
 \]
-This coefficient measures the fraction of triangles in the network compared to the total possible number of triangles. A different global measure for clustering, \emph{local clustering coefficient} computes the average triangle density per node. To define this function, let $D_G(v)$ denote the degree of node $v$ and $N_G(k)$ the number of nodes with degree $k$ in the graph $G$. In addition let $\T_G(v,v_1,v_2) = \ind{(v,v_1) \in E} \ind{(v, v_2) \in E} \ind{(v_1, v_2) \in E}$ be the indicator that $v, v_1$ and $v_2$ form a triangle and write
+%This coefficient measures the fraction of triangles in the network compared to the total possible number of triangles. 
+A different concept for clustering is defined for each vertex and by taking averages also for the entire graph as well as for all vertices with a specified degree: the \emph{local clustering coefficient} of a vertex $v \in V(G)$ is a real number between zero and one for the extent to which the neighborhood of $v$ resembles a clique. If the vertex $v$ has $k\geq 2$ neighbors, there are ${k \choose 2}$ possible edges between them and its local clustering coefficient is the quotient of the number of these pairs that constitute an existing edge in the graph divided by ${k \choose 2}$. If the vertex $v$ has no or only one neighbor, its clustering coefficient is set to zero. 
+
+To define the local clustering function, let $D_G(v)$ denote the degree of node $v$ and $N_G(k)$ the number of nodes with degree $k$ in the graph $G$. In addition let $\T_G(v,v_1,v_2) = \ind{(v,v_1) \in E} \ind{(v, v_2) \in E} \ind{(v_1, v_2) \in E}$ be the indicator that $v, v_1$ and $v_2$ form a triangle and write
 \begin{equation}
 	\T_G(v) = \sum_{v_1, v_2 \in V(G)} \T_G(v,v_1,v_2),
 \end{equation}
