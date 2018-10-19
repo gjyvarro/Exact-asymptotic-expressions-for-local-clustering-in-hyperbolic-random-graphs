@@ -48,7 +48,7 @@ Next we note that conditioned on the Poisson process $\Pcal$ having $k$ points i
 	\Delta_{\Pcal}(p,k) = \binom{k}{2} \Delta_\Pcal(p).
 \]
 
-In addition, since $\mu_{\alpha, \nu}(B_\Pcal(p)) = \xi_{\alpha,\nu} e^{\frac{y}{2}}$, with $\xi_{\alpha,\nu} = \frac{4\alpha\BL{\nu}}{(2\alpha - 1)\pi}$, and
+In addition, since $\mu_{\alpha, \nu}(B_\Pcal(p)) = \xi_{\alpha,\nu} e^{\frac{y}{2}}$, with $\xi_{\alpha,\nu} = \frac{4\alpha\nu}{(2\alpha - 1)\pi}$, and
 \[
 	\Delta_{\Pcal}(p) = \iint_{\Rcal^2} T_\Pcal(p,p_1,p_2) \eta_{p}(x_1,y_1)\eta_{p}(x_2,y_2) \, dx1 \, dx_2 \, dy_1 \, dy_2,
 \]
@@ -121,13 +121,13 @@ We will start with some preliminary results on the degrees in $G_\Pcal(\alpha, \
 
 Before we analyze local clustering in the infinite limit model, we first establish some results for its degree distribution. We define the probability distribution for the degree of node $p = (x,y)$ as
 \begin{equation}
-	\rho_{p}(k) = \Prob{D_\Pcal(p) = k} = \Prob{\Po(\mu_{\alpha,\nu}(\BallPo{p})) = k},
+	\rho(p,k) = \Prob{D_\Pcal(p) = k} = \Prob{\Po(\mu_{\alpha,\nu}(\BallPo{p})) = k},
 \end{equation}
-where $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$. Recall from equation \eqref{eq:mu_B_y_P} that
+where $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$. Recall from equation \eqref{eq:mu_ball_y_P} that
 \[
-	\mu_{\alpha,\nu}(B(p)) = \xi_{\alpha,\nu} e^{\frac{y}{2}},
+	\mu_{\alpha,\nu}(\BallPo{p}) = \xi_{\alpha,\nu} e^{\frac{y}{2}},
 \]
-only depends on the $y$-coordinate of $p$. Therefore, we will often write $\rho_y(k)$ instead of $\rho_{p}(k)$.
+only depends on the $y$-coordinate of $p$. Therefore, we will often write $\rho(y,k)$ instead of $\rho(p,k)$.
 
 Using the above equation and the transformation of variables $z = \xi_{\alpha,\nu}e^{\frac{y}{2}}$, we compute
 \begin{align*}
@@ -138,16 +138,19 @@ Using the above equation and the transformation of variables $z = \xi_{\alpha,\n
     	\left(\xi_{\alpha,\nu} e^{\frac{y}{2}}\right)^{k - 2\alpha} e^{-\xi_{\alpha,\nu} e^{\frac{y}{2}}}
         \, dy\\
     &= \frac{(\xi_{\alpha,\nu})^{2\alpha}}{\Gamma(k+1)} \int_{\xi_{\alpha,\nu}}^{\infty} 
-    	z^{k-2\alpha} e^{-z} \, dz\\
-    &= (\xi_{\alpha,\nu})^{2\alpha}\frac{\Gamma(k-2\alpha)}{\Gamma(k+1)}
-    	\left(1 - \frac{\Gamma^{-}(k-2\alpha, \xi_{\alpha,\nu})}{\Gamma(k - 2\alpha)}\right),
-        \numberthis \label{eq:degree_distribution_P}
+    	z^{k - 1 -2\alpha} e^{-z} \, dz\\
+    &= (\xi_{\alpha,\nu})^{2\alpha} \frac{\Gamma^+(k - 2\alpha, \xi_{\alpha,\nu})}{\Gamma(k+1)},
 \end{align*}
-where we recall that $\Gamma$ denotes the Gamma-function and $\Gamma^{-1}$ the lower-incomplete Gamma-function.
+where we recall that $\Gamma$ denotes the Gamma-function and $\Gamma^{+}$ the incomplete Gamma-function.
+We therefore conclude that
+\begin{equation}\label{eq:degree_distribution_P}
+	\Prob{D_\Pcal = k} = (\xi_{\alpha,\nu})^{2\alpha} \frac{\Gamma^+(k - 2\alpha, \xi_{\alpha,\nu})}{\Gamma(k+1)}
+\end{equation}
 
-Since $\Gamma^{-}(k-2\alpha, \xi_{\alpha,\nu})\Gamma(k - 2\alpha) \to 0$ \PvdH{Find reference.} and $\Gamma(k-t)/\Gamma(k+1) \sim k^{-(t+1)}$ as $k \to \infty$ we deduce that
+Since $\Gamma^{+}(k-2\alpha, \xi_{\alpha,\nu})/\Gamma(k - 2\alpha) \sim k^{-(t+1)}$ as $k \to \infty$ \PvdH{Find reference.} we deduce that
 \begin{equation}\label{eq:degree_distribution_P_asymptotics}
-	\Prob{D_\Pcal = k} = \int_0^\infty \rho_{y}(k) e^{-\alpha y} \, dy \sim (\xi_{\alpha,\nu})^{2\alpha} k^{-(2\alpha + 1)}.
+	\Prob{D_\Pcal = k} \sim (\xi_{\alpha,\nu})^{2\alpha} k^{-(2\alpha + 1)}
+	\quad \text{as } k \to \infty.
 \end{equation}
 
 By a similar computation we have the following result, which will be useful later on. For any $\beta > 0$, as $k \to \infty$
@@ -1100,14 +1103,25 @@ This finishes the computation.
 
 \subsection{Exact expression for clustering, integrating $\Delta_{\Pcal}(y)$}
 
+\PvdH{@Markus: Please check that your $\xi$ equals $\xi_{\alpha,\nu} := \frac{4\alpha \nu}{(2\alpha - 1)\pi}$ in all computations below. If not please adjust the computations.}
+
 \PvdH{This part is still in the original form and has to be converted to match style and notation.}
 
-We wish to compute
+Now that we have an expression for $\Delta_{\Pcal}(y)$ we can compute the limit local clustering coefficient $c_\infty$ and the limit local clustering function $c_\infty(k)$, i.e. prove Theorem~\ref{thm:exact_expression_c_infty} and Theorem~\ref{thm:exact_expression_local_clustering}.
 
+
+First we recall that
+\begin{align*}
+p_k := \Pee( D=k ) = \int_0^\infty e^{-\xi e^{y/2}} \frac{(\xi e^{y/2})^k}{k!}\alpha e^{-\alpha y} dy = 2\alpha \int_0^1 e^{-\frac{\xi}{z}} z^{2\alpha -k-1} dz =\frac{2\alpha \xi^{2\alpha}}{k!} \Gamma(k-2\alpha,\xi)
+\end{align*}
+\PvdH{@Markus: This result is taken from your notes. It seems to disagree with~\eqref{eq:degree_distribution_P}. Could you please check the other computations.}
+
+We wish to compute
 \[   
 	c_\infty = \alpha \int_0^{\infty} \Delta_\Pcal(y) e^{-\alpha y} \left(1-e^{-\xi e^{y/2}} - \xi e^{y/2} 
 	e^{-\xi e^{y_0/2}}\right) \dd y, 
 \]
+
 
 \noindent
 and
