@@ -37,7 +37,7 @@ In the next two subsections \ref{ssec:hyperbolic_model} and \ref{ssec:local_clus
 
 %, which without loss of generality we take to be $-1$~[CITE]
 %The \emph{Poincar\'{e} disc model} for the hyperbolic plane is defined by equipping the open unit disc in $\R^2$ with the metric given by the differential form $\dd s^2 = 4 \frac{\dd x^2 + \dd y^2}{(1 - x^2 - y^2)^2}$.
-The hyperbolic plane is an infinite $2$-dimensional manifold with constant negative curvature. Many different representations of the hyperbolic plane exist and we refer to [CITE] for more details.  We will work with the \emph{native representation} of the hyperbolic plane which takes the elements of $\R^2$ in polar coordinates $(r,\theta)$ as the underlying set of points and where distances are determined by the hyperbolic law of cosines.
+The hyperbolic plane is an infinite $2$-dimensional manifold with constant negative curvature. Many different representations of the hyperbolic plane exist and we refer to~\cite{Anderson1999} \cite{Katok1992} \cite{Beardon1983} for an introduction to hyperbolic geometry.  We will work with the \emph{native representation} of the hyperbolic plane which takes the elements of $\R^2$ in polar coordinates $(r,\theta)$ as the underlying set of points and where distances are determined by the hyperbolic law of cosines.
 
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ and define $R_n = 2\log(n/\nu)$. Then the hyperbolic random graph $G_{\H,n}(\alpha, \nu)$ is defined as follows:
 \begin{enumerate}
@@ -53,7 +53,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and define $R_n = 2\log(n/\nu)$. Then the 
 \[
 	\cosh(r_i) \cosh(r_j) - \sinh(r_i) \sinh( r_j) \cos(|\theta_i-\theta_j|_{2\pi}) \le \cosh(R_n),
 \]
-as follows from the hyperbolic cosine rule[CITE?].
+as follows from the hyperbolic law of cosines.% rule[CITE?].
 \end{enumerate}
 
 \begin{figure}[!t]
@@ -83,9 +83,9 @@ For instance, for a simple graph $G$, with vertex set $V(G)$ and edge set $E(G)$
 	c_G = \frac{3 \T_G}{\Lambda_G}.
 \]
 %This coefficient measures the fraction of triangles in the network compared to the total possible number of triangles. 
-A different concept for clustering is defined for each vertex and by taking averages also for the entire graph as well as for all vertices with a specified degree: the \emph{local clustering coefficient} of a vertex $v \in V(G)$ is a real number between zero and one for the extent to which the neighborhood of $v$ resembles a clique. If the vertex $v$ has $k\geq 2$ neighbors, there are ${k \choose 2}$ possible edges between them and its local clustering coefficient is the quotient of the number of these pairs that constitute an existing edge in the graph divided by ${k \choose 2}$. If the vertex $v$ has no or only one neighbor, its clustering coefficient is set to zero. 
+A different concept for clustering is defined for each vertex and by taking averages also for the entire graph as well as for all vertices with a specified degree: the \emph{local clustering coefficient} of a vertex $v \in V(G)$ is a real number between zero and one for the extent to which the neighborhood of $v$ resembles a clique. If the vertex $v$ has $k\geq 2$ neighbors, there are ${k \choose 2}$ possible edges between them and its local clustering coefficient is the quotient of the number of these pairs that constitute an existing edge in the graph divided by ${k \choose 2}$. If the vertex $v$ has no or only one neighbor, its clustering coefficient is set to zero. The (average) local clustering coefficient of the graph is the average over the clustering coefficients of all vertices. The local clustering function maps a natural number $k$ to the average over the clustering coefficients of all vertices with degree $k$ if there are vertices with degree $k$ and zero otherwise.
 
-To define the local clustering function, let $D_G(v)$ denote the degree of node $v$ and $N_G(k)$ the number of nodes with degree $k$ in the graph $G$. In addition let $\T_G(v,v_1,v_2) = \ind{(v,v_1) \in E} \ind{(v, v_2) \in E} \ind{(v_1, v_2) \in E}$ be the indicator that $v, v_1$ and $v_2$ form a triangle and write
+To introduce the notations for these definitions, let $D_G(v)$ denote the degree of vertex $v$ and $N_G(k)$ the number of vertices with degree $k$ in the graph $G$. In addition let $$\T_G(v,v_1,v_2) = \ind{(v,v_1) \in E} \ind{(v, v_2) \in E} \ind{(v_1, v_2) \in E}$$ be the indicator that $v, v_1$ and $v_2$ form a triangle and write
 \begin{equation}
 	\T_G(v) = \sum_{v_1, v_2 \in V(G)} \T_G(v,v_1,v_2),
 \end{equation}
@@ -94,7 +94,7 @@ to denote the number of triangles in which node $v$ participates. Then the \emph
 	c_G = \frac{1}{|V(G)|} \sum_{v \in V(G)} \frac{T_G(v)}{\binom{D_G(v)}{2}}.
 \]
 
-However, since the local clustering coefficient assigns just one value to the whole network, representing its triangular structure, it is unable to characterize local structural properties involving triangles. The local clustering function, on the other hand, measures the fraction of triangles to which nodes of a given degree belong, compared to the maximum number of triangles in which they could participate~\cite{vazquez2002large,serrano2006clustering}. It therefore characterizes the triangular structure of nodes in the networks, based on their degree, and gives a more detailed look at the overall structure of the network. The formal definition of the \emph{local clustering function} is 
+However, since the local clustering coefficient assigns just one value to the whole network, representing its triangular structure, it is unable to characterize local structural properties involving triangles. The local clustering function, on the other hand, measures the fraction of triangles to which vertices of a given degree belong, compared to the maximum number of triangles in which they could participate~\cite{vazquez2002large,serrano2006clustering}. It describes the triangular structure of vertices in the networks based on their degree and gives a more detailed look at the overall structure of the network. The formal definition of the \emph{local clustering function} is 
 \begin{equation}\label{eq:def_local_clustering_general}
 	c_{G}(k) = \begin{cases}
 		\frac{1}{N_G(k)} \sum_{v \in V(G)}  \ind{D_G(v) = k} \frac{\T_G(v)}{\binom{k}{2}} &\mbox{if } N_G(k) \ge 1\\
@@ -142,6 +142,7 @@ while the local clustering function limit is defined as
 
 Finally to express the local clustering coefficient and function in the infinite limit model we need a couple of special functions. 
 
+\MS{Here, I would just say that $B(a,b)$ denotes the beta function $B^-(x,a,b)$ the lower incomplete beta function etc. and put/refer to the integral representations in the appendix, as already done for the Meijer-G function.}
 %\subsubsection{Special functions}
 We let $B(a,b)$ denote the beta-function 
 %\[
