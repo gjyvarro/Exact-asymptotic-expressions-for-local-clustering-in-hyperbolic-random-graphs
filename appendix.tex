@@ -2,7 +2,7 @@
 
 \section{Meijer's G-function}\label{sec:Meijer_G_functions}
 
-Recall that $\Gamma(z)$ denotes the Gamma function. Let $p, q, m, \ell$ be four integers satisfying $0 \le m \le q$ and $0 \le \ell \le p$ and consider two sequences ${\bf a}_p = \{a_1, \dots, a_p\}$ and ${\bf b}_q = \{b_1, \dots, b_q\}$ of reals such that $a_i - b_j$ is not a positive integer for all $1 \le i \le p$ and $1 \le j \le q$ and $a_i - a_j$ is not an integer for all distinct indices $1 \le i, j \le p$. Then, with $\iota$ denoting the complex unit, Meijer's G-Function~\cite{meijer1946g} is defined as
+Recall that $\Gamma(z)$ denotes the Gamma function. Let $p, q, m, \ell$ be four integers satisfying $0 \le m \le q$ and $0 \le \ell \le p$ and consider two sequences ${\bf a}_p = \{a_1, \dots, a_p\}$ and ${\bf b}_q = \{b_1, \dots, b_q\}$ of reals such that $a_i - b_j$ is not a positive integer for all $1 \le i \le p$ and $1 \le j \le q$ and $a_i - a_j$ is not an integer for all distinct indices $1 \le i, j \le p$. Then, with $\iota$ denoting the complex unit, Meijer's G-Function~\cite{meijer1946gfunction} is defined as
 \begin{equation}\label{eq:def_Meijer_G_function}
 	\MeijerGnew{m}{\ell}{p}{q}{{\bf a}}{{\bf b}}{z} 
 	= \frac{1}{2 \pi \iota} \int_L 
@@ -700,7 +700,7 @@ Note that $H(x) \le (x-1)^2/2$ for all $0 \le x \le 1$. Therefore,
 \begin{align*}
 	\Prob{\left|\mathrm{Po}(\lambda) - \lambda\right| \ge x} \ge 1 - e^{-\lambda H(1 - x/\lambda)} - e^{-\lambda H(1 + x/\lambda)}
 \end{align*}
- $\Pee(X >k) \leq e^{-\mu H(\frac{k}{\mu})}$ and for $k<\mu$, $\Pee(X< k) \leq e^{-\mu H(\frac{k}{\mu})}$, where $H(x) = x\ln x -x+1$, \cite{Penrose2003}), it follows that $\Pee(N \in [n-c\sqrt{n\log n},n+c\sqrt{n\log n}]) \geq 1-e^{-n H(\frac{n-c\sqrt{n\log n}}{n})}-e^{-nH(\frac{n+c\sqrt{n \log n}}{n})} \geq  1-2e^{-n \frac{c^2 n \log n}{n^2}} = 1-2e^{-c^2\log n}=1-2n^{-c^2}$ (where we have used that $H(x) = (x-1)^2$ for $x$ close to 1)
+ $\Pee(X >k) \leq e^{-\mu H(\frac{k}{\mu})}$ and for $k<\mu$, $\Pee(X< k) \leq e^{-\mu H(\frac{k}{\mu})}$, where $H(x) = x\ln x -x+1$, \cite{penrose2003random}), it follows that $\Pee(N \in [n-c\sqrt{n\log n},n+c\sqrt{n\log n}]) \geq 1-e^{-n H(\frac{n-c\sqrt{n\log n}}{n})}-e^{-nH(\frac{n+c\sqrt{n \log n}}{n})} \geq  1-2e^{-n \frac{c^2 n \log n}{n^2}} = 1-2e^{-c^2\log n}=1-2n^{-c^2}$ (where we have used that $H(x) = (x-1)^2$ for $x$ close to 1)
 
 By a Chernoff bound we have
 \begin{equation}\label{eq:def_chernoff_bound_poisson}

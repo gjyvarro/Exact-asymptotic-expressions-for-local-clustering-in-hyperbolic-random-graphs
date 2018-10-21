@@ -1218,7 +1218,7 @@ $\xi/0 = \infty$.)
 
 The hypergeometric U-function 
 (also called Tricomi's confluent hypergeometric function) has the integral representation 
-$$U(a,b,z) = \frac{1}{\Gamma(a)} \int_0^\infty e^{-zt} t^{a-1} (1+t)^{b-a-1} dt$$ which holds for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $Re(a), Re(z) >0$, see \cite[p.255]{Erdelyi1953}. Applying the change of variables 
+$$U(a,b,z) = \frac{1}{\Gamma(a)} \int_0^\infty e^{-zt} t^{a-1} (1+t)^{b-a-1} dt$$ which holds for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $Re(a), Re(z) >0$, see \cite[p.255]{erdelyi1953higher}. Applying the change of variables 
 $t=\frac{1-s}{s}$ (i.e. $dt = -s^{-2} ds$ and $s = \frac{1}{t+1}$) yields the integral 
 $\int_1^0 e^{-z(-1+\frac{1}{s})} (\frac{1-s}{s})^{a-1} (\frac{1}{s})^{b-a-1} (-s^2)ds = e^z\int_0^1 e^{-z/s} s^{-b}(1-s)^{a-1} ds$, i.e.
 \begin{align*}
@@ -1242,18 +1242,18 @@ Then changing the order of integration and using the substitution $u = \xi/z$  a
 &=\int_0^1 \int_{\xi/s}^\infty \xi^{a+1} u^{-a-2} e^{-u} du s^{c-1} (1-s)^{b-1} ds \\
 &= \xi^{a+1} \int_0^1 \Gamma^+(-a-1,\xi/s) s^{c-1} (1-s)^{b-1} ds
 \end{align*}
-Now, the incomplete $\Gamma$-function has a representation in terms of Meijer's $G$-function $$\Gamma^+(-a-1,\xi/s) = \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}}$$ which holds for any $a\in \R$ and $s>0$ (see appendix; note that for a fixed second argument, the upper incomplete $\Gamma$-function is entire in the first argument, see \cite[pp. 899, 1032ff.]{Gradshteyn2007}).  Therefore, we get the integral
+Now, the incomplete $\Gamma$-function has a representation in terms of Meijer's $G$-function $$\Gamma^+(-a-1,\xi/s) = \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}}$$ which holds for any $a\in \R$ and $s>0$ (see appendix; note that for a fixed second argument, the upper incomplete $\Gamma$-function is entire in the first argument, see \cite[pp. 899, 1032ff.]{gradshteyn2015table}).  Therefore, we get the integral
 
 %formula 8.351.3, p. 
  %(see the wolfram functions website \url{http://functions.wolfram.com/06.06.26.0005.01}, it can also be found in the paper \url{https://arxiv.org/pdf/1507.05571}; , so we get the integral
 \begin{align*}
 = \xi^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}}ds
 \end{align*}
-applying the inversion identity for Meijer's $G$-function (see \cite[p. 209, 5.3.1.(9))]{Erdelyi1953})
+applying the inversion identity for Meijer's $G$-function (see \cite[p. 209, 5.3.1.(9))]{erdelyi1953higher})
 \begin{align*}
 =\xi^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerG{0}{2}{2}{1}{2+a,1}{0}{\frac{s}{\xi}}ds
 \end{align*}
-This is the Euler transform of Meijer's $G$-function (see \cite[p. 214, 5.5.2.(5)]{Erdelyi1953}) and (as the conditions $2+1<2(0+2)$ and $|\arg(\xi^{-1})| < \frac{\pi}{2}$ (as $\xi>0$) and $1-c-b<1-c$ (as $b>0$)  are satisfied) equals
+This is the Euler transform of Meijer's $G$-function (see \cite[p. 214, 5.5.2.(5)]{erdelyi1953higher}) and (as the conditions $2+1<2(0+2)$ and $|\arg(\xi^{-1})| < \frac{\pi}{2}$ (as $\xi>0$) and $1-c-b<1-c$ (as $b>0$)  are satisfied) equals
 \begin{align*}
 =\xi^{a+1} \Gamma(b) \MeijerG{0}{3}{3}{2}{1-c,2+a,1}{0,1-c-b}{\xi^{-1}}
 \end{align*}
