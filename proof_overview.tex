@@ -256,13 +256,27 @@ and for any point $p \in \Rcal$ we let $\eta_p$ be the corresponding probability
 \begin{equation}\label{eq:def_etq_P}
 	\eta_p(S) = \frac{\mu_{\alpha,\nu}(S \cap \BallPo{p})}{\mu_{\alpha,\nu}(\BallPo{p})}.
 \end{equation}
-In addition we use $\rho(p,k)$ and $\rho(y,k)$ (for a point $p=(x,y) \in \mathcal{R}$) to denote the probability mass function of a Poisson random variable with expectation 
+
+Most of the subsequent analysis in this paper will make use of the~\emph{Campbell-Mecke} formula. 
+For a Poisson point process $\mathcal{P}$ on a measurable space $S$ with intensity $\lambda$ and a measurable non-negative function $h: S^r \rightarrow \mathbb{R}$ we have
+\begin{equation}\label{eq:def_Campbell-Mecke}
+\begin{split}
+& \Exp{\sum_{x_1,\ldots, x_r \in \mathcal{P}}^{\neq} h (x_1, \ldots, x_r,
+\mathcal{P} \setminus \{x_1,\ldots, x_r\}) }\\
+& = \int_S \cdots \int_S
+\Exp{h(x_1,\ldots, x_r,\mathcal{P} \setminus \{x_1,\ldots, x_r\}) \lambda (x_1) \cdots \lambda (x_r) dx_1 \cdots dx_r},
+\end{split}
+\end{equation}
+where the sum ranges over all distinct $r$-tuples of points of $\mathcal{P}$.
+
+Using the Campbell-Mecke formula we can compute the density of the ball $\BallPo{p}$ as
 \begin{equation}\label{eq:mu_ball_y_P}
 	\mu_{\alpha, \nu}(\BallPo{p}) = \int_0^\infty \int_{-\infty}^\infty \ind{|x-x^\prime| \le e^{\frac{y + y^\prime}{2}}}
 	f_{\alpha,\nu}(x^\prime, y^\prime) \, dx^\prime \, dy^\prime 
 	= \frac{4\alpha \nu}{(2\alpha - 1)\pi} e^{\frac{y}{2}} := \xi_{\alpha,\nu}e^{\frac{y}{2}},
 \end{equation}
-i.e.
+
+We shall use $\rho(p,k)$ and $\rho(y,k)$ (for a point $p=(x,y) \in \mathcal{R}$) to denote the probability mass function of a Poisson random variable with expectation $\mu_{\alpha, \nu}(\BallPo{p})$, i.e.
 \[
 	\rho(p,k) = \rho(y,k) = \Prob{\Po\left(\xi_{\alpha,\nu} e^{y/2}\right) = k}.
 \]
