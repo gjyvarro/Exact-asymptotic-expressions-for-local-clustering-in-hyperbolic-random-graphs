@@ -131,11 +131,11 @@ where
 	= \ind{|x_1| \, \le \, e^{(y+y_1)/2}}\ind{|x_2| \, \le \, e^{(y+y_2)/2}}\ind{|x_1-x_2| \, \le \, e^{(y_1+y_2)/2}}.
 \]
 
-With these expressions we define the limit local clustering coefficient as
+With these expressions we define the limiting local clustering coefficient as
 \begin{equation}\label{eq:def_average_clustering_infinite_model}
 	c_\infty := \alpha \int_0^\infty \Delta_{\Pcal}(y) (1 - \rho(y,0) - \rho(y,1)) e^{-\alpha y} \dd y,
 \end{equation}
-while the local clustering function limit is defined as
+while the limiting local clustering function is defined as
 \begin{equation}\label{eq:def_c_infty_k}
 	c_\infty(k) = \frac{\int_0^\infty \rho(y,k) \Delta_\Pcal(y) e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) e^{-\alpha y} \dd y}.
 \end{equation}
@@ -166,7 +166,7 @@ see~\cite[p.255 Equation (2)]{erdelyi1953higher}, and let $\MeijerGnew{m}{\ell}{
 
 \PvdH{@All: I would be nice if we could show with simulations how close $c_{\H,n}$ actually is to $c_\infty$ for reasonably large $n$ in practice.}
 
-Our first result shows that the local clustering coefficient in the Hyperbolic random graph converges in expectation to $c_\infty$.
+Our first result shows that the local clustering coefficient of the hyperbolic random graph converges in expectation to $c_\infty$.
 
 \begin{theorem}[Limit for local clustering coefficient in $G_{\H,n}(\alpha,\nu)$] \label{thm:clustering_coefficient_hyperbolic}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$. Then,
@@ -175,9 +175,9 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$. Then,
 \]
 \end{theorem}
 
-Next we establishes the full expression for the clustering coefficient $c_\infty$ in terms of the special function defined above.
+Next we establish the full expression for the limiting clustering coefficient $c_\infty$ in terms of the special functions defined above.
 
-\begin{theorem}[Exact expression for clustering coefficient limit]\label{thm:exact_expression_c_infty}
+\begin{theorem}[Exact expression for limiting clustering coefficient]\label{thm:exact_expression_c_infty}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$. Then, if $\alpha \ne 1$
 \begin{align*}
 	c_\infty 
@@ -234,21 +234,30 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n \ge 1}$ be any positive sequ
 
 Next we give an exact expression for $c_\infty(k)$ in terms of the special functions defined earlier.
 
-\begin{theorem}[Exact expression for local clustering function limit]
+\begin{theorem}[Exact expression for limiting local clustering function]
 \label{thm:exact_expression_local_clustering}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$. Then, for $\alpha \ne 1$
 \begin{align*}
-	c_\infty(k) 
-	&= \frac{\xi_{\alpha,\nu}^{4\alpha - 2}\Gamma^+(k-6\alpha + 2,\xi_{\alpha,\nu})}{\Gamma^+(k-2\alpha,\xi_{\alpha,\nu})}
-		\left(\frac{2^{-4\alpha - 1}(3\alpha - 1)}{\alpha(\alpha - 1)^2} + \frac{(\alpha - \frac{1}{2})B^-\left(\frac{1}{2},2\alpha + 1, 2\alpha - 2\right)}{2\alpha(\alpha - 1)}\right)\\
-	&\hspace{10pt}- \frac{\xi_{\alpha,\nu}^{4\alpha - 2}\Gamma(2\alpha + 1)}{\Gamma^+(k-2\alpha,\xi_{\alpha,\nu})}
-		\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}\\
-	&\hspace{10pt}+ \frac{1}{8\alpha(\alpha - 1)}
-		\left(\frac{\xi_{\alpha,\nu}^{k-2\alpha}e^{-\xi}U(2\alpha+1,1+k-2\alpha,\xi_{\alpha,\nu})}
-		{\Gamma^+(k-2\alpha,\xi_{\alpha,\nu})}-1\right)\\
-	&\hspace{10pt}- \frac{(\alpha - 1/2)^2 \xi_{\alpha,\nu}^2 \Gamma^+(k-2\alpha -2,\xi_{\alpha,\nu})}
-		{4(\alpha - 1)^2 \Gamma^+(k-2\alpha,\xi_{\alpha,\nu})}
+c_\infty(k)  =&\frac{1}{8\alpha (\alpha-1)\Gamma^+(k-2\alpha,\xi)} \left( -\Gamma^+(k - 2 \alpha, \xi) - 2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+(k - 2 \alpha - 2, \xi)}{(\alpha - 1)} \right. \\ 
+&\left.+ 8 \alpha (\alpha - 1/2) \xi \Gamma^+(k - 2 \alpha - 1,\xi) \right.\\ 
+&\left.+ 4\xi^{4\alpha - 2} \Gamma^+(k - 6 \alpha + 2, 
+      \xi) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
+&\left.+ \xi^{k-2\alpha} \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi) \right. \\ 
+&\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right)
 \end{align*}
+
+%\begin{align*}
+%	c_\infty(k) 
+%	&= \frac{\xi_{\alpha,\nu}^{4\alpha - 2}\Gamma^+(k-6\alpha + 2,\xi_{\alpha,\nu})}{\Gamma^+(k-2\alpha,\xi_{\alpha,\nu})}
+%		\left(\frac{2^{-4\alpha - 1}(3\alpha - 1)}{\alpha(\alpha - 1)^2} + \frac{(\alpha - \frac{1}{2})B^-\left(\frac{1}{2},2\alpha + 1, 2\alpha - 2\right)}{2\alpha(\alpha - 1)}\right)\\
+%	&\hspace{10pt}- \frac{\xi_{\alpha,\nu}^{4\alpha - 2}\Gamma(2\alpha + 1)}{\Gamma^+(k-2\alpha,\xi_{\alpha,\nu})}
+%		\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}\\
+%	&\hspace{10pt}+ \frac{1}{8\alpha(\alpha - 1)}
+%		\left(\frac{\xi_{\alpha,\nu}^{k-2\alpha}e^{-\xi}U(2\alpha+1,1+k-2\alpha,\xi_{\alpha,\nu})}
+%		{\Gamma^+(k-2\alpha,\xi_{\alpha,\nu})}-1\right)\\
+%	&\hspace{10pt}- \frac{(\alpha - 1/2)^2 \xi_{\alpha,\nu}^2 \Gamma^+(k-2\alpha -2,\xi_{\alpha,\nu})}
+%		{4(\alpha - 1)^2 \Gamma^+(k-2\alpha,\xi_{\alpha,\nu})}
+%\end{align*}
 while for $\alpha = 1$
 \begin{align*}
 	c_\infty(k) &= \frac{9 \eta^3}{2 k!} 	
@@ -267,8 +276,8 @@ From the exact expression for $c_\infty(k)$ we obtain its asymptotic behavior as
 \end{equation}
 Moreover, to simplify the statement we define the scaling function 
 \begin{equation}\label{eq:def_scaling_function}
-s_\alpha(k_n) = \begin{cases} 
-		k^{4\alpha-1} &\frac{1}{2}<\alpha<\frac{3}{4}, \\
+s_\alpha(k) = \begin{cases} 
+		k^{4\alpha-2} &\frac{1}{2}<\alpha<\frac{3}{4}, \\
 		\frac{k}{\log(k)} & \alpha = \frac{3}{4}, \\
 		k &\alpha > \frac{3}{4}.
 \end{cases}
