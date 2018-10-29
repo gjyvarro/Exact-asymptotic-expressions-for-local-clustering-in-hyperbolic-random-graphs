@@ -129,34 +129,34 @@ where $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$. Reca
 \]
 only depends on the $y$-coordinate of $p$. Therefore, we will often write $\rho(y,k)$ instead of $\rho(p,k)$.
 
-Using the above equation and the transformation of variables $z = \xi_{\alpha,\nu}e^{\frac{y}{2}}$, we compute
+Using the above equation and the transformation of variables $z = \xi_{\alpha,\nu}e^{\frac{y}{2}}$ (so $dy = \frac{2}{z}dz$), we compute
 \begin{align*}
-	\int_0^\infty \rho(y,k) e^{-\alpha y} \, dy 
-    &= \frac{1}{\Gamma(k+1)} \int_0^\infty \left(\xi_{\alpha,\nu} e^{\frac{y}{2}}\right)^k 
-    	e^{-\xi_{\alpha,\nu} e^{\frac{y}{2}}} e^{-\alpha y} \, dy\\
-    &= \frac{(\xi_{\alpha,\nu})^{2\alpha}}{\Gamma(k+1)} \int_0^\infty 
+	\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy 
+    &= \frac{1}{k!} \int_0^\infty \left(\xi_{\alpha,\nu} e^{\frac{y}{2}}\right)^k 
+    	e^{-\xi_{\alpha,\nu} e^{\frac{y}{2}}} \alpha e^{-\alpha y} \, dy\\
+    &= \frac{\alpha (\xi_{\alpha,\nu})^{2\alpha}}{\Gamma(k+1)} \int_0^\infty 
     	\left(\xi_{\alpha,\nu} e^{\frac{y}{2}}\right)^{k - 2\alpha} e^{-\xi_{\alpha,\nu} e^{\frac{y}{2}}}
         \, dy\\
-    &= \frac{(\xi_{\alpha,\nu})^{2\alpha}}{\Gamma(k+1)} \int_{\xi_{\alpha,\nu}}^{\infty} 
-    	z^{k - 1 -2\alpha} e^{-z} \, dz\\
-    &= (\xi_{\alpha,\nu})^{2\alpha} \frac{\Gamma^+(k - 2\alpha, \xi_{\alpha,\nu})}{\Gamma(k+1)},
+    &= \frac{2\alpha (\xi_{\alpha,\nu})^{2\alpha}}{\Gamma(k+1)} \int_{\xi_{\alpha,\nu}}^{\infty} 
+    	z^{k -2\alpha-1} e^{-z} \, dz\\
+    &=2\alpha (\xi_{\alpha,\nu})^{2\alpha} \frac{\Gamma^+(k - 2\alpha, \xi_{\alpha,\nu})}{\Gamma(k+1)},
 \end{align*}
 where we recall that $\Gamma$ denotes the Gamma-function and $\Gamma^{+}$ the incomplete Gamma-function.
 We therefore conclude that
 \begin{equation}\label{eq:degree_distribution_P}
-	\Prob{D_\Pcal = k} = (\xi_{\alpha,\nu})^{2\alpha} \frac{\Gamma^+(k - 2\alpha, \xi_{\alpha,\nu})}{\Gamma(k+1)}
+	\Prob{D_\Pcal = k} = 2\alpha (\xi_{\alpha,\nu})^{2\alpha} \frac{\Gamma^+(k - 2\alpha, \xi_{\alpha,\nu})}{\Gamma(k+1)}
 \end{equation}
 
-Since $\Gamma^{+}(k-2\alpha, \xi_{\alpha,\nu})/\Gamma(k - 2\alpha) \sim k^{-(t+1)}$ as $k \to \infty$ \PvdH{Find reference.} we deduce that
+Since $\Gamma^{+}(k-2\alpha, \xi_{\alpha,\nu})/\Gamma(k - 2\alpha) \sim k^{-(2\alpha+1)}$ as $k \to \infty$ \PvdH{Find reference.} we deduce that
 \begin{equation}\label{eq:degree_distribution_P_asymptotics}
-	\Prob{D_\Pcal = k} \sim (\xi_{\alpha,\nu})^{2\alpha} k^{-(2\alpha + 1)}
+	\Prob{D_\Pcal = k} \sim 2\alpha (\xi_{\alpha,\nu})^{2\alpha} k^{-(2\alpha + 1)}
 	\quad \text{as } k \to \infty.
 \end{equation}
 
 By a similar computation we have the following result, which will be useful later on. For any $\beta > 0$, as $k \to \infty$
 \begin{equation}\label{eq:general_integral_rho_y_k}
-	\int_0^\infty e^{\beta y} \rho_y(k) e^{-\alpha y} \, dy
-    \sim \left(\xi_{\alpha,\nu}\right)^{2(\beta + \alpha)} k^{-2(\beta + \alpha)-1}.
+	\int_0^\infty e^{\beta y} \rho_y(k) \alpha e^{-\alpha y} \, dy
+    \sim 2\alpha \left(\xi_{\alpha,\nu}\right)^{2(\beta + \alpha)} k^{-2(\beta + \alpha)-1}.
 \end{equation}
 
 \subsection{Asymptotic behavior of $c_\infty(k)$}\label{ssec:asymptotics_local_clustering_P}
@@ -198,11 +198,11 @@ By a similar computation we have the following result, which will be useful late
 
 Recall that
 \[
-	c_\infty(k) = \frac{\int_0^\infty \rho(y,k) \Delta_\Pcal(y) e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) e^{-\alpha y} \dd y}.
+	c_\infty(k) = \frac{\int_0^\infty \rho(y,k) \Delta_\Pcal(y) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}.
 \]
 The asymptotic behavior for the denominator follows from~\eqref{eq:degree_distribution_P_asymptotics}. Hence, the main term to consider is the numerator
 \[
-	\int_0^{\infty} \Delta_{\mathcal{P}}(y) \, \rho(y,k) e^{-\alpha y} \, dy,
+	\int_0^{\infty} \Delta_{\mathcal{P}}(y) \, \rho(y,k) \alpha e^{-\alpha y} \, dy,
 \]
 and in particular the function $\Delta_\Pcal(y)$. The following result establishes the asymptotic behavior of the latter.
 
@@ -1103,7 +1103,8 @@ This finishes the computation.
 
 \subsection{Exact expression for clustering, integrating $\Delta_{\Pcal}(y)$}
 
-\PvdH{@Markus: Please check that your $\xi$ equals $\xi_{\alpha,\nu} := \frac{4\alpha \nu}{(2\alpha - 1)\pi}$ in all computations below. If not please adjust the computations.}
+%\PvdH{@Markus: Please check that your $\xi$ equals $\xi_{\alpha,\nu} := \frac{4\alpha \nu}{(2\alpha - 1)\pi}$ in all computations below. If not please adjust the computations.}
+%Markus: yes, this is the right xi.
 
 \PvdH{This part is still in the original form and has to be converted to match style and notation.}
 
@@ -1114,7 +1115,7 @@ First we recall that
 \begin{align*}
 p_k := \Pee( D=k ) = \int_0^\infty e^{-\xi e^{y/2}} \frac{(\xi e^{y/2})^k}{k!}\alpha e^{-\alpha y} dy = 2\alpha \int_0^1 e^{-\frac{\xi}{z}} z^{2\alpha -k-1} dz =\frac{2\alpha \xi^{2\alpha}}{k!} \Gamma(k-2\alpha,\xi)
 \end{align*}
-\PvdH{@Markus: This result is taken from your notes. It seems to disagree with~\eqref{eq:degree_distribution_P}. Could you please check the other computations.}
+%\PvdH{@Markus: This result is taken from your notes. It seems to disagree with~\eqref{eq:degree_distribution_P}. Could you please check the other computations.}
 
 We wish to compute
 \[   
