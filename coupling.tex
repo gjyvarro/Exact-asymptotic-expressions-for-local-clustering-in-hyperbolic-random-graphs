@@ -1228,47 +1228,23 @@ Since $4\alpha - 2 \ge 1$ when $\alpha \ge 3/4$ it immediately follows that
 	\lim_{n \to \infty} k_n \binom{k_n}{2}^{-1} \expH^{-1} \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(3)}(y) e^{-\alpha y} \dd x \dd y = 0.
 \]
 
-\PvdH{Stopped here!}
-
 \subsubsection*{The sum of~\eqref{eq:sum_5}}
 
-We will give an upper bound on the expectation of 
-$$\expH^{-1} \cdot \sum_{p_1,p_2\in\Pcal \setminus \{(0,y)\}}\ind{p_1\in \BallHyp{(0,y)} \setminus 
-\BallPo{(0,y)}}\ind{p_2 \in \BallHyp{(0,y)}\cap \BallHyp{p_1}} \cdot 
-D_\H (y,k_n-2;\Pcal \setminus \{ p_1, p_2\}).$$
-Let us set $p=(0,y)$. Recall that $\BallSym{p}\cap \Rcal([R_n - y + 2 \log\left(\frac{\pi}{2}\right),R_n]) = \emptyset$. Thus, the summand in the above sum is equal to 0, when 
-$y(p_1) > R_n - y + 2 \log (\pi/2)$. 
+We will give an upper bound for
+\[
+	\Exp{ \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y(p_1) \geq K} 
+	\hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
+	\, D_\H (y,k_n-2;\Pcal \setminus \{ p_1,p_2\})}.
+\]
+Let us set $p=(0,y)$. Recall that $\BallSym{y}\cap \Rcal([R_n - y + 2 \log\left(\frac{\pi}{2}\right),R_n]) = \emptyset$. Thus, the summand in the above sum is equal to 0, when 
+$y_1 > R_n - y + 2 \log (\pi/2)$. 
 
-Recall that  we have  
-\begin{equation} \label{eq:ball_multitude}
-\begin{split}
-\Exp{D_\H (y,k_n-2;\Pcal \setminus \{ p_1, p_2\})}  =O(1)\cdot   \Pop{y}{k_n-2}.
-\end{split}
-\end{equation}
+Recall the definition of the extended ball $\FatBallHyp{p}$ around $p$~\eqref{eq:def_fatball} that contains both $\BallHyp{p}$ and $\BallPo{p}$ 
+\[
+	\FatBallHyp{p} : = \{ p^\prime : y^\prime < R_n - y, \ |x^\prime| < (1+K) e^{\frac{1}{2} (y + y^\prime)}  \},
+\]
+and that we have $\Exp{D_\H (y,k_n-2;\Pcal \setminus \{ p_1,p_2\})} = \rho_{\HP}(y,k_n-2)$.
 
-
-%Let $X(p,p_1) : =|\Pcal \cap \BallHyp{p}\cap \BallHyp{p_1}|$, thus $X(p,p_1)$ is 
-%Poisson-distributed with parameter equal to $\mu_{\Pcal} ( \BallHyp{p}\cap \BallHyp{p_1})=:\lambda(p,p_1) $.
-%With $X' (p,p_1):= |\Pcal \cap \BallHyp{p} \setminus ( \BallHyp{p}\cap \BallHyp{p_1})|$, we also have that $X' (p,p_1)$ is Poisson-distributed with 
-%parameter $\mu_{\Pcal} (\BallHyp{p}) - \mu_{\Pcal} ( \BallHyp{p}\cap \BallHyp{p_1})$ and it is 
-%independent of $X(p,p_1)$. 
-%Thus, the above sum is written as 
-%\begin{equation*}
-%\begin{split}
-%&\sum_{p_1\in\Pcal \setminus \{(0,y)\}}\ind{p_1\in \BallSym{(0,y)}} \cdot 
-%\Prob{X'(p,p_1) + X(p,p_1)= k_n-1}
-%\cdot  X(p,p_1) \leq \\
-%&\sum_{p_1\in\Pcal \setminus \{(0,y)\}}\ind{p_1\in \BallSym{(0,y)}} \cdot 
-%\Prob{X'(p,p_1) + \ell = k_n-1} \cdot \ell \cdot \Prob{X(p,p_1)=\ell}  \\
-%& \hspace{2cm} + \Prob{|X(p,p_1) - \lambda(p,p_1) | > \lambda(p,p_1) /2}
-%\end{split}
-%\end{equation*}
-
-We are going to define an extended ball around $p$ that contains both $\BallHyp{p}$ and $\BallPo{p}$ and we are going to use as an upper approximation on $\BallHyp{p}$.
-For $K > 0$ as in Lemma~\ref{lem:asymptotics_Omega_hyperbolic}, we define:
-\begin{equation}\label{eq:def_fatball_K}
-	\FatBallHyp{p} : = \{ p^\prime : y^\prime < R_n - y, \ |x^\prime| < (1+K) e^{\frac{1}{2} (y + y^\prime)}  \}.
-\end{equation}
 Observe that,
 \begin{equation*} %\label{eq:ball_inclusion} 
 \BallHyp{p} \cap \Rcal ([0,r(p))) \subseteq \FatBallHyp{p}
@@ -1285,20 +1261,18 @@ Hence, if we set
 \[
 h_y(p_1, \Pcal) := \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} \cdot    
 \left( \mu_{\alpha,\nu} \left( \FatBallHyp{p_1} \cap \FatBallHyp{p} \right)
-+ \mu_{\alpha,\nu} \left( \Rcal([r(p),R_n]) \right) \right),
++ \mu_{\alpha,\nu} \left( \Rcal([R_n-y,R_n]) \right) \right),
 \]
 then 
-\begin{equation*}
-\begin{split}
+\begin{align*}
 &\ind{p_1\in \BallHyp{p}\setminus \BallPo{p}} \cdot \Exp{ \left(\sum_{p_2 \in \Pcal \setminus 
 \{p,p_1\}} \ind{p_2 \in \BallHyp{p} \cap \BallPo{p_1}}\right) \cdot 
 D_\H (y,k_n-2;\Pcal \setminus \{ p_1, p_2\})
 } \\
 &=O(1)\cdot
-\ind{p_1\in \BallHyp{p}\setminus \BallPo{p}} \cdot \mu_{\alpha,\nu} (\BallHyp{p}\cap \BallHyp{p_1}) \cdot  \Pop{y}{k_n-2} \\
-& \leq O(1) \cdot  h_y (p_1, \Pcal)\cdot  \Pop{y}{k_n-2}. 
-\end{split}
-\end{equation*}
+\ind{p_1\in \BallHyp{p}\setminus \BallPo{p}} \cdot \mu_{\alpha,\nu} (\BallHyp{p}\cap \BallHyp{p_1}) \rho_{\HP}(y,k_n-2) \\
+& \leq O(1) \cdot  h_y (p_1, \Pcal) \rho_{\HP}(y,k_n-2) . 
+\end{align*}
 To calculate the expectation of the above function we need to approximate the 
 intersection of the two balls $\FatBallHyp{p}$ and $\FatBallHyp{p_1}$, 
 where $p_1= (x_1,y_1)$. 
@@ -1335,8 +1309,8 @@ which, in turn, implies the following
 \end{equation}
 We thus conclude that 
 \[ 
-	\BallHyp{p_1} \cap \BallHyp{p} \subseteq \FatBallHyp{p} \cap \Rcal([c(y_1,y), R_n]) 
-	\bigcup \Rcal ([R_n - y,R_n]),
+	\BallHyp{p_1} \cap \BallHyp{p} \subseteq \left(\FatBallHyp{p} \cap \Rcal([c(y_1,y), R_n])\right)
+	\, \cup \, \Rcal ([R_n - y,R_n]),
 \]
 which in turn implies that
 \[
@@ -1345,64 +1319,72 @@ which in turn implies that
 	\mu_{\alpha,\nu} (\Rcal ([R_n - y, R_n]) ).
 \]
 Therefore, 
-\begin{align} 
+\begin{align*} 
 	h_y(p_1, \Pcal) &\leq \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} 
     	\mu_{\alpha,\nu}  \left( \FatBallHyp{p} \cap  \Rcal([c(y_1,y), R_n])\right)
-        \label{eq:h_upper_bound_1}\\
+        \\
 	&\hspace{10pt}+ \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}}
-    	\mu_{\alpha,\nu}  \left( \Rcal ([R_n - y, R_n]) \right). \label{eq:h_upper_bound_2}
-\end{align}
-
-Now,~\eqref{eq:Campbell-Mecke} gives
-\begin{align*}
-\Exp{\left( \sum_{p_1 \in \Pcal} 
-		h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} 
-	=\frac{\nu \alpha}{\pi} \int_{\Rcal_n} \Exp{h_y((x_1,y_1), \Pcal \setminus \{(x_1,y_1)\})}
-		e^{-\alpha y_1} \, dx_1 \, dy_1.
+    	\mu_{\alpha,\nu}  \left( \Rcal ([R_n - y, R_n]) \right).
 \end{align*}
-Recall that $(\BallSym{(0,y)})\cap \Rcal([R_n - y + 2 \log\left(\frac{\pi}{2}\right),R_n]) = \emptyset$. 
-We will calculate the measure of each one of the two summands. The first one is:
+
+
+
+Now, the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke} gives
 \begin{align*}
-	\mu_{\alpha,\nu}\left( \FatBallHyp{(0,y)} \cap  \Rcal([c(y_1,y), R_n])\right) 
+	&\Exp{ \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y(p_1) \geq K} 
+		\hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
+		\, D_\H (y,k_n-2;\Pcal \setminus \{ p_1,p_2\})}\\
+	&\le \Exp{\left( \sum_{p_1 \in \Pcal} 
+		h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \\
+	&=\frac{\nu \alpha}{\pi} \int_{\Rcal_n} \Exp{h_y(p_1, \Pcal \setminus \{p_1\})}
+		e^{-\alpha y_1} \dd x_1 \dd y_1\\
+	&\le \frac{\nu \alpha}{\pi} \int_{\Rcal_n} \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} 
+	    	\mu_{\alpha,\nu}  \left( \FatBallHyp{p} \cap  \Rcal([c(y_1,y), R_n])\right)
+	    	e^{-\alpha y_1} \dd x_1 \dd y_1 \numberthis \label{eq:h_upper_bound_1}\\
+	&\hspace{10pt}+ \frac{\nu \alpha}{\pi} \int_{\Rcal_n} \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}}
+	    	\mu_{\alpha,\nu}  \left( \Rcal ([R_n - y, R_n]) \right) e^{-\alpha y_1} \dd x_1 \dd y_1.
+	    	\numberthis \label{eq:h_upper_bound_2}
+\end{align*}
+
+Recall that $(\BallSym{(0,y)})\cap \Rcal([R_n - y + 2 \log\left(\frac{\pi}{2}\right),R_n]) = \emptyset$. 
+We will first calculate the measures $\mu_{\alpha, \nu}$ appearing in~\eqref{eq:h_upper_bound_1} and~\eqref{eq:h_upper_bound_2}. The first one is:
+\begin{align*}
+	\mu_{\alpha,\nu}\left( \FatBallHyp{y} \cap  \Rcal([c(y_1,y), R_n])\right) 
 	&\leq (1+ K) \frac{\nu \alpha}{\pi} \cdot e^{y/2}  \int_{c(y_1,y)}^{R_n} e^{-(\alpha - \frac{1}{2}) y'} \, dy' \\
 	&=  \bigO{e^{\frac{y}{2} - (\alpha-\frac{1}{2}) \min \{y,y_1\}}}.
 \end{align*}
 
-The second summand is: 
+The second term is: 
 \begin{align*}
 	\mu_{\alpha,\nu} \left( \Rcal([R_n - y,R_n]) \right) 
     &= \frac{\nu \alpha}{\pi} \int_{R_n - y}^{R_n} \pi e^{\frac{R_n}{2}} e^{-\alpha y'} \, dy' 
     	= \bigO{e^{\frac{R_n}{2}} e^{-\alpha (R_n-y)}} = \bigO{e^{\alpha y - (\alpha - \frac{1}{2})R_n}}. 
 \end{align*}
-%Thus, 
-%\[ 
-%\Exp{\left( \sum_{p_1 \in \Pcal} h_y(p_1, \Pcal \setminus \{ p_1 \})\right)}
-%    = \bigO{e^{\frac{y_n}{2} -(\alpha - \frac{1}{2}) \min \{y,y_n\}} + e^{\alpha y_n - (\alpha - \frac{1}{2})R_n}}.
-%\]
-Using these, 
-\begin{eqnarray} 
-	\lefteqn{\int_{\Rcal_n ([0, R_n - y_n + 2 \ln \frac{\pi}{2}])} \Exp{h_y((x_1,y_1), \Pcal \setminus \{(x_1,y_1)\})} 
-    e^{-\alpha y_1} \, dx_1 \, dy_1 =}  \nonumber \\
-	& & O(1) \cdot \left(\int_{\Rcal_n ([0, R_n - y+ 2 \ln \frac{\pi}{2}])} \ind{(x_1,y_1) \in \BallSym{p}} 		e^{\frac{y}{2} - (\alpha - \frac{1}{2}) \min \{y,y_1\} - \alpha y_1} \, dx_1 \, dy_1 \right.  \nonumber \\ 
-	& & \hspace{1cm}+\left. \int_{\Rcal_n ([0, R_n - y + 2 \ln \frac{\pi}{2}])} 
-    	\ind{(x,y) \in \BallHyp{(0,y)}} 
-    	e^{\alpha y - (\alpha - \frac{1}{2})R_n - \alpha y_1} \, dx_1 \, dy_1\right). \nonumber \\
-	& &\label{eq:Mecke_sum}
-\end{eqnarray}
+
+Using these, we get
+\begin{align} 
+	&\int_{\Rcal_n ([0, R_n - y_n + 2 \ln \frac{\pi}{2}])} \Exp{h_y(p_1, \Pcal \setminus \{p_1\})} 
+    e^{-\alpha y_1} \, dx_1 \, dy_1 \notag \\
+	&= \bigO{1} \int_{\Rcal_n ([0, R_n - y+ 2 \ln \frac{\pi}{2}])} \ind{p_1 \in \BallSym{p}} 
+		e^{\frac{y}{2} - (\alpha - \frac{1}{2}) \min \{y,y_1\} - \alpha y_1} \, dx_1 \, dy_1
+		\label{eq:Mecke_sum_1}\\ 
+	&\hspace{10pt}+ \bigO{1} \int_{\Rcal_n ([0, R_n - y + 2 \ln \frac{\pi}{2}])} 
+    	\ind{p_1 \in \BallHyp{(0,y)}} 
+    	e^{\alpha y - (\alpha - \frac{1}{2})R_n - \alpha y_1} \, dx_1 \, dy_1.\label{eq:Mecke_sum_2}
+\end{align}
 Now, Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that 
 for any $y \in [0, R_n - y_n + 2 \ln \frac{\pi}{2}]$, we have 
 \[ 
-	\int \ind{(x_1,y_1) \in \BallSym{(0,y)}} \, dx_1 \leq K e^{\frac{3}{2} (y_1 + y) - R_n}.
+	\int_{-I_n}^{I_n} \ind{p_1 \in \BallSym{y}} \, dx_1 \leq 2 K e^{\frac{3}{2} (y_1 + y) - R_n}.
 \]
-Therefore, the first integral in~\eqref{eq:Mecke_sum} is 
+
+Therefore, \eqref{eq:Mecke_sum_1} is 
 \begin{align*}
-	&\hspace{-20pt}\int_{\Rcal ([0, R_n - y + 2 \ln \frac{\pi}{2}])} \Exp{h_y((x_1,y_1), \Pcal \setminus \{(x_1,y_1)\})} 
-    	e^{-\alpha y_1} \, dx_1 \, dy_1 \\
-	&= O(1) \cdot e^{2 y - R_n} \int_{0}^{R_n - y + 2 \ln \frac{\pi}{2}} 
+	&\hspace{-20pt}O(1) \cdot e^{2 y - R_n} \int_{0}^{R_n - y + 2 \ln \frac{\pi}{2}} 
     	e^{\frac{3y_1}{2} - (\alpha - \frac{1}{2})\min\{y_1,y\} - \alpha y_1} \, dy_1 \\
  	&=  O(1) \cdot e^{2 y - R_n} \left( \int_{0}^{y} e^{\frac{3y_1}{2} - (2\alpha - \frac{1}{2})y_1} \, dy_1 
  		+ e^{-(\alpha-\frac{1}{2}) y}\int_{y}^{R_n - y + 2 \ln \frac{\pi}{2}} e^{(\frac{3}{2} - \alpha) y_1} \, dy_1 \right)\\
-  	&= O(1) \cdot 
+  	&= O(1) \left( 
 	\begin{cases}
 	e^{(4-2\alpha) y - R_n}, & \mbox{if $\alpha < 2$} \\
 	R_n \cdot e^{2y - R_n}, & \mbox{if $\alpha \geq 2$}
@@ -1411,12 +1393,12 @@ Therefore, the first integral in~\eqref{eq:Mecke_sum} is
 	\begin{cases}
 	e^{-(\alpha - \frac{1}{2})R_n +y}, & \mbox{if $\alpha < 3/2$} \\
 	R_n \cdot  e^{2(2-\alpha)y - R_n}, & \mbox{if $\alpha \geq 3/2$}
-	\end{cases}.
+	\end{cases}\right).
 \end{align*}
 
-Similarly, the second integral in~\eqref{eq:Mecke_sum} is
+Similarly, for~\eqref{eq:Mecke_sum_2} we have
 \begin{align*}
-	&\hspace{-30pt}\int_{\Rcal ([0, R_n - y + 2 \ln \frac{\pi}{2}])} \ind{(x_1,y_1) \in \BallSym{(0,y)}} e^{\alpha y - (\alpha - \frac{1}{2})R_n - \alpha y_1} \, dx_1 \, dy_1\\
+	&\hspace{-30pt}\int_{\Rcal ([0, R_n - y + 2 \ln \frac{\pi}{2}])} \ind{p_1 \in \BallSym{(0,y)}} e^{\alpha y - (\alpha - \frac{1}{2})R_n - \alpha y_1} \, dx_1 \, dy_1\\
 	&= e^{\frac{3y}{2} - R_n + \alpha y - (\alpha - \frac{1}{2})R_n} 
     	\cdot \int_{0}^{R_n - y + 2 \ln \frac{\pi}{2}} e^{\frac{3y_1}{2}-\alpha y_1} \, dy_1\\
 	&= O(1)\cdot 
@@ -1434,29 +1416,24 @@ Similarly, the second integral in~\eqref{eq:Mecke_sum} is
 	\end{cases}.
 \end{align*}
 
-We thus conclude that 
+We thus conclude, using $2(2 - \alpha)y \le y$ for $\alpha > 3/2$, that 
 \begin{equation} \label{eq:upper_bound_faulty_edges} 
 \Exp{\left( \sum_{p_1 \in \Pcal \setminus\{p\}} 
-		h_y (p_1, \Pcal \setminus \{ p_1 \})\right)}  = O(1) \cdot 
-\left( \Lambda_1 + \Lambda_2 + \Lambda_3 \right),
+		h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \le \bigO{1} \cdot 
+\left( \mathcal{I}_n^{(1)}(y) + \mathcal{I}_n^{(2)}(y) + \mathcal{I}_n^{(3)}(y) \right),
 \end{equation}
 where 
 \begin{align*}
- \Lambda_1 &= \Lambda_1 (y) =\begin{cases}
+ \mathcal{I}_n^{(1)}(y) &= \begin{cases}
 	e^{(4-2\alpha) y - R_n}, & \mbox{if $\alpha < 2$} \\
 	R_n \cdot e^{2y - R_n}, & \mbox{if $\alpha \geq 2$}
 	\end{cases},  \\
-\Lambda_2 &= \Lambda_2 (y) = 
-\begin{cases}
-	e^{-(\alpha - \frac{1}{2})R_n +y}, & \mbox{if $\alpha < 3/2$} \\
-	R_n \cdot  e^{2(2-\alpha)y - R_n}, & \mbox{if $\alpha \geq 3/2$}
-	\end{cases} \\
-	&\stackrel{2-\alpha \leq 1/2}{\leq}
+	\mathcal{I}_n^{(2)}(y) &= 
 	\begin{cases}
 	e^{-(\alpha - \frac{1}{2})R_n +y}, & \mbox{if $\alpha < 3/2$} \\
 	R_n \cdot  e^{y - R_n}, & \mbox{if $\alpha \geq 3/2$}
 	\end{cases}\\
-\mbox{and } \Lambda_3 &= \Lambda_3 (y) = 
+	\mathcal{I}_n^{(3)}(y) &= 
 \begin{cases}
 	  e^{-(2\alpha-1) R_n + 2 \alpha y}, & \mbox{if $\alpha < 3/2$} \\
 	  R_n \cdot e^{(\frac{3}{2} +\alpha)y -  (\alpha + \frac{1}{2})R_n}, & \mbox{if 
@@ -1464,56 +1441,57 @@ where
 	\end{cases}.
 \end{align*}
 
-Substituting this into~\eqref{eq:expectation_total} we now need to calculate:
+We now need to calculate:
 \begin{align*}
-&{k_n\choose 2}^{-1}\cdot \expH^{-1} \cdot \int_{-I_n}^{I_n} 
-\int_{I_\eps(k_n)} \Exp{\left( \sum_{p_1 \in \Pcal} h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \cdot 
- \Pop{y}{k_n-2} \cdot e^{-\alpha y} dy.
+&{k_n\choose 2}^{-1}\cdot \expH^{-1} \int_{\Kcal_{C}(k_n)} \Exp{\left( \sum_{p_1 \in \Pcal} h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \cdot 
+ \rho_{\HP}(y,k_n-2) e^{-\alpha y} \dd y \dd x.
 \end{align*}
 Firstly, note that as $\expH = \Theta (1) \cdot n \cdot k_n^{-(2\alpha +1)}$, we have 
 $$ {k_n\choose 2}^{-1}\cdot \expH^{-1} = O(1) \cdot \frac{k_n^{2\alpha-1}}{n}.$$
 Also, $\Exp{\left( \sum_{p_1 \in \Pcal} h_y (p_1, \Pcal \setminus \{ p_1 \})\right)}$ is given 
-as the sum of $\Lambda_1, \Lambda_2$ and $\Lambda_3$ (cf.~\eqref{eq:upper_bound_faulty_edges}). 
-We need to integrate these expressions together with $e^{-\lambda_y} \frac{\lambda_y^{k_n-2}}{(k_n-2)!}$.
-For this, we will use again Claim~\ref{eq:gamma_approx}.
+as the sum of $\mathcal{I}_n^{(1)}(y), \mathcal{I}_n^{(2}(y)$ and $\mathcal{I}_n^{(3)}(y)$ (cf.~\eqref{eq:upper_bound_faulty_edges}). Setting 
+\[
+	J_3 = \frac{k_n^{2\alpha-1}}{n}\cdot  \left(M_1+ M_2 + M_3 \right)
+\]
+with
+\[
+	M_i = \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(i)}(y) \rho_{\HP}(y,k_n-1) e^{-\alpha y} \dd y \dd x
+\]
+it follows that 
+\begin{align*}
+&{k_n\choose 2}^{-1} \expH^{-1} \int_{\Kcal_{C}(k_n)} \Exp{\left( \sum_{p_1 \in \Pcal \setminus \{(0,y)\}} h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \rho_{\HP}(y,k_n-1) e^{-\alpha y} \dd y \dd x \\
+&= O(1) \cdot J_3
+\end{align*}
 
-
-Using $n=\nu e^{R_n/2}$ as well as Claim~\ref{eq:gamma_approx}, 
-we deduce
+Computing each of the integral separately we obtain, using Lemma~\ref{lem:gamma_approx} and the fact that $n = \nu e^{R_n/2}$,
 \begin{align*} 
-M_1:= \int_{-I_n}^{I_n} \int_{I_\eps (k_n)} \Lambda_1 (y)  \Pop{y}{k_n-2} e^{-\alpha y} dy
+M_1:= \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(1)}(y) \rho_{\HP}(y,k_n-1) e^{-\alpha y} \dd y \dd x
 &= O(1) \cdot 
 \begin{cases} 
-\frac{k_n^{7-6\alpha}}{n}, & \mbox{if $\alpha <2$} \\
-R_n^2 \cdot \frac{k_n^{3-2\alpha}}{n}, & \mbox{if $\alpha \geq 2$}
+	\frac{k_n^{7-6\alpha}}{n}, & \mbox{if $\alpha <2$} \\
+	R_n^2 \frac{k_n^{3-2\alpha}}{n}, & \mbox{if $\alpha \geq 2$}
 \end{cases}. 
-%\\
-%& = O(1) \cdot 
-%\begin{cases} 
-%\frac{k_n^{2(1+\eps) (4-\alpha)}}{n}, \mbox{if $\alpha <2$} \\
-%R_n^2 \cdot \frac{k_n^{2(1-\eps)(2-\alpha)}}{n}, \mbox{if $\alpha \geq 2$}
-%\end{cases}
 \end{align*}
 \begin{align*} 
-M_2:= \int_{-I_n}^{I_n} \int_{I_\eps (k_n)} \Lambda_2 (y)  \Pop{y}{k_n-2} e^{-\alpha y} dy
+M_2:= \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(2)}(y) \rho_{\HP}(y,k_n-1) e^{-\alpha y} dy
 &= O(1) \cdot 
 \begin{cases}
 e^{-(\alpha - 1)R_n} k_n^{-2\alpha+1}, & \mbox{if $\alpha < 3/2$} \\
-R_n  \cdot \frac{k_n^{7-6\alpha }}{n}, & \mbox{if $\alpha \geq 3/2$}
+R_n   \frac{k_n^{7-6\alpha }}{n}, & \mbox{if $\alpha \geq 3/2$}
 \end{cases} 
 \\
-=\begin{cases}
+&=\begin{cases}
 \frac{k_n^{1-2\alpha}}{n^{2(\alpha-1)}}, & \mbox{if $\alpha < 3/2$} \\
-R_n  \cdot \frac{k_n^{7-6\alpha }}{n}, & \mbox{if $\alpha \geq 3/2$}
+R_n   \frac{k_n^{7-6\alpha}}{n}, & \mbox{if $\alpha \geq 3/2$}
 \end{cases}
 \end{align*}
 and finally 
 \begin{align*} 
-M_3:=\int_{-I_n}^{I_n} \int_{I_\eps (k_n)} \Lambda_3 (y)  \Pop{y}{k_n-2} e^{-\alpha y} dy
+M_3:= \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(3)}(y) \rho_{\HP}(y,k_n-1) e^{-\alpha y} dy
 &= O(1) \cdot 
 \begin{cases} 
 e^{-(2\alpha - 3/2) R_n} k_n^{2\alpha - 1}, & \mbox{if $\alpha <3/2$} \\ 
-R_n \cdot n \cdot e^{-(\alpha +\frac12)R_n} k_n^2, &\mbox{if $\alpha \geq 3/2$}
+R_n  e^{-\alpha R_n} k_n^2, &\mbox{if $\alpha \geq 3/2$}
 \end{cases} \\
 &=O(1) \cdot 
 \begin{cases} 
@@ -1521,40 +1499,9 @@ R_n \cdot n \cdot e^{-(\alpha +\frac12)R_n} k_n^2, &\mbox{if $\alpha \geq 3/2$}
 R_n \cdot \frac{k_n^2}{n^{2\alpha}}, &\mbox{if $\alpha \geq 3/2$}
 \end{cases}  .
 \end{align*}
-Setting 
-$$ J_3 = \frac{k_n^{2\alpha-1}}{n}\cdot  \left(M_1+ M_2 + M_3 \right) $$
-we deduce that 
-\begin{align*}
-&{k_n\choose 2}^{-1}\cdot \expH^{-1} \cdot \int_{-I_n}^{I_n} \int_{I_\eps (k_n)} \Exp{\left( \sum_{p_1 \in \Pcal \setminus \{(0,y)\}} h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \cdot  \Pop{y}{k_n-2} \cdot e^{-\alpha y} dy \\
-&= O(1) \cdot J_3
-\end{align*}
-
-
-%\begin{align*}
-%&\stackrel{I_n=O(1)\cdot e^{R_n/2}}{=} O(1)\cdot {k_n\choose 2}^{-1} \cdot \expH^{-1} 
-%\cdot \left(  e^{2(1+\eps)(4-2\alpha) \ln k_n - R_n/2} +e^{-(\alpha - 1)R_n +2(1+\eps) \ln k_n}  \right.
-%\\
-%&\left. \hspace{3cm}+ e^{-(2\alpha - 3/2) R_n + 4(1+\eps) \alpha \ln k_n}  \right) \\
-%&\stackrel{\expH = \Theta (1) \cdot n \cdot k_n^{2\alpha +1}}{=}
-%O(1) \cdot \frac{1}{n \cdot k_n^{2\alpha + 3}} 
-%\cdot \left(  e^{2(1+\eps)(4-2\alpha)\ln  k_n - R_n/2} +e^{-(\alpha - 1)R_n +2(1+\eps)\ln k_n}  \right.
-%\\
-%&\left. \hspace{3cm}+ e^{-(2\alpha - 3/2) R_n + 4(1+\eps) \alpha \ln k_n}  \right).
-%\end{align*}
-%Let 
-%\begin{align*}
-%J_3 &: = \frac{1}{n \cdot k_n^{2\alpha + 3}} 
-%\cdot \left(  e^{2(1+\eps)(4-2\alpha) \ln k_n - R_n/2} +e^{-(\alpha - 1)R_n +2(1+\eps)\ln k_n} 
-%+ e^{-(2\alpha - 3/2) R_n + 4(1+\eps) \alpha \ln k_n}  \right) \\
-%& = O(1) \cdot \frac{1}{n \cdot k_n^{2\alpha + 3}} \cdot 
-%\left( 
-%\frac{k_n^{2(1+\eps) (4-2\alpha)}}{n} + \frac{k_n^{2(1+\eps)}}{n^{2(\alpha-1)}} 
-%+\frac{k_n^{4\alpha (1+\eps)}}{n^{4\alpha - 3}}.
-%\right) 
-%\end{align*}
 
 Now, we will consider the two cases according to the value of $\alpha$. 
-Assume first that $1/2 < \alpha \leq 3/4$. 
+Assume first that $1/2 < \alpha < 3/4$. 
 In this case, we want to show that 
 \begin{equation} \label{eq:int3_to_prove_I}
 \lim_{n \to \infty} k_n^{4\alpha -2} \cdot J_3 = 0. 
@@ -1570,19 +1517,25 @@ Using the above expression for $J_3$, we have
 \end{align*}
 We wish to show that each one of the above three terms is $o(1)$ for $k_n = O(n^{\frac{1}{2\alpha +1}})$. 
 For the first one we have 
-$$ \frac{k_n^{6\alpha -3}}{n} \cdot \frac{k_n^{7-6\alpha}}{n} = \frac{k_n^{4}}{n^2} = O(1) \cdot n^{\frac{4}{2\alpha +1} -2} \stackrel{\alpha >1/2}{=} o(1). 
-$$
+\[ 
+\frac{k_n^{6\alpha -3}}{n} \cdot \frac{k_n^{7-6\alpha}}{n} = \frac{k_n^{4}}{n^2} = O(1) \cdot n^{\frac{4}{2\alpha +1} -2} = \smallO{1}, 
+\]
+since $4 < 4\alpha + 2$ when $1/2 < \alpha$.
 The second one yields: 
-$$ \frac{k_n^{6\alpha -3}}{n} \cdot  \frac{k_n^{-2\alpha+1}}{n^{2(\alpha-1)}} =\frac{k_n^{4\alpha -2}}{n^{2\alpha -1}} =O(1) \frac{n^{\frac{4\alpha -2}{2\alpha+1}}}{n^{2\alpha -1}}.$$
+\[
+	\frac{k_n^{6\alpha -3}}{n} \cdot  \frac{k_n^{-2\alpha+1}}{n^{2(\alpha-1)}} =\frac{k_n^{4\alpha -2}}{n^{2\alpha -1}} =O(1) \frac{n^{\frac{4\alpha -2}{2\alpha+1}}}{n^{2\alpha -1}}.
+\]
 We need to show that $\frac{4\alpha -2}{2\alpha+1}< 2\alpha -1$. Indeed, rearranging this 
- yields, $4\alpha -2 < 4\alpha^2 -1$, which is equivalent to $0< 4\alpha^2 - 4\alpha +1=(2\alpha- 1)^2$. This holds for all $\alpha >1/2$.  
+yields, $4\alpha -2 < 4\alpha^2 -1$, which is equivalent to $0< 4\alpha^2 - 4\alpha +1=(2\alpha- 1)^2$. This holds for all $\alpha >1/2$.  
  
- Finally, the third one yields: 
-$$ \frac{k_n^{6\alpha -3}}{n} \cdot \frac{k_n^{2\alpha -1}}{n^{4\alpha - 3}}  
-= \frac{k_n^{8\alpha -4}}{n^{2(2\alpha -1)}} = \frac{k_n^{4(2\alpha -1)}}{n^{2(2\alpha-1)}}.$$
+Finally, the third one yields: 
+\[
+	\frac{k_n^{6\alpha -3}}{n} \cdot \frac{k_n^{2\alpha -1}}{n^{4\alpha - 3}}  
+	= \frac{k_n^{8\alpha -4}}{n^{2(2\alpha -1)}} = \frac{k_n^{4(2\alpha -1)}}{n^{2(2\alpha-1)}}.
+\]
 But $k_n^4 \leq O(1)\cdot n^{\frac{4}{2\alpha+1}} = o(n^2)$, as $2\alpha +1 >2$.
  
-For $\alpha >3/4$, we would like to show that 
+For $\alpha \ge 3/4$, we would like to show that 
 \begin{equation} \label{eq:int3_to_prove_II}
 \lim_{n \to \infty} k_n \cdot J_3 = 0. 
 \end{equation}
@@ -1597,813 +1550,130 @@ Firstly, if $3/4 < \alpha < 3/2$ we have,
 \end{align*}
 As above we will deal with the three term of this. 
 For the first one we have 
-$$  \frac{k_n^{2\alpha}}{n} \cdot 
-\frac{k_n^{7-6\alpha}}{n}  = \frac{k_n^{7-4\alpha }}{n^2} \stackrel{\alpha >3/4}{<}  
-\frac{k_n^{4}}{n^2} =o(1). 
-$$
+\[
+	\frac{k_n^{2\alpha}}{n} \frac{k_n^{7-6\alpha}}{n}  = \frac{k_n^{7-4\alpha }}{n^2} \le   
+	\frac{k_n^{4}}{n^2} =o(1). 
+\]
 The second one yields: 
-$$\frac{k_n^{2\alpha}}{n} \cdot 
-\frac{k_n^{-2\alpha +1}}{n^{2(\alpha-1)}} =
-\frac{k_n}{n^{2\alpha-1}} \stackrel{\alpha > 3/4}{<} \frac{k_n}{n^{1/2}} = O(1) 
-\frac{n^{\frac{1}{2\alpha+1}}}{n^{1/2}} =o(1).$$
+\[
+	\frac{k_n^{2\alpha}}{n} \frac{k_n^{-2\alpha +1}}{n^{2(\alpha-1)}} =
+	\frac{k_n}{n^{2\alpha-1}} \le \frac{k_n}{n^{1/2}} = O(1) 
+	\frac{n^{\frac{1}{2\alpha+1}}}{n^{1/2}} =o(1).
+\]
 Finally, the third one yields: 
-$$  \frac{k_n^{2\alpha}}{n} \cdot \frac{k_n^{2\alpha -1}}{n^{4\alpha - 3}}
-= \frac{k_n^{4\alpha -1}}{n^{2(2\alpha -1)}}=
-O(1) \frac{n^{\frac{4\alpha-1}{2\alpha+1}}}{n^{2(2\alpha -1)}}.$$
+\[
+	\frac{k_n^{2\alpha}}{n} \cdot \frac{k_n^{2\alpha -1}}{n^{4\alpha - 3}}
+	= \frac{k_n^{4\alpha -1}}{n^{2(2\alpha -1)}}=
+O(1) \frac{n^{\frac{4\alpha-1}{2\alpha+1}}}{n^{2(2\alpha -1)}}.
+\]
 We need to show that $\frac{4\alpha-1}{2\alpha+1}< 2(2\alpha -1)$, which is 
 equivalent to $8\alpha^2 - 4 \alpha -1>0$; this is indeed the case for any $\alpha \geq 3/4$. 
 
  
- For $3/2 \leq \alpha <2$, it is only $M_2$ and $M_3$ that change values. 
- In particular, for any $\alpha \geq 3/2$ we have 
- $$\frac{k_n}{n} \cdot M_2 =O(1)\cdot R_n \cdot \frac{k_n^{2\alpha}}{n} \cdot 
-\frac{k_n^{7-6\alpha}}{n} =o(1),$$
-as above. 
-Also, 
-$$ \frac{k_n}{n} \cdot M_3 = O(1)\cdot
-R_n \cdot \frac{k_n}{n} \cdot \frac{k_n^{2}}{n^{2\alpha}}
-= R_n\cdot  \frac{k_n^{3}}{n^{2\alpha +1}} = o(1),
-$$
+For $3/2 \leq \alpha <2$, it is only $M_2$ and $M_3$ that change values. In particular, for any $\alpha \geq 3/2$ we have 
+\[
+	\frac{k_n}{n} \cdot M_2 =O(1)\cdot R_n \cdot \frac{k_n^{2\alpha}}{n} \cdot 
+\frac{k_n^{7-6\alpha}}{n} =o(1),
+\]
+as above. Also, 
+\[
+	\frac{k_n}{n} \cdot M_3 = O(1)\cdot
+	R_n \cdot \frac{k_n}{n} \cdot \frac{k_n^{2}}{n^{2\alpha}}
+	= R_n\cdot  \frac{k_n^{3}}{n^{2\alpha +1}} = o(1),
+\]
 since $k_n = o(n^{1/2})$ (and, therefore, $k_n^3 = o(n^{3/2})$) but $2\alpha +1 >2$. 
 
 If $\alpha \geq 2$ too, then $M_1$ changes value and we have 
-$$\frac{k_n}{n} \cdot M_1 =O(1) \cdot R_n^2 \cdot 
-\frac{k_n}{n}  \cdot \frac{k_n^{3-2\alpha}}{n} = \frac{k_n^{4 - 2\alpha}}{n^2}= o(1),$$ 
+\[
+	\frac{k_n}{n} \cdot M_1 =O(1) \cdot R_n^2 \cdot 
+\frac{k_n}{n}  \cdot \frac{k_n^{3-2\alpha}}{n} = \frac{k_n^{4 - 2\alpha}}{n^2}= o(1),
+\] 
 since $\alpha \geq 2$. 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%% old third summand %%%%%%%%%
-%\begin{equation*}
-%\begin{split}
-%&\Exp {\sum_{p_1 \in \Pcal \setminus \{(0,y) \}} D_{\H}(y,k_n-1; \Pcal \setminus \{ (0,y),p_1\})  \ind{p_1\in \BallSym{(0,y)}}}\cdot k_n \cdot 2 \expH^{-1} \leq \\
-%&\mu_{\alpha, \nu} (\BallSym{(0,y)})\cdot \Prob{D_{\H}((0,y))=k_n-1)} \cdot k_n \cdot 2 \expH^{-1}. 
-%\end{split}
-%\end{equation*} 
-%We calculate $\mu_{\alpha, \nu} (\BallSym{(0,y)})$ in the following claim. 
-%\begin{lemma}\label{lem:sym_diff_measure}
-%Let $\eps \in (0,1)$. For any $0< y < (1- \eps) R_n$ we have 
-%$$\mu_{\alpha, \nu} (\BallSym{p}) =\Theta(1) \cdot \begin{cases} 
-%e^{(1/2-\alpha)R_n + \alpha y}, & \mbox{if } \alpha < 3/2 \\
-%		r_y e^{3y/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-%		e^{3y/2 - R_n}, &  \mbox{if } \alpha > 3/2
-%	\end{cases} $$
-%\end{lemma}
-%\begin{proof}
-%We will now give an upper bound on $\mu (\BallSym{(0,y)})$. 
-%We set $r_y = R_n- y$.
-%Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for such a $p'$, if a point $p' = (x',y')$ belongs to $\BallSym{(0,y))} \cap \Rcal ([0,r_y])$ then 
-%\[
-%	|x' | = \Theta(1) \cdot e^{\frac{3}{2} (y + y') - R_n}.
-%\]
-%Now, if $y' \in [r_y, r_y + 2 \ln \frac{\pi}{2})]$ and also $p' \in \BallHyp{(0,y)} \bigtriangleup \BallPo{(0,y)}$, then 
-%\[
-%	|x'| =\frac{\pi}{2} e^{R_n/2} - e^{\frac{1}{2} (y + y')}.
-%\]
-%Finally, note that no point in $\Rcal ([r_y+2\ln \frac{\pi}{2},R_n])$ belongs to $\BallHyp{(0,y)} \bigtriangleup \BallPo{(0,y)}$, as this region is in fact part of $\BallHyp{(0,y)} \cap \BallPo{(0,y)}$. We first compute the expected number of points $p' \in \BallHyp{(0,y)} \bigtriangleup \BallPo{(0,y)}$ that have $R_n - y' \le r_y$. The result depends on the value of $\alpha$, yielding the following three cases
-%\begin{align*}
-%	\mu_{\alpha,\nu} (\BallSym{(0,y)} \cap \Rcal ([0,r_y])) 
-%	&= \Theta(1) \cdot e^{3y/2 - R_n}\int_0^{r_y} e^{(3/2-\alpha) y'} \, dy' \\
-%	&= \Theta(1)\cdot \begin{cases} e^{(1/2-\alpha)R_n + \alpha y}, & \mbox{if } \alpha < 3/2 \\
-%		r_y e^{3y/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-%		e^{3y/2 - R_n}, &  \mbox{if } \alpha > 3/2
-%	\end{cases}.
-%\end{align*}
-%Furthermore, 
-%\begin{align*}
-%\mu_{\alpha,\nu}& (\BallSym{(0,y)} \cap \Rcal ([r_y,r_y +2\ln (\pi/2)])) \leq
-%\pi e^{R_n/2} \int_{r_y}^{r_y + 2 \ln (\pi/2)} e^{-\alpha y'} dy'\\
-%& = O(1)\cdot 
-%e^{R_n/2 - \alpha (R_n-y)} = O(1) \cdot e^{(1/2 -\alpha) R_n + \alpha y}. 
-%\end{align*}
-%Therefore, 
-%\begin{equation*}
-%\begin{split} 
-%\mu_{\alpha, \nu} (\BallSym{p}) &=
-%\mu_{\alpha,\nu} (\BallSym{(0,y)} \cap \Rcal ([0,r_y]))  +
-%\mu_{\alpha,\nu} (\BallSym{(0,y)} \cap \Rcal ([r_y,r_y +2\ln (\pi/2)])) \\
-%&=\Theta(1) \cdot \begin{cases} e^{(1/2-\alpha)R_n + \alpha y}, & \mbox{if } \alpha < 3/2 \\
-%		r_y e^{3y/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-%		e^{3y/2 - R_n}, &  \mbox{if } \alpha > 3/2
-%	\end{cases}
-%\end{split}
-%\end{equation*}
-%\end{proof}
-%
-%Using the above claim, we deduce that for any $\alpha \leq 3/2$ we have 
-%\begin{equation*}
-%\begin{split}
-%&\Exp {\sum_{p_1 \in \Pcal \setminus \{(0,y) \}}  \ind{p_1\in \BallSym{(0,y)}} 
-%D_{\H}(y,k_n-1; \Pcal \setminus \{ (0,y),p_1\}) }\cdot k_n \cdot 2 \expH^{-1} \\
-%&\leq 
-%R_n e^{(1/2 -\alpha)R_n + \alpha y} \cdot \Prob{D_{\H}((0,y))=k_n-1)} \cdot k_n \cdot 2 \expH^{-1} \\
-%&= R_n e^{(1/2 -\alpha)R_n + (\alpha-1/2)y} \cdot e^{y/2}\cdot \Prob{D_{\H}((0,y))=k_n-1)} \cdot k_n \cdot 2 \expH^{-1}. 
-%\end{split}
-%\end{equation*}
-%But recall that $y< 2(1+\eps ) \ln k_n$. Since $\alpha >1/2$,
-%\begin{equation*}
-%\begin{split}
-%&\Exp {\sum_{p_1 \in \Pcal \setminus \{(0,y) \}}  \ind{p_1\in \BallSym{(0,y)}} 
-%D_{\H}(y,k_n-1; \Pcal \setminus \{ (0,y),p_1\}) }\cdot k_n \cdot 2 \expH^{-1}\\
-%&\leq R_n e^{(1/2 -\alpha)R_n + (\alpha-1/2)2(1+\eps)\ln k_n} \cdot e^{y/2}\cdot \Prob{D_{\H}((0,y))=k_n-1)} \cdot k_n \cdot 2 \expH^{-1} \\
-%&= R_n e^{(1/2 -\alpha)R_n} \cdot k_n^{(1+\eps)(2\alpha -1)} \cdot e^{y/2}\cdot \Prob{D_{\H}((0,y))=k_n-1)} \cdot k_n \cdot 2 \expH^{-1}.
-%\end{split}
-%\end{equation*}
-%Substituting this into~\eqref{eq:expectation_total} yields for $n$ sufficiently large
-%\begin{equation*}
-%\begin{split} 
-%&R_n {k_n \choose 2}^{-1} \cdot k_n \cdot 2 \expH^{-1} e^{(1/2 -\alpha)R_n} \cdot 
-%k_n^{(1+\eps) (2\alpha-1)}\times \\
-%& \hspace{2cm} 
-%\int_{-I_{n}}^{I_n} \int_{ 2(1-\eps ) \ln k_n}^{2(1+\eps ) \ln k_n} \Prob{D_{\H}((0,y))=k_n-1)} e^{y/2 -\alpha y} dydx. 
-%%&\leq   
-%%5 R_n {k_n \choose 2}^{-1} \cdot k_n \cdot 2 \expH^{-1} e^{(1/2 -\alpha)R_n}
-%%\int_{-I_{n}}^{I_n} \int_0^{R_n} \Prob{D_{\H}((0,y))=k_n-1)}  dy dx.
-%\end{split}
-%\end{equation*}
-%Now 
-%\begin{equation*}
-%\begin{split}
-%&\int_{-I_{n}}^{I_n} \int_{ 2(1-\eps ) \ln k_n}^{2(1+\eps ) \ln k_n} \Prob{D_{\H}((0,y))=k_n-1)} e^{y/2 -\alpha y} dydx =\\
-%&= O(1)\cdot I_n \cdot  \int_{2(1-\eps)\ln k_n}^{2(1+\eps)\ln k_n} 
-%e^{y/2} \cdot e^{-\lambda_y} 
-%\frac{\lambda_y^{k_n-1}}{(k_n-1)!} e^{-\alpha y} dy dx \\ 
-%&\stackrel{I_n = O(n)}{=}  O(1) \cdot n \cdot
-%\int_{2(1-\eps)\ln k_n}^{2(1+\eps)\ln k_n} e^{y/2}\cdot e^{-\lambda_y} 
-%\frac{\lambda_y^{k_n-1}}{(k_n-1)!} e^{-\alpha y}dy. 
-%\end{split}
-%\end{equation*}
-%As above we perform a change of variable, setting $z = \lambda_y$ whereby 
-%$dy=2 \lambda_y^{-1} dz$. 
-%Therefore,  
-%$$\int_{2(1-\eps)\ln k_n}^{2(1+\eps)\ln k_n} e^{y/2}\cdot e^{-\lambda_y} 
-%\lambda_y^{k_n-1} e^{-\alpha y}dy= 
-%\int_{k_n^{1-\eps}}^{k_n^{1+\eps}} e^z z^{k_n-1-2\alpha} dz \sim \Gamma(k_n -2\alpha).$$
-%We thus conclude that 
-%\begin{equation*}
-%\begin{split}
-%&\int_{-I_{n}}^{I_n} \int_{ 2(1-\eps ) \ln k_n}^{2(1+\eps ) \ln k_n} \Prob{D_{\H}((0,y))=k_n-1)} e^{y/2 -\alpha y} dydx = \\
-%&=O(1) \cdot n \cdot \frac{\Gamma (k_n -2\alpha)}{\Gamma (k_n)} = O(1) \cdot n \cdot \frac{1}{k_n^{2\alpha}}.
-%\end{split}
-%\end{equation*}
-%Now,~\eqref{eq:degree_expectation} yields 
-%$\expH = O(1) \cdot n \cdot k_n^{-2\alpha -1}$. 
-%Thus,
-%\begin{equation*}
-%\begin{split} 
-%&I_3: =R_n {k_n \choose 2}^{-1} \cdot k_n \cdot 2 \expH^{-1} e^{(1/2 -\alpha)R_n} \cdot 
-%k_n^{(1+\eps) (2\alpha-1)}\times \\
-%& \hspace{2cm} 
-%\int_{-I_n}^{I_n} \int_{ 2(1-\eps ) \ln k_n}^{2(1+\eps ) \ln k_n} \Prob{D_{\H}((0,y))=k_n-1)} e^{y/2 -\alpha y} dydx \\
-%&= O(1) \cdot 
-%R_n \cdot k_n^{-1} \cdot n^{-1} \cdot k_n^{2\alpha+1} \cdot 
-%e^{(1/2-\alpha)R_n} \cdot k_n^{(1+\eps)(2\alpha -1)} \cdot n \cdot k_n^{-2\alpha}
-% \\
-%&=O(1) \cdot R_n \cdot e^{(1/2-\alpha)R_n} \cdot k_n^{(1+\eps)(2\alpha -1)}.
-%\end{split}
-%\end{equation*}
-% 
-%%Thereby, for $n$ sufficiently large
-%%\begin{equation*}
-%%\begin{split}
-%%R_n {k_n \choose 2}^{-1} \cdot k_n \cdot 2 \expH^{-1} e^{(1/2 -\alpha)R_n} 
-%%\int_{-I_{n}}^{I_n} \int_0^{R_n} e^{\alpha y -\alpha y} dydx \leq   6 R_n^2 e^{(1/2 -\alpha)R_n} k_n^{-1}. 
-%%\end{split}
-%%\end{equation*}
-%For $1/2 < \alpha \leq 3/4$, we have 
-%$$k_n^{4\alpha -2} I_3 =  O(1) \cdot 
-%R_n \cdot  e^{(1/2 -\alpha)R_n}\cdot  k_n^{6\alpha-3 +\eps (2\alpha-1)} 
-%=O(1)\cdot R_n \cdot n^{\frac{3(2\alpha-1)}{2\alpha+1} -(2\alpha -1) + \eps (2\alpha-1)}.$$
-%But 
-%$\frac{3}{2\alpha+1}-1 = \frac{3 -2\alpha -1}{2\alpha+1}$ 
-% For $3/4 < \alpha \leq 3/2$, we have 
-% $$k_n I_2 \leq  6 R_n^2 e^{(1/2 -\alpha)R_n} \to 0.$$
-%%%%%%%%%%%%%%%%%%%%%%%%%% UP TO HERE %%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 \subsubsection*{The sum of~\eqref{eq:sum_6}}
-Now, we will give an upper  bound on the term
+Now, we will first give an upper  bound on the term
 \begin{equation*}
-\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\}, \ y(p_1) < K}
-\ind{p_1\in \BallSym{(0,y)}} \ind{p_2\in \BallHyp{(0,y)}\cap \BallPo{(0,y)}}}.
+\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}
+\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}}.
 \end{equation*}
-Using the Campbell-Mecke formula~\eqref{eq:Campbell-Mecke}, we write 
-\begin{equation*}
-\begin{split}
-&\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\}, \ y(p_1) < K}
-\ind{p_1\in \BallSym{(0,y)}} \ind{p_2\in \BallHyp{(0,y)}\cap \BallPo{(0,y)}}} =\\
+Using the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke}, we write 
+\begin{align*}
+&\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\}, \ y_1 < K}
+\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}} =\\
 &\leq \int_{-I_n}^{I_n} \int_0^K \int_{-I_n}^{I_n} \int_0^{R_n} 
-\ind{(x_1,y_1) \in \BallSym{(0,y)}} 
- \ind{(x_2,y_2) \in \BallHyp{(0,y)}\cap \BallPo{(0,y)}} e^{-\alpha y_2} e^{-\alpha y_1} 
+\ind{p_1 \in \BallSym{y}} 
+ \ind{p_2 \in \BallHyp{y}\cap \BallPo{y}} e^{-\alpha y_2} e^{-\alpha y_1} 
  dx_2 dy_2 dx_1 dy_1 \\
- &\leq  \mu_{\alpha, \nu} (\BallHyp{(0,y)})\cdot
- \int_{-I_n}^{I_n} \int_0^K \ind{(x_1,y_1) \in \BallSym{(0,y)}} 
+ &\leq  \mu_{\alpha, \nu} (\BallHyp{y})\cdot
+ \int_{-I_n}^{I_n} \int_0^K \ind{p_1 \in \BallSym{y}} 
 e^{-\alpha y_1}  dx_1 dy_1.
-\end{split}
-\end{equation*}
-By~\eqref{eq:HBall_measure},  the first factor is 
-$$ \mu_{\alpha, \nu} (\BallHyp{(0,y)}) =O(1) \cdot e^{y/2}. $$ 
+\end{align*}
+By Lemma~\ref{lem:average_degree_hyperbolic} and a concentration argument,  the first factor is 
+\[
+	\mu_{\alpha, \nu} (\BallHyp{y}) =O(1) e^{y/2}.
+\]
 We bound the second factor using Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. 
 In particular,~\eqref{eq:asymp1} implies that 
-if $(x_1,y_1) \in \BallSym{(0,y)}$, then 
-$$ |x_1 - e^{(y+y_1)/2} |\leq e^{(y+y_1)/2} \cdot K e^{y+y_1- R_n} \stackrel{y_1<K}{=} O(1) 
-e^{(y+y_1)/2} \cdot e^{y- R_n}.$$
+if $(x_1,y_1) \in \BallSym{(0,y)}$, then because $y_1 < K$
+\[
+ |x_1 - e^{(y+y_1)/2} |\leq e^{(y+y_1)/2} \cdot K e^{y+y_1- R_n} = O(1) 
+e^{(y+y_1)/2} \cdot e^{y- R_n}.
+\]
 Therefore, 
-$$ \int_{-I_n}^{I_n} \int_0^K \ind{(x_1,y_1) \in \BallSym{(0,y)}} 
-e^{-\alpha y_1}  dx_1 dy_1 = O(1) \cdot e^{y-R_n} 
-\cdot \int_0^K e^{(y+y_1)/2} 
-e^{-\alpha y_1}   dy_1 = O(1)\cdot e^{3y/2 - R_n}. 
-$$
-Therefore, 
-\begin{equation*}
-\begin{split}
-\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\}, \ y(p_1) < K}
-\ind{p_1\in \BallSym{(0,y)}} \ind{p_2\in \BallHyp{(0,y)}\cap \BallPo{(0,y)}}} =
-O(1) \cdot e^{2y - R_n}.
-\end{split}
-\end{equation*}
+\[
+	\int_{-I_n}^{I_n} \int_0^K \ind{(x_1,y_1) \in \BallSym{(0,y)}} 
+	e^{-\alpha y_1}  dx_1 dy_1 = O(1) \cdot e^{y-R_n} 
+	\cdot \int_0^K e^{(y+y_1)/2} 
+	e^{-\alpha y_1}   dy_1 = O(1)\cdot e^{3y/2 - R_n}, 
+\]
+and hence
+\begin{align*}
+	\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}
+	\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}} 
+	= O(1) \cdot e^{2y - R_n}.
+\end{align*}
 Now, we integrate this over $y$: 
-\begin{equation*}
-\begin{split}
-&e^{-R_n} \int_{-I_n}^{I_n} \int_{I_\eps (k_n)} e^{2y -\alpha y} dy dx = O(1) \cdot n \cdot 
-e^{-R_n} \int_{I_\eps (k_n)} e^{2y -\alpha y} dy \\
-&\stackrel{n =\nu e^{R_n/2}}{=} O(1) \cdot n^{-1} \int_{I_\eps (k_n)} e^{2y -\alpha y} dy \\
-&= O(1) \cdot n^{-1} \cdot 
-\begin{cases}
-k_n^{2(2-\alpha) (1+\eps)}, & \mbox{if $\alpha < 2$} \\
-\log k_n, & \mbox{if $\alpha =2$} \\
-1, & \mbox{if $\alpha >2$}
-\end{cases}.
-\end{split}
-\end{equation*}
-We will multiply the above by $${k_n \choose 2}^{-1} (\expH^{-1} + \expP^{-1}) = 
-O(1) \cdot n^{-1} \cdot k_n^{-2 +2\alpha +1} = O(1) \cdot n^{-1} \cdot k_n^{2\alpha -1}.$$
+\begin{align*}
+	&e^{-R_n} \int_{\Kcal_{C}(k_n)} e^{2y -\alpha y} dy dx = O(1) n e^{-R_n} \int_{I_\eps (k_n)} e^{2y -\alpha y} dy \\
+	&= O(1) \cdot n^{-1} \int_{I_\eps (k_n)} e^{2y -\alpha y} dy \\
+	&= O(1) \cdot n^{-1} \cdot 
+		\begin{cases}
+		k_n^{2(2-\alpha) (1+\eps)}, & \mbox{if $\alpha < 2$} \\
+		\log k_n, & \mbox{if $\alpha =2$} \\
+		1, & \mbox{if $\alpha >2$}
+		\end{cases}.
+\end{align*}
+We deduce that
+\[
+	\binom{k_n}{2}^{-1} \expH^{-1} \Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}
+	\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}}
+	= O(1) \cdot n^{-1} \cdot k_n^{2\alpha -1}.
+\]
 
-Assume first that $1/2 <\alpha \leq 3/4$. In this case, we will consider
-$$ k_n^{4\alpha -2} \cdot n^{-2} \cdot k_n^{2\alpha -1 + 4 - 2\alpha} = 
-n^{-2} \cdot k_n^{4\alpha +1}.$$
+To finish the argument assume first that $1/2 <\alpha \leq 3/4$. In this case, we will consider
+\[
+	k_n^{4\alpha -2} \cdot n^{-2} \cdot k_n^{2\alpha -1 + 4 - 2\alpha} = 
+	n^{-2} \cdot k_n^{4\alpha +1}.
+\]
 But, $\alpha \leq 3/4$, we have $4\alpha +1 \leq 4$ and $k_n = o(n^{1/2})$, whereby $k_n^{4\alpha +1} = o(n^{2})$. 
 
 Now, suppose that $3/4 < \alpha < 2$. Here, we will consider 
-$$ k_n \cdot n^{-2} \cdot k_n^{2\alpha -1 + 4 - 2\alpha} =\frac{k_n^2}{n^2} = o(1).$$ 
+\[
+	k_n \cdot n^{-2} \cdot k_n^{2\alpha -1 + 4 - 2\alpha} =\frac{k_n^2}{n^2} = o(1).
+\] 
 When $\alpha \geq 2$, we will bound $\log k_n$ and 1 by $k_n$ and we will consider 
-$$ k_n \cdot n^{-2} \cdot k_n^{2\alpha -1 +1}= n^{-2} k_n^{2\alpha +1}.$$ 
+\[
+	k_n \cdot n^{-2} \cdot k_n^{2\alpha -1 +1}= n^{-2} k_n^{2\alpha +1}.
+\] 
 But $k_n = O(1)\cdot n^{\frac{1}{2\alpha +1}}$, whereby $k_n^{2\alpha +1} =O(n)$ and 
 the above term is therefore $o(1)$.
 
 \end{proof}
 
+\PvdH{Stopped here!}
 
-%\subsubsection{old material}
-%
-%
-%It suffices to prove the lemma for 
-%$$\Exp{ | \Delta_{\H}(p) -  \Delta_{\Pcal} (p)| 
-%\ind{k_n/2 \leq e^{y(p)/2} \leq 2k_n}\ind{D_\H (p) =k_n}}.$$
-%Firstly, observe that the quantity inside the expectation 
-%is invariant under the $x$-coordinate of $p$. 
-%
-%Therefore, using the Camplell-Mecke formula~\eqref{eq:Campbell-Mecke},
-%we can write: 
-%\begin{align*} %\label{eq:expectation-diff-1}
-%&\Exp{\sum_{p\in \Pcal}|  \Delta_{\H}(p) -  \Delta_{\Pcal} (p)|\ind{k_n/2 \leq e^{y(p)/2} \leq 2k_n}\ind{D_{\H}((0,y))=k_n}} = \\
-%& \frac{\nu \alpha}{\pi} 2I_n \int_{k_n/2}^{2k_n} \Exp{|\Delta_{\H}((0,y)) -  \Delta_{\Pcal} ((0,y))| \ind{D_{\H}((0,y))=k_n}; \Pcal \setminus \{(0,y)\}} e^{-\alpha y} dy.
-%\end{align*}
-%We will now bound from above the quantity:
-%$$  \Exp{|\Delta_{\H}((0,y)) -  \Delta_{\Pcal} ((0,y))|\ind{D_{\H}((0,y))=k_n}; \Pcal \setminus \{(0,y)\}}.$$
-%Let $\BallSym{p'} = \BallHyp{p'} \bigtriangleup \BallPo{p'}$ and let 
-%$\hsym{p'}:= |\BallSym{p'}\cap \Pcal|.$
-%The Camplell-Mecke formula again yields: 
-%\begin{align} \label{eq:difference}
-%& \Exp{|\Delta_{\H}((0,y)) -  \Delta_{\Pcal} ((0,y))|\ind{D_{\H}((0,y))=k_n}; \Pcal \setminus \{(0,y)\}}  \nonumber \\ 
-%\leq &\Exp{\ind{D_{\H}((0,y))=k_n}\sum_{p'\in \Pcal \setminus \{(0,y)\}} \ind{p' \in \BallPo{(0,y)} \cup \BallHyp{(0,y)}} 
-%\hsym{p'};\Pcal \setminus \{(0,y)\} } \nonumber \\ 
-%\leq &\Exp{\ind{D_{\H}((0,y))=k_n}\sum_{p'\in \Pcal \setminus \{(0,y)\}} \ind{p' \in \BallPo{(0,y+\delta_K)}} 
-%\hsym{p'};\Pcal \setminus \{(0,y)\} } \nonumber \\
-% &\leq \int_{\Rcal_n} \int_{\Rcal_n} 
-%|\Delta_{\H}((0,y), (x',y'), (x'',y'')) -  \Delta_{\Pcal} ((0,y), (x',y'),(x'',y''))| \times \nonumber  \\
-%&\hspace{1.5cm}\Prob{D_{\H}((0,y)) =k_n-2;\Pcal \setminus \{(0,y),(x',y'),(x'',y'')\}}
-%e^{-\alpha y' -\alpha y''} dx' dy' dx'' dy'' \nonumber \\
-%&\leq \int_{\Rcal_n}\mu(B_{\H \bigtriangleup \Pcal} ((x',y'))) \cdot \Prob{D_{\H}((0,y)) =k_n-1;\Pcal \setminus \{(0,y),(x',y')\}} e^{-\alpha y'} dx' dy'.
-%\end{align}
-%
-%We will now give an upper bound on $\mu (\BallSym{(x',y')})$. 
-%Let $r' = R_n- y'$.
-%Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for such a $p'$, if a point $p'' = (x'',y'')$ belongs to $\BallSym{p'} \cap \Rcal ([0,R-y'])$ then 
-%\[
-%	|x' - x''| = \Theta(1) \cdot e^{\frac{3}{2} (y' + y'') - R_n}.
-%\]
-%Now, if $y'' \in [r', r' + 2 \ln \frac{\pi}{2})]$ and also $p'' \in \BallHyp{p'} \bigtriangleup \BallPo{p'}$, then 
-%\[
-%	|x'-x''| =\frac{\pi}{2} e^{R_n/2} - e^{\frac{1}{2} (y' + y'')}.
-%\]
-%Finally,~\eqref{eq:symm_diff_upper_P} implies tha no point in $\Rcal ([r'+2\ln \frac{\pi}{2},R_n])$ belongs to $\BallHyp{p'} \bigtriangleup \BallPo{p'}$, as this region is in fact part of $\BallHyp{p'} \cap \BallPo{p'}$. We first compute the expected number of points $p'' \in \BallHyp{p'} \bigtriangleup \BallPo{p'}$ that have $R_n - y'' \le r'$. The result depends on the value of $\alpha$, yielding the following three cases
-%\begin{align*}
-%	\mu_{\alpha,\nu} (\BallSym{p'} \cap \Rcal ([0,r'])) 
-%	&= \Theta(1) \cdot e^{3y'/2 - R_n}\int_0^{r'} e^{(3/2-\alpha) y''} \, dy'' \\
-%	&= \Theta(1)\cdot \begin{cases} e^{(1/2-\alpha)R_n + \alpha y'}, & \mbox{if } \alpha < 3/2 \\
-%		r' e^{3y'/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-%		e^{3y'/2 - R_n}, &  \mbox{if } \alpha > 3/2
-%	\end{cases}.
-%\end{align*}
-%Also, 
-%\begin{align*}
-%\mu_{\alpha,\nu}& (\BallSym{p'} \cap \Rcal ([r',r' +2\ln (\pi/2)])) \leq
-%\pi e^{R_n/2} \int_{r'}^{r' + 2 \ln (\pi/2)} e^{-\alpha y'} dy'\\
-%& = O(1)\cdot 
-%e^{R_n/2 - \alpha (R_n-y')} = O(1) \cdot e^{(1/2 -\alpha) R_n + \alpha y'}. 
-%\end{align*}
-%Let us consider first the case where $1/2 < \alpha \leq 3/4$. 
-%The above estimates imply that in this case 
-%\begin{equation} \label{eq:symm_diff-measure} 
-%\mu_{\alpha,\nu} ( \BallSym{p'} ) = O(1) \cdot e^{(1/2 -\alpha) R_n + \alpha y'}.
-%\end{equation}
-%Note that we require that $p'=(x',y') \in \BallPo{(0,y)}$.  Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that 
-%if $y' > R-y + 2 \ln (\pi/2 )$, then $p' \in \BallPo{(0,y)}$; otherwise, 
-%$p' \in \BallPo{(0,y)}$ if and only if $|x| < e^{y/2 + y'/2}$. 
-%We can now substitute the estimate on $\mu_{\alpha, \nu} (\BallSym{p'})$ we obtained above into~\eqref{eq:difference}. This gives
-%\begin{align*} 
-%&\Exp{|\Delta_{\H}((0,y)) -  \Delta_{\Pcal} ((0,y))|\ind{D_{\H}((0,y))=k_n}; \Pcal \setminus \{(0,y)\} } = O(1) \times \\
-%&\Prob{D_{\H}((0,y)) =k_n-1;\Pcal \setminus \{(0,y),(x',y')\}} \times \\
-%&\left( e^{(1/2-\alpha)R_n + y/2}
-%\int_0^{R_n-y+2 \ln (\pi/2)} e^{y'/2 + \alpha y'} e^{-\alpha y'} dy' 
-%+ e^{(1/2 -\alpha)R_n} \int_{R_n-y+ 2 \ln (\pi/2)}^{R_n} e^{\alpha y' - \alpha y'}dy'\right).
-%\end{align*}
-%
-%
-%We first give an expression for $\Prob{D_{\H}((0,y)) =k_n-2;\Pcal \setminus \{(0,y),(x',y'),(x'',y'')\}}$. Recall that we have assumed that $y$ is such that 
-%$k_n/2 < e^{y/2} < 2k_n$. This implies that 
-%$$\Exp{|\BallHyp{(0,y)} \cap \Pcal \setminus \{(0,y),(x',y'),(x'',y'')\}|} = \Theta (k_n). 
-%$$ 
-%Thereby, we conclude that uniformly over all choices of $(x',y')$ and $(x'',y'')$ we 
-%have 
-%\begin{equation} \label{eq:deg_p_minus} 
-%\Prob{D_{\H}((0,y)) =k_n-2;\Pcal \setminus \{(0,y),(x',y'),(x'',y'')\}} = \Theta \left(k_n^{-1/2}\right). 
-%\end{equation}
-%
-%Now, the difference 
-%$|\Delta_{\H}((0,y), (x',y'), (x'',y'')) -  \Delta_{\Pcal} ((0,y), (x',y'),(x'',y''))|$ 
-%can only take the values 0 or 1. In particular, if 
-%it is equal to 1, then there are three possibilities 
-%\begin{enumerate}
-%\item either $(x',y') \in \BallHyp{(0,y)}\bigtriangleup \BallPo{(0,y)}$,
-%\item or $(x'',y'') \in \BallHyp{(0,y)}\bigtriangleup \BallPo{(0,y)}$,
-%\item or $(x'',y'') \in \BallHyp{(x',y')} \bigtriangleup \BallPo{(x',y')}$ for $(x',y') \in 
-%\BallHyp{(0,y)} \cup \BallPo{(0,y)}$.
-%\end{enumerate}
-%By Lemma~\ref...  
-%if $y' \geq R - y$, then $(x',y') \in \BallHyp{(0,y)} \cup \BallPo{(0,y)}$ for any 
-%$x' \in [-I_n,I_n]$. 
-%Also, for $y'< R-y$, we have that if $(x',y') \in \BallHyp{(0,y)} \cup \BallPo{(0,y)}$, 
-%then $|x'| < K e^{y/2 + y'/2}$. 
-%
-%Therefore, the integral in~\eqref{eq:difference} can be bounded as follows: 
-%\begin{align*}
-% &\Exp{|\Delta_{\H}((0,y)) -  \Delta_{\Pcal} ((0,y))|; \Pcal \setminus \{(0,y)\}}  
-%\leq 2 k_n^{-1/2} \mu_{\alpha,\nu} (\BallHyp{(0,y)} \bigtriangleup \BallPo{(0,y)}) \\
-%& \hspace{1cm} + k_n^{-1/2} e^{y/2}
-%\int_{0}^{R_n-y} e^{y'/2} \mu_{\alpha,\nu} (\BallHyp{(x',y')} \bigtriangleup \BallPo{(x',y')}) e^{-\alpha y'} dy' dx' \\
-%& \hspace{1cm} + k_n^{-1/2} I_n
-%\int_{R_n-y}^{R_n}  \mu_{\alpha,\nu} (\BallHyp{(x',y')} \bigtriangleup \BallPo{(x',y')}) e^{-\alpha y'} dy' dx
-%\end{align*}
-%But $\mu_{\alpha,\nu} (\BallHyp{(x',y')} \bigtriangleup \BallPo{(x',y')})$ does not depend on $x'$, whereby we eventually obtain:
-%\begin{align*}
-% &\Exp{|\Delta_{\H}((0,y)) -  \Delta_{\Pcal} ((0,y))|; \Pcal \setminus \{(0,y)\}}  
-%\leq 2 k_n^{-1/2} \mu_{\alpha,\nu} (\BallHyp{(0,y)} \bigtriangleup \BallPo{(0,y)}) \\
-%& \hspace{1cm} + k_n^{-1/2} e^{y/2}
-%\int_{0}^{R_n-y} e^{y'/2} \mu_{\alpha,\nu} (\BallHyp{(0,y')} \bigtriangleup \BallPo{(0,y')}) e^{-\alpha y'} dy' dx' \\
-%& \hspace{1cm} + k_n^{-1/2} I_n
-%\int_{R_n-y}^{R_n}  \mu_{\alpha,\nu} (\BallHyp{(0,y')} \bigtriangleup \BallPo{(0,y')}) e^{-\alpha y'} dy' dx
-%\end{align*}
-%To bound these quantities, we need an estimate on $\mu_{\alpha,\nu} (\BallHyp{(0,y)} \bigtriangleup \BallPo{(0,y)})$. 
-%This is given in the following claim. 
-%\begin{lemma} 
-%For any $y' \in (0,R_n - y)$ we have
-%\[
-%	\mu_{\alpha,\nu} (\BallHyp{(0,y')} \bigtriangleup \BallPo{(0,y')} ) 
-%	= \Theta (1) \cdot \begin{cases} 
-%		e^{(1/2-\alpha)R_n + \alpha y'}, & \mbox{if } \alpha < 3/2 \\
-%		(R_n-y) e^{3y'/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-%		e^{3y'/2 - R_n}, &  \mbox{if } \alpha > 3/2 
-%	\end{cases}.
-%\]
-%\end{lemma}
-%
-%
-%
-%
-%Assume first that $\alpha \leq 3/2$. 
-%Then
-%\begin{align*} 
-%&k_n^{-1/2} e^{y/2}\int_{0}^{R_n-y}e^{y'/2} \mu_{\alpha,\nu} (\BallHyp{(0,y')} \bigtriangleup \BallPo{(0,y')}) e^{-\alpha y'} dy' = O (R_n) k_n^{-1/2} e^{(1-\alpha)R_n}.
-%\end{align*}
-%Let us consider first the sub-case where $1/2 < \alpha <3/4$.
-%By~\eqref{eq:exp_deg} we have that 
-%$$\frac{1}{\Exp{N_\H(k_n)}} \frac{k_n^{4\alpha -2}}{{k_n \choose 2}} = \Theta (1) \cdot e^{-R_n/2} k_n^{4(\alpha - 1) + 2\alpha +1} = \Theta (1) \cdot 
-%e^{-R_n/2} k_n^{6\alpha - 3} $$
-%The product of the above two expressions yields: 
-%\begin{align*} 
-%&\frac{1}{\Exp{N_\H(k_n)}} \frac{k_n^{4\alpha -2}}{{k_n \choose 2}} 
-%k_n^{-1/2} e^{y/2}\int_{0}^{R_n-y}e^{y'/2} \mu_{\alpha,\nu} (\BallHyp{(0,y')} \bigtriangleup \BallPo{(0,y')}) e^{-\alpha y'} dy' =\\
-%& O(R_n) \cdot k_n^{6\alpha - 3.5} e^{(1/2 -\alpha )R_n}. 
-%\end{align*}
-%But recall that $k_n = O(n^{\frac{1}{2\alpha +1}})$ and moreover we can write 
-%$e^{(1/2 -\alpha )R_n} = \Theta (1) \cdot n^{1 - 2\alpha}$. 
-%Therefore, 
-%$$  k_n^{6\alpha - 3.5} e^{(1/2 -\alpha )R_n} = O(1) \cdot 
-%n^{\frac{6 \alpha -3.5}{2\alpha +1}+ 1  - 2\alpha}.
-%$$ 
-%But $$\frac{6 \alpha -3.5}{2\alpha +1}+ 1  - 2\alpha = \frac{6 \alpha -3.5 - 4\alpha^2 +1}{2\alpha+1}=\frac{-4\alpha^2 + 6\alpha -2.5}{2\alpha +1}.$$ 
-%Elementary analysis shows that the polynomial $-4\alpha^2 + 6\alpha -2.5$ 
-%has no real roots and since the leading coefficient is negative, it is negative for any $\alpha$.  
-%Therefore, 
-%\begin{align*} 
-%&\frac{1}{\Exp{N_\H(k_n)}} \frac{k_n^{4\alpha -2}}{{k_n \choose 2}} 
-%k_n^{-1/2} e^{y/2}\int_{0}^{R_n-y}e^{y'/2} \mu_{\alpha,\nu} (\BallHyp{(0,y')} \bigtriangleup \BallPo{(0,y')}) e^{-\alpha y'} dy' =o(1). 
-%\end{align*}
-%Assume now that $3/4 \leq \alpha \leq 3/2$. 
-%By~\eqref{eq:exp_deg} we have that 
-%$$\frac{1}{\Exp{N_\H(k_n)}} \frac{k_n}{{k_n \choose 2}} = \Theta (1) \cdot e^{-R_n/2} k_n^{-1+ 2\alpha +1} = \Theta (1) \cdot 
-%e^{-R_n/2} k_n^{2\alpha}.$$
-%Hence, 
-%\begin{align*} 
-%&\frac{1}{\Exp{N_\H(k_n)}} \frac{k_n}{{k_n \choose 2}} 
-%k_n^{-1/2} e^{y/2}\int_{0}^{R_n-y}e^{y'/2} \mu_{\alpha,\nu} (\BallHyp{(0,y')} \bigtriangleup \BallPo{(0,y')}) e^{-\alpha y'} dy' =\\
-%& O(R_n) \cdot k_n^{2\alpha - 1/2} e^{(1/2 -\alpha )R_n} = O(R_n) \cdot 
-%k_n^{2\alpha -1/2} n^{1 - 2\alpha}.  
-%\end{align*}
-%As $k_n = O(n^{\frac{1}{2\alpha +1}})$, we have 
-%$$ k_n^{2\alpha -1/2} n^{1 - 2\alpha} = O(1) \cdot n^{\frac{2\alpha - 1/2}{2\alpha +1} + 1 - 2\alpha}.$$ 
-%But 
-%$$ \frac{2\alpha - 1/2}{2\alpha +1} + 1 - 2\alpha =\frac{-4 \alpha^2 + 2\alpha +1/2}{2\alpha +1}.$$ 
-%Elementary analysis shows that the largest root of $-4 \alpha^2 + 2\alpha +1/2$ 
-%is smaller than $3/4$. As the leading coefficient is negative, it follows that this 
-%quadratic polynomial is negative for $3/4 \leq \alpha  \leq 3/2$.  
-%
-%Suppose now that $\alpha > 3/2$. In this case, 
-%\begin{align*} 
-%&\frac{1}{\Exp{N_\H(k_n)}} \frac{k_n}{{k_n \choose 2}} 
-%k_n^{-1/2} e^{y/2}\int_{0}^{R_n-y}e^{y'/2} \mu_{\alpha,\nu} (\BallHyp{(0,y')} \bigtriangleup \BallPo{(0,y')}) e^{-\alpha y'} dy' =\\
-%& O(R_n) \cdot k_n^{2\alpha + 1/2} e^{y/2} e^{-3R_n /2} \stackrel{e^{y/2} \leq 2 k_n}{=} O(R_n) \cdot 
-%k_n^{2\alpha +1/2 +1} n^{-3} = 
-%O(R_n) n^{\frac{2\alpha +3/2}{2\alpha +1} - 3} = o(1).   
-%\end{align*}
-%
-
-%\subsection{Missing number of neighbors}
-%
-%Lemma \ref{lem:asymptotics_Omega_hyperbolic} will allow us to find for some vertex $u \in G_{\H,n}$ its corresponding degree in $G_{\Pcal}$, i.e. $D_{\mathcal{P}}(\Psi(u))$. Note that this equals $N_{\Pcal}\left(\BallHyp{p}\right)$ and recall that this is distributed as $\Po({\mu_{\alpha, \nu} (\BallHyp{p})})$.
-%
-%\begin{lemma} \label{lem:edges_in_fat_hyp_ball}
-%Let $k_n$ be an increasing sequence of integers such that $k_n = O(n^{\frac{1}{2\alpha +1}})$. 
-%Let $p_n=(0,y_n) \in \Rcal_n$. 
-%
-%such that $y_n \to \infty$ and $R_n - y_n \to \infty$ 
-%as $n\to \infty$. Then with probability $1 - o()$, 
-%\[
-%\mathbb{P} 
-%\]
-%\end{lemma}
-%\begin{proof} 
-%Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that, for such $p_n$, if a point $p' = (x',y')$ belongs to 
-%$\BallHyp{p} \cap \Rcal ([0,R_n-y])$ if and only if 
-%\[
-%	|x_n-x^\prime| \leq  e^{\frac{1}{2} (y_n + y')}.
-%\]
-%Now, since $R_n - y_n \to \infty$,
-%\[
-%	\mu_{\alpha,\nu} (\BallHyp{p} \cap \Rcal ([0,R_n - y_n])) 
-%	= \Theta(1) \cdot e^{y_n/2}\int_0^{R_n - y_n} e^{(1/2-\alpha) y} dy = \Theta (e^{y_n/2}).
-%\] 
-%Similarly, we compute: 
-%\begin{align*}
-%	\mu_{\alpha, \nu} (\Rcal (R_n - y_n,R_n)) 
-%	&= \pi e^{R_n/2}\frac{\nu \alpha}{\pi} \int_{R_n - y_n}^{R_n} e^{-\alpha y} dy \\
-%	&= \nu e^{R_n/2} (e^{-\alpha(R_n- y_n)}- e^{-\alpha R_n}) = \Theta (e^{\frac{R_n(1-2\alpha)}{2} + \alpha y_n}).
-%\end{align*}
-%Recall that we have $\Rcal([R_n - y_n,R_n])\subset \BallHyp{p}$. Therefore, by adding the above two expressions we deduce that 
-%\[
-%	\mu_{\alpha,\nu} (\BallHyp{p} ) = \Theta (1) \cdot (e^{y_n/2} + e^{\frac{R(1-2\alpha)}{2} + \alpha y_n}).
-%\]
-%But 
-%$\frac{y_n}{2} >  \frac{R_n(1-2\alpha)}{2} + \alpha y_n$ as $y_n < R_n$ and $\alpha > 1/2$. 
-%Hence, 
-%\[
-%	\mu_{\alpha,\nu} (\BallHyp{p} ) = \Theta (1) \cdot e^{y_n/2}.
-%\]
-%The lemma now follows as the number of points inside $\BallHyp{p}$ is 
-%Poisson-distributed with parameter equal to $ \mu_{\alpha,\nu} (\BallHyp{p} )$, 
-%and $y_n \to \infty$. 
-%\end{proof}
-%
-%One other useful estimate is about the number of points that fall inside $\BallHyp{p} \bigtriangleup \BallPo{p}$, where $A \bigtriangleup B$ denotes the symmetric difference between $A$ and $B$. This will give us an estimate on the error introduced by the coupling. 
-%
-%
-%
-%Let $N_{\H \bigtriangleup \Pcal} (p)$ be the number of points inside $\BallHyp{p} \bigtriangleup \BallPo{p}$. Then we have the following result.
-%
-%\begin{lemma}\label{lem:symm_diff_balls_H_P}
-%Let $p_n = (x_n,y_n) \in \Rcal_n$ be such that $y_n \to \infty$ and $R_n - y_n \to \infty$ 
-%as $n\to \infty$. Then 
-%\[
-%	N_{\mathbb{H} \bigtriangleup \Gamma} (p)= o_p (N_{\Pcal}(\BallHyp{p})).
-%\]
-%\end{lemma}
-%
-%\begin{proof}
-%Let $r_n := R_n - y_n$. Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for such a $p_n$, if a point $p^\prime$ belongs to $\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([0,r_n])$ then 
-%\[
-%	|x_n - x^\prime| = \Theta(1) \cdot e^{\frac{3}{2} (y_n + y^\prime) - R_n}.
-%\]
-%Now, if $p^\prime \in [r_n, r_n + 2 \ln \frac{\pi}{2})]$ and also $p^\prime \in \BallHyp{p_n} \bigtriangleup \BallPo{p_n}$, then 
-%\[
-%	|x_n-x^\prime| =\frac{\pi}{2} e^{R_n/2} - e^{\frac{1}{2} (y_n + y^\prime)}.
-%\]
-%Finally,~\eqref{eq:symm_diff_upper_P} implies that no point in $\Rcal ([r_n+2\ln \frac{\pi}{2},R_n])$ belongs to $\BallHyp{p_n} \bigtriangleup \BallPo{p_n}$. We first compute the expected number of points in $p^\prime \in \BallHyp{p_n} \bigtriangleup \BallPo{p_n}$ that have $R_n - y^\prime \le r_n$. The result depends on the value of $\alpha$, yielding the following three cases
-%\begin{align*}
-%	\mu_{\alpha,\nu} (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([0,r_n])) 
-%	&= \Theta(1) \cdot e^{3y_n/2 - R_n}\int_0^{r_n} e^{(3/2-\alpha) y} \, dy \\
-%	&= \Theta(1)\cdot \begin{cases} e^{(1/2-\alpha)R_n + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
-%		r_n e^{3y_n/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-%		e^{3y_n/2 - R_n}, &  \mbox{if } \alpha > 3/2
-%	\end{cases}.
-%\end{align*}
-%Next we compute the number of remaining points in $\BallHyp{p_n} \bigtriangleup \BallPo{p_n}$, 
-%\begin{align*}
-%	\mu_{\alpha,\nu} (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([r_n, R_n])) 
-%	&= \frac{\nu\alpha}{\pi} \int_{r_n}^{r_n + 2 \ln \frac{\pi}{2}} 
-%		\left(\frac{\pi}{2} e^{R_n/2} - e^{\frac{1}{2} (y_n + y)}\right)e^{-\alpha y} \, dy \\
-%	&= O(1) \cdot e^{R_n/2} \int_{r_n}^{r_n + 2 \ln \frac{\pi}{2}} e^{-\alpha y} \, dy 
-%		= O(1) \cdot e^{R_n/2} e^{-\alpha r_n} \\
-%	&=O(1) \cdot e^{(1/2 - \alpha) R_n + \alpha y_n}.
-%\end{align*}
-%Now note that for any $\alpha > 3/2$, we have 
-%\[
-%	\left( (1/2 - \alpha) R_n + \alpha y_n\right) - \left(3y_n/2 - R_n \right)\to -\infty,
-%\]
-%since
-%\begin{align*}
-%	\left( (1/2 - \alpha) R_n + \alpha y_n\right) - \left(3y_n/2 - R_n \right) 
-%	&= (3/2-\alpha )R_n - (3/2 - \alpha) y_n 
-%	&= (3/2 -\alpha) (R_n- y_n) \to -\infty.
-%\end{align*}
-%For $\alpha = 3/2$, these two quantities are equal. From these observations, we deduce that 
-%\[
-%	\mu_{\alpha,\nu} (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} ) 
-%	= \Theta (1) \cdot \begin{cases} 
-%		e^{(1/2-\alpha)R_n + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
-%		r_n e^{3y_n/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-%		e^{3y_n/2 - R_n}, &  \mbox{if } \alpha > 3/2 
-%	\end{cases}.
-%\]
-%Recall that the number of points inside $\BallHyp{p_n}\bigtriangleup \BallPo{p_n}$ is 
-%Poisson-distributed with parameter equal to 
-%$ \mu_{\alpha,\nu} (\BallHyp{p_n} \bigtriangleup \BallPo{p_n})$. 
-%Lemma \ref{lem:edges_in_fat_hyp_ball} implies that the number of points inside $\BallHyp{p_n}$ is Poisson-distributed with parameter which is $\Theta (1) \cdot e^{y_n/2}$. 
-%But note that for any $\alpha > 1/2$ we have 
-%\[
-%	\frac{y_n}{2} - \left( (1/2-\alpha)R_n + \alpha y_n \right) = (1/2 - \alpha)( y_n - R_n) = (\alpha -1/2) (R_n- y_n) \to \infty,
-%\]
-%and also 
-%\[
-%	\frac{y_n}{2} - \left(\frac{3y_n}{2} - R_n\right) = R_n - y_n \to \infty.
-%\] 
-%Therefore, since $y_n\to \infty$, we have 
-%\[
-%	N_{\mathbb{H} \bigtriangleup \Gamma} (p)= o_p (N_{\Pcal} (\BallHyp{p})).
-%\]
-%\end{proof}
-
-%\subsection{Missing edges between neighbors}
-%
-%Note that it follows from Lemma \ref{lem:symm_diff_balls_H_P} that
-%\[
-%	\frac{D_{\Pcal}(p)}{D_{\H}(p)} \plim 1,
-%\]
-%so that the number of neighbors of a point $p \in G_{\Pcal,n}(\alpha,\nu)$ closely approximates the number of neighbors of $\Psi^{-1}(p) \in G_{\H,n}(\alpha,\nu)$. The next step is to compute the difference between the number of edges between notes in $\BallPo{p}$ and $\BallHyp{p}$. For this let $E_{\H}(p)$ denote the number of edges in $\BallHyp{p}$ and $E_{\mathcal{P}}(p)$ the number of edges in $\BallPo{p}$. We decompose $E_{\H,n}(p)$ into the number of edges where both endpoints belong to $\BallHyp{p}\cap \BallPo{p}$ together with the number of edges where one endpoint belongs to $\BallHyp{p}\setminus \BallPo{p}$ and the other to $\BallHyp{p}$. Denoting these quantities by $E_{\H \cap \mathcal{P}}$ and $E_{\H \setminus \mathcal{P}}$ we have 
-%\[
-%	E_{\H} (p) = E_{\H\cap \mathcal{P}} + E_{\H \setminus \mathcal{P}}.
-%\] 
-%Following notation of analogous meaning we can also write: 
-%\[
-%	E_{\mathcal{P}} (p) = E_{\H \cap \mathcal{P}} + E_{\mathcal{P} \setminus \H}
-%\]
-%
-%With these notation we have
-%\begin{align*}
-%	\left| \frac{E_{\H} (p)}{{N_{\H} (p) \choose 2}} -\frac{E_\Pcal (p)}{{N_\Pcal (p) \choose 2}} \right| &= \left| \frac{E_{\Pcal \cap \H}(p) + E_{\H\setminus \Pcal}(p)}{{N_{\H} (p) \choose 2}} 
-%		- \frac{E_{\Pcal \cap \H} (p) + E_{\Pcal \setminus \H}}{{N_\Pcal (p) \choose 2}} \right| \\
-%	&\leq \frac{E_{\H\setminus \Pcal}(p)}{{N_{\H} (p) \choose 2}} 
-%		+ \frac{E_{\Pcal \setminus \H}(p)}{{N_{\Pcal} (p) \choose 2}} 
-%		+ E_{\Pcal \cap \H}(p) \left| \frac{1}{{N_{\H} (p) \choose 2}} 
-%		- \frac{1}{{\binom{N_{\Pcal}(p)}{2}}}\right| \\
-%	 &= \frac{E_{\H\setminus \Pcal}(p)}{{N_{\H} (p) \choose 2}} 
-%	 	+ \frac{E_{\Pcal \setminus \H}(p)}{{N_{\Pcal} (p) \choose 2}} 
-%	 	+ \frac{E_{\Pcal \cap \H}(p)}{\binom{N_{\Pcal}(p)}{2}} 
-%	 	\left| \frac{\binom{N_{\Pcal}(p)}{2}}{{N_{\H} (p) \choose 2}} - 1\right| 
-%\end{align*}
-%
-%The next lemma shows that the the first two terms go to zero at appropriate rates.
-%
-%\PvdH{For the proof technique I had in mind we only need the asymptotic expression for $\Exp{E_{\H\setminus \mathcal{P}}(p_n)}$ in the case where $R_n - y_n \to \infty$. I have therefore extracted this result from the the lemma by Nikolaos.}
-%
-%\begin{lemma}\label{lem:missing_edges_ball_H_P}
-%Let $p_n = (0, y_n)$ be a point in $\mathbb{R}_n$, such that $R_n - y_n \to \infty$ as $n \to \infty$. Then we have
-%\[
-%	\Exp{E_{\H\setminus \mathcal{P}}(p_n)} = \bigO{e^{(4\alpha - 2)y_n - R_n} + e^{y_n - \left(\alpha - \frac{1}{2}\right)R_n}
-%    + e^{(2\alpha - 1)y_n - (2\alpha - 1)R_n}},
-%\]
-%and the same holds if we interchange $\H$ and $\mathcal{P}$.
-%\end{lemma}
-%
-%\begin{proof}
-%To prove this lemma we will use again Lemma~\ref{lem:asymptotics_Omega_hyperbolic} to approximate $\BallHyp{p}$. Note that if $y < y' - R$, then 
-%\[
-%	K e^{\frac{3}{2} (y+y') - R} < K e^{\frac{1}{2} (y+y')}.
-%\]
-%Using this fact, Lemma~\ref{lem:asymptotics_Omega_hyperbolic} motivates us to define a ball around $p$ that contains $\BallHyp{p}$.
-%For $K > 0$, we define, for any point $p \in \R \times \R_+$,
-%\begin{equation}\label{eq:def_fatball}
-%	\FatBallHyp{p} : = \{ p^\prime : y^\prime < R_n - y, \ |x - x^\prime| < (1+K) e^{\frac{1}{2} (y + y^\prime)}  \}.
-%\end{equation}
-%%Note that $\Delta (r(p),r') = \frac12 e^{R/2} \theta_R (p)$.
-%Observe that,
-%\begin{equation*} %\label{eq:ball_inclusion} 
-%\BallHyp{p} \cap \Rcal ([0,r(p))) \subseteq \FatBallHyp{p}
-%\end{equation*}
-%and 
-%\begin{equation*} %\label{eq:ball_inclusion_lower}
-%\BallHyp{p} \cap \Rcal ([r(p),R]) = \Rcal ([r(p),R]).
-%\end{equation*}
-%We thus conclude that 
-%\begin{equation} \label{eq:hyperbolic_ball_inclusion}
-%\BallHyp{p} \subseteq \FatBallHyp{p} \cup \Rcal([r(p),R]).
-%\end{equation}
-%
-%We will consider the points of $\Pcal_{\alpha, \nu}$ that are contained in $\BallHyp{p_n}$ but not in $\BallPo{p_n}$ and in particular the number of ordered pairs of points $(p^\prime,p^{\prime \prime})$ with $p^\prime \in \BallHyp{p} \setminus \BallPo{p}$ and $p^{\prime \prime} \in \BallHyp{p^\prime}$. 
-%
-%To this end, we shall make use of the~\emph{Campbell-Mecke} formula:
-%for a Poisson point process $\mathcal{P}$ on a measurable space $S$ with intensity $\rho$ and a measurable non-negative function $h: S^r \rightarrow \mathbb{R}$ we have
-%\begin{equation} \label{eq:Campbell-Mecke}
-%\begin{split}
-%& \Exp{\sum_{x_1,\ldots, x_r \in \mathcal{P}}^{\neq} h (x_1, \ldots, x_r,
-%\mathcal{P} \setminus \{x_1,\ldots, x_r\}) }\\
-%& = \int_S \cdots \int_S
-%\Exp{h(x_1,\ldots, x_r,\mathcal{P} \setminus \{x_1,\ldots, x_r\}) \rho (x_1) \cdots \rho (x_r) dx_1 \cdots dx_r},
-%\end{split}
-%\end{equation}
-%where the sum ranges over all pairwise distinct $r$-tuples of points of $\mathcal{P}$.
-%
-%To obtain an upper bound on the expectation of $|\EdgeDiff|$ we shall make use of~\eqref{eq:hyperbolic_ball_inclusion}. More specifically, we will apply~\eqref{eq:Campbell-Mecke} to the Poisson point process $\Pcal_{\alpha,\nu}$ with 
-%\[
-%	h(p^\prime, \Pcal_{\alpha,\nu}) = \ind{p^\prime \in \Psi (\BallHyp{p_n})\setminus \BallPo{p_n}} \cdot
-%    |\Pcal_{\alpha,\mu} \cap \left( \FatBallHyp{p^\prime} \cap \FatBallHyp{p_n} \right)|.
-%\]
-%
-%To calculate the expectation of the above function we need to approximate the 
-%intersection of the two balls $\FatBallHyp{p_n}$ and $\FatBallHyp{p^\prime}$, where $p^\prime= (x^\prime,y^\prime)$. 
-%Let us suppose without loss of generality that $x^\prime > 0$. 
-%The right boundary of $\FatBallHyp{p_n}$ is given by the equation 
-%$x^\prime = (1+K)e^{\frac{1}{2} (y_n + y^\prime)}$ whereas the left boundary of $\FatBallHyp{p^\prime}$ is given by the curve having equation $x^\prime = x - (1+ K)e^{\frac{1}{2} (y_n + y^\prime)}.$ 
-%
-%The equation that determines the intersecting point of the two curves is
-%\[
-%	x - (1+K)e^{(y_n + \hat{y})/2}= (1+K) e^{(y_n + \hat{y})/2},
-%\]
-%where $\hat{y}$ is the $y$-coordinate of the intersecting point. 
-%We can solve the above for $\hat{y}$  
-%\begin{equation*} 
-%\begin{split}
-%x &=(1+K) e^{\hat{y}/2} \left( e^{y_n/2} + e^{y_n/2} \right).
-%\end{split}
-%\end{equation*}
-%But since $(x,y) \not \in \BallPo{p_n}$, we also have $x > e^{\frac{y_n + y}{2}}$. Therefore, 
-%\begin{equation*}
-%\begin{split}
-% e^{\hat{y}/2}& > \frac{1}{1+K}~\frac{e^{\frac{y_n + y}{2}}}{ e^{y/2}+ e^{y_n/2}} \geq 
-%\frac{1}{2(1+K)}~\frac{e^{\frac{y_n + y}{2}}}{ e^{\max \{y, y_n\} /2}} 
-%> \frac{1}{2(1 + K)} ~ e^{\min\{y, y_n\}/2}. 
-% \end{split}
-%\end{equation*}
-%The above yields
-%\begin{equation} \label{eq:to_use_I}
-%\hat{y} > \min\{y, y_n\} - 2\log(2(1+K)) := c(y_n, y). 
-%\end{equation}
-%which yields the following 
-%\begin{equation}\label{eq:intersex_approx}
-%	p^\prime \in \FatBallHyp{p_n}\cap \FatBallHyp{(x,y)} \Rightarrow y^\prime \ge c(y_n,y).
-%\end{equation}
-%Therefore we conclude that 
-%\[ 
-%	\BallHyp{(x,y)} \cap \BallHyp{p_n} \subseteq \FatBallHyp{p_n} \cap \Rcal([c(y_n,y), R_n]) 
-%	\bigcup \Rcal ([R_n - y_n,R_n]).
-%\]
-%This in turn implies that
-%\[
-%	|\Pcal_{\alpha,\nu} \cap \left( \FatBallHyp{p^\prime} \cap \BallHyp{p_n} \right)| \leq 
-%	|\Pcal_{\alpha,\nu} \cap \left( \FatBallHyp{p_n} \cap  \Rcal([c(y_n,y), R_n]) \right)| + 
-%	|\Pcal_{\alpha,\nu} \cap \Rcal ([R_n - y_n, R_n]) |
-%\]
-%and therefore
-%\begin{align} 
-%	h(p^\prime, \Pcal_{\alpha,\nu}) &\leq \ind{p^\prime \in \Psi (\BallHyp{p_n})\setminus \BallPo{p_n}} 
-%    	\left|\Pcal_{\alpha,\nu} \cap \left( \FatBallHyp{p_n} \cap  \Rcal([c(y_n,y), R_n])\right) \right| 
-%        \label{eq:h_upper_bound_1}\\
-%	&\hspace{10pt}+ \ind{p^\prime \in \Psi (\BallHyp{p_n})\setminus \BallPo{p_n}}
-%    	\left|\Pcal_{\alpha,\nu} \cap \Rcal ([R_n - y_n, R_n]) \right|.\label{eq:h_upper_bound_2}
-%\end{align}
-%
-%Hence,~\eqref{eq:Campbell-Mecke} gives
-%\begin{align*}
-%	\Exp{ |\EdgeDiff|} &\leq \Exp{\left( \sum_{p^\prime \in \Pcal_{\alpha, \nu}} 
-%		h(p^\prime, \Pcal_{\alpha, \nu}\setminus \{p^\prime\})\right)} \\
-%	&=\frac{\nu \alpha}{\pi} \int_{\Rcal_n} \Exp{h((x,y), \Pcal_{\alpha, \nu} \setminus \{(x,y)\})}
-%		e^{-\alpha y} \, dx \, dy.
-%\end{align*}
-%Recall that $(\BallHyp{p_n}\setminus \BallPo{p_n} )\cap \Rcal([R_n - y_n + 2 \log\left(\frac{\pi}{2}\right),R_n]) = \emptyset$. We will calculate the measure of each one of the two summands. The first one is:
-%\begin{align*}
-%	\mu_{\alpha,\nu}\left( \FatBallHyp{p_n} \cap  \Rcal([c(y_n,y), R_n])\right) 
-%	&\leq (1+ K) \frac{\nu \alpha}{\pi} \cdot e^{y_n/2}  \int_{c(y_n,y)}^{R_n-y_n} e^{-(\alpha - \frac{1}{2}) y^\prime} \, dy^\prime \\
-%	&=  \bigO{e^{\frac{y_n}{2} - (\alpha-\frac{1}{2}) \min \{y,y_n\}}}.
-%\end{align*}
-%
-%The second summand is: 
-%\begin{align*}
-%	\mu_{\alpha,\nu} \left( \Rcal([R_n - y_n,R_n]) \right) 
-%    &= \frac{\nu \alpha}{\pi} \int_{R_n - y_n}^{R_n} \pi e^{\frac{R_n}{2}} e^{-\alpha y^\prime} \, dy^\prime  
-%    	= \bigO{e^{\frac{R_n}{2}} e^{-\alpha (R_n-y_n)}} = \bigO{e^{\alpha y_n - (\alpha - \frac{1}{2})R_n}}. 
-%\end{align*}
-%Thus, 
-%\[ 
-%	\Exp{ \left| (\Pcal_{\alpha, \nu} \setminus \{(x,y)\}) \cap \BallHyp{(x,y)} \cap \BallHyp{p_n} \right|}
-%    = \bigO{e^{\frac{y_n}{2} -(\alpha - \frac{1}{2}) \min \{y,y_n\}} + e^{\alpha y_n - (\alpha - \frac{1}{2})R_n}}.
-%\]
-%This implies that:
-%\begin{eqnarray} 
-%	\lefteqn{\int_{\Rcal_n ([0, R_n - y_n + 2 \ln \frac{\pi}{2}])} \Exp{h((x,y), \Pcal_{\alpha, \nu } \setminus \{(x,y)\})} 
-%    e^{-\alpha y} \, dx \, dy =}  \nonumber \\
-%	& & O(1) \cdot \left(\int_{\Rcal_n ([0, R_n - y_n+ 2 \ln \frac{\pi}{2}])} \ind{(x,y) \in \Psi (\BallHyp{p})\setminus \BallPo{p}} 		e^{\frac{y_n}{2} - (\alpha - \frac{1}{2}) \min \{y,y_n\} - \alpha y} \, dx \, dy \right.  \nonumber \\ 
-%	& & \hspace{1cm}+\left. \int_{\Rcal_n ([0, R_n - y_n + 2 \ln \frac{\pi}{2}])} 
-%    	\ind{(x,y) \in \Psi (\BallHyp{p_n})\setminus \BallPo{p_n}} 
-%    	e^{\alpha y_n - (\alpha - \frac{1}{2})R_n - \alpha y} \, dx \, dy\right). \nonumber \\
-%	& &\label{eq:Mecke_sum}
-%\end{eqnarray}
-%Now, the definitions of $\BallHyp{(x,y)}$ and of $\BallPo{p}$ together with Lemma~\ref{lem:asymptotics_Omega_hyperbolic} imply that 
-%for any $y \in [0, R_n - y_n + 2 \ln \frac{\pi}{2}]$, we have 
-%\[ 
-%	\int \ind{(x,y) \in \Psi (\BallHyp{p_n})\setminus \BallPo{p_n}} \, dx \leq K e^{\frac{3}{2} (y_n + y) - R_n}.
-%\]
-%Therefore, the first integral in~\eqref{eq:Mecke_sum} is 
-%\begin{align*}
-%	&\hspace{-20pt}\int_{\Rcal ([0, R_n - y_n + 2 \ln \frac{\pi}{2}])} \Exp{h((x,y), \Pcal_{\alpha, \nu } \setminus \{(x,y)\})} 
-%    	e^{-\alpha y} \, dx \, dy \\
-%	&= O(1) \cdot e^{2 y_n - R_n} \int_{0}^{R_n - y_n + 2 \ln \frac{\pi}{2}} 
-%    	e^{\frac{3y}{2} - (\alpha - \frac{1}{2})\min\{y_n,y\} - \alpha y} \, dy \\
-% 	&=  O(1) \cdot e^{2 y_n - R_n} \left( \int_{0}^{y_n} e^{\frac{3y}{2} - (2\alpha - \frac{1}{2})y} \, dy 
-% 		+ e^{-(\alpha-\frac{1}{2}) y_n}\int_{y_n}^{R_n - y_n + 2 \ln \frac{\pi}{2}} e^{(\frac{3}{2} - \alpha) y} \, dy \right)\\
-%  	&= O(1) \cdot \left(e^{(4-2\alpha) y_n - R_n} +e^{-(\alpha - \frac{1}{2})R_n +y_n} \right).
-%\end{align*}
-%
-%Similarly, the second integral in~\eqref{eq:Mecke_sum} is
-%\begin{align*}
-%	&\hspace{-30pt}\int_{\Rcal ([0, r(p) + 2 \ln \frac{\pi}{2}])} \ind{(x,y) \in \Psi (\BallHyp{p_n})\setminus 
-%    	\BallPo{p_n}} e^{\alpha y_n - (\alpha - \frac{1}{2})R_n - \alpha y} \, dx \, dy\\
-%	&= e^{\frac{3y_n}{2} - R_n + \alpha y_n - (\alpha - \frac{1}{2})R_n} 
-%    	\cdot \int_{0}^{R_n - y_n + 2 \ln \frac{\pi}{2}} e^{\frac{3y}{2}-\alpha y} \, dy\\
-%	&= O(1)\cdot e^{\frac{3y_n}{2} - R_n + \alpha y_n - (\alpha - \frac{1}{2})R_n + (\frac{3}{2} - \alpha)(R_n-y_n)} \\
-%	&= O(1) \cdot e^{-(2\alpha-1) R_n + 2 \alpha y_n}.
-%\end{align*}
-%
-%Therefore, 
-%\begin{equation} \label{eq:upper_bound_faulty_edges} 
-%\Exp{ |\EdgeDiff|}  = O(1) \cdot 
-%\left( e^{(4-2\alpha) y_n - R_n} +e^{-(\alpha - \frac{1}{2})R_n +y_n} + e^{-(2\alpha - 1) R_n + 2 \alpha y_n} \right).
-%\end{equation}
-%\end{proof}
-%
-%\PvdH{The following lemma would be nice and I think it follows from Lemma \ref{lem:missing_edges_ball_H_P}.}
-%
-%\begin{lemma}
-%\[
-%	\lim_{n \to \infty} \frac{\Exp{N_\Pcal(k_n)}}{\Exp{N_\H(k_n)}} = 1.
-%\]
-%\end{lemma}
-%
-%\subsection{The number of missing triangles}
-%
-%With the above results we are now reading to analyze the number of missing triangles due to the coupling and prove Proposition \ref{prop:couling_c_H_P}. 
-%
-%\begin{proof}[Proof of Proposition \ref{prop:couling_c_H_P}]
-%\PvdH{Will add it next week.}
-%
-%\begin{align*}
-%	\left|\tilde{c}_{\H}^\ast(k) - c_\Pcal^\ast(k)\right| 
-%    &= \frac{1}{\binom{k}{2}}\left|\sum_{p \in \Pcal} 
-%    	\frac{\ind{D_\H(p) = k}}{\Exp{N_\H(k)}} \sum_{p_1,p_2 \in \Pcal} \Delta_\H(p,p_1,p_2)
-%        - \frac{\ind{D_\Pcal(p) = k}}{\Exp{N_\Pcal(k)}} \sum_{p_1,p_2 \in \Pcal} \Delta_\Pcal(p,p_1,p_2)\right|\\
-%    &\le c_\Pcal^\ast(k) \left|\frac{\Exp{N_\Pcal(k)}}{\Exp{N_\H(k)}} - 1\right| 
-%    	+ \frac{1}{\Exp{N_\H(k)}\binom{k}{2}} \left|\Delta_\H(k) - \Delta_\Pcal(k)\right|
-%    %&\hspace{10pt}+ \frac{1}{\Exp{N_\H(k)}\binom{k}{2}} \left|\sum_{p \in \Pcal} \left(\ind{D_\H(p) = k}
-%    %	- \ind{D_\Pcal(p) = k}\right) \sum_{p_1, p_2 \in \Pcal}\Delta_\Pcal(p,p_1,p_2)\right|\\
-%\end{align*}
-%
-%\end{proof}
 
 \subsection{Coupling $G_{\H,n}$ to $G_{\widetilde{\H},n}$}\label{ssec:coupling_H_HP}
 

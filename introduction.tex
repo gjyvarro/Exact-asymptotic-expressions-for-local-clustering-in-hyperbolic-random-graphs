@@ -31,7 +31,7 @@ In this work we resolve these important open questions. We obtain the asymptotic
 
 \subsection{Outline of the paper}
 
-In the next two subsections \ref{ssec:hyperbolic_model} and \ref{ssec:local_clustering} of the introduction, we give the definitions of the hyperbolic random graph and of the local clustering coefficient and function as used in this paper. After this we present our main results in Section \ref{ssec:main_results} and discuss several insights that can be obtained from them and in Section \ref{ssec:simulations} show simulations which confirm these results. Section \ref{sec:proof_outline} contains a detailed high level outline of the proofs of our main results, split up into different propositions. The proofs of these propositions can be found in the last four sections. Section~\ref{sec:concentration_argument} contains a crucial technical result that will be used in the other sections. 
+In the next two subsections \ref{ssec:hyperbolic_model} and \ref{ssec:local_clustering} of the introduction, we give the definitions of the hyperbolic random graph and of the local clustering coefficient and function as used in this paper. After this we present our main results in Section \ref{ssec:main_results} and discuss several insights that can be obtained from them and in Section \ref{ssec:simulations} show simulations which confirm these results. Section \ref{sec:proof_outline} contains a detailed high level outline of the proofs of our main results, split up into different propositions. The proofs of these propositions can be found in the last four sections. Section~\ref{sec:concentration_argument} contains a crucial technical result that will be used in the other sections. Finally, the Appendix contains a few general results for the hyperbolic random graph and a small section on Meijer's G-function.
 
 \subsection{Hyperbolic random graphs}\label{ssec:hyperbolic_model}
 
@@ -329,12 +329,12 @@ We end this section with some important observations regarding local clustering 
 %Note that Theorem \ref{thm:asymptotic_local_clustering_hyperbolic} implies that for $\frac{1}{2} < \alpha < \frac{3}{4}$ the local clustering $c_{\H,n}(k)$ decays as $k^{-(4\alpha - 2)}$ while for $\alpha > \frac{3}{4}$ it is $k^{-1}$.
 
 \paragraph{Maximum scaling for $k_n$ is $n^{\frac{1}{2\alpha +1}}$}
-All our results for clustering in the hyperbolic random graph are valid for any sequence $k_n$ such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Although one would like to have results for any sequence $k_n \le n$, it turns out that $n^{1/(2\alpha + 1)}$ is the optimal scaling for which Theorem~\ref{thm:clustering_coefficient_hyperbolic} can be true. To see why this is the case note that by definition of the local clustering function~\eqref{eq:def_local_clustering_general} we have that $c_{\H,n}(k_n) = 0$ if $N_{\H,n}(k_n) = 0$. Hence, it follows by Markov's inequality that for any positive function $f$
+All our results for clustering in the hyperbolic random graph are valid for any sequence $k_n$ such that $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$. Although one would like to have results for any sequence $k_n \le n$, it turns out that $n^{1/(2\alpha + 1)}$ is the optimal scaling for which Theorem~\ref{thm:clustering_coefficient_hyperbolic} can be true. To see why this is the case note that by definition of the local clustering function~\eqref{eq:def_local_clustering_general} we have that $c_{\H,n}(k_n) = 0$ if $N_{\H,n}(k_n) = 0$. Hence, it follows by Markov's inequality that for any positive function $f$
 \begin{align*}
 	\Exp{\left|\frac{c_{\H,n}(k_n)}{f(k_n)} - 1\right|} 
 	&\ge \Prob{N_{\H,n}(k_n) = 0} \ge 1 - \Exp{N_{\H,n}(k_n)}.
 \end{align*}
-We shall later establish (see Lemma [??] \PvdH{Find the reference for this Lemma}) that $\Exp{N_{\H,n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$. Therefore if $k_n$ is such that $k_n = \omega\left(n^{\frac{1}{2\alpha + 1}}\right)$ we have
+We shall later establish (see Lemma~\ref{lem:N_k_HP_P}) that $\Exp{N_{\H,n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$. Therefore if $k_n$ is such that $k_n = \omega\left(n^{\frac{1}{2\alpha + 1}}\right)$ we have
 \[
 	\lim_{n \to \infty} n k_n^{-(2\alpha + 1)} 
 	= \lim_{n \to \infty} \left(n^{-\frac{1}{2\alpha + 1}} k_n\right)^{-(2\alpha + 1)} = 0
@@ -344,7 +344,7 @@ and hence
 	\lim_{n \to \infty} \Exp{\left|\frac{c_{\H,n}(k_n)}{f(k_n)} - 1\right|} 
 	\ge \lim_{n \to \infty} 1 - \Exp{N_{\H,n}(k_n)} = \lim_{n \to \infty} 1 - \bigT{n k_n^{-(2\alpha + 1)}} = 1 \ne 0,
 \]
-for any positive function $f$. This implies that we cannot expect a result like that of Theorem~\ref{thm:clustering_coefficient_hyperbolic} to hold as soon as $k_n = \omega\left(n^{\frac{1}{2\alpha + 1}}\right)$.
+for any positive function $f$. This implies that we cannot expect a result like that of Theorem~\ref{thm:clustering_coefficient_hyperbolic} to hold as soon as $k_n = \omega\left(n^{\frac{1}{2\alpha + 1}}\right)$, and hence we need $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$.
 
 
 %Maybe, it would make sense to incorporate this statement into theorem \ref{thm:asymptotic_local_clustering_hyperbolic}, i.e. that the asymptotic behaviour of $c(k_n)$ is not well-defined for $k_n \gg n^{\frac{1}{2\alpha+1}}$? Resp. claim that a.a.s. the number of vertices of degree $k_n \gg n^{\frac{1}{2\alpha+1}}$ is zero, such that taking the average over these is not well-defined.
