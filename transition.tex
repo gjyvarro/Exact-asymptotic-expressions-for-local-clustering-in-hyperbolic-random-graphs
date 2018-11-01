@@ -1,179 +1,32 @@
 \section{From $G_{\mathcal{P}, n}(\alpha, \nu)$ to $G_{\mathcal{P}}(\alpha, \nu)$ (Proving Proposition \ref{prop:convergence_average_clustering_P_n})}\label{sec:clustering_Pn_to_P}
 
-\PvdH{The text in this section needs a full overhaul.}
+Now that we have a complete picture of the behavior of the local clustering coefficient and function in the limit model $G_\Pcal$ we will proceed to relate this to the clustering in the hyperbolic model $G_{\H,n}$. The first step is to relate the clustering in the infinite model to that of the finite box model $G_{\Pcal, n}$. Recall that $G_{\Pcal,n}$ is obtained by restricting the Poisson Point Process to the box $\Rcal_n = (-I_n, I_n] \times (0, R_n]$, with $I_n = \frac{\pi}{2} e^{R_n/2}$, and connecting two points $p_1, p_2 \in \Rcal_n$ if $|x_1 - x_2|_{\pi e^{R_n/2}} \le e^{(y_1 + y_2)/2}$ where we identified the left and right boundary of $\Rcal_n$. See Section~\ref{ssec:finite_model} for more details. 
 
-
-Our focus will however be on substituting $\rho_n(y,k_n)$ with $\rho(y,k_n)$ in integral expressions. We begin with the following useful lemma. 
-
-%\begin{lemma}\label{lem:average_degree_P_n}
-%For all $p \in \Rcal_n$, such that $y > 2\log(\pi/2)$,
-%\[
-%	\mu_{\alpha,\nu}(B_{\Pcal,n}(p)) = \mu_{\alpha,\nu}(B_\Pcal(p))\left(1 - \phi_n(y)\right)
-%\]
-%where $\phi_n(y) \ge 0$ is given by
-%\[
-%	\phi_n(y) = \left(\frac{\pi}{2}\right)^{-(2\alpha - 1)}e^{-(\alpha-\frac{1}{2})(R_n - y)}
-%	- \frac{(2\alpha - 1)\pi}{4\alpha}\left(\left(\frac{\pi}{2}\right)^{-2\alpha} 
-%	e^{-(\alpha - \frac{1}{2})(R_n - y)} - e^{-(\alpha - \frac{1}{2})R_n - \frac{y}{2}}\right).
-%\]
-%If, on the other hand, $y \le 2 \log(\pi/2)$ then
-%\[
-%	\mu_{\alpha,\nu}(B_{\Pcal,n}(p)) = \mu_{\alpha,\nu}(B_\Pcal(p))\left(1 - e^{-(\alpha - \frac{1}{2})R_n}\right).
-%\]
-%\end{lemma}
-%
-%\begin{proof}
-%First note that since we have identified the boundaries of $[-\frac{\pi}{2}e^{\frac{R_n}{2}}, \frac{\pi}{2}e^{\frac{R_n}{2}}]$ we can assume, without loss of generality, that $p = (0,y)$. We then have that
-%\[
-%	\BallPon{p} = \left\{p^\prime \in \Rcal_n \, : \, |x^\prime|_n \le e^{\frac{y + y^\prime}{2}}\right\},
-%\] 
-%whose boundaries given by the equations $x^\prime = \pm e^{\frac{y+y^\prime}{2}}$ intersect the left and right boundaries of $[-\frac{\pi}{2}e^{\frac{R_n}{2}}, \frac{\pi}{2}e^{\frac{R_n}{2}}]$ at height
-%\[
-%	h(y) = R_n + 2 \log\left(\frac{\pi}{2}\right) - y.
-%\]
-%Therefore, if $y \le 2 \log(\pi/2)$ this intersection occurs above the height $R_n$ of the box $\Rcal_n$ while in the other case the full region of the box above $h(y)$ is connected to $p$. 
-%
-%We will first consider the case where $y > 2 \log(\pi/2)$. Recall that $\mu_{\alpha,\nu}(B_\Pcal(p)) = \xi_{\alpha,\nu}e^{\frac{y}{2}}$ where $\xi_{\alpha,\nu} = \frac{4\alpha \nu}{(2\alpha - 1)\pi}$. Then, after some simple algebra, we have that
-%\begin{align*}
-%	\mu_{\alpha,\nu}(B_{\Pcal,n}(p))
-%	&= \int_0^{h(y)} \int_{-\frac{\pi}{2}e^{\frac{R_n}{2}}}^{\frac{\pi}{2}e^{\frac{R_n}{2}}} 
-%		\ind{|x^\prime| \le e^{\frac{y+y^\prime}{2}}} f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dy^\prime\\
-%	&\hspace{10pt}+ \int_{h(y)}^{R_n} \int_{-\frac{\pi}{2}e^{\frac{R_n}{2}}}^{\frac{\pi}{2}e^{\frac{R_n}{2}}} 
-%		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dy^\prime\\
-%	&= \frac{2 \alpha \nu}{\pi} e^{\frac{y}{2}} \int_0^{h(y)} e^{-(\alpha - \frac{1}{2})y^\prime} \, dy^\prime
-%		+ \alpha \nu e^{\frac{R_n}{2}} \int_{h(y)}^{R_n} e^{-\alpha y^\prime} \, dy^\prime \\
-%	&= \xi_{\alpha,\nu} e^{\frac{y}{2}}\left(1 - \left(\frac{\pi}{2}\right)^{-(2\alpha - 1)} 
-%		e^{-(\alpha - \frac{1}{2})(R_n - y)}\right)\\
-%	&\hspace{10pt}+ \nu e^{\frac{R_n}{2}}\left(\left(\frac{\pi}{2}\right)^{-2\alpha} e^{-\alpha(R_n - y)} 
-%		- e^{-\alpha R_n}\right)\\
-%	&= \mu_{\alpha,\nu}(B_\Pcal(p))\left(1 - \phi_n(y)\right).
-%\end{align*}
-%Since, for all $\alpha > \frac{1}{2}$,
-%\[
-%	\left(\frac{\pi}{2}\right)^{-(2\alpha - 1)} \ge \frac{(2\alpha - 1)\pi}{4\alpha} \left(\frac{\pi}{2}\right)^{-2\alpha}
-%\]
-%it follows that $\phi_n(y) \ge 0$.
-%
-%When $y \le 2 \log(\pi/2)$ we have
-%\begin{align*}
-%	\mu_{\alpha,\nu}(B_{\Pcal,n}(p))
-%	&= \int_0^{R_n} \int_{-\frac{\pi}{2}e^{\frac{R_n}{2}}}^{\frac{\pi}{2}e^{\frac{R_n}{2}}} 
-%		\ind{|x^\prime| \le e^{\frac{y+y^\prime}{2}}} f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dy^\prime\\
-%	&= \frac{2 \alpha \nu}{\pi} e^{\frac{y}{2}} \int_0^{R_n} e^{-(\alpha - \frac{1}{2})y^\prime} \, dy^\prime\\
-%	&= \mu_{\alpha,\nu}(B_\Pcal(p))\left(1 - e^{-(\alpha - \frac{1}{2})R_n}\right).
-%\end{align*}
-%\end{proof}
-
-$\phi_n(y) = \bigT{k_n^{2\alpha - 1} n^{-(2\alpha - 1)}}$. 
-This gives the following useful corollary to Lemma~\ref{lem:average_degree_P_n}.
+In this section we shall compute the asymptotic difference between triangle counts in the finite and infinite model. First we recall the definition of $\Kcal_{C}(k_n)$
+\[
+	\Kcal_C(k_n) = \left\{p \in \R : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
+	\le \frac{k_n + C \kappa_n}{\xi_{\alpha,\nu}} \wedge e^{R_n/2} \right\},	
+\]
+with
+\[
+	\kappa_n := \begin{cases}
+		\log(n) &\mbox{if } k_n = \bigT{1},\\
+		\sqrt{k_n \log(k_n)} &\mbox{else.}
+	\end{cases}
+\]
+In addition we note that the function $\phi_n(y)$ in Lemma~\ref{lem:average_degree_P_n} satisfies
+\[
+	\phi_n(y) = \bigT{e^{-(\alpha - \frac{1}{2})(R_n - y)}},
+\]
+which yields the following useful corollary to Lemma~\ref{lem:average_degree_P_n}.
 
 \begin{corollary}\label{cor:average_degree_P_n_K}
-Let $\alpha > \frac{1}{2}$, $0 < \varepsilon < 1$ and $k_n$ be an increasing sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha - 1}}}$. Then, for all $p \in \Kcal_{\varepsilon}(k_n)$,
+Let $\alpha > \frac{1}{2}$, $C > 0$ and $k_n$ be any sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha - 1}}}$. Then, for all $p \in \Kcal_{C}(k_n)$,
 \[
 	\mu_{\alpha,\nu ,n}(B_{\Pcal,n}(p)) = \mu_{\alpha,\nu}(B_\Pcal(p))\left(1 - \bigT{k_n^{2\alpha - 1} n^{-(2\alpha - 1)}}\right).
 \]
 \end{corollary}
 
-With this lemma we can now show that we can replace $\rho_n(y,k_n)$ in integral expressions over $\Rcal_n$ with $\rho(y,k_n)$. This will help make the remaining computations easier.
-
-%\begin{lemma}\label{lem:replace_rho_n_with_rho}
-%Let $\alpha > \frac{1}{2}, \nu > 0$ and $k_n$ be any increasing sequence such that $k_n = o(n^{\frac{1}{2\alpha + 1}})$. Then, for any $h : \R_+ \mapsto \R$ such that $h(y) = \bigO{e^\beta}$ as $y \to \infty$ for some $\beta \in \R$ and $\varepsilon > 2 \sqrt{2 (\beta - \alpha \vee 1)(2\alpha + 1)}$,
-%\[
-%	\int_{\Rcal_n} \rho_n(y,k_n) h(y) f_{\alpha,\nu}(x,y) \dd x \dd y 
-%	= (1 + o(1)) \int_{\Rcal_n} \rho(y,k_n) e^{\beta y} f_{\alpha,\nu}(x,y) \dd x \dd y.
-%\]
-%\end{lemma}
-%
-%\begin{proof}
-%Similar to the proof of Lemma~\ref{lem:concentration_argument} we define 
-%\[
-%	\lambda_n^\pm = k_n \pm \varepsilon \sqrt{k_n \log(k_n)}, \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi_{\alpha,\nu}}\right)
-%\] 
-%We will show that as $n \to \infty$,
-%\begin{equation}\label{eq:P_n_nodes_degree_k}
-%	\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) e^{(\beta - \alpha) y} \dd y = (1+o(1))\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) e^{(\beta - \alpha) y} \dd y,
-%\end{equation}
-%from which the result follows by a concentration argument.
-%
-%For simplicity we will write
-%\[
-%	\mu_1(y) := \mu_{\alpha,\nu}\left(\BallPo{y}\right) \quad \text{and} \quad 
-%	\mu_2(y) = \mu_{\alpha,\nu}\left(\BallPon{y}\right),
-%\]
-%and recall that $\mu_2(y) = \mu_1(y)(1 - \phi_n(y))$ with $\phi_n(y)$ defined as in Lemma~\ref{lem:average_degree_P_n}. Let us now make a change of variables $y \to z$ such that
-%\[
-%	\mu_2(y) = \mu_1(z).
-%\]
-%and note that since
-%\[
-%	\mu_1^{-1}(y) = 2 \log\left(\frac{y}{\xi_{\alpha,\nu}}\right),
-%\]
-%we have
-%\[
-%	z(y) = 2 \log\left(\frac{\mu_1(y)}{\xi_{\alpha,\nu}}\right) + 2 \log\left(1 - \phi_n(y)\right)
-%	= y + 2 \log\left(1 - \phi_n(y)\right).
-%\]
-%
-%Next we note that for any $a_n^- \le y \le a_n^+$
-%\[
-%	\phi_n(a_n^-) \le \phi_n(y) \le \phi_n(a_n^+) 
-%\]
-%which are both $o(1)$, as $n \to \infty$, and hence
-%\begin{equation}
-%	e^{(\beta-\alpha) y} = e^{(\beta-\alpha) z} e^{(\beta-\alpha) \log(1-\phi_n(y))} = e^{(\beta-\alpha) z}\left(1 - \phi_n(y)\right)^{\beta-\alpha}	= (1 + o(1))e^{(\beta-\alpha) z}
-%\end{equation}
-%uniformly for $a_n^- \le y \le a_n^+$. For the derivatives we have $\mu_1^\prime(y) = \mu_1(y)/2$, while $\phi_n^\prime(y) = O(1) \phi_n(y)$ and hence
-%\begin{align*}
-%	\mu_2^\prime(y) = \left(1 - \phi_n(y)\right)\mu_1^\prime(y)  
-%	- \mu_1(y) \phi_n^\prime(y) = \mu_1^\prime(y)\left(1 - o(1)\right),
-%\end{align*}
-%uniformly for $a_n^- \le y \le a_n^+$. Therefore, with this change of variables, and using
-%\[
-%	\hat{a}_n^\pm := z(a_n^\pm) = a_n^\pm + 2\log(1 - \phi_n(a_n^\pm)),
-%\] 
-%we have
-%\begin{align*}
-%	\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) e^{(\beta - \alpha)y} \dd y
-%	&=  \int_{a_n^-}^{a_n^+} \Prob{\mathrm{Po}\left(\mu_2(y) = k_n\right)} e^{(\beta-\alpha) y} \dd y\\
-%	&= (1 + \smallO{1})\int_{\hat{a}_n^-}^{\hat{a}_n^+} \Prob{\mathrm{Po}\left(\mu_1(z) = k_n\right)}
-%		e^{-\alpha z} \frac{\mu_2^\prime(z)}{\mu_2^{\prime}(z)} \, dz\\
-%	&= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(y,k_n) e^{(\beta-\alpha) z} \, dz.
-%\end{align*}
-%\end{proof}
-
-As a direct consequence of the above lemma we obtain asymptotic result for the number of nodes with degree $k_n$ in $G_{\Pcal,n}(\alpha,\nu)$.
-
-\begin{lemma}\label{lem:nodes_degree_k_P_n}
-Let $k_n$ be an non-decreasing sequence such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then,
-\[
-	\Exp{N_{\Pcal,n}(k_n)} = (1+o(1)) \alpha n \int_{\R_+} \rho(y,k_n) e^{-\alpha} \dd y,
-\]
-so that in particular
-\[
-	\Exp{N_{\Pcal,n}(k_n)} = (1+\smallO{1}) \alpha n k_n^{-(2\alpha + 1)}.
-\]
-\end{lemma}
-
-\begin{proof}
-Since
-\[
-	\Exp{N_{\Pcal,n}(k_n)} = \int_{\Rcal} \rho_n(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y,
-\]
-and $2 I_n/\pi = n/\nu$, the result follows directly from Lemma~\ref{lem:replace_rho_n_with_rho}.
-\begin{align*}
-	\Exp{N_{\Pcal,n}(k_n)} &= (1+\smallO{1})\int_{\Rcal} \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y\\
-	&= \frac{2 \alpha \nu}{\pi} I_n \int_0^{R_n} \rho(y,k_n) e^{-\alpha} \dd y\\
-	&= \alpha n \int_0^{R_n} \rho(y,k_n) e^{-\alpha} \dd y \\
-	&= (1+\smallO{1}) \alpha n k_n^{-(2\alpha + 1)}.
-\end{align*}
-\end{proof}
-
-%With this inside we define
-%\begin{equation}\label{eq:def_triangle_count_K_epsilon}
-%	\widetilde{T}_{\Pcal,n}(k,\varepsilon) = \sum_{p \in \Pcal_n \cap \Kcal_{\varepsilon}(k)} \ind{D_{\Pcal,n}(p) = k} 
-%	T_{\Pcal,n}(p),
-%\end{equation}
-%to denote the number of triangles for nodes in $G_{\Pcal,n}(\alpha,\nu)$ with degree $k$ and $p \in \Kcal_\varepsilon(k)$ and use a similar definition for $\widetilde{T}_{\Pcal}(k,\varepsilon)$ in the graph $G_{\Pcal}(\alpha,\nu)$.
 
 \subsection{Comparing triangles between $G_\Pcal(\alpha,\nu)$ and $G_{\Pcal,n}(\alpha,\nu)$}
 
@@ -316,9 +169,9 @@ To further analyze this, let us introduce some notation. For any $p = (x,y) \in 
 		0 &\mbox{else}
 	\end{cases}
 \end{align}
-Note that these functions describe the boundaries of the ball $\BallPon{p}$. In particular, $p^\prime \in \BallPon{p}$ if and only if $y^\prime \ge \min\left\{b_p^-(x^\prime), b_p^+(x^\prime)\right\}$. See Figure \ref{fig:comparing_triangles_diff_analysis} for an illustration.
+Note that these functions describe the boundaries of the ball $\BallPon{p}$. In particular, $p^\prime \in \BallPon{p}$ if and only if $y^\prime \ge \min\left\{b_p^-(x^\prime), b_p^+(x^\prime)\right\}$.
 
-For the remainder of the analysis we restrict ourselves to the case where $x^\prime > 0$. Due to symmetry the situation for $x^\prime < 0$ is the same. There are two important points in the box $\Rcal_n$. These are the intersection between the left boundary of $p^\prime$ and the right boundary of $p^\prime$, as it continues from the left side of the box, and the left boundary of $p$. We denote by $(x^\ast(p^\prime), y^\ast(p^\prime))$ the intersection between the left and right boundary of $p^\prime$ and by $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$ the intersection between the left boundary of $p$ and the right boundary of $p^\prime$ (see also Figure \ref{fig:comparing_triangles_diff_analysis}). After some simple algebra we obtain the following expressions for the coordinates of these two points
+For the remainder of the analysis we restrict ourselves to the case where $x^\prime > 0$. Due to symmetry the situation for $x^\prime < 0$ is the same. There are two important points in the box $\Rcal_n$. These are the intersection between the left boundary of $p^\prime$ and the right boundary of $p^\prime$, as it continues from the left side of the box, and the left boundary of $p$. We denote by $(x^\ast(p^\prime), y^\ast(p^\prime))$ the intersection between the left and right boundary of $p^\prime$ and by $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$ the intersection between the left boundary of $p$ and the right boundary of $p^\prime$, see Figure \ref{fig:comparing_triangles_diff_analysis}. After some simple algebra we obtain the following expressions for the coordinates of these two points
 \begin{align*}
 	x^\ast(p^\prime) &= x^\prime - \frac{\pi}{2} e^{R_n/2}\\
 	y^\ast(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{R_n/2}\right) - y^\prime\\
@@ -448,9 +301,9 @@ which is displayed by the red curve in Figure \ref{fig:comparing_triangles_diff_
 This analysis allows us to compute the expected difference in the number of triangles for $\Pcal$ and $\Pcal_n$, for a node with height $y$. 
 
 \begin{lemma}\label{lem:clustering_error_T_term}
-Let $(k_n)_{n \ge 1}$ be any sequence with $k_n \to \infty$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, for any $0 < \varepsilon < 1$ and $p \in \Kcal_{\varepsilon}(k_n)$, as $n \to \infty$,
+Let $(k_n)_{n \ge 1}$ be any sequence such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, for some $C > 0$ and $p \in \Kcal_{C}(k_n)$, as $n \to \infty$,
 \[
-	\int_{\Rcal_n} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f_{\mu, \nu}(x_1,y_1) 
+	\int_{\Rcal_n} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f_{\alpha, \nu}(x_1,y_1) 
 	\dd x_1 \dd y_1 = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
 \]
 \end{lemma}
@@ -480,54 +333,53 @@ that $4\alpha^2 > 2$ and hence,
 \]
 \end{proof}
 
-\begin{corollary}\label{cor:clustering_error_T_term}
-Let $(k_n)_{n \ge 1}$ be any sequence with $k_n \to \infty$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, for any $0 < \varepsilon < 1$ and $p \in \Kcal_{\varepsilon}(k_n)$, as $n \to \infty$,
-\[
-	\left|\frac{\Exp{T_{\Pcal,n}(p)}}{\Exp{T_{\Pcal}(p)}} - 1\right| = \bigO{s_\alpha(k_n)^{-1} k_n^{-3(2\alpha - 1)}} =
-	\begin{cases}
-		\bigO{k_n^{-(2\alpha - 1)}} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{4},\\
-				\bigO{\log(k_n)^{-1} k_n^{-\frac{1}{2}}} &\mbox{if } \alpha = \frac{3}{4},\\
-				\bigO{k_n^{-(6\alpha-4)}} &\mbox{if } \alpha > \frac{3}{4}.
-	\end{cases}
-\]
-\end{corollary}
-
 \begin{proof}[Proof of Proposition~\ref{prop:convergence_average_clustering_P_n}]
-
-\PvdH{incorporate case where $k_n = \bigT{1}$.}
 
 Recall that
 \[
-	\Exp{c_{\Pcal,n}^\ast(k_n)} = \frac{\int_{\Rcal_n} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}.
+	\Exp{c_{\Pcal,n}^\ast(k_n)} = \frac{\int_{\Rcal_n} \Exp{\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}.
 \]
-By Lemma~\ref{lem:nodes_degree_k_P_n}
+By Lemma~\ref{lem:average_degree_P_n} and a concentration argument
 \[
-	\Exp{N_{\Pcal,n}(k_n)} = (1+o(1)) \alpha n \int_{\R_+} \rho(y,k_n) e^{-\alpha} \dd y,
+	\Exp{N_{\Pcal,n}(k_n)} = (1+o(1)) \alpha n \int_{0}^\infty \rho(y,k_n) e^{-\alpha} \dd y 
+	= (1+\smallO{1}) \alpha n \Exp{N_{\Pcal}(k_n)},
 \]
-and hence it is enough to show that
+and since $\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y) \le \rho_n(y,k_n) k_n^2$ another concentration argument yields
+\begin{align*}
+	&\hspace{-30pt}\int_{\Rcal_n} \Exp{\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y)} 
+		f_{\alpha,\nu}(x,y) \dd x \dd y\\
+	&= (1+\smallO{1})\int_{\Kcal_C(k_n)} \rho(y,k_n) \Exp{T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y\\
+	&= (1 + \smallO{1}) \alpha n \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha} \dd x \dd y,
+\end{align*}
+with $a_n^\pm = 2\log\left(\frac{k_n \pm C \kappa_n}{\xi_{\alpha,\nu}}\right)$. It now suffices to show that
 \[
-	\int_{\Rcal_n} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y
-	= (1 + \smallO{1}) \alpha n \int_{\R_+} \rho(y,k_n) \Exp{T_\Pcal(y)} e^{-\alpha y} \dd x \dd y.
+	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha} \dd x \dd y
+	= (1+\smallO{1}) \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd x \dd y, 
+\]
+which follows if we can show that
+\[
+	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \left|\Exp{T_{\Pcal,n}(y) - T_{\Pcal}(y)}\right| e^{-\alpha} \dd y
+	= \smallO{1} \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd y.
 \]
 
-First we note that
+For this we write
 \begin{align*}
 	\left|T_{\Pcal,n}(p) - T_{\Pcal}(p)\right| = \sum_{p_1, p_2 \in \Rcal_n} \ind{p_1 \in \BallPon{p}} \ind{p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p, p_1)} + \sum_{p_1, p_2 \in \Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2)
 \end{align*}
-and hence
+so that by the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke}
 \begin{align*}
 	\left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right|
-	&\le \int_{\Rcal_n} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f_{\mu, \nu}(x_1,y_1) 
+	&\le \int_{\Rcal_n} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f_{\alpha, \nu}(x_1,y_1) 
 		\dd x_1 \dd y_1\\
-	&\hspace{10pt}+ \iint_{\Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2) f_{\mu, \nu}(x_1,y_1) f_{\mu, \nu}(x_2,y_2)
+	&\hspace{10pt}+ \iint_{\Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2) f_{\alpha, \nu}(x_1,y_1) f_{\alpha, \nu}(x_2,y_2)
 		\dd x_2 \dd y_2 \dd x_1 \dd y_1. 
 \end{align*}
 
 The first integral was taken care of in Lemma \ref{lem:clustering_error_T_term}. For the second integral we have
 \begin{align*}
-	&\hspace{-30pt}\iint_{\Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2) f_{\mu, \nu}(x_1,y_1) f_{\mu, \nu}(x_2,y_2)
+	&\hspace{-30pt}\iint_{\Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2) f_{\alpha, \nu}(x_1,y_1) f_{\mu, \nu}(x_2,y_2)
 		\dd x_2 \dd y_2 \dd x_1 \dd y_1\\
-	&\le \left(\int_{\Rcal \setminus \Rcal_n} \ind{p_1 \in \BallPo{p}} f_{\mu, \nu}(x_1,y_1) \dd x_1 \dd y_1\right)^2\\
+	&\le \left(\int_{\Rcal \setminus \Rcal_n} \ind{p_1 \in \BallPo{p}} f_{\alpha, \nu}(x_1,y_1) \dd x_1 \dd y_1\right)^2\\
 	&= \bigO{\left(e^{y/2} \int_{R_n}^\infty e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\right)^2}
 		= \bigO{e^y n^{-(2\alpha - 1)}},
 \end{align*}
@@ -536,28 +388,30 @@ from which we conclude that
 	\left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
 	= \bigO{n^{-(2\alpha-1)} e^{y}}.
 \]
-Next we show that this difference is $\smallO{\Exp{T_\Pcal(p)}}$ when $y \in K_\eps(k_n)$.
-Observe that since $\Exp{T_\Pcal(p)} = e^y \Delta_{\Pcal}(y)$, Proposition~\ref{prop:asymptotics_Delta_y_P} implies that $\Exp{T_\Pcal(y)} = \bigT{e^y s_\alpha(e^{y/2})}$ as $y \to \infty$.
-Now consider $y \in K_C(k_n)$. Then $e^{y/2} = \bigT{k_n}$ and hence
-\[
-	\frac{\left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right|}{\Exp{T_\Pcal(y)}} =
-	\bigO{n^{-(2\alpha - 1)}s_\alpha(k_n)^{-1}\left(\log(k_n)k^{-2} + 1\right)} = \bigO{\left(n^{2\alpha - 1}s_\alpha(k_n)\right)^{-1}} = \smallO{1}, 
-\]
-where the last part follows from Lemma~\ref{lem:scaling_s_alpha}. It follows that for $y \in \Kcal_\eps(k_n)$ we have
-\[
-	\Exp{T_{\Pcal,n}(y)} = (1+\smallO{1})\Exp{T_{\Pcal}(y)},
-\]
-while in general
-\[
-	\Exp{T_{\Pcal,n}(y)} = \Exp{T_{\Pcal}(y)}\left(1 + \bigO{s_\alpha(e^{y/2})}\right) = \bigO{e^y s_\alpha(e^{y/2})^2}.
-\]
-Therefore, by first applying a concentration argument and then Lemma~\ref{lem:replace_rho_n_with_rho}, 
+Therefore 
 \begin{align*}
-	&\hspace{-30pt}\int_{\Rcal_n} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y\\
-	&= (1+\smallO{1})\int_{\Rcal_n} \rho_n(y,k_n) \Exp{T_\Pcal(y)} f_{\alpha,\nu}(x,y) \dd x \dd y\\
-	&= (1 + \smallO{1}) \int_{\Rcal_n} \rho(y,k_n) \Exp{T_\Pcal(y)} f_{\alpha,\nu}(x,y) \dd x \dd y\\
-	&= (1 + \smallO{1}) \alpha n \int_{\R_+} \rho(y,k_n) \Exp{T_\Pcal(y)} e^{-\alpha y} \dd x \dd y.
+	&\hspace{-30pt}\int_{a_n^-}^{a_n^+} \rho(y,k_n) \left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| 
+		e^{-\alpha} \dd y\\
+	&= \bigO{1} n^{-(2\alpha - 1)} k_n^2 \int_{0}^\infty \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd y\\
+	&= \bigO{1} n^{-(2\alpha - 1)} k_n^{-2\alpha + 1}.
 \end{align*}
+
+To finish the argument we observe that
+\begin{align*}
+	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd y 
+	&= (1 + \smallO{1})\int_0^\infty \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd y \\
+	&= \bigT{1} \binom{k_n}{2} \int_0^\infty \rho(y,k_n) \Delta_\Pcal(y) e^{-\alpha} \dd y\\
+	&= \bigT{1} k_n^{2} \Exp{N_{\Pcal}(k_n)} c_\infty(k_n)
+		= \bigT{k_n^{-2\alpha + 1} s_\alpha(k_n)}.
+\end{align*}
+Therefore, since $n^{-(2\alpha - 1)} = \smallO{s_\alpha(k_n)}$ by Lemma~\ref{lem:scaling_s_alpha}, we conclude that
+\begin{align*}
+	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| e^{-\alpha} \dd y 
+	&= \smallO{k_n^{-2\alpha + 1} s_\alpha(k_n)} \\
+	&= \smallO{1} \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd y,
+\end{align*}
+which completes the proof.
+
 \end{proof}
 
 %\begin{corollary}
@@ -805,9 +659,7 @@ The proof goes in two stages. First we compute $\mu_{\alpha, \nu}\left(\mathcal{
 
 \subsubsection*{Computing $\bm{\mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right)}$}
 
-\PvdH{I have currently used that $\alpha < 1$, which is the most difficult case. The case $\alpha = 1$ and $\alpha > 1$ will be added.}
-
-Define the sets
+Recall that $I_n = \frac{\pi}{2} e^{R_n/2}$ and define the sets
 \begin{align*}
 	A_n^{(1)} &= \left\{p_1 \in \Rcal_n \, : \, 0 \le y_1 \le y - 2\log(I_n/(I_n-x_1)) \right\},\\
 	A_n^{(2)} &= \left\{p_1 \in \Rcal_n \, : \, y - 2\log(I_n/(I_n-x_1)) < y_1 
@@ -1062,7 +914,7 @@ We first compute $\mathcal{I}_n^{(1)}$.
 	&= \frac{2 e^{\alpha y_1}}{2\alpha - 1} I_n^{-(2\alpha -1)}\left(\left(1 - \frac{x_1}{I_n}\right)^{-(2\alpha - 1)}-1\right)\\
 	&= \bigO{I_n^{-2\alpha} x_1 e^{\alpha y_1}},
 \end{align*}
-where we used that $x^\prime \le e^{(y+y_1)/2} = \smallO{I_n}$ for all $y_1\le y$ and $y \in \Kcal_{\varepsilon}(k_n)$ so that
+where we used that $x^\prime \le e^{(y+y_1)/2} = \smallO{I_n}$ for all $y_1\le y$ and $y \in \Kcal_{C}(k_n)$ so that
 \[
 	\left(\left(1 - \frac{x_1}{I_n}\right)^{-(2\alpha - 1)}-1\right) = \bigO{\frac{x^\prime}{I_n}} \quad 
 	\text{as } n \to \infty.
@@ -1107,7 +959,7 @@ For the second part we first compute that
 	x_1 + e^{(y_1+y_2)/2} - 2 I_n + e^{(y + y_2)/2} &\le \left(e^{y/2} + e^{y_1/2}\right)e^{y_2/2}\\
 	&\le e^{y/2}\left(1 + \frac{I_n}{I_n - e^y}\right)e^{y_2/2} = \bigO{e^{(y+y_2)/2}},
 \end{align*}
-since $y \in \Kcal_{\varepsilon}(k_n)$ and $k_n = \smallO{\sqrt{n}}$, so that $e^y = \smallO{n} = \smallO{I_n}$. 
+since $y \in \Kcal_{C}(k_n)$ and $k_n = \smallO{\sqrt{n}}$, so that $e^y = \smallO{n} = \smallO{I_n}$. 
 Then we have
 \begin{align*}
 	\mathcal{I}_n^{(2)} &= \int_{\hat{y}(p,p_1)}^{h(y)} \int_{-e^{(y + y_2)/2}}^{x_1 + e^{(y+y_1)/2} - 2 I_n} 
