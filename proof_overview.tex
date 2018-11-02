@@ -488,11 +488,20 @@ Combining this with Proposition~\ref{prop:couling_c_H_P} yields
 and the result then follows by applying Lemma~\ref{lem:clustering_ast_H}. 
 \end{proof}
 
-We can now use this result to prove Theorem~\ref{thm:clustering_coefficient_hyperbolic}.
+We can now use this result to prove Theorem~\ref{thm:clustering_coefficient_hyperbolic}. Before we state the proof we summarize some results regarding the degrees in the hyperbolic model. The proof of this lemma follows directly from Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson} and Lemma~\ref{lem:N_k_HP_P}, see Section~\ref{sec:coupling_H_P_n}.
+
+\begin{lemma}\label{lem:N_k_H_P}
+Let $\alpha > \frac{1}{2}$ and $k_n$ be a positive sequence, possibly constant, such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then
+\[
+	\lim_{n\to \infty} \Exp{\left|\frac{\Exp{N_{\H,n}(k_n)}}{n \Prob{D_\Pcal = k_n}} - 1\right|} = 0
+\]
+and hence, as $n \to \infty$
+\[
+	\Exp{N_{\H,n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}.
+\]
+\end{lemma}
 
 \begin{proof}[Proof of Theorem~\ref{thm:clustering_coefficient_hyperbolic}]
-
-\PvdH{Major errors. FIX!}
 
 First, let $a_n$ be any sequence such that $a_n \to \infty$. Then
 \begin{align*}
@@ -500,47 +509,51 @@ First, let $a_n$ be any sequence such that $a_n \to \infty$. Then
 		+ \frac{1}{n} \sum_{i = 1}^n \ind{D_{\H,n}(i) > a_n} \frac{T_{\H,n}(i)}{\binom{D_{\H,n}(i)}{2}}\\
 	&= \frac{1}{n} \sum_{t = 3}^{a_n} \sum_{i = 1}^n \ind{D_{\H,n}(i) = t} \frac{T_{\H,n}(i)}{\binom{t}{2}}
 		+ \frac{1}{n} \sum_{i = 1}^n \ind{D_{\H,n}(i) > a_n} \frac{T_{\H,n}(i)}{\binom{D_{\H,n}(i)}{2}}\\
-	&= \frac{1}{n} \sum_{t = 3}^{a_n} \Exp{N_{\H,n}(t)} c_{\H,n}(t)
+	&= \frac{1}{n} \sum_{t = 3}^{a_n} \Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t)
 		+ \frac{1}{n} \sum_{i = 1}^n \ind{D_{\H,n}(i) > a_n} \frac{T_{\H,n}(i)}{\binom{D_{\H,n}(i)}{2}},
 \end{align*}
-where the expectation of last term is bounded from above by $\Prob{D_{\H,n} > a_n}$. We have a similar result for $c_\infty$. Therefore
+where the expectation of last term is bounded from above by $\Prob{D_{\H,n} > a_n}$. Similarly,
+\[
+	c_\Pcal = \sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} c_\Pcal(t) + \sum_{t > a_n} \Prob{D_\Pcal = t} c_\Pcal(t)
+\]
+Recall that (see [??]) $c_\infty = c_\Pcal$ and $c_\infty(k) = c_\Pcal(k)$. Therefore
 \begin{align*}
-	\Exp{|c_{\H,n} - c_\infty|}
-	&\le \Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}(t) - 	
-		\Exp{N_\Pcal(t)}c_{\infty}(t)\right)\right|}\\ 
+	\Exp{|c_{\H,n} - c_\Pcal|}
+	&\le \Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
+		n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|}\\ 
 	&\hspace{10pt}+ \Prob{D_{\H,n} > a_n} + \Prob{D_{\Pcal} > a_n},
 \end{align*}
 and since the last to probabilities are $\smallO{1}$ it is enough to prove that
 \[
-	\lim_{n \to \infty} \Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}(t) - 	
-			\Exp{N_\Pcal(t)}c_{\infty}(t)\right)\right|} = 0.
+	\lim_{n \to \infty} \Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
+			n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|} = 0.
 \]
 
 We write
 \begin{align*}
-	\Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}(t) - 	
-		\Exp{N_\Pcal(t)}c_{\infty}(t)\right)\right|}
-	&\le \frac{1}{n} \sum_{t = 3}^{a_n} \Exp{N_\Pcal(t)} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|}\\
-	&\hspace{10pt}+ \frac{1}{n} \sum_{t = 3}^{a_n} \Exp{\left|N_{\H,n}(t) - N_\Pcal(t)\right|}\Exp{c_\infty(t)},
+	&\hspace{-30pt}\Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
+		n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|}\\
+	&\le \sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} \Exp{\left|c_{\H,n}^\ast(t) - c_{\infty}(t)\right|}\\
+	&\hspace{10pt}+ \frac{1}{n} \sum_{t = 3}^{a_n} \Exp{\left|N_{\H,n}(t) - n \Prob{D_\Pcal = t}\right|}\Exp{c_\Pcal(t)},
 \end{align*}
 and will show that both terms go to zero for some appropriately chosen sequence $a_n$.
 
-Note that Theorem~\ref{thm:local_clustering_hyperbolic} states that for any sequence $k_n  = \smallO{n^{1/(2\alpha + 1)}}$
-\[
-	\lim_{n \to \infty} \Exp{\left|c_{\H,n}(k_n) - c_{\infty}(k_n)\right|} = 0.
-\]
+Note that Theorem~\ref{thm:local_clustering_hyperbolic} and Lemma~\ref{lem:clustering_ast_H} together state that for any sequence $k_n  = \smallO{n^{1/(2\alpha + 1)}}$
+\begin{equation}\label{eq:convergence_c_H_P}
+	\lim_{n \to \infty} \Exp{\left|c_{\H,n}(k_n) - c_{\Pcal}(k_n)\right|} = 0.
+\end{equation}
 
 Let $b_n := \log(n)^{-1} n^{1/(2\alpha + 1)}$ and define the sequence $k_n$ by
 \[
-	k_n = \arg \max_{3 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|}.
+	k_n = \arg \max_{3 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\Pcal}(t)\right|}.
 \]
-Then $k_n = \smallO{n^{1/(2\alpha + 1)}}$ and by Theorem~\ref{thm:local_clustering_hyperbolic}
+Then $k_n = \smallO{n^{1/(2\alpha + 1)}}$ and by~\eqref{eq:convergence_c_H_P}
 \[
-	\max_{3 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|} = \Exp{\left|c_{\H,n}(k_n) - c_{\infty}(k_n)\right|} \to 0.
+	\max_{3 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\Pcal}(t)\right|} = \Exp{\left|c_{\H,n}(k_n) - c_{\infty}(k_n)\right|} \to 0.
 \]
-Similarly we note that
+Similarly we note that by Lemma~\ref{lem:N_k_H_P}
 \[
-	\arg \max_{3 \le t \le b_n} \Exp{\left|\frac{N_{\H,n}(t)}{N_\Pcal(t)} - 1\right|} \to 0.
+	\max_{3 \le t \le b_n} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \to 0.
 \]
 
 Now define
@@ -557,21 +570,21 @@ so that $a_n < b_n = \smallO{n^{1/(2\alpha + 1)}}$, $a_n \to \infty$,
 \]
 and similarly
 \[
-	a_n \max_{3 \le t \le a_n} \Exp{\left|\frac{N_{\H,n}(t)}{N_\Pcal(t)} - 1\right|} \to 0.
+	a_n \max_{3 \le t \le a_n} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \to 0.
 \]
 
-Then, since $\Exp{N_\Pcal(t)} = \bigT{1} t^{-(2\alpha + 1)}$
+Then, since $\Exp{\Prob{D_\Pcal = t}} = \bigT{1} t^{-(2\alpha + 1)}$
 \begin{align*}
-	&\hspace{-30pt}\frac{1}{n} \sum_{t = 3}^{a_n} \Exp{N_\Pcal(t)} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|}\\
-	&\le \bigT{1} 3^{-(2\alpha+1)} a_n \max_{3 \le t \le a_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|}
+	&\hspace{-30pt}\sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} \Exp{\left|c_{\H,n}^\ast(t) - c_{\Pcal}(t)\right|}\\
+	&\le \bigT{1} 3^{-(2\alpha+1)} a_n \max_{3 \le t \le a_n} \Exp{\left|c_{\H,n}^\ast(t) - c_{\Pcal}(t)\right|}
 	= \smallO{1},
 \end{align*}
-while $\Exp{c_\infty(t)} \le 1$ implies that
+while $\Exp{c_\Pcal(t)} \le 1$ implies that
 \begin{align*}
-	&\hspace{-30pt}\frac{1}{n} \sum_{t = 3}^{a_n} \Exp{\left|N_{\H,n}(t) - N_\Pcal(t)\right|}\Exp{c_\infty(t)} \\
-	&\le \frac{1}{n} \sum_{t = 3}^{a_n} \Exp{N_\Pcal(t)} \Exp{\left|\frac{N_{\H,n}(t)}{N_\Pcal(t)} - 1\right|} \\
-	&\le \bigT{1} 3^{-(2\alpha+1)} a_n \max_{3 \le t \le a_n} \Exp{\left|\frac{N_{\H,n}(t)}{N_\Pcal(t)} - 1\right|} 
-		= \smallO{1}.
+	&\hspace{-30pt}\frac{1}{n} \sum_{t = 3}^{a_n} \Exp{\left|N_{\H,n}(t) - n \Prob{D_\Pcal = t}\right|}\Exp{c_\Pcal(t)} \\
+	&\le \sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \\
+	&\le \bigT{1} 3^{-(2\alpha+1)} a_n \max_{3 \le t \le a_n} 
+		\Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} = \smallO{1}.
 \end{align*}
 This finishes the proof.
 \end{proof}

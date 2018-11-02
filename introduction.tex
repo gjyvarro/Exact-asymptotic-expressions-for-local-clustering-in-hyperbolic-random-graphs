@@ -167,7 +167,7 @@ For the local clustering function we also obtain convergence in expectation to a
 
 \begin{theorem}[Limit for local clustering function in $G_{\H,n}(\alpha, \nu)$]
 \label{thm:local_clustering_hyperbolic}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n \ge 1}$ be any positive sequence, possibly constant, such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, 
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n \ge 1}$ be any positive sequence, possibly constant, such that $k_n \ge 3$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, 
 \[
 	\lim_{n \to \infty} \Exp{\left|\frac{c_{\H,n}(k_n)}{c_\infty(k_n)} - 1\right|} = 0,
 \]
@@ -224,6 +224,7 @@ with $C_\alpha$ as defined in \eqref{eq:def_C_alpha}.
 The following is an immediate consequence of Theorem~\ref{thm:local_clustering_hyperbolic} and Theorem~\ref{thm:asymptotics_average_clustering_P}.
 
 \begin{corollary}[Asymptotic behavior of local clustering function in $G_{\H,n}(\alpha,\nu)$]
+\label{cor:asymptotic_local_clustering_hyperbolic}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$, $(k_n)_{n \ge 1}$ be any positive sequence such that $k_n \to \infty$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$ and $s_\alpha(k)$ defined as in~\eqref{eq:def_scaling_function}. Then, as $n \to \infty$,
 \[
 	\frac{c_{\H,n}(k_n)}{s_\alpha(k_n)} \, \stackrel{L^1}{\rightarrow} \, 
@@ -245,8 +246,18 @@ We end this section with some important observations regarding local clustering 
 
 \PvdH{Populate these paragraphs}
 
-\paragraph{Transition in the scaling of local clustering}
-%Note that Theorem \ref{thm:local_clustering_hyperbolic} implies that for $\frac{1}{2} < \alpha < \frac{3}{4}$ the local clustering $c_{\H,n}(k)$ decays as $k^{-(4\alpha - 2)}$ while for $\alpha > \frac{3}{4}$ it is $k^{-1}$.
+\paragraph{Uniform convergence}
+
+Our results for the local clustering function in particular imply uniform convergence of $c_{\H,n}(k)$ for all $3 \le k \le a_n$ where $a_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. To see this let
+\[
+	b_n = \arg \max_{3 \le k \le a_n} \Exp{\left|\frac{c_{\H ,n}(k)}{c_\infty(k)} - 1\right|}.
+\]
+Then $b_n \le a_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$ and therefore by Theorem~\ref{thm:local_clustering_hyperbolic}
+\[
+	\lim_{n \to \infty} \max_{3 \le k \le a_n} \Exp{\left|\frac{c_{\H ,n}(k)}{c_\infty(k)} - 1\right|} 
+	= \lim_{n \to \infty}\Exp{\left|\frac{c_{\H ,n}(b_n)}{c_\infty(b_n)} - 1\right|} = 0.
+\]
+The same is true for the result in Corollary~\ref{cor:asymptotic_local_clustering_hyperbolic}.
 
 \paragraph{Maximum scaling for $k_n$ is $n^{\frac{1}{2\alpha +1}}$}
 All our results for clustering in the hyperbolic random graph are valid for any sequence $k_n$ such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Although one would like to have results for any sequence $k_n \le n$, it turns out that $n^{1/(2\alpha + 1)}$ is the optimal scaling for which Theorem~\ref{thm:clustering_coefficient_hyperbolic} can be true. To see why this is the case note that by definition of the local clustering function~\eqref{eq:def_local_clustering_general} we have that $c_{\H,n}(k_n) = 0$ if $N_{\H,n}(k_n) = 0$. Hence, it follows by Markov's inequality that for any positive function $f$
@@ -254,7 +265,7 @@ All our results for clustering in the hyperbolic random graph are valid for any 
 	\Exp{\left|\frac{c_{\H,n}(k_n)}{f(k_n)} - 1\right|} 
 	&\ge \Prob{N_{\H,n}(k_n) = 0} \ge 1 - \Exp{N_{\H,n}(k_n)}.
 \end{align*}
-We shall later establish (see Lemma~\ref{lem:N_k_HP_P}) that $\Exp{N_{\H,n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$. Therefore if $k_n$ is such that $k_n^{-(2\alpha + 1)} n$ tends to zero as $n \to \infty$ we have that 
+We shall later establish (see Lemma~\ref{lem:N_k_H_P}) that $\Exp{N_{\H,n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$. Therefore if $k_n$ is such that $k_n^{-(2\alpha + 1)} n$ tends to zero as $n \to \infty$ we have that 
 \[
 	\lim_{n \to \infty} \Exp{N_{\H,n}(k_n)} = 0
 \]
@@ -267,6 +278,9 @@ for any positive function $f$. This implies that we cannot expect a result like 
 
 
 %Maybe, it would make sense to incorporate this statement into theorem \ref{thm:local_clustering_hyperbolic}, i.e. that the asymptotic behaviour of $c(k_n)$ is not well-defined for $k_n \gg n^{\frac{1}{2\alpha+1}}$? Resp. claim that a.a.s. the number of vertices of degree $k_n \gg n^{\frac{1}{2\alpha+1}}$ is zero, such that taking the average over these is not well-defined.
+
+\paragraph{Transition in the scaling of local clustering}
+%Note that Theorem \ref{thm:local_clustering_hyperbolic} implies that for $\frac{1}{2} < \alpha < \frac{3}{4}$ the local clustering $c_{\H,n}(k)$ decays as $k^{-(4\alpha - 2)}$ while for $\alpha > \frac{3}{4}$ it is $k^{-1}$.
 
 \paragraph{Universality of scaling transition}
 
