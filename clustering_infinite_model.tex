@@ -234,27 +234,27 @@ The proof of this proposition is involved and technical. We therefore postpone i
 
 We only give the proof for the case $\frac{1}{2} < \alpha < \frac{3}{4}$. The proofs for the other two cases are similar. Let $\varphi_1(y)$ be defined as in Proposition \ref{prop:asymptotics_Delta_y_P} and define
 \[
-	\epsilon_1(k) = \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y
+	\epsilon_1(k) = \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y
 \]
 Then we have that
 \[
-	\int_0^{\infty} \Delta_{\mathcal{P}}(y) \rho(y,k) e^{-\alpha y} \dd y
-	= C_\alpha \int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y + \epsilon_1(k).
+	\int_0^{\infty} \Delta_{\mathcal{P}}(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
+	= C_\alpha \int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y + \epsilon_1(k).
 \]
 
 Using \eqref{eq:general_integral_rho_y_k} with $\beta = 2\alpha - 1$ yields,
 \begin{equation}\label{eq:asymptotics_clustering_integral}
-	\int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y 
-	\sim \xi_{\alpha,\nu}^{6\alpha - 2} k^{-(6\alpha - 1)},
+	\int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y 
+	\sim 2\alpha \xi_{\alpha,\nu}^{6\alpha - 2} k^{-(6\alpha - 1)},
 \end{equation}
 as $k \to \infty$. Therefore, by applying the asymptotic scaling for the denominator~\eqref{eq:degree_distribution_P_asymptotics} we get
 \begin{align*}
-	c_\infty(k) &= \frac{\int_0^{\infty} \Delta_{\mathcal{P}}(y) \rho(y,k) e^{-\alpha y} \dd y}
-		{\int_0^\infty \rho_{y}(k) e^{-\alpha y} \dd y} \\
-	&\sim C_\alpha \xi_{\alpha,\nu}^{4\alpha - 2} \frac{k^{-(6\alpha - 1)}}{k^{-(2\alpha - 1)}}
-	+ \frac{\epsilon_1(k)}{\xi_{\alpha,\nu}^{2\alpha} k^{-(2\alpha - 1)}}\\
-	&= C_\alpha \xi_{\alpha,\nu}^{4\alpha - 2} k^{-4\alpha + 2} 
-    + \xi_{\alpha,\nu}^{-2\alpha} k^{2\alpha - 1}\epsilon_1(k).
+	c_\infty(k) &= \frac{\int_0^{\infty} \Delta_{\mathcal{P}}(y) \rho(y,k) \alpha  e^{-\alpha y} \dd y}
+		{\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y} \\
+	&\sim C_\alpha 2\alpha \xi_{\alpha,\nu}^{4\alpha - 2} \frac{k^{-(6\alpha - 1)}}{k^{-(2\alpha - 1)}}
+	+ \frac{\epsilon_1(k)}{2\alpha \xi_{\alpha,\nu}^{2\alpha} k^{-(2\alpha - 1)}}\\
+	&= C_\alpha 2\alpha \xi_{\alpha,\nu}^{4\alpha - 2} k^{-4\alpha + 2} 
+    + \frac{1}{2\alpha}\xi_{\alpha,\nu}^{-2\alpha} k^{2\alpha - 1}\epsilon_1(k).
 \end{align*}
 Hence, to prove the result it is enough to show that
 \[
@@ -262,10 +262,10 @@ Hence, to prove the result it is enough to show that
 \]
 For this we fix $0 < \varphi < 1$, define $a(k) = 2\log((1-\varphi)k)$ and split the integral into two pieces
 \begin{align*}
-	\epsilon_1(k) &= \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y\\
-	&= \int_0^{a(k)} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y\\
+	\epsilon_1(k) &= \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y\\
+	&= \int_0^{a(k)} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y\\
 	&\hspace{10pt}+ \int_{a(k)}^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
-    	\rho(y,k) e^{-\alpha y} \dd y.
+    	\rho(y,k) \alpha e^{-\alpha y} \dd y.
 \end{align*} 
 For the first integral we use that $\rho(y,k)$ is increasing on $[0,a(k)]$ and
 \[
@@ -274,20 +274,20 @@ For the first integral we use that $\rho(y,k)$ is increasing on $[0,a(k)]$ and
 to obtain
 \begin{align*}
 	&\hspace{-30pt}\lim_{k \to \infty} k^{6\alpha - 3} \int_0^{a_n} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
-    	\rho(y,k) e^{-\alpha y} \dd y\\
+    	\rho(y,k) \alpha e^{-\alpha y} \dd y\\
 	&\le \lim_{n \to \infty} \left(\max_{0 \le y \le a(k)} \varphi_1(y)\right) k^{6\alpha - 1} 
-    	\rho(a(k), k) \int_0^\infty e^{-\alpha y} \dd y = 0.
+    	\rho(a(k), k) \int_0^\infty \alpha e^{-\alpha y} \dd y = 0.
 \end{align*}
 For the second integral we first note that due to \eqref{eq:asymptotics_clustering_integral}
 \[
-	\int_0^\infty e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y = \bigT{k^{-(6\alpha - 1)}}.
+	\int_0^\infty e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y = \bigT{k^{-(6\alpha - 1)}}.
 \] 
 Therefore, using that $\varphi_1(y)$ is eventually decreasing and $\lim_{k \to \infty} \varphi_1(a(k)) = 0$, we obtain
 \begin{align*}
 	&\hspace{-30pt}\lim_{k \to \infty} k^{6\alpha - 3} \int_{a(k)}^{\infty} \varphi_1(y) 
-    	e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y\\
+    	e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y\\
 	&\le \lim_{k \to \infty} \varphi_1(a(k)) k^{6\alpha - 3} \int_0^\infty 
-    	e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) e^{-\alpha y} \dd y = 0,
+    	e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y = 0,
 \end{align*}
 which finishes the proof.
 \end{proof}
