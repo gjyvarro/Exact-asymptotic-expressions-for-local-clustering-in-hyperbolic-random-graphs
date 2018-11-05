@@ -240,11 +240,14 @@ where $\stackrel{L^1}{\to}$ denotes converges in expectation.
 
 This result completely characterizes the asymptotic behavior of the local clustering function in Hyperbolic Random Graphs. In particular we observe that the conjectured scaling of $k^{-1}$ from~\cite{krioukov2010hyperbolic} only occurs when $\alpha > 3/4$, or equivalently, when the exponent of the pdf of the degree distribution is larger than $5/2$. 
 
-The majority of the paper is dedicated to prove Theorem~\ref{thm:local_clustering_hyperbolic}, which is based on a sequence of subsequent results for the local clustering function in related random graph models and Theorem~\ref{thm:asymptotics_average_clustering_P}. The exact flow of the argument is explained in Section \ref{sec:proof_outline}. The proof for Theorem~\ref{thm:local_clustering_hyperbolic}, using these results, can be found in Section \ref{ssec:proof_main_results}. Here we also give the proof of Theorem~\ref{thm:clustering_coefficient_hyperbolic}. The proof of Theorem~\ref{thm:asymptotics_average_clustering_P} can be found in Section~\ref{sec:asymptotics_average_clustering_ast_P}.
+A major part of this paper is dedicated to prove the convergence result in Theorem~\ref{thm:local_clustering_hyperbolic}, which is based on a sequence of subsequent results for the local clustering function in related random graph models and Theorem~\ref{thm:asymptotics_average_clustering_P}. The exact flow of the argument is explained in Section \ref{sec:proof_outline}. The proof for the convergence result in Theorem~\ref{thm:local_clustering_hyperbolic}, using these results, can be found in Section \ref{ssec:proof_main_results}. Here we also give the proof of the convergence result in Theorem~\ref{thm:clustering_coefficient_hyperbolic}. Another major part of this paper is the exact computation of the local clustering coefficient and function limit $c_\infty$ and $c_\infty(k)$, which involves careful computations of several involved integrals. This is done in Section~\ref{sec:asymptotics_average_clustering_ast_P}, where we also prove Theorem~\ref{thm:asymptotics_average_clustering_P}.
 
 We end this section with some important observations regarding local clustering in hyperbolic random graphs.
 
 \PvdH{Populate these paragraphs}
+
+\paragraph{Local clustering function for growing versus fixed degrees}
+ 
 
 \paragraph{Uniform convergence}
 
@@ -279,19 +282,14 @@ for any positive function $f$. This implies that we cannot expect a result like 
 
 %Maybe, it would make sense to incorporate this statement into theorem \ref{thm:local_clustering_hyperbolic}, i.e. that the asymptotic behaviour of $c(k_n)$ is not well-defined for $k_n \gg n^{\frac{1}{2\alpha+1}}$? Resp. claim that a.a.s. the number of vertices of degree $k_n \gg n^{\frac{1}{2\alpha+1}}$ is zero, such that taking the average over these is not well-defined.
 
-\paragraph{Transition in the scaling of local clustering}
+%\paragraph{Transition in the scaling of local clustering}
 %Note that Theorem \ref{thm:local_clustering_hyperbolic} implies that for $\frac{1}{2} < \alpha < \frac{3}{4}$ the local clustering $c_{\H,n}(k)$ decays as $k^{-(4\alpha - 2)}$ while for $\alpha > \frac{3}{4}$ it is $k^{-1}$.
 
-\paragraph{Universality of scaling transition}
+%\paragraph{Universality of scaling transition}
 
-\paragraph{Geometric inhomogeneous random graphs}
+%\paragraph{Geometric inhomogeneous random graphs}
 
-%\paragraph{Local clustering for growing versus fixed degrees}
-%%The main difference between Theorem \ref{thm:fixed_local_clustering_hyperbolic} and Theorem \ref{thm:local_clustering_hyperbolic} is that for fixed degrees $k$ we have a small correction term that depends on the value $k$. 
-%
-%\MS{We note that the above statements / theorems are disjoint: in one case the degree is fixed corresponding to a constant sequence and in this case the error only depends on $n$, whereas in the other case, the degrees are assumed to be increasing, so in particular unbounded resp. tending to infinity and only the leading term in the asymptotic expansion w.r.t. $k_n \rightarrow \infty$ is given. This allows to study vertices of relatively high degree, e.g. close to the maximum degree (note that there are a.a.s. no vertices with degree exactly the expected maximum degree of $k_n = n^{\frac{1}{2\alpha}}$).}
 
-%The main difference between Theorem \ref{thm:fixed_local_clustering_hyperbolic} and Theorem \ref{thm:local_clustering_hyperbolic} is that for fixed degrees $k$ we have a small correction term that depends on the value $k$. 
 
 \subsection{Simulations}\label{ssec:simulations}
 The simulations of this section (see Figures \ref{fig:c2allnu}, \ref{fig:c4allnu} and \ref{fig:ckvariable}) confirm the formulas from the result section. The simulations were obtained by generating the hyperbolic random graph for a given choice of the parameters and number of repetitions and then taking the average over all simulation instances.

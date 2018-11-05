@@ -1,121 +1,37 @@
 \section{Clustering in $G_{\mathcal{P}}(\alpha, \nu)$}\label{sec:asymptotics_average_clustering_ast_P}
 
-In this section we will establish the exact expressions for the limit local clustering coefficient and function, $c_\infty$ and $c_{\infty}(k)$, respectively.
-
-We shall first recall some necessary notations for computing the local clustering function in $G_{\Pcal}$ and introduce some new ones. 
-
-Recall that for $p\in \R \times \R_+$,
+In this section we will establish the exact expressions for the limit local clustering coefficient and function, $c_\Pcal$ and $c_{\Pcal}(k)$, respectively. This is done in several steps. Recall that for $p\in \R \times \R_+ := \Rcal$,
 \[
-	B(p) = \{p^\prime \in \R \times \R_+ : |x - x^\prime| \le e^{\frac{y + y^\prime}{2}}\}.
+	\BallPo{p} = \{p^\prime \in \R \times \R_+ : |x - x^\prime| \le e^{\frac{y + y^\prime}{2}}\},
 \]
+denotes the neighborhood ball of $p$. Furthermore we recall the definition of $\Delta_\Pcal$ 
+\[
+	\Delta_{\Pcal}(y) = \iint_{\Rcal^2} T_\Pcal(p,p_1,p_2) \eta_{y}(x_1,y_1)\eta_{y}(x_2,y_2) \, dx1 \, dx_2 \, dy_1 \, dy_2,
+\]
+where $\eta_{y} = \frac{\mu_{\alpha,\nu}|_{\BallPo{(0,y)}}}{\Mu{\BallPo{(0,y)}}}$ is the marginal probability density associated with a randomly sampled neighbor of $(0,y)$.
 
-Let $T_{\Pcal}(k)$ denote the number of triangles connected to nodes of degree $k$ in $G_{\Pcal}(\alpha, \nu)$, i.e.
-\[
-	T_{\Pcal}(k) = \sum_{p \in \Pcal} \ind{D_\Pcal(p) = k} T(p) = \sum_{p \in \Pcal} \ind{D_\Pcal(p) = k} \sum_{p_1, p_2 \in 2^\Pcal} T(p,p_1,p_2),
-\]
-where $2^{\Pcal}$ is the set of distinct pairs in $\Pcal \times \Pcal$ and
-\[
-	T(p,p_1,p_2) = \ind{p_1 \in B_\Pcal(p)} \ind{p_2 \in B_\Pcal(p)} \ind{p_1 \in B_\Pcal(p_2)},
-\]
-is the indicator that $\{p, p_1, p_2\}$ form a triangle. Then the local clustering function is given by
-\begin{equation}\label{eq:def_local_clustering_P}
-	c_{\Pcal}(k) = \begin{cases} 
-		\frac{T_{\Pcal}(k)}{\binom{k}{2} N_\Pcal(k)} &\mbox{if } N_\Pcal(k) \ge 1\\
-		0 &\mbox{else,}
-		\end{cases}
+We already noted that $\Delta_\Pcal(y)$ denotes the probability that two randomly sampled neighbors of $(0,y)$ are connected. More precisely, let $Z_{1}, Z_{2}$ be two independent random variables on $\BallPo{(0,y)}$, with (marginal) probability measures $\eta_{y}$. Then
+\begin{equation}\label{eq:def_delta_p_alt}
+	\Delta_{\Pcal}(p) = \pr_{\Pcal,p}\left( Z_{1} \in \mathcal{B}_{\Pcal}(Z_{2})\right)
 \end{equation}
-and the adjusted local clustering by
-\begin{equation}\label{eq:def_local_clustering_ast_P}
-	c_{\Pcal}^\ast(k) = \begin{cases} 
-		\frac{T_{\Pcal}(k)}{\binom{k}{2} \Exp{N_\Pcal(k)}} &\mbox{if } N_\Pcal(k) \ge 1\\
-		0 &\mbox{else,}
-		\end{cases}.
-\end{equation}
+where $\pr_{\Pcal,p}$ denotes the joint probability measure of $Z_1$ and $Z_2$. We shall often abuse notation and write $\Delta_\Pcal(y)$ to denote $\Delta_\Pcal((0,y))$. 
 
-To analyze the local clustering we define the conditional expected number of triangles of a vertex $p$ with degree $k$ as
-\[
-	\Delta_{\Pcal}(p,k) = \CExp{\sum_{(p_1, p_2) \in 2^\Pcal} T_\Pcal(p, p_1, p_2)}{D_\Pcal(p) = k}.
-\]
-To compute this expression, let $Z_{1}, Z_{2}$ be two independent random variables on $B_{\Pcal}(p)$, with (marginal) probability measures $\eta_{p} = \frac{\mu|_{B_{\Pcal}(p)}}{\mu(B_{\Pcal}(p))}$. Then we define,
-\begin{equation}\label{eq:def_delta_p}
-	\Delta_{\Pcal}(p) = \Prob{ Z_{1} \in \mathcal{B}_{\Pcal}(Z_{2})} %Z_{1} \in \mathcal{B}_{\Pcal}(p), Z_{2} \in \mathcal{B}_{\Pcal}(p),
-\end{equation}
-as the probability that two random neighbors of a point $p \in \mathcal{P}$ are adjacent (note that $\pr = \pr_{\mathcal{P},p}$ denotes the joint probability measure of $Z_1$ and $Z_2$).
 
-We shall often abuse notation and write $\Delta_\Pcal(y)$ to denote $\Delta_\Pcal((0,y))$. %Observe that $\Delta_\Pcal(p)$ is the probability that two random neighbors of $p$ are connected.
-Next we note that conditioned on the Poisson process $\Pcal$ having $k$ points in $\mathcal{B}_{\Pcal}(p)$, the points are independent random variables $Z_{1}, \dots, Z_{k}$, each with probability measure $\eta_{p}$ and hence
-\[
-	\Delta_{\Pcal}(p,k) = \binom{k}{2} \Delta_\Pcal(p).
-\]
-
-In addition, since $\mu_{\alpha, \nu}(B_\Pcal(p)) = \xi_{\alpha,\nu} e^{\frac{y}{2}}$, with $\xi_{\alpha,\nu} = \frac{4\alpha\nu}{(2\alpha - 1)\pi}$, and
-\[
-	\Delta_{\Pcal}(p) = \iint_{\Rcal^2} T_\Pcal(p,p_1,p_2) \eta_{p}(x_1,y_1)\eta_{p}(x_2,y_2) \, dx1 \, dx_2 \, dy_1 \, dy_2,
-\]
-we have that
-\begin{equation}\label{eq:relation_T_vs_Delta_P}
-	\Exp{T_\Pcal(p)} = \xi_{\alpha,\nu}^2 \frac{e^{y}}{2} \Delta_\Pcal(p).
-\end{equation}
-
-\begin{remark}[Notations for the finite graph $G_{\Pcal, n}(\alpha,\nu)$]\label{rmk:notations_clustering_P_n}
-For the finite graph $G_{\Pcal,n}(\alpha, \nu)$ we will use notations similar to those for $G_{\Pcal}(\alpha, \nu)$ where we simply introduce a subscript $n$. For example, 
-\[
-	\Delta_{\Pcal,n}(p) = \pr_{\mathcal{P},p}( Z_{1,n} \in \BallPo{Z_{2,n}}),
-\]
-%Z_{1,n} \in \BallPo{p}, Z_{2,n} \in \BallPo{p},
-where $Z_{1,n}$ and $Z_{2,n}$ are two independent random variables with probability measure \\
-$\eta_{p,n}$.
-\end{remark}
-
-%and define $\epsilon(p_1,p_2)$ to be the indicator that $p_1$ and $p_2$ are neighbors in $G_{\Pcal}(\alpha,\nu)$, i.e.,
-%\[
-%	\epsilon(p_1,p_2) = \begin{cases}
-%		1 &\mbox{if } p_1 \in B(p_2)\\
-%		0 &\mbox{else.}
-%	\end{cases}
-%\]
-%With these definition we then write, 
-%\[
-%	T_\Pcal(p_1,p_2,p_3) = \epsilon_n(p_1,p_2) \epsilon_n(p_2,p_3) \epsilon_n(p_3,p_1),
-%\]
-%to denote the indicator that the tripple $(p_1, p_2, p_3)$ forms a triangle in $G_\Pcal(\alpha,\nu)$ and the triangle counting function as
-%\begin{equation}
-%	T_{\Pcal}(p) = \sum_{p_1, p_2 \in \Pcal} 
-%		\hspace{-5pt} T_\Pcal(p,p_1,p_2).
-%\end{equation}
-%
-%The local clustering function then is
-%\begin{equation}\label{eq:def_local_clustering_P}
-%	c_{\Pcal}(k) = \begin{cases} 
-%		\frac{1}{N_\Pcal(k)}\sum_{p \in \Pcal} \ind{D_\Pcal(p) = k} \frac{T_{\Pcal}(k)}{\binom{k}{2}} &\mbox{if } N_k \ge 1\\
-%		0 &\mbox{else,}
-%		\end{cases}
-%\end{equation}
-%and similarly for $c_{\Pcal}^\ast(k)$.
-%
-%To analyze the local clustering we define the conditional expectation of triangles of a vertex $p$ with degree $k$ as
-%\[
-%	\Delta_{\Pcal}(p,k) = \CExp{\sum_{(p_1, p_2) \in \Pcal} T_\Pcal(p, p_1, p_2)}{p, D_\Pcal(p) = k}.
-%\]
-%To compute this expression, let $Z_{1}, Z_{2}$ be two independent random variables on $B_{\Pcal}(p)$, with probability measure $\eta_{p} = \frac{\mu|_{B_{\Pcal}(p)}}{\mu(B_{\Pcal}(p))}$. Then we define,
-%\begin{equation}\label{eq:def_delta_p}
-%	\Delta_{\Pcal}(p) = \CProb{Z_{1} \in B_{\Pcal}(p), Z_{2} \in B_{\Pcal}(p), Z_{1} \in B_{\Pcal}(Z_{2})}{p}
-%\end{equation}
-%We shall often abuse notation and write $\Delta_\Pcal(y)$ to denote $\Delta_\Pcal((0,y))$. Observe that $\Delta_\Pcal(p)$ is the probability that two random neighbors of $p$ are connected. Next we note that conditioned on the Poisson process $\Pcal$ having $k$ points in $B_{\Pcal}(p)$, the points are independent random variables $Z_{1}, \dots, Z_{k}$ with probability $\eta_{p}$ and hence
+%Next we note that conditioned on the Poisson process $\Pcal$ having $k$ points in $\mathcal{B}_{\Pcal}(p)$, the points are independent random variables $Z_{1}, \dots, Z_{k}$, each with probability measure $\eta_{p}$ and hence
 %\[
 %	\Delta_{\Pcal}(p,k) = \binom{k}{2} \Delta_\Pcal(p).
 %\]
 %
-%\begin{remark}[Notations for the finite graph $G_{\Pcal, n}(\alpha,\nu)$]\label{rmk:notations_clustering_P_n}
-%For the finite graph $G_{\Pcal,n}(\alpha, \nu)$ we will use notations similar to those for $G_{\Pcal}(\alpha, \nu)$ where we simply introduce a subscript $n$. For example, 
+%In addition, since $\mu_{\alpha, \nu}(B_\Pcal(p)) = \xi_{\alpha,\nu} e^{\frac{y}{2}}$, with $\xi_{\alpha,\nu} = \frac{4\alpha\nu}{(2\alpha - 1)\pi}$, and
 %\[
-%	\Delta_{\Pcal,n}(p) = \CProb{Z_{1,n} \in \BallPo{p}, Z_{2,n} \in \BallPo{p}, Z_{1,n} \in \BallPo{Z_{2,n}}}{p},
+%	\Delta_{\Pcal}(p) = \iint_{\Rcal^2} T_\Pcal(p,p_1,p_2) \eta_{p}(x_1,y_1)\eta_{p}(x_2,y_2) \, dx1 \, dx_2 \, dy_1 \, dy_2,
 %\]
-%where $Z_{1,n}$ and $Z_{2,n}$ are two independent random variables with probability measure \\
-%$\eta_{p,n} = \mu_n|_{\BallPo{p}}/\mu_n(\BallPo{p})$.
-%\end{remark}
+%we have that
+%\begin{equation}\label{eq:relation_T_vs_Delta_P}
+%	\Exp{T_\Pcal(p)} = \xi_{\alpha,\nu}^2 \frac{e^{y}}{2} \Delta_\Pcal(p).
+%\end{equation}
 
-We will start with some preliminary results on the degrees in $G_\Pcal(\alpha, \nu)$. The proof of Theorem \ref{thm:asymptotics_average_clustering_P} can be found in Section \ref{ssec:asymptotics_local_clustering_P}. The key ingredient for the proof is a result concerning the asymptotic behavior of $\Delta_\Pcal(y)$ (Proposition \ref{prop:asymptotics_Delta_y_P}) whose proof can be found in Section \ref{ssec:asymptotics_Delta_y_P}.
+We will start with some preliminary results on the degrees in $G_\Pcal(\alpha, \nu)$. The proof of Theorem \ref{thm:asymptotics_average_clustering_P} can be found in Section \ref{ssec:asymptotics_local_clustering_P}. The key ingredient for the proof is a result concerning the asymptotic behavior of $\Delta_\Pcal(y)$ (Proposition \ref{prop:asymptotics_Delta_y_P}) whose proof can be found in Section \ref{ssec:asymptotics_Delta_y_P}. The final computations for the exact expressions of $c_\infty$ in Theorem~\ref{thm:clustering_coefficient_hyperbolic} and $c_\infty(k)$ in Theorem~\ref{thm:local_clustering_hyperbolic} can be found in Section~\ref{ssec:exact_expressions_clustering_P}.
 
 \subsection{Degree distribution in $G_\Pcal(\alpha, \nu)$}
 
@@ -330,9 +246,9 @@ To derive this result, recall (see~\eqref{eq:def_delta_p}) that $\Delta_{\Pcal}(
 
 For notational convenience we will switch to using $y_0$ instead of $y$. Note that the random variables $Z_i = (x_i,y_i)$, for $i = 1,2$, correspond to first sampling $y_i$ according to the density
 \[
-	g(y) := \left(\alpha -\frac{1}{2}\right) e^{-(\alpha-\frac{1}{2})y_1}
+	g(y_i) := \left(\alpha -\frac{1}{2}\right) e^{-(\alpha-\frac{1}{2})y_i}
 \] 
-and then sampling $x_i$ uniformly in $[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$. With this in mind we define $P(y_0,y_1,y_2)$ to be the probability that $(0,y_0), (x_1,y_1), (x_2,y_2)$ form a triangle where $x_1$ and $x_2$ are uniform random variables in, respectively, $[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$.
+and then sampling $x_i$ uniformly in $[-e^{\frac{1}{2}(y+y_i)},e^{\frac{1}{2}(y+y_i)}]$. With this in mind we define $P(y_0,y_1,y_2)$ to be the probability that $(0,y_0), (x_1,y_1), (x_2,y_2)$ form a triangle where $x_1$ and $x_2$ are uniform random variables in, respectively, $[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$.
 
 Then we have that
 \begin{align}\label{eq:delta_P}
@@ -738,8 +654,8 @@ Note that when writing $\Delta_{\Pcal}(y_0)$ as in integral as in equation \eqre
 \] 
 where $I_1$ and $I_2$ are given by:
 \begin{align*}
-	I_1(y_0) &:= \int_{0<y_0<y_1<y_2} P(y_0,y_1,y_2) \cdot (\alpha-1/2)^2 e^{-(\alpha-1/2)(y_1+y_2)}  {\dd} y_2 {\dd} y_1 \\ 
-	I_2(y_0) &:= \int_{0<y_1<y_0,y_2} P(y_0,y_1,y_2) \cdot (\alpha-1/2)^2 e^{-(\alpha-1/2)(y_1+y_2)} {\dd} y_2 {\dd} y_1 \\ 
+	I_1(y_0) &:= \int_{0<y_0<y_1<y_2} P(y_0,y_1,y_2) \cdot (\alpha-1/2)^2 e^{-(\alpha-1/2)(y_1+y_2)}  \dd y_2 \dd y_1 \\ 
+	I_2(y_0) &:= \int_{0<y_1<y_0,y_2} P(y_0,y_1,y_2) \cdot (\alpha-1/2)^2 e^{-(\alpha-1/2)(y_1+y_2)} \dd y_2 \dd y_1 \\ 
 \end{align*}
 
 We proceed with computing each of these two integrals, each of which is split in two parts. The final expressions of those four integrals can be found in~\eqref{eq:Delta_P_computation_I11}, \eqref{eq:Delta_P_computation_I12}, \eqref{eq:Delta_P_computation_I21} and~\eqref{eq:Delta_P_computation_I22}.
@@ -975,23 +891,23 @@ Note that the factor $\alpha-\frac{3}{4}$ does not occur in any denominator of t
 
 \paragraph{The case of $\bm{\alpha = 1}$}
 
-We want to compute the limit $\lim_{\alpha \rightarrow 1} \Delta_{\Pcal_{\alpha,\nu}}(y_0(z_0))$. For this, after factoring out $\frac{1}{\alpha-1}$ we compute the first two terms of the Taylor expansion of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$ in $\alpha$ based at $\alpha = 1$. The constant term of this Taylor expansion is verified to vanish whereas the linear term gives the expression searched (after cancellation with $\frac{1}{\alpha-1}$). Note that two terms of $P(y_0(z_0))$ contain $(\alpha-1)^2$ in their denominator, so for those two another $\frac{1}{\alpha-1}$ is factored out and the first three terms of the Taylor expansion are computed. Their constant terms cancel and after multiplication with $\frac{1}{\alpha-1}$ their linear and quadratic terms become part of the constant and linear term of the overall expansion.
+We want to compute the limit $\lim_{\alpha \rightarrow 1} \Delta_{\Pcal_{\alpha,\nu}}(y_0(z_0))$. For this, after factoring out $\frac{1}{\alpha-1}$ in the expression for $\Delta_{\Pcal}(y)$ we obtained for $\alpha \ne 1$, we compute the first two terms of the Taylor expansion of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$ in $\alpha$ based at $\alpha = 1$. The constant term of this Taylor expansion is verified to vanish whereas the linear term gives the expression searched (after cancellation with $\frac{1}{\alpha-1}$). Note that two terms of $P(y_0(z_0))$ contain $(\alpha-1)^2$ in their denominator, so for those two another $\frac{1}{\alpha-1}$ is factored out and the first three terms of the Taylor expansion are computed. Their constant terms cancel and after multiplication with $\frac{1}{\alpha-1}$ their linear and quadratic terms become part of the constant and linear term of the overall expansion.
 
-The first summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$,
+The first summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$ is,
 \begin{align*}
--\frac{1}{8 \alpha} = -\frac{1}{8}+\frac{1}{8}(\alpha-1) +O( (\alpha-1)^2)
+	S_1 = -\frac{1}{8 \alpha} = -\frac{1}{8}+\frac{1}{8}(\alpha-1) +O( (\alpha-1)^2)
 \end{align*}
 The second summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$,
 \begin{align*}
-(\alpha-1/2)z_0 = \frac{1}{2}z_0 +z_0 (\alpha-1)+O( (\alpha-1)^2)
+	S_2 = (\alpha-1/2)z_0 = \frac{1}{2}z_0 +z_0 (\alpha-1)+O( (\alpha-1)^2)
 \end{align*}
 The third summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$, needs a 3-term Taylor expansion after another multiplication with $(\alpha-1)$,
 \begin{align*}
-- \frac{(\alpha - 1/2)^2 z_0^2}{4} = -\frac{1}{16}z_0^2 -\frac{1}{4}z_0^2(\alpha-1)-\frac{1}{4}z_0^2(\alpha-1)^2+O( (\alpha-1)^3)
+	S_3 = - \frac{(\alpha - 1/2)^2 z_0^2}{4} = -\frac{1}{16}z_0^2 -\frac{1}{4}z_0^2(\alpha-1)-\frac{1}{4}z_0^2(\alpha-1)^2+O( (\alpha-1)^3)
 \end{align*}
 The fourth summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$, needs a  3-term Taylor expansion after another multiplication with $(\alpha-1)$,
 \begin{align*}
-z_0^{-2 + 4 \alpha} \frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha} &= \frac{1}{16}z_0^2 +\frac{z_0^2}{4}\left(\frac{1}{8}+\ln\frac{z_0}{2}\right)(\alpha-1)\\
+	S_4 = z_0^{-2 + 4 \alpha} \frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha} &= \frac{1}{16}z_0^2 +\frac{z_0^2}{4}\left(\frac{1}{8}+\ln\frac{z_0}{2}\right)(\alpha-1)\\
 &\qquad+\frac{z_0^2}{8}\left(4\left(\ln\frac{z_0}{2}\right)^2+\ln\frac{z_0}{2} - \frac{1}{4}\right)(\alpha-1)^2+O( (\alpha-1)^3)
 \end{align*}
 as
@@ -1002,9 +918,9 @@ and
 \begin{align*}
 \frac{d^2}{d\alpha^2}\left( \left(\frac{z_0}{2}\right)^{-2+4\alpha} 2^{-3}\left(3-\frac{1}{\alpha}\right) \right) = \left( \frac{z_0}{2} \right)^{-2+4\alpha}2^{-3}\left(16\left(\ln\frac{z_0}{2}\right)^2\left(3-\frac{1}{\alpha}\right)+\frac{8\ln(\frac{z_0}{2})}{\alpha^2}-\frac{2}{\alpha^3} \right)
 \end{align*}
-The fifth summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$,
+For the fifth summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$ we get,
 \begin{align*}
-	&\hspace{-30pt}z_0^{-2 + 4 \alpha} \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2\alpha} \\
+	S_5 &= z_0^{-2 + 4 \alpha} \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2\alpha} \\
 	&= \frac{z_0^2}{4} B^-(1/2;3,0) + z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0) \right. \\
  	&\hspace{20pt}\left.+1/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \right)  (\alpha-1)+O( (\alpha-1)^2 )
 \end{align*}
@@ -1021,17 +937,17 @@ where
 \end{align*}
 The sixth summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$,
 \begin{align*}
-\frac{(1 - z_0)^{2 \alpha}}{8 \alpha} = \frac{(1-z_0)^2}{8}+\frac{(1-z_0)^2}{4} (\ln(1-z_0)-1/2 )(\alpha-1)+O( (\alpha-1)^2 )
+	S_6 = \frac{(1 - z_0)^{2 \alpha}}{8 \alpha} = \frac{(1-z_0)^2}{8}+\frac{(1-z_0)^2}{4} (\ln(1-z_0)-1/2 )(\alpha-1)+O( (\alpha-1)^2 )
 \end{align*}
-The seventh and last summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$,
+and finally the seventh and last summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$ gives,
 \begin{align*}
-- \frac{z_0^{4 \alpha - 2} B^-(1 - z_0; 2 \alpha, 3 - 4 \alpha)}{4} = -\frac{z_0^2}{4}B^-(1-z_0;2,-1) - z_0^2 \left(\ln(z_0)B^-(1-z_0;2,-1) \right. \\
+	S_7 = - \frac{z_0^{4 \alpha - 2} B^-(1 - z_0; 2 \alpha, 3 - 4 \alpha)}{4} = -\frac{z_0^2}{4}B^-(1-z_0;2,-1) - z_0^2 \left(\ln(z_0)B^-(1-z_0;2,-1) \right. \\
 \left.+\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \right) (\alpha-1)+O((\alpha-1)^2)
 \end{align*}
 
-We see that the constant coefficients cancel:
+When adding these terms we see that the constant coefficients cancel:
 \begin{align*}
-&-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(\frac{z_0}{2}) +\frac{z_0^2}{4}B^-(1/2;3,0)+\frac{(1-z_0)^2}{8}-\frac{z_0^2}{4}B^-(1-z_0;2,-1) \\
+& -\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(\frac{z_0}{2}) +\frac{z_0^2}{4}B^-(1/2;3,0)+\frac{(1-z_0)^2}{8}-\frac{z_0^2}{4}B^-(1-z_0;2,-1) \\
 &=-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(z_0)-\frac{z_0^2}{4}\ln 2 -\frac{5z_0^2}{32}+\frac{z_0^2}{4}\ln2 \\ &\hspace{10pt}+\frac{1}{8}-\frac{z_0}{4}+\frac{z_0^2}{8}+\frac{z_0^2}{4}-\frac{z_0}{4}-\frac{z_0^2}{4}\ln z_0 =0
 \end{align*}
 The expression for $\alpha=1$ is given by the sum of the linear coefficients:
@@ -1097,87 +1013,56 @@ z_0^2 \left(-7/8 - \frac{\ln(2)^2+2\Li_2(1/2) + 2\Li_2(1)}{4} \right) +
 z_0^2  + 
 \frac{1}{2}z_0^2 \Li_2(z)
 \end{align*}
-This finishes the computation.
+which finishes the computation.
 
 \end{proof}
 
-\subsection{Exact expression for clustering, integrating $\Delta_{\Pcal}(y)$}
+\subsection{Exact expressions for the local clustering coefficient and function, integrating $\Delta_{\Pcal}(y)$}\label{ssec:exact_expressions_clustering_P}
 
-%\PvdH{@Markus: Please check that your $\xi$ equals $\xi_{\alpha,\nu} := \frac{4\alpha \nu}{(2\alpha - 1)\pi}$ in all computations below. If not please adjust the computations.}
-%Markus: yes, this is the right xi.
-
-\PvdH{This part is still in the original form and has to be converted to match style and notation.}
-
-Now that we have an expression for $\Delta_{\Pcal}(y)$ we can compute the limit local clustering coefficient $c_\infty$ and the limit local clustering function $c_\infty(k)$, i.e. prove Theorem~\ref{thm:exact_expression_c_infty} and Theorem~\ref{thm:exact_expression_local_clustering}.
+Now that we have an expression for $\Delta_{\Pcal}(y)$ we can compute the limit local clustering coefficient $c_\Pcal$ and the limit local clustering function $c_\Pcal(k)$ and prove that they equal $c_\infty$ and $c_\infty(k)$ given in, respectively, Theorem~\ref{thm:clustering_coefficient_hyperbolic} and Theorem~\ref{thm:local_clustering_hyperbolic}.
 
 
-First we recall that
+First we recall that $\rho(y,k) = (\xi_{\alpha,\nu} e^{y/2})^k/k! \, e^{-\xi_{\alpha,\nu} e^{y/2}}$ and
 \begin{align*}
-p_k := \Pee( D=k ) = \int_0^\infty e^{-\xi e^{y/2}} \frac{(\xi e^{y/2})^k}{k!}\alpha e^{-\alpha y} dy = 2\alpha \int_0^1 e^{-\frac{\xi}{z}} z^{2\alpha -k-1} dz =\frac{2\alpha \xi^{2\alpha}}{k!} \Gamma(k-2\alpha,\xi)
+	\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y = \frac{2\alpha \xi^{2\alpha}}{k!} \Gamma(k-2\alpha,\xi)
+	:= \rho(k).
 \end{align*}
-%\PvdH{@Markus: This result is taken from your notes. It seems to disagree with~\eqref{eq:degree_distribution_P}. Could you please check the other computations.}
+We also define
+\[
+	I^{(k)} := \int_0^{\infty} \Delta_\Pcal(y) \alpha e^{-\alpha y} \frac{\left(\xi e^{y/2}\right)^k}{k!} e^{-\xi e^{y/2}} \dd y
+\]
+and
+\[
+	J := \int_0^\infty \Delta_\Pcal(y) \alpha e^{-\alpha y} \dd y.
+\]
 
-We wish to compute
+Then
 \[   
-	c_\infty = \alpha \int_0^{\infty} \Delta_\Pcal(y) e^{-\alpha y} \left(1-e^{-\xi e^{y/2}} - \xi e^{y/2} 
-	e^{-\xi e^{y_0/2}}\right) \dd y, 
+	c_\Pcal = J - I^{(1)} - I^{(2)} \quad \text{and} \quad
+	c_\Pcal(k) = \frac{I^{(k)}}{\rho(k)}
+\]
+and hence we first need to compute $J$ and $I^{(k)}$.
+
+For this it will be helpful to change coordinates to $z := e^{-y/2}$. This yields 
+\[ 
+	J = 2 \alpha \int_0^1 \Delta_\Pcal(y) z^{2\alpha-1} \dd z, 
+\]
+and 
+\[ 
+	I^{(k)} = \frac{2 \alpha \xi_{\alpha,\nu}^k}{k!} \cdot \int_0^1 P(y(z)) \cdot z^{2\alpha-(k+1)} e^{-\xi_{\alpha,\nu} z^{-1}} \dd z. 
 \]
 
 
-\noindent
-and
+We first deal with the case $\alpha \not = 1$. We observe from Proposition~\ref{prop:full_expression_delta_P} that for $\alpha \not =1$, $\Delta_\Pcal(y(z))$ is in fact a linear combination of terms of the form $z^u$, $(1-z)^u$ and $z_0^u B^-(1-z_0,v,w)$.
 
-\[ I^{(k)} := 
-\int_0^{\infty} P(y_0) \alpha e^{-\alpha y_0} \frac{\left(\xi e^{y_0/2}\right)^k}{k!} e^{-\xi e^{y_0/2}} {\dd} y_0. \]
-
-\noindent
-(So $c = I$ and $c(k) = I^{(k)} / p_k $ for $k\geq 2$.) \\
-Note that the integral for $I$ can be written as $J - I^{(0)} - I^{(1)}$ where
-
-\[ J := \int_0^{\infty} P(y_0) \alpha e^{-\alpha y_0} {\dd} y_0. \] 
-
-\noindent
-Note that, of course, the integrals $I^{(0)}$ and $I^{(1)}$ can be computed even though $c(0)$ and $c(1)$ are technically
-speaking not well-defined.
-
-
-
-\noindent
-It seems helpful to change coordinates to $z_0 := e^{-y_0/2}$.
-This gives ${\dd} y_0 = \REMOVEME{-}2 z_0^{-1} {\dd} z_0$, $e^{-\alpha y_0} = z_0^{2\alpha}$.
-Hence 
-
-\[ J = 2 \alpha \int_0^1 P(y_0(z_0)) \cdot z_0^{2\alpha-1} {\dd} z_0, \]
-
-\noindent
-and 
-
-\[ I^{(k)} = \frac{2 \alpha \xi^k}{k!} \cdot \int_0^1 P(y_0(z_0)) \cdot z_0^{2\alpha-(k+1)} e^{-\xi/z_0} {\dd} z_0. \]
-
-\noindent
-Given the expression(s) we got for $P(y_0)$, we firstly deal with the case $\alpha \not = 1$. % As $J_\alpha$ and $I_\alpha^{(k)}$ (and hence also $c_\alpha$ and $c_\alpha(k)$) are continuous in $\alpha$ by the dominated convergence theorem, we will later obtain the result for $\alpha=1$ by taking the limit $\alpha \rightarrow 1$.
-
-
-\noindent
-Now we recall that for $\alpha \not =1$, $P(y_0(z_0))$ is in fact a linear combination of terms of the form $z_0^u$, $(1-z_0)^u$ and $z_0^u B^-(1-z_0,v,w)$, so we only need to compute the integrals $J$ and $I^{(k)}$ for these forms.
-
-\vspace{1em}
-
-\noindent
-To work out $J$ we just need to observe that 
-\[ \begin{array}{rcl} 
-\int_0^1 z_0^{u+2\alpha-1} B^-(1-z_0;v,w) {\dd} z_0 
-& = & 
-\left[ \frac{z_0^{u+2\alpha}}{u+2\alpha} B^-(1-z_0;v,w) \right]_0^1 
-+ \frac{1}{u+2\alpha} \int_0^1 z_0^{u+2\alpha+w-1} (1-z_0)^{v-1} {\dd} z_0 \\
-& = & 
-\frac{1}{u+2\alpha} B(u+w+2\alpha,v)
-\end{array} \]
-\noindent
-(using that $\frac{\partial}{\partial z_0} B^-(1-z_0;v,w) = - z_0^{w-1} (1-z_0)^{v-1}$.)
-
-This gives the expression for $J$ (note that it only depends on $\alpha$ but not on $\nu$)
-
+To compute $J$ we observe that, by partial integration, 
+\begin{align*}
+	\int_0^1 z^{u+2\alpha-1} B^-(1-z;v,w) \dd z 
+	&= \left[ \frac{z^{u+2\alpha}}{u+2\alpha} B^-(1-z;v,w) \right]_0^1 
+		+ \frac{1}{u+2\alpha} \int_0^1 z^{u+2\alpha+w-1} (1-z)^{v-1} \dd z \\
+	&= \frac{1}{u+2\alpha} B(u+w+2\alpha,v)
+\end{align*}
+where we used that $\frac{\partial}{\partial z} B^-(1-z;v,w) = - z^{w-1} (1-z)^{v-1}$. This takes care of the two integrands involving the Beta function in $\Delta_\Pcal(y)$. The other integrals are easily computed and yield the following expression for $J$ (note that it only depends on $\alpha$ but not on $\nu$)
 \begin{align*}
 J&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 + 
 	24 \alpha^5}{16(\alpha-1)^2 \alpha (\alpha+1) (2\alpha+1)} +  \frac{2^{-1 - 
@@ -1186,161 +1071,173 @@ J&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 +
 	B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha))}{2 (\alpha - 1) (3 \alpha - 1)}
 \end{align*}
 
-%\begin{figure}
-%	\centering
-%	\includegraphics[scale=0.6]{0817J}
-%	\caption{Plot of $J(\alpha)$ for $\alpha$ between 0.5 and 5 \REMOVEME{(and any $\nu$)}.}
-%\end{figure}
-
-\vspace{1em}
-
-\noindent
-To work out $I^{(k)}$ we first point out that
-
-\[ \begin{array}{rcl} 
-\int_a^b z_0^{u+2\alpha-(k+1)} e^{-\xi z_0^{-1}} {\dd} z_0
-& = & 
-\xi^{u+2\alpha-k} \int_{\xi/b}^{\xi/a} t^{k-1-2\alpha-u} e^{-t} {\dd} t \\
-& = & 
-\xi^{u+2\alpha-k} \left( \Gamma^+( k-2\alpha-u;\xi/\REMOVEME{b}) - \Gamma^+( k-2\alpha-u; \xi/\REMOVEME{a}) \right), 
-\end{array} \]
-\REMOVEME{
+We proceed to work out $I^{(k)}$. For this we will compute the integrals involving terms in $\Delta_\Pcal(y(z))$ of the form $z^u$, $(1-z)^u$ and $B(1-z,v,w)$ separately. We first point out that for any $0 \le a < b \le 1$
+\begin{align*}
+	\int_a^b z^{u+2\alpha-(k+1)} e^{-\xi_{\alpha,\nu} z^{-1}} \dd z
+	&= \xi_{\alpha,\nu}^{u+2\alpha-k} \int_{\xi_{\alpha,\nu}/b}^{\xi_{\alpha,\nu}/a} t^{k-1-2\alpha-u} e^{-t} \dd t \\
+	&= \xi_{\alpha,\nu}^{u+2\alpha-k} \left( \Gamma^+( k-2\alpha-u;\xi_{\alpha,\nu}/b) - \Gamma^+( k-2\alpha-u; \xi_{\alpha,\nu}/a) \right), 
+\end{align*}
 In particular
-\begin{align*}
-\int_0^1 z_0^{u+2\alpha-k-1} e^{-\xi z_0^{-1}} {\dd} z_0 = \xi^{u+2\alpha-k} \Gamma^+(k-2\alpha-u;\xi)
-\end{align*}}
-
-\noindent
+\begin{equation}\label{eq:integral_Delta_P_z}
+	\int_0^1 z^{u+2\alpha-k-1} e^{-\xi_{\alpha,\nu} z^{-1}} \dd z = \xi_{\alpha,\nu}^{u+2\alpha-k} \Gamma^+(k-2\alpha-u;\xi_{\alpha,\nu})
+\end{equation}
 where $\Gamma^+$ denotes the (upper) incomplete gamma function, and we've used the subsitution
-$t = \xi / z_0$ which gives ${\dd} z_0 = -\xi t^{-2} {\dd} t$. (And of course it is understood that 
-$\xi/0 = \infty$.)
+$t = \xi_{\alpha,\nu} / z$ which gives $\dd z = -\xi_{\alpha, \nu} t^{-2} \dd t$. (And of course it is understood that 
+$\xi_{\alpha,\nu}/0 = \infty$). This takes care of the integrals of all terms in $\Delta_\Pcal(y(z))$ of the form $z^{u}$. 
 
 
-
-The hypergeometric U-function 
-(also called Tricomi's confluent hypergeometric function) has the integral representation 
-$$U(a,b,z) = \frac{1}{\Gamma(a)} \int_0^\infty e^{-zt} t^{a-1} (1+t)^{b-a-1} dt$$ which holds for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $Re(a), Re(z) >0$, see \cite[p.255]{erdelyi1953higher}. Applying the change of variables 
-$t=\frac{1-s}{s}$ (i.e. $dt = -s^{-2} ds$ and $s = \frac{1}{t+1}$) yields the integral 
-$\int_1^0 e^{-z(-1+\frac{1}{s})} (\frac{1-s}{s})^{a-1} (\frac{1}{s})^{b-a-1} (-s^2)ds = e^z\int_0^1 e^{-z/s} s^{-b}(1-s)^{a-1} ds$, i.e.
+Next we will consider the integrals over the terms in $\Delta_\Pcal(y(z))$ of the form $(1-z)^u$. For this we need the hypergeometric U-function (also called Tricomi's confluent hypergeometric function), which has the integral representation 
+\[
+	U(a,b,z) = \frac{1}{\Gamma(a)} \int_0^\infty e^{-zt} t^{a-1} (1+t)^{b-a-1} \dd t
+\] 
+which holds for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $Re(a), Re(z) >0$, see~\cite[p.255]{erdelyi1953higher}. Applying the change of variables $t=\frac{1-s}{s}$ (i.e. $\dd t = -s^{-2} \dd s$ and $s = \frac{1}{t+1}$) yields
+%yields the integral 
+%$\int_1^0 e^{-z(-1+\frac{1}{s})} (\frac{1-s}{s})^{a-1} (\frac{1}{s})^{b-a-1} (-s^2)ds = e^z\int_0^1 e^{-z/s} s^{-b}(1-s)^{a-1} ds$, i.e.
 \begin{align*}
-U(a,b,z) = \frac{e^z}{\Gamma(a)} \int_0^1 s^{-b} (1-s)^{a-1} e^{-z/s} ds
+	U(a,b,z) = \frac{e^z}{\Gamma(a)} \int_0^1 s^{-b} (1-s)^{a-1} e^{-z/s} ds
 \end{align*}
-Plugging in $a=2\alpha+1 >0$, $b=-2\alpha+k+1$, $z=\xi>0$, gives
-\begin{align*}
-\int_0^1 z_0^{2\alpha-k-1} e^{-\xi/z_0} (1-z_0)^{2\alpha} dz_0 = \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi)
-\end{align*}
+Plugging in $a=2\alpha+1 >0$, $b=-2\alpha+k+1$, $z=\xi_{\alpha,\nu}>0$, then gives
+\begin{equation}\label{eq:integral_Delta_P_1_z}
+	\int_0^1 z_0^{2\alpha-k-1} e^{-\xi_{\alpha,\nu}/z_0} (1-z_0)^{2\alpha} dz_0 = \Gamma(2\alpha+1)e^{-\xi_{\alpha,\nu}} U(2\alpha+1,1+k-2\alpha,\xi_{\alpha,\nu})
+\end{equation}
 
- 
-Let $a, c \in \R$, $\xi, b >0$ positive real numbers. 
-Using the integral definition of the incomplete B-function, the change of variables $s=1-t$ gives:
+Finally we need to deal with the terms in $\Delta_\Pcal(y(z))$ that involve the incomplete Beta-function. Let $a, c \in \R$, $\xi_{\alpha,\nu}, b >0$ positive real numbers. Using the integral definition of the incomplete B-function, the change of variables $s=1-t$ gives:
 \begin{align*}
-\int_0^1 z^a e^{-\xi/z} B^-(1-z;b,c) dz &=\int_0^1 z^a e^{-\xi/z} \int_0^{1-z} t^{b-1} (1-t)^{c-1} dt dz \\
-&=\int_0^1 z^a e^{-\xi/z} \int_z^1 s^{c-1} (1-s)^{b-1} ds dz
+	\int_0^1 z^a e^{-\xi_{\alpha,\nu}/z} B^-(1-z;b,c) \dd z 
+	&=\int_0^1 z^a e^{-\xi_{\alpha,\nu}/z} \int_0^{1-z} t^{b-1} (1-t)^{c-1} \dd t \dd z \\
+	&=\int_0^1 z^a e^{-\xi_{\alpha,\nu}/z} \int_z^1 s^{c-1} (1-s)^{b-1} \dd s \dd z
 \end{align*}
-Then changing the order of integration and using the substitution $u = \xi/z$  and recognizing the upper incomplete $\Gamma$-function yields
+Then changing the order of integration and using the substitution $u = \xi_{\alpha,\nu}/z$  and recognizing the upper incomplete $\Gamma$-function yields
 \begin{align*}
-&=\int_0^1 \int_0^s z^a e^{-\xi/z} dz s^{c-1} (1-s)^{b-1} ds \\
-&=\int_0^1 \int_{\xi/s}^\infty \xi^{a+1} u^{-a-2} e^{-u} du s^{c-1} (1-s)^{b-1} ds \\
-&= \xi^{a+1} \int_0^1 \Gamma^+(-a-1,\xi/s) s^{c-1} (1-s)^{b-1} ds
+	&\hspace{-30pt}\int_0^1 z^a e^{-\xi_{\alpha,\nu}/z} \int_z^1 s^{c-1} (1-s)^{b-1} \dd s \dd z\\
+	&=\int_0^1 \int_0^s z^a e^{-\xi_{\alpha,\nu}/z} \dd z \, s^{c-1} (1-s)^{b-1} \dd s \\
+	&=\int_0^1 \int_{\xi_{\alpha,\nu}/s}^\infty \xi_{\alpha,\nu}^{a+1} u^{-a-2} e^{-u} \dd u \, s^{c-1} (1-s)^{b-1} \dd s \\
+	&= \xi_{\alpha,\nu}^{a+1} \int_0^1 \Gamma^+(-a-1,\xi_{\alpha,\nu}/s) s^{c-1} (1-s)^{b-1} \dd s.
+		\numberthis \label{eq:integral_gamma_function}
 \end{align*}
-Now, the incomplete $\Gamma$-function has a representation in terms of Meijer's $G$-function $$\Gamma^+(-a-1,\xi/s) = \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}}$$ which holds for any $a\in \R$ and $s>0$ (see appendix; note that for a fixed second argument, the upper incomplete $\Gamma$-function is entire in the first argument, see \cite[pp. 899, 1032ff.]{gradshteyn2015table}).  Therefore, we get the integral
-
+To compute this last integral we make use of the fact that the incomplete $\Gamma$-function has a representation in terms of Meijer's $G$-function (see Lemma~\ref{lem:gamma_meijer_G} in Appendix~\ref{sec:Meijer_G_functions})
+\[
+	\Gamma^+(-a-1,\xi_{\alpha,\nu}/s) = \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi_{\alpha,\nu}}{s}},
+\] 
+which holds for any $a\in \R$ and $s>0$ (that for a fixed second argument, the upper incomplete $\Gamma$-function is entire in the first argument, see \cite[pp. 899, 1032ff.]{gradshteyn2015table}). \PvdH{@Markus:What does entire mean?}  
+We can now evaluate the integral in~\eqref{eq:integral_gamma_function} using several identities for Meijer's $G$-function. 
 %formula 8.351.3, p. 
  %(see the wolfram functions website \url{http://functions.wolfram.com/06.06.26.0005.01}, it can also be found in the paper \url{https://arxiv.org/pdf/1507.05571}; , so we get the integral
+First, inserting the expression for the incomplete Gamma-function into~\eqref{eq:integral_gamma_function} gives
 \begin{align*}
-= \xi^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}}ds
+	\xi_{\alpha,\nu}^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi_{\alpha,\nu}}{s}} \dd s
 \end{align*}
-applying the inversion identity for Meijer's $G$-function (see \cite[p. 209, 5.3.1.(9))]{erdelyi1953higher})
+Next we apply the inversion identity for Meijer's $G$-function (see \cite[p. 209, 5.3.1.(9))]{erdelyi1953higher}) to get
 \begin{align*}
-=\xi^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerG{0}{2}{2}{1}{2+a,1}{0}{\frac{s}{\xi}}ds
+	\xi_{\alpha,\nu}^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerG{0}{2}{2}{1}{2+a,1}{0}{\frac{s}{\xi_{\alpha,\nu}}} \dd s
 \end{align*}
-This is the Euler transform of Meijer's $G$-function (see \cite[p. 214, 5.5.2.(5)]{erdelyi1953higher}) and (as the conditions $2+1<2(0+2)$ and $|\arg(\xi^{-1})| < \frac{\pi}{2}$ (as $\xi>0$) and $1-c-b<1-c$ (as $b>0$)  are satisfied) equals
+This expression is actually the Euler transform of Meijer's $G$-function (see \cite[p. 214, 5.5.2.(5)]{erdelyi1953higher}) and (as the conditions $2+1<2(0+2)$ and $|\arg(\xi_{\alpha,\nu}^{-1})| < \frac{\pi}{2}$ (as $\xi_{\alpha,\nu}>0$) and $1-c-b<1-c$ (as $b>0$)  are satisfied) it equals
 \begin{align*}
-=\xi^{a+1} \Gamma(b) \MeijerG{0}{3}{3}{2}{1-c,2+a,1}{0,1-c-b}{\xi^{-1}}
+	\xi_{\alpha,\nu}^{a+1} \Gamma(b) \MeijerG{0}{3}{3}{2}{1-c,2+a,1}{0,1-c-b}{\xi_{\alpha,\nu}^{-1}}
 \end{align*}
-Using again the inversion identity for Meijer's $G$-function
+Using again the inversion identity for Meijer's $G$-function we now get
 \begin{align*}
-=\xi^{a+1} \Gamma(b) \MeijerG{3}{0}{2}{3}{1,b+c}{c,-1-a,0}{\xi}
+	\xi_{\alpha,\nu}^{a+1} \Gamma(b) \MeijerG{3}{0}{2}{3}{1,b+c}{c,-1-a,0}{\xi_{\alpha,\nu}}
 \end{align*}
-Plugging in $a= 6\alpha-k-3$, $b=2\alpha$, $c=3-4\alpha$ results in
-\begin{align*}
-=\xi^{6a-k-2} \Gamma(2\alpha) \MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}
-\end{align*}
+Finally, plugging in $a= 6\alpha-k-3$, $b=2\alpha$, $c=3-4\alpha$ we obtain
+\begin{equation}\label{eq:integral_Delta_P_Beta}
+	\int_0^1 z^a e^{-\xi_{\alpha,\nu}/z} B^-(1-z;b,c) \dd z =
+	\xi_{\alpha,\nu}^{6a-k-2} \Gamma(2\alpha) \MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi_{\alpha,\nu}}
+\end{equation}
 %(note that this agrees with the result in the old approach, after `bringing the power of $\xi$ into Meijer's $G$-function'.)
 
 
-This allows us to write:
+Using equation~\eqref{eq:integral_Delta_P_z}, \eqref{eq:integral_Delta_P_1_z} and~\eqref{eq:integral_Delta_P_Beta} we get
 \begin{align*}
-I^{(k)}&=\frac{\xi^{2\alpha}}{4k!(\alpha-1)} \left( -\Gamma^+(k - 2 \alpha, \xi) - 2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+(k - 2 \alpha - 2, \xi)}{(\alpha - 1)} \right. \\ 
-&\left.+ 8 \alpha (\alpha - 1/2) \xi \Gamma^+(k - 2 \alpha - 1,\xi) \right.\\ 
-&\left.+ 4\xi^{4\alpha - 2} \Gamma^+(k - 6 \alpha + 2, 
-      \xi) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
-&\left.+ \xi^{k-2\alpha} \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi) \right. \\ 
-&\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right)
+	I^{(k)}
+	&=\frac{\xi_{\alpha,\nu}^{2\alpha}}{4k!(\alpha-1)} \left( -\Gamma^+(k - 2 \alpha, \xi_{\alpha,\nu}) 
+		- 2\frac{\alpha (\alpha - 1/2)^2 \xi_{\alpha,\nu}^{2} \Gamma^+(k - 2 \alpha - 2, \xi_{\alpha,\nu})}{(\alpha - 1)} \right. \\ 
+	&\hspace{15pt}\left.+ 8 \alpha (\alpha - 1/2) \xi_{\alpha,\nu} \Gamma^+(k - 2 \alpha - 1,\xi_{\alpha,\nu}) \right.\\ 
+	&\hspace{15pt}\left.+ 4\xi_{\alpha,\nu}^{4\alpha - 2} 
+		\Gamma^+(k - 6 \alpha + 2, \xi_{\alpha,\nu}) \left( 
+		\frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
+	&\hspace{15pt}\left.+ \xi_{\alpha,\nu}^{k-2\alpha} \Gamma(2\alpha+1)e^{-\xi_{\alpha,\nu}} 	
+		U(2\alpha+1,1+k-2\alpha,\xi_{\alpha,\nu}) \right. \\ 
+	&\hspace{15pt}\left.- \xi_{\alpha,\nu}^{4\alpha-2} 
+		\Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi_{\alpha,\nu}}  \right)\\
 \end{align*}%{4\alpha-k+1,6\alpha-k-1}{6\alpha-k-2,2\alpha-k+1,0}
 
-
-Finally, we compute 
+With the expressions for $J$ and $I^{(k)}$ and using $\Gamma^\ast(q,z) = \Gamma^+(q+1,z) + \Gamma^+(q,z)$ we now obtain, after some algebra, the expression for $c_\Pcal$
 \begin{align*}
-p_k := \Pee( D=k ) = \int_0^\infty e^{-\xi e^{y/2}} \frac{(\xi e^{y/2})^k}{k!}\alpha e^{-\alpha y} dy = 2\alpha \int_0^1 e^{-\frac{\xi}{z}} z^{2\alpha -k-1} dz =\frac{2\alpha \xi^{2\alpha}}{k!} \Gamma(k-2\alpha,\xi)
-\end{align*}
-%and thus
-%\begin{align*}
-%\GR{p_{\geq 2}} := \Pee( D \geq 2 ) = 1-2\alpha\xi^{2\alpha}(\Gamma(-2\alpha,\xi)-\Gamma(1-2\alpha,\xi))
-%\end{align*}
-and we can write down the average clustering coefficient
-
-\begin{align*}
-c &= J-I^{(0)}-I^{(1)} \\
-&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 + 
+	c_\Pcal &= J-I^{(0)}-I^{(1)} \\
+	&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 + 
 	24 \alpha^5}{16(\alpha-1)^2 \alpha (\alpha+1) (2\alpha+1)} +  \frac{2^{-1 - 
 		4 \alpha}}{(\alpha - 1)^2} \\
-	&\qquad+ \frac{(\alpha - 1/2) (B(2 \alpha, 2 \alpha + 1) + 
+	&\hspace{10pt}+ \frac{(\alpha - 1/2) (B(2 \alpha, 2 \alpha + 1) + 
 	B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha))}{2 (\alpha - 1) (3 \alpha - 1)} \\
-	&\qquad-\frac{\xi^{2\alpha}}{4(\alpha-1)} \left( -\Gamma^+( - 2 \alpha, \xi) - 2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+(- 2 \alpha - 2, \xi)}{(\alpha - 1)} \right. \\ 
-&\qquad\qquad\left.+ 8 \alpha (\alpha - 1/2) \xi \Gamma^+( - 2 \alpha - 1,\xi) \right.\\ 
-&\qquad\qquad\left.+ 4\xi^{4\alpha - 2} \Gamma^+( - 6 \alpha + 2, 
-      \xi) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
-&\qquad\qquad\left.+ \xi^{-2\alpha} \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1-2\alpha,\xi) \right. \\ 
-&\qquad\qquad\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+2,0}{\xi}  \right) \\
-&\qquad-\frac{\xi^{2\alpha}}{4(\alpha-1)} \left( -\Gamma^+(1 - 2 \alpha, \xi) - 2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+( - 2 \alpha - 1, \xi)}{(\alpha - 1)} \right. \\ 
-&\qquad\qquad\left.+ 8 \alpha (\alpha - 1/2) \xi \Gamma^+(1 - 2 \alpha - 1,\xi) \right.\\ 
-&\qquad\qquad\left.+ 4\xi^{4\alpha - 2} \Gamma^+(1 - 6 \alpha + 2, 
-      \xi) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
-&\qquad\qquad\left.+ \xi^{1-2\alpha} \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,2-2\alpha,\xi) \right. \\ 
-&\qquad\qquad\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+3,0}{\xi}  \right)
+	&\hspace{10pt}-\frac{\xi_{\alpha,\nu}^{2\alpha}}{4(\alpha-1)} \left( -\Gamma^+( - 2 \alpha, \xi_{\alpha,\nu}) - 2\frac{\alpha (\alpha - 1/2)^2 \xi_{\alpha,\nu}^{2} \Gamma^+(- 2 \alpha - 2, \xi_{\alpha,\nu})}{(\alpha - 1)} \right. \\ 
+	&\hspace{10pt}\hspace{10pt}\left.+ 8 \alpha (\alpha - 1/2) \xi_{\alpha,\nu} \Gamma^+( - 2 \alpha - 1,\xi_{\alpha,\nu}) \right.\\ 
+	&\hspace{10pt}\hspace{10pt}\left.+ 4\xi_{\alpha,\nu}^{4\alpha - 2} \Gamma^+( - 6 \alpha + 2, 
+      \xi_{\alpha,\nu}) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
+	&\hspace{10pt}\hspace{10pt}\left.+ \xi_{\alpha,\nu}^{-2\alpha} \Gamma(2\alpha+1)e^{-\xi_{\alpha,\nu}} 
+		U(2\alpha+1,1-2\alpha,\xi_{\alpha,\nu}) \right. \\ 
+	&\hspace{10pt}\hspace{10pt}\left.- \xi_{\alpha,\nu}^{4\alpha-2} 
+		\Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+2,0}{\xi_{\alpha,\nu}}  \right) \\
+	&\hspace{10pt}-\frac{\xi_{\alpha,\nu}^{2\alpha}}{4(\alpha-1)} \left( -\Gamma^+(1 - 2 \alpha, \xi_{\alpha,\nu}) - 
+		2\frac{\alpha (\alpha - 1/2)^2 \xi_{\alpha,\nu}^{2} \Gamma^+( - 2 \alpha - 1, \xi_{\alpha,\nu})}{(\alpha - 1)} \right. \\ 
+	&\hspace{10pt}\hspace{10pt}\left.+ 8 \alpha (\alpha - 1/2) \xi_{\alpha,\nu} \Gamma^+(1 - 2 \alpha - 1,\xi_{\alpha,\nu}) 
+		\right.\\ 
+	&\hspace{10pt}\hspace{10pt}\left.+ 4\xi_{\alpha,\nu}^{4\alpha - 2} \Gamma^+(1 - 6 \alpha + 2, 
+    	\xi_{\alpha,\nu}) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
+	&\hspace{10pt}\hspace{10pt}\left.+ \xi_{\alpha,\nu}^{1-2\alpha} \Gamma(2\alpha+1)e^{-\xi_{\alpha,\nu}} 
+		U(2\alpha+1,2-2\alpha,\xi_{\alpha,\nu}) \right. \\ 
+	&\hspace{10pt}\hspace{10pt}\left.- \xi_{\alpha,\nu}^{4\alpha-2} 
+		\Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+3,0}{\xi_{\alpha,\nu}}  \right)\\
+	&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 + 24 \alpha^5}
+		{16(\alpha-1)^2 \alpha (\alpha+1) (2\alpha+1)} 
+		+  \frac{2^{-1 - 4 \alpha}}{(\alpha - 1)^2} \\
+	&\hspace{10pt}+ \frac{(\alpha - 1/2) (B(2 \alpha, 2 \alpha + 1) + B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha))}
+		{2 (\alpha - 1) (3 \alpha - 1)} \\
+	&\hspace{10pt}+ \frac{\xi_{\alpha,\nu}^{2\alpha} \Gamma^\ast( - 2 \alpha, \xi_{\alpha,\nu})}{4(\alpha-1)}
+		+ \frac{\xi_{\alpha,\nu}^{2\alpha + 2}\alpha (\alpha - 1/2)^2 \Gamma^\ast(- 2 \alpha - 2, \xi_{\alpha,\nu})}
+		{2(\alpha-1)^2} \\
+	&\hspace{10pt}- \frac{\xi_{\alpha,\nu}^{2\alpha + 1}\alpha (2\alpha - 1) \Gamma^\ast( - 2 \alpha - 1,\xi_{\alpha,\nu})}{(\alpha-1)}
+		- \frac{\xi_{\alpha,\nu}^{6\alpha-2}2^{-4\alpha}(3\alpha - 1)\Gamma^\ast( - 6 \alpha + 2, \xi_{\alpha,\nu})}{(\alpha-1)^2}\\
+	&\hspace{10pt}-\frac{\xi_{\alpha,\nu}^{6\alpha - 2}(\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)\Gamma^\ast( - 6 \alpha + 2, \xi_{\alpha,\nu})}{(\alpha-1)} \\
+	&\hspace{10pt}- \frac{e^{-\xi_{\alpha,\nu}} \Gamma(2\alpha+1) 
+		\left(U(2\alpha+1,1-2\alpha,\xi_{\alpha,\nu}) + U(2\alpha+1,2-2\alpha,\xi_{\alpha,\nu})\right)}{4(\alpha-1)} \\
+	&\hspace{10pt}+ \frac{\xi_{\alpha,\nu}^{6\alpha - 2} \Gamma(2\alpha+1)\left( 	
+		\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+2,0}{\xi_{\alpha,\nu}}
+		+ \MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+3,0}{\xi_{\alpha,\nu}}\right)}{4(\alpha-1)}.
 \end{align*}
+and note that this equals $c_\infty$ in Theorem~\ref{thm:clustering_coefficient_hyperbolic} when $\alpha \ne 1$.
 
+Similarly, we get
+\begin{align*}
+	c_\Pcal(k) &= \frac{I^{(k)}}{\rho(k)} \\
+	&=\frac{1}{8\alpha (\alpha-1)\Gamma^+(k-2\alpha,\xi)} \left( -\Gamma^+(k - 2 \alpha, \xi) 
+		- 2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+(k - 2 \alpha - 2, \xi)}{(\alpha - 1)} \right. \\ 
+	&\hspace{10pt}\left.+ 8 \alpha (\alpha - 1/2) \xi \Gamma^+(k - 2 \alpha - 1,\xi) \right.\\ 
+	&\hspace{10pt}\left.+ 4\xi^{4\alpha - 2} \Gamma^+(k - 6 \alpha + 2, 
+      \xi) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
+	&\hspace{10pt}\left.+ \xi^{k-2\alpha} \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi) \right. \\ 
+	&\hspace{10pt}\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right),
+\end{align*}
+which equals $c_\infty(k)$ in Theorem~\ref{thm:local_clustering_hyperbolic} when $\alpha \ne 1$.
+
+Finally, to determine the value of $c_\Pcal$ and $c_\Pcal(k)$ for $\alpha=1$, it suffices to find the value of $J$ and $I^{(k)}$ at $\alpha = 1$. We can do this by computing the integrals with the expression for $\Delta_\Pcal(y)$ that we found for $\alpha=1$, i.e.
+\begin{align*}
+	J &= 2\alpha\int_0^1 \left(\frac{9}{4} z + \frac{1 - 4 z + 3 z^2}{4}\ln(1 - z) - \frac{7+\pi^2}{8}
+		z^2  + \frac{1}{2}z^2 \Li_2(z)\right) z^{2\alpha -1} \dd z \\
+	&=\frac{575-12\pi^2}{576}
+\end{align*}
 and 
 \begin{align*}
-c(k) = \frac{I^{(k)}}{p_k} &=\frac{1}{8\alpha (\alpha-1)\Gamma^+(k-2\alpha,\xi)} \left( -\Gamma^+(k - 2 \alpha, \xi) - 2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+(k - 2 \alpha - 2, \xi)}{(\alpha - 1)} \right. \\ 
-&\left.+ 8 \alpha (\alpha - 1/2) \xi \Gamma^+(k - 2 \alpha - 1,\xi) \right.\\ 
-&\left.+ 4\xi^{4\alpha - 2} \Gamma^+(k - 6 \alpha + 2, 
-      \xi) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
-&\left.+ \xi^{k-2\alpha} \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi) \right. \\ 
-&\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right)
+	I^{(k)} &= \frac{2\alpha \xi_{\alpha,\nu}^k}{k!}\int_0^1 \left(\frac{9}{4} z + \frac{1 - 4 z + 3 z^2}{4}\ln(1 - z) 
+		- \frac{7+\pi^2}{8}	z^2  + \frac{1}{2}z^2 \Li_2(z) \right)z^{2\alpha-k-1} e^{-\xi_{\alpha,\nu}/z} \dd z \\
+	&= \frac{2 \eta^k}{k!}\int_0^1 \left(\frac{9}{4} z + \frac{1 - 4 z + 3 z^2}{4}\ln(1 - z) 
+		- \frac{7+\pi^2}{8} z^2  + \frac{1}{2}z^2 \Li_2(z) \right)z^{1-k} e^{-\eta/z} \dd z \\
+	&= \frac{9 \eta^k}{2 k!}\eta^{3-k}\Gamma^+(k-3,\eta)-\frac{\eta^k}{k!}\frac{7+\pi^2}{4}\eta^{4-k}\Gamma^+(k-4,\eta)\\
+	&\hspace{10pt}+ \frac{\eta^k}{2k!}\int_0^1 (1-4z+3z^2)\ln(1-z)z^{1-k}e^{-\eta/z}dz+\frac{\eta^k}{k!}\int_0^1 z^{3-k} 
+		\Li_2(z) e^{-\eta/z} \dd z \\
+	&=\frac{9 \eta^3}{2 k!}\Gamma^+(k-3,\eta)-\frac{\eta^4}{k!}\frac{7+\pi^2}{4}\Gamma^+(k-4,\eta)\\
+	&\hspace{10pt}+ \frac{\eta^k}{2k!}\int_0^1 (1-4z+3z^2)\ln(1-z)z^{1-k}e^{-\eta/z}dz+\frac{\eta^k}{k!}\int_0^1 z^{3-k} 
+		\Li_2(z) e^{-\eta/z} \dd z
 \end{align*}
-
-To determine the value of $c$ and $c(k)$ for $\alpha=1$, it suffices to find the value of $J$ and $I^{(k)}$ at $\alpha = 1$. 
-We can do this by computing those integrals with the expression for $P(y_0)$ that we found for $\alpha=1$, i.e.
-\begin{align*}
-J &= 2\alpha\int_0^1 \left(\frac{9}{4} z_0 + \frac{1 - 4 z_0 + 3 z_0^2}{4}\ln(1 - z_0) - \frac{7+\pi^2}{8}
-z_0^2  + 
-\frac{1}{2}z_0^2 \Li_2(z)\right) z_0^{2\alpha -1} dz_0 \\
-&=\frac{575-12\pi^2}{576}
-\end{align*}
-and 
-\begin{align*}
-I^{(k)} &= \frac{2\alpha \xi^k}{k!}\int_0^1 \left(\frac{9}{4} z_0 + \frac{1 - 4 z_0 + 3 z_0^2}{4}\ln(1 - z_0) - \frac{7+\pi^2}{8}
-z_0^2  + 
-\frac{1}{2}z_0^2 \Li_2(z) \right)z_0^{2\alpha-k-1} e^{-\xi/z_0} dz_0 \\
-&= \frac{2 \eta^k}{k!}\int_0^1 \left(\frac{9}{4} z_0 + \frac{1 - 4 z_0 + 3 z_0^2}{4}\ln(1 - z_0) - \frac{7+\pi^2}{8}
-z_0^2  + 
-\frac{1}{2}z_0^2 \Li_2(z) \right)z_0^{1-k} e^{-\eta/z_0} dz_0 \\
-&= \frac{9 \eta^k}{2 k!}\eta^{3-k}\Gamma^+(k-3,\eta)-\frac{\eta^k}{k!}\frac{7+\pi^2}{4}\eta^{4-k}\Gamma^+(k-4,\eta)\\
-&+\frac{\eta^k}{2k!}\int_0^1 (1-4z_0+3z_0^2)\ln(1-z_0)z_0^{1-k}e^{-\eta/z_0}dz_0+\frac{\eta^k}{k!}\int_0^1 z_0^{3-k} \Li_2(z) e^{-\eta/z_0}dz_0 \\
-&=\frac{9 \eta^3}{2 k!}\Gamma^+(k-3,\eta)-\frac{\eta^4}{k!}\frac{7+\pi^2}{4}\Gamma^+(k-4,\eta)\\
-&+\frac{\eta^k}{2k!}\int_0^1 (1-4z_0+3z_0^2)\ln(1-z_0)z_0^{1-k}e^{-\eta/z_0}dz_0+\frac{\eta^k}{k!}\int_0^1 z_0^{3-k} \Li_2(z) e^{-\eta/z_0}dz_0
-\end{align*}
-where $\eta = \frac{4\nu}{\pi}$.
+where $\eta = \frac{4\nu}{\pi}$ and and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm function. Plugging this into the definitions for $c_\Pcal$ and $c_\Pcal(k)$ yields the expressions $c_\infty$ in Theorem~\ref{thm:clustering_coefficient_hyperbolic} and $c_{\infty}(k)$ in Theorem~\ref{thm:local_clustering_hyperbolic}, respectively.
 

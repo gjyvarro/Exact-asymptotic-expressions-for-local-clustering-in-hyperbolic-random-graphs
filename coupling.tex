@@ -1,4 +1,4 @@
-\section{Equivalence for local clustering in hyperbolic and Poissonized random graph}
+\section{Equivalence for local clustering in hyperbolic and Poissonized random graph}\label{sec:coupling_H_P_n}
 
 In this section we establish the equivalence between $c_{\H,n}^\ast(k)$ and $c_{\Pcal,n}^\ast(k)$ as expressed in Proposition~\ref{prop:couling_c_H_P}, using the coupling procedure explained in Section~\ref{ssec:coupling_H_P}. 
 
@@ -1677,67 +1677,25 @@ the above term is therefore $o(1)$.
 
 \subsection{Coupling $G_{\H,n}$ to $G_{\widetilde{\H},n}$}\label{ssec:coupling_H_HP}
 
-The main result of this section is the following
-\[
-	\lim_{n \to \infty} s_\alpha(k_n)\Exp{\left|c_{\H,n}(k_n) - c_{\HP,n}^\ast(k_n)\right|} = 0.
-\]
+Now that we have established the equivalence of the local clustering function between the Poisson hyperbolic graph $G_{\HP,n}$ and $G_{\Pcal,n}$ the final step is to relate local clustering in $G_{\HP,n}$ to the original hyperbolic random graph $G_{\H,n}$. As mentioned in Section~\ref{ssec:coupling_H_P} we will first move from $c_{\H,n}(k)$ to the adjusted local clustering $c_{\H,n}^\ast(k)$ by Lemma~\ref{lem:clustering_ast_H} and then to $c_{\HP,n}^\ast(k)$ with Proposition~\ref{prop:clustering_ast_H_Pois}.
 
-We start by proving Lemma~\ref{lem:clustering_ast_H}
+To achieve the results we consider the standard coupling between the binomial and Poisson process. That is, we take a sequence of i.i.d. random elements $z_1, z_2, \dots$ uniformly on the hyperbolic disk of radius $R_n$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the original hyperbolic random graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} \Po(n)$ many points ($N$ is a Poisson random variable with mean $n$). Under this coupling $N_{\H,n}(k) = \sum_{j=1}^n \ind{D_\H(z_j)=k}$ denotes the number of degree $k$ vertices in the original hyperbolic random graph model with $n$ vertices and $N_{\HP,n}(k)=\sum_{j=1}^{N} \ind{D_{\HP}(z_j)=k}$ denotes the number of degree $k$ vertices in the Poisson version of the hyperbolic random graph.
 
-
-\begin{proof}[Proof of Lemma~\ref{lem:clustering_ast_H}]
-Note that by Proposition~\ref{prop:clustering_ast_H_Pois} and Proposition
-Let $0 < \delta < 1$ and define the event
-\begin{align*}
-	A_n &= \left\{\left|N_{\H,n}(k_n) - \Exp{N_{\H,n}(k_n)}\right| \le \Exp{N_{\H,n}(k_n)}^{\frac{1 + \delta}{2}}\right\}.
-	%B_n &= \left\{\left|N_{\H,n}(k_n) - \Exp{N_{\H,n}(k_n)}\right| \le n\right\},
-\end{align*}
-
-Since $N_{\H,n}(k_n) = \sum_{i = 1}^n \ind{D_\H(i) = k_n}$ it follows from Lemma~\ref{lem:general_concentration_sum_indicators}, with $c = \Exp{N_{\H,n}(k_n)}^{-\frac{1-\delta}{2}}$, that
-\begin{equation}\label{eq:clustering_ast_H_prob_A}
-	\Prob{A_n} \ge 1 - \bigO{e^{-\frac{\Exp{N_{\H,n}(k_n)}^\delta}{2}}} = 1 - \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}},
-\end{equation}
-where the last part is due to Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}. 
-
-On the event $A_n$
-\[
-	\left|\frac{\Exp{N_{\H,n}(k_n)}}{N_{\H,n}(k_n)} - 1\right| 
-	\le \frac{\Exp{N_{\H,n}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{\H,n}(k_n)}+\Exp{N_{\H,n}(k_n)}^{\frac{1 + \delta}{2}}}
-	\le \Exp{N_{\H,n}(k_n)}^{-\frac{1 - \delta}{2}}.
-\]
-%while on the event $B_n$
-%\[
-%	\left|\frac{\Exp{N_{\H,n}(k_n)}}{N_{\H,n}(k_n)} - 1\right| 
-%	\le \frac{n}{\Exp{N_{\H,n}(k_n)} + n} \le 1.
-%\]
-
-Therefore we have
-\begin{align*}
-	\Exp{\left|c_{\H, n}^\ast(k_n) - c_{\H, n}(k_n)\right|}
-	&\le \Exp{\left|c_{\H, n}^\ast(k_n) - c_{\H, n}(k_n)\right|\ind{A_n}} + \bigO{1 - \Prob{A_n}}\\
-	&= \Exp{c_{\H, n}^\ast(k_n)\left|\frac{\Exp{N_{\H,n}(k_n)}}{N_{\H,n}(k_n)} - 1\right|\ind{A_n}}
-		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}\\
-	&\le \Exp{c_{\H, n}^\ast(k_n)}\Exp{N_{\H,n}(k_n)}^{-\frac{1 - \delta}{2}} 
-		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}.
-\end{align*}
-Since $\Exp{N_{\H,n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}} \to \infty$, the first term is clearly $\smallO{\Exp{c_{\H, n}^\ast(k_n)}}$. This term is $\smallO{s_\alpha(k_n)}$ finishes the proof. 
-\end{proof}
-
-Next we shall prove Proposition~\ref{prop:couling_c_H_P}. First note that by combining Proposition~\ref{prop:convergence_average_clustering_P_n} and Proposition~\ref{prop:asymptotics_average_clustering_ast_P} we have that
-\begin{equation}
-	\Exp{c_{\Pcal,n}^\ast(k_n)} = \bigT{s_\alpha(k_n)}
-\end{equation}
-
-To achieve the results we consider the standard coupling between the binomial and Poisson process. That is, we take a sequence of i.i.d. random elements $z_1, z_2, \dots$ uniformly on the hyperbolic disk of radius $R_n$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the original hyperbolic random graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} Po(n)$ many points ($N$ is a Poisson random variable with mean $n$). Under this coupling $N_{\H,n}(k) = \sum_{j=1}^n \ind{D_\H(z_j)=k}$ denotes the number of degree $k$ vertices in the original Hyperbolic random graph model with $n$ vertices and $N_{\HP,n}(k)=\sum_{j=1}^{N} \ind{D_{\HP}(z_j)=k}$ denotes the number of degree $k$ vertices in the Poisson version of the Hyperbolic random graph.
+We start with a result that relates the number of nodes with degree $k_n$ in both models. 
 
 \begin{lemma}\label{lem:diff_Nk_hyperbolic_binomial_poisson}
 Let $\{k_n\}_{n \ge 1}$ be sequence of natural numbers with $0 \leq k_n \leq n-1$ and $k_n = o(n^{\frac{1}{2\alpha+1}})$. Then
 \[
-	\Exp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|} = \smallO{\Exp{N_{\HP,n}(k_n)}} = \smallO{n k^{-(2\alpha+1)}}.
+	\Exp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|} = \smallO{\Exp{N_{\HP,n}(k_n)}} = \smallO{n k^{-(2\alpha+1)}},
 \]
-
+and in particular
+\[
+	\Exp{N_{\H,n}(k_n)} = \bigT{k_n^{-(2\alpha + 1)} n}.
+\]
 \end{lemma}
 \begin{proof}
+The second result follows directly from the first and Lemma~\ref{lem:N_k_HP_P}. Therefore we will only need to prove the first statement of the lemma.
+
 We use the Chernoff concentration result for a Poisson random~\eqref{eq:def_chernoff_bound_poisson}, with probability $n^{-c^2/2}$ the Poisson random variable $N$ with expectation $n$ is contained in the interval $[n-c\sqrt{n\log n},n+c\sqrt{n \log n}]$. We proceed by bounding the effect on the number of degree $k_n$ vertices of adding or removing $c\sqrt{n\log n}$ many vertices to $G_{\H,n}(\alpha,\nu$ and from $G_{\HP,n}(\alpha,\nu)$, respectively.
 
 Define the events
@@ -1801,24 +1759,68 @@ A vertex $z \in V_{\H,n}(k_n) \backslash V_{\HP,n}(k_n)$ could be one of the add
 which finishes the proof.
 \end{proof}
 
-\begin{proposition}
+Note that this result together with Lemma~\ref{lem:N_k_HP_P} implies Lemma~\ref{lem:N_k_H_P}.
+
+Next we prove Proposition~\ref{prop:clustering_ast_H_Pois}, which states
 \[
 	\lim_{n \to \infty} s_\alpha(k_n)\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\HP,n}^\ast(k_n)\right|} = 0.
 \]
-\end{proposition}
 
-\begin{proof}
-\PvdH{Proof taken from Markus notes (slightly edited). Should probably be improved.}
-We are looking at the modified clustering coefficient, where we divide by the expected number of degree $k_n$ vertices. As the expected numbers of degree $k_n$ vertices in the Poisson and binomial graph are asymptotically equivalent, it is therefore sufficient to consider the sum of the clustering coefficients of all vertices of degree $k$.
-Given again the standard coupling between the binomial and Poisson process, we denote by $V_{\H,n}(k_n)$ the set of degree $k_n$ vertices in the binomial graph and by $V_{\HP,n}(k_n)$ the set of degree $k_n$ vertices in the Poisson graph. If a vertex is contained in both sets, it must have the same degree in both the Poisson and binomial graph, and given the nature of the coupling, the neighbourhoods are therefore the same and hence also their clustering coefficients agree.
+\begin{proof}[Proof of Proposition~\ref{prop:clustering_ast_H_Pois}]
+We are looking at the modified clustering coefficient, where we divide by the expected number of degree $k_n$ vertices. As the expected numbers of degree $k_n$ vertices in $G_{\HP,n}$ and $G_{\H,n}$ are asymptotically equivalent (see Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}), it is therefore sufficient to consider the sum of the clustering coefficients of all vertices of degree $k_n$.
+Given again the standard coupling between the binomial and Poisson process (as used in the proof of Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}), we denote by $V_{\H,n}(k_n)$ the set of degree $k_n$ vertices in $G_{\H,n}$ and by $V_{\HP,n}(k_n)$ the set of degree $k_n$ vertices in the graph $G_{\HP,n}$. If a vertex is contained in both sets, it must have the same degree in both the Poisson and binomial graph, and given the nature of the coupling, the neighbourhoods are therefore the same and hence also their clustering coefficients agree.
 
-The difference of the sum of the clustering coefficients therefore comes from all the clustering coefficients of the symmetric difference $V_{\H,n}(k_n) \Delta V_{\HP,n}(k_n)$. This symmetric difference is again a Poisson process, whose expected number of points is $\E | N_k^{(n)}-N_k^{(Po(n))}| = o(\E N_k^{(Po(n))})$. Using the Palm-Mecke formula, we have that
+The difference of the sum of the clustering coefficients therefore comes from all the clustering coefficients of the symmetric difference $V_{\H,n}(k_n) \Delta V_{\HP,n}(k_n)$. This symmetric difference is again a Poisson process, whose expected number of points is $\Exp{\left|N_{\H,n}(k_n) - N_{\HP,n}(k_n)\right|} = \smallO{\Exp{N_{\H,n}(k_n)}}$ by Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}. Therefore we have that
 \begin{align*}
 	\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\HP,n}^\ast(k_n)\right|}
-	&\le \frac{\Exp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|}}{\expH} \Exp{c_{\H,n}^\ast(k_n)}
-	= \smallO{1}\Exp{c_{\H,n}^\ast(k_n)},
+	&\le \frac{\Exp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|}}{\Exp{N_{\H,n}(k_n)}} \Exp{c_{\HP,n}^\ast(k_n)}
+	= \smallO{1}\Exp{c_{\HP,n}^\ast(k_n)}.
 \end{align*}
-where the last line follows from Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}. The result now follows by applying Proposition~\ref{prop:couling_c_H_P}, \ref{prop:convergence_average_clustering_P_n} and Proposition~\ref{prop:asymptotics_average_clustering_ast_P}.
+The result now follows by applying in sequence Proposition~\ref{prop:couling_c_H_P}, \ref{prop:concentration_local_clustering_P_n}, Proposition~\ref{prop:convergence_average_clustering_P_n} and finally Theorem~\ref{thm:asymptotics_average_clustering_P}.
 \end{proof}
+
+We end this section with the proof of Lemma~\ref{lem:clustering_ast_H}, whose statement is
+\[
+	\Exp{\left|c_{\H, n}^\ast(k_n) - c_{\H, n}(k_n)\right|} = \smallO{s_\alpha(k_n)}.
+\]
+
+\begin{proof}[Proof of Lemma~\ref{lem:clustering_ast_H}]
+Let $0 < \delta < 1$ and define the event
+\begin{align*}
+	A_n &= \left\{\left|N_{\H,n}(k_n) - \Exp{N_{\H,n}(k_n)}\right| \le \Exp{N_{\H,n}(k_n)}^{\frac{1 + \delta}{2}}\right\}.
+	%B_n &= \left\{\left|N_{\H,n}(k_n) - \Exp{N_{\H,n}(k_n)}\right| \le n\right\},
+\end{align*}
+
+Since $N_{\H,n}(k_n) = \sum_{i = 1}^n \ind{D_\H(i) = k_n}$ it follows from Lemma~\ref{lem:general_concentration_sum_indicators}, with $c = \Exp{N_{\H,n}(k_n)}^{-\frac{1-\delta}{2}}$, that
+\begin{equation}\label{eq:clustering_ast_H_prob_A}
+	\Prob{A_n} \ge 1 - \bigO{e^{-\frac{\Exp{N_{\H,n}(k_n)}^\delta}{2}}} = 1 - \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}},
+\end{equation}
+where the last part is due to Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}. 
+
+On the event $A_n$
+\[
+	\left|\frac{\Exp{N_{\H,n}(k_n)}}{N_{\H,n}(k_n)} - 1\right| 
+	\le \frac{\Exp{N_{\H,n}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{\H,n}(k_n)}+\Exp{N_{\H,n}(k_n)}^{\frac{1 + \delta}{2}}}
+	\le \Exp{N_{\H,n}(k_n)}^{-\frac{1 - \delta}{2}}.
+\]
+
+Therefore we have
+\begin{align*}
+	\Exp{\left|c_{\H, n}^\ast(k_n) - c_{\H, n}(k_n)\right|}
+	&\le \Exp{\left|c_{\H, n}^\ast(k_n) - c_{\H, n}(k_n)\right|\ind{A_n}} + \bigO{1 - \Prob{A_n}}\\
+	&= \Exp{c_{\H, n}^\ast(k_n)\left|\frac{\Exp{N_{\H,n}(k_n)}}{N_{\H,n}(k_n)} - 1\right|\ind{A_n}}
+		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}\\
+	&\le \Exp{c_{\H, n}^\ast(k_n)}\Exp{N_{\H,n}(k_n)}^{-\frac{1 - \delta}{2}} 
+		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}.
+\end{align*}
+The second term is clearly $\smallO{s_\alpha(k_n)}$. The first term is clearly $\smallO{\Exp{c_{\H, n}^\ast(k_n)}}$ which is $\smallO{s_\alpha(k_n)}$ by Proposition~\ref{prop:clustering_ast_H_Pois}. 
+\end{proof}
+
+
+
+
+
+
+
 
 
