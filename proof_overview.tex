@@ -426,7 +426,7 @@ with
 \]
 which is the probability that two randomly sampled points in $\BallPo{(0,y)}$ form a triangle with $(0,y)$.
 
-Finally, we note that the height $y$ of a randomly sampled point has the exponential density $\alpha e^{-\alpha y}$. \PvdH{Could someone add an intuition or better explanation why this is the case.} 
+Finally, we note that the height $y$ of a randomly sampled point has the exponential density $\alpha e^{-\alpha y}$: the distribution function of the radial coordinate of a vertex sampled in the disk is $\frac{\cosh(\alpha  r)-1}{\cosh(\alpha R)-1}$ which is asymptotically equivalent to $e^{\alpha(r-R)} = e^{-\alpha y}$, if $r$ and $R$ are large, resp. tending to infinity and $y=R-r$ and because of the minus sign in front of the $r$, the distribution function in $r$ turns into the complementary distribution function of $y$, from which we recognize the exponential distribution with parameter $\alpha$.%\PvdH{Could someone add an intuition or better explanation why this is the case.} 
 
 With these expressions we define the limiting local clustering coefficient as
 \begin{equation}\label{eq:def_average_clustering_infinite_model}
