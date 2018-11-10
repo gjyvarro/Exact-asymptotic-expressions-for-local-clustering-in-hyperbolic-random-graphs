@@ -632,10 +632,10 @@ In particular, if $\lambda_n \to \infty$, then, for any $0 < \varepsilon < 1$,
 
 \PvdH{The results below still need to be converted to match style and notation.}
 \begin{lemma}\label{lem:Poissonstab}
-Let $k_n$ be a sequence of natural numbers, $\mu_n^{(1)}, \mu_n^{(2)}$ sequences of positive real numbers and $X_n = \mathrm{Po}(\mu_n^{(1)})$ be a Poison random variable with mean $\mu_n^{(1)}$. In addition, Let $h_n = \smallO{\sqrt{\frac{k_n}{\log k_n}}}$, $c > 0$ and assume that $k_n-\mu_n^{(2)} = \mu_n^{(1)}+a_n$ with $a_n \in [-c\sqrt{k_n\log k_n},c\sqrt{k_n\log k_n}]$ and $\mu_n^{(1)}=\Theta(k_n)$. 
+Let $k_n$ be a sequence of natural numbers, $\mu_n^{(1)}, \mu_n^{(2)}$ sequences of positive real numbers and $X_n \sim \mathrm{Po}(\mu_n^{(1)})$ be Poisson random variables with expectation $\mu_n^{(1)}$. In addition, Let $h_n = \smallO{\sqrt{\frac{k_n}{\log k_n}}}$, $c > 0$ and assume that $k_n-\mu_n^{(2)} = \mu_n^{(1)}+a_n$ with $a_n \in [-c\sqrt{k_n\log k_n},c\sqrt{k_n\log k_n}]$ and $\mu_n^{(1)}=\Theta(k_n)$. 
 Then, as $n \to \infty$,
 \[
-	\Prob{X_n = k_n - \mu_n^{(3)}} \sim \Prob{X_n = k_n - \mu_n^{(2)} + h_n}.
+	\Prob{X_n = k_n - \mu_n^{(2)}} \sim \Prob{X_n = k_n - \mu_n^{(2)} + h_n}.
 \]
 \end{lemma}
 \begin{proof}
@@ -664,22 +664,22 @@ Then, as $n \to \infty$,
 \end{lemma}
 \begin{proof}
 Let $C>0$ and $c = \sqrt{C}$.
-From $\lambda_3 \leq k^{1-\epsilon}$ it follows by the Chernov bound for Poisson random variables that $\Pee(|X_3-\lambda_3| \geq c\sqrt{k^{1-\epsilon} \log k}) \leq k^{-c^2} = k^{-C}$. Note that $h:= c\sqrt{k^{1-\epsilon} \log k} = o(\sqrt{\frac{k}{\log k}})$.
+From $\lambda_3 \leq k^{1-\epsilon}$ it follows by the Chernoff bound for Poisson random variables that $\Pee(|X_3-\lambda_3| \geq c\sqrt{k^{1-\epsilon} \log k}) \leq k^{-c^2} = k^{-C}$. Note that $h:= c\sqrt{k^{1-\epsilon} \log k} = o(\sqrt{\frac{k}{\log k}})$.
 
 Conditioning on the value of $X_3$ and then separating the values according to the event $A$ that $X_3 \in [\lambda_3-h,\lambda_3 +h]$ gives
 \begin{align*}
-\Pee( X_1+X_3 = X_2 + X_3 =k) &= \sum_{k_3 \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=X_2=k-k_3)\Pee(X_3=k_3) \\
- \\ &\qquad \qquad+ \sum_{k_3 \not \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=X_2=k-k_3)\Pee(X_3=k_3) \\
-&=\sum_{k_3 \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=k-k_3)\Pee(X_2=k-k_3)\Pee(X_3=k_3) + k^{-C}
+\Pee( X_1+X_3 = X_2 + X_3 =k) &= \sum_{\kappa \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=X_2=k-\kappa)\Pee(X_3=\kappa) \\
+ \\ &\qquad \qquad+ \sum_{\kappa \not \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=X_2=k-\kappa)\Pee(X_3=\kappa) \\
+&=\sum_{\kappa \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=k-\kappa)\Pee(X_2=k-\kappa)\Pee(X_3=\kappa) + k^{-C}
 \end{align*}
-where we have used the independence of $X_1$ and $X_2$ in the last line. Now applying lemma E2 \GR{please replace with proper reference)} and then summarizing all the terms results in
+where we have used the independence of $X_1$ and $X_2$ in the last line. Now applying Lemma~\ref{lem:Poissonstab} (as $k-\kappa = k-\lambda_3+\lambda_3-\kappa$ and $\lambda_3-\kappa \leq h = o(\sqrt{\frac{k}{\log k}})$) and then summarizing all the terms results in
 \begin{align*}
-=\sum_{k_3 \in [\lambda_3-h,\lambda_3+h]} (1+o(1))\Pee(X_1=k-\lambda_3)\Pee(X_2=k-\lambda_3)\Pee(X_3=k_3) +k^{-C} \\
+=\sum_{\kappa \in [\lambda_3-h,\lambda_3+h]} (1+o(1))\Pee(X_1=k-\lambda_3)\Pee(X_2=k-\lambda_3)\Pee(X_3=\kappa) +k^{-C} \\
 = (1+o(1)) \Pee( X_1 =k- \lambda_3 ) \Pee(  X_2 = k-\lambda_3) +k^{-C}
 \end{align*}
 On the other hand, again by conditioning on the event $A$,
 \begin{align*}
-\Pee(X_1+X_3=k) = \sum_{k_3 \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=k-k_3)\Pee(X_3 = k_3)+\Pee(X_1+X_3=k|A^c)\Pee(A^c)\\
+\Pee(X_1+X_3=k) = \sum_{\kappa \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=k-\kappa)\Pee(X_3 = \kappa)+\Pee(X_1+X_3=k|A^c)\Pee(A^c)\\
  = (1+o(1))\Pee(X_1=k- \lambda_3)\Pee(A) +k^{-C} \\
  =(1+o(1))\Pee(X_1=k-\lambda_3)+k^{-C}
 \end{align*}
