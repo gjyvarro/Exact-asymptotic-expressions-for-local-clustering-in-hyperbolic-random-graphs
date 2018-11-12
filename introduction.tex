@@ -115,7 +115,7 @@ We are now ready to state our main results for the clustering coefficient and lo
 
 The results are obtained by coupling the hyperbolic random graph to an infinite random graph $G_\Pcal(\alpha,\nu)$, which we define in Section~\ref{ssec:infinite_model}, and show that the limit of the local clustering coefficient and function for the hyperbolic random graph are given by those for the infinite model. 
 
-\MS{Here, I would just say that $B(a,b)$ denotes the beta function $B^-(x,a,b)$ the lower incomplete beta function etc. and put/refer to the integral representations in the appendix, as already done for the Meijer-G function.}
+%\MS{Here, I would just say that $B(a,b)$ denotes the beta function $B^-(x,a,b)$ the lower incomplete beta function etc. and put/refer to the integral representations in the appendix, as already done for the Meijer-G function.}
 %\subsubsection{Special functions}
 We let $B(a,b)$ denote the beta-function and $B^-(x,a,b)$ the lower incomplete beta-function. We also write $\Gamma(z)$ for the Gamma function, $\Gamma^+(q,z)$ for the incomplete Gamma function and define $\Gamma^\ast(q,z) := \Gamma^+(1 + q, z) + \Gamma^+(q, z)$. Finally, we write $U(a,b,z)$ for the hypergeometric U-function (also called Tricomi's confluent hypergeometric function), which for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $\mathrm{Re}(a), \mathrm{Re}(z) >0$ has the integral representation 
 \[
@@ -125,10 +125,10 @@ see~\cite[p.255 Equation (2)]{erdelyi1953higher}, and let $\MeijerGnew{m}{\ell}{
 
 \subsubsection{Local clustering coefficient}
 
-Our first result shows that the local clustering coefficient of the hyperbolic random graph converges in expectation to as constant $c_\infty$, which we can explicitly write down in terms of the special function defined above.
+Our first result shows that the local clustering coefficient of the hyperbolic random graph converges in expectation to a constant $c_\infty$, which we can explicitly write down in terms of the special functions defined above.
 
 \begin{theorem}[Limit for local clustering coefficient in $G_{\H,n}(\alpha,\nu)$] \label{thm:clustering_coefficient_hyperbolic}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$. Then,
+Let $\alpha > \frac{1}{2}$, $\nu > 0$, and $\xi_{\alpha,\nu} = \frac{4\alpha \nu}{\pi(2\alpha -1)}$. Then,
 \[
 	\lim_{n \to \infty} \Exp{\left|c_{\H,n} - c_\infty\right|} = 0,
 \]
@@ -167,7 +167,7 @@ For the local clustering function we also obtain convergence in expectation to a
 
 \begin{theorem}[Limit for local clustering function in $G_{\H,n}(\alpha, \nu)$]
 \label{thm:local_clustering_hyperbolic}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n \ge 1}$ be any positive sequence, possibly constant, such that $k_n \ge 3$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, 
+Let $\alpha > \frac{1}{2}$, $\nu > 0$, $\xi = \frac{4\alpha\nu}{\pi(2\alpha-1)}$ and $(k_n)_{n \ge 1}$ be any positive sequence, possibly constant, such that $k_n \ge 3$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, 
 \[
 	\lim_{n \to \infty} \Exp{\left|\frac{c_{\H,n}(k_n)}{c_\infty(k_n)} - 1\right|} = 0,
 \]
@@ -215,7 +215,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$. Then,
 			C_\alpha \left(\frac{4\alpha \nu}{\pi\left(2\alpha - 1\right)}\right)^{4\alpha - 2}
 			&\mbox{if } \frac{1}{2} < \alpha < \frac{3}{4},\\
 			\frac{3 \nu}{\pi} &\mbox{if } \alpha = \frac{3}{4},\\
-			\frac{8\alpha \nu}{\pi\left(4\alpha - 3\right)} &\mbox{if } \alpha \ge \frac{3}{4},
+			\frac{8\alpha \nu}{\pi\left(4\alpha - 3\right)} &\mbox{if } \alpha > \frac{3}{4},
 	\end{cases}
 \]
 with $C_\alpha$ as defined in \eqref{eq:def_C_alpha}.
@@ -232,11 +232,12 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$, $(k_n)_{n \ge 1}$ be any positive sequenc
 				C_\alpha \left(\frac{4\alpha \nu}{\pi\left(2\alpha - 1\right)}\right)^{4\alpha - 2}
 				&\mbox{if } \frac{1}{2} < \alpha < \frac{3}{4},\\
 				\frac{3\nu}{\pi} &\mbox{if } \alpha = \frac{3}{4},\\
-				\frac{8\alpha \nu}{\pi\left(4\alpha - 3\right)} &\mbox{if } \alpha \ge \frac{3}{4},
+				\frac{8\alpha \nu}{\pi\left(4\alpha - 3\right)} &\mbox{if } \alpha > \frac{3}{4},
 		\end{cases}
 \]
-where $\stackrel{L^1}{\to}$ denotes converges in expectation.
+where $\stackrel{L^1}{\to}$ denotes convergence in expectation.
 \end{corollary}
+\MS{Are you sure all constants are correct? I thought for $\alpha = 3/4$ it might be $6\nu/\pi$. But if you are sure, you can remove this comment of course.}
 
 This result completely characterizes the asymptotic behavior of the local clustering function in Hyperbolic Random Graphs. In particular we observe that the conjectured scaling of $k^{-1}$ from~\cite{krioukov2010hyperbolic} only occurs when $\alpha > 3/4$, or equivalently, when the exponent of the pdf of the degree distribution is larger than $5/2$. 
 
@@ -247,6 +248,9 @@ We end this section with some important observations regarding local clustering 
 \PvdH{Populate these paragraphs}
 
 \paragraph{Local clustering function for growing versus fixed degrees}
+\MS{I'm currently not sure what we should comment here because now Thm 1.2 does cover both cases and the asymptotics in 1.4 appear as a very natural corollary. 
+
+However, if we can, then it would be interesting to remark that there is this phase transition in $\alpha$ which appears when the power-law exponent is $2.5=\frac{5}{2}$ and it would be cool if we could give a brief intuitive reason for that or mention that this phase transition point has also been observed in other contexts/models etc.}
  
 
 \paragraph{Uniform convergence}
