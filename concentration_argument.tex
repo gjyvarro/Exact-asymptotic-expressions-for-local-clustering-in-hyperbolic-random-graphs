@@ -1,17 +1,17 @@
 \section{Concentration of heights for nodes with degree $k$}\label{sec:concentration_argument}
 
-Many of the computations in this paper will involve integrals where the integrand contains $\Prob{\Po(\mu_n(y)) = k}$, where $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$ and $\mu_n(y) \approx e^{y/2}$. For instance, the expected adjusted local clustering function $c_\infty(k)$ in $G_\Pcal$ equals
+Many of the computations in this paper will involve integrals whose integrand contains $\Prob{\Po(\mu_n(y)) = k}$, where $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$ and $\mu_n(y) \approx e^{y/2}$. For instance, the expected adjusted local clustering function $c_\infty(k)$ in $G_\Pcal$ equals
 \[
-	\frac{\int_0^\infty \Prob{\Po(\Mu{\BallPo{0,y}}) = k} \Delta_{\Pcal}(y) e^{-\alpha} \dd y}
-	{\int_0^\infty \Prob{\Po(\Mu{\BallPo{0,y}}) = k} e^{-\alpha} \dd y},
+	\frac{\int_0^\infty \Prob{\Po(\Mu{\BallPo{0,y}}) = k} \Delta_{\Pcal}(y) \alpha e^{-\alpha} \dd y}
+	{\int_0^\infty \Prob{\Po(\Mu{\BallPo{0,y}}) = k} \alpha e^{-\alpha} \dd y},
 \]
 where $\Mu{\BallPo{0,y}} = \xi_{\alpha,\nu} e^{y/2}$. 
 
-In particular, the average degree of a node at height $y$ is approximately Poisson with mean $\xi_{\alpha,\nu} e^{y/2}$ and we are mostly interested in those nodes with degree $k_n$. Since Poisson random variables are well concentrated around their mean, for our analysis we would therefore like to be able the restrict integration to intervals where $e^{y/2} \approx k_n$. Moreover, we want to be able to do this for all three Poisson models $G_{\HP,n}$, $G_{\Pcal,n}$ and $G_\Pcal$ as well as simultaneously deal with the case where $k_n \to \infty$ and $k_n = \bigT{1}$. In this section we will establish such a result. We start with a concentration lemma for the infinite model (Lemma~\ref{lem:concentration_argument}) and explain in Remark~\ref{rmk:concentration_argument} how such a result will be used throughout the paper. To obtain similar results for the other two models we have to first analyze the average degree in these models which we do in Sections~\ref{ssec:average_degree_HP_n} and~\ref{ssec:average_degree_P_n}. We conclude this section with a general result that allows us to extend the concentration lemma for the infinite model to the hyperbolic random graph and finite box model. 
+In particular, we already established that the degree of a node at height $y$ in the infinite model is Poisson with mean $\xi_{\alpha,\nu} e^{y/2}$. Since we are mostly interested in those nodes with degree $k_n$ and Poisson random variables are well concentrated around their mean, we would therefore like to be able the restrict integration to intervals where $e^{y/2} \approx k_n$. Moreover, we want to be able to do this for all three Poisson models $G_{\HP,n}$, $G_{\Pcal,n}$ and $G_\Pcal$ as well as simultaneously deal with the case where $k_n \to \infty$ and $k_n = \bigT{1}$. In this section we will establish such a result. We start with a concentration lemma for the infinite model (Lemma~\ref{lem:concentration_argument}) and explain in Remark~\ref{rmk:concentration_argument} how such a result will be used throughout the paper. To obtain similar results for the other two models we have to first analyze the average degree in these models which we do in Sections~\ref{ssec:average_degree_HP_n} and~\ref{ssec:average_degree_P_n}. We conclude this section with a general result that allows us to extend the concentration lemma for the infinite model to the hyperbolic random graph and finite box model. 
 
 \subsection{Concentration argument for the infinite model}
 
-Recall that $\rho(y, k)$ is the probability density function of a Poisson random variable with mean $\mu_{\alpha, \nu}(B_\Pcal(p)) = \xi_{\alpha,\nu}e^{\frac{y}{2}}$. 
+Recall that $\rho(y, k)$ is the probability density function of a Poisson random variable with mean $\mu_{\alpha, \nu}(B_\Pcal(y)) = \xi_{\alpha,\nu}e^{\frac{y}{2}}$. 
 For any sequence $\{k_n\}_{n \ge 1}$, possibly constant, define
 \begin{equation}\label{eq:def_kappa_n}
 	\kappa_n := \begin{cases}
@@ -24,132 +24,126 @@ and define further, for any $C > 0$
 	\Kcal_C(k_n) = \left\{p \in \R : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
 	\le \frac{k_n + C \kappa_n}{\xi_{\alpha,\nu}} \wedge e^{R_n/2} \right\},
 \end{equation}
-Note that if $k_n = \Omega(\log(n))$ then $e^{y/2} = \bigT{k_n}$ whenever $p \in \Kcal_C(k_n)$. The next lemma states that for a large class of functions $h(y)$ to compute the integral 
+Note that if $k_n = \Omega(\log(n))$ then $e^{y/2} = \bigT{k_n}$ whenever $p \in \Kcal_C(k_n)$. The next lemma states that for a large class of functions $h(y)$, to compute the integral 
 \[
 	\int_{\Rcal_n} \rho(y,k_n) h(y) f_{\alpha,\nu}(x,y) \dd x \dd y
 \]
-it is enough to consider integration of $\Kcal_C(k_n)$ instead of $\Rcal_n$.
+it is enough to consider integration of $\Kcal_C(k_n)$ instead of $\Rcal_n$. More precisely, for any $\ell_n = (1 + \smallO{1})k_n$ it is enough to consider $\Kcal_C(\ell_n)$. The flexibility of using $(1+\smallO{1})k_n$ instead of $k_n$ will prove useful in later sections.
 
 \begin{lemma}\label{lem:concentration_argument}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $\{k_n\}_{n \ge 1}$ be any sequence such that $k_n = o(n^{\frac{1}{2\alpha + 1}})$. In addition let $\beta < \alpha$ and $h : \R_+ \mapsto \R$ be a any function such that $h(y) = \bigO{e^{\beta y}}$ as $y \to \infty$. Then, for any $C > 0$,
+Let $\alpha > \frac{1}{2}$, $\nu > 0$, $\{k_n\}_{n \ge 1}$ be any positive sequence such that $k_n = o(n^{\frac{1}{2\alpha + 1}})$ and let $\ell_n = k_n(1 + \epsilon_n)$, with $\epsilon_n \to 0$. In addition let $\beta < \alpha$ and $h : \R_+ \mapsto \R$ be a any function such that $h(y) = g(y)e^{\beta y}$ with $|g(y)|$ uniformly bounded on $\R_+$. Then, if we define for $C > 0$
+\[
+	\lambda_n^\pm = \ell_n \pm C \kappa_n, 
+	\quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi_{\alpha,\nu}}\right),
+\] 
+we have
 \begin{equation}\label{eq:error_bound_int_rho_not_K}
 \begin{aligned}
-	&\hspace{-30pt} \int_{\Rcal_n \setminus \Kcal_{C}(k_n)} \rho(y,k_n) h(y) f_{\alpha,\nu}(x,y) \dd x \dd y\\
+	\int_{\R_+ \setminus [a_n^-, a_n^+]} \rho(y,k_n) h(y) \alpha e^{-\alpha y} \dd x \dd y
 	&= \begin{cases}
-		\bigO{n^{1 - \frac{C}{2}}} &\mbox{if } k_n = \bigT{1} \\
-		\bigO{n \left(k_n^{-(1+C^2)/2} + k_n^{-1/2} e^{-\frac{C\sqrt{k_n \log(k_n)}}{2}}\right)} &\mbox{else.}
+		\bigO{\log(n)^{k_n} n^{-\frac{C}{2}}} &\mbox{if } k_n = \bigT{1} \\
+		\bigO{k_n^{-(1+C^2)/2}} &\mbox{else.}
 	\end{cases}
 \end{aligned}
 \end{equation}
 as $n \to \infty$. 
 
-In particular, if $g_n(y)$ is a function such that $g_n(y) = \bigO{n^{-1} k_n^{\beta}}\rho(y,k_n)$ for some $s \in \R$. Then for $C > 0$ large enough we have
+In particular, if $h_n(y)$ is a function such that $h_n(y) = \bigO{n^{-1} k_n^{s} e^{\beta y}}\rho(y,k_n)$ for some $s \in \R$ and $\beta < \alpha$ as $n \to \infty$. Then for $C > 0$ large enough we have
 \[
-	\lim_{n \to \infty} \int_{\Rcal_n \setminus \Kcal_{C}(k_n)} g_n(y) f_{\alpha,\nu}(x,y) \dd x\dd y = 0,
+	\lim_{n \to \infty} \int_{\Rcal_n \setminus \Kcal_{C}(\ell_n)} h_n(y) f_{\alpha,\nu}(x,y) \dd x\dd y = 0,
 \]
 or equivalently,
 \[
-	\int_{\Rcal_n} \hspace{-5pt} g_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y
-	= (1+\smallO{1}) \int_{\Kcal_{C}(k_n)} \hspace{-5pt} g_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y.
+	\int_{\Rcal_n} \hspace{-5pt} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y
+	= (1+\smallO{1}) \int_{\Kcal_{C}(\ell_n)} \hspace{-5pt} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y.
 \]
 \end{lemma}
 
 \begin{proof}
-Define 
+Note that in this case
 \[
-	\lambda_n^\pm = k_n \pm C \kappa_n, 
-	\quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi_{\alpha,\nu}}\right).
+	\kappa_n := \begin{cases}
+		\log(n) &\mbox{if } k_n = \bigT{1},\\
+		\sqrt{\ell_n \log(\ell_n)} &\mbox{else.}
+	\end{cases}
 \]
-Then, since $\rho_{y}(k_n)$, as a function of $y$, is strictly increasing on $[0,a_n^-]$ and strictly decreasing on $[a_n^+,\infty)$
+Then, since $a_n^- < k_n$ and $a_n^+ > k_n$, $\rho_{y}(k_n)$, as a function of $y$, is strictly increasing on $[0,a_n^-]$ and strictly decreasing on $[a_n^+,\infty)$. Therefore, by our assumption on $h(y)$,
 \begin{align*}
-	&\hspace{-20pt}\int_{\Rcal_n \setminus \Kcal_C(k_n)} h(y) \rho_{k_n}(y) 
-		f_{\alpha,\nu}(x,y) \dd x \dd y\\
-    &= \bigO{1} \int_0^{a_n^-} \int_{-I_n}^{I_n} e^{\beta y} \rho_{k_n}(y) f_{\alpha,\nu}(x,y) \dd x \dd y 
-    	+ \int_{a_n^+}^{R_n} \int_{-I_n}^{I_n} e^{\beta y} \rho_{k_n}(y) f_{\alpha,\nu}(x,y) \dd x \dd y \\
-    &= \bigO{n} \int_0^{a_n^-} \rho_{k_n}(y) e^{-(\alpha-\beta) y} \dd y 
-   		+ \bigO{n} \int_{a_n^+}^{R_n} \rho_{k_n}(y) e^{-(\alpha-\beta) y} \dd y\\
-   	&\le \bigO{n}\rho(a_n^-,k_n)\int_0^{a_n^-} e^{-(\alpha-\beta) y} \, \dd y
-   		+ \bigO{n} \rho(y,a_n^+) \int_{a_n^+}^{R_n} e^{-(\alpha-\beta) y} \, \dd y.
+	&\hspace{-20pt}\int_{\R_+ \setminus [a_n^-, a_n^+]} h(y) \rho_{k_n}(y) 
+		\alpha e^{-\alpha y} \dd y\\
+    &= \bigO{1} \int_0^{a_n^-} e^{\beta y} \rho_{k_n}(y) \alpha e^{-\alpha y} \dd y 
+    	+ \bigO{1}\int_{a_n^+}^{R_n} e^{\beta y} \rho_{k_n}(y) \alpha e^{-\alpha y}x \dd y \\
+    &= \bigO{1} \int_0^{a_n^-} \rho_{k_n}(y) e^{-(\alpha-\beta) y} \dd y 
+   		+ \bigO{1} \int_{a_n^+}^{R_n} \rho_{k_n}(y) e^{-(\alpha-\beta) y} \dd y\\
+   	&\le \bigO{1}\rho(a_n^-,k_n)\int_0^{a_n^-} e^{-(\alpha-\beta) y} \, \dd y
+   		+ \bigO{1} \rho(y,a_n^+) \int_{a_n^+}^{R_n} e^{-(\alpha-\beta) y} \, \dd y.
 \end{align*}
-Note that if $k_n = \bigT{1}$ then, for large enough $n$, the first integral is zero, it is $O(1)$ when $k_n \to \infty$. Because $\alpha > \beta$ the second integral is always $\bigO{1}$. Therefore
-
+Note that if $k_n = \bigT{1}$ then, for large enough $n$, the first integral is zero. We conclude that
 \begin{equation}\label{eq:concentration_lemma_integral_bound}
 \begin{aligned}
-	&\hspace{-30pt}\int_{\Rcal_n \setminus \Kcal_C(k_n)} h(y) \rho_{k_n}(y) f_{\alpha,\nu}(x,y) \dd x \dd y \\
+	\int_{\R_+ \setminus [a_n^-, a_n^+]} h(y) \rho_{k_n}(y) \alpha e^{-\alpha y} \dd y
 	&= \begin{cases}
-		\bigO{n} \rho(a_n^+,k_n) &\mbox{if } k_n = \bigT{1},\\
-		\bigO{n} \left(\rho(a_n^-,k_n) + \rho(a_n^+,k_n)\right) &\mbox{else.}
+		\bigO{1} \rho(a_n^+,k_n) &\mbox{if } k_n = \bigT{1},\\
+		\bigO{1} \left(\rho(a_n^-,k_n) + \rho(a_n^+,k_n)\right) &\mbox{else.}
 	\end{cases}	
 \end{aligned}
 \end{equation}
 
-We shall now bound the terms $\rho(a_n^\pm,k_n)$, starting with $\rho(a_n^-,k_n)$. Note we only need to bound $\rho(a_n^-,k_n)$ when $k_n \to \infty$, in which case $\kappa_n = \sqrt{k_n \log(k_n)}$. Using that $k! > \sqrt{2\pi} k^{k + 1/2} e^{-k}$ we write
+We shall now bound the terms $\rho(a_n^\pm,k_n)$, starting with $\rho(a_n^+,k_n)$.  Using that $k! > \sqrt{2\pi} k^{k + 1/2} e^{-k}$ we write
 \begin{align*}
-	\rho(a_n^-,k_n) &\le \frac{\mu(a_n^-)^{k_n}}{k_n!} e^{-\mu(a_n^-)} 
-		\le (2\pi)^{-1/2} k_n^{-(k_n + 1/2)} e^{-(\mu(a_n^-) - k_n)}\\
+	\rho(a_n^+,k_n) &\le \frac{\Mu{\BallPo{a_n^+}}^{k_n}}{k_n!} e^{-\Mu{\BallPo{a_n^+}}} \\
+	&\le (2\pi)^{-1/2} k_n^{-1/2} \left(\frac{\Mu{\BallPo{a_n^+}}}{k_n}\right)^{k_n} e^{-(\Mu{\BallPo{a_n^+}} - k_n)}\\
 	&= (2\pi)^{-1/2} k_n^{-1/2} 
-		e^{-k_n\left(\frac{\mu(a_n^-)}{k_n} - 1 - \log\left(\frac{\mu(a_n^-)}{k_n}\right)\right)}.
-\end{align*}
-Since 
-\[
-	\frac{\mu(a_n^-)}{k_n} = \frac{\lambda_n^-}{k_n} = 1 - C \frac{\kappa_n}{k_n} = 1 - C \sqrt{\frac{\log(k_n)}{k_n}},
-\]
-and $-x - \log(1 - x) = \Omega(x^2/2)$, we get
-\begin{align*}
-	\rho(a_n^-,k_n) 
-	&\le \sqrt{2\pi} k_n^{-1/2} 
-		e^{-k_n\left(-C \frac{\kappa_n}{k_n} - \log\left(1 + C \frac{\kappa_n}{k_n}\right)\right)}\\
-	&\le (2\pi)^{-1/2} k_n^{-1/2} e^{-\Omega\left(\frac{C^2 \log(k_n)}{2}\right)} = \bigO{k_n^{-(1+C^2)/2}}.
-		\numberthis \label{eq:concentration_lemma_bound_an-}
+		e^{-k_n\left(\frac{\Mu{\BallPo{a_n^+}}}{k_n} - 1 - \log\left(\frac{\Mu{\BallPo{a_n^+}}}{k_n}\right)\right)}.
 \end{align*}
 
-For $a_n^+$ we again use the bound for $k!$ to get
-\begin{align*}
-	\rho(a_n^+,k_n) &\le \frac{\mu(a_n^+)^{k_n}}{k_n!} e^{-\mu(a_n^+)} 
-		\le (2\pi)^{-1/2} k_n^{-(k_n + 1/2)} e^{-(\mu(a_n^+) - k_n)}\\
-	&= (2\pi)^{-1/2} k_n^{-1/2} 
-		e^{-k_n\left(\frac{\mu(a_n^+)}{k_n} - 1 - \log\left(\frac{\mu(a_n^+)}{k_n}\right)\right)}.
-\end{align*}
-Since 
+Let us first consider the case $k_n \to \infty$, in which case $\kappa_n = \sqrt{\ell_n \log(\ell_n)}$. Since 
 \[
-	\frac{\mu(a_n^+)}{k_n} = \frac{\lambda_n^+}{k_n} = 1 + C \frac{\kappa_n}{k_n},
+	\frac{\Mu{\BallPo{a_n^+}}}{k_n} = \frac{\lambda_n^-}{k_n} = 1 + \epsilon_n + C \frac{\kappa_n}{k_n} 
+	= 1 + \epsilon_n + C \sqrt{\frac{(1+\epsilon_n)\log((1+\epsilon_n)k_n)}{k_n}},
 \]
-with $\kappa_n/k_n = \omega(1)$ as $n \to \infty$, and $x - \log(1 + x) = \omega(x/2)$ as $x \to \infty$, we get
-\begin{equation}\label{eq:concentration_lemma_bound_an+}
-	\rho(a_n^+,k_n) \le \sqrt{2\pi} k_n^{-1/2} 
-		e^{-k_n\left(C \frac{\kappa_n}{k_n} - \log\left(1 + C \frac{\kappa_n}{k_n}\right)\right)}
-	= \bigO{k_n^{-1/2} e^{-\frac{C \kappa_n}{2}}}.
+and $x - \log(1 + x) \sim x^2/2$ as $x \to 0$, we get 
+\begin{align*}
+	\rho(a_n^+,k_n) 
+	&\le \sqrt{2\pi} k_n^{-1/2} 
+		e^{-k_n\left(\epsilon_n + C \frac{\kappa_n}{k_n} - \log\left(1 + \epsilon_n + C \frac{\kappa_n}{k_n}\right)\right)}\\
+	&\sim (2\pi)^{-1/2} k_n^{-1/2} e^{-\frac{k_n \left(\epsilon_n + C \kappa_n/k_n\right)^2}{2}} \\
+	&= \bigO{k_n^{-(1+C^2)/2}},		\numberthis \label{eq:concentration_lemma_bound_an+}
+\end{align*}
+where for the last line we used that
+\[
+	-k_n \frac{\left(\epsilon_n + C \kappa_n/k_n\right)^2}{2} = -\frac{C^2}{2}\log(k_n) + \bigT{1}.
+\]
+Let use now consider the case $k_n = \bigT{1}$. Then $\kappa_n = \log(n)$,
+\[
+	\frac{\Mu{\BallPo{a_n^+}}}{k_n} = \frac{\lambda_n^+}{k_n} = 1 + \epsilon_n + C \frac{\log(n)}{k_n},
+\] 
+and hence
+\begin{equation}\label{eq:concentration_lemma_bound_an+_constant}
+	\rho(a_n^-,k_n) \le \bigO{\log(n)^{k_n} n^{-C}}.
 \end{equation}
 
-Plugging~\eqref{eq:concentration_lemma_bound_an-} and~\eqref{eq:concentration_lemma_bound_an+} into~\eqref{eq:concentration_lemma_integral_bound} yields the result. The second statement immediately follows by our choice of $C$.
 
-To see that the same holds when we use $\rho_n(y,k_n)$ it satisfies similar bounds as $\rho(y,k_n)$ for $y \in \Rcal_n \setminus \Kcal_\eps(k_n)$ hold for. We first note that $\mu_{\alpha, \nu}(\BallPon{y}) = \mu_{\alpha, \nu}(\BallPo{y})(1 - \phi_n(y))$ where $\phi_n(y) = \bigT{e^{-(\alpha - \frac{1}{2})(R_n - y)}}$, see Lemma~\ref{lem:average_degree_P_n}. In particular we have that $\mu_{\alpha, \nu}(\BallPon{y})$ is increasing in $y$ and hence for $0 \le y \le a_n^-$
+Note that for $\rho(a_n^-,k_n)$ we only need to consider the case $k_n \to \infty$. A similar analysis as for $a_n^-$ yields
+\begin{equation}\label{eq:concentration_lemma_bound_an-}
+	\rho(a_n^-,k_n) \le \bigT{1} k_n^{-1/2} e^{-\frac{k_n \left(\epsilon_n - C \kappa_n/k_n\right)^2}{2}} = \bigO{k_n^{-(1+C^2)/2}}.
+\end{equation} 
+
+
+Plugging~\eqref{eq:concentration_lemma_bound_an-}, \eqref{eq:concentration_lemma_bound_an+} and~\eqref{eq:concentration_lemma_bound_an+_constant} into~\eqref{eq:concentration_lemma_integral_bound} yields the result. The second statement immediately follows from the first by choosing a large enough $C$ and observing that
 \[
-	\rho_n(y,k_n) \le \rho_n(a_n^-,k_n) \le \rho(a_n^-,k_n) \le 2 k_n^{-\frac{\varepsilon^2}{4}}.
+	\int_{\Rcal_n \setminus \Kcal_{C}(\ell_n)} h_n(y) f_{\alpha,\nu}(x,y) \dd x\dd y
+	\le n \int_{\R_+ \setminus [a_n^-, a_n^+]} h_n(y) \alpha e^{-\alpha y} \dd y.
 \]
-It remains to show that the same holds for $a_n^+ \le y \le R_n$. For this we define 
-\[
-	\lambda_n := \mu_{\alpha, \nu}(\BallPon{a_n^+}) = \left(k_n + C \sqrt{k_n \log(k_n)}\right)
-	\left(1 - \phi_n(a_n^+)\right),
-\] 
-and note that $\lambda_n \ge k_n$ for large enough $n$. Hence
-\begin{align*}
-	\rho_n(y,k_n) &\le \rho_n(a_n^+,k_n) = \Prob{\Po(\mu_{\alpha, \nu}(\BallPon{a_n^+})) = k_n}\\
-	&\le \Prob{\left|\Po(\lambda_n) - \lambda_n\right| \ge k_n - \lambda_n} \le 2e^{-\frac{(k_n - \lambda_n)^2}{2(k_n + \lambda_n)}}.
-\end{align*}
-To finish the argument we observe that $k_n + \lambda_n \le 2k_n$ and $(k_n - \lambda_n)^2 \ge C^2 k_n \log(k_n)$ for $n$ large enough. Therefore
-\[
-	\rho_n(y,k_n) \le 2e^{-\frac{(k_n - \lambda_n)^2}{2(k_n + \lambda_n)}} = \bigO{k_n^{-\frac{C^2}{4}}}
-\] 
-which finishes the proof.
 \end{proof}
 
 \begin{remark}[Concentration argument]\label{rmk:concentration_argument}
-Lemma~\ref{lem:concentration_argument} will prove very useful in the remainder of this paper since we often have to deal with integrands of the form $g_n(y) f_{\alpha,\nu}(x,y)$ where $g_n(y) = \bigO{n^{-1} k_n^{s}}\rho(y,k_n)$ for some $s \in \R$. In this case the lemma tells us that for a suitable $C > 0$ we only need to integrate over $\Kcal_C(k_n)$. In order words, we may always assume for $g_n(y)$ (for a penalty of $\smallO{1}$) that $k_n - C \kappa_n \le \xi_{\alpha,\nu} e^{y/2} \le k_n + C \kappa_n$. We will refer to this as a \emph{concentration argument}, e.g. \emph{by a concentration argument}
+Lemma~\ref{lem:concentration_argument} will prove very useful in the remainder of this paper since we often have to deal with integrands of the form $g_n(y) f_{\alpha,\nu}(x,y)$ where $g_n(y) = \bigO{n^{-1} k_n^{s}}e^{\beta y}\rho(y,k_n)$ for some $s \in \R$ and $\beta < \alpha$. In this case the lemma tells us that for a suitable $C > 0$ we only need to integrate over $\Kcal_C(k_n)$. In order words, we may always assume for $g_n(y)$ (for a penalty of $\smallO{1}$) that $k_n - C \kappa_n \le \xi_{\alpha,\nu} e^{y/2} \le k_n + C \kappa_n$. We will refer to this as a \emph{concentration argument}, e.g. \emph{by a concentration argument}
 \[
 	\int_{\Rcal_n} g_n(y) f_{\alpha, \nu}(x,y) \dd x \dd y 
-	= (1+\smallO{1}) \int_{\Kcal_C(k_n)} \rho(y,k_n) g_n(y) f_{\alpha, \nu}(x,y) \dd x \dd y.
+	= (1+\smallO{1}) \int_{\Kcal_C(k_n)} g_n(y) f_{\alpha, \nu}(x,y) \dd x \dd y.
 \]
+\PvdH{It might be a good idea to add one more example of how the concentration argument is used in the paper.}
 \end{remark}
 
 \subsection{Average degree in the Hyperbolic graph}\label{ssec:average_degree_HP_n}
@@ -307,97 +301,133 @@ When $y \le 2 \log(\pi/2)$ we have
 
 \subsection{Concentration argument for Hyperbolic and finite box models}
 
-Next we establish a result that allows us to extend the concentration argument to the case where instead of $\rho(y,k)$ we consider the degree distributions $\rho_{\HP,n}(y,k)$ and $\rho_{n}(y,k)$ in $G_{\HP,n}$ and $G_{\Pcal,n}$, respectively.
+With the results on the average degrees in the two finite Poisson model, we can now establish a result that allows us to extend the concentration argument to the case where instead of $\rho(y,k)$ we consider the degree distributions $\rho_{\HP,n}(y,k)$ and $\rho_{n}(y,k)$ in $G_{\HP,n}$ and $G_{\Pcal,n}$, respectively. The lemma is stated in a more general form, to make it applicable to slightly other cases later in the paper. To understand the general conditions presented in the statement of the lemma we write $\mu_n(y) = \Mu{\BallPon{y}}$ and $\mu(y) = \Mu{\BallPo{y}}$ and recall the result from Lemma~\ref{lem:average_degree_P_n}
+\[
+	\mu_n(y) = \mu(y)(1 - \phi_n(y)).
+\]
+For the error function $\phi_n(y)$ we note that for any $0 < \varepsilon < 1$, as $n \to \infty$, 
+\[
+	\sup_{0 \le y \le (1-\varepsilon)R_n} \phi_n(y) = \smallO{1},
+\]
+while
+\[
+	\frac{\partial \phi_n(y)}{\partial y} = \bigT{\phi_n(y)}.
+\]
+These are exactly the crucial properties of the error function that allow for a concentration argument. Moreover, if the integrand also contains a function $g_n(y)$ that is reasonably nice, we can replace the $\rho_{n}(y,k_n)$ in the integrand by $\rho(y,k_n)$. In particular, the triangle counting function $\Delta_{\Pcal}(y)$ will satisfy these conditions, see Section~\ref{sec:clustering_Pn_to_P}.
 
 \begin{lemma}\label{lem:concentration_argument_rho_approximation}
-Let $\alpha > \frac{1}{2}, \nu > 0$, $k_n$ be any increasing sequence such that $k_n = o(n^{\frac{1}{2\alpha + 1}})$ and $\Kcal_{C}(k_n)$ defined as in~\eqref{eq:def_K_C_set} for some $C > 0$. In addition, let $\hat{\mu}_n(y)$ be any function satisfying 
+Let $\alpha > \frac{1}{2}, \nu > 0$, $k_n$ be any positive sequence such that $k_n = o(n^{\frac{1}{2\alpha + 1}})$, $\ell_n = (1 + \epsilon_n)k_n$, with $\epsilon_n \to 0$ and let $\Kcal_{C}(\ell_n)$ be defined as in~\eqref{eq:def_K_C_set}. In addition, define $\hat{\rho}_n(y,k) = \Prob{\Po(\hat{\mu}_n(y)) = k}$, where $\hat{\mu}_n(y)$ is any function satisfying 
 \[
 	\Mu{\BallPo{0,y}}(1 - \phi_n^{(1)}(y)) \le \hat{\mu}_n(y) \le \Mu{\BallPo{0,y}}(1 + \phi_n^{(2)}(y))
 \]
-where $\phi_n^{(i)} : \R_+ \to \R_+$ are such that $\sup_{0 \le y \le R_n} \phi_n(y)^{(i)} = \smallO{1}$. Then if we define $\hat{\rho}_n(y,k) = \Prob{\Po(\hat{\mu}_n(y)) = k}$, we have, for any $\beta < \alpha$,
+where $\phi_n^{(i)} : \R_+ \to \R_+$ are such that $\sup_{0 \le y \le (1-\varepsilon)R_n} \phi_n(y)^{(i)} = \smallO{1}$ for any $0 < \varepsilon < 1$ and $\partial \phi_n^{(i)}(y)/\partial y = \bigT{\phi_n^{(i)}(y)}$. Then the following holds from some $C > 0$ large enough:
+\begin{enumerate}
+\item for any sequence of functions $h_n(y) : \R_+ \mapsto \R$ such that $h_n(y) = \hat{\rho}_n(y,k_n) \bigO{k_n^s e^{\beta y}}$ for some $s < 2\alpha(2\alpha + 1)$ and $\beta < \alpha$, we have,
 \[
-	\int_{\Rcal_n} \hat{\rho}_n(y,k_n) e^{\beta y} f_{\alpha,\nu}(x,y) \dd x \dd y 
-	= (1 + o(1)) \int_{\Rcal_n} \rho(y,k_n) e^{\beta y} f_{\alpha,\nu}(x,y) \dd x \dd y.
+	\int_{\Rcal_n} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y 
+	= (1 + o(1)) \int_{\Kcal_{C}(\ell_n)} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y.
 \]
+\item If, in addition, $h_n(y) = \hat{\rho}_n(y,k_n) g_n(y)$ with $g_n$ satisfying $g_n(y(1+\smallO{1}) = (1+\smallO{1})g_n(y)$, we have,
+\[
+	\int_{\Rcal_n} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y 
+	= (1 + o(1)) \int_{\Rcal_n} \rho(y,k_n) g_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y.
+\]
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
 Similar to the proof of Lemma~\ref{lem:concentration_argument} we define 
 \[
-	\lambda_n^\pm = k_n \pm \varepsilon \sqrt{k_n \log(k_n)}, \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi_{\alpha,\nu}}\right),
+	\lambda_n^\pm = \ell_n \pm C \kappa_n, \quad \text{and} \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi_{\alpha,\nu}}\right).
 \] 
-and for simplicity write
-\[
-	\mu_1(y) := \mu_{\alpha,\nu}\left(\BallPo{y}\right) \quad \text{and} \quad 
-	\mu_2(y) = \mu_{\alpha,\nu}\left(\BallPon{y}\right).
-\]
-Next we notice that for all $y > a_n^+$, $\mu_2(y) \ge \mu_1(a_n^+)(1 - \phi_n^{(1)}) = \omega(k_n)$ and hence
+In addition we fix $\varepsilon > 0$ such that $\varepsilon < \min\{1- \frac{s}{2\alpha(2\alpha + 1)}, 1\}$. Then since $h_n(y) = \hat{\rho}_n(y,k_n) \bigO{k_n^s}$ we have
 \begin{align*}
-	\hat{\rho}_n(y,k) &\le \frac{\mu_1(y)^k(1 + \phi_n^{(2)}(y))^k}{k!} e^{-\mu_1(y)} e^{-\mu_1(y)\phi_n^{(2)}(y)}  \\
-	&= \rho(y,k) e^{k \log\left(1 +  \phi_n^{(2)}(y)\right) - \mu_1(y) \phi_n^{(2)}(y)}\\
-	&= \rho(y,k) \bigO{e^{(k - \mu_1(y))\phi_n^{(2)}(y)}}\\
-	&= \rho(y,k) \bigO{e^{-C \kappa_n \phi_n^{(2)}(y)}} = \rho(y,k) \bigO{1}.
+	k_n^s \int_{(1-\varepsilon)R_n}^{R_n} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	&= \bigO{1} \hat{\rho}_n((1-\varepsilon)R_n,k_n) k_n^s e^{-\alpha(1-\varepsilon)R_n} \\
+	&= \bigO{\hat{\rho}_n((1-\varepsilon)R_n,k_n) k_n^s n^{-2\alpha(1 - \varepsilon)}} \\
+	&= \smallO{ \hat{\rho}_n((1-\varepsilon)R_n,k_n) n^{\frac{s}{2\alpha + 1} - 2\alpha(1-\varepsilon)}} = \smallO{1},
 \end{align*}
-Similar we have for all $y < a_n^-$,
-\begin{align*}
-	\hat{\rho}_n(y,k) &\le \frac{\mu_1(y)^k(1 - \phi_n^{(1)}(y))^k}{k!} e^{-\mu_1(y)} e^{\mu_1(y)\phi_n^{(1)}(y)}\\
-	&= \rho(y,k) \bigO{e^{(k + \mu_1(y))\phi_n^{(1)}(y)}} \\
-	&= \rho(y,k) \bigO{e^{-C \kappa_n \phi_n^{(1)}(y)}} = \rho(y,k) \bigO{1}.
-\end{align*}
+where the last step follows by our choice of $\varepsilon$. Hence it is enough to prove both statement on $\Rcal_n((1-\varepsilon)R_n, R_n)$ instead of $\Rcal_n$.
+\PvdH{This is where we use that $s < 2\alpha(2\alpha + 1)$. I think this can be removed by using a more careful bound but I am not sure this is needed.}
 
-Therefore, by Lemma~\ref{lem:concentration_argument}, it is enough to show that
+For simplicity we write $\mu(y) := \mu_{\alpha,\nu}\left(\BallPo{y}\right)$. For both statements we shall make a change of variables $y \to z$ such that
+\begin{equation}\label{eq:concentration_argument_variable_change}
+	\hat{\mu}_n(y) = \mu(z),
+\end{equation}
+which implies
 \[
-	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha) y} \dd y = (1+o(1))\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) e^{(\beta - \alpha) y} \dd y.
+	\mu^{-1}(y) = 2 \log\left(\frac{y}{\xi_{\alpha,\nu}}\right),
 \]
-
-For this let us make a change of variables $y \to z$ such that
+Observe that since
 \[
-	\mu_2(y) = \mu_1(z).
+	\mu^{-1}(y) = 2 \log\left(\frac{y}{\xi_{\alpha,\nu}}\right),
 \]
-and note that since
-\[
-	\mu_1^{-1}(y) = 2 \log\left(\frac{y}{\xi_{\alpha,\nu}}\right),
-\]
-is strictly monotonic in $y$, we have
-\[
-	z(y) \le 2 \log\left(\frac{\mu_1(y)}{\xi_{\alpha,\nu}}\right) + 2 \log\left(1 + \phi_n^{(2)}(y)\right)
+is strictly monotonic in $y$, we have, by our assumptions on $\hat{\mu}_n$, that
+\begin{equation}\label{eq:concentration_argument_z_upper_bound}
+	z(y) \le 2 \log\left(\frac{\mu(y)}{\xi_{\alpha,\nu}}\right) + 2 \log\left(1 + \phi_n^{(2)}(y)\right)
 	= y + 2 \log\left(1 + \phi_n^{(2)}(y)\right),
-\]
+\end{equation}
 and similarly
+\begin{equation}\label{eq:concentration_argument_z_lower_bound}
+	z(y) \ge y + 2 \log\left(1 - \phi_n^{(1)}(y)\right) \
+\end{equation}
+Denote by $g^\prime(z)$ the derivative of a function $g$. Then by assumption $(\phi_n^{(i)})^\prime(z) = \bigT{\phi_n^{(i)}(z)}$ and hence
+\begin{align*}
+	\hat{\mu}_n^\prime(z) = \mu^\prime(z)\left(1 + o(1)\right).
+\end{align*}
+
+\paragraph{Proof of statement 1.} By our assumption on $h_n(y)$ it is enough to show that for sufficiently large $C > 0$,
 \[
-	z(y) \ge y + 2 \log\left(1 + \phi_n^{(2)}(y)\right).
+	\lim_{n \to \infty} k_n^s \int_0^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = 0,
 \]
-Hence, for all $a_n^- \le y \le a_n^+$,
+and
+\[
+	\lim_{n \to \infty} k_n^s \int_{a_n^+}^{(1-\varepsilon)R_n} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = 0.
+\]
+We shall prove the last statement. The first statement follows using similar computations.
+
+By our assumption on $\phi_n^{(2)}(y)$ we have for all $a_n^+ < y \le (1 - \varepsilon)R_n$,
 \begin{equation}
 	e^{(\beta-\alpha) y} = (1 + o(1))e^{(\beta-\alpha) z}.
 \end{equation}
-For the derivatives we have, for $a_n^- \le y \le a_n^+$, $\mu_1^\prime(y) = \mu_1(y)/2$, while $(\phi_n^{(i)})^\prime(y) = O(1)$ and hence
+Therefore, with this change of variables~\eqref{eq:concentration_argument_variable_change}, using that $\hat{a}_n^+ := z(a_n^+) = a_n^+(1 + \smallO{1})$ and $z((1-\varepsilon)R_n) = (1-\varepsilon)R_n(1+\smallO{1})$, we have
 \begin{align*}
-	\mu_2^\prime(y) = \mu_1^\prime(y)\left(1 + o(1)\right).
+	k_n^s \int_{a_n^+}^{(1-\varepsilon)R_n} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y
+	&=  k_n^s \int_{a_n^+}^{(1-\varepsilon)R_n} \Prob{\mathrm{Po}\left(\hat{\mu}_n(y) = k_n\right)} 
+		e^{(\beta-\alpha) y} \dd y\\
+	&= (1 + \smallO{1})k_n^s\int_{a_n^+}^{(1-\varepsilon)R_n} \Prob{\mathrm{Po}\left(\mu(z) = k_n\right)}
+		e^{(\beta-\alpha) z} \frac{\hat{\mu}_n^\prime(z)}{\mu^{\prime}(z)} \, dz \\
+	&\le (1 + \smallO{1})k_n^s\int_{a_n^+}^{R_n} \rho(y,k_n)
+			e^{(\beta-\alpha) z} \dd z.
 \end{align*}
-Therefore, with this change of variables, and using
+The result then follows by Lemma~\ref{lem:concentration_argument}.
+
+\paragraph{Proof of statement 2.}
+
+The proof of the second statement follows the same line of reasoning as above. First note that by Lemma~\ref{lem:concentration_argument} and the first statement, it is enough to show that
 \[
-	\hat{a}_n^\pm := z(a_n^\pm) = a_n^\pm(1 + \smallO{1}),
+	\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) g_n(y) e^{-\alpha y} \dd y
+	= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) g_n(z) e^{-\alpha z} \dd z.
 \] 
-we have
+For this we observe that~\eqref{eq:concentration_argument_z_upper_bound} and~\eqref{eq:concentration_argument_z_lower_bound} imply that $y = z(y) + \smallO{1}$ for $a_n^- \le y \le a_n^+$ and hence, by our assumption on $g_n(y)$ we have that
+\[
+	g_n(y) = g_n(z + \smallO{1}) = (1 + \smallO{1})g_n(z).
+\]
+Therefore, with the change of variables~\eqref{eq:concentration_argument_variable_change} we get
 \begin{align*}
-	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y
-	&=  \int_{a_n^-}^{a_n^+} \Prob{\mathrm{Po}\left(\mu_2(y) = k_n\right)} e^{(\beta-\alpha) y} \dd y\\
-	&= (1 + \smallO{1})\int_{\hat{a}_n^-}^{\hat{a}_n^+} \Prob{\mathrm{Po}\left(\mu_1(z) = k_n\right)}
-		e^{-\alpha z} \frac{\mu_2^\prime(z)}{\mu_2^{\prime}(z)} \, dz\\
-	&= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(y,k_n) e^{(\beta-\alpha) z} \, dz.
+	\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) g_n(y) e^{-\alpha y} \dd y
+	&=  \int_{a_n^-}^{a_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} g_n(y) e^{-\alpha y} \dd y\\
+	&= (1 + \smallO{1})\int_{a_n^-}^{a_n^+}  \Prob{\Po(\mu(z))}
+		g_n(z) e^{-\alpha z} \frac{\hat{\mu}_n^\prime(z)}{\mu^{\prime}(z)} \dd z\\
+	&= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) g_n(z) e^{-\alpha z} \dd z.
 \end{align*}
+
 \end{proof}
 
-Observe that Lemma~\ref{lem:average_degree_P_n} implies that $\Mu{\BallHyp{(0,y)}}$ satisfies the requirements in Lemma~\ref{lem:concentration_argument_rho_approximation}. Lemma~\ref{lem:average_degree_hyperbolic} states that $\Mu{\BallPon{0,y}}$ satisfies these requirement when $y \le (1-\eps)R_n$. However, since for all $\eps < (2\alpha - 1)/2\alpha$
-\[
-	\Mu{\BallHyp{0,y} \cap \Rcal_n[(1-\eps)R_n, R_n]} = \bigO{e^{\frac{R_n}{2} - \alpha(1-\varepsilon)R_n}}
-	= \bigO{n^{1 - 2\alpha(1 -\eps)}} = \smallO{1},
-\]
-the conclusion of Lemma~\ref{lem:concentration_argument_rho_approximation} still holds for this case. We therefore have the following important Corollary.
+Observe that Lemma~\ref{lem:average_degree_P_n} implies that $\Mu{\BallHyp{(0,y)}}$ satisfies the requirements in Lemma~\ref{lem:concentration_argument_rho_approximation} while Lemma~\ref{lem:average_degree_hyperbolic} states that this holds for $\Mu{\BallPon{0,y}}$. We therefore have the following important Corollary.
 
 \begin{corollary}\label{cor:concentration_argument_other_models}
-Let $\hat{\rho}_n(y,k)$ be any of the two distribution functions $\rho_{\HP,n}(y,k)$ and $\rho_{n}(y,k)$. Then, for any function $g_n(y)$ such that $g_n(y) = \bigO{n^{-1} k_n^{s}}\hat{\rho}_n(y,k_n)$, as $n \to \infty$, for some $s \in \R$,
+Let $\hat{\rho}_n(y,k)$ be any of the two distribution functions $\rho_{\HP,n}(y,k)$ and $\rho_{n}(y,k)$. Then, for any function $g_n(y)$ such that $g_n(y) = \bigO{n^{-1} k_n^{s} e^{\beta y}}\hat{\rho}_n(y,k_n)$, as $n \to \infty$, for some $s < 2\alpha(2\alpha + 1)$ and $\beta < \alpha$,
 \[
 	\int_{\Rcal_n} g_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y
 	= (1+\smallO{1})\int_{\Kcal_C(k_n)} g_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y,
