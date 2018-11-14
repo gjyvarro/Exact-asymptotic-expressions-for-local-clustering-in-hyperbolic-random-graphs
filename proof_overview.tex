@@ -228,8 +228,8 @@ Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theor
 \label{fig:overview_proof}
 \end{figure}
 
-The main idea behind the proof of Theorem \ref{thm:local_clustering_hyperbolic} is to couple the hyperbolic graph $G_{\H, n}(\alpha, \nu)$ with a finite subgraph $G_{\Pcal,n}(\alpha,\nu)$ of an infinite graph $G_\Pcal(\alpha,\nu)$ whose nodes are given by a Poisson Point Process (see Section~\ref{ssec:infinite_model}). The infinite graph will then yield the limit expressions for the local clustering coefficient and function. A similar approach is used in \cite{fountoulakis2018law} to analyze the size of the largest component in the hyperbolic model and in \cite{komjathy2018explosion} to analyze explosion times in a more general class of models.. 
-The advantage of the infinite limit model is two-fold. First, it simplifies the actual computations, e.g. by replacing hyperbolic densities with exponential densities and the hyperbolic distance with a computationally easier expression. Secondly, it directly yields the limit as a result rather than having to determine this later from a long expression depending on $n$. 
+The main idea behind the proof of Theorem \ref{thm:local_clustering_hyperbolic} is to couple the hyperbolic graph $G_{\H, n}(\alpha, \nu)$ with a finite subgraph $G_{\Pcal,n}(\alpha,\nu)$ of an infinite graph $G_\Pcal(\alpha,\nu)$ whose nodes are given by a Poisson Point Process (see Section~\ref{ssec:infinite_model}). The infinite graph will then yield the limit expressions for the local clustering coefficient and function. A similar approach is used in \cite{fountoulakis2018law} to analyze the size of the largest component in the hyperbolic model and in \cite{komjathy2018explosion} to analyze explosion times in a more general class of models. 
+The advantage of the infinite limit model is two-fold. Firstly, it simplifies the actual computations, e.g. by replacing hyperbolic densities with exponential densities and the hyperbolic distance with a computationally easier expression. Secondly, it directly yields the limit as a result rather than having to determine this later from a long expression depending on $n$. 
 
 Very roughly, the proof falls into five parts: 1) replacing the randomly sampled nodes in the hyperbolic graph with a Poisson Point Process, 2) justifying the transitioning from this Poisson version of the hyperbolic random graph to the finite model, 3) proving concentration results for local clustering, 4) show that the limit expression correspond to those in the infinite model and finally 5) calculating the expected local clustering coefficient and function in the infinite limit model.
 	
@@ -237,7 +237,7 @@ In this section, we state the required definitions, auxiliary lemmas and proposi
 
 \subsection{Finite box model}\label{ssec:finite_model}
 
-First we define the finite graph $G_{\mathcal{P},n}(\alpha, \nu)$ which we will couple to $G_{\H, n}(\alpha, \nu)$. As similar approach was used in~\cite{fountoulakis2018law} to analyze the largest component. Define $\Rcal = \mathbb{R} \times \mathbb{R}_+$ and let $\mathcal{P}_{\alpha,\nu}$ be a Poisson point process on $\Rcal$ with intensity function
+First of all we define the finite graph $G_{\mathcal{P},n}(\alpha, \nu)$ which we will couple to $G_{\H, n}(\alpha, \nu)$. A similar approach was used in~\cite{fountoulakis2018law} to analyze the largest component. Define $\Rcal = \mathbb{R} \times \mathbb{R}_+$ and let $\mathcal{P}=\mathcal{P}_{\alpha,\nu}$ be a Poisson point process on $\Rcal$ with intensity function
 \begin{equation}\label{eq:def_intensity_function_f}
 	f_{\alpha,\nu}(x,y) = \frac{\alpha \nu}{\pi} e^{-\alpha y}.
 \end{equation} 
@@ -272,7 +272,7 @@ With this notation we then have that $\BallPon{p} \cap \PPP$ denotes the set of 
 
 \subsection{Coupling the hyperbolic model to the finite box model}\label{ssec:coupling_H_P}
 
-To couple the hyperbolic graph to $G_{\mathcal{P},n}(\alpha, \nu)$ we consider the original hyperbolic graph on a Poisson distributed number of vertices as an intermediate step. For this we define $G_{\HP,n}(\alpha, \nu)$ to be the hyperbolic random graph where the vertex set is given by $N \stackrel{d}{=} \Po(n)$ points, distributed according to the $(\alpha, R_n)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution} defined in Section \ref{ssec:hyperbolic_model}. The following two lemmas from \cite{fountoulakis2018law} establishes a coupling between this version of the hyperbolic random graph and the finite box model and relate the hyperbolic neighborhoods to the neighborhood balls $\BallPo{p}$. The ensuing proposition verifies that this coupling also essentially preserves the local clustering function, i.e. that the difference between the local clustering functions in the hyperbolic model and the finite box graph converges to zero faster than the proposed scalings in the main result, Theorem \ref{thm:local_clustering_hyperbolic}. Hence, it justifies the transition to the finite box model. 
+To couple the hyperbolic graph to $G_{\mathcal{P},n}(\alpha, \nu)$ we consider the original hyperbolic graph on a Poisson distributed number of vertices as an intermediate step. For this we define $G_{\HP,n}(\alpha, \nu)$ to be the hyperbolic random graph where the vertex set is given by $N \stackrel{d}{=} \Po(n)$ points, distributed according to the $(\alpha, R_n)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution} defined in Section \ref{ssec:hyperbolic_model}. The following two lemmas from \cite{fountoulakis2018law} establish a coupling between this version of the hyperbolic random graph and the finite box model and relate the hyperbolic neighborhoods to the neighborhood balls $\BallPo{p}$. The ensuing proposition verifies that this coupling also essentially preserves the local clustering function, i.e. that the difference between the local clustering function in the hyperbolic model and the finite box graph converges to zero faster than the proposed scalings in the main result, Theorem \ref{thm:local_clustering_hyperbolic}. Hence, it justifies the transition to the finite box model. 
 
 \begin{lemma}[{\cite[Lemma 27]{fountoulakis2018law}}]\label{lem:coupling_hyperbolic_poisson}
 Let $\mathcal{V}_{\HP, n}$ denote the vertex set of $G_{\HP,n}(\alpha, \nu)$ and $\mathcal{V}_n$ the vertex set of $G_{\Pcal,n}(\alpha, \nu)$. Define the map $\Psi : [0,R_n] \times (-\pi, \pi] \to \mathcal{R}_n$ by
@@ -289,9 +289,9 @@ In the remainder of this paper we will write $\BallHyp{p}$ to denote the image u
 \[
 	\BallHyp{p} := \left\{p^\prime := \Psi(u) \, : \, u \in \Dcal_{R_n} \text{ and } d_\H(\Psi^{-1}(p),u) \le R_n\right\}.
 \]
-Note that we have that $\BallHyp{p} \subseteq \mathcal{R}_n$. In particular, a point $p = (x,y) \in \Rcal$ corresponds to $u := \Psi^{-1}(p) = (2 e^{R_n/2} x, R_n - y)$. 
+Note that we have that $\BallHyp{p} \subseteq \mathcal{R}_n$. In particular, a point $p = (x,y) \in \Rcal$ corresponds to $u := \Psi^{-1}(p) = (2 e^{-R_n/2} x, R_n - y)$. 
 
-Let $u, u^\prime \in \Dcal_R$. The hypebolic law of cosines implies that $d_{\H}(u,u^\prime) < R_n$ if and only if their relative angle $\theta(u, u^\prime) := |\theta - \theta^\prime|_{2\pi}$ satisfies $\theta(u, u^\prime) < \theta_{R_n}(r,r^\prime)$, where $\theta_{R_n}(r,r^\prime)$ is the solution of the following equation
+Let $u, u^\prime \in \Dcal_R$. The hyperbolic law of cosines implies that $d_{\H}(u,u^\prime) \leq R_n$ if and only if their relative angle $\theta(u, u^\prime) := |\theta - \theta^\prime|_{2\pi}$ satisfies $\theta(u, u^\prime) \leq \theta_{R_n}(r,r^\prime)$, where $\theta_{R_n}(r,r^\prime)$ is the solution of the following equation
 \[
 	\cosh R_n =\cosh r \cosh r^\prime - \sinh r \sinh r^\prime \cos \theta_{R_n}(r,r^\prime).
 \]
@@ -300,12 +300,12 @@ To write this differently, define
 	\Omega(r,r^\prime) := \frac{1}{2}e^{R_n/2} \arccos\left( \frac{\cosh r \cosh r^\prime - \cosh R_n}
 	{\sinh r \sinh r^\prime} \right).
 \end{equation}
-Then $d_{\H}(u,u^\prime) < R_n$ if and only if $\theta(u, u^\prime) \leq 2 e^{-R_n/2}\Omega(r,r^\prime)$. Under the coupling map $\Psi$, this is equivalent to $|x-x^\prime|_{\pi e^{R_n/2}} \le \Omega(r,r^\prime)$.
+Then $d_{\H}(u,u^\prime) \leq R_n$ if and only if $\theta(u, u^\prime) \leq 2 e^{-R_n/2}\Omega(r,r^\prime)$. Under the coupling map $\Psi$, this is equivalent to $|x-x^\prime|_{\pi e^{R_n/2}} \le \Omega(r,r^\prime)$.
 
 Now consider a point $p \in \mathcal{V}_n$ and write $\Psi^{-1}(p) = (r,\theta)$. Then the triangle inequality implies that
 for any point $u^\prime \in \Dcal_R$
 \begin{equation}\label{eq:tail_inclusion_hyperbolic_ball}
-	r^\prime \leq y = R_n - r \Rightarrow d_H (\Psi^{-1}(p),u^\prime) \leq R_n.
+	r^\prime \leq y = R_n - r \Rightarrow d_{\H} (\Psi^{-1}(p),u^\prime) \leq R_n.
 \end{equation}
 In other words, we have $\Rcal_n ([r, R_n])  \subset \BallHyp{p}$. The shape of $\BallHyp{p}$ at the lower parts of $\Rcal_n$ is described by the following lemma which appears in~\cite{fountoulakis2018law}. 
 
@@ -324,7 +324,7 @@ Moreover:
 \end{equation}
 \end{lemma}
 
-This result allows us to couple the neighborhoods in the hyperbolic random graph $G_{\H,n}(\alpha,\nu)$ to those in the finite box model $G_{\Pcal,n}(\alpha,\nu)$. This coupling is however not exact and hence we need to compute the difference in triangle counts between the two models. For this, and other computations later on, it will be more convenient to consider the following slight modified version of local clustering,
+This result allows us to couple the neighborhoods in the hyperbolic random graph $G_{\H,n}(\alpha,\nu)$ to those in the finite box model $G_{\Pcal,n}(\alpha,\nu)$. This coupling is however not exact and hence we need to compute the difference in triangle counts between the two models. For this, and other computations later on, it will be more convenient to consider the following slight modified version of the local clustering function,
 \begin{equation}\label{eq:def_local_clustering_ast_general}
 	c_{G}^\ast(k) = \begin{cases}
 			\frac{1}{\Exp{N_G(k)}} \sum_{v \in V(G)} \ind{D_G(v) = k} \frac{\T_G(v)}{\binom{k}{2}} &\mbox{if } N_G(k) \ge 1\\
@@ -333,7 +333,7 @@ This result allows us to couple the neighborhoods in the hyperbolic random graph
 \end{equation}
 Notice that the only difference between $c_G(k)$ and $c_G^\ast(k)$ is that we replace $N_G(k)$ by its expectation $\Exp{N_G(k)}$. Following the notational convention, see Remark~\ref{rmk:notation}, throughout the remainder of this paper we write $c_{\HP,n}^\ast(k)$ and $c_{\mathcal{P},n}^\ast(k)$ to denote the modified local clustering function in $G_{\HP,n}(\alpha, \nu)$ and $G_{\mathcal{P},n}(\alpha,\nu)$, respectively.
 
-First we show that considering this adjusted version doesn't change anything in terms of the scaling, the proof is given in Section~\ref{ssec:coupling_H_HP}.
+The following lemma justifies working with this modified version, for the proof see Section~\ref{ssec:coupling_H_HP}.
 
 \begin{lemma}\label{lem:clustering_ast_H}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any positive sequence, possibly constant, such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, as $n \to \infty$,
@@ -342,7 +342,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any positive seque
 \]
 \end{lemma}
 
-We then establish that the adjusted local clustering function in the hyperbolic model $G_{\H,n}(\alpha,\nu)$ behaves similar to that in the Poisson version $G_{\HP, n}(\alpha,\nu)$.
+We then establish that the modified local clustering function in the hyperbolic model $G_{\H,n}(\alpha,\nu)$ behaves similarly to that in the Poisson version $G_{\HP, n}(\alpha,\nu)$.
 
 \begin{proposition}\label{prop:clustering_ast_H_Pois}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any increasing sequence such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, as $n \to \infty$,
@@ -350,8 +350,9 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any increasing seq
 	\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\HP,n}^\ast(k_n)\right|} = \smallO{s_\alpha(k_n)}.
 \]
 \end{proposition}
+\MS{I think we can drop the condition to be increasing here and below, also the $n^{1/3}$ should be removed.}
 
-The next step is to show that the modified clustering isn't influenced by the coupling describe above. The proof can be found in Section~\ref{ssec:coupling_HP_ast_P}.
+The next step is to show that the modified clustering is preserved under the coupling described above. The proof can be found in Section~\ref{ssec:coupling_HP_ast_P}.
 
 \begin{proposition}[Coupling result for local clustering]\label{prop:couling_c_H_P}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any increasing sequence such that $k_n = \smallO{\min\left\{n^{\frac{1}{2\alpha + 1}}, n^{\frac{1}{3}}\right\}}$. Then, as $n \to \infty$,
@@ -360,7 +361,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any increasing seq
 \]
 \end{proposition}
 
-These two results imply that the difference between the local clustering functions in the hyperbolic model and modified version in the finite box graph converges to zero faster than the proposed scaling $s_\alpha(k_n)$ in Theorem \ref{thm:local_clustering_hyperbolic}. Hence, to proof this theorem it enough to prove it for $c_{\mathcal{P},n}^\ast(k)$. 
+These two results imply that the difference between the local clustering function of the hyperbolic random graph and the modified local clustering function of the finite box graph converges to zero faster than the proposed scaling $s_\alpha(k_n)$ in Theorem \ref{thm:local_clustering_hyperbolic}. Hence, to prove this theorem it is enough to prove it for $c_{\mathcal{P},n}^\ast(k)$. 
 
 \subsection{Infinite limit model}\label{ssec:infinite_model}
 
