@@ -379,7 +379,7 @@ Similar to the finite graph, we write $\BallPo{p}$ to denote the \emph{ball} aro
 	\BallPo{p} = \{p^\prime \in \Rcal : |x - x^\prime| \leq e^{\frac{y + y^\prime}{2}}\}.
 \end{equation}
 
-To analyze expression in the both the finite and infinite model we will make use of the~\emph{Campbell-Mecke} formula. 
+To analyze expressions in the both the finite and infinite model we will make use of the~\emph{Campbell-Mecke} formula. 
 For a Poisson point process $\mathcal{P}$ on a measurable space $S$ with intensity $\lambda$ and a measurable non-negative function $h: S^r \rightarrow \mathbb{R}$ we have
 \begin{equation}\label{eq:def_Campbell-Mecke}
 \begin{split}
@@ -391,7 +391,7 @@ For a Poisson point process $\mathcal{P}$ on a measurable space $S$ with intensi
 \end{equation}
 where the sum ranges over all distinct $r$-tuples of points of $\mathcal{P}$.
 
-Using the Campbell-Mecke formula we can compute the density of the ball $\BallPo{p}$ as
+Using the Campbell-Mecke formula we can compute the intensity measure of the ball $\BallPo{p}$, i.e. the expected number of points falling into it, as
 \begin{equation}\label{eq:mu_ball_y_P}
 	\mu_{\alpha, \nu}(\BallPo{p}) = \int_0^\infty \int_{-\infty}^\infty \ind{|x-x^\prime| \le e^{\frac{y + y^\prime}{2}}}
 	f_{\alpha,\nu}(x^\prime, y^\prime) \, dx^\prime \, dy^\prime 
@@ -402,7 +402,7 @@ We shall use $\rho(p,k)$ and $\rho(y,k)$ (for a point $p=(x,y) \in \mathcal{R}$)
 \[
 	\rho(p,k) = \rho(y,k) = \Prob{\Po\left(\xi_{\alpha,\nu} e^{y/2}\right) = k}.
 \]
-Note that $\rho(y,k)$ denote the probability that a node $(x,y) \in G_{\Pcal}(\alpha,\nu)$ has degree $k$, which due to the translation symmetry of the Poisson Point Process in the $x$ direction depends only on the \emph{height} $y$.
+Note that $\rho(y,k)$ denotes the probability that a vertex $(x,y) \in G_{\Pcal}(\alpha,\nu)$ has degree $k$, which due to the translation symmetry of the Poisson Point Process in the $x$ direction depends only on the \emph{height} $y$.
 
 \begin{remark}[Degree distributions in the other models]
 Similar to the infinite graph, the degree of a node $p$ in the Poisson hyperbolic graph $G_{\HP,n}$ and the finite random graph $G_{\Pcal,n}$ is distributed as a Poisson random variable with mean $\Mu{\BallHyp{p}}$ and $\Mu{\BallPon{p}}$, respectively. Following the notation above we will denote these distributions by $\rho_{\HP,n}(y,k)$ and $\rho_{\Pcal,n}(y,k)$, since these again are independent of the $x$-coordinate of $p$.
@@ -410,7 +410,7 @@ Similar to the infinite graph, the degree of a node $p$ in the Poisson hyperboli
 
 We can also define a local clustering coefficient and function in this model. However, since $G_\Pcal$ has an infinite number of nodes the corresponding definitions are slightly different than for the finite size models. Intuitively the local clustering coefficient is the probability that two random neighbors of a randomly sampled node form a triangle, while the local clustering function is the same probability but conditioned on the sampled node having degree $k$.
 
-Again, due to symmetry in the $x$ direction we can assume without loss of generality that a randomly sampled point $p$ is $(0,y)$. For any $y \in \R_+$ we define the probability density function on $\Rcal := \R_+ \times \R$ by  
+Again, due to symmetry in the $x$ direction we can assume without loss of generality that a randomly sampled point $p$ is $(0,y)$. For any $y \in \R_+$ we define the probability density function on $\Rcal :=  \R \times \R_+$ by  
 \begin{equation}\label{eq:def_eta_P}
 	\eta_y(x^\prime, y^\prime) = \frac{\ind{p^\prime \in \BallPo{(0,y)}} f_{\alpha,\nu}(x^\prime,y^\prime)}{\mu_{\alpha,\nu}(\BallPo{(0,y)})}.
 \end{equation}
@@ -438,13 +438,13 @@ while the limiting local clustering function is defined as
 	c_\Pcal(k) = \frac{\int_0^\infty \rho(y,k) \Delta_\Pcal(y) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}.
 \end{equation}
 
-In Section~\ref{sec:asymptotics_average_clustering_ast_P} we will compute both these quantities and show that $c_\Pcal = c_\infty$ and $c_\Pcal(k) = c_\infty(k)$, where $c_\infty$ and $c_\infty(k)$ are given in, respectively, Theorem~\ref{thm:clustering_coefficient_hyperbolic} and Theorem~\ref{thm:local_clustering_hyperbolic}
+In Section~\ref{sec:asymptotics_average_clustering_ast_P} we will compute both these quantities and show that $c_\Pcal = c_\infty$ and $c_\Pcal(k) = c_\infty(k)$, where $c_\infty$ and $c_\infty(k)$ are given in, respectively, Theorem~\ref{thm:clustering_coefficient_hyperbolic} and Theorem~\ref{thm:local_clustering_hyperbolic}.
 
 \subsection{From the finite to the infinite model}
 
-To compute the limit of the adjusted local clustering $c_{\mathcal{P},n}^\ast(k)$ in the finite graph $G_{\mathcal{P},n}(\alpha, \nu)$ we first prove in Section~\ref{sec:concentration_c_P_n} that it is concentrated around its mean $\Exp{c_{\mathcal{P},n}^\ast(k_n)}$.
+To compute the limit of the modified local clustering function $c_{\mathcal{P},n}^\ast(k)$ in the finite graph $G_{\mathcal{P},n}(\alpha, \nu)$ we first prove in Section~\ref{sec:concentration_c_P_n} that it is concentrated around its expectation $\Exp{c_{\mathcal{P},n}^\ast(k_n)}$.
 
-\begin{proposition}[Concentration local clustering in $G_{\mathcal{P},n}(\alpha, \nu)$]\label{prop:concentration_local_clustering_P_n}
+\begin{proposition}[Concentration local clustering function in $G_{\mathcal{P},n}(\alpha, \nu)$]\label{prop:concentration_local_clustering_P_n}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any non-decreasing sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha+1}}}$. Then, as $n \to \infty$,
 \[
 	\Exp{\left|c_{\mathcal{P},n}^\ast(k_n) - \Exp{c_{\mathcal{P},n}^\ast(k_n)}\right|} = \smallO{s_\alpha(k_n)}.
@@ -455,12 +455,12 @@ With this concentration result, we are left with the task to compute the limit o
 
 
 \begin{proposition}[Transition to infinite limit model]\label{prop:convergence_average_clustering_P_n}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any positive sequence tending to infinity and satisfying $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$. Then, as $n \to \infty$,
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any positive sequence tending to infinity and satisfying $k_n = \smallO{n^{\frac{1}{2\alpha+1}}}$. Then, as $n \to \infty$,
 \[
 	\left|\Exp{c_{\Pcal,n}^\ast(k_n)} - c_\Pcal(k_n)\right| = \smallO{s_\alpha(k_n)}.
 \]
 \end{proposition}
-
+\MS{Is it really necessary that the sequence tends to infinity in the thm above?}
 
 \subsection{Proof of the main results}\label{ssec:proof_main_results}
 
