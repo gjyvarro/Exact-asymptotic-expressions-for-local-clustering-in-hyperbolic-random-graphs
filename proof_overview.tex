@@ -467,30 +467,48 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any positive 
 We are now ready to prove our main results, using the propositions stated in the previous sections. We begin with Theorem~\ref{thm:local_clustering_hyperbolic}.
 
 \begin{proof}[Proof of Theorem \ref{thm:local_clustering_hyperbolic}]
-By applying Proposition~\ref{prop:convergence_average_clustering_P_n}, Proposition~\ref{prop:convergence_average_clustering_P_n} and Theorem~\ref{thm:asymptotics_average_clustering_P} we get
+%By applying Proposition~\ref{prop:convergence_average_clustering_P_n}, Proposition~\ref{prop:convergence_average_clustering_P_n} and Theorem~\ref{thm:asymptotics_average_clustering_P} we get
+%\begin{align*}
+%	&\hspace{-30pt}\Exp{\left|\frac{c_{\Pcal,n}^\ast(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right|}\\
+%	&\le \frac{\Exp{\left|c_{\Pcal,n}^\ast(k_n) - \Exp{}c_{\Pcal,n}^\ast(k_n)\right|}}{C_{\alpha,\nu}s_\alpha(k_n)}
+%		+ \frac{\left|\Exp{c_{\Pcal,n}^\ast(k_n)} - c_\infty(k_n)\right|}{C_{\alpha,\nu}s_\alpha(k_n)}
+%		+ \left|\frac{c_{\infty}(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right| \\
+%	&= \smallO{1}.
+%\end{align*}
+First of all, due to cancellation of equal terms we can rewrite
 \begin{align*}
-	&\hspace{-30pt}\Exp{\left|\frac{c_{\Pcal,n}^\ast(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right|}\\
-	&\le \frac{\Exp{\left|c_{\Pcal,n}^\ast(k_n) - \Exp{}c_{\Pcal,n}^\ast(k_n)\right|}}{C_{\alpha,\nu}s_\alpha(k_n)}
-		+ \frac{\left|\Exp{c_{\Pcal,n}^\ast(k_n)} - c_\infty(k_n)\right|}{C_{\alpha,\nu}s_\alpha(k_n)}
-		+ \left|\frac{c_{\infty}(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right| \\
-	&= \smallO{1}.
+    c_{\H,n}(k_n)-c_\infty(k_n) =& c_{\H,n}(k_n)-c_{\H,n}^\ast(k_n)+c_{\H,n}^\ast(k_n)-c_{\HP,n}^\ast(k_n)+c_{\HP,n}^\ast(k_n)-c_{\Pcal,n}^\ast(k_n) \\
+    &+c_{\Pcal,n}^\ast(k_n)-\E c_{\Pcal,n}^\ast(k_n)+\E c_{\Pcal,n}^\ast(k_n)-c_\infty(k_n)
 \end{align*}
+Then, we take absolute values and apply the triangle inequality. By monotonicity of expectation, we can apply it to both sides and obtain
+\begin{align*}
+    \E[|c_{\H,n}(k_n)-c_\infty(k_n)|] \leq & \E[|c_{\H,n}(k_n)-c_{\H,n}^\ast(k_n)|]+\E[|c_{\H,n}^\ast(k_n)-c_{\HP,n}^\ast(k_n)|]\\&+\E[|c_{\HP,n}^\ast(k_n)-c_{\Pcal,n}^\ast(k_n)|] 
+    +\E[|c_{\Pcal,n}^\ast(k_n)-\E c_{\Pcal,n}^\ast(k_n)|]\\&+\E[|\E c_{\Pcal,n}^\ast(k_n)-c_\infty(k_n)|]
+\end{align*}
+At this point, the lemmas and propositions presented above in this section can be applied in order to show that all summands are $\smallO{s_\alpha(k_n)}$: Lemma~\ref{lem:clustering_ast_H} for the transition to the modified clustering function in the first term, Proposition~\ref{prop:clustering_ast_H_Pois} for the Poissonization in the disk in the second term, Proposition~\ref{prop:couling_c_H_P} for the coupling from the disk to the finite box model in the third term, Proposition~\ref{prop:concentration_local_clustering_P_n} for the concentration in the fourth term and finally Proposition~\ref{prop:convergence_average_clustering_P_n} for the transition to the infinite limit model where we also used that $c_{\Pcal}(k_n) = c_\infty(k_n)$ as obtained at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P}. All of this together yields that:
+\begin{align*}
+    \E[|c_{\H,n}(k_n)-c_\infty(k_n)|] = \smallO{s_\alpha(k_n)} = \smallO{c_\infty(k_n)}
+\end{align*}
+i.e. the statement of the theorem.
+
 %\[
 %	\Exp{\left|\frac{c_{\Pcal,n}^\ast(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right|}
 %	\le \left|\frac{c_{\infty}(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right| 
 %	+ \frac{\Exp{\left|c_{\Pcal,n}^\ast(k_n) - c_\infty(k_n)\right|}}{C_{\alpha,\nu}s_\alpha(k_n)} = \smallO{1}.
 %\]
-Combining this with Proposition~\ref{prop:couling_c_H_P} yields
-\[
-	\Exp{\left|\frac{c_{\H,n}^\ast(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right|}
-	\le \Exp{\left|\frac{c_{\Pcal,n}^\ast(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right|} 
-	+ \frac{\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\Pcal,n}^\ast(k_n)\right|}}{C_{\alpha,\nu}s_\alpha(k_n)} = \smallO{1}.
-\]
-and the result then follows by applying Lemma~\ref{lem:clustering_ast_H}. 
+
+%Combining this with Proposition~\ref{prop:couling_c_H_P} yields
+%\[
+%	\Exp{\left|\frac{c_{\H,n}^\ast(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right|}
+%	\le \Exp{\left|\frac{c_{\Pcal,n}^\ast(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right|} 
+%	+ \frac{\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\Pcal,n}^\ast(k_n)\right|}}{C_{\alpha,\nu}s_\alpha(k_n)} = \smallO{1}.
+%\]
+%and the result then follows by applying Lemma~\ref{lem:clustering_ast_H}. 
 \end{proof}
 
 We can now use this result to prove Theorem~\ref{thm:clustering_coefficient_hyperbolic}. Before we state the proof we summarize some results regarding the degrees in the hyperbolic model. The proof of this lemma follows directly from Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson} and Lemma~\ref{lem:N_k_HP_P}, see Section~\ref{sec:coupling_H_P_n}.
 
+\MS{I think we need to introduce resp. explain $\Prob{D_\Pcal = k_n}$ in the lemma below.}
 \begin{lemma}\label{lem:N_k_H_P}
 Let $\alpha > \frac{1}{2}$ and $k_n$ be a positive sequence, possibly constant, such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then
 \[
@@ -513,6 +531,7 @@ First, let $a_n$ be any sequence such that $a_n \to \infty$. Then
 	&= \frac{1}{n} \sum_{t = 3}^{a_n} \Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t)
 		+ \frac{1}{n} \sum_{i = 1}^n \ind{D_{\H,n}(i) > a_n} \frac{T_{\H,n}(i)}{\binom{D_{\H,n}(i)}{2}},
 \end{align*}
+\MS{Should the summation in $t$ not start from $t=2$?}
 where the expectation of last term is bounded from above by $\Prob{D_{\H,n} > a_n}$. Similarly,
 \[
 	c_\Pcal = \sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} c_\Pcal(t) + \sum_{t > a_n} \Prob{D_\Pcal = t} c_\Pcal(t)
