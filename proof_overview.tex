@@ -532,18 +532,18 @@ First, let $a_n$ be any sequence such that $a_n \to \infty$. Then
 		+ \frac{1}{n} \sum_{i = 1}^n \ind{D_{\H,n}(i) > a_n} \frac{T_{\H,n}(i)}{\binom{D_{\H,n}(i)}{2}},
 \end{align*}
 \MS{Should the summation in $t$ not start from $t=2$?}
-where the expectation of last term is bounded from above by $\Prob{D_{\H,n} > a_n}$. Similarly,
+where the expectation of the last term is bounded from above by $\Prob{D_{\H,n} > a_n}$. Similarly,
 \[
 	c_\Pcal = \sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} c_\Pcal(t) + \sum_{t > a_n} \Prob{D_\Pcal = t} c_\Pcal(t)
 \]
-Recall that (see [??]) $c_\infty = c_\Pcal$ and $c_\infty(k) = c_\Pcal(k)$. Therefore
+As derived at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P}, $c_\infty = c_\Pcal$ and $c_\infty(k) = c_\Pcal(k)$. Therefore
 \begin{align*}
-	\Exp{|c_{\H,n} - c_\Pcal|}
+	\Exp{|c_{\H,n}-c_\infty|}=\Exp{|c_{\H,n} - c_\Pcal|}
 	&\le \Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
 		n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|}\\ 
 	&\hspace{10pt}+ \Prob{D_{\H,n} > a_n} + \Prob{D_{\Pcal} > a_n},
 \end{align*}
-and since the last to probabilities are $\smallO{1}$ it is enough to prove that
+and since the last two probabilities are $\smallO{1}$ it is enough to prove that
 \[
 	\lim_{n \to \infty} \Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
 			n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|} = 0.
@@ -606,5 +606,5 @@ while $\Exp{c_\Pcal(t)} \le 1$ implies that
 	&\le \bigT{1} 3^{-(2\alpha+1)} a_n \max_{3 \le t \le a_n} 
 		\Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} = \smallO{1}.
 \end{align*}
-This finishes the first part of the proof. The second part, which derives the exact expression for $c_\Pcal$ can be found in [??] \PvdH{Add reference to section.}
+This finishes the proof. %The second part, which derives the exact expression for $c_\Pcal$ can be found in [??] \PvdH{Add reference to section.}
 \end{proof}

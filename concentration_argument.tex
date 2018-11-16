@@ -1,9 +1,9 @@
-\section{Concentration of heights for nodes with degree $k$}\label{sec:concentration_argument}
+\section{Concentration of heights for vertices with degree $k$}\label{sec:concentration_argument}
 
-Many of the computations in this paper will involve integrals whose integrand contains $\Prob{\Po(\mu_n(y)) = k}$, where $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$ and $\mu_n(y) \approx e^{y/2}$. For instance, the expected adjusted local clustering function $c_\infty(k)$ in $G_\Pcal$ equals
+Many of the computations in this paper will involve integrals whose integrand contains $\Prob{\Po(\mu_n(y)) = k}$, where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$ and $\mu_n(y) \approx e^{y/2}$. For instance, the expected modified local clustering function $c_\infty(k)$ in $G_\Pcal$ equals
 \[
-	\frac{\int_0^\infty \Prob{\Po(\Mu{\BallPo{0,y}}) = k} \Delta_{\Pcal}(y) \alpha e^{-\alpha} \dd y}
-	{\int_0^\infty \Prob{\Po(\Mu{\BallPo{0,y}}) = k} \alpha e^{-\alpha} \dd y},
+	\frac{\int_0^\infty \Prob{\Po(\Mu{\BallPo{0,y}}) = k} \Delta_{\Pcal}(y) \alpha e^{-\alpha y} \dd y}
+	{\int_0^\infty \Prob{\Po(\Mu{\BallPo{0,y}}) = k} \alpha e^{-\alpha y} \dd y},
 \]
 where $\Mu{\BallPo{0,y}} = \xi_{\alpha,\nu} e^{y/2}$. 
 
@@ -11,7 +11,7 @@ In particular, we already established that the degree of a node at height $y$ in
 
 \subsection{Concentration argument for the infinite model}
 
-Recall that $\rho(y, k)$ is the probability density function of a Poisson random variable with mean $\mu_{\alpha, \nu}(B_\Pcal(y)) = \xi_{\alpha,\nu}e^{\frac{y}{2}}$. 
+Recall that $\rho(y, k)$ is the probability density function of a Poisson random variable with expectation $\mu_{\alpha, \nu}(B_\Pcal(y)) = \xi_{\alpha,\nu}e^{\frac{y}{2}}$. 
 For any sequence $\{k_n\}_{n \ge 1}$, possibly constant, define
 \begin{equation}\label{eq:def_kappa_n}
 	\kappa_n := \begin{cases}
@@ -21,17 +21,19 @@ For any sequence $\{k_n\}_{n \ge 1}$, possibly constant, define
 \end{equation}
 and define further, for any $C > 0$
 \begin{equation}\label{eq:def_K_C_set}
-	\Kcal_C(k_n) = \left\{p \in \R : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
+	\Kcal_C(k_n) = \left\{p=(x,y) \in \R \times \R_+ : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
 	\le \frac{k_n + C \kappa_n}{\xi_{\alpha,\nu}} \wedge e^{R_n/2} \right\},
 \end{equation}
-Note that if $k_n = \Omega(\log(n))$ then $e^{y/2} = \bigT{k_n}$ whenever $p \in \Kcal_C(k_n)$. The next lemma states that for a large class of functions $h(y)$, to compute the integral 
+\MS{What does $\vee$ and $\wedge$ mean?}
+
+Note that if $k_n = \Omega(\log(n))$ then $e^{y/2} = \bigT{k_n}$ whenever $p=(x,y) \in \Kcal_C(k_n)$. The next lemma states that for a large class of functions $h(y)$, to compute the integral 
 \[
 	\int_{\Rcal_n} \rho(y,k_n) h(y) f_{\alpha,\nu}(x,y) \dd x \dd y
 \]
 it is enough to consider integration of $\Kcal_C(k_n)$ instead of $\Rcal_n$. More precisely, for any $\ell_n = (1 + \smallO{1})k_n$ it is enough to consider $\Kcal_C(\ell_n)$. The flexibility of using $(1+\smallO{1})k_n$ instead of $k_n$ will prove useful in later sections.
 
 \begin{lemma}\label{lem:concentration_argument}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$, $\{k_n\}_{n \ge 1}$ be any positive sequence such that $k_n = o(n^{\frac{1}{2\alpha + 1}})$ and let $\ell_n = k_n(1 + \epsilon_n)$, with $\epsilon_n \to 0$. In addition let $\beta < \alpha$ and $h : \R_+ \mapsto \R$ be a any function such that $h(y) = g(y)e^{\beta y}$ with $|g(y)|$ uniformly bounded on $\R_+$. Then, if we define for $C > 0$
+Let $\alpha > \frac{1}{2}$, $\nu > 0$, $\{k_n\}_{n \ge 1}$ be any positive sequence such that $k_n = o(n^{\frac{1}{2\alpha + 1}})$ and let $\ell_n = k_n(1 + \epsilon_n)$, with $\epsilon_n \to 0$. In addition let $\beta < \alpha$ and $h : \R_+ \rightarrow  \R$ be a any function such that $h(y) = g(y)e^{\beta y}$ with $|g(y)|$ uniformly bounded on $\R_+$. Then, if we define for $C > 0$
 \[
 	\lambda_n^\pm = \ell_n \pm C \kappa_n, 
 	\quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi_{\alpha,\nu}}\right),
@@ -146,9 +148,9 @@ Lemma~\ref{lem:concentration_argument} will prove very useful in the remainder o
 \PvdH{It might be a good idea to add one more example of how the concentration argument is used in the paper.}
 \end{remark}
 
-\subsection{Average degree in the Hyperbolic graph}\label{ssec:average_degree_HP_n}
+\subsection{Average degree in the hyperbolic random graph}\label{ssec:average_degree_HP_n}
 
-Recall that under the coupling between the hyperbolic random graph and the finite box model $|x-x^\prime|_{\pi e^{r_n/2}} \le \Omega(r,r^\prime)$, while the coupling lemma (Lemma~\ref{lem:asymptotics_Omega_hyperbolic}) gives that  
+Recall that under the coupling between the hyperbolic random graph and the finite box model $|x-x^\prime|_{\pi e^{R_n/2}} \le \Omega(r,r^\prime)$, while the coupling lemma (Lemma~\ref{lem:asymptotics_Omega_hyperbolic}) gives that  
 \[
 	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R_n} \leq \Omega(r, r^\prime) 
 		\leq  e^{\frac{1}{2}(y+y^\prime)} + K e^{\frac{3}{2}(y+y^\prime) - R_n},
@@ -180,7 +182,7 @@ and
 \end{lemma}
 
 \begin{proof}
-We will split the computation of $\Mu{\BallHyp{0,y}}$ over the case $y^\prime > R_n - y$ and $y^\prime \le R_n - y$ where for the latter we utilize Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. Recall that $\Mu{\BallPo{0,y}} = \xi_{\alpha,\nu} e^{y/2}$ where $\xi_{\alpha,\nu} = 4\nu \alpha/(2\alpha - 1)\pi$.
+We will split the computation of $\Mu{\BallHyp{0,y}}$ into the cases $y^\prime > R_n - y$ and $y^\prime \le R_n - y$ where for the latter we utilize Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. Recall that $\Mu{\BallPo{0,y}} = \xi_{\alpha,\nu} e^{y/2}$ where $\xi_{\alpha,\nu} = \frac{4\alpha\nu}{\pi(2\alpha - 1)}$.
 
 By~\eqref{eq:tail_inclusion_hyperbolic_ball}, we have $\BallHyp{(0,y)} \cap \Rcal_n ([R_n - y, R_n])= \Rcal_n([R_n-y,R_n])$. 
 Thus, 
@@ -201,7 +203,7 @@ Next we will establish upper and lower bounds on $\Mu{\BallHyp{(0,y)} \cap\Rcal_
 	&= \Mu{\BallPo{0,y}}\left(1 - e^{-(\alpha - \frac{1}{2})(R_n - y)}\right) \\
 	&\hspace{10pt}+ \frac{2\nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime
 \end{align*}
-The last integral depend on the value of $\alpha$,
+The last integral depends on the value of $\alpha$,
 \[
 	\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime
 	= \begin{cases}
@@ -251,7 +253,7 @@ where $\phi_n(y) \ge 0$ is given by
 	- \frac{(2\alpha - 1)\pi}{4\alpha}\left(\left(\frac{\pi}{2}\right)^{-2\alpha} 
 	e^{-(\alpha - \frac{1}{2})(R_n - y)} - e^{-(\alpha - \frac{1}{2})R_n - \frac{y}{2}}\right).
 \]
-If, on the other hand, $y \le 2 \log(\pi/2)$ then
+On the other hand, if $y \le 2 \log(\pi/2)$ then
 \[
 	\mu_{\alpha,\nu}(B_{\Pcal,n}(p)) = \mu_{\alpha,\nu}(B_\Pcal(p))\left(1 - e^{-(\alpha - \frac{1}{2})R_n}\right).
 \]
@@ -299,9 +301,9 @@ When $y \le 2 \log(\pi/2)$ we have
 \end{align*}
 \end{proof}
 
-\subsection{Concentration argument for Hyperbolic and finite box models}
+\subsection{Concentration argument for hyperbolic and finite box model}
 
-With the results on the average degrees in the two finite Poisson model, we can now establish a result that allows us to extend the concentration argument to the case where instead of $\rho(y,k)$ we consider the degree distributions $\rho_{\HP,n}(y,k)$ and $\rho_{n}(y,k)$ in $G_{\HP,n}$ and $G_{\Pcal,n}$, respectively. The lemma is stated in a more general form, to make it applicable to slightly other cases later in the paper. To understand the general conditions presented in the statement of the lemma we write $\mu_n(y) = \Mu{\BallPon{y}}$ and $\mu(y) = \Mu{\BallPo{y}}$ and recall the result from Lemma~\ref{lem:average_degree_P_n}
+With the results on the average degrees in the two finite Poisson models, we can now establish a result that allows us to extend the concentration argument to the case where instead of $\rho(y,k)$ we consider the degree distributions $\rho_{\HP,n}(y,k)$ and $\rho_{n}(y,k)$ in $G_{\HP,n}$ and $G_{\Pcal,n}$, respectively. The lemma is stated in a more general form, to make it applicable to slightly other cases later in the paper. To understand the general conditions presented in the statement of the lemma we write $\mu_n(y) = \Mu{\BallPon{y}}$ and $\mu(y) = \Mu{\BallPo{y}}$ and recall the result from Lemma~\ref{lem:average_degree_P_n}
 \[
 	\mu_n(y) = \mu(y)(1 - \phi_n(y)).
 \]
@@ -320,7 +322,7 @@ Let $\alpha > \frac{1}{2}, \nu > 0$, $k_n$ be any positive sequence such that $k
 \[
 	\Mu{\BallPo{0,y}}(1 - \phi_n^{(1)}(y)) \le \hat{\mu}_n(y) \le \Mu{\BallPo{0,y}}(1 + \phi_n^{(2)}(y))
 \]
-where $\phi_n^{(i)} : \R_+ \to \R_+$ are such that $\sup_{0 \le y \le (1-\varepsilon)R_n} \phi_n(y)^{(i)} = \smallO{1}$ for any $0 < \varepsilon < 1$ and $\partial \phi_n^{(i)}(y)/\partial y = \bigT{\phi_n^{(i)}(y)}$. Then the following holds from some $C > 0$ large enough:
+where $\phi_n^{(i)} : \R_+ \to \R_+$ are such that $\sup_{0 \le y \le (1-\varepsilon)R_n} \phi_n(y)^{(i)} = \smallO{1}$ for any $0 < \varepsilon < 1$ and $\partial \phi_n^{(i)}(y)/\partial y = \bigT{\phi_n^{(i)}(y)}$. Then the following holds for some $C > 0$ large enough:
 \begin{enumerate}
 \item for any sequence of functions $h_n(y) : \R_+ \mapsto \R$ such that $h_n(y) = \hat{\rho}_n(y,k_n) \bigO{k_n^s e^{\beta y}}$ for some $s < 2\alpha(2\alpha + 1)$ and $\beta < \alpha$, we have,
 \[
@@ -336,7 +338,7 @@ where $\phi_n^{(i)} : \R_+ \to \R_+$ are such that $\sup_{0 \le y \le (1-\vareps
 \end{lemma}
 
 \begin{proof}
-Similar to the proof of Lemma~\ref{lem:concentration_argument} we define 
+Similarly to the proof of Lemma~\ref{lem:concentration_argument} we define 
 \[
 	\lambda_n^\pm = \ell_n \pm C \kappa_n, \quad \text{and} \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi_{\alpha,\nu}}\right).
 \] 
@@ -435,7 +437,7 @@ Let $\hat{\rho}_n(y,k)$ be any of the two distribution functions $\rho_{\HP,n}(y
 for some $C > 0$ large enough.
 \end{corollary}
 
-In particular we conclude that, similar to the infinite limit model, concentrations arguments as described in Remark~\ref{rmk:concentration_argument} can be applied in the case of the hyperbolic random graph and finite box model.
+In particular we conclude that, similarly to the infinite limit model, concentration arguments as described in Remark~\ref{rmk:concentration_argument} can be applied in the case of the hyperbolic random graph and finite box model.
 
 %\begin{lemma}
 %\[
