@@ -350,12 +350,12 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any increasing seq
 	\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\HP,n}^\ast(k_n)\right|} = \smallO{s_\alpha(k_n)}.
 \]
 \end{proposition}
-\MS{I think we can drop the condition to be increasing here and below, also the $n^{1/3}$ should be removed.}
+%\MS{I think we can drop the condition to be increasing here and below, also the $n^{1/3}$ should be removed.}
 
 The next step is to show that the modified clustering is preserved under the coupling described above. The proof can be found in Section~\ref{ssec:coupling_HP_ast_P}.
 
 \begin{proposition}[Coupling result for local clustering]\label{prop:couling_c_H_P}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any increasing sequence such that $k_n = \smallO{\min\left\{n^{\frac{1}{2\alpha + 1}}, n^{\frac{1}{3}}\right\}}$. Then, as $n \to \infty$,
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any positive sequence such that $k_n \ge 3$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, as $n \to \infty$,
 \[
 	\Exp{\left|c_{\HP,n}^\ast(k_n) - c_{\Pcal,n}^\ast(k_n)\right|} = \smallO{s_\alpha(k_n)}.
 \]

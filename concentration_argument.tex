@@ -329,10 +329,10 @@ where $\phi_n^{(i)} : \R_+ \to \R_+$ are such that $\sup_{0 \le y \le (1-\vareps
 	\int_{\Rcal_n} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y 
 	= (1 + o(1)) \int_{\Kcal_{C}(\ell_n)} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y.
 \]
-\item If, in addition, $h_n(y) = \hat{\rho}_n(y,k_n) g_n(y)$ with $g_n$ satisfying $g_n(y(1+\smallO{1}) = (1+\smallO{1})g_n(y)$, we have,
+\item for any uniformly bounded function $h : \R_+ \mapsto \R$,
 \[
-	\int_{\Rcal_n} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y 
-	= (1 + o(1)) \int_{\Rcal_n} \rho(y,k_n) g_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y.
+	\int_{\Rcal_n} h(y) \hat{\rho}_n(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y 
+	= (1 + o(1)) \int_{\Rcal_n} \rho(y,k_n) h(y) f_{\alpha,\nu}(x,y) \dd x \dd y.
 \]
 \end{enumerate}
 \end{lemma}
@@ -408,22 +408,20 @@ The result then follows by Lemma~\ref{lem:concentration_argument}.
 
 The proof of the second statement follows the same line of reasoning as above. First note that by Lemma~\ref{lem:concentration_argument} and the first statement, it is enough to show that
 \[
-	\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) g_n(y) e^{-\alpha y} \dd y
-	= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) g_n(z) e^{-\alpha z} \dd z.
+	\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) h(y) e^{-\alpha y} \dd y
+	= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) h(z) e^{-\alpha z} \dd z.
 \] 
-For this we observe that~\eqref{eq:concentration_argument_z_upper_bound} and~\eqref{eq:concentration_argument_z_lower_bound} imply that $y = z(y) + \smallO{1}$ for $a_n^- \le y \le a_n^+$ and hence, by our assumption on $g_n(y)$ we have that
-\[
-	g_n(y) = g_n(z + \smallO{1}) = (1 + \smallO{1})g_n(z).
-\]
-Therefore, with the change of variables~\eqref{eq:concentration_argument_variable_change} we get
+For this we observe that~\eqref{eq:concentration_argument_z_upper_bound} and~\eqref{eq:concentration_argument_z_lower_bound} imply that there exists a $b_n \to 0$ such that $y = z(y) + b_n$, uniformly for $a_n^- \le y \le a_n^+$. Hence, if we define $g_n(z) = h(z + b_n)$, then $g_n(z)$ is uniformly bounded and converges point wise to $h(z)$. Therefore, with the change of variables~\eqref{eq:concentration_argument_variable_change} we get
 \begin{align*}
-	\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) g_n(y) e^{-\alpha y} \dd y
-	&=  \int_{a_n^-}^{a_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} g_n(y) e^{-\alpha y} \dd y\\
+	\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) h(y) e^{-\alpha y} \dd y
+	&=  \int_{a_n^-}^{a_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} h(y) e^{-\alpha y} \dd y\\
 	&= (1 + \smallO{1})\int_{a_n^-}^{a_n^+}  \Prob{\Po(\mu(z))}
 		g_n(z) e^{-\alpha z} \frac{\hat{\mu}_n^\prime(z)}{\mu^{\prime}(z)} \dd z\\
-	&= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) g_n(z) e^{-\alpha z} \dd z.
+	&= (1 + \smallO{1})\int_{a_n^-}^{a_n^+}  \Prob{\Po(\mu(z))}
+		g_n(z) e^{-\alpha z} \dd z\\
+	&= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) h(z) e^{-\alpha z} \dd z.
 \end{align*}
-
+where the last line follow by dominated convergence.
 \end{proof}
 
 Observe that Lemma~\ref{lem:average_degree_P_n} implies that $\Mu{\BallHyp{(0,y)}}$ satisfies the requirements in Lemma~\ref{lem:concentration_argument_rho_approximation} while Lemma~\ref{lem:average_degree_hyperbolic} states that this holds for $\Mu{\BallPon{0,y}}$. We therefore have the following important Corollary.

@@ -1,6 +1,6 @@
 \section{From $G_{\mathcal{P}, n}(\alpha, \nu)$ to $G_{\mathcal{P}}(\alpha, \nu)$ (Proving Proposition \ref{prop:convergence_average_clustering_P_n})}\label{sec:clustering_Pn_to_P}
 
-Now that we have a complete picture of the behavior of the local clustering coefficient and function in the limit model $G_\Pcal$ we will proceed to relate this to the clustering in the hyperbolic model $G_{\H,n}$. The first step is to relate the clustering in the infinite model to that of the finite box model $G_{\Pcal, n}$. Recall that $G_{\Pcal,n}$ is obtained by restricting the Poisson Point Process to the box $\Rcal_n = (-I_n, I_n] \times (0, R_n]$, with $I_n = \frac{\pi}{2} e^{R_n/2}$, and connecting two points $p_1, p_2 \in \Rcal_n$ if $|x_1 - x_2|_{\pi e^{R_n/2}} \le e^{(y_1 + y_2)/2}$ where we identified the left and right boundary of $\Rcal_n$. See Section~\ref{ssec:finite_model} for more details. 
+Now that we have a complete picture of the behavior of the local clustering coefficient and function in the limit model $G_\Pcal$ we will proceed to relate this to the clustering in the hyperbolic model $G_{\H,n}$. The first step is to relate the clustering in the infinite model to that of the finite box model $G_{\Pcal, n}$. Recall that $G_{\Pcal,n}$ is obtained by restricting the Poisson Point Process $\PPP$ to the box $\Rcal_n = (-I_n, I_n] \times (0, R_n]$, with $I_n = \frac{\pi}{2} e^{R_n/2}$ (we write $\Pcal_n$ for this process), and connecting two points $p_1, p_2 \in \Rcal_n$ if $|x_1 - x_2|_{\pi e^{R_n/2}} \le e^{(y_1 + y_2)/2}$ where we identified the left and right boundary of $\Rcal_n$. See Section~\ref{ssec:finite_model} for more details. 
 
 In this section we shall compute the asymptotic difference between triangle counts in the finite and infinite model. First we recall the definition of $\Kcal_{C}(k_n)$
 \[
@@ -48,9 +48,10 @@ Define
 \end{equation}
 Then
 \[
-	\sum_{p_1,p_2 \in 2^\Pcal_n} T_{\Pcal,n}(p_0,p_1,p_2) - \widetilde{T}_{\Pcal,n}(p_0,p_1,p_2)
-	= \sum_{p_1,p_2 \in 2^\Pcal_n} \ind{p_1 \in \BallPon{p_0}} \ind{p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p_0,p_1)}
+	\sum_{p_1,p_2 \in \Pcal_n \setminus (0,y)}^{\ne} T_{\Pcal,n}(p_0,p_1,p_2) - \widetilde{T}_{\Pcal,n}(p_0,p_1,p_2)
+	= \sum_{p_1,p_2 \in \Pcal_n \setminus (0,y)}^{\ne} \ind{p_1 \in \BallPon{p_0}} \ind{p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p_0,p_1)},
 \]
+where the sums are over all distinct pairs $(p_1, p_2) \in \Pcal_n \setminus \{(0,y)\}$.
 
 \begin{figure}[!t]
 \centering
@@ -337,32 +338,46 @@ that $4\alpha^2 > 2$ and hence,
 
 Recall that
 \[
-	\Exp{c_{\Pcal,n}^\ast(k_n)} = \frac{\int_{\Rcal_n} \Exp{\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}.
+	\Exp{c_{\Pcal,n}^\ast(k_n)} = \frac{\int_{\Rcal_n} \Exp{\ind{D_{\Pcal,n}(y) = k_n} T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}.
 \]
 By Lemma~\ref{lem:average_degree_P_n} and a concentration argument
 \[
 	\Exp{N_{\Pcal,n}(k_n)} = (1+o(1)) \alpha n \int_{0}^\infty \rho(y,k_n) e^{-\alpha} \dd y 
-	= (1+\smallO{1}) \alpha n \Exp{N_{\Pcal}(k_n)},
+	= (1+\smallO{1}) n \Exp{N_{\Pcal}(k_n)},
 \]
-and since $\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y) \le \rho_n(y,k_n) k_n^2$ another concentration argument yields
+and since $\Exp{\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y)} \le \rho_n(y,k_n) k_n^2$ another concentration argument yields
 \begin{align*}
 	&\hspace{-30pt}\int_{\Rcal_n} \Exp{\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y)} 
 		f_{\alpha,\nu}(x,y) \dd x \dd y\\
-	&= (1+\smallO{1})\int_{\Kcal_C(k_n)} \rho(y,k_n) \Exp{T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y\\
-	&= (1 + \smallO{1}) \alpha n \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha} \dd x \dd y,
+	&= (1+\smallO{1})\int_{\Kcal_C(k_n)} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y\\
+	&= (1 + \smallO{1}) \alpha n \int_{a_n^-}^{a_n^+} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha} \dd x \dd y,
 \end{align*}
-with $a_n^\pm = 2\log\left(\frac{k_n \pm C \kappa_n}{\xi_{\alpha,\nu}}\right)$. It now suffices to show that
+with $a_n^\pm = 2\log\left(\frac{k_n \pm C \kappa_n}{\xi_{\alpha,\nu}}\right)$. Next we note that for $a_n^- \le y \le a_n^-$,
 \[
-	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha} \dd x \dd y
-	= (1+\smallO{1}) \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd x \dd y, 
+	\Exp{T_\Pcal(y)} = \frac{\Mu{\BallPo{y}}^2}{2} \Delta_\Pcal(y) = (1+\smallO{1}) \binom{k_n}{2} \Delta_\Pcal(y)
 \]
-which follows if we can show that
+and hence it now suffices to show that
 \[
-	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \left|\Exp{T_{\Pcal,n}(y) - T_{\Pcal}(y)}\right| e^{-\alpha} \dd y
-	= \smallO{1} \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd y.
+	\binom{k_n}{2}^{-1}\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha y} \dd y
+	= (1+\smallO{1}) \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Delta_\Pcal(y) e^{-\alpha y} \dd y. 
 \]
 
-For this we write
+
+We do this in two stages. First we prove that
+\begin{equation}\label{eq:transition_clustering_main_term}
+	\int_{a_n^-}^{a_n^+} \rho_{n}(y,k_n) \Delta_{\Pcal}(y) e^{-\alpha y} \dd y
+	= (1 + \smallO{1}) \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Delta_{\Pcal}(y) e^{-\alpha y} \dd y.
+\end{equation}
+Then we show that
+\begin{equation}\label{eq:transition_clustering_error_term}
+	\binom{k_n}{2}^{-1} \int_{a_n^-}^{a_n^+} \rho_n(y,k_n) \left|\Exp{T_{\Pcal,n}(y) - T_{\Pcal}(y)}\right| 
+	e^{-\alpha y} \dd y
+	= \smallO{1} \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Delta_{\Pcal}(y) e^{-\alpha y} \dd y.
+\end{equation}
+
+Since $h(y) := \Delta_\Pcal(y)$ is uniformly bounded \eqref{eq:transition_clustering_main_term} follows directly from the second statement in Lemma~\ref{lem:concentration_argument_rho_approximation}.
+
+For the error term~\eqref{eq:transition_clustering_error_term} we write
 \begin{align*}
 	\left|T_{\Pcal,n}(p) - T_{\Pcal}(p)\right| = \sum_{p_1, p_2 \in \Rcal_n} \ind{p_1 \in \BallPon{p}} \ind{p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p, p_1)} + \sum_{p_1, p_2 \in \Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2)
 \end{align*}
@@ -390,180 +405,37 @@ from which we conclude that
 \]
 Therefore 
 \begin{align*}
-	&\hspace{-30pt}\int_{a_n^-}^{a_n^+} \rho(y,k_n) \left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| 
+	&\hspace{-30pt}\binom{k_n}{2}^{-1}\int_{a_n^-}^{a_n^+} \rho(y,k_n) \left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| 
 		e^{-\alpha} \dd y\\
-	&= \bigO{1} n^{-(2\alpha - 1)} k_n^2 \int_{0}^\infty \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd y\\
-	&= \bigO{1} n^{-(2\alpha - 1)} k_n^{-2\alpha + 1}.
+	&= \bigO{1} n^{-(2\alpha - 1)} \int_{0}^\infty \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd y\\
+	&= \bigO{1} n^{-(2\alpha - 1)} k_n^{-(2\alpha + 1)} = \smallO{s_\alpha(k_n) k_n^{-(2\alpha + 1)} },
 \end{align*}
-
-To finish the argument we observe that
+where the last part follows from Lemma~\ref{lem:scaling_s_alpha}. To finish the argument we observe that
 \begin{align*}
-	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd y 
-	&= (1 + \smallO{1})\int_0^\infty \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd y \\
-	&= \bigT{1} \binom{k_n}{2} \int_0^\infty \rho(y,k_n) \Delta_\Pcal(y) e^{-\alpha} \dd y\\
-	&= \bigT{1} k_n^{2} \Exp{N_{\Pcal}(k_n)} c_\infty(k_n)
-		= \bigT{k_n^{-2\alpha + 1} s_\alpha(k_n)}.
+	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \Delta_\Pcal(y) e^{-\alpha} \dd y
+	&= \bigT{1} \Exp{N_{\Pcal}(k_n)} c_\infty(k_n) = \bigT{ s_\alpha(k_n) k_n^{-(2\alpha + 1)}}.
 \end{align*}
-Therefore, since $n^{-(2\alpha - 1)} = \smallO{s_\alpha(k_n)}$ by Lemma~\ref{lem:scaling_s_alpha}, we conclude that
-\begin{align*}
-	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| e^{-\alpha} \dd y 
-	&= \smallO{k_n^{-2\alpha + 1} s_\alpha(k_n)} \\
-	&= \smallO{1} \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Exp{T_{\Pcal}(y)} e^{-\alpha} \dd y,
-\end{align*}
-which completes the proof.
-
 \end{proof}
 
-%\begin{corollary}
-%\[
-%	\Exp{T_{\Pcal,n}(k_n)} = \begin{cases}
-%		\bigT{n k_n^{-3(2\alpha - 1)}} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{4}\\
-%		\bigT{n \log(k_n) k^{-2\alpha}} &\mbox{if } \alpha = \frac{3}{4} \\
-%		\bigT{n k^{-2\alpha}} &\mbox{if } \alpha > \frac{3}{4}.
-%	\end{cases}
-%\]
-%\end{corollary}
-%
-%\begin{remark}
-%Note that for $p_0 \notin \Kcal_\varepsilon(k_n)$, we could have proven that
-%\[
-%	\left|\Delta_{\Pcal, n}(y) - \Delta_{\Pcal}(y)\right| = \bigO{n^{-\lambda}e^{(\alpha -\frac{1}{2})y}},
-%\]
-%for some $\lambda > 0$. However, this would have required us to do a more thorough analysis of the integral
-%\[
-%	\int_{\mathcal{E}_n} \Delta(p_0,p_1,p_2)g_{p_0}(x_1,y_1) g_{p_0}(x_2,y_2) \, dx_2 \, dx_1 \, dy_2 \, dy_1,
-%\]
-%making the proof more cumbersome. Since for our purpose we only need the $e^{\beta y}$ term, we omitted this additional analysis.
-%\end{remark}
+Observe that the proof of Proposition~\ref{prop:convergence_average_clustering_P_n} yields the following two corollaries, which will be useful later on in Section~\ref{sec:concentration_c_P_n}.
 
-%\subsection{Equivalence for local clustering in $G_{\Pcal}(\alpha, \nu)$ and $G_{\Pcal,n}(\alpha,\nu)$}
-%
-%We now proceed with the proof of Proposition \ref{prop:convergence_average_clustering_P_n}. For this we split 
-%$\left|\Exp{c_{\Pcal,n}^\ast(k_n)} - \Exp{c_{\Pcal}^\ast(k_n)}\right|$ into three different terms which each evaluate the difference between the different elements of the local clustering function. We then analyze each term separately. The main tool we use is Lemma \ref{lem:clustering_error_Delta_term} together with the splitting technique we used in the proof of Lemma \ref{lem:asymptotics_integral_outside_K_epsilon}, which considers the integral over $\Kcal_\varepsilon(k_n)$ and $\Rcal_n \setminus \Kcal_\varepsilon(k_n)$ separately. 
-%
-%\begin{lemma}
-%\[
-%	\lim_{n \to \infty} \frac{\Exp{\widetilde{T}_{\Pcal,n}(k,\varepsilon)}}{\Exp{T_{\Pcal}(k)}} = 1.
-%\]
-%\end{lemma}
-%
-%\begin{proof}[Proof of Proposition \ref{prop:convergence_average_clustering_P_n}]
-%
-%We give the proof for the case $\frac{1}{2} < \alpha < \frac{3}{4}$. The proof for the other cases are similar.
-%
-%Let $0 < \varepsilon < 1$ and recall the definition $a_n^\pm = 2\log\left(\frac{(1\pm\varepsilon)k_n}{2\xi_{\alpha,\nu}}\right)$. In addition, recall that
-%\[
-%	\Exp{c_{\Pcal,n}^\ast(k_n)} = \int_{\Rcal_n} \frac{\Delta_{\Pcal,n}(y) \rho_k(y)}{\Exp{N_{\Pcal,n}(k_n)} \binom{k_n}{2}}  
-%    f_{\alpha, \nu}(x,y) \, dx \, dy.
-%\]
-%
-%We now use Lemma \ref{lem:expectation_clustering_P} and \eqref{eq:expectation_clustering_P_n} to write
-%\begin{align*}
-%	\left|\Exp{c_{\Pcal,n}^\ast(k_n) - c_{\Pcal}^\ast(k_n)}\right|
-%	&= \left|\frac{\int_0^{R_n} \Delta_{\Pcal,n}(y) \, \rho_{n,y}(k_n) e^{-\alpha y} \, dy}
-%		{\int_0^{R_n} \rho_{n,y}(k_n) e^{-\alpha y} \, dy} 
-%		- \frac{\int_0^{\infty} \Delta_{\Pcal}(y) \, \rho_{y}(k_n) e^{-\alpha y} \, dy}
-%		{\int_0^{\infty} \rho_{y}(k_n) e^{-\alpha y} \, dy}\right|\\
-%	&\le \frac{\int_0^{R_n} \left|\Delta_{\Pcal,n}(y) \, \rho_{n,y}(k) - \Delta_{\Pcal}(y) \, \rho_{y}(k)\right| 
-%		e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{y}(k) e^{-\alpha y} \, dy} \\
-%	&\hspace{10pt}+ \frac{\int_{R_n}^\infty \Delta_{\Pcal}(y) \, \rho_{y}(k) 
-%			e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{y}(k) e^{-\alpha y} \, dy}\\
-%	&\hspace{10pt}+ \frac{\int_0^{R_n} \Delta_{\Pcal,n}(y) \, \rho_{n,y}(k) e^{-\alpha y} \, dy}
-%		{\int_0^{R_n}  \rho_{y}(k_n) e^{-\alpha y} \, dy}
-%		\left|\frac{\int_0^{R_n}  \rho_{y}(k_n) e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{n,y}(k_n) e^{-\alpha y} \, dy}
-%		- 1\right|\\
-%	&:= I_n^{(1)}(k_n) + I_n^{(2)}(k_n) + I_n^{(3)}(k_n)
-%\end{align*}
-%We will deal with all three terms separately and show that
-%\begin{equation}
-%	\lim_{n \to \infty} k_n^{4\alpha - 2} I_n^{(i)}(k_n) = 0 \quad \text{for } i = 1, 2, 3.
-%\end{equation} 
-%
-%For $I_n^{(1)}(k_n)$ we write
-%\begin{align}
-%	I_n^{(1)}(k_n)	&\le \frac{\int_0^{R_n} \left|\Delta_{\Pcal,n}(y)  - \Delta_{\Pcal}(y) \right| \rho_{y}(k_n)
-%		e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{y}(k_n) e^{-\alpha y} \, dy} 
-%        \label{eq:diff_Delta_integral}\\
-%	&\hspace{10pt}+ \frac{\int_0^{R_n} \left|\rho_{n, y}(k) - \rho_{y}(k_n)\right| \Delta_{\Pcal,n}(y) 
-%		e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{y}(k_n) e^{-\alpha y} \, dy}. \label{eq:diff_Poisson_distribution}
-%\end{align}
-%
-%For \eqref{eq:diff_Delta_integral} we use Lemma \ref{lem:clustering_error_Delta_term} to obtain
-%\begin{align*}
-%	\int_0^{R_n} \left|\Delta_{\Pcal,n}(y)  - \Delta_{\Pcal}(y) \right| \rho_{y}(k_n) e^{-\alpha y} \, dy
-%    &\le \bigO{k_n^{-3(2\alpha - 1)}}\int_{a_n^-}^{a_n^+} \rho_{y}(k_n) e^{-\alpha y} \, dy\\
-%    &\hspace{10pt}+ \bigO{n^{-(2\alpha - 1)}k^{2\alpha - 1}\int_0^\infty \Delta_\Pcal(y)\rho_{y}(k_n) e^{-\alpha y} 
-%    	\, dy}\\
-%    &\hspace{10pt}+ \bigO{\frac{1}{n}\int_{\Rcal_n \setminus \Kcal_\varepsilon(k_n)} e^{(\alpha - \frac{1}{2})y} 
-%    	\rho_{y}(k_n) f_{\alpha,\nu}(x,y) \, dx \, dy}.
-%\end{align*}
-%Observe that first term is bounded from above by
-%\[
-%	\bigO{k_n^{-3(2\alpha - 1)}} \int_0^\infty \rho_y(k_n) e^{-\alpha y} \, dy
-%\]
-%and recall that $\int_0^{\infty} \rho_{y}(k_n) e^{-\alpha y} \, dy = \Theta\left(k_n^{-(2\alpha + 1)}\right)$. Hence
-%\begin{align*}
-%	&\hspace{-30pt}k_n^{4\alpha - 2} \, \frac{\int_0^{R_n} \left|\Delta_{\Pcal,n}(y) - \Delta_{\Pcal}(y) 
-%		\right| \rho_{y}(k_n) e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{y}(k) e^{-\alpha y} \, dy}\\
-%    &= \bigO{k_n^{4\alpha - 2} k_n^{-3(2\alpha - 1)}} + \bigO{n^{-(2\alpha - 1)}k^{2\alpha - 1}} k_n^{4\alpha - 2}\Exp{c_\Pcal^\ast(k_n)}\\
-%	&\hspace{10pt}+ \bigO{k_n^{6\alpha - 1} \frac{1}{n}\int_{\Rcal_n \setminus \Kcal_\varepsilon(k_n)} e^{(\alpha - \frac{1}{2})y} 
-%    	\rho_{y}(k_n) f_{\alpha,\nu}(x,y) \, dx \, dy}.
-%\end{align*}
-%The first term here is $\bigO{k_n^{-(\alpha - \frac{1}{2})}}$ which converges to zero. The second term converges to zero by [Proposition on scaling] and the fact that $n^{-(2\alpha - 1)}k^{2\alpha - 1} = o(1)$. The same holds for the third term by Lemma \ref{lem:asymptotics_integral_outside_K_epsilon}. 
-%
-%For \eqref{eq:diff_Poisson_distribution} we apply the same splitting technique as in the proof of Lemma \ref{lem:clustering_error_Delta_term}. That is, we take $0 < \varepsilon < 1$, $a_n^+ = 2\log\left((1+\varepsilon)k_n\right)$ and write
-%\begin{align*}
-%	\int_0^{R_n} \left|\rho_{n, y}(k) - \rho_{y}(k_n)\right| \Delta_{\mu_n}(y) e^{-\alpha y} \, dy
-%	&= \int_0^{a_n^+} \left|\rho_{n, y}(k) - \rho_{y}(k_n)\right| \Delta_{\mu_n}(y) e^{-\alpha y} \, dy\\
-%	&\hspace{10pt}+ \int_{a_n^+}^{R_n} \left|\rho_{n, y}(k) - \rho_{y}(k_n)\right| \Delta_{\mu_n}(y) e^{-\alpha y} \, dy
-%\end{align*}
-%Next we use Lemma \ref{lem:mu_measure_B} to obtain
-%\begin{align*}
-%	\rho_{n, y}(k_n) &= \rho_y(k_n) \left((1+\phi_n(y))^{k_n} \left(1 - e^{-\alpha R_n}\right)^{-k_n}
-%		e^{-\mu(B(0,y))\left(\phi_n(y) + \frac{(1 + \phi_n(y))e^{-\alpha R_n}}{1 - e^{-\alpha R_n}}\right)}\right).
-%\end{align*}
-%Using that
-%\begin{align*}
-%	\max_{0 \le y \le a_n} \hspace{-5pt} \phi_n(y)
-%	= O\left(n^{-(2\alpha - 1)(1-\kappa)}\right) \quad \text{and} \quad
-%	\int_0^{\infty} \rho_{y}(k_n) e^{-\alpha y} \, dy = \Theta\left(k_n^{-(2\alpha + 1)}\right)
-%\end{align*}
-%we get for the first integral,
-%\begin{align*}
-%	&\hspace{-30pt}k_n^{4\alpha - 2}\frac{\int_0^{a_n} \left|\rho_{n, y}(k) - \rho_{y}(k_n)\right| \Delta_{\mu_n}(y) 
-%		e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{y}(k_n) e^{-\alpha y} \, dy}\\
-%	&= O\left(n^{-(2\alpha - 1)(1-\kappa)} k_n^{4\alpha - 2}\frac{\int_0^\infty \Delta_{\mu}(y) \rho_{y}(k_n) e^{-\alpha y} 
-%		\, dy}{\int_0^{\infty} \rho_{y}(k_n) e^{-\alpha y} \, dy}\right)\\
-%	&= O\left(n^{-(2\alpha - 1)(1-\kappa)}\right).
-%\end{align*}
-%For the second integral we use that $\phi_n(y) = O(1)$ for all $0 \le y \le R_n$ and hence, using the same argumentation as at the end of the proof of Lemma \ref{lem:clustering_error_Delta_term},
-%\begin{align*}
-%	&\hspace{-30pt}k_n^{4\alpha - 2}\frac{\int_{a_n}^{R_n} \left|\rho_{n, y}(k) - \rho_{y}(k_n)\right| \Delta_{\mu_n}(y) 
-%		e^{-\alpha y} \, dy}{\int_0^\infty \rho_y(k_n) \, e^{-\alpha y} \, dy}\\
-%	&= O\left(k_n^{4\alpha - 2}\frac{\int_{a_n}^{R_n} \rho_{y}(k_n) \Delta_{\mu}(y) e^{-\alpha y} \, dy}
-%		{\int_0^\infty \rho_y(k_n) \, e^{-\alpha y} \, dy}\right)\\
-%	&= O\left(k_n^{6\alpha - 1}\rho_{a_n}(k_n)\right) = o(1).
-%\end{align*}
-%We therefore conclude that $k_n^{4\alpha - 2}I_n^{(1)}(k_n) \to 0$.
-%
-%Next we consider the second term
-%\[
-%	I_n^{(2)}(k_n) = \frac{\int_{R_n}^\infty \Delta_{\mu}(y) \, \rho_{y}(k) 
-%		e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{y}(k) e^{-\alpha y} \, dy}.
-%\]
-%Since
-%\[
-%	\int_{R_n}^\infty \Delta_{\mu}(y) \, \rho_{y}(k) e^{-\alpha y} \, dy 
-%	\le \rho_{R_n}(k_n) \int_0^\infty e^{-\alpha y} \, dy = O\left(\rho_(R_n)(k_n)\right) 
-%	= O\left(\rho_{a_n}(k_n)\right),
-%\]
-%it follows from the above computations that
-%\[
-%	\lim_{n \to \infty} k_n^{4\alpha - 2} \frac{\int_{R_n}^\infty \Delta_{\mu}(y) \, \rho_{y}(k) 
-%	e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{y}(k) e^{-\alpha y} \, dy} = 0.
-%\]
-%The proof for $I_n^{(3)}(k_n)$ follows using the same splitting technique and arguments. We therefore omit it.
-%\end{proof}
+\begin{corollary}\label{cor:adjusted_triangle_counting_P_n}
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $k_n$ be a positive sequence such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, uniformly for all $p \in \Kcal_C(k_n)$, as $n \to \infty$
+\[
+	\Exp{\widetilde{T}_{\Pcal,n}(p)} = (1+\smallO{1})\Exp{T_\Pcal(p)},
+\]
+where
+\[
+	\widetilde{T}_{\Pcal,n}(p) = \sum_{(p_1, p_2) \in \Pcal\setminus p}^{\ne} 
+		\ind{p_1 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal}(p_1) \cap \Rcal_n}.
+\]
+
+In particular,
+\[
+	\binom{k_n}{2}^{-1}\int_{\Kcal_{C}(k_n)} \rho_n(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y
+	= (1+\smallO{1}) \int_{\Rcal_n} \rho(y,k_n) \Delta_\Pcal(y) f_{\alpha, \nu}(x,y) \dd x \dd y. 
+\]
+\end{corollary}
 
 \subsection{Counting missing triangles}
 
@@ -937,7 +809,7 @@ which establishes the first part of \eqref{eq:mu_triangle_diff}.
 
 \paragraph{Regime 2: $y - 2\log(I_n/(I_n-x_1)) < y_1 \le y + 2 \log\left(1 + \frac{x_1}{I_n}\right)$}
 
-Here we split the integration into three parts (see Figure~\ref{fig:shapes_triangle_mismatches}). Recall that $x^\ast(p,p_1) = x_1 - I_n$. Then, for the first part we have
+Here we split the integration into two parts (see Figure~\ref{fig:shapes_triangle_mismatches}). Recall that $x^\ast(p,p_1) = x_1 - I_n$. Then, for the first part we have
 \begin{align*}
 	\mathcal{I}_n^{(1)}(p,p_1) &\le \int_{h(y)}^{h_1(p_1)} \int_{-I_n}^{x^\ast(p,p_1)} f_{\alpha,\nu}(x_2, y_2) 
 		\dd x_2 \dd y_2\\

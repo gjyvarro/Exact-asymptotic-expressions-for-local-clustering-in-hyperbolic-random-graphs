@@ -663,11 +663,7 @@ We bound this sum by the following expression:
 &\hspace{10pt}+ \expH^{-1} \hspace{-15pt} \sum_{p_1,p_2 \ \in \Pcal \setminus \{(0,y) \} 
 	\atop y_1 \geq (1-\eps) R_n \wedge (R_n-y)} \hspace{-10pt}
 	\ind{p_1 \in \BallInter{y}} \cdot \ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}} 
-	\, D_\Pcal (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_3} \\
-%&+\expP^{-1} \sum_{p_1,p_2 \ \in \Pcal \setminus \{(0,y) \}, \ y(p_1) \geq (1-\eps) R_n \wedge (R_n-y)} 
-% \ind{p_1 \in \BallInter{(0,y)}} \cdot \ind{p_2 \in \BallSym{p_1}\cap \BallPo{(0,y)}}\times \nonumber \\
-% &\hspace{2cm} D_\Pcal (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_4}
-%\\
+	\, D_\Pcal (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_4} \\
 &\hspace{10pt}+ 2 \expH^{-1} \hspace{-10pt} \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} 
 	\atop y(p_1) \geq K} \hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
 	\, D_\H (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_5}\\
@@ -1023,9 +1019,8 @@ we get for $\alpha \ge 3/4$
 
 
 
-\paragraph{The sums of~\eqref{eq:sum_3}}
- 
-Recall that in this case, we consider pairs $(p_1,p_2)$, with $p_1 = (x_1,y_1)$ satisfying 
+\paragraph{The sums~\eqref{eq:sum_3} and~\eqref{eq:sum_4}}
+Again, we will only consider~\eqref{eq:sum_3} since the analysis for the other term is similar. Recall that in this case, we consider pairs $(p_1,p_2)$, with $p_1 = (x_1,y_1)$ satisfying 
 $y_1 \geq (R_n - y) \wedge (1-\eps)R_n$, and $p_1 \in \BallHyp{y}$, $p_2 \in \BallSym{p_1} \cap \BallHyp{y}$. 
 We split this into three sub-domains:  i. $y_2 \geq R_n - y$; ii. $R_n -y_1 \leq y_2 \leq R_n -y$ and iii. $y_2 < R_n - y_1$. Similar to the analysis above we define
 \begin{align*}
@@ -1734,9 +1729,6 @@ But $k_n = O(1)\cdot n^{\frac{1}{2\alpha +1}}$, whereby $k_n^{2\alpha +1} =O(n)$
 the above term is therefore $o(1)$.
 
 \end{proof}
-
-\PvdH{Stopped here!}
-
 
 \subsection{Coupling $G_{\H,n}$ to $G_{\widetilde{\H},n}$}\label{ssec:coupling_H_HP}
 
