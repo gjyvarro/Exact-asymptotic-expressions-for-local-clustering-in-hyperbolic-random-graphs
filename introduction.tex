@@ -11,9 +11,9 @@ Hyperbolic random graphs were suggested as a suitable model for complex networks
 \item Strong clustering (community structure),
 \item Small path lengths (small world phenomenon).
 \end{enumerate}
-Indeed, in their seminal paper they showed that these graphs have a power-law degree distribution and exhibit strong clustering, while Bringmann et al.~\cite{bringmann2016average} showed that hyperbolic random graphs have doubly logarithmic shortest path lengths. Many other results regarding hyperbolic random graphs have since been established: for instance the existence of efficient routing algorithms~\cite{bringmann2017greedy}, the size of the largest component~\cite{bode2015largest},~\cite{fountoulakis2018law}, [More?] and the number of cliques and the largest clique~\cite{blasius2018cliques}.
+Indeed, in their seminal paper they showed that these graphs have a power-law degree distribution and exhibit strong clustering, while Bringmann et al.~\cite{bringmann2016average} showed that hyperbolic random graphs have doubly logarithmic shortest path lengths. Many other results regarding hyperbolic random graphs have since been established: for instance the existence of efficient routing algorithms~\cite{bringmann2017greedy}, the size of the largest component~\cite{bode2015largest},~\cite{fountoulakis2018law} and the number of cliques and the largest clique~\cite{blasius2018cliques}. \PvdH{@All: Does anyone have other suggestions for results to add?}
 
-The aim of this paper is to study local clustering in hyperbolic random graphs. The first rigorous mathematical analysis of the local clustering coefficient was done by Gugelmann et al.~\cite{gugelmann2012random}. They show~\cite[Theorem 2.1]{gugelmann2012random} that the local clustering coefficient\footnote{Note that in~\cite{gugelmann2012random} this is called the global clustering coefficient. However, since this term is more often associated in the literature with the density of triangles compared to the number of paths of length 2, we use the term local clustering coefficient as is done, for instance, in~\cite{candellero2016clustering}.} is concentrated around its expectation which is shown to be $\bigT{1}$ as the number of vertices tends to infinity. In particular this result implies that the local clustering coefficient is asymptotically bounded away from zero. The convergence of this coefficient was not proven. In contrast, the global clustering coefficient was shown~\cite{candellero2016clustering} to converge in probability to some constant which can be explicitly stated as an integral expression, see Theorem 1.2 in \cite{candellero2016clustering}. The authors mention, however, that their analysis needs significant modification to be able to deal with convergence of the local clustering coefficient.
+The aim of this paper is to study local clustering in hyperbolic random graphs. The first rigorous mathematical analysis of the local clustering coefficient was done by Gugelmann et al.~\cite{gugelmann2012random}. They show~\cite[Theorem 2.1]{gugelmann2012random} that the local clustering coefficient\footnote{Note that in~\cite{gugelmann2012random} this is called the global clustering coefficient. However, since this term is more often associated in the literature with the density of triangles compared to the number of paths of length 2, we use the term local clustering coefficient as is done, for instance, in~\cite{candellero2016clustering}.} is concentrated around its expectation which is shown to be $\bigT{1}$ as the number of vertices tends to infinity. In particular this result implies that the local clustering coefficient is asymptotically bounded away from zero. The convergence of this coefficient was however not proven. In contrast, the global clustering coefficient was shown~\cite{candellero2016clustering} to converge in probability to some constant which can be explicitly stated as an integral expression, see Theorem 1.2 in \cite{candellero2016clustering}. The authors mention, however, that their analysis needs significant modification to be able to deal with convergence of the local clustering coefficient.
 
 
 
@@ -25,18 +25,18 @@ In addition to the clustering coefficients, an important clustering measure that
 
 In this work we resolve these important open questions. We obtain the asymptotic scaling of $c(k)$ as $k \to \infty$, including the leading constant, as well as an exact expression, in terms of known special functions, of the point-wise limit of the local clustering function as the number of vertices tends to infinity. Interestingly, the scaling of $c(k)$ depends on the exponent of the degree distribution and is only $k^{-1}$ when this exponent exceeds $5/2$. For values less than $5/2$ the scaling is $k^{-s}$ where the value of $s$ depends on the degree distribution exponent. Finally, our analysis allows us to also prove a convergence result for the local clustering coefficient where the limit can again be explicitly expressed in terms of known special functions. 
 
-\PvdH{I recall that J{\'u}lia told me that the results from~\cite{komjathy2018explosion} imply that the local clustering coefficient converges, although they do not mention it in the paper. Should we added a comment related to this?}
+We remark that it is possible to prove that the local clustering coefficient converges to some limit, using the technical tools in the recent work on explosion times in Geometric Inhomogeneous Random Graphs~\cite{komjathy2018explosion}. However, this problem is not explicitly addressed in that paper, nor is there any reason to expect these tools to give us the exact expressions as we do derive in this work.
 
-\MS{Yes, I think this would probably be good. Either after the sentence `the convergence of this coefficient was not proven' add something like, as you say, the results form .. imply convergence, although not specifically mentioned there. Or drop that sentence about that the convergence was not shown and also rephrase the sentence in 1, to just what is the limit. It should just be clear to the reader that we are not claiming the credit for the convergence itself, but mostly for finding the exact limit (in an analytic expression) and with a very strong sense of convergence. So, let's better emphasize those last two points and hope that they are good enough.}
+%\PvdH{I recall that J{\'u}lia told me that the results from~\cite{komjathy2018explosion} imply that the local clustering coefficient converges, although they do not mention it in the paper. Should we added a comment related to this?}
+
+%\MS{Yes, I think this would probably be good. Either after the sentence `the convergence of this coefficient was not proven' add something like, as you say, the results form .. imply convergence, although not specifically mentioned there. Or drop that sentence about that the convergence was not shown and also rephrase the sentence in 1, to just what is the limit. It should just be clear to the reader that we are not claiming the credit for the convergence itself, but mostly for finding the exact limit (in an analytic expression) and with a very strong sense of convergence. So, let's better emphasize those last two points and hope that they are good enough.}
 
 \subsection{Outline of the paper}
 
-In the next two subsections \ref{ssec:hyperbolic_model} and \ref{ssec:local_clustering} of the introduction, we give the definitions of the hyperbolic random graph and of the local clustering coefficient and function as used in this paper. After this we present our main results in Section \ref{ssec:main_results} and discuss several insights that can be obtained from them and in Section \ref{ssec:simulations} show simulations which confirm these results. Section \ref{sec:proof_outline} contains a detailed high level outline of the proofs of our main results, split up into different propositions. The proofs of these propositions can be found in the last four sections. Section~\ref{sec:concentration_argument} contains a crucial technical result that will be used in the other sections. Finally, the Appendix contains a few general results for the hyperbolic random graph and a small section on Meijer's G-function.
+In the next two subsections \ref{ssec:hyperbolic_model} and \ref{ssec:local_clustering} of the introduction, we give the definitions of the hyperbolic random graph and of the local clustering coefficient and function as used in this paper. After this we present our main results in Section \ref{ssec:main_results} and discuss several insights that can be obtained from them and in Section \ref{ssec:simulations} show simulations which confirm these results. Section \ref{sec:proof_outline} contains a detailed high level outline of the proofs of our main results, split up into different propositions. The proofs of these propositions can be found in the last four sections. Section~\ref{sec:concentration_argument} contains a crucial technical result that will be used in the other sections. The Appendix contains a small section on Meijer's G-function and some known concentration results we use.
 
 \subsection{Hyperbolic random graphs}\label{ssec:hyperbolic_model}
 
-%, which without loss of generality we take to be $-1$~[CITE]
-%The \emph{Poincar\'{e} disc model} for the hyperbolic plane is defined by equipping the open unit disc in $\R^2$ with the metric given by the differential form $\dd s^2 = 4 \frac{\dd x^2 + \dd y^2}{(1 - x^2 - y^2)^2}$.
 The hyperbolic plane is an infinite $2$-dimensional manifold with constant negative curvature. Many different representations of the hyperbolic plane exist and we refer to~\cite{anderson2006hyperbolic} \cite{katok1992fuchsian} \cite{beardon2012geometry} for an introduction to hyperbolic geometry.  We will work with the \emph{native representation} of the hyperbolic plane which takes the elements of $\R^2$ in polar coordinates $(r,\theta)$ as the underlying set of points and where distances are determined by the hyperbolic law of cosines.
 
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ and define $R_n = 2\log(n/\nu)$. Then the hyperbolic random graph $G_{\H,n}(\alpha, \nu)$ is defined as follows:
@@ -237,8 +237,8 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$, $(k_n)_{n \ge 1}$ be any positive sequenc
 \]
 where $\stackrel{L^1}{\to}$ denotes convergence in expectation.
 \end{corollary}
-\MS{Are you sure all constants are correct? I thought for $\alpha = 3/4$ it might be $6\nu/\pi$. But if you are sure, you can remove this comment of course.}
-\PvdH{You might be right. I have updated it and we will later check if you were right.}
+\MS{@Pim: Are you sure all constants are correct? I thought for $\alpha = 3/4$ it might be $6\nu/\pi$. But if you are sure, you can remove this comment of course.}
+\PvdH{@Markus: You might be right. I have updated it and we will later check if you were right.}
 
 This result completely characterizes the asymptotic behavior of the local clustering function in Hyperbolic Random Graphs. In particular we observe that the conjectured scaling of $k^{-1}$ from~\cite{krioukov2010hyperbolic} only occurs when $\alpha > 3/4$, or equivalently, when the exponent of the pdf of the degree distribution is larger than $5/2$. 
 
@@ -248,10 +248,7 @@ We end this section with some important observations regarding local clustering 
 
 \PvdH{Populate these paragraphs}
 
-\paragraph{Local clustering function for growing versus fixed degrees}
-\MS{I'm currently not sure what we should comment here because now Thm 1.2 does cover both cases and the asymptotics in 1.4 appear as a very natural corollary. 
 
-However, if we can, then it would be interesting to remark that there is this phase transition in $\alpha$ which appears when the power-law exponent is $2.5=\frac{5}{2}$ and it would be cool if we could give a brief intuitive reason for that or mention that this phase transition point has also been observed in other contexts/models etc.}
  
 
 \paragraph{Uniform convergence}
@@ -284,16 +281,11 @@ and hence
 \]
 for any positive function $f$. This implies that we cannot expect a result like that of Theorem~\ref{thm:clustering_coefficient_hyperbolic} to hold as soon as $k_n$ is not $\smallO{n^{\frac{1}{2\alpha + 1}}}$.
 
+\paragraph{Transition in the scaling of local clustering}
 
-%Maybe, it would make sense to incorporate this statement into theorem \ref{thm:local_clustering_hyperbolic}, i.e. that the asymptotic behaviour of $c(k_n)$ is not well-defined for $k_n \gg n^{\frac{1}{2\alpha+1}}$? Resp. claim that a.a.s. the number of vertices of degree $k_n \gg n^{\frac{1}{2\alpha+1}}$ is zero, such that taking the average over these is not well-defined.
+\MS{@All: If we can, then it would be interesting to remark that there is this phase transition in $\alpha$ which appears when the power-law exponent is $2.5=\frac{5}{2}$ and it would be cool if we could give a brief intuitive reason for that or mention that this phase transition point has also been observed in other contexts/models etc.}
 
-%\paragraph{Transition in the scaling of local clustering}
-%Note that Theorem \ref{thm:local_clustering_hyperbolic} implies that for $\frac{1}{2} < \alpha < \frac{3}{4}$ the local clustering $c_{\H,n}(k)$ decays as $k^{-(4\alpha - 2)}$ while for $\alpha > \frac{3}{4}$ it is $k^{-1}$.
-
-%\paragraph{Universality of scaling transition}
-
-%\paragraph{Geometric inhomogeneous random graphs}
-
+\PvdH{@All: I agree with Markus. It would be nice to say something on this. Maybe we can leave it out of the first arXived version and in the mean time do some research on this. We could also ask Remco van der Hofstad.}
 
 
 \subsection{Simulations}\label{ssec:simulations}
@@ -301,7 +293,6 @@ The simulations of this section (see Figures \ref{fig:c2allnu}, \ref{fig:c4allnu
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{figures/sim0123c2nualln1000rep20.pdf}
-    %\includegraphics[scale=0.5]{figures/sim0128c4nualln10000rep20.pdf}
     \caption{Simulation of $c_{\mathbb{H},n}(k_n)$ for $k_n= 2$, for $\alpha$ varying from $0.5$ to $5$ on the horizontal axis and for $\nu=\frac{1}{2}$ (blue), $\nu=1$ (purple), $\nu=2$ (green); simulations (red dots) with $n=1000$ and 20 repetitions.}
     \label{fig:c2allnu}
 \end{figure}

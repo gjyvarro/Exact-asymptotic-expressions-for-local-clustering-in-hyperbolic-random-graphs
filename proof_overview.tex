@@ -235,6 +235,24 @@ Very roughly, the proof falls into five parts: 1) replacing the randomly sampled
 	
 In this section, we state the required definitions, auxiliary lemmas and propositions and show how to assemble them to obtain Theorem~\ref{thm:local_clustering_hyperbolic}.
 
+We start with some small notational conventions.
+
+\subsection{Notations}
+We adopt standard Landau notations for asymptotic statements. For two functions $f$ and $g$ we write $f(x) = \bigO{g(x)}$ as $x \to \infty$ if
+\[
+	\limsup_{x \to \infty} \frac{|f(x)|}{g(x)} < \infty,
+\]
+while $f(x) = \smallO{g(x)}$ as $x \to \infty$ means
+\[
+	\lim_{x \to \infty} \frac{f(x)}{g(x)} = 0,
+\]
+and $f(x) = \bigT{g(x)}$ as $x \to \infty$ whenever
+\[
+	\limsup_{x \to \infty} \left|\frac{f(x)}{g(x)}\right| > 0 \quad \text{and} \quad
+	\limsup_{x \to \infty} \frac{|f(x)|}{g(x)} < \infty.
+\]
+Moreover we will write $a \vee b$ for $\max\{a,b\}$ and $a \wedge b$ for $\min\{a,b\}$.
+
 \subsection{Finite box model}\label{ssec:finite_model}
 
 First of all we define the finite graph $G_{\mathcal{P},n}(\alpha, \nu)$ which we will couple to $G_{\H, n}(\alpha, \nu)$. A similar approach was used in~\cite{fountoulakis2018law} to analyze the largest component. Define $\Rcal = \mathbb{R} \times \mathbb{R}_+$ and let $\mathcal{P}=\mathcal{P}_{\alpha,\nu}$ be a Poisson point process on $\Rcal$ with intensity function
@@ -300,6 +318,9 @@ To write this differently, define
 	\Omega(r,r^\prime) := \frac{1}{2}e^{R_n/2} \arccos\left( \frac{\cosh r \cosh r^\prime - \cosh R_n}
 	{\sinh r \sinh r^\prime} \right).
 \end{equation}
+
+\PvdH{@All: The choice of $\Omega$ here is slightly problematic, since we also sometimes use $\Omega$ for its asymptotic scaling notation. We should probably change $\Omega$ here.}
+
 Then $d_{\H}(u,u^\prime) \leq R_n$ if and only if $\theta(u, u^\prime) \leq 2 e^{-R_n/2}\Omega(r,r^\prime)$. Under the coupling map $\Psi$, this is equivalent to $|x-x^\prime|_{\pi e^{R_n/2}} \le \Omega(r,r^\prime)$.
 
 Now consider a point $p \in \mathcal{V}_n$ and write $\Psi^{-1}(p) = (r,\theta)$. Then the triangle inequality implies that
@@ -427,7 +448,9 @@ with
 \]
 which is the probability that two randomly sampled points in $\BallPo{(0,y)}$ form a triangle with $(0,y)$.
 
-Finally, we note that the height $y$ of a randomly sampled point has the exponential density $\alpha e^{-\alpha y}$: the distribution function of the radial coordinate of a vertex sampled in the disk is $\frac{\cosh(\alpha  r)-1}{\cosh(\alpha R)-1}$ which is asymptotically equivalent to $e^{\alpha(r-R)} = e^{-\alpha y}$, if $r$ and $R$ are large, resp. tending to infinity and $y=R-r$ and because of the minus sign in front of the $r$, the distribution function in $r$ turns into the complementary distribution function of $y$, from which we recognize the exponential distribution with parameter $\alpha$.%\PvdH{Could someone add an intuition or better explanation why this is the case.} 
+Finally, we note that the height $y$ of a randomly sampled point has the exponential density $\alpha e^{-\alpha y}$: the distribution function of the radial coordinate of a vertex sampled in the disk is $\frac{\cosh(\alpha  r)-1}{\cosh(\alpha R)-1}$ which is asymptotically equivalent to $e^{\alpha(r-R)} = e^{-\alpha y}$, if $r$ and $R$ are large, resp. tending to infinity and $y=R-r$ and because of the minus sign in front of the $r$, the distribution function in $r$ turns into the complementary distribution function of $y$, from which we recognize the exponential distribution with parameter $\alpha$.
+
+\PvdH{@All: This explanation was added by Markus at my request. If someone has a better explanation why this is the case please update this section.} 
 
 With these expressions we define the limiting local clustering coefficient as
 \begin{equation}\label{eq:def_average_clustering_infinite_model}
@@ -438,6 +461,8 @@ while the limiting local clustering function is defined as
 	c_\Pcal(k) = \frac{\int_0^\infty \rho(y,k) \Delta_\Pcal(y) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}.
 \end{equation}
 
+Note that, due to the translation invariance of the Poisson Point Process $\PPP$ in the $x$-direction, $\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y$ denotes the probability that the degree of a random selected node is $k$. We shall denote this probability by $\Prob{D_\Pcal = k}$.
+
 In Section~\ref{sec:asymptotics_average_clustering_ast_P} we will compute both these quantities and show that $c_\Pcal = c_\infty$ and $c_\Pcal(k) = c_\infty(k)$, where $c_\infty$ and $c_\infty(k)$ are given in, respectively, Theorem~\ref{thm:clustering_coefficient_hyperbolic} and Theorem~\ref{thm:local_clustering_hyperbolic}.
 
 \subsection{From the finite to the infinite model}
@@ -445,7 +470,7 @@ In Section~\ref{sec:asymptotics_average_clustering_ast_P} we will compute both t
 To compute the limit of the modified local clustering function $c_{\mathcal{P},n}^\ast(k)$ in the finite graph $G_{\mathcal{P},n}(\alpha, \nu)$ we first prove in Section~\ref{sec:concentration_c_P_n} that it is concentrated around its expectation $\Exp{c_{\mathcal{P},n}^\ast(k_n)}$.
 
 \begin{proposition}[Concentration local clustering function in $G_{\mathcal{P},n}(\alpha, \nu)$]\label{prop:concentration_local_clustering_P_n}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any non-decreasing sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha+1}}}$. Then, as $n \to \infty$,
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $k_n$ be any positive sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha+1}}}$. Then, as $n \to \infty$,
 \[
 	\Exp{\left|c_{\mathcal{P},n}^\ast(k_n) - \Exp{c_{\mathcal{P},n}^\ast(k_n)}\right|} = \smallO{s_\alpha(k_n)}.
 \]
@@ -455,16 +480,15 @@ With this concentration result, we are left with the task to compute the limit o
 
 
 \begin{proposition}[Transition to infinite limit model]\label{prop:convergence_average_clustering_P_n}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any positive sequence tending to infinity and satisfying $k_n = \smallO{n^{\frac{1}{2\alpha+1}}}$. Then, as $n \to \infty$,
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any positive sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha+1}}}$. Then, as $n \to \infty$,
 \[
 	\left|\Exp{c_{\Pcal,n}^\ast(k_n)} - c_\Pcal(k_n)\right| = \smallO{s_\alpha(k_n)}.
 \]
 \end{proposition}
-\MS{Is it really necessary that the sequence tends to infinity in the thm above?}
 
 \subsection{Proof of the main results}\label{ssec:proof_main_results}
 
-We are now ready to prove our main results, using the propositions stated in the previous sections. We begin with Theorem~\ref{thm:local_clustering_hyperbolic}.
+We are now ready to prove our main results, using the propositions stated in the previous sections. As mentioned before we focus here on the convergence statements. The computation of the exact expressions is done in Section~\ref{sec:asymptotics_average_clustering_ast_P}. We begin with Theorem~\ref{thm:local_clustering_hyperbolic}.
 
 \begin{proof}[Proof of Theorem \ref{thm:local_clustering_hyperbolic}]
 %By applying Proposition~\ref{prop:convergence_average_clustering_P_n}, Proposition~\ref{prop:convergence_average_clustering_P_n} and Theorem~\ref{thm:asymptotics_average_clustering_P} we get
@@ -490,7 +514,6 @@ At this point, the lemmas and propositions presented above in this section can b
     \E[|c_{\H,n}(k_n)-c_\infty(k_n)|] = \smallO{s_\alpha(k_n)} = \smallO{c_\infty(k_n)}
 \end{align*}
 i.e. the statement of the theorem.
-
 %\[
 %	\Exp{\left|\frac{c_{\Pcal,n}^\ast(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right|}
 %	\le \left|\frac{c_{\infty}(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right| 
@@ -508,7 +531,8 @@ i.e. the statement of the theorem.
 
 We can now use this result to prove Theorem~\ref{thm:clustering_coefficient_hyperbolic}. Before we state the proof we summarize some results regarding the degrees in the hyperbolic model. The proof of this lemma follows directly from Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson} and Lemma~\ref{lem:N_k_HP_P}, see Section~\ref{sec:coupling_H_P_n}.
 
-\MS{I think we need to introduce resp. explain $\Prob{D_\Pcal = k_n}$ in the lemma below.}
+%\MS{I think we need to introduce resp. explain $\Prob{D_\Pcal = k_n}$ in the lemma below.}
+
 \begin{lemma}\label{lem:N_k_H_P}
 Let $\alpha > \frac{1}{2}$ and $k_n$ be a positive sequence, possibly constant, such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then
 \[
@@ -526,35 +550,34 @@ First, let $a_n$ be any sequence such that $a_n \to \infty$. Then
 \begin{align*}
 	c_{\H,n} &= \frac{1}{n} \sum_{i = 1}^n \ind{D_{\H,n}(i) \le a_n} \frac{T_{\H,n}(i)}{\binom{D_{\H,n}(i)}{2}}
 		+ \frac{1}{n} \sum_{i = 1}^n \ind{D_{\H,n}(i) > a_n} \frac{T_{\H,n}(i)}{\binom{D_{\H,n}(i)}{2}}\\
-	&= \frac{1}{n} \sum_{t = 3}^{a_n} \sum_{i = 1}^n \ind{D_{\H,n}(i) = t} \frac{T_{\H,n}(i)}{\binom{t}{2}}
+	&= \frac{1}{n} \sum_{t = 2}^{a_n} \sum_{i = 1}^n \ind{D_{\H,n}(i) = t} \frac{T_{\H,n}(i)}{\binom{t}{2}}
 		+ \frac{1}{n} \sum_{i = 1}^n \ind{D_{\H,n}(i) > a_n} \frac{T_{\H,n}(i)}{\binom{D_{\H,n}(i)}{2}}\\
-	&= \frac{1}{n} \sum_{t = 3}^{a_n} \Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t)
+	&= \frac{1}{n} \sum_{t = 2}^{a_n} \Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t)
 		+ \frac{1}{n} \sum_{i = 1}^n \ind{D_{\H,n}(i) > a_n} \frac{T_{\H,n}(i)}{\binom{D_{\H,n}(i)}{2}},
 \end{align*}
-\MS{Should the summation in $t$ not start from $t=2$?}
 where the expectation of the last term is bounded from above by $\Prob{D_{\H,n} > a_n}$. Similarly,
 \[
-	c_\Pcal = \sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} c_\Pcal(t) + \sum_{t > a_n} \Prob{D_\Pcal = t} c_\Pcal(t)
+	c_\Pcal = \sum_{t = 2}^{a_n} \Prob{D_\Pcal = t} c_\Pcal(t) + \sum_{t > a_n} \Prob{D_\Pcal = t} c_\Pcal(t)
 \]
 As derived at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P}, $c_\infty = c_\Pcal$ and $c_\infty(k) = c_\Pcal(k)$. Therefore
 \begin{align*}
 	\Exp{|c_{\H,n}-c_\infty|}=\Exp{|c_{\H,n} - c_\Pcal|}
-	&\le \Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
+	&\le \Exp{\left|\frac{1}{n} \sum_{t = 2}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
 		n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|}\\ 
 	&\hspace{10pt}+ \Prob{D_{\H,n} > a_n} + \Prob{D_{\Pcal} > a_n},
 \end{align*}
 and since the last two probabilities are $\smallO{1}$ it is enough to prove that
 \[
-	\lim_{n \to \infty} \Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
+	\lim_{n \to \infty} \Exp{\left|\frac{1}{n} \sum_{t = 2}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
 			n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|} = 0.
 \]
 
 We write
 \begin{align*}
-	&\hspace{-30pt}\Exp{\left|\frac{1}{n} \sum_{t = 3}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
+	&\hspace{-30pt}\Exp{\left|\frac{1}{n} \sum_{t = 2}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
 		n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|}\\
-	&\le \sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} \Exp{\left|c_{\H,n}^\ast(t) - c_{\infty}(t)\right|}\\
-	&\hspace{10pt}+ \frac{1}{n} \sum_{t = 3}^{a_n} \Exp{\left|N_{\H,n}(t) - n \Prob{D_\Pcal = t}\right|}\Exp{c_\Pcal(t)},
+	&\le \sum_{t = 2}^{a_n} \Prob{D_\Pcal = t} \Exp{\left|c_{\H,n}^\ast(t) - c_{\infty}(t)\right|}\\
+	&\hspace{10pt}+ \frac{1}{n} \sum_{t = 2}^{a_n} \Exp{\left|N_{\H,n}(t) - n \Prob{D_\Pcal = t}\right|}\Exp{c_\Pcal(t)},
 \end{align*}
 and will show that both terms go to zero for some appropriately chosen sequence $a_n$.
 
@@ -565,45 +588,45 @@ Note that Theorem~\ref{thm:local_clustering_hyperbolic} and Lemma~\ref{lem:clust
 
 Let $b_n := \log(n)^{-1} n^{1/(2\alpha + 1)}$ and define the sequence $k_n$ by
 \[
-	k_n = \arg \max_{3 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\Pcal}(t)\right|}.
+	k_n = \arg \max_{2 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\Pcal}(t)\right|}.
 \]
 Then $k_n = \smallO{n^{1/(2\alpha + 1)}}$ and by~\eqref{eq:convergence_c_H_P}
 \[
-	\max_{3 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\Pcal}(t)\right|} = \Exp{\left|c_{\H,n}(k_n) - c_{\infty}(k_n)\right|} \to 0.
+	\max_{2 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\Pcal}(t)\right|} = \Exp{\left|c_{\H,n}(k_n) - c_{\infty}(k_n)\right|} \to 0.
 \]
 Similarly we note that by Lemma~\ref{lem:N_k_H_P}
 \[
-	\max_{3 \le t \le b_n} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \to 0.
+	\max_{2 \le t \le b_n} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \to 0.
 \]
 
 Now define
 \[
 	a_n := \left\lfloor \min \left\{
-	\left(\max_{3 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|}\right)^{-1/2},
-	\left(\arg \max_{3 \le t \le b_n} \Exp{\left|\frac{N_{\H,n}(t)}{N_\Pcal(t)} - 1\right|}\right)^{-1/2},
+	\left(\max_{2 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|}\right)^{-1/2},
+	\left(\arg \max_{2 \le t \le b_n} \Exp{\left|\frac{N_{\H,n}(t)}{N_\Pcal(t)} - 1\right|}\right)^{-1/2},
 	b_n - 1 \right\} \right\rfloor
 \]
 so that $a_n < b_n = \smallO{n^{1/(2\alpha + 1)}}$, $a_n \to \infty$, 
 \[
-	a_n \max_{3 \le t \le a_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|} 
-	\le a_n \max_{3 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|} \to 0,
+	a_n \max_{2 \le t \le a_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|} 
+	\le a_n \max_{2 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|} \to 0,
 \]
 and similarly
 \[
-	a_n \max_{3 \le t \le a_n} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \to 0.
+	a_n \max_{2 \le t \le a_n} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \to 0.
 \]
 
 Then, since $\Exp{\Prob{D_\Pcal = t}} = \bigT{1} t^{-(2\alpha + 1)}$
 \begin{align*}
-	&\hspace{-30pt}\sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} \Exp{\left|c_{\H,n}^\ast(t) - c_{\Pcal}(t)\right|}\\
-	&\le \bigT{1} 3^{-(2\alpha+1)} a_n \max_{3 \le t \le a_n} \Exp{\left|c_{\H,n}^\ast(t) - c_{\Pcal}(t)\right|}
+	&\hspace{-30pt}\sum_{t = 2}^{a_n} \Prob{D_\Pcal = t} \Exp{\left|c_{\H,n}^\ast(t) - c_{\Pcal}(t)\right|}\\
+	&\le \bigT{1} 2^{-(2\alpha+1)} a_n \max_{2 \le t \le a_n} \Exp{\left|c_{\H,n}^\ast(t) - c_{\Pcal}(t)\right|}
 	= \smallO{1},
 \end{align*}
 while $\Exp{c_\Pcal(t)} \le 1$ implies that
 \begin{align*}
-	&\hspace{-30pt}\frac{1}{n} \sum_{t = 3}^{a_n} \Exp{\left|N_{\H,n}(t) - n \Prob{D_\Pcal = t}\right|}\Exp{c_\Pcal(t)} \\
-	&\le \sum_{t = 3}^{a_n} \Prob{D_\Pcal = t} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \\
-	&\le \bigT{1} 3^{-(2\alpha+1)} a_n \max_{3 \le t \le a_n} 
+	&\hspace{-30pt}\frac{1}{n} \sum_{t = 2}^{a_n} \Exp{\left|N_{\H,n}(t) - n \Prob{D_\Pcal = t}\right|}\Exp{c_\Pcal(t)} \\
+	&\le \sum_{t = 2}^{a_n} \Prob{D_\Pcal = t} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \\
+	&\le \bigT{1} 2^{-(2\alpha+1)} a_n \max_{2 \le t \le a_n} 
 		\Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} = \smallO{1}.
 \end{align*}
 This finishes the proof. %The second part, which derives the exact expression for $c_\Pcal$ can be found in [??] \PvdH{Add reference to section.}

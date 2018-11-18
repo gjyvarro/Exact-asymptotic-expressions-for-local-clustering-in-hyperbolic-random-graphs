@@ -31,7 +31,7 @@ where
 \]
 where the sum is over all distinct pairs $(p_1, p_2) \in \Pcal \setminus \{(0,y)\}$.
 
-Next we note that the second result from Corollary~\ref{cor:approximation_triangle_integral} states that
+Next we note that the second result from Corollary~\ref{cor:adjusted_triangle_counting_P_n} states that
 \begin{equation}\label{eq:asymptotic_equivalence_contraint_triangle_count}
 	\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)} = (1+\smallO{1})\Exp{T_{\Pcal}(k_n)},
 \end{equation}
@@ -162,7 +162,7 @@ which together with~\eqref{eq:concentration_local_clustering_P_n_main} yields th
 
 \subsection{Joint neighborhoods and degrees in $G_{\Pcal,n}(\alpha,\nu)$}
 
-To prove Proposition~\ref{prop:concentration_tilde_T_P_n} we need to understand the joint degree distribution in $G_{\Pcal,n}$ and subsequently the joint neighborhoods of two points $p, p^\prime \in \Rcal_n$. We perform the analysis in this section. The two main results, which will be the crucial technical ingredients for the proof of Proposition~\ref{prop:concentration_tilde_T_P_n}, are Lemma ?? and Lemma ??.
+To prove Proposition~\ref{prop:concentration_tilde_T_P_n} we need to understand the joint degree distribution in $G_{\Pcal,n}$ and subsequently the joint neighborhoods of two points $p, p^\prime \in \Rcal_n$. We perform the analysis in this section. The two main results, which will be the crucial technical ingredients for the proof of Proposition~\ref{prop:concentration_tilde_T_P_n}, are Lemma~\ref{lem:joint_degree_factorization} and Lemma~\ref{lem:joint_degree_distribution_shift}.
 
 \subsubsection*{Neighborhoods}
 
@@ -698,7 +698,7 @@ is of smaller order than
 
 Next we show that when $k_n \to \infty$ and the expected number of disjoint neighbors of $p$ and $p^\prime$ in $\Kcal_{C}(k_n)$ grows only slightly with $k_n$ then any fixed shift in the joint degree distribution does not effect its asymptotic behavior. 
 
-\PvdH{The proof of this lemma follows almost the exact same steps as that of the previous one. Is there any way we could merge them?}
+\PvdH{@All: The proof of this lemma follows almost the exact same steps as that of the previous one. Is there any way we could merge them?}
 
 \begin{lemma}\label{lem:joint_degree_distribution_shift}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$, $k_n \to \infty$ and fix $\varepsilon > 0$. Then for any fixed $i, j, i^\prime, j^\prime \in \mathbb{Z}$ and $p, p^\prime \in \Kcal_{C}(k_n)$ such that $\Exp{\Ncal_{\Pcal,n}(p \Delta p^\prime)} \ge k_n^\varepsilon$,
@@ -921,8 +921,6 @@ We therefore conclude that
 which finishes the proof for $k_n = \bigT{1}$
 
 \subsubsection*{The case $\bm{k_n \to \infty}$}
-
-\PvdH{Check this proof!}
 
 Recall the definition of $\mathcal{E}_\varepsilon(k_n)$
 \[

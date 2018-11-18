@@ -24,7 +24,7 @@ and define further, for any $C > 0$
 	\Kcal_C(k_n) = \left\{p=(x,y) \in \R \times \R_+ : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
 	\le \frac{k_n + C \kappa_n}{\xi_{\alpha,\nu}} \wedge e^{R_n/2} \right\},
 \end{equation}
-\MS{What does $\vee$ and $\wedge$ mean?}
+Where we recall that $a \vee b = \max\{a,b\}$ and $a \wedge b = \min\{a,b\}$.
 
 Note that if $k_n = \Omega(\log(n))$ then $e^{y/2} = \bigT{k_n}$ whenever $p=(x,y) \in \Kcal_C(k_n)$. The next lemma states that for a large class of functions $h(y)$, to compute the integral 
 \[
@@ -145,7 +145,7 @@ Lemma~\ref{lem:concentration_argument} will prove very useful in the remainder o
 	\int_{\Rcal_n} g_n(y) f_{\alpha, \nu}(x,y) \dd x \dd y 
 	= (1+\smallO{1}) \int_{\Kcal_C(k_n)} g_n(y) f_{\alpha, \nu}(x,y) \dd x \dd y.
 \]
-\PvdH{It might be a good idea to add one more example of how the concentration argument is used in the paper.}
+\PvdH{ @All:It might be a good idea to add one more example of how the concentration argument is used in the paper. I someone finds a good example we use later on, please add it here.}
 \end{remark}
 
 \subsection{Average degree in the hyperbolic random graph}\label{ssec:average_degree_HP_n}
@@ -350,7 +350,7 @@ In addition we fix $\varepsilon > 0$ such that $\varepsilon < \min\{1- \frac{s}{
 	&= \smallO{ \hat{\rho}_n((1-\varepsilon)R_n,k_n) n^{\frac{s}{2\alpha + 1} - 2\alpha(1-\varepsilon)}} = \smallO{1},
 \end{align*}
 where the last step follows by our choice of $\varepsilon$. Hence it is enough to prove both statement on $\Rcal_n((1-\varepsilon)R_n, R_n)$ instead of $\Rcal_n$.
-\PvdH{This is where we use that $s < 2\alpha(2\alpha + 1)$. I think this can be removed by using a more careful bound but I am not sure this is needed.}
+\PvdH{@All: This is where we use that $s < 2\alpha(2\alpha + 1)$. I think this can be removed by using a more careful bound but I am not sure this is needed.}
 
 For simplicity we write $\mu(y) := \mu_{\alpha,\nu}\left(\BallPo{y}\right)$. For both statements we shall make a change of variables $y \to z$ such that
 \begin{equation}\label{eq:concentration_argument_variable_change}
