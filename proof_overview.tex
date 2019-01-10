@@ -1,6 +1,8 @@
 \section{Overview of the proof strategy}\label{sec:proof_outline}
 
-The key result in this paper is Theorem~\ref{thm:local_clustering_hyperbolic}. In particular, it is the key ingredient in the proofs of Theorem~\ref{thm:clustering_coefficient_hyperbolic} and Theorem~\ref{thm:asymptotics_average_clustering_P}. Therefore, in this section we first give a detailed overview of the structure for the proof of Theorem~\ref{thm:local_clustering_hyperbolic}. The proof itself, based on intermediate propositions, can be found in Section~\ref{ssec:proof_main_results}. Here we also prove Theorem~\ref{thm:clustering_coefficient_hyperbolic}. The proof of Theorem~\ref{thm:asymptotics_average_clustering_P} can be found in Section~\ref{sec:asymptotics_average_clustering_ast_P} where we also derive the exact expressions for $c_\infty$ and $c_\infty(k)$.
+The key result in this paper is Theorem~\ref{thm:local_clustering_hyperbolic}. In particular, it is the key ingredient in the proofs of Theorem~\ref{thm:clustering_coefficient_hyperbolic} and Theorem~\ref{thm:asymptotics_average_clustering_P}.
+\TM{ Sounds weird, since Thm 1.3 is just about asymptotics of certain functions. }
+Therefore, in this section we first give a detailed overview of the structure for the proof of Theorem~\ref{thm:local_clustering_hyperbolic}. The proof itself, based on intermediate propositions, can be found in Section~\ref{ssec:proof_main_results}. Here we also prove Theorem~\ref{thm:clustering_coefficient_hyperbolic}. The proof of Theorem~\ref{thm:asymptotics_average_clustering_P} can be found in Section~\ref{sec:asymptotics_average_clustering_ast_P} where we also derive the exact expressions for $c_\infty$ and $c_\infty(k)$.
 
 Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theorem~\ref{thm:local_clustering_hyperbolic} based on the different propositions described below, plus the sections in which theses propositions are proved.
 
@@ -228,8 +230,11 @@ Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theor
 \label{fig:overview_proof}
 \end{figure}
 
-The main idea behind the proof of Theorem \ref{thm:local_clustering_hyperbolic} is to couple the hyperbolic graph $G_{\H, n}(\alpha, \nu)$ with a finite subgraph $G_{\Pcal,n}(\alpha,\nu)$ of an infinite graph $G_\Pcal(\alpha,\nu)$ whose nodes are given by a Poisson Point Process (see Section~\ref{ssec:infinite_model}). The infinite graph will then yield the limit expressions for the local clustering coefficient and function. A similar approach is used in \cite{fountoulakis2018law} to analyze the size of the largest component in the hyperbolic model and in \cite{komjathy2018explosion} to analyze explosion times in a more general class of models. 
-The advantage of the infinite limit model is two-fold. Firstly, it simplifies the actual computations, e.g. by replacing hyperbolic densities with exponential densities and the hyperbolic distance with a computationally easier expression. Secondly, it directly yields the limit as a result rather than having to determine this later from a long expression depending on $n$. 
+The main idea behind the proof of Theorem \ref{thm:local_clustering_hyperbolic} is to couple the hyperbolic graph $G_{\H, n}(\alpha, \nu)$ with a finite subgraph $G_{\Pcal,n}(\alpha,\nu)$ of an infinite graph $G_\Pcal(\alpha,\nu)$ whose nodes are given by a Poisson Point Process (see Section~\ref{ssec:infinite_model}). The infinite graph will then yield the limit expressions for the local clustering coefficient and function. 
+\TM{ Our approach builds on the work~\cite{fountoulakis2018law}, where tools were developed to analyze the size of the largest component in the hyperbolic model which can reuse here.}
+\TM{ The Komjathy paper used GIRG, which is fishy. So I say we do not cite that. }
+%and in \cite{komjathy2018explosion} to analyze explosion %times in a more general class of models. 
+The advantage of the infinite limit model is two-fold. Firstly, it simplifies the actual computations, e.g. by replacing hyperbolic densities with exponential densities and the hyperbolic distance with a computationally easier expression. Secondly, it directly yields the limit as a result as opposed to some long expression depending on $n$. 
 
 Very roughly, the proof falls into five parts: 1) replacing the randomly sampled nodes in the hyperbolic graph with a Poisson Point Process, 2) justifying the transitioning from this Poisson version of the hyperbolic random graph to the finite model, 3) proving concentration results for local clustering, 4) show that the limit expression correspond to those in the infinite model and finally 5) calculating the expected local clustering coefficient and function in the infinite limit model.
 	
@@ -255,11 +260,12 @@ Moreover we will write $a \vee b$ for $\max\{a,b\}$ and $a \wedge b$ for $\min\{
 
 \subsection{Finite box model}\label{ssec:finite_model}
 
-First of all we define the finite graph $G_{\mathcal{P},n}(\alpha, \nu)$ which we will couple to $G_{\H, n}(\alpha, \nu)$. A similar approach was used in~\cite{fountoulakis2018law} to analyze the largest component. Define $\Rcal = \mathbb{R} \times \mathbb{R}_+$ and let $\mathcal{P}=\mathcal{P}_{\alpha,\nu}$ be a Poisson point process on $\Rcal$ with intensity function
+First of all we define the \TM{ infinite } graph $G_{\mathcal{P},n}(\alpha, \nu)$ which we will couple to $G_{\H, n}(\alpha, \nu)$. A similar approach was used in~\cite{fountoulakis2018law} to analyze the largest component. Define $\Rcal = \mathbb{R} \times \mathbb{R}_+$ and let $\mathcal{P}=\mathcal{P}_{\alpha,\nu}$ be a Poisson point process on $\Rcal$ with intensity function
 \begin{equation}\label{eq:def_intensity_function_f}
 	f_{\alpha,\nu}(x,y) = \frac{\alpha \nu}{\pi} e^{-\alpha y}.
 \end{equation} 
 
+\TM{ To me it seems more natural to have a section introducing the infinite model first, rather than sort of doing it here in the beginning and then having to do it again later. }
 In addition we denote the intensity measure of the Poisson process $\mathcal{P}$ by $\mu_{\alpha, \nu}$, i.e. for every Borel-measurable subset $S \subseteq \mathbb{R} \times \mathbb{R}_+$
 \begin{equation}\label{eq:def_mu_P}
 	\mu_{\alpha,\nu}(S) = \int_S f_{\alpha,\nu}(x,y) \, dx \, dy,
@@ -280,24 +286,26 @@ For the definition of the finite graph, recall that $R_n = 2\log(n/\nu)$ and con
 	(p_i, p_j) \in E(G_{\mathcal{P},n}(\alpha, \nu)) \iff |x_i - x_j|_{\pi e^{R_n/2}} \leq e^{\frac{y_i + y_j}{2}},
 \]
 where $|x|_{\pi e^{R_n/2}} = \inf_{k \in \mathbb{Z}} |x + k \pi e^{R_n/2}|$. In order words, $G_{\mathcal{P},n}(\alpha, \nu)$ is the subgraph of $G_{\mathcal{P}}(\alpha, \nu)$ induced on $\mathcal{V}_n$, where we have identified the boundaries of $(-\frac{\pi}{2}e^{R_n/2}, \frac{\pi}{2}e^{R_n/2}]$ to exclude boundary effects and to make the model symmetric in the horizontal $x$-axis. 
+\TM{ So it is NOT an induced subgraph. It has edges not in $G_{\mathcal{P}}$. Also, ``symmetric in the horizontal $x$-axis'' seems a bit ambiguous. I would say something like it is invariant under horizontal translation and reflections in vertical lines. }
 
 For a point $p \in \Rcal_n$, we will write $\BallPon{p}$ to denote the \emph{ball} around $p$, i.e.
 \begin{equation}\label{eq:def_ball_P_n}
-	\BallPon{p} = \left\{p^\prime \in \Rcal_n : |x_i - x_j|_{\pi e^{R_n/2}} \leq e^{\frac{y_i + y_j}{2}}\right\}.
+	\BallPon{p} = 
+	\left\{p^\prime \in \Rcal_n : |x_i - x_j|_{\pi e^{R_n/2}} \leq e^{\frac{y_i + y_j}{2}}\right\}.
 \end{equation}
 With this notation we then have that $\BallPon{p} \cap \PPP$ denotes the set of neighbors of a vertex $p \in G_{\Pcal,n}(\alpha,\nu)$.  
 
 
 \subsection{Coupling the hyperbolic model to the finite box model}\label{ssec:coupling_H_P}
 
-To couple the hyperbolic graph to $G_{\mathcal{P},n}(\alpha, \nu)$ we consider the original hyperbolic graph on a Poisson distributed number of vertices as an intermediate step. For this we define $G_{\HP,n}(\alpha, \nu)$ to be the hyperbolic random graph where the vertex set is given by $N \stackrel{d}{=} \Po(n)$ points, distributed according to the $(\alpha, R_n)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution} defined in Section \ref{ssec:hyperbolic_model}. The following two lemmas from \cite{fountoulakis2018law} establish a coupling between this version of the hyperbolic random graph and the finite box model and relate the hyperbolic neighborhoods to the neighborhood balls $\BallPo{p}$. The ensuing proposition verifies that this coupling also essentially preserves the local clustering function, i.e. that the difference between the local clustering function in the hyperbolic model and the finite box graph converges to zero faster than the proposed scalings in the main result, Theorem \ref{thm:local_clustering_hyperbolic}. Hence, it justifies the transition to the finite box model. 
+To couple the hyperbolic graph to $G_{\mathcal{P},n}(\alpha, \nu)$ we consider the original hyperbolic graph on a Poisson distributed number of vertices as an intermediate step. For this we define $G_{\HP,n}(\alpha, \nu)$ to be the hyperbolic random graph where the vertex set is given by $N \stackrel{d}{=} \Po(n)$ points, \TM{ i.i.d.~and independent of $N$, } distributed according to the $(\alpha, R_n)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution} defined in Section \ref{ssec:hyperbolic_model}. The following two lemmas from \cite{fountoulakis2018law} establish a coupling between this version of the hyperbolic random graph and the finite box model and relate the hyperbolic neighborhoods to the neighborhood balls $\BallPo{p}$. The ensuing proposition verifies that this coupling also essentially preserves the local clustering function, i.e. that the difference between the local clustering function in the hyperbolic model and the finite box graph converges to zero faster than the proposed scalings in the main result, Theorem \ref{thm:local_clustering_hyperbolic}. Hence, it justifies the transition to the finite box model. 
 
 \begin{lemma}[{\cite[Lemma 27]{fountoulakis2018law}}]\label{lem:coupling_hyperbolic_poisson}
 Let $\mathcal{V}_{\HP, n}$ denote the vertex set of $G_{\HP,n}(\alpha, \nu)$ and $\mathcal{V}_n$ the vertex set of $G_{\Pcal,n}(\alpha, \nu)$. Define the map $\Psi : [0,R_n] \times (-\pi, \pi] \to \mathcal{R}_n$ by
 \begin{equation}\label{eq:def_Psi}
 	\Psi(r,\theta) = \left(\theta \frac{e^{R_n/2}}{2}, R_n - r\right).
 \end{equation}
-Then there exists a coupling such that, a.a.s., $\mathcal{V}_n = \Psi(\mathcal{V}_{\HP,n})$. %Moreover, if $\Ccal_n$ is the event that ${\cal V}_n = \Psi\left(\mathcal{V}_{\HP,n}\right)$ then
+Then there exists a coupling such that, a.a.s.\TM{ Have we defined a.a.s.? If no, add it before using it. }, $\mathcal{V}_n = \Psi(\mathcal{V}_{\HP,n})$. %Moreover, if $\Ccal_n$ is the event that ${\cal V}_n = \Psi\left(\mathcal{V}_{\HP,n}\right)$ then
 %\begin{equation}\label{eq:convergence_miscoupling_hyperbolic_poisson}
 %	\Prob{\Ccal_n^c} = \bigO{n^{-(2\alpha - 1)}}. 
 %\end{equation}
@@ -305,7 +313,10 @@ Then there exists a coupling such that, a.a.s., $\mathcal{V}_n = \Psi(\mathcal{V
 
 In the remainder of this paper we will write $\BallHyp{p}$ to denote the image under $\Psi$ of the ball of hyperbolic radius $R_n$ around the point $\Psi^{-1}(p)$, i.e. 
 \[
-	\BallHyp{p} := \left\{p^\prime := \Psi(u) \, : \, u \in \Dcal_{R_n} \text{ and } d_\H(\Psi^{-1}(p),u) \le R_n\right\}.
+	\BallHyp{p} := 
+	%\left\{p^\prime := \Psi(u) \, : \, u \in \Dcal_{R_n} \text{ and } d_\H(\Psi^{-1}(p),u) \le R_n\right\}.
+	\BL{\Psi\left[ \left\{ u \in \Dcal_{R_n} : 
+	d_\H(\Psi^{-1}(p),u) \le R_n\right\}\right].}
 \]
 Note that we have that $\BallHyp{p} \subseteq \mathcal{R}_n$. In particular, a point $p = (x,y) \in \Rcal$ corresponds to $u := \Psi^{-1}(p) = (2 e^{-R_n/2} x, R_n - y)$. 
 
@@ -313,6 +324,7 @@ Let $u, u^\prime \in \Dcal_R$. The hyperbolic law of cosines implies that $d_{\H
 \[
 	\cosh R_n =\cosh r \cosh r^\prime - \sinh r \sinh r^\prime \cos \theta_{R_n}(r,r^\prime).
 \]
+\TM{ Again, only true for $r+r'>R$!!!! }
 To write this differently, define
 \begin{equation}\label{eq:def_Omega_hyperbolic}
 	\Omega(r,r^\prime) := \frac{1}{2}e^{R_n/2} \arccos\left( \frac{\cosh r \cosh r^\prime - \cosh R_n}
@@ -328,7 +340,9 @@ for any point $u^\prime \in \Dcal_R$
 \begin{equation}\label{eq:tail_inclusion_hyperbolic_ball}
 	r^\prime \leq y = R_n - r \Rightarrow d_{\H} (\Psi^{-1}(p),u^\prime) \leq R_n.
 \end{equation}
-In other words, we have $\Rcal_n ([r, R_n])  \subset \BallHyp{p}$. The shape of $\BallHyp{p}$ at the lower parts of $\Rcal_n$ is described by the following lemma which appears in~\cite{fountoulakis2018law}. 
+In other words, we have $\Rcal_n ([r, R_n])  \subset \BallHyp{p}$. 
+\TM{ Weird notation : $\Rcal_n ([r, R_n])$. Have not seen it before. Rehrase or introduce. }
+The shape of $\BallHyp{p}$ at the lower parts of $\Rcal_n$ is described by the following lemma which appears in~\cite{fountoulakis2018law}. 
 
 
 \begin{lemma}[{\cite[Lemma 28]{fountoulakis2018law}}]\label{lem:asymptotics_Omega_hyperbolic}
@@ -345,13 +359,14 @@ Moreover:
 \end{equation}
 \end{lemma}
 
-This result allows us to couple the neighborhoods in the hyperbolic random graph $G_{\H,n}(\alpha,\nu)$ to those in the finite box model $G_{\Pcal,n}(\alpha,\nu)$. This coupling is however not exact and hence we need to compute the difference in triangle counts between the two models. For this, and other computations later on, it will be more convenient to consider the following slight modified version of the local clustering function,
+This result allows us to couple the neighborhoods in the hyperbolic random graph $G_{\H,n}(\alpha,\nu)$ to those in the finite box model $G_{\Pcal,n}(\alpha,\nu)$. This coupling is however not exact and hence we need to compute the difference in triangle counts between the two models. For this, and other computations later on, it will be more convenient to consider the following slightly modified version of the local clustering function,
 \begin{equation}\label{eq:def_local_clustering_ast_general}
 	c_{G}^\ast(k) = \begin{cases}
 			\frac{1}{\Exp{N_G(k)}} \sum_{v \in V(G)} \ind{D_G(v) = k} \frac{\T_G(v)}{\binom{k}{2}} &\mbox{if } N_G(k) \ge 1\\
 			0 &\mbox{else.}
 		\end{cases}
 \end{equation}
+\TM{ Case distinction / second line of definition is not needed. Top expression is automatically zero if $N_k=0$. }
 Notice that the only difference between $c_G(k)$ and $c_G^\ast(k)$ is that we replace $N_G(k)$ by its expectation $\Exp{N_G(k)}$. Following the notational convention, see Remark~\ref{rmk:notation}, throughout the remainder of this paper we write $c_{\HP,n}^\ast(k)$ and $c_{\mathcal{P},n}^\ast(k)$ to denote the modified local clustering function in $G_{\HP,n}(\alpha, \nu)$ and $G_{\mathcal{P},n}(\alpha,\nu)$, respectively.
 
 The following lemma justifies working with this modified version, for the proof see Section~\ref{ssec:coupling_H_HP}.
@@ -366,7 +381,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any positive seque
 We then establish that the modified local clustering function in the hyperbolic model $G_{\H,n}(\alpha,\nu)$ behaves similarly to that in the Poisson version $G_{\HP, n}(\alpha,\nu)$.
 
 \begin{proposition}\label{prop:clustering_ast_H_Pois}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any increasing sequence such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, as $n \to \infty$,
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any increasing \TM{ Do you really mean to say ``increasing''? IN the lemma before and prop.~after, the sequences are more general. And if so, increasing = nondecreasing? } sequence such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, as $n \to \infty$,
 \[
 	\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\HP,n}^\ast(k_n)\right|} = \smallO{s_\alpha(k_n)}.
 \]
@@ -382,11 +397,12 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be any positive seque
 \]
 \end{proposition}
 
+\TM{ Maybe we could replace these three with a statement on $|c_{\H,n}(k_n) - c_{\Pcal,n}^\ast(k_n)|$, at least at this point of the paper. This is only the high level description and that is all we need for the ``final proof".}
 These two results imply that the difference between the local clustering function of the hyperbolic random graph and the modified local clustering function of the finite box graph converges to zero faster than the proposed scaling $s_\alpha(k_n)$ in Theorem \ref{thm:local_clustering_hyperbolic}. Hence, to prove this theorem it is enough to prove it for $c_{\mathcal{P},n}^\ast(k)$. 
 
 \subsection{Infinite limit model}\label{ssec:infinite_model}
 
-To analyze the limiting expressions for clustering in the finite random graph $G_{\Pcal,n}(\alpha, \nu)$ we shall use an infinite graph model which can be understood as taking the finite graph $G_{\Pcal,n}(\alpha,\nu)$ and taking $n \to \infty$. Recall that $\Rcal = \mathbb{R} \times \mathbb{R}_+$ and that $\mathcal{P}_{\alpha,\nu}$ is a Poisson point process on $\Rcal$ with intensity function
+To analyze the limiting expressions for clustering in the finite random graph $G_{\Pcal,n}(\alpha, \nu)$ we shall use an infinite graph model which can be understood as taking the finite graph $G_{\Pcal,n}(\alpha,\nu)$ and taking $n \to \infty$. \TM{ We've already defined the model! } Recall that $\Rcal = \mathbb{R} \times \mathbb{R}_+$ and that $\mathcal{P}_{\alpha,\nu}$ is a Poisson point process on $\Rcal$ with intensity function
 \[
 	f_{\alpha,\nu}(x,y) = \frac{\alpha \nu}{\pi} e^{-\alpha y}.
 \]
@@ -400,8 +416,8 @@ Similar to the finite graph, we write $\BallPo{p}$ to denote the \emph{ball} aro
 	\BallPo{p} = \{p^\prime \in \Rcal : |x - x^\prime| \leq e^{\frac{y + y^\prime}{2}}\}.
 \end{equation}
 
-To analyze expressions in the both the finite and infinite model we will make use of the~\emph{Campbell-Mecke} formula. 
-For a Poisson point process $\mathcal{P}$ on a measurable space $S$ with intensity $\lambda$ and a measurable non-negative function $h: S^r \rightarrow \mathbb{R}$ we have
+To analyze expressions in the both the finite and infinite model we will make use of the~\emph{Campbell-Mecke} formula. \TM{ This needs a reference! }
+For a Poisson point process $\mathcal{P}$ on a measurable space $S$ with intensity $\lambda$ and a measurable non-negative function $h: S^r \rightarrow \mathbb{R}$ \TM{ Below there is one more argument. (a set) } we have
 \begin{equation}\label{eq:def_Campbell-Mecke}
 \begin{split}
 & \Exp{\sum_{x_1,\ldots, x_r \in \mathcal{P}}^{\neq} h (x_1, \ldots, x_r,
@@ -410,7 +426,7 @@ For a Poisson point process $\mathcal{P}$ on a measurable space $S$ with intensi
 \Exp{h(x_1,\ldots, x_r,\mathcal{P} \setminus \{x_1,\ldots, x_r\}) \lambda (x_1) \cdots \lambda (x_r) dx_1 \cdots dx_r},
 \end{split}
 \end{equation}
-where the sum ranges over all distinct $r$-tuples of points of $\mathcal{P}$.
+where the sum ranges over all distinct $r$-tuples of points of $\mathcal{P}$. \TM{ Are you sure this is the Mecke formula? }
 
 Using the Campbell-Mecke formula we can compute the intensity measure of the ball $\BallPo{p}$, i.e. the expected number of points falling into it, as
 \begin{equation}\label{eq:mu_ball_y_P}
@@ -418,24 +434,29 @@ Using the Campbell-Mecke formula we can compute the intensity measure of the bal
 	f_{\alpha,\nu}(x^\prime, y^\prime) \, dx^\prime \, dy^\prime 
 	= \frac{4\alpha \nu}{(2\alpha - 1)\pi} e^{\frac{y}{2}} := \xi_{\alpha,\nu}e^{\frac{y}{2}},
 \end{equation}
+\TM{ This does not need justification by the Mecke formula. It is just an integral of the intensity over some region. }
 
 We shall use $\rho(p,k)$ and $\rho(y,k)$ (for a point $p=(x,y) \in \mathcal{R}$) to denote the probability mass function of a Poisson random variable with expectation $\mu_{\alpha, \nu}(\BallPo{p})$, i.e.
 \[
 	\rho(p,k) = \rho(y,k) = \Prob{\Po\left(\xi_{\alpha,\nu} e^{y/2}\right) = k}.
 \]
-Note that $\rho(y,k)$ denotes the probability that a vertex $(x,y) \in G_{\Pcal}(\alpha,\nu)$ has degree $k$, which due to the translation symmetry of the Poisson Point Process in the $x$ direction depends only on the \emph{height} $y$.
+Note that $\rho(y,k)$ denotes the probability that a vertex $(x,y) \in G_{\Pcal}(\alpha,\nu)$ has degree $k$,
+\TM{ This probability is not well-defined as such. What vertex? We have an infinite graph, so ``a random vertex'' does not immediately make sense. 
+The most natural solution, I think, is to say that we {\em add} the point $p$ to the PPP and then consider its degree. This is related to ``Palm theory". }
+which due to the translation symmetry of the Poisson Point Process in the $x$ direction depends only on the \emph{height} $y$.
 
 \begin{remark}[Degree distributions in the other models]
 Similar to the infinite graph, the degree of a node $p$ in the Poisson hyperbolic graph $G_{\HP,n}$ and the finite random graph $G_{\Pcal,n}$ is distributed as a Poisson random variable with mean $\Mu{\BallHyp{p}}$ and $\Mu{\BallPon{p}}$, respectively. Following the notation above we will denote these distributions by $\rho_{\HP,n}(y,k)$ and $\rho_{\Pcal,n}(y,k)$, since these again are independent of the $x$-coordinate of $p$.
 \end{remark}
 
-We can also define a local clustering coefficient and function in this model. However, since $G_\Pcal$ has an infinite number of nodes the corresponding definitions are slightly different than for the finite size models. Intuitively the local clustering coefficient is the probability that two random neighbors of a randomly sampled node form a triangle, while the local clustering function is the same probability but conditioned on the sampled node having degree $k$.
+We can also define a local clustering coefficient and function in this model. However, since $G_\Pcal$ has an infinite number of nodes the corresponding definitions are slightly different than for the finite size models. Intuitively the local clustering coefficient is the probability that two random neighbors of a randomly sampled node form a triangle , while the local clustering function is the same probability but conditioned on the sampled node having degree $k$. \TM{ again "randomly sampled" does not immediately make sense here. You may want to say we generate a point $(0,y)$ with $y$ 
+exponential $\alpha$ distributed and add this to the PPP, which is generated indeptly of $y$.} 
 
 Again, due to symmetry in the $x$ direction we can assume without loss of generality that a randomly sampled point $p$ is $(0,y)$. For any $y \in \R_+$ we define the probability density function on $\Rcal :=  \R \times \R_+$ by  
 \begin{equation}\label{eq:def_eta_P}
 	\eta_y(x^\prime, y^\prime) = \frac{\ind{p^\prime \in \BallPo{(0,y)}} f_{\alpha,\nu}(x^\prime,y^\prime)}{\mu_{\alpha,\nu}(\BallPo{(0,y)})}.
 \end{equation}
-That is $\eta_y$ is the density $f_{\alpha,\nu}$ restricted to the ball $\BallPo{(0,y)}$, properly normalized. Or in other words, it denotes the probability density of a randomly sampled point in $\BallPo{(0,y)}$, i.e. a randomly sampled neighbor of $(0,y)$. 
+That is $\eta_y$ is the density $f_{\alpha,\nu}$ restricted to the ball $\BallPo{(0,y)}$, properly normalized \TM{ to make it a probability distribution}. \TM{ It can be interpreted as } the probability density of a randomly sampled point in $\BallPo{(0,y)}$, i.e. a randomly sampled neighbor of $(0,y)$. 
 
 We then define
 \begin{equation}\label{eq:def_delta_p}
@@ -444,10 +465,11 @@ We then define
 with 
 \[
 	T_\Pcal(y, x_1, x_2, y_1, y_2) 
-	= \ind{|x_1| \, \le \, e^{(y+y_1)/2}}\ind{|x_2| \, \le \, e^{(y+y_2)/2}}\ind{|x_1-x_2| \, \le \, e^{(y_1+y_2)/2}},
+	= \ind{|x_1| \, \le \, e^{(y+y_1)/2}}\ind{|x_2| \, \le \, e^{(y+y_2)/2}}\ind{|x_1-x_2| \, \le \, e^{(y_1+y_2)/2}}.
 \]
-which is the probability that two randomly sampled points in $\BallPo{(0,y)}$ form a triangle with $(0,y)$.
+So $\Delta_{\Pcal}(y)$ is the probability that two randomly sampled points in $\BallPo{(0,y)}$ form a triangle with $(0,y)$.
 
+\TM{ This next bit again suffers from the same issue as above. You cannot "randomly sample a point". }
 Finally, we note that the height $y$ of a randomly sampled point has the exponential density $\alpha e^{-\alpha y}$: the distribution function of the radial coordinate of a vertex sampled in the disk is $\frac{\cosh(\alpha  r)-1}{\cosh(\alpha R)-1}$ which is asymptotically equivalent to $e^{\alpha(r-R)} = e^{-\alpha y}$, if $r$ and $R$ are large, resp. tending to infinity and $y=R-r$ and because of the minus sign in front of the $r$, the distribution function in $r$ turns into the complementary distribution function of $y$, from which we recognize the exponential distribution with parameter $\alpha$.
 
 \PvdH{@All: This explanation was added by Markus at my request. If someone has a better explanation why this is the case please update this section.} 
@@ -461,13 +483,15 @@ while the limiting local clustering function is defined as
 	c_\Pcal(k) = \frac{\int_0^\infty \rho(y,k) \Delta_\Pcal(y) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}.
 \end{equation}
 
-Note that, due to the translation invariance of the Poisson Point Process $\PPP$ in the $x$-direction, $\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y$ denotes the probability that the degree of a random selected node is $k$. We shall denote this probability by $\Prob{D_\Pcal = k}$.
+Note that, due to the translation invariance of the Poisson Point Process $\PPP$ in the $x$-direction, $\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y$ denotes the probability that the degree of a random selected \TM{ same issue } node is $k$. We shall denote this probability by $\Prob{D_\Pcal = k}$.
 
 In Section~\ref{sec:asymptotics_average_clustering_ast_P} we will compute both these quantities and show that $c_\Pcal = c_\infty$ and $c_\Pcal(k) = c_\infty(k)$, where $c_\infty$ and $c_\infty(k)$ are given in, respectively, Theorem~\ref{thm:clustering_coefficient_hyperbolic} and Theorem~\ref{thm:local_clustering_hyperbolic}.
 
 \subsection{From the finite to the infinite model}
 
 To compute the limit of the modified local clustering function $c_{\mathcal{P},n}^\ast(k)$ in the finite graph $G_{\mathcal{P},n}(\alpha, \nu)$ we first prove in Section~\ref{sec:concentration_c_P_n} that it is concentrated around its expectation $\Exp{c_{\mathcal{P},n}^\ast(k_n)}$.
+
+\TM{ ``concentration'' is a loaded term in probability. I am not sure this use of the word will not be counterintuitive to many. }
 
 \begin{proposition}[Concentration local clustering function in $G_{\mathcal{P},n}(\alpha, \nu)$]\label{prop:concentration_local_clustering_P_n}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $k_n$ be any positive sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha+1}}}$. Then, as $n \to \infty$,
@@ -476,7 +500,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $k_n$ be any positive sequence sat
 \]
 \end{proposition}
 
-With this concentration result, we are left with the task to compute the limit of $\Exp{c_{\mathcal{P},n}^\ast(k_n)}$ as $n \to \infty$ and show that it is equivalent to $c_\infty(k_n)$. To accomplish this we move to the infinite limit model $G_\Pcal(\alpha,\nu)$ and show that the difference between the expected value of the clustering function $c_G^\ast(k)$ in $G_{\mathcal{P},n}(\alpha,\nu)$ and $G_{\mathcal{P}}(\alpha,\nu)$ goes to zero faster than the proposed scaling in Theorem \ref{thm:local_clustering_hyperbolic}.
+\TM{ Assuming this } concentration result, we are left with the task to compute the limit of $\Exp{c_{\mathcal{P},n}^\ast(k_n)}$ as $n \to \infty$ and show that it is equivalent to $c_\infty(k_n)$. To accomplish this we move to the infinite limit model $G_\Pcal(\alpha,\nu)$ and show that the difference between the expected value of the clustering function $c_G^\ast(k)$ in $G_{\mathcal{P},n}(\alpha,\nu)$ and $G_{\mathcal{P}}(\alpha,\nu)$ goes to zero faster than the proposed scaling in Theorem \ref{thm:local_clustering_hyperbolic}.
 
 
 \begin{proposition}[Transition to infinite limit model]\label{prop:convergence_average_clustering_P_n}
@@ -485,6 +509,8 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any positive 
 	\left|\Exp{c_{\Pcal,n}^\ast(k_n)} - c_\Pcal(k_n)\right| = \smallO{s_\alpha(k_n)}.
 \]
 \end{proposition}
+
+\TM{ This is only for $c(k)$. Should we not also mean $c$? }
 
 \subsection{Proof of the main results}\label{ssec:proof_main_results}
 
@@ -509,10 +535,12 @@ Then, we take absolute values and apply the triangle inequality. By monotonicity
     \E[|c_{\H,n}(k_n)-c_\infty(k_n)|] \leq & \E[|c_{\H,n}(k_n)-c_{\H,n}^\ast(k_n)|]+\E[|c_{\H,n}^\ast(k_n)-c_{\HP,n}^\ast(k_n)|]\\&+\E[|c_{\HP,n}^\ast(k_n)-c_{\Pcal,n}^\ast(k_n)|] 
     +\E[|c_{\Pcal,n}^\ast(k_n)-\E c_{\Pcal,n}^\ast(k_n)|]\\&+\E[|\E c_{\Pcal,n}^\ast(k_n)-c_\infty(k_n)|]
 \end{align*}
-At this point, the lemmas and propositions presented above in this section can be applied in order to show that all summands are $\smallO{s_\alpha(k_n)}$: Lemma~\ref{lem:clustering_ast_H} for the transition to the modified clustering function in the first term, Proposition~\ref{prop:clustering_ast_H_Pois} for the Poissonization in the disk in the second term, Proposition~\ref{prop:couling_c_H_P} for the coupling from the disk to the finite box model in the third term, Proposition~\ref{prop:concentration_local_clustering_P_n} for the concentration in the fourth term and finally Proposition~\ref{prop:convergence_average_clustering_P_n} for the transition to the infinite limit model where we also used that $c_{\Pcal}(k_n) = c_\infty(k_n)$ as obtained at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P}. All of this together yields that:
+At this point, the lemmas and propositions presented above in this section can be applied in order to show that all summands are $\smallO{s_\alpha(k_n)}$: Lemma~\ref{lem:clustering_ast_H} for the transition to the modified clustering function in the first term, Proposition~\ref{prop:clustering_ast_H_Pois} for the Poissonization in the disk in the second term, Proposition~\ref{prop:couling_c_H_P} for the coupling from the disk to the finite box model in the third term, Proposition~\ref{prop:concentration_local_clustering_P_n} for the concentration in the fourth term and finally Proposition~\ref{prop:convergence_average_clustering_P_n} for the transition to the infinite limit model where we also used that $c_{\Pcal}(k_n) = c_\infty(k_n)$ as obtained at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P}.
+\TM{ Maybe we can have a more clear reference? Now, at this place in the paper this proof feels a bit like cheating since there are almost no details given. } All of this together yields that:
 \begin{align*}
     \E[|c_{\H,n}(k_n)-c_\infty(k_n)|] = \smallO{s_\alpha(k_n)} = \smallO{c_\infty(k_n)}
 \end{align*}
+\TM{ Last equality seems to rely on Thm 1.3, which is not yet proven at this point. }
 i.e. the statement of the theorem.
 %\[
 %	\Exp{\left|\frac{c_{\Pcal,n}^\ast(k_n)}{C_{\alpha,\nu}s_\alpha(k_n)} - 1\right|}
@@ -538,6 +566,7 @@ Let $\alpha > \frac{1}{2}$ and $k_n$ be a positive sequence, possibly constant, 
 \[
 	\lim_{n\to \infty} \Exp{\left|\frac{\Exp{N_{\H,n}(k_n)}}{n \Prob{D_\Pcal = k_n}} - 1\right|} = 0
 \]
+\TM{ Did we define $D_\Pcal$ already? }
 and hence, as $n \to \infty$
 \[
 	\Exp{N_{\H,n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}.
@@ -566,7 +595,8 @@ As derived at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P},
 		n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|}\\ 
 	&\hspace{10pt}+ \Prob{D_{\H,n} > a_n} + \Prob{D_{\Pcal} > a_n},
 \end{align*}
-and since the last two probabilities are $\smallO{1}$ it is enough to prove that
+\TM{ Same comment }
+and since the last two probabilities are $\smallO{1}$ \TM{ We do not seem to have proved this yet at this point in the paper } it is enough to prove that
 \[
 	\lim_{n \to \infty} \Exp{\left|\frac{1}{n} \sum_{t = 2}^{a_n} \left(\Exp{N_{\H,n}(t)} c_{\H,n}^\ast(t) - 	
 			n \Prob{D_\Pcal = t}c_\Pcal(t)\right)\right|} = 0.
@@ -582,10 +612,12 @@ We write
 and will show that both terms go to zero for some appropriately chosen sequence $a_n$.
 
 Note that Theorem~\ref{thm:local_clustering_hyperbolic} and Lemma~\ref{lem:clustering_ast_H} together state that for any sequence $k_n  = \smallO{n^{1/(2\alpha + 1)}}$
+
 \begin{equation}\label{eq:convergence_c_H_P}
 	\lim_{n \to \infty} \Exp{\left|c_{\H,n}(k_n) - c_{\Pcal}(k_n)\right|} = 0.
 \end{equation}
 
+\TM{ I do not see how this follows from the statements of Thm 1.2 and L2.3. Please elaborate. }
 Let $b_n := \log(n)^{-1} n^{1/(2\alpha + 1)}$ and define the sequence $k_n$ by
 \[
 	k_n = \arg \max_{2 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\Pcal}(t)\right|}.
@@ -606,11 +638,15 @@ Now define
 	\left(\arg \max_{2 \le t \le b_n} \Exp{\left|\frac{N_{\H,n}(t)}{N_\Pcal(t)} - 1\right|}\right)^{-1/2},
 	b_n - 1 \right\} \right\rfloor
 \]
-so that $a_n < b_n = \smallO{n^{1/(2\alpha + 1)}}$, $a_n \to \infty$, 
+\TM{ There seems to be a typo. max should be argmax?
+Also, what is the exponent $-1/2$ doing there? }
+so that $a_n < b_n = \smallO{n^{1/(2\alpha + 1)}}$, $a_n \to \infty$, \TM{ Not with the current def of $a_n$ !!! }
+\
 \[
 	a_n \max_{2 \le t \le a_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|} 
 	\le a_n \max_{2 \le t \le b_n} \Exp{\left|c_{\H,n}(t) - c_{\infty}(t)\right|} \to 0,
 \]
+\TM{ LHS and RHS are identical !!! }
 and similarly
 \[
 	a_n \max_{2 \le t \le a_n} \Exp{\left|\frac{N_{\H,n}(t)}{n \Prob{D_\Pcal = t}} - 1\right|} \to 0.

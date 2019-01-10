@@ -1,12 +1,16 @@
 \section{From $G_{\mathcal{P}, n}(\alpha, \nu)$ to $G_{\mathcal{P}}(\alpha, \nu)$ (Proving Proposition \ref{prop:convergence_average_clustering_P_n})}\label{sec:clustering_Pn_to_P}
 
-Now that we have a complete picture of the behavior of the local clustering coefficient and function in the limit model $G_\Pcal$ we will proceed to relate this to the clustering in the hyperbolic model $G_{\H,n}$. The first step is to relate the clustering in the infinite model to that of the finite box model $G_{\Pcal, n}$. Recall that $G_{\Pcal,n}$ is obtained by restricting the Poisson Point Process $\PPP$ to the box $\Rcal_n = (-I_n, I_n] \times (0, R_n]$, with $I_n = \frac{\pi}{2} e^{R_n/2}$ (we write $\Pcal_n$ for this process), and connecting two points $p_1, p_2 \in \Rcal_n$ if $|x_1 - x_2|_{\pi e^{R_n/2}} \le e^{(y_1 + y_2)/2}$ where we identified the left and right boundary of $\Rcal_n$. See Section~\ref{ssec:finite_model} for more details. 
+Now that we have a complete picture of the behavior of the local clustering coefficient and function in the limit model $G_\Pcal$ we will proceed to relate this to the clustering in the hyperbolic model $G_{\H,n}$. The first step is to relate the clustering in the infinite model to that of the finite box model $G_{\Pcal, n}$. Recall that $G_{\Pcal,n}$ is obtained by restricting the Poisson Point Process $\PPP$ to the box $\Rcal_n = (-I_n, I_n] \times (0, R_n]$, with $I_n = \frac{\pi}{2} e^{R_n/2}$ (we write $\Pcal_n$ for this process), and connecting two points $p_1, p_2 \in \Rcal_n$ if $|x_1 - x_2|_{\pi e^{R_n/2}} \le e^{(y_1 + y_2)/2}$ where we identified the left and right boundary of $\Rcal_n$. 
+\TM{ This last bit of the sentence is already contained in the fact we us $|.|_{\pi e^{R_n/2}}$. To me it does not add anything, except possibly confusion. }
+See Section~\ref{ssec:finite_model} for more details. 
 
 In this section we shall compute the asymptotic difference between triangle counts in the finite and infinite model. First we recall the definition of $\Kcal_{C}(k_n)$
 \[
 	\Kcal_C(k_n) = \left\{p \in \R : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
 	\le \frac{k_n + C \kappa_n}{\xi_{\alpha,\nu}} \wedge e^{R_n/2} \right\},	
 \]
+\TM{ Typo : $p\in\R$. Do you mean $\Rcal_n$? Or maybe 
+$\R \time \R^+$? Still not sure that max and min in defn add anything. }
 with
 \[
 	\kappa_n := \begin{cases}
@@ -14,6 +18,7 @@ with
 		\sqrt{k_n \log(k_n)} &\mbox{else.}
 	\end{cases}
 \]
+\TM{ Same issue as before. }
 In addition we note that the function $\phi_n(y)$ in Lemma~\ref{lem:average_degree_P_n} satisfies
 \[
 	\phi_n(y) = \bigT{e^{-(\alpha - \frac{1}{2})(R_n - y)}},
@@ -21,10 +26,13 @@ In addition we note that the function $\phi_n(y)$ in Lemma~\ref{lem:average_degr
 which yields the following useful corollary to Lemma~\ref{lem:average_degree_P_n}.
 
 \begin{corollary}\label{cor:average_degree_P_n_K}
-Let $\alpha > \frac{1}{2}$, $C > 0$ and $k_n$ be any sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha - 1}}}$. Then, for all $p \in \Kcal_{C}(k_n)$,
+Let $\alpha > \frac{1}{2}$, $C > 0$ and $k_n$ be any sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha - 1}}}$. \TM{ Typo? $2\alpha-1$ should be $2\alpha+1$? } 
+Then, for all $p \in \Kcal_{C}(k_n)$,
 \[
 	\mu_{\alpha,\nu ,n}(B_{\Pcal,n}(p)) = \mu_{\alpha,\nu}(B_\Pcal(p))\left(1 - \bigT{k_n^{2\alpha - 1} n^{-(2\alpha - 1)}}\right).
 \]
+\TM{ I don't follow. Spell it out. }
+
 \end{corollary}
 
 
@@ -39,18 +47,21 @@ where
 \[
 	T_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal,n}(p_1)}.
 \]
-
-The difference between the indicator $\ind{p_1 \in B_{\Pcal,n}(p)}$ in the finite box model and $\ind{p_1 \in B_{\Pcal}(p)}$ is that in $G_{\Pcal,n}(\alpha,\nu)$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R_n/2}, \frac{\pi}{2} e^{R_n/2}]$. It is clear that for any $0 \le y \le R_n$ we have that $\BallPon{p_0} = \BallPo{p_0} \cap \Rcal_n$. However, when we take another point $p^\prime \in \BallPon{p}$ then it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$. Then, any $p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $G_{\Pcal,n}(\alpha,\nu)$ that is not present in $G_{\Pcal}(\alpha, \nu)$.  
+\TM{ $p$ is supposed to be $p_0$ I assume. }
+The difference between the indicator $\ind{p_1 \in B_{\Pcal,n}(p)}$ in the finite box model and $\ind{p_1 \in B_{\Pcal}(p)}$ is that in $G_{\Pcal,n}(\alpha,\nu)$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R_n/2}, \frac{\pi}{2} e^{R_n/2}]$. \TM{ AND we stop at height $y=R_n$! (may be significant at some point) } 
+It is clear that for any $0 \le y \le R_n$ we have that $\BallPon{p_0} = \BallPo{p_0} \cap \Rcal_n$. However, when we take another point $p^\prime \in \BallPon{p}$ then it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$. Then, any $p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $G_{\Pcal,n}(\alpha,\nu)$ that is not present in $G_{\Pcal}(\alpha, \nu)$.  
 
 Define
 \begin{equation}\label{eq:def_tilde_triangle_indicator}
 	\widetilde{T}_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal}(p_1) \cap \Rcal_n}
 \end{equation}
+\TM{ $p$ should be $p_0$ I supppose. }
 Then
 \[
 	\sum_{p_1,p_2 \in \Pcal_n \setminus (0,y)}^{\ne} T_{\Pcal,n}(p_0,p_1,p_2) - \widetilde{T}_{\Pcal,n}(p_0,p_1,p_2)
 	= \sum_{p_1,p_2 \in \Pcal_n \setminus (0,y)}^{\ne} \ind{p_1 \in \BallPon{p_0}} \ind{p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p_0,p_1)},
 \]
+\TM{ Note you cannot really force/assume $p_0 = (0,y)$ is in your PPP $\Pcal_n$. (The summation over $\Pcal_n \setminus (0,y)$ suggests this is what you do.) For taking the expectation of sort of thing, Palm theory / Mecke are used typically. At this point though you can again still just say we add $p_0$ to the PPP. }
 where the sums are over all distinct pairs $(p_1, p_2) \in \Pcal_n \setminus \{(0,y)\}$.
 
 \begin{figure}[!t]
@@ -155,7 +166,7 @@ where the sums are over all distinct pairs $(p_1, p_2) \in \Pcal_n \setminus \{(
 
 Figure \ref{fig:comparing_triangles_diff_intersections} shows an example of a configuration where $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime) \ne \emptyset$. We observe that $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime) \ne \emptyset$ because the right boundary of the ball $\BallPon{p^\prime}$ exists the right boundary of the box $\Rcal_n$ and then, since we identified the boundaries, continues from the left so that $\BallPon{p^\prime}$ covers part of the ball $\BallPon{p}$ which would not be covered in the infinite limit model. 
 
-To further analyze this, let us introduce some notation. For any $p = (x,y) \in \Rcal_n$ we will define the left and right boundary functions as, respectfully,
+To further analyze this, let us introduce some notation. For any $p = (x,y) \in \Rcal_n$ we will define the left and right boundary functions as, respectfully,\TM{ respectively? }
 \begin{align}
 	b_p^-(z) &= \begin{cases}
 		2 \log\left(x-z\right) - y &\mbox{if }  -\frac{\pi}{2} e^{R_n/2} \le z \le x - e^{y/2}  \\
@@ -170,9 +181,10 @@ To further analyze this, let us introduce some notation. For any $p = (x,y) \in 
 		0 &\mbox{else}
 	\end{cases}
 \end{align}
-Note that these functions describe the boundaries of the ball $\BallPon{p}$. In particular, $p^\prime \in \BallPon{p}$ if and only if $y^\prime \ge \min\left\{b_p^-(x^\prime), b_p^+(x^\prime)\right\}$.
+Note that these functions describe the boundaries of the ball $\BallPon{p}$. In particular, $p^\prime = \BL{(x^\prime, y^\prime)} \in \BallPon{p}$ if and only if $y^\prime \ge \min\left\{b_p^-(x^\prime), b_p^+(x^\prime)\right\}$.
 
-For the remainder of the analysis we restrict ourselves to the case where $x^\prime > 0$. Due to symmetry the situation for $x^\prime < 0$ is the same. There are two important points in the box $\Rcal_n$. These are the intersection between the left boundary of $p^\prime$ and the right boundary of $p^\prime$, as it continues from the left side of the box, and the left boundary of $p$. We denote by $(x^\ast(p^\prime), y^\ast(p^\prime))$ the intersection between the left and right boundary of $p^\prime$ and by $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$ the intersection between the left boundary of $p$ and the right boundary of $p^\prime$, see Figure \ref{fig:comparing_triangles_diff_analysis}. After some simple algebra we obtain the following expressions for the coordinates of these two points
+For the remainder of the analysis we restrict ourselves to the case where $x^\prime > 0$. Due to symmetry the situation for $x^\prime < 0$ is the same. \TM{ does this not depend on $p$? } 
+There are two important points in the box $\Rcal_n$. These are the intersection between the left boundary of $p^\prime$ and the right boundary of $p^\prime$, as it continues from the left side of the box, and the left boundary of $p$. We denote by $(x^\ast(p^\prime), y^\ast(p^\prime))$ the intersection between the left and right boundary of $p^\prime$ and by $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$ the intersection between the left boundary of $p$ and the right boundary of $p^\prime$, see Figure \ref{fig:comparing_triangles_diff_analysis}. After some simple algebra \TM{ I am not a big fan of writing "after some simple algebra" or similar. This is how errors can creep into your argument. Maybe we can just give the details? } we obtain the following expressions for the coordinates of these two points
 \begin{align*}
 	x^\ast(p^\prime) &= x^\prime - \frac{\pi}{2} e^{R_n/2}\\
 	y^\ast(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{R_n/2}\right) - y^\prime\\
@@ -340,7 +352,7 @@ Recall that
 \[
 	\Exp{c_{\Pcal,n}^\ast(k_n)} = \frac{\int_{\Rcal_n} \Exp{\ind{D_{\Pcal,n}(y) = k_n} T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}.
 \]
-By Lemma~\ref{lem:average_degree_P_n} and a concentration argument
+By Lemma~\ref{lem:average_degree_P_n} and a concentration argument \TM{ please give more details! }
 \[
 	\Exp{N_{\Pcal,n}(k_n)} = (1+o(1)) \alpha n \int_{0}^\infty \rho(y,k_n) e^{-\alpha} \dd y 
 	= (1+\smallO{1}) n \Exp{N_{\Pcal}(k_n)},
@@ -352,7 +364,7 @@ and since $\Exp{\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y)} \le \rho_n(y,k_n) k_n^2$
 	&= (1+\smallO{1})\int_{\Kcal_C(k_n)} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y\\
 	&= (1 + \smallO{1}) \alpha n \int_{a_n^-}^{a_n^+} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha} \dd x \dd y,
 \end{align*}
-with $a_n^\pm = 2\log\left(\frac{k_n \pm C \kappa_n}{\xi_{\alpha,\nu}}\right)$. Next we note that for $a_n^- \le y \le a_n^-$,
+with $a_n^\pm = 2\log\left(\frac{k_n \pm C \kappa_n}{\xi_{\alpha,\nu}}\right)$. \TM{ again, this def has to be adapted. } Next we note that for $a_n^- \le y \le a_n^-$,
 \[
 	\Exp{T_\Pcal(y)} = \frac{\Mu{\BallPo{y}}^2}{2} \Delta_\Pcal(y) = (1+\smallO{1}) \binom{k_n}{2} \Delta_\Pcal(y)
 \]
@@ -386,10 +398,13 @@ so that by the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke}
 	\left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right|
 	&\le \int_{\Rcal_n} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f_{\alpha, \nu}(x_1,y_1) 
 		\dd x_1 \dd y_1\\
-	&\hspace{10pt}+ \iint_{\Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2) f_{\alpha, \nu}(x_1,y_1) f_{\alpha, \nu}(x_2,y_2)
+	&\hspace{10pt}+ \BL{\int_{\Rcal \setminus \Rcal_n}\int_{\Rcal \setminus \Rcal_n}} T_{\Pcal}(p,p_1,p_2) f_{\alpha, \nu}(x_1,y_1) f_{\alpha, \nu}(x_2,y_2)
 		\dd x_2 \dd y_2 \dd x_1 \dd y_1. 
 \end{align*}
 
+\TM{ in the 1st integral we could have restricted to
+the ball of $p$, and possibly saved a lot. 
+Does that not help? }
 The first integral was taken care of in Lemma \ref{lem:clustering_error_T_term}. For the second integral we have
 \begin{align*}
 	&\hspace{-30pt}\iint_{\Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2) f_{\alpha, \nu}(x_1,y_1) f_{\mu, \nu}(x_2,y_2)
@@ -398,6 +413,7 @@ The first integral was taken care of in Lemma \ref{lem:clustering_error_T_term}.
 	&= \bigO{\left(e^{y/2} \int_{R_n}^\infty e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\right)^2}
 		= \bigO{e^y n^{-(2\alpha - 1)}},
 \end{align*}
+\TM{ Typo : $f_{\mu, \nu}$? Also give more details how line 3 follows. }
 from which we conclude that
 \[
 	\left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
@@ -410,7 +426,9 @@ Therefore
 	&= \bigO{1} n^{-(2\alpha - 1)} \int_{0}^\infty \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd y\\
 	&= \bigO{1} n^{-(2\alpha - 1)} k_n^{-(2\alpha + 1)} = \smallO{s_\alpha(k_n) k_n^{-(2\alpha + 1)} },
 \end{align*}
-where the last part follows from Lemma~\ref{lem:scaling_s_alpha}. To finish the argument we observe that
+\TM{ Typo : $e^{-\alpha}$ }
+where the last part follows from Lemma~\ref{lem:scaling_s_alpha}. \TM{ Also justify penultimate step! }
+To finish the argument we observe that
 \begin{align*}
 	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \Delta_\Pcal(y) e^{-\alpha} \dd y
 	&= \bigT{1} \Exp{N_{\Pcal}(k_n)} c_\infty(k_n) = \bigT{ s_\alpha(k_n) k_n^{-(2\alpha + 1)}}.
@@ -437,6 +455,7 @@ In particular,
 \]
 \end{corollary}
 
+\TM{ Some words spelling this out would help. I don't find it easy to see. Also, in general I think one should avoid saying things like "the proof of such-and-such also gives .." }
 \subsection{Counting missing triangles}
 
 We now come back to computing the expected number of triangles attached to node at height $y$ in $G_{\Pcal,n}(\alpha,\nu)$ that are not present in $G_{\Pcal}(\alpha,\nu)$. 

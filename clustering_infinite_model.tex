@@ -1,6 +1,7 @@
 \section{Clustering in $G_{\mathcal{P}}(\alpha, \nu)$}\label{sec:asymptotics_average_clustering_ast_P}
 
-In this section we will establish the exact expressions for the limit local clustering coefficient and function, $c_\Pcal$ and $c_{\Pcal}(k)$, respectively. This is done in several steps. Recall that for $p\in \R \times \R_+ := \Rcal$,
+\TM{ @Pim and @Nikolaos : if you have not done so already, can you please check the computations in section 4 very very carefully. }
+In this section we will establish the exact expressions for the limit local clustering coefficient and function, $c_\Pcal$ and $c_{\Pcal}(k)$, respectively. This is done in several steps. Recall that for $p\in \R \times \R_+ =: \Rcal$,
 \[
 	\BallPo{p} = \{p^\prime \in \R \times \R_+ : |x - x^\prime| \le e^{\frac{y + y^\prime}{2}}\},
 \]
@@ -35,7 +36,7 @@ We will start with some preliminary results on the degrees in $G_\Pcal(\alpha, \
 
 \subsection{Degree distribution in $G_\Pcal(\alpha, \nu)$}
 
-Before we analyze local clustering in the infinite limit model, we first establish some results for its degree distribution. We define the probability distribution for the degree of node $p = (x,y)$ as
+Before we analyze local clustering in the infinite limit model, we first establish some results for its degree distribution. \TM{ like "randomly sampled", "degree distribution" is a weird concept for infinite graphs. Not sure it even makes sense. Better to speak of "degree of a typical node", i.e. $x=0$ and $y$ is exponential $\alpha$, independent of the PPP.} We define the probability distribution for the degree of node $p = (x,y)$ \TM{ Indeed, for clarity, we ought to add we add the point $p$ to the PPP, and then study its degree. } as
 \begin{equation}
 	\rho(p,k) = \Prob{D_\Pcal(p) = k} = \Prob{\Po(\mu_{\alpha,\nu}(\BallPo{p})) = k},
 \end{equation}
@@ -63,7 +64,9 @@ We therefore conclude that
 	\Prob{D_\Pcal = k} = 2\alpha (\xi_{\alpha,\nu})^{2\alpha} \frac{\Gamma^+(k - 2\alpha, \xi_{\alpha,\nu})}{\Gamma(k+1)}
 \end{equation}
 
-Since $\Gamma^{+}(k-2\alpha, \xi_{\alpha,\nu})/\Gamma(k - 2\alpha) \sim k^{-(2\alpha+1)}$ as $k \to \infty$ \PvdH{@All: Does anyone have a good standard reference for this?} we deduce that
+Since $\Gamma^{+}(k-2\alpha, \xi_{\alpha,\nu})/\Gamma(k - 2\alpha) \sim k^{-(2\alpha+1)}$ as $k \to \infty$
+\TM{ Typo, bottom should be $\Gamma(k+1)$. } \PvdH{@All: Does anyone have a good standard reference for this?} 
+\TM{ This follows from Stirling's approx, which works also for non-integer values, together with the obvious fact that $\lim_{x\to\infty} \Gamma^x(x,c) / \Gamma(x) = 1$ and some obvious manipulations. We ought to provide reference + explanation though. Ref for the Stirling approx : De Bruijn, "asymptotic methods in analysis", 3rd edition, section 4.5 } we deduce that
 \begin{equation}\label{eq:degree_distribution_P_asymptotics}
 	\Prob{D_\Pcal = k} \sim 2\alpha (\xi_{\alpha,\nu})^{2\alpha} k^{-(2\alpha + 1)}
 	\quad \text{as } k \to \infty.
@@ -74,6 +77,7 @@ By a similar computation we have the following result, which will be useful late
 	\int_0^\infty e^{\beta y} \rho_y(k) \alpha e^{-\alpha y} \, dy
     \sim 2\alpha \left(\xi_{\alpha,\nu}\right)^{2(\beta + \alpha)} k^{-2(\beta + \alpha)-1}.
 \end{equation}
+\TM{ $y$ is a subscript here, but is an argument just above. Maybe stick with having it as an argument. }
 
 \subsection{Asymptotic behavior of $c_\infty(k)$}\label{ssec:asymptotics_local_clustering_P}
 
@@ -144,11 +148,11 @@ such that
 \end{enumerate}
 \end{proposition}
 
-The proof of this proposition is involved and technical. We therefore postpone it till Section \ref{ssec:asymptotics_Delta_y_P} and first use it to prove Theorem \ref{thm:asymptotics_average_clustering_P}. 
+The proof of this proposition is involved and technical. We therefore postpone it till Section \ref{ssec:asymptotics_Delta_y_P} \TM{ It is not in section 4.3!!!! IN fact I cannot find it in sec 4 alltogether. Please fix. We do need this worked out explicitly in the paper. } and first use it to prove Theorem \ref{thm:asymptotics_average_clustering_P}. 
 
 \begin{proof}[Proof of Theorem \ref{thm:asymptotics_average_clustering_P}]
 
-We only give the proof for the case $\frac{1}{2} < \alpha < \frac{3}{4}$. The proofs for the other two cases are similar. Let $\varphi_1(y)$ be defined as in Proposition \ref{prop:asymptotics_Delta_y_P} and define
+We only give the proof for the case $\frac{1}{2} < \alpha < \frac{3}{4}$. \TM{ not sure I am happy with this "other cases are similar" approach. Especially in a 100 page paper. The devil is in the details! } The proofs for the other two cases are similar. Let $\varphi_1(y)$ be defined as in Proposition \ref{prop:asymptotics_Delta_y_P} and define
 \[
 	\epsilon_1(k) = \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y
 \]
@@ -176,17 +180,18 @@ Hence, to prove the result it is enough to show that
 \[
 	\lim_{k \to \infty} k^{6\alpha - 3}\epsilon_1(k) = 0.
 \]
-For this we fix $0 < \varphi < 1$, define $a(k) = 2\log((1-\varphi)k)$ and split the integral into two pieces
+For this we fix $0 < \varphi < 1$, define $a(k) = 2\log((1-\varphi)k)$ \TM{ should there not be a $k/\xi$ inside $\log$ here? (see below) } and split the integral into two pieces
 \begin{align*}
 	\epsilon_1(k) &= \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y\\
 	&= \int_0^{a(k)} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y\\
 	&\hspace{10pt}+ \int_{a(k)}^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
     	\rho(y,k) \alpha e^{-\alpha y} \dd y.
 \end{align*} 
-For the first integral we use that $\rho(y,k)$ is increasing on $[0,a(k)]$ and
+For the first integral we use that $\rho(y,k)$ is increasing on $[0,a(k)]$ \TM{ I think that is only true if we change the def as above, in accordance with $a^{\pm}$ earlier. } and
 \[
 	k^{6\alpha - 3}\rho(a(k),k) = O\left(\frac{k^{6\alpha - 3 + (1-\varphi)k}}{k!} e^{-(1-\varphi)k}\right) = o(1),
 \]
+\TM{ again, it seems off. I think we need to take $\xi$ into account here. }
 to obtain
 \begin{align*}
 	&\hspace{-30pt}\lim_{k \to \infty} k^{6\alpha - 3} \int_0^{a_n} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
@@ -205,12 +210,13 @@ Therefore, using that $\varphi_1(y)$ is eventually decreasing and $\lim_{k \to \
 	&\le \lim_{k \to \infty} \varphi_1(a(k)) k^{6\alpha - 3} \int_0^\infty 
     	e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y = 0,
 \end{align*}
-which finishes the proof.
+which finishes the proof. \TM{ PLease elaborate on last line. What is used here? }
 \end{proof}
 
 \subsection{Analyzing $\Delta_\Pcal(y)$, an overview.}\label{ssec:asymptotics_Delta_y_P}
 
-We derive the following complete asymptotic expansion of $\Delta_{\Pcal}(y)$, from which then the leading terms can be extracted. The following result proves Proposition \ref{prop:asymptotics_Delta_y_P}, resp. implies it as a corollary after extracting the leading terms.
+We derive the following explicit expression for $\Delta_{\Pcal}(y)$, from which then the leading terms can be extracted. The following result proves Proposition \ref{prop:asymptotics_Delta_y_P}, resp. implies it as a corollary after extracting the leading terms. \TM{ Extracting the leading terms needs to be done explicitly in the paper! If it is already in the paper somewhere, add explicit reference. }
+
 \begin{proposition}\label{prop:full_expression_delta_P}
 \begin{enumerate}
 	\item If $\alpha \not = 1$, then
@@ -248,7 +254,7 @@ For notational convenience we will switch to using $y_0$ instead of $y$. Note th
 \[
 	g(y_i) := \left(\alpha -\frac{1}{2}\right) e^{-(\alpha-\frac{1}{2})y_i}
 \] 
-and then sampling $x_i$ uniformly in $[-e^{\frac{1}{2}(y+y_i)},e^{\frac{1}{2}(y+y_i)}]$. With this in mind we define $P(y_0,y_1,y_2)$ to be the probability that $(0,y_0), (x_1,y_1), (x_2,y_2)$ form a triangle where $x_1$ and $x_2$ are uniform random variables in, respectively, $[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$.
+and then sampling $x_i$ uniformly in $[-e^{\frac{1}{2}(y+y_i)},e^{\frac{1}{2}(y+y_i)}]$. With this in mind we define $P(y_0,y_1,y_2)$ to be the probability that $(0,y_0), (x_1,y_1), (x_2,y_2)$ form a triangle where $x_1$ and $x_2$ are independent uniform random variables in, respectively, $[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$.
 
 Then we have that
 \begin{align}\label{eq:delta_P}
@@ -257,7 +263,7 @@ Then we have that
 \end{align}
 
 \subsection{Triangle probability for nodes at given heights}
-We proceed by first computing $P(y_0,y_1,y_2)$. To compute the integral~\ref{eq:delta_P} it will be convenient to use the change of variable $z_i = e^{-y_i/2}$, for $i= 0, 1, 2$. We will write $y_i(z_i)$ to stress the dependence between $y_i$ and $z_i$. The following result completely characterizes $P(y_0,y_1,y_2)$.
+We proceed by first computing $P(y_0,y_1,y_2)$. To compute the integral~\eqref{eq:delta_P} it will be convenient to use the change of variable $z_i = e^{-y_i/2}$, for $i= 0, 1, 2$. We will write $y_i(z_i)$ to stress the dependence between $y_i$ and $z_i$. The following result completely characterizes $P(y_0,y_1,y_2)$.
 
 \begin{lemma}\label{lem:triangle_prob_y_coordinates}
 \begin{align*}
@@ -465,7 +471,7 @@ P(y_0(z_0),y_1(z_1),y_2(z_2)) = \begin{cases}
 
 \begin{proof}
 %pim pass1: $P(y_0,y_1,y_2)$ is the probability that $(x_1,y_1)$ and $(x_2,y_2)$ (which are given by a Poisson process in the upper half-plane) are neighbours of each other, given that they are neighbours of $(0,y_0)$ (see figure \ref{fig:triangle_prob_lemma}). By the properties of the Poisson process and our connection rule (which defines the neighourhood area of $(0,y_0)$ in the upper half-plane), given $y_0, y_1, y_2$ we have that $x_i$ is chosen u.a.r.~from $[-e^{y_0/2+y_i/2}, +e^{y_0/2+y_i/2}]$ for $i=1,2$.
-Since the Poisson Point Process is translation invariant in the $x$-coordinate we can, without loss of generality, take $x_0 = 0$. By definition of the connection rule $P(y_0,y_1,y_2)$ is the probability that $|x_2-x_1| \leq  e^{(y_1+y_2)/2}$ (see figure \ref{fig:triangle_prob_lemma}). Consider $y_0, y_1, y_2$ and $x_1$ fixed. Then we are interested in computing the probability that $x_2$ falls into the interval $[x_1-e^{(y_1+y+2)/2},x_1+e^{(y_1+y_2)/2}]$ (given by the bottom interval in the Figure~\ref{fig:triangle_prob_lemma}), as well as into the interval $[-e^{(y_0+y_2)/2},e^{(y_0+y_2)/2}]$ (given by the top interval in the Figure~\ref{fig:triangle_prob_lemma}).
+Since the Poisson Point Process is translation invariant in the $x$-coordinate we can, without loss of generality, take $x_0 = 0$. \TM{ Sentence does not fit with previous discussion, we already said we took $(0,y_0)$ as the central point. } By definition of the connection rule $P(y_0,y_1,y_2)$ is the probability that $|x_2-x_1| \leq  e^{(y_1+y_2)/2}$ (see figure \ref{fig:triangle_prob_lemma}). Consider $y_0, y_1, y_2$ and $x_1$ fixed. Then we are interested in computing the probability that $x_2$ falls into the interval $[x_1-e^{(y_1+y_2)/2},x_1+e^{(y_1+y_2)/2}]$ (given by the bottom interval in the Figure~\ref{fig:triangle_prob_lemma}), as well as into the interval $[-e^{(y_0+y_2)/2},e^{(y_0+y_2)/2}]$ (given by the top interval in the Figure~\ref{fig:triangle_prob_lemma}).
 
 %, i.e. the desired probability can be written as
 %\[ 
@@ -638,9 +644,18 @@ Now that we have established the expression for $P(y_0,y_1,y_2)$ we can proceed 
 \begin{lemma}\label{lem:continuity_Delta_function}
 The function $\alpha \mapsto \Delta_{\Pcal_{\alpha,\nu}}(y_0)$ is continuous for all $\alpha > \frac{1}{2}$.
 \end{lemma}
+
 \begin{proof}
 This follows from the theorem of dominated convergence:
-Let $\alpha > \frac{1}{2}$ and $(\alpha_n)_{n\in \mathbb{N}}$ a sequence of real numbers converging to $\alpha$, so we can assume $|\alpha_n - \alpha| < \epsilon := \frac{\alpha-1/2}{2}$. This means that $-\epsilon < \alpha_n - \alpha < \epsilon$, i.e. $\frac{\alpha-1/2}{2} < \alpha_n - 1/2 < \frac{3\alpha-3/2}{2}$. Define $f_n(y_1,y_2) = P(y_0,y_1,y_2) (\alpha_n - 1/2)^2 e^{-(\alpha_n-1/2)(y_1+y_2)}$. As the function $x \mapsto x^2$ is increasing in $x$ for $x>0$ and the function $x \mapsto e^{-(y_1+y_2)x}$ is decreasing in $x$ and $P(y_0,y_1,y_2) \in [0,1]$, it holds that $|f_n(y_1,y_2)| \leq (\frac{3\alpha-3/2}{2})^2e^{-(y_1+y_2)\frac{\alpha-1/2}{2}}$ which is integrable over $\R_{\geq 0} \times \R_{\geq 0}$ (with integral equals $\frac{(6\alpha-3)^2}{(2\alpha-1)^2}$). Application of the theorem of dominated convergence and using equation~\eqref{eq:def_delta_p} yields that $\Delta_{\Pcal_{\alpha_n,\nu}}(y_0) \rightarrow \Delta_{\Pcal_{\alpha,\nu}}(y_0)$ which gives the claim as the sequence $(\alpha_n)_n$ was arbitrary.
+Let $\alpha > \frac{1}{2}$ and $(\alpha_n)_{n\in \mathbb{N}}$ a sequence of real numbers converging to $\alpha$, so we can assume $|\alpha_n - \alpha| < \epsilon := \frac{\alpha-1/2}{2}$. This means that $-\epsilon < \alpha_n - \alpha < \epsilon$, i.e. $\frac{\alpha-1/2}{2} < \alpha_n - 1/2 < \frac{3\alpha-3/2}{2}$. Define 
+
+$$f_n(y_1,y_2) = P(y_0,y_1,y_2) (\alpha_n - 1/2)^2 e^{-(\alpha_n-1/2)(y_1+y_2)}.$$ 
+
+As the function $x \mapsto x^2$ is increasing in $x$ for $x>0$ and the function $x \mapsto e^{-(y_1+y_2)x}$ is decreasing in $x$ and $P(y_0,y_1,y_2) \in [0,1]$, it holds that 
+
+$$|f_n(y_1,y_2)| \leq \left(\frac{3\alpha-3/2}{2}\right)^2e^{-(y_1+y_2)\frac{\alpha-1/2}{2}}$$
+
+which is integrable over $\R_{\geq 0} \times \R_{\geq 0}$ (with integral equalling $(6\alpha-3)^2/(2\alpha-1)^2$). Application of the theorem of dominated convergence and using equation~\eqref{eq:def_delta_p} yields that $\Delta_{\Pcal_{\alpha_n,\nu}}(y_0) \rightarrow \Delta_{\Pcal_{\alpha,\nu}}(y_0)$ which gives the claim as the sequence $(\alpha_n)_n$ was arbitrary.
 \end{proof}
 
 Due to this lemma we can first assume $\alpha \notin \{ \frac{3}{4},1 \}$, compute $\Delta_{\Pcal}(y_0)$ and then obtain the values of $\Delta_\Pcal(y_0)$ at the remaining two points by taking the corresponding limit in $\alpha$. This strategy is executed below. It involves the computation of several integrals which are involved and will take up the next 7 pages. The proof is carefully structured, using headers, to aid the reader. 
@@ -682,7 +697,8 @@ The integral $I_{11}(y_0)$ is easily obtained:
 \end{align*}
 
 To deal with $I_{12}$ we note that $G(z_0,z_1,z_2)$ is a linear combination of monomials of the form $z_0^az_1^bz_2^c$ with 
-$a,b,c \in \{-1,0,1,2\}$ and $a+b+c=0$. Let us consider the integral $J_(a,b,c)(z_0)$
+$a,b,c \in \{-1,0,1,2\}$ and $a+b+c=0$. Let us consider the integral $J_{(a,b,c)}(z_0)$ defined by 
+
 \begin{equation}\label{eq:def_Delta_P_computation_int_J_1}
 	J_{a,b,c}(z_0) := z_0^a \int_{{z_0>z_1>z_2>0,}\atop{z_0 < z_1+z_2}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} {\dd}z_2{\dd}z_1.
 \end{equation}
@@ -708,7 +724,7 @@ Next we compute $J_{a,b,c}(z_0)$.
 		- \frac{z_0^{4\alpha-2}}{c+2\alpha-1} B^-(1/2;c+2\alpha, b+2\alpha-1),
 \end{align*}
 where we've used the substitution $u := z_1/z_0$ giving $z_0 {\dd} u = {\dd} z_1$ in the penultimate line and
-$B^-$ denotes the (lower) incomplete beta-function. Note that since $c \geq -1$, $-a \in \{0,-1,-2\}$ and by our assumption $\alpha \not \in \{\frac{3}{4}\}$, the denominators that occur during the integration are all non-zero.
+$B^-$ denotes the (lower) incomplete beta-function. Note that since $c \geq -1$, $-a \in \{0,-1,-2\}$ and by our assumption $\alpha \not \in \{\frac{3}{4},1\}$, the denominators that occur during the integration are all non-zero.
 
 Plugging this back into~\eqref{eq:Delta_P_computation_I12_with_J} gives
 \begin{align*}
@@ -763,7 +779,8 @@ to obtain
 
 \paragraph{Computing $\bm{I_2(y_0)}$}
 
-We will follow a similar strategy as for $I_1(y_0)$. First, using the change of variables $z_i := e^{-y_i/2}$ and Lemma~\ref{lem:triangle_prob_y_coordinates} we get
+We will follow a similar strategy as for $I_1(y_0)$. First, using the change of variables $z_i := e^{-y_i/2}$
+we get
 \begin{align*}
 	I_2(y_0) &= 4 (\alpha-1/2)^2 \cdot \int_{1>z_1>z_2,z_0>0} P(y_0(z_0),y_1(z_1),y_2(z_2)) z_1^{2\alpha-2} z_2^{2\alpha-2} 
 		{\dd}z_2{\dd}z_1 \\
@@ -892,6 +909,7 @@ Note that the factor $\alpha-\frac{3}{4}$ does not occur in any denominator of t
 \paragraph{The case of $\bm{\alpha = 1}$}
 
 We want to compute the limit $\lim_{\alpha \rightarrow 1} \Delta_{\Pcal_{\alpha,\nu}}(y_0(z_0))$. For this, after factoring out $\frac{1}{\alpha-1}$ in the expression for $\Delta_{\Pcal}(y)$ we obtained for $\alpha \ne 1$, we compute the first two terms of the Taylor expansion of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$ in $\alpha$ based at $\alpha = 1$. The constant term of this Taylor expansion is verified to vanish whereas the linear term gives the expression searched (after cancellation with $\frac{1}{\alpha-1}$). Note that two terms of $P(y_0(z_0))$ contain $(\alpha-1)^2$ in their denominator, so for those two another $\frac{1}{\alpha-1}$ is factored out and the first three terms of the Taylor expansion are computed. Their constant terms cancel and after multiplication with $\frac{1}{\alpha-1}$ their linear and quadratic terms become part of the constant and linear term of the overall expansion.
+\TM{ I find this rather hard to follow. Maybe it can be made more clear what is meant. Also, We are describing what will happen next. Say that clearly. }
 
 The first summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$ is,
 \begin{align*}
@@ -901,11 +919,11 @@ The second summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$,
 \begin{align*}
 	S_2 = (\alpha-1/2)z_0 = \frac{1}{2}z_0 +z_0 (\alpha-1)+O( (\alpha-1)^2)
 \end{align*}
-The third summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$, needs a 3-term Taylor expansion after another multiplication with $(\alpha-1)$,
+The third summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$, needs \TM{ ``needs''? Now I am really confused } a 3-term Taylor expansion after another multiplication with $(\alpha-1)$,
 \begin{align*}
 	S_3 = - \frac{(\alpha - 1/2)^2 z_0^2}{4} = -\frac{1}{16}z_0^2 -\frac{1}{4}z_0^2(\alpha-1)-\frac{1}{4}z_0^2(\alpha-1)^2+O( (\alpha-1)^3)
 \end{align*}
-The fourth summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$, needs a  3-term Taylor expansion after another multiplication with $(\alpha-1)$,
+The fourth summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$, needs \TM{ again why need? }a  3-term Taylor expansion after another multiplication with $(\alpha-1)$,
 \begin{align*}
 	S_4 = z_0^{-2 + 4 \alpha} \frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha} &= \frac{1}{16}z_0^2 +\frac{z_0^2}{4}\left(\frac{1}{8}+\ln\frac{z_0}{2}\right)(\alpha-1)\\
 &\qquad+\frac{z_0^2}{8}\left(4\left(\ln\frac{z_0}{2}\right)^2+\ln\frac{z_0}{2} - \frac{1}{4}\right)(\alpha-1)^2+O( (\alpha-1)^3)
@@ -946,6 +964,9 @@ and finally the seventh and last summand of $\Delta_\Pcal(y_0(z_0))(\alpha-1)$ g
 \end{align*}
 
 When adding these terms we see that the constant coefficients cancel:
+\TM{ But wait ... some terms were multiplied with $(\alpha-1)$ others with $(\alpha-1)^2$? 
+I am genuinely lost here.
+What is going on here really needs to explained much better. }
 \begin{align*}
 & -\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(\frac{z_0}{2}) +\frac{z_0^2}{4}B^-(1/2;3,0)+\frac{(1-z_0)^2}{8}-\frac{z_0^2}{4}B^-(1-z_0;2,-1) \\
 &=-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(z_0)-\frac{z_0^2}{4}\ln 2 -\frac{5z_0^2}{32}+\frac{z_0^2}{4}\ln2 \\ &\hspace{10pt}+\frac{1}{8}-\frac{z_0}{4}+\frac{z_0^2}{8}+\frac{z_0^2}{4}-\frac{z_0}{4}-\frac{z_0^2}{4}\ln z_0 =0
@@ -1024,7 +1045,7 @@ Now that we have an expression for $\Delta_{\Pcal}(y)$ we can compute the limit 
 
 First we recall that $\rho(y,k) = (\xi_{\alpha,\nu} e^{y/2})^k/k! \, e^{-\xi_{\alpha,\nu} e^{y/2}}$ and
 \begin{align*}
-	\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y = \frac{2\alpha \xi^{2\alpha}}{k!} \Gamma(k-2\alpha,\xi)
+	\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y = \frac{2\alpha \xi^{2\alpha}}{k!} \Gamma^+(k-2\alpha,\xi)
 	:= \rho(k).
 \end{align*}
 We also define
@@ -1052,6 +1073,8 @@ and
 	I^{(k)} = \frac{2 \alpha \xi_{\alpha,\nu}^k}{k!} \cdot \int_0^1 P(y(z)) \cdot z^{2\alpha-(k+1)} e^{-\xi_{\alpha,\nu} z^{-1}} \dd z. 
 \]
 
+
+TM{ $P$ should be $\Delta$? }
 
 We first deal with the case $\alpha \not = 1$. We observe from Proposition~\ref{prop:full_expression_delta_P} that for $\alpha \not =1$, $\Delta_\Pcal(y(z))$ is in fact a linear combination of terms of the form $z^u$, $(1-z)^u$ and $z_0^u B^-(1-z_0,v,w)$.
 

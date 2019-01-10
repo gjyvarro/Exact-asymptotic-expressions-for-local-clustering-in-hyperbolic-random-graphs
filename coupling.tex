@@ -410,7 +410,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 \subsection{Equivalence clustering $G_{\HP,n}(\alpha,\nu)$ and $G_{\Pcal,n}(\alpha,\nu)$}\label{ssec:coupling_HP_ast_P}
 
 
-Here we prove Proposition~\ref{prop:couling_c_H_P}. We first establish a few results regarding the number of nodes of degree $k_n$ in both the hyperbolic random graph $G_{\HP,n}$ and the finite box model $G_{\Pcal,n}$.
+Here we prove Proposition~\ref{prop:couling_c_H_P}. We first establish a few results regarding the number of nodes of degree $k_n$ in both the \TM{ Poissonized? } hyperbolic random graph $G_{\HP,n}$ and the finite box model $G_{\Pcal,n}$.
 
 \begin{lemma}\label{lem:N_k_HP_P}
 Let $\alpha > 1/2$, $\nu > 0$ and $\{k_n\}_{n\ge 1}$ be a sequence such that $k_n = \bigO{n^{1/(2\alpha + 1)}}$. Then
@@ -432,7 +432,7 @@ Recall that
 \[
 	\Exp{N_{\H,n}(k_n)} = \int_{\Rcal_n} \rho_{\HP,n}(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y. 
 \]
-Then by Lemma~\ref{lem:concentration_argument_rho_approximation} and a concentration argument
+Then by Lemma~\ref{lem:concentration_argument_rho_approximation} and a concentration argument \TM{ Please provide details for the ``concentration argumnent''. }
 \begin{align*}
 	\Exp{N_{\H,n}(k_n)} &= (1 + \smallO{1})\int_{\Rcal_n} \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y\\
 	&= (1 + \smallO{1}) n \int_{0}^{R_n} \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y = \bigT{1}n k_n^{-(2\alpha + 1)}.
@@ -1748,6 +1748,18 @@ and in particular
 	\Exp{N_{\H,n}(k_n)} = \bigT{k_n^{-(2\alpha + 1)} n}.
 \]
 \end{lemma}
+
+\TM{ I thought it might be a good idea to show somewhere in the paper that the result of Gugelmann et al.~that
+$N_k = (1+o(1)) p_k n$ a.a.s., extends for all 
+$k \ll n^{1/(2\alpha+1)}$ -- where $p_k$ the expression in terms on $\Gamma^+, \xi$ etc. 
+Gugelmann et al.~had show it only until some small power of $n$.
+Adding this just means we have to 
+compute the leading constants for the expectation $\Ee N_k$, and bound the variance, in addition to what we do here.
+Somehow I had expected we would include that. In fact Markus had prepared a short write up of the variance part of the argument. 
+Should not be too hard to add the rest, no? \\
+We already have the degree sequence for the infinite model somewhere in the paper.
+}
+
 \begin{proof}
 The second result follows directly from the first and Lemma~\ref{lem:N_k_HP_P}. Therefore we will only need to prove the first statement of the lemma.
 
@@ -1757,6 +1769,7 @@ Define the events
 \begin{align*}
 	A_n^{\pm} := \{N \in [n, n \pm C\sqrt{n \log n}]\},
 \end{align*}
+\TM{ weird notation }
 and let $A_n = A_n^{-} \cup A_n^{+}$. Then,
 \begin{align*}
 \Exp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|} 
@@ -1775,11 +1788,12 @@ Let $V_{\H,n}(k_n)$ be the set of degree $k_n$ vertices in the binomial graph $G
 \]
 where $A \Delta B$ denotes the symmetric difference between two sets $A$ and $B$.
 
-We first consider the case $N \in [n,n+C\sqrt{n\log n}]$, i.e. the event $A_n^{+}$. For $z \in V_{\HP,n}(k_n) \setminus V_{\H,n}(k_n)$, $z$ has degree $k_n$ in the Poisson graph, but not in the binomial graph; so as $N \geq n$, either $z$ or one of its $k_n$ neighbors must have been removed during the transition from the Poisson graph to the binomial graph. On the event $A_n$, at most $C\sqrt{n\log n}$ many vertices are removed. The probability of hitting a degree $k_n$ vertex or one of its neighbors is at most $\frac{k_n+1}{N} \leq \frac{k_n+1}{n}$. Therefore, by the union bound, the probability that a particular degree $k_n$ vertex of the Poisson graph is removed is upper bounded by $C\sqrt{n\log n}\frac{k_n+1}{n}$. Hence, the expected number of degree $k_n$ vertices that disappear in the transition from the Poisson graph to the binomial graph is bounded by 
+We first consider the case $N \in [n,n+C\sqrt{n\log n}]$, i.e. the event $A_n^{+}$. For $z \in V_{\HP,n}(k_n) \setminus V_{\H,n}(k_n)$, $z$ has degree $k_n$ in the Poisson graph, but not in the binomial graph; \TM{ I dont particularly like the name ``binomial graph''. Maybe just use ``standard KPKVB graph'' or ``fixed number of node graph'' } so as $N \geq n$, either $z$ or one of its $k_n$ neighbors must have been removed during the transition from the Poisson graph to the binomial graph. On the event $A_n$, at most $C\sqrt{n\log n}$ many vertices are removed. The probability of hitting a degree $k_n$ vertex or one of its neighbors is at most $\frac{k_n+1}{N} \leq \frac{k_n+1}{n}$. Therefore, by the union bound, the probability that a particular degree $k_n$ vertex of the Poisson graph is removed is upper bounded by $C\sqrt{n\log n}\frac{k_n+1}{n}$. Hence, the expected number of degree $k_n$ vertices that disappear in the transition from the Poisson graph to the binomial graph is bounded by 
 \[
 	\CExp{|V_{\HP,n}(k_n) \setminus V_{\H,n}(k_n)}{A_n^{(1)}}\leq \E[N_{\HP,n}(k_n)] C\sqrt{n \log n}\frac{k_n+1}{n}  
 	= \smallO{\Exp{N_{\HP,n}(k_n)}},
 \] 
+\TM{ absolute bar missing above }
 where the last line follows since for $\alpha > 1/2$,
 \[
 	k_n \sqrt{\frac{\log(n)}{n}} = \smallO{n^{\frac{1}{2\alpha + 1}}\sqrt{\frac{\log(n)}{n}}} 
@@ -1787,7 +1801,7 @@ where the last line follows since for $\alpha > 1/2$,
 \]
 
 For $z \in V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)$, $z$ is a degree $k_n$ vertex in the binomial graph, but 
-must have degree $k_n+\ell$ in the Poisson graph (where $1 \leq \ell \leq c\sqrt{n\log n}$). By linearity of expectation the expected number of degree $k_n+\ell$ vertices of the Poisson graph which turn into degree $k_n$ vertices of the binomial graph is equal to the expected number of degree $k_n+\ell$ vertices in the Poisson graph times the probability that a degree $k_n+\ell$ vertex turns into a degree $k_n$ vertex in the transition back, from the Poisson graph to the binomial graph. The probability of choosing uniformly a set of $\ell$ neighbors of a degree $k_n+\ell$ vertex of the Poisson graph is given by $\frac{k_n+\ell}{N}\cdots \frac{k_+1}{N-\ell + 1}$. Now, using $k_n = \smallO{n^{\frac{1}{2\alpha+1}}} = \smallO{C\sqrt{n\log n}}$ for $\alpha > \frac{1}{2}$, $\ell \leq C\sqrt{n \log n}$ and $N-\ell + 1 \geq n$, this probability is bounded from above by $(C+1)^\ell (\frac{\sqrt{n \log n}}{n})^\ell =((C+1) \sqrt{\frac{\log n}{n}})^\ell$ which is upper bounded by $(\frac{1}{2})^\ell$ for $n$ large enough, i.e. $n \geq n_0$. Therefore, using the geometric series, we conclude
+must have degree $k_n+\ell$ in the Poisson graph (where $1 \leq \ell \leq c\sqrt{n\log n}$). By linearity of expectation the expected number of degree $k_n+\ell$ vertices of the Poisson graph which turn into degree $k_n$ vertices of the binomial graph is equal to the expected number of degree $k_n+\ell$ vertices in the Poisson graph times the probability that a degree $k_n+\ell$ vertex turns into a degree $k_n$ vertex in the transition back, from the Poisson graph to the binomial graph. The probability of choosing uniformly a set of $\ell$ neighbors of a degree $k_n+\ell$ vertex of the Poisson graph is given by $\frac{k_n+\ell}{N}\cdots \frac{k_n+1}{N-\ell + 1}$. \TM{ what exactly is the chance experiment here? You are doing ordered, which is not what I would have expected. Maybe that can spelled out. } Now, using $k_n = \smallO{n^{\frac{1}{2\alpha+1}}} = \smallO{C\sqrt{n\log n}}$ for $\alpha > \frac{1}{2}$, $\ell \leq C\sqrt{n \log n}$ and $N-\ell + 1 \geq n$, this probability is bounded from above by $(C+1)^\ell (\frac{\sqrt{n \log n}}{n})^\ell =((C+1) \sqrt{\frac{\log n}{n}})^\ell$ which is upper bounded by $(\frac{1}{2})^\ell$ for $n$ large enough, i.e. $n \geq n_0$. Therefore, using the geometric series, we conclude
 \begin{align*}
 \CExp{|V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)|}{A_n^{+}} 
 &\le  \sum_{\ell=1}^{\sqrt{n\log n}} \Exp{N_{\HP,n}(k_n+\ell)} \left((c+1)\sqrt{\frac{\log n}{n}}\right)^{\ell}\\
@@ -1806,7 +1820,11 @@ The case $N \in [n-C\sqrt{n\log n},n)$ (event $A_n^{-}$) follows by similar argu
 	= \smallO{\Exp{N_{\HP,n}(k_n)}}
 \end{align*}
 
-A vertex $z \in V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)$ could be one of the additional vertices in the binomial graph or it is a degree $k_n-\ell$ vertex of the Poisson graph which receives exactly $\ell$ new vertices in its neighborhood in the transition from the Poisson graph to the binomial graph. The probability that one of the additional vertices of the binomial graph (compared to the smaller Poisson graph) has degree $k_n$ is asymptotically of the order $k_n^{-(2\alpha+1)}$ (as can be seen by considering the alternative coupling between the binomial and the Poisson process, where instead of taking $z_1, \dots, z_N$ for the Poisson process, we take the points $z_n, z_{n-1}, \dots, z_{n-N+1}$ (resp. points with index larger than $n$ after we hit $z_1$): for this graph, we have that the expected number of degree $k_n$ vertices is $\bigT{n k^{-2\alpha-1}}$, so the probability that a vertex chosen uniformly from the Poisson graph has degree $k$ is $\Theta(k^{-2\alpha-1})$). Therefore, the expected number of additional points with degree $k_n$ is $\bigO{\sqrt{n\log n} k_n^{-2\alpha-1}} = \smallO{n k_n^{-2\alpha-1}} = \smallO{\Exp{N_{\HP,n}(k_n)}}$. The expected number of degree $k_n-\ell$ vertices of the Poisson graph which receive exactly $\ell$ new vertices can be bounded in a sum resp. series similarly as done for $z \in V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)$ in the case $N \geq n$. We therefore conclude that
+\TM{ Not so fast! You seem assume that dropping into 
+the ball around a {\bf degree} $k$ vertex has order 
+$k/n$. That has to be argued. It is of course only true if the height of the particular vertex is appropriate. Please correct / provide the relevant details. I guess we may have to appeal to ``concentration of heights'' here. }
+A vertex $z \in V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)$ could be one of the additional vertices in the binomial graph or it is a degree $k_n-\ell$ vertex of the Poisson graph which receives exactly $\ell$ new vertices in its neighborhood in the transition from the Poisson graph to the binomial graph. The probability that one of the additional vertices of the binomial graph (compared to the smaller Poisson graph) has degree $k_n$ is asymptotically of the order $k_n^{-(2\alpha+1)}$ (as can be seen by considering the alternative coupling between the binomial and the Poisson process, where instead of taking $z_1, \dots, z_N$ for the Poisson process, we take the points $z_n, z_{n-1}, \dots, z_{n-N+1}$ (resp. points with index larger than $n$ after we hit $z_1$):
+\TM{ I don't quite follow the construction here. } for this graph, we have that the expected number of degree $k_n$ vertices is $\bigT{n k^{-2\alpha-1}}$, so the probability that a vertex chosen uniformly from the Poisson graph has degree $k$ is $\Theta(k^{-2\alpha-1})$). Therefore, the expected number of additional points with degree $k_n$ is $\bigO{\sqrt{n\log n} k_n^{-2\alpha-1}} = \smallO{n k_n^{-2\alpha-1}} = \smallO{\Exp{N_{\HP,n}(k_n)}}$. The expected number of degree $k_n-\ell$ vertices of the Poisson graph which receive exactly $\ell$ new vertices can be bounded in a sum resp. series similarly as done for $z \in V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)$ in the case $N \geq n$. We therefore conclude that
 \[
 	\CExp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|}{A_n^{-}} = \smallO{\Exp{N_{\HP,n}(k_n)}},
 \]
