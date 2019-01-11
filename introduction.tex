@@ -13,11 +13,11 @@ Hyperbolic random graphs were suggested as a suitable model for complex networks
 \end{enumerate}
 Indeed, in their seminal paper they showed that these graphs have a power-law degree distribution and exhibit strong clustering, while Bringmann et al.~\cite{bringmann2016average} showed that hyperbolic random graphs have doubly logarithmic shortest path lengths. \TM{ \RD{Remove this reference, and replace with Abdullah-Bode-Fountoulakis!!!!}
 In general the proofs that GIRG = HRG are shaky at best, so I do not want to cite anything that relies on that.
-Of course, in this case Nikoloas & his crew were  first anyway.
+Of course, in this case Nikoloas \& his crew were  first anyway.
 Also, regarding "distances", we probably want to mention graph diameter, studied by Kiwi+Mitsche, Friedrich+Krohmer, M\"uller + Staps.
 }
 Many other results regarding hyperbolic random graphs have since been established: for instance the existence of efficient routing algorithms~\cite{bringmann2017greedy}, the size of the largest component~\cite{bode2015largest},~\cite{fountoulakis2018law} and the number of cliques and the largest clique~\cite{blasius2018cliques}. \PvdH{@All: Does anyone have other suggestions for results to add?}
-\TM{ Yes, of course! Everything Nikolaos & his crew, and I and my crew, and Kiwi-Mitsche have done on this model. This includes 2nd largest componnent, connectivity, spectral gap, diameter, Hamilton cycles & perfect matchings (with Markus, Nikolaos and Mitsche, in preparation but perhaps submitted around the same time as this one.).
+\TM{ Yes, of course! Everything Nikolaos\& his crew, and I and my crew, and Kiwi-Mitsche have done on this model. This includes 2nd largest componnent, connectivity, spectral gap, diameter, Hamilton cycles \& perfect matchings (with Markus, Nikolaos and Mitsche, in preparation but perhaps submitted around the same time as this one.).
 Also there is a recent paper on arxiv by Owada+Yogeshwaran on subgraph counts.}
 
 The aim of this paper is to study local clustering in hyperbolic random graphs. The first rigorous mathematical analysis of the local clustering coefficient was done by Gugelmann et al.~\cite{gugelmann2012random}. They show~\cite[Theorem 2.1]{gugelmann2012random} that the local clustering coefficient\footnote{Note that in~\cite{gugelmann2012random} this is called the global clustering coefficient. However, since this term is more often associated in the literature with the density of triangles compared to the number of paths of length 2, we use the term local clustering coefficient as is done, for instance, in~\cite{candellero2016clustering}.} is concentrated around its expectation which is shown to be $\bigT{1}$ as the number of vertices tends to infinity. In particular this result implies that the local clustering coefficient is asymptotically bounded away from zero. The convergence of this coefficient was however not proven. In contrast, the global clustering coefficient was shown~\cite{candellero2016clustering} to converge in probability to some constant which can be explicitly stated as an integral expression, see Theorem 1.2 in \cite{candellero2016clustering}. The authors mention, however, that their analysis needs significant modification to be able to deal with convergence of the local clustering coefficient.
@@ -62,7 +62,17 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and define $R_n = 2\log(n/\nu)$. Then the 
 	\cosh(r_i) \cosh(r_j) - \sinh(r_i) \sinh( r_j) \cos(|\theta_i-\theta_j|_{2\pi}) \le \cosh(R_n),
 \]
 as follows from the hyperbolic law of cosines.% rule[CITE?].
-\TM{ This is only when $r_i+r_j \geq R$! Otherwise the equation does not have a solution as there is no triangle with side lengths $r_i, r_j, R$.}
+\TM{ This is only when $r_i+r_j \geq R$! Otherwise the equation does not have a solution as there is no triangle with side lengths $r_i, r_j, R$.}\PvdH{I do not understand this. The hyperbolic law of cosines defines the hyperbolic cosine of the distance between points in terms of hyperbolic cosines and sines of their radii and the cosine of their relative angle:
+\[
+	\cosh(d_\H(u_i, u_j)) = \cosh(r_i) \cosh(r_j) - \sinh(r_i) \sinh( r_j) \cos(|\theta_i-\theta_j|_{2\pi}).
+\] 
+Since $\cosh$ is strictly monotonically increasing we have that $\cosh(x) \le \cosh(y) \iff x \le y$ and hence 
+\begin{align*}
+	&d_\H(u_i, u_j) \le R_n \\
+	&\iff \cosh(d_\H(u_i, u_j)) \le \cosh(R_n) \\
+	&\iff \cosh(r_i) \cosh(r_j) - \sinh(r_i) \sinh( r_j) \cos(|\theta_i-\theta_j|_{2\pi}) \le \cosh(R_n)
+\end{align*}
+The approximation for the hyperbolic balls you and Nicolaos derived in Lemma 28 holds only when $r_i + r_j \ge R$.}
 \end{enumerate}
 
 \begin{figure}[!t]
@@ -155,7 +165,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$, and $\xi_{\alpha,\nu} = \frac{4\alpha \nu
 	\lim_{n \to \infty} \Exp{\left|c_{\H,n} - c_\infty\right|} = 0,
 \]
 \TM{ As far as I can tell this is just equivalent to 
-$c(G) \plim c_\infty$. I would prefer to use this more standard notation and terminology, certainly at least here, where we present our main results. }
+$c(G) \plim c_\infty$. I would prefer to use this more standard notation and terminology, certainly at least here, where we present our main results. } \PvdH{Convergence in expectation implies convergence in probability but is a much stronger notion. In addition, for integer valued sequences $a_n$ and $b_n$ we have that $\Exp{|a_n - b_n|} \to 0$ implies that $a_n = b_n$ a.a.s.. However, when they are real valued this is no longer true in general.}
 where $c_\infty$ is defined for $\alpha \ne 1$ as
 \begin{align*}
 	c_\infty 
@@ -221,7 +231,7 @@ The first states that for $k$ fixed
 $c(k) \plim c_\infty(k)$. Then we say the proof extends to ... the second thm which states that if
 $1 \ll k_n \ll n^{1/(2\alpha+1)}$ then
 $c(k_n) = (1+o(1)) c_\infty(k_n)$ a.a.s. \\
-In fact, maybe it is good to present a separate -- and short -- proof of the constant case. The equivalence of the models for constant $k$ can be worked out in a few pages while for the sequence we need 50+ pages of super technical computations. What do you think? }
+In fact, maybe it is good to present a separate -- and short -- proof of the constant case. The equivalence of the models for constant $k$ can be worked out in a few pages while for the sequence we need 50+ pages of super technical computations. What do you think? } \PvdH{I agree with the splitting suggestion. However, as I mentioned before, since $c(k_n)/c_\infty(k_n)$ is real-valued our result does not necessarily imply that $c(k_n)/c_\infty(k_n) = 1$ a.a.s.. I guess this is what you mean with $c(k_n) = (1+o(1)) c_\infty(k_n)$ a.a.s. right?}
 
 From the expression for $c_\infty(k)$ we obtain its asymptotic behavior as $k \to \infty$. For this we first define, for any $\frac{1}{2} < \alpha < \frac{3}{4}$,
 \begin{equation}\label{eq:def_C_alpha}
