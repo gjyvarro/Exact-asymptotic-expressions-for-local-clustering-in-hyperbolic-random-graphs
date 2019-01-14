@@ -345,7 +345,7 @@ for any positive function $f$. This implies that we cannot expect a result like 
 Can someone please add that? \\
 (The value of $k$ in Figs 2 and 3 seems a bit arbitrary to me btw.) }
 
-The simulations of this section (see Figures \ref{fig:c2allnu}, \ref{fig:c4allnu} and \ref{fig:ckvariable}) confirm \TM{ ``confirm" is too strong. Simulations ``seem to be in agreement with the formulas". } the formulas from the result section. The simulations were obtained by generating the hyperbolic random graph for a given choice of the parameters and number of repetitions and then taking the average over all simulation instances.
+The simulations of this section (see Figures \ref{fig:c2allnu}, \ref{fig:c4allnu}, \ref{fig:ckvariable} and \ref{fig:cvariable}) appear to be in agreement with the formulas from the result section. The simulations were obtained by generating the hyperbolic random graph for a given choice of the parameters and number of repetitions and then taking the average over all simulation instances.
 \begin{figure}
     \centering
     \includegraphics[scale=0.6]{figures/sim0123c2nualln1000rep20.pdf}
@@ -363,6 +363,12 @@ The simulations of this section (see Figures \ref{fig:c2allnu}, \ref{fig:c4allnu
     \includegraphics[scale=0.6]{figures/sim1024ck225n10000a0609nu2rep20.pdf}
     \caption{Simulation of $c_{\mathbb{H},n}(k_n)$ for $k_n$ varying from 2 to 26 on the horizontal axis, for $\nu=2$ and $\alpha=0.6$ (green) and $\alpha=0.9$ (blue); simulations (red dots) with $n=10 000$ and 20 repetitions.}
     \label{fig:ckvariable}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.6]{figures/SimulationClusteringCoefficientVariousNu.pdf}
+    \caption{Simulation of $c_{\mathbb{H},n}$ for $\alpha$ varying from $0.5$ to $5$ on the horizontal axis and for $\nu=\frac{1}{2}$ (blue), $\nu=1$ (purple), $\nu=2$ (green); simulations (red dots) with $n=1 000$ and 20 repetitions.}
+    \label{fig:cvariable}
 \end{figure}
 
 \TM{ We may want to put the source code in an appendix.
