@@ -1,6 +1,9 @@
 \section{Clustering in $G_{\mathcal{P}}(\alpha, \nu)$}\label{sec:asymptotics_average_clustering_ast_P}
 
 \TM{ @Pim and @Nikolaos : if you have not done so already, can you please check the computations in section 4 very very carefully. }
+
+\PvdH{@All: I haven't touched this section yet.}
+
 In this section we will establish the exact expressions for the limit local clustering coefficient and function, $c_\Pcal$ and $c_{\Pcal}(k)$, respectively. This is done in several steps. Recall that for $p\in \R \times \R_+ =: \Rcal$,
 \[
 	\BallPo{p} = \{p^\prime \in \R \times \R_+ : |x - x^\prime| \le e^{\frac{y + y^\prime}{2}}\},
@@ -34,7 +37,7 @@ where $\pr_{\Pcal,p}$ denotes the joint probability measure of $Z_1$ and $Z_2$. 
 
 We will start with some preliminary results on the degrees in $G_\Pcal(\alpha, \nu)$. The proof of Theorem \ref{thm:asymptotics_average_clustering_P} can be found in Section \ref{ssec:asymptotics_local_clustering_P}. The key ingredient for the proof is a result concerning the asymptotic behavior of $\Delta_\Pcal(y)$ (Proposition \ref{prop:asymptotics_Delta_y_P}) whose proof can be found in Section \ref{ssec:asymptotics_Delta_y_P}. The final computations for the exact expressions of $c_\infty$ in Theorem~\ref{thm:clustering_coefficient_hyperbolic} and $c_\infty(k)$ in Theorem~\ref{thm:local_clustering_hyperbolic} can be found in Section~\ref{ssec:exact_expressions_clustering_P}.
 
-\subsection{Degree distribution in $G_\Pcal(\alpha, \nu)$}
+\subsection{Degree distribution in $G_\Pcal(\alpha, \nu)$}\label{ssec:degrees_infinite_model}
 
 Before we analyze local clustering in the infinite limit model, we first establish some results for its degree distribution. \TM{ like "randomly sampled", "degree distribution" is a weird concept for infinite graphs. Not sure it even makes sense. Better to speak of "degree of a typical node", i.e. $x=0$ and $y$ is exponential $\alpha$, independent of the PPP.} We define the probability distribution for the degree of node $p = (x,y)$ \TM{ Indeed, for clarity, we ought to add we add the point $p$ to the PPP, and then study its degree. } as
 \begin{equation}

@@ -653,46 +653,46 @@ Together with the approximation~\eqref{eq:joint_degrees_separation} and the boun
 and the result follows since the last term is of smaller order than the first.\\
 \vspace{5pt}
 
-\noindent {\bf Case $\bm{k_n = \bigT{1}}$:}\\
-This proof is very similar to the previous one. Here however, we write
-\begin{align*}
-	\rho_{n}(p,p^\prime,k_n,k_n) &= \Prob{X_1(p,p^\prime) + X_3(p,p^\prime) = k_n, X_2(p,p^\prime) + X_3(p,p^\prime) = k_n}\\
-	&= \Prob{X_3(p,p^\prime) = 0}\Prob{X_1(p,p^\prime) = k_n}\Prob{X_2(p,p^\prime) = k_n} 
-		+ \bigO{\Prob{X_3(p,p^\prime) \ge 1}}.
-\end{align*}
-By definition of $\mathcal{E}(k_n)$ and the error function $\phi_n(p,p^\prime)$ from Lemma~\ref{lem:common_neighbors_Pcal_n} we get that for $(p,p^\prime) \in \mathcal{E}(k_n)$
-\[
-	\Exp{X_3(p,p^\prime)} \le \bigT{1} \log(n)^{-(2\alpha - 1)} + \bigT{1}e^{-(\alpha - \frac{1}{2})R_n},
-\]
-where we used that in this case $\Mu{\BallPon{p}}, \Mu{\BallPon{p^\prime}} = \bigT{1}$ and $|x-x^\prime| \le \bigT{1} e^{R_n/2}$. This implies that
-\[
-	\Prob{X_3(p,p^\prime) \ge 1} \le \Exp{X_{3}(p,p^\prime)} = \bigO{\log(n)^{-(2\alpha - 1)}},
-\] 
-Next we observe that by definition of $\mathcal{E}(k_n)$ the error function $\phi_n(p,p^\prime)$ from Lemma~\ref{lem:disjoint_neighbors_P_n_large} satisfies
-\[
-	\sup_{(p,p^\prime) \in \mathcal{E}(k_n)} \phi_n(p,p^\prime) = \bigO{\log(n)^{-(2\alpha - 1)}}.
-\]
-Therefore we can apply the exact same arguments as for the case $k_n \to \infty$ to obtain
-\begin{align*}
-	&\int_{\mathcal{E}(k_n)} \rho_n(y,y^\prime,k_n,k_N) h(y)h(y^\prime) 
-		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
-	&=(1+\smallO{1})\int_{\mathcal{E}(k_n)} \hspace{-5pt}\Prob{X_1(p,p^\prime) = k_n}\Prob{X_2(p,p^\prime) = k_n} h(y) h(y^\prime) 	
-		f_{\alpha,\nu}(x,y)f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
-	&\hspace{10pt}+ \bigO{1}\log(n)^{-(2\alpha - 1)} \int_{\mathcal{E}(k_n)}
-		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
-	&= (1+\smallO{1})\int_{\mathcal{E}(k_n)} \rho(y,k_n) \rho(y^\prime,k_n) h(y)h(y^\prime) 
-		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime,
-\end{align*}
-where we used that
-\[
-	\log(n)^{-(2\alpha - 1)}\int_{\mathcal{E}(k_n)}
-			f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime
-\]
-is of smaller order than
-\[
-	\int_{\mathcal{E}_(k_n)} \rho(y,k_n) \rho(y^\prime,k_n) h(y)h(y^\prime) 
-			f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime.
-\]
+%\noindent {\bf Case $\bm{k_n = \bigT{1}}$:}\\
+%This proof is very similar to the previous one. Here however, we write
+%\begin{align*}
+%	\rho_{n}(p,p^\prime,k_n,k_n) &= \Prob{X_1(p,p^\prime) + X_3(p,p^\prime) = k_n, X_2(p,p^\prime) + X_3(p,p^\prime) = k_n}\\
+%	&= \Prob{X_3(p,p^\prime) = 0}\Prob{X_1(p,p^\prime) = k_n}\Prob{X_2(p,p^\prime) = k_n} 
+%		+ \bigO{\Prob{X_3(p,p^\prime) \ge 1}}.
+%\end{align*}
+%By definition of $\mathcal{E}(k_n)$ and the error function $\phi_n(p,p^\prime)$ from Lemma~\ref{lem:common_neighbors_Pcal_n} we get that for $(p,p^\prime) \in \mathcal{E}(k_n)$
+%\[
+%	\Exp{X_3(p,p^\prime)} \le \bigT{1} \log(n)^{-(2\alpha - 1)} + \bigT{1}e^{-(\alpha - \frac{1}{2})R_n},
+%\]
+%where we used that in this case $\Mu{\BallPon{p}}, \Mu{\BallPon{p^\prime}} = \bigT{1}$ and $|x-x^\prime| \le \bigT{1} e^{R_n/2}$. This implies that
+%\[
+%	\Prob{X_3(p,p^\prime) \ge 1} \le \Exp{X_{3}(p,p^\prime)} = \bigO{\log(n)^{-(2\alpha - 1)}},
+%\] 
+%Next we observe that by definition of $\mathcal{E}(k_n)$ the error function $\phi_n(p,p^\prime)$ from Lemma~\ref{lem:disjoint_neighbors_P_n_large} satisfies
+%\[
+%	\sup_{(p,p^\prime) \in \mathcal{E}(k_n)} \phi_n(p,p^\prime) = \bigO{\log(n)^{-(2\alpha - 1)}}.
+%\]
+%Therefore we can apply the exact same arguments as for the case $k_n \to \infty$ to obtain
+%\begin{align*}
+%	&\int_{\mathcal{E}(k_n)} \rho_n(y,y^\prime,k_n,k_N) h(y)h(y^\prime) 
+%		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+%	&=(1+\smallO{1})\int_{\mathcal{E}(k_n)} \hspace{-5pt}\Prob{X_1(p,p^\prime) = k_n}\Prob{X_2(p,p^\prime) = k_n} h(y) h(y^\prime) 	
+%		f_{\alpha,\nu}(x,y)f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+%	&\hspace{10pt}+ \bigO{1}\log(n)^{-(2\alpha - 1)} \int_{\mathcal{E}(k_n)}
+%		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+%	&= (1+\smallO{1})\int_{\mathcal{E}(k_n)} \rho(y,k_n) \rho(y^\prime,k_n) h(y)h(y^\prime) 
+%		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime,
+%\end{align*}
+%where we used that
+%\[
+%	\log(n)^{-(2\alpha - 1)}\int_{\mathcal{E}(k_n)}
+%			f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime
+%\]
+%is of smaller order than
+%\[
+%	\int_{\mathcal{E}_(k_n)} \rho(y,k_n) \rho(y^\prime,k_n) h(y)h(y^\prime) 
+%			f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime.
+%\]
 \end{proof}
 
 
@@ -839,95 +839,93 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 \]
 
 
-The prove is split over the two cases $k_n = \bigT{1}$ and $k_n \to \infty$. 
-
-\subsubsection*{The case $\bm{k_n = \bigT{1}}$}
-
-Take $a_n = 2\log\left((k_n + C\log(n))/\xi_{\alpha, \nu}\right)$ and let $I_{a,b}^\ast$ denote the the part of $I_{a,b}$ where $(p,p^\prime) \in \mathcal{E}(k_n)$ as defined in~\eqref{eq:def_joint_degree_set_E_constant_k}. We will show that the expected difference between $I_{a,b}$ and $I_{a,b}^\ast$ is of smaller order than $\Exp{T_\Pcal(k_n)}^2$ so that we only need to consider $I_{a,b}^\ast$. 
-
-Since 
-\[
-	|x - x^\prime| \le \left(e^{y/2} + e^{y^\prime/2}\right)\left(\frac{k_n + C \log(n)}{\xi_{\alpha,\nu}}\right)
-	= \bigO{\log(n)^2}
-\] 
-for all $p,p ^\prime \in \mathcal{E}_C(k_n)^c$, it follows that
-\begin{align*}
-	&\Exp{\left|I_{a,b} - I^\ast_{a,b}\right|} \\
-	&\le \int_{\mathcal{E}_{C}(k_n)^c} 
-		\Exp{\ind{D_{\Pcal,n}(p) = k_n - i, \, D_{\Pcal,n}(p^\prime) = k_n - i^\prime} J_b(p,p^\prime)}
-		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
-	&\le \int_{\mathcal{E}_{C}(k_n)^c} \rho_{n}(y,k_n) \Exp{J_b(p,p^\prime)}
-		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
-	&\le \int_{\mathcal{E}_{C}(k_n)^c} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(p)}
-		\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} 
-		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
-	&\le \bigO{\log(n)^2} \left(\int_{\Kcal_{C}(k_n)} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(p)} 
-		f_{\alpha, \nu}(x,y) \dd x \dd y\right)	
-		\left(\int_0^{a_n} \Delta_\Pcal(y^\prime) e^{-\alpha y^\prime} \dd y^\prime\right) \\
-	&= \bigO{\log(n)^2 s_\alpha(k_n) \Exp{T_\Pcal(k_n)}},
-\end{align*}
-where the last line follows from Corollary~\ref{cor:adjusted_triangle_counting_P_n} and Proposition~\ref{prop:asymptotics_Delta_y_P} which states that for all $0 < y^\prime \le a_n$, $\Delta_\Pcal(y^\prime) = \bigO{s_\alpha(k_n)}$. Next we note that $\Exp{T_\Pcal(k_n)} = \bigT{n k_n^{-(2\alpha - 1)} s_\alpha(k_n)}$, hence $\log(n)^2 s_\alpha(k_n) = \smallO{\Exp{T_\Pcal(k_n)}}$ and therefore we conclude that
-\[
-	\Exp{\left|I_{a,b} - I^\ast_{a,b}\right|} = \smallO{\Exp{T_\Pcal(k_n)}^2}.
-\]
-
-We now proceed with computing $I_{a,b}^\ast$. For this we note that the parts of the neighborhoods $\BallPon{p}$ and $\BallPon{p^\prime}$ where $y_1, y_1^\prime \le h(p,p^\prime)$ are disjoint, see Figure~\ref{fig:representation_disjoint_neighborhoods_P_n_3}. In particular, this implies that when $b \ne 0$ this can only be if one of the $y_1, y_2, y_1^\prime, y_2^\prime$ exceeds $h(p,p^\prime)$. Now we observe that for $(p,p^\prime) \in \mathcal{E}(k_n)$ we have
-\begin{align*}
-	\int_{h(p,p^\prime)}^{R_n}\int_{-I_n}^{I_n} \ind{p_1 \in \BallPon{p}} f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1
-	&= \bigO{e^{y/2} e^{-(\alpha - \frac{1}{2})h(p,p^\prime)}}
-		= \bigO{\log(n)^{-(2\alpha - 1)}},
-\end{align*}
-while
-\begin{align*}
-	\int_0^{h(p,p^\prime)}\int_{-I_n}^{I_n} \ind{p_1 \in \BallPon{p}} f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1
-	&= \bigO{1}.
-\end{align*} 
-Hence if $b \ne 0$ then it follows that $\Exp{J_b} = \bigO{\log(n)^{-(2\alpha - 1)}}$ and we conclude that 
-\[
-	\Exp{I_{a,b}} = \bigO{n^2 \log(n)^{-(2\alpha - 1)}} = \smallO{\Exp{T_\Pcal(k_n)}^2}
-\]
-
-For $I_{0,0}^\ast$ we define
-\[
-	\mathcal{J}_1^\ast = \int_{\Rcal_n^2} \ind{0\le y_1, y_2 \le h(p,p^\prime)} \widetilde{T}_{\Pcal,n}(p,p_1,p_2) 
-			f_{\alpha,\nu}(x_1,y_1)	f_{\alpha,\nu}(x_2,y_2) \dd x_2 \dd x_1 \dd y_2 \dd y_1
-\] 
-and define $\mathcal{J}_2^\ast$ in a similar way by interchanging the primed and non-primed variables. Then we get
-\[
-	\Exp{J_0(p,p^\prime)} = \mathcal{J}_1^\ast \mathcal{J}_2^\ast + \bigO{\log(n)^{-(2\alpha - 1)}}.
-\]
-In addition, for $(p,p^\prime) \in \mathcal{E}(k_n)$ Corollary~\ref{cor:adjusted_triangle_counting_P_n} implies that 
-\[
-	\mathcal{J}_1^\ast = (1+\smallO{1})\Exp{\widetilde{T}_{\Pcal,n}(p)} = (1 + \smallO{1})\binom{k_n}{2} \Delta_\Pcal(y),
-\] 
-and similar for $\mathcal{J}_2^\ast$, while Lemma~\ref{lem:joint_degree_factorization} states that
-\begin{align*}
-	&\hspace{-30pt}\int_{\mathcal{E}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) \Delta_\Pcal(y) \Delta_\Pcal(y^\prime)
-		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
-	&= (1+\smallO{1})\left(\int_{\Kcal_C(k_n)} \rho(y,k_n) \Delta_\Pcal(y) f_{\alpha,\nu}(x,y) \dd x \dd y\right)^2.
-\end{align*}
-We therefore conclude that
-\begin{align*}
-	\Exp{I_{0,0}^\ast} 
-	&= \int_{\mathcal{E}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) \Exp{J_0(p,p^\prime)}
-		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y \\
-	&= \int_{\mathcal{E}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) \Delta_\Pcal(y) \Delta_\Pcal(y^\prime)
-		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
-	&\hspace{10pt}+ \bigO{\log(n)^{-(2\alpha - 1)}n^2} \\
-	&= (1 + \smallO{1}) \binom{k_n}{2}^2 
-		\left(\int_{\Kcal_C(k_n)} \rho(y,k_n) \Delta_\Pcal(y) f_{\alpha,\nu}(x,y) \dd x \dd y\right)^2 \\
-	&= (1 + \smallO{1})\Exp{T_\Pcal(k_n)}^2,
-\end{align*}
-which finishes the proof for $k_n = \bigT{1}$
-
-\subsubsection*{The case $\bm{k_n \to \infty}$}
+%The prove is split over the two cases $k_n = \bigT{1}$ and $k_n \to \infty$. 
+%
+%\subsubsection*{The case $\bm{k_n = \bigT{1}}$}
+%
+%Take $a_n = 2\log\left((k_n + C\log(n))/\xi_{\alpha, \nu}\right)$ and let $I_{a,b}^\ast$ denote the the part of $I_{a,b}$ where $(p,p^\prime) \in \mathcal{E}(k_n)$ as defined in~\eqref{eq:def_joint_degree_set_E_constant_k}. We will show that the expected difference between $I_{a,b}$ and $I_{a,b}^\ast$ is of smaller order than $\Exp{T_\Pcal(k_n)}^2$ so that we only need to consider $I_{a,b}^\ast$. 
+%
+%Since 
+%\[
+%	|x - x^\prime| \le \left(e^{y/2} + e^{y^\prime/2}\right)\left(\frac{k_n + C \log(n)}{\xi_{\alpha,\nu}}\right)
+%	= \bigO{\log(n)^2}
+%\] 
+%for all $p,p ^\prime \in \mathcal{E}_C(k_n)^c$, it follows that
+%\begin{align*}
+%	&\Exp{\left|I_{a,b} - I^\ast_{a,b}\right|} \\
+%	&\le \int_{\mathcal{E}_{C}(k_n)^c} 
+%		\Exp{\ind{D_{\Pcal,n}(p) = k_n - i, \, D_{\Pcal,n}(p^\prime) = k_n - i^\prime} J_b(p,p^\prime)}
+%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%	&\le \int_{\mathcal{E}_{C}(k_n)^c} \rho_{n}(y,k_n) \Exp{J_b(p,p^\prime)}
+%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%	&\le \int_{\mathcal{E}_{C}(k_n)^c} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(p)}
+%		\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} 
+%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%	&\le \bigO{\log(n)^2} \left(\int_{\Kcal_{C}(k_n)} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(p)} 
+%		f_{\alpha, \nu}(x,y) \dd x \dd y\right)	
+%		\left(\int_0^{a_n} \Delta_\Pcal(y^\prime) e^{-\alpha y^\prime} \dd y^\prime\right) \\
+%	&= \bigO{\log(n)^2 s_\alpha(k_n) \Exp{T_\Pcal(k_n)}},
+%\end{align*}
+%where the last line follows from Corollary~\ref{cor:adjusted_triangle_counting_P_n} and Proposition~\ref{prop:asymptotics_Delta_y_P} which states that for all $0 < y^\prime \le a_n$, $\Delta_\Pcal(y^\prime) = \bigO{s_\alpha(k_n)}$. Next we note that $\Exp{T_\Pcal(k_n)} = \bigT{n k_n^{-(2\alpha - 1)} s_\alpha(k_n)}$, hence $\log(n)^2 s_\alpha(k_n) = \smallO{\Exp{T_\Pcal(k_n)}}$ and therefore we conclude that
+%\[
+%	\Exp{\left|I_{a,b} - I^\ast_{a,b}\right|} = \smallO{\Exp{T_\Pcal(k_n)}^2}.
+%\]
+%
+%We now proceed with computing $I_{a,b}^\ast$. For this we note that the parts of the neighborhoods $\BallPon{p}$ and $\BallPon{p^\prime}$ where $y_1, y_1^\prime \le h(p,p^\prime)$ are disjoint, see Figure~\ref{fig:representation_disjoint_neighborhoods_P_n_3}. In particular, this implies that when $b \ne 0$ this can only be if one of the $y_1, y_2, y_1^\prime, y_2^\prime$ exceeds $h(p,p^\prime)$. Now we observe that for $(p,p^\prime) \in \mathcal{E}(k_n)$ we have
+%\begin{align*}
+%	\int_{h(p,p^\prime)}^{R_n}\int_{-I_n}^{I_n} \ind{p_1 \in \BallPon{p}} f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1
+%	&= \bigO{e^{y/2} e^{-(\alpha - \frac{1}{2})h(p,p^\prime)}}
+%		= \bigO{\log(n)^{-(2\alpha - 1)}},
+%\end{align*}
+%while
+%\begin{align*}
+%	\int_0^{h(p,p^\prime)}\int_{-I_n}^{I_n} \ind{p_1 \in \BallPon{p}} f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1
+%	&= \bigO{1}.
+%\end{align*} 
+%Hence if $b \ne 0$ then it follows that $\Exp{J_b} = \bigO{\log(n)^{-(2\alpha - 1)}}$ and we conclude that 
+%\[
+%	\Exp{I_{a,b}} = \bigO{n^2 \log(n)^{-(2\alpha - 1)}} = \smallO{\Exp{T_\Pcal(k_n)}^2}
+%\]
+%
+%For $I_{0,0}^\ast$ we define
+%\[
+%	\mathcal{J}_1^\ast = \int_{\Rcal_n^2} \ind{0\le y_1, y_2 \le h(p,p^\prime)} \widetilde{T}_{\Pcal,n}(p,p_1,p_2) 
+%			f_{\alpha,\nu}(x_1,y_1)	f_{\alpha,\nu}(x_2,y_2) \dd x_2 \dd x_1 \dd y_2 \dd y_1
+%\] 
+%and define $\mathcal{J}_2^\ast$ in a similar way by interchanging the primed and non-primed variables. Then we get
+%\[
+%	\Exp{J_0(p,p^\prime)} = \mathcal{J}_1^\ast \mathcal{J}_2^\ast + \bigO{\log(n)^{-(2\alpha - 1)}}.
+%\]
+%In addition, for $(p,p^\prime) \in \mathcal{E}(k_n)$ Corollary~\ref{cor:adjusted_triangle_counting_P_n} implies that 
+%\[
+%	\mathcal{J}_1^\ast = (1+\smallO{1})\Exp{\widetilde{T}_{\Pcal,n}(p)} = (1 + \smallO{1})\binom{k_n}{2} \Delta_\Pcal(y),
+%\] 
+%and similar for $\mathcal{J}_2^\ast$, while Lemma~\ref{lem:joint_degree_factorization} states that
+%\begin{align*}
+%	&\hspace{-30pt}\int_{\mathcal{E}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) \Delta_\Pcal(y) \Delta_\Pcal(y^\prime)
+%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%	&= (1+\smallO{1})\left(\int_{\Kcal_C(k_n)} \rho(y,k_n) \Delta_\Pcal(y) f_{\alpha,\nu}(x,y) \dd x \dd y\right)^2.
+%\end{align*}
+%We therefore conclude that
+%\begin{align*}
+%	\Exp{I_{0,0}^\ast} 
+%	&= \int_{\mathcal{E}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) \Exp{J_0(p,p^\prime)}
+%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y \\
+%	&= \int_{\mathcal{E}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) \Delta_\Pcal(y) \Delta_\Pcal(y^\prime)
+%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%	&\hspace{10pt}+ \bigO{\log(n)^{-(2\alpha - 1)}n^2} \\
+%	&= (1 + \smallO{1}) \binom{k_n}{2}^2 
+%		\left(\int_{\Kcal_C(k_n)} \rho(y,k_n) \Delta_\Pcal(y) f_{\alpha,\nu}(x,y) \dd x \dd y\right)^2 \\
+%	&= (1 + \smallO{1})\Exp{T_\Pcal(k_n)}^2,
+%\end{align*}
+%which finishes the proof for $k_n = \bigT{1}$
 
 Recall the definition of $\mathcal{E}_\varepsilon(k_n)$
 \[
 	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \Kcal_C(k_n) \times \Kcal_C(k_n) 
 	\, : \, \Exp{\left|\Ncal_{\Pcal,n}^c(p,p^\prime)\right|} \ge k_n^{\varepsilon} \text{ and } |x - x^\prime| > k_n^{1 + \varepsilon} \right\}
 \]
-let $\mathcal{E}_\varepsilon(k_n)^c$ denote its complement and, similar to the previous case, let $I_{a,b}^\ast$ denote the the part of $I_{a,b}$ where $p,p^\prime \in \Pcal_n \cap \mathcal{E}_\varepsilon(k_n)$. We first show that
+let $\mathcal{E}_\varepsilon(k_n)^c$ denote its complement and let $I_{a,b}^\ast$ denote the the part of $I_{a,b}$ where $p,p^\prime \in \Pcal_n \cap \mathcal{E}_\varepsilon(k_n)$. We first show that
 \begin{equation}\label{eq:I_ab_ast_main}
 	\Exp{I_{a,b} - I_{a,b}^\ast} = \smallO{\Exp{T_{\Pcal,n}(k_n)}^2},
 \end{equation}

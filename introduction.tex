@@ -11,14 +11,14 @@ Hyperbolic random graphs were suggested as a suitable model for complex networks
 \item Strong clustering (community structure),
 \item Small path lengths (small world phenomenon).
 \end{enumerate}
-Indeed, in their seminal paper they showed that these graphs have a power-law degree distribution and exhibit strong clustering, while Bringmann et al.~\cite{bringmann2016average} showed that hyperbolic random graphs have doubly logarithmic shortest path lengths. \TM{ \RD{Remove this reference, and replace with Abdullah-Bode-Fountoulakis!!!!}
+Indeed, in their seminal paper they showed that these graphs have a power-law degree distribution and exhibit strong clustering, while Abdullah et al.~\cite{abdullah2017typical} showed that hyperbolic random graphs have doubly logarithmic shortest path lengths. \TM{
 In general the proofs that GIRG = HRG are shaky at best, so I do not want to cite anything that relies on that.
 Of course, in this case Nikoloas \& his crew were  first anyway.
 Also, regarding "distances", we probably want to mention graph diameter, studied by Kiwi+Mitsche, Friedrich+Krohmer, M\"uller + Staps.
 }
 Many other results regarding hyperbolic random graphs have since been established: for instance the existence of efficient routing algorithms~\cite{bringmann2017greedy}, the size of the largest component~\cite{bode2015largest},~\cite{fountoulakis2018law} and the number of cliques and the largest clique~\cite{blasius2018cliques}. \PvdH{@All: Does anyone have other suggestions for results to add?}
 \TM{ Yes, of course! Everything Nikolaos\& his crew, and I and my crew, and Kiwi-Mitsche have done on this model. This includes 2nd largest componnent, connectivity, spectral gap, diameter, Hamilton cycles \& perfect matchings (with Markus, Nikolaos and Mitsche, in preparation but perhaps submitted around the same time as this one.).
-Also there is a recent paper on arxiv by Owada+Yogeshwaran on subgraph counts.}
+Also there is a recent paper on arxiv by Owada+Yogeshwaran on subgraph counts.}\PvdH{Great, could you add those to the bib file and mention them here.}
 
 The aim of this paper is to study local clustering in hyperbolic random graphs. The first rigorous mathematical analysis of the local clustering coefficient was done by Gugelmann et al.~\cite{gugelmann2012random}. They show~\cite[Theorem 2.1]{gugelmann2012random} that the local clustering coefficient\footnote{Note that in~\cite{gugelmann2012random} this is called the global clustering coefficient. However, since this term is more often associated in the literature with the density of triangles compared to the number of paths of length 2, we use the term local clustering coefficient as is done, for instance, in~\cite{candellero2016clustering}.} is concentrated around its expectation which is shown to be $\bigT{1}$ as the number of vertices tends to infinity. In particular this result implies that the local clustering coefficient is asymptotically bounded away from zero. The convergence of this coefficient was however not proven. In contrast, the global clustering coefficient was shown~\cite{candellero2016clustering} to converge in probability to some constant which can be explicitly stated as an integral expression, see Theorem 1.2 in \cite{candellero2016clustering}. The authors mention, however, that their analysis needs significant modification to be able to deal with convergence of the local clustering coefficient.
 
@@ -32,7 +32,7 @@ In addition to the clustering coefficients, an important clustering measure that
 
 In this work we resolve these important open questions. We obtain the asymptotic scaling of $c(k)$ as $k \to \infty$, including the leading constant, as well as an exact expression, in terms of known special functions, of the point-wise limit of the local clustering function as the number of vertices tends to infinity. Interestingly, the scaling of $c(k)$ depends on the exponent of the degree distribution and is only $k^{-1}$ when this exponent exceeds $5/2$. For values less than $5/2$ the scaling is $k^{-s}$ where the value of $s$ depends on the degree distribution exponent. Finally, our analysis allows us to also prove a convergence result for the local clustering coefficient where the limit can again be explicitly expressed in terms of known special functions. 
 
-\TM{ I vote to remove this next paragraph. Use of GIRGs is fishy, and also we are not obliged to mention any and all possible alternative approaches. }
+\TM{ I vote to remove this next paragraph. Use of GIRGs is fishy, and also we are not obliged to mention any and all possible alternative approaches. }\PvdH{I do not mind if we remove the paragraph. However, the results in J\'{u}lias's paper are rigorous so I do not think that is a good reason for removing the paragraph.}
 We remark that it is possible to prove that the local clustering coefficient converges to some limit, using the technical tools in the recent work on explosion times in Geometric Inhomogeneous Random Graphs~\cite{komjathy2018explosion}. However, this problem is not explicitly addressed in that paper, nor is there any reason to expect these tools to give us the exact expressions as we do derive in this work.
 
 %\PvdH{I recall that J{\'u}lia told me that the results from~\cite{komjathy2018explosion} imply that the local clustering coefficient converges, although they do not mention it in the paper. Should we added a comment related to this?}
@@ -40,6 +40,8 @@ We remark that it is possible to prove that the local clustering coefficient con
 %\MS{Yes, I think this would probably be good. Either after the sentence `the convergence of this coefficient was not proven' add something like, as you say, the results form .. imply convergence, although not specifically mentioned there. Or drop that sentence about that the convergence was not shown and also rephrase the sentence in 1, to just what is the limit. It should just be clear to the reader that we are not claiming the credit for the convergence itself, but mostly for finding the exact limit (in an analytic expression) and with a very strong sense of convergence. So, let's better emphasize those last two points and hope that they are good enough.}
 
 \subsection{Outline of the paper}
+
+\PvdH{@Tobias and Markus: I haven't update this section yet since it will also depend on your new proofs. Please update it once you have added these to the paper.}
 
 In the next two subsections \ref{ssec:hyperbolic_model} and \ref{ssec:local_clustering} of the introduction, we give the definitions of the hyperbolic random graph and of the local clustering coefficient and function as used in this paper. After this we present our main results in Section \ref{ssec:main_results} and discuss several insights that can be obtained from them and in Section \ref{ssec:simulations} show simulations which confirm these results. Section \ref{sec:proof_outline} contains a detailed high level outline of the proofs of our main results, split up into different propositions. The proofs of these propositions can be found in the last four sections. Section~\ref{sec:concentration_argument} contains a crucial technical result that will be used in the other sections. The Appendix contains a small section on Meijer's G-function and some known concentration results we use.
 
@@ -72,7 +74,7 @@ Since $\cosh$ is strictly monotonically increasing we have that $\cosh(x) \le \c
 	&\iff \cosh(d_\H(u_i, u_j)) \le \cosh(R_n) \\
 	&\iff \cosh(r_i) \cosh(r_j) - \sinh(r_i) \sinh( r_j) \cos(|\theta_i-\theta_j|_{2\pi}) \le \cosh(R_n)
 \end{align*}
-The approximation for the hyperbolic balls you and Nicolaos derived in Lemma 28 holds only when $r_i + r_j \ge R$.}
+The approximation for the hyperbolic balls you and Nicolaos derived in Lemma 28 holds only when $r_i + r_j \ge R$. There were however some sloppy arguments later in Section~\ref{ssec:coupling_H_P}, regarding the hyperbolic balls, which I corrected.}
 \end{enumerate}
 
 \begin{figure}[!t]
@@ -302,7 +304,7 @@ We end this section with some important observations regarding local clustering 
 
 \paragraph{Uniform convergence}
 
-Our results for the local clustering function in particular imply uniform convergence of $c_{\H,n}(k)$ for all $3 \le k \le a_n$ \TM{ Why 3? } where $a_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. To see this let
+Our results for the local clustering function in particular imply uniform convergence of $c_{\H,n}(k)$ for all $2 \le k \le a_n$ \TM{ Why 3? }\PvdH{Should have been $2$ (corrected) since there are no triangles for node with degree less than $2$.} where $a_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. To see this let
 \[
 	b_n = \arg \max_{3 \le k \le a_n} \Exp{\left|\frac{c_{\H ,n}(k)}{c_\infty(k)} - 1\right|}.
 \]

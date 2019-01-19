@@ -541,80 +541,82 @@ Therefore, by a concentration argument (c.f. Corollary~\ref{cor:concentration_ar
 \end{equation}
 where we also used that $f_{\alpha,\nu}(x,y)$ is simply a constant multiple of the function $e^{-\alpha y}$. We shall proceed by expanding the integrand and analyzing the individual terms. With a slight abuse of notation we shall write $y$ instead of $(0,y)$ in expression such as $\BallHyp{y}$. In addition we write $D_{\H}(y,k_n;\Pcal)$ for the indicator which is equal to 1 if and only if $\BallHyp{(0,y)}$ contains $k_n$ points from $\Pcal \setminus \{(0,y)\}$. We define $D_{\Pcal}(y,k_n;\Pcal)$ analogously for the ball $\BallPo{(0,y)}$.
 
-We shall divide the analysis into the two case $k_n = \bigO{1}$ and $k_n \to \infty$, the proof of the latter case being the most involved one. 
+%We shall divide the analysis into the two case $k_n = \bigO{1}$ and $k_n \to \infty$, the proof of the latter case being the most involved one. 
 
-\subsubsection*{The case $\bm{k_n = \bigT{1}}$}
+%\subsubsection*{The case $\bm{k_n = \bigT{1}}$}
+%
+%In this case we split the integrand as follows:
+%\begin{align*}
+%	&\Exp{\left|\frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y)) 
+%		- \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH} \Delta_\Pcal ((0,y))\right|}\\
+%	&\le \expH^{-1} {\mathbb{E}}\left[\sum_{p_1, p_2\in \Pcal_n \setminus \{(0,y)\}}^{\ne} \hspace{-3pt} 
+%		\left(D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\})+ D_{\Pcal}(y,k_n-2;\Pcal \setminus \{p_1,p_2\})\right) \right.\\
+%	&\hspace{75pt}\left. \times	\left|\Delta_\H (y,p_1,p_2) - \Delta_\Pcal (y,p_1,p_2)\right| 
+%		\vphantom{\sum_{p_1, p_2\in \Pcal_n \setminus \{(0,y)\}}^{\ne}}\right]\\
+%	&\le \expH^{-1} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
+%		D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{p_1 \in \BallSym{y}}}^2\\
+%	&\hspace{10pt}+ \expH^{-1} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
+%			D_{\Pcal}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{p_1 \in \BallSym{y}}}^2
+%\end{align*}
+%We will proceed with analyzing the first term with $D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\})$. The analysis for the other term is analogous.
+%
+%We write
+%\begin{align*}
+%	&\Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
+%		D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{p_1 \in \BallSym{y}}}\\
+%	&\le \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
+%		D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{y_1 > R_n/4 - y} \ind{p_1 \in \BallSym{y}}}\\
+%	&\hspace{10pt}+ \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
+%		\ind{y_1 \le R_n/4 - y} \ind{p_1 \in \BallSym{y}}}.
+%\end{align*}
+%Next we note that since $k_n = \bigO{1}$ we have that $\kappa_n = \log(n)$ and hence, since $y \in \Kcal_C(k_n)$ it follows that $y = \bigO{\log\log(n)}$. Now let $n$ be large enough such that $R_n/4 - y > 0$. Then for any $y^\prime \le R_n/4 - y$ it follows from \cite[Lemma 30]{fountoulakis2018law} that under the coupling we consider any edge between $p^{\prime} = (x^\prime, y^\prime)$ and $(0,y)$ is present a.a.s. in both $G_{\HP,n}$ and $G_{\Pcal,n}$. In particular we have that
+%\[
+%	\int_{\Kcal_{C}(k_n)} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} \ind{y_1 \le R_n/4 - y} 
+%		\ind{p_1 \in \BallSym{y}}} \alpha e^{-\alpha y} \dd x \dd y = \smallO{1}.
+%\]
+%Therefore, since $k_n^a \expH^{-1} = \bigO{n^{-1}}$ for any $a > 0$ it follows that
+%\[
+%	\lim_{n \to \infty} k_n^a \, \expH^{-1} \int_{\Kcal_{C}(k_n)} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} \ind{y_1 \le R_n/4 - y} \ind{p_1 \in \BallSym{y}}} \alpha e^{-\alpha y} \dd x \dd y = 0
+%\]
+%and hence it is enough to consider the case where $y_1 > R_n/4 - y$, i.e. to analyze the term
+%\[
+%	\Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
+%			D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{y_1 > R_n/4 - y} \ind{p_1 \in \BallSym{y}}}
+%\]
+%By the Campbell-Mecke formula and Lemma~\ref{lem:asymptotics_Omega_hyperbolic} we have
+%\begin{align*}
+%	&\Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
+%				D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{y_1 > R_n/4 - y} \ind{p_1 \in \BallSym{y}}}\\
+%	&\le \int_{R_n/4 - y}^{R_n} \int_{-I_n}^{I_n} \left(\ind{p_1 \in \BallHyp{y}} + \ind{p_1 \in \BallPon{y}}\right)
+%		f_{\alpha,\nu}(x_1, y_1) \dd x_1 \dd y_1\\
+%	&= \bigO{1} e^{y/2} \int_{R_n/4 - y}^{R_n - y} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1
+%		+ \bigO{1} n \int_{R_n - y}^{R_n} e^{-\alpha y_1} \dd y_1\\
+%	&= \bigO{e^{(1 - \alpha)y} e^{-(2\alpha - 1) R_n/8} + e^{\alpha y} n e^{-\alpha R_n}}\\
+%	&= \bigO{n^{-\frac{2\alpha - 1}{4}} e^{(1 - \alpha)y} + n^{-(2\alpha - 1)} e^{\alpha y}}.
+%\end{align*}
+%Integrating this term over $\Kcal_C(k_n)$ yields
+%\begin{align*}
+%	&\expH^{-1} \int_{\Kcal_C(k_n)} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
+%		D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{y_1 > R_n/4 - y} \ind{p_1 \in \BallSym{y}}} 
+%		e^{-\alpha y} \dd y \dd x \\
+%	&\le \bigO{1} n^{-1} \int_{\Kcal_C(k_n)} 
+%		\left(n^{-\frac{2\alpha - 1}{4}} e^{(1 - \alpha)y} + n^{-(2\alpha - 1)} e^{\alpha y}\right) 
+%		e^{-\alpha y} \dd y \dd x\\
+%	&= \bigO{\log(n)^2\left(n^{-\frac{2\alpha - 1}{4}} + n^{-(2\alpha - 1)}\right)} = \smallO{k_n^a},
+%\end{align*}
+%for any $a \in \R$, since $k_n = \bigT{1}$. We therefore conclude that
+%\[
+%	\int_{\Kcal_{C}(k_n)} \Exp{\left|\frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y) ) 
+%		- \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH} \Delta_\Pcal ((0,y))\right|} e^{-\alpha y} \dd y \dd x
+%	= \smallO{s_\alpha(k_n)},
+%\]
+%as required.
 
-In this case we split the integrand as follows:
-\begin{align*}
-	&\Exp{\left|\frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y)) 
-		- \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH} \Delta_\Pcal ((0,y))\right|}\\
-	&\le \expH^{-1} {\mathbb{E}}\left[\sum_{p_1, p_2\in \Pcal_n \setminus \{(0,y)\}}^{\ne} \hspace{-3pt} 
-		\left(D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\})+ D_{\Pcal}(y,k_n-2;\Pcal \setminus \{p_1,p_2\})\right) \right.\\
-	&\hspace{75pt}\left. \times	\left|\Delta_\H (y,p_1,p_2) - \Delta_\Pcal (y,p_1,p_2)\right| 
-		\vphantom{\sum_{p_1, p_2\in \Pcal_n \setminus \{(0,y)\}}^{\ne}}\right]\\
-	&\le \expH^{-1} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
-		D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{p_1 \in \BallSym{y}}}^2\\
-	&\hspace{10pt}+ \expH^{-1} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
-			D_{\Pcal}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{p_1 \in \BallSym{y}}}^2
-\end{align*}
-We will proceed with analyzing the first term with $D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\})$. The analysis for the other term is analogous.
+%\subsubsection*{The case $\bm{k_n \to \infty}$}
+%
+%For this case 
 
-We write
-\begin{align*}
-	&\Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
-		D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{p_1 \in \BallSym{y}}}\\
-	&\le \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
-		D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{y_1 > R_n/4 - y} \ind{p_1 \in \BallSym{y}}}\\
-	&\hspace{10pt}+ \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
-		\ind{y_1 \le R_n/4 - y} \ind{p_1 \in \BallSym{y}}}.
-\end{align*}
-Next we note that since $k_n = \bigO{1}$ we have that $\kappa_n = \log(n)$ and hence, since $y \in \Kcal_C(k_n)$ it follows that $y = \bigO{\log\log(n)}$. Now let $n$ be large enough such that $R_n/4 - y > 0$. Then for any $y^\prime \le R_n/4 - y$ it follows from \cite[Lemma 30]{fountoulakis2018law} that under the coupling we consider any edge between $p^{\prime} = (x^\prime, y^\prime)$ and $(0,y)$ is present a.a.s. in both $G_{\HP,n}$ and $G_{\Pcal,n}$. In particular we have that
-\[
-	\int_{\Kcal_{C}(k_n)} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} \ind{y_1 \le R_n/4 - y} 
-		\ind{p_1 \in \BallSym{y}}} \alpha e^{-\alpha y} \dd x \dd y = \smallO{1}.
-\]
-Therefore, since $k_n^a \expH^{-1} = \bigO{n^{-1}}$ for any $a > 0$ it follows that
-\[
-	\lim_{n \to \infty} k_n^a \, \expH^{-1} \int_{\Kcal_{C}(k_n)} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} \ind{y_1 \le R_n/4 - y} \ind{p_1 \in \BallSym{y}}} \alpha e^{-\alpha y} \dd x \dd y = 0
-\]
-and hence it is enough to consider the case where $y_1 > R_n/4 - y$, i.e. to analyze the term
-\[
-	\Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
-			D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{y_1 > R_n/4 - y} \ind{p_1 \in \BallSym{y}}}
-\]
-By the Campbell-Mecke formula and Lemma~\ref{lem:asymptotics_Omega_hyperbolic} we have
-\begin{align*}
-	&\Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
-				D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{y_1 > R_n/4 - y} \ind{p_1 \in \BallSym{y}}}\\
-	&\le \int_{R_n/4 - y}^{R_n} \int_{-I_n}^{I_n} \left(\ind{p_1 \in \BallHyp{y}} + \ind{p_1 \in \BallPon{y}}\right)
-		f_{\alpha,\nu}(x_1, y_1) \dd x_1 \dd y_1\\
-	&= \bigO{1} e^{y/2} \int_{R_n/4 - y}^{R_n - y} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1
-		+ \bigO{1} n \int_{R_n - y}^{R_n} e^{-\alpha y_1} \dd y_1\\
-	&= \bigO{e^{(1 - \alpha)y} e^{-(2\alpha - 1) R_n/8} + e^{\alpha y} n e^{-\alpha R_n}}\\
-	&= \bigO{n^{-\frac{2\alpha - 1}{4}} e^{(1 - \alpha)y} + n^{-(2\alpha - 1)} e^{\alpha y}}.
-\end{align*}
-Integrating this term over $\Kcal_C(k_n)$ yields
-\begin{align*}
-	&\expH^{-1} \int_{\Kcal_C(k_n)} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
-		D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{y_1 > R_n/4 - y} \ind{p_1 \in \BallSym{y}}} 
-		e^{-\alpha y} \dd y \dd x \\
-	&\le \bigO{1} n^{-1} \int_{\Kcal_C(k_n)} 
-		\left(n^{-\frac{2\alpha - 1}{4}} e^{(1 - \alpha)y} + n^{-(2\alpha - 1)} e^{\alpha y}\right) 
-		e^{-\alpha y} \dd y \dd x\\
-	&= \bigO{\log(n)^2\left(n^{-\frac{2\alpha - 1}{4}} + n^{-(2\alpha - 1)}\right)} = \smallO{k_n^a},
-\end{align*}
-for any $a \in \R$, since $k_n = \bigT{1}$. We therefore conclude that
-\[
-	\int_{\Kcal_{C}(k_n)} \Exp{\left|\frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y) ) 
-		- \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH} \Delta_\Pcal ((0,y))\right|} e^{-\alpha y} \dd y \dd x
-	= \smallO{s_\alpha(k_n)},
-\]
-as required.
-
-\subsubsection*{The case $\bm{k_n \to \infty}$}
-
-For this case we need to split the integrand over several terms and then analyze each of these separately. Applying the Campbel-Mecke formula~\eqref{eq:def_Campbell-Mecke} yields
+We need to split the integrand over several terms and then analyze each of these separately. Applying the Campbel-Mecke formula~\eqref{eq:def_Campbell-Mecke} yields
 \begin{align*} 
  &\hspace{-30pt}\Exp{ \left| \frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y) )
         - \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH}  \Delta_\Pcal ((0,y))

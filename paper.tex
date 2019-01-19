@@ -7,6 +7,9 @@
 %											Packages											  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\usepackage{tocloft}
+
 \usepackage{enumerate}
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -40,6 +43,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %											Macros												  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Redefines the space between sections in the TOC so that the entire thing fits on one page. 
+% Comment this out when not using the tocloft package
+\setlength{\cftbeforesecskip}{5pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        Probability                                              %
@@ -194,6 +201,11 @@
 \newcommand{\MS}[1]{\GR{{\bf Markus: }#1}}
 \newcommand{\ToDo}[1]{{\color{red} {\bf To do:} #1}}
 
+%Uncomment the part below to remove all comments
+%\renewcommand{\PvdH}[1]{}
+%\renewcommand{\TM}[1]{}
+%\renewcommand{\MS}[1]{}
+%\renewcommand{\NF}[1]{}
 
 \allowdisplaybreaks
 
@@ -215,7 +227,7 @@
 %											Authors												  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Exact asymptotic expressions for local clustering in hyperbolic random graphs \\ \TM{ I prefer not to use the term ``hyperbolic random graph". Better : KPKVB random graph or, in the title,``a hyperbolic model of complex networks"}}
+\title{Exact asymptotic expressions for local clustering in a hyperbolic model of complex networks. \\ \TM{ I prefer not to use the term ``hyperbolic random graph". Better : KPKVB random graph or, in the title,``a hyperbolic model of complex networks"}\PvdH{I am not really a fan of the term KPKVB random graph so I implemented the second suggestion.}}
 \author[1]{Nikolaos Fountoulakis}
 \author[2]{Pim van der Hoorn}
 \author[3]{Tobias M\"{u}ller}
@@ -241,11 +253,15 @@
 
 \input{introduction}
 
-\input{proof_overview}
-
-\input{concentration_argument}
+\input{proof_overview_finite_k}
 
 \input{clustering_infinite_model}
+
+\input{proofs_finite_k}
+
+\input{proofs_infinite_k}
+
+\input{concentration_argument}
 
 \input{transition}
 
