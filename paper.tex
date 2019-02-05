@@ -7,7 +7,7 @@
 %											Packages											  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+%\usepackage{showkeys}
 \usepackage{tocloft}
 
 \usepackage{enumerate}
@@ -100,7 +100,7 @@
 %                                     Probabilistic limits                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\plim}{\ensuremath{\stackrel{\pr}{\rightarrow}}}	%	Convergence in probability
+\newcommand{\plim}{\ensuremath{\xrightarrow{\Pee}}}	%	Convergence in probability
 \newcommand{\dlim}{\ensuremath{\stackrel{d}{\rightarrow}}}		%	Convergence in distribution
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -155,15 +155,15 @@
 \newcommand{\dom}[1]{\mathcal{D}_{#1}}
 
 
-\newcommand{\BallHyp}[1]{\Bcal_{\H,n}\left(#1\right)}		%	The image of the hyperbolic ball around \Psi^{-1}(p)
-\newcommand{\BallPo}[1]{\Bcal_{\Pcal}\left(#1\right)}		%	The neighborhood of a point p in the infinite limit model
-\newcommand{\BallPon}[1]{\Bcal_{\Pcal,n}\left(#1\right)}	%	The neighborhood of a point p in the finit box model
+\newcommand{\BallHyp}[1]{\Bcal\left(#1\right)}		%	The image of the hyperbolic ball around \Psi^{-1}(p)
+\newcommand{\BallPo}[1]{\Bcal_{\infty}\left(#1\right)}		%	The neighborhood of a point p in the infinite limit model
+\newcommand{\BallPon}[1]{\Bcal_{\text{box}}\left(#1\right)}	%	The neighborhood of a point p in the finit box model
 \newcommand{\FatBallHyp}[1]{\check{\Bcal}_{\H,n}(#1)}		%
 \newcommand{\BallSym}[1]{\Bcal_{\H \bigtriangleup \Pcal}\left(#1\right)}	%	Symmetric difference between balls in the 
 																			%	hyperbolic and infinite limit model
 \newcommand{\BallInter}[1]{\Bcal_{\H \cap \Pcal}\left(#1\right)}
 
-\newcommand{\Mu}[1]{\mu_{\alpha,\nu}\left(#1\right)}
+\newcommand{\Mu}[1]{\mu\left(#1\right)}
 
 \newcommand{\hsym}[1]{h_{\H \bigtriangleup \Pcal}(#1)}
 \newcommand{\EdgeDiff}{E_{\H \setminus \mathcal{P}}}
@@ -182,7 +182,25 @@
 \newcommand{\Real}{\operatorname{Re}}
 \newcommand{\Li}{\operatorname{Li}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Don't mess with the tobimacros !!!!!							  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\eR}[0]{\ensuremath{{\mathbb R}}}
+\newcommand{\eN}[0]{\ensuremath{{\mathbb N}}}
 \newcommand{\Ee}[0]{\ensuremath{{\mathbb E}}}
+\newcommand{\Haa}{\ensuremath{{\mathbb H}}}
+\newcommand{\GPo}[0]{\ensuremath{G_{\text{Po}}}}
+\newcommand{\Gbox}[0]{\ensuremath{G_{\text{box}}}}
+\newcommand{\Ginf}[0]{\ensuremath{G_{\infty}}}
+\newcommand{\isd}{\stackrel{\text{d}}{=}}
+\newcommand{\Xcal}{\ensuremath{{\mathcal X}}}
+\newcommand{\Ycal}{\ensuremath{{\mathcal Y}}}
+\newcommand{\Qcal}{\ensuremath{{\mathcal Q}}}
+\newenvironment{proofof}[1]{\vspace{1ex}\noindent{\bf Proof of #1:}}{\hspace*{\fill}$\blacksquare$\vspace{1ex}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %								For leaving comments to each other:								  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -227,22 +245,24 @@
 %											Authors												  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Exact asymptotic expressions for local clustering in a hyperbolic model of complex networks. \\ \TM{ I prefer not to use the term ``hyperbolic random graph". Better : KPKVB random graph or, in the title,``a hyperbolic model of complex networks"}\PvdH{I am not really a fan of the term KPKVB random graph so I implemented the second suggestion.}}
-\author[1]{Nikolaos Fountoulakis}
-\author[2]{Pim van der Hoorn}
-\author[3]{Tobias M\"{u}ller}
-\author[3]{Markus Schepers}
+\title{Clustering in a hyperbolic model of complex networks.}
+\author[1]{Nikolaos Fountoulakis\thanks{Research partially supported by the Alan Turing Institute, grant no. EP/N510129/1.}}
+\author[2]{Pim van der Hoorn\thanks{Research partially supported by ARO Grant W911NF-16-1-0391 and W911NF-17-1-0491}}
+\author[3]{Tobias M\"{u}ller\thanks{Research partially supported by NWO grants 639.032.529 and 612.001.409.}}
+\author[3]{Markus Schepers\thanks{Research partially supported by NWO grant 639.032.529.}}
 
-\affil[1]{University of Birmingham, School of Mathematics, United Kingdom}
-\affil[2]{Northeastern University, Department of Physics, United States}
-\affil[3]{University of Groningen, Bernoulli Institute for Mathematics, Computer Science and Artificial Inteligence, The Netherlands}
+\affil[1]{ School of Mathematics, University of Birmingham, United Kingdom.}
+\affil[2]{Department of Physics, Northeastern University, United States.}
+\affil[3]{Bernoulli Institute, University of Groningen, The Netherlands.}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-\PvdH{The abstract will be written at the end.}
+In this paper we consider the clustering coefficient, and clustering function in a random graph model proposed by Krioukov et al.~in 2010. In this model, nodes are chosen randomly inside a disk in the hyperbolic plane and two nodes are connected if they are at most a certain hyperbolic distance from each other. It has been previously shown that this model has various properties associated with complex networks, including a power-law degree distribution, ``short distances'' and a non-vanishing clustering coefficient. The model is specified using three parameters: the number of nodes $n$, which we think of as going to infinity, and $\alpha, \nu > 0$, which we think of as constant. Roughly speaking $\alpha$ controls the power law exponent of the degree sequence and $\nu$ the average degree.
+
+Here we show that the clustering coefficient tends in probability \PvdH{Should we state here that convergence is in the stronger notion of expectation ($L_1$)?} to a constant $\gamma$ that we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. This improves over earlier work by Gugelmann et al., who proved that the clustering coefficient remains bounded away from zero with high probability, but left open the issue of convergence to a limiting constant. Similarly, we are able to show that $c(k)$, the average clustering over all vertices of degree exactly $k$, tends in probability to a limit $\gamma(k)$ given explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. We are able to extend this last result also to sequences $(k_n)_n$ where $k_n$ grows as a function of $n$. Our results contradict a prediction of Krioukov et al., which stated that the limiting values $\gamma(k)$ should scale with $k^{-1}$ as we let $k$ grow. We find that this is true only when $\alpha > \frac34$, while $\gamma(k) = \Theta( k^{2 - 4\alpha})$ if $\alpha < \frac34$ and $\gamma(k) = \Theta( \log(k) / k )$ if $\alpha=\frac34$.
 \end{abstract}
 
 \newpage
@@ -250,6 +270,8 @@
 \tableofcontents
 
 \newpage
+
+\PvdH{We need to fix the missing references. In addition, I have noticed the use of UK English grammar, which I do not often encounter in papers I read. Is there a specific reason for using this?}
 
 \input{introduction}
 
@@ -272,6 +294,7 @@
 \TM{ Maybe a ``conclusion and further work'' section here,  before the references and appendix? \\
 Also, appendix usually comes after references in my experience.}
 
+\paragraph{Acknowledgments} We are grateful to Dmitri Krioukov for pointing us to the problem of local clustering and helpful discussions.
 
 \bibliographystyle{plain}
 \bibliography{references}

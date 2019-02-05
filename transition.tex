@@ -1,18 +1,18 @@
-\section{From $G_{\mathcal{P}, n}(\alpha, \nu)$ to $G_{\mathcal{P}}(\alpha, \nu)$ (Proving Proposition \ref{prop:convergence_average_clustering_P_n})}\label{sec:clustering_Pn_to_P}
+\section{From $\Gbox$ to $\Ginf$ (Proving Proposition \ref{prop:convergence_average_clustering_P_n})}\label{sec:clustering_Pn_to_P}
 
-Now that we have a complete picture of the behavior of the local clustering coefficient and function in the limit model $G_\Pcal$ we will proceed to relate this to the clustering in the hyperbolic model $G_{\H,n}$. The first step is to relate the clustering in the infinite model to that of the finite box model $G_{\Pcal, n}$. Recall that $G_{\Pcal,n}$ is obtained by restricting the Poisson Point Process $\PPP$ to the box $\Rcal_n = (-I_n, I_n] \times (0, R_n]$, with $I_n = \frac{\pi}{2} e^{R_n/2}$ (we write $\Pcal_n$ for this process), and connecting two points $p_1, p_2 \in \Rcal_n$ if $|x_1 - x_2|_{\pi e^{R_n/2}} \le e^{(y_1 + y_2)/2}$. We recall that by definition of the norm $|.|_{\pi e^{R_n/2}}$ the left and right boundaries of $\Rcal_n$ are identified. See Section~\ref{ssec:finite_model} for more details. 
+In this section we shall relate the clustering in the finite box model $\Gbox$ to that of the infinite model. The main goal is to prove Proposition~\ref{prop:convergence_average_clustering_P_n} which states that
+\[
+	\Exp{\left|c^\ast(k_n; \Gbox) - \Exp{c^\ast(k_n; \Gbox)}\right|} = \smallO{s(k_n)}.
+\] 
+Recall that $\Gbox$ is obtained by restricting the Poisson Point Process $\PPP$ to the box $\Rcal = (-I_n, I_n] \times (0, R_n]$, with $I_n = \frac{\pi}{2} e^{R_n/2}$ (we write $\Pcal_n$ for this process), and connecting two points $p_1, p_2 \in \Rcal$ if $|x_1 - x_2|_{\pi e^{R_n/2}} \le e^{(y_1 + y_2)/2}$. We recall that by definition of the norm $|.|_{\pi e^{R_n/2}}$ the left and right boundaries of $\Rcal$ are identified. See Section~\ref{ssec:finite_model} for more details. 
 \TM{ This last bit of the sentence is already contained in the fact we us $|.|_{\pi e^{R_n/2}}$. To me it does not add anything, except possibly confusion. } \PvdH{I have updated this and just added a reminder of this.}
-
-\begin{remark}[Diverging $k_n$]
-Throughout this section $\{k_n\}_{n \ge 1}$ will denote an sequence of integers satisfying $k_n \to \infty$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$, as $n \to \infty$.
-\end{remark}
 
 In this section we shall compute the asymptotic difference between triangle counts in the finite and infinite model. First we recall the definition of $\Kcal_{C}(k_n)$
 \[
-	\Kcal_C(k_n) = \left\{p \in \Rcal : \frac{k_n - C \sqrt{k_n \log(k_n)}}{\xi_{\alpha,\nu}} \le e^{\frac{y}{2}}
-	\le \frac{k_n + C \sqrt{k_n \log(k_n)}}{\xi_{\alpha,\nu}} \right\},	
+	\Kcal_C(k_n) = \left\{y \in \R_+ : \frac{k_n - C \sqrt{k_n \log(k_n)}}{\xi} \le e^{\frac{y}{2}}
+	\le \frac{k_n + C \sqrt{k_n \log(k_n)}}{\xi} \right\},	
 \]
-\TM{ Typo : $p\in\R$. Do you mean $\Rcal_n$? Or maybe 
+\TM{ Typo : $p\in\R$. Do you mean $\Rcal$? Or maybe 
 $\R \times \R^+$? Still not sure that max and min in defn add anything. } \PvdH{It was a typo and is corrected. I have removed the max and min.}
 %with
 %\[
@@ -26,35 +26,40 @@ In addition we note that the function $\phi_n(y)$ in Lemma~\ref{lem:average_degr
 \[
 	\phi_n(y) = \bigT{e^{-(\alpha - \frac{1}{2})(R_n - y)}},
 \]
-as $R_n - y \to \infty$. Since $e^{y/2} = \bigT{k_n} = \smallO{e^{R_n}}$ as $n \to \infty$, uniformly on $\Kcal_C$, it follows that $\phi_n(y) = \bigT{k_n^{2\alpha - 1} n^{-(2\alpha - 1)}}$, uniformly on $\Kcal_C$. This yields the following useful corollary to Lemma~\ref{lem:average_degree_P_n}.
+as $R_n - y \to \infty$. Since $e^{y/2} = \bigT{k_n} = \smallO{e^{R_n}}$ as $n \to \infty$, uniformly on $\Kcal_C(k_n)$, it follows that $\phi_n(y) = \bigT{k_n^{2\alpha - 1} n^{-(2\alpha - 1)}}$, uniformly on $\Kcal_C$. This yields the following useful corollary to Lemma~\ref{lem:average_degree_P_n}.
 
 \begin{corollary}\label{cor:average_degree_P_n_K}
-Let $\alpha > \frac{1}{2}$, $C > 0$. Then, for all $p \in \Kcal_{C}(k_n)$,
+Let $\alpha > \frac{1}{2}$, $C > 0$. Then, for all $y \in \Kcal_{C}(k_n)$,
 \[
-	\mu_{\alpha,\nu ,n}(B_{\Pcal,n}(p)) = \mu_{\alpha,\nu}(B_\Pcal(p))\left(1 - \bigT{k_n^{2\alpha - 1} n^{-(2\alpha - 1)}}\right).
+	\mu(\BallPon{y}) = \mu(\BallPo{y})\left(1 - \bigT{k_n^{2\alpha - 1} n^{-(2\alpha - 1)}}\right).
 \]
 \TM{ I don't follow. Spell it out. }\PvdH{I added additional explanation above. Please see if this solves the confusion.}
 
 \end{corollary}
 
 
-\subsection{Comparing triangles between $G_\Pcal(\alpha,\nu)$ and $G_{\Pcal,n}(\alpha,\nu)$}
+\subsection{Comparing triangles between $\Ginf$ and $\Gbox$}
 
-We now turn to the task of calculating the expected number of triangles of a node at height $y$, for both the infinite model and the finite box model. Recall that we added a typical point $p_0 = (0,y)$, with exponentially distributed height, to the Poisson Point Process and that
+We now turn to the task of calculating the expected number of triangles of a node at height $y$, for both the infinite model and the finite box model. Recall that we added a typical point $p_0 = (0,y)$, with exponentially distributed height to the Poisson Point Process. Then if we define
 \[
-	\Exp{T_{\Pcal,n}(p_0)} = \frac{1}{2}\iint_{\Rcal_n^2} T_{\Pcal,n}(p_0,p_1,p_2)
-	f_{\alpha,\nu}(x_1,y_1) f_{\alpha,\nu}(x_1,y_1) \, dx_1 \, dx_2 \, dy_1 \, dy_2,
+	T_{\Pcal,n}(p) = \sum^{\ne}_{p_1, p_2 \in \Pcal_n \setminus p} T_{\Pcal,n}(p,p_1,p_2)
 \]
 where
 \[
 	T_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in B_{\Pcal,n}(p_0)}\ind{p_2 \in B_{\Pcal,n}(p_0)}\ind{p_2 \in B_{\Pcal,n}(p_1)}.
 \]
+it follows that
+\[
+	\Exp{T_{\Pcal,n}(p_0)} = \frac{1}{2}\iint_{\Rcal^2} T_{\Pcal,n}(p_0,p_1,p_2)
+	f(x_1,y_1) f(x_1,y_1) \, dx_1 \, dx_2 \, dy_1 \, dy_2,
+\]
+
 \TM{ $p$ is supposed to be $p_0$ I assume. }\PvdH{Indeed. It has been corrected.}
-The difference between the indicator $\ind{p_1 \in B_{\Pcal,n}(p)}$ in the finite box model and $\ind{p_1 \in B_{\Pcal}(p)}$ is that in $G_{\Pcal,n}(\alpha,\nu)$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R_n/2}, \frac{\pi}{2} e^{R_n/2}]$ and we stop at height $y = R_n$. It is clear that for any $0 \le y \le R_n$ we have that $\BallPon{p_0} = \BallPo{p_0} \cap \Rcal_n$. However, when we take another point $p^\prime \in \BallPon{p}$ then it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$. Then, any $p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $G_{\Pcal,n}(\alpha,\nu)$ that is not present in $G_{\Pcal}(\alpha, \nu)$.  
+The difference between the indicator $\ind{p_1 \in \BallPon{p}}$ in the finite box model and $\ind{p_1 \in \BallPo{p}}$ is that in $\Gbox$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R_n/2}, \frac{\pi}{2} e^{R_n/2}]$ and we stop at height $y = R_n$. It is clear that for any $0 \le y \le R_n$ we have that $\BallPon{p_0} = \BallPo{p_0} \cap \Rcal$. However, when we take another point $p^\prime \in \BallPon{p}$ then it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$. Then, any $p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $\Gbox$ that is not present in $\Ginf$.  
 
 Define
 \begin{equation}\label{eq:def_tilde_triangle_indicator}
-	\widetilde{T}_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in B_{\Pcal,n}(p_0)}\ind{p_2 \in B_{\Pcal,n}(p_0)}\ind{p_2 \in B_{\Pcal}(p_1) \cap \Rcal_n}
+	\widetilde{T}_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in B_{\Pcal,n}(p_0)}\ind{p_2 \in B_{\Pcal,n}(p_0)}\ind{p_2 \in B_{\Pcal}(p_1) \cap \Rcal}
 \end{equation}
 Then
 \[
@@ -69,7 +74,7 @@ where the sums are over all distinct pairs $(p_1, p_2) \in \Pcal_n$.
 \begin{tikzpicture}
 	%Define the coordinates 
 	%p = (\u,\v) and p^\prime = (\uu, \vv)
-	%Box \Rcal_n has width 2\r and height \t
+	%Box \Rcal has width 2\r and height \t
 	\pgfmathsetmacro{\u}{0} %0
 	\pgfmathsetmacro{\v}{1} %1
 	\pgfmathsetmacro{\uu}{1.4} %1.4
@@ -77,7 +82,7 @@ where the sums are over all distinct pairs $(p_1, p_2) \in \Pcal_n$.
 	\pgfmathsetmacro{\r}{6}
 	\pgfmathsetmacro{\t}{4}
 	
-	%The box \Rcal_n
+	%The box \Rcal
 	\draw[line width=1pt] (-\r,0) -- (\r,0) -- (\r,\t) -- (-\r,\t) -- (-\r,0);
 
 	%Dram both nodes
@@ -164,9 +169,9 @@ where the sums are over all distinct pairs $(p_1, p_2) \in \Pcal_n$.
 \label{fig:comparing_triangles_diff_intersections}
 \end{figure}
 
-Figure \ref{fig:comparing_triangles_diff_intersections} shows an example of a configuration where $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime) \ne \emptyset$. We observe that $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime) \ne \emptyset$ because the right boundary of the ball $\BallPon{p^\prime}$ exists the right boundary of the box $\Rcal_n$ and then, since we identified the boundaries, continues from the left so that $\BallPon{p^\prime}$ covers part of the ball $\BallPon{p}$ which would not be covered in the infinite limit model. 
+Figure \ref{fig:comparing_triangles_diff_intersections} shows an example of a configuration where $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime) \ne \emptyset$. We observe that $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime) \ne \emptyset$ because the right boundary of the ball $\BallPon{p^\prime}$ exists the right boundary of the box $\Rcal$ and then, since we identified the boundaries, continues from the left so that $\BallPon{p^\prime}$ covers part of the ball $\BallPon{p}$ which would not be covered in the infinite limit model. 
 
-To further analyze this, let us introduce some notation. For any $p = (x,y) \in \Rcal_n$ we will define the left and right boundary functions as, respectively,
+To further analyze this, let us introduce some notation. For any $p = (x,y) \in \Rcal$ we will define the left and right boundary functions as, respectively,
 \begin{align}
 	b_p^-(z) &= \begin{cases}
 		2 \log\left(x-z\right) - y &\mbox{if }  -\frac{\pi}{2} e^{R_n/2} \le z \le x - e^{y/2}  \\
@@ -181,10 +186,23 @@ To further analyze this, let us introduce some notation. For any $p = (x,y) \in 
 		0 &\mbox{else}
 	\end{cases}
 \end{align}
-Note that these functions describe the boundaries of the ball $\BallPon{p}$. In particular, $p^\prime = \BL{(x^\prime, y^\prime)} \in \BallPon{p}$ if and only if $y^\prime \ge \min\left\{b_p^-(x^\prime), b_p^+(x^\prime)\right\}$.
+Note that these functions describe the boundaries of the ball $\BallPon{p}$. In particular, $p^\prime = x^\prime, y^\prime) \in \BallPon{p}$ if and only if $y^\prime \ge \min\left\{b_p^-(x^\prime), b_p^+(x^\prime)\right\}$.
 
-Since we have identified the left and right boundary of $\Rcal_n$ we can assume, without loss of generality that $x = 0$. Due to symmetry it is then enough to restrict the analysis to the case where $x^\prime > 0$. \TM{ does this not depend on $p$? }\PvdH{I do not think so, because we can always take $p = (0,y)$ due to the invariance in the $x$-direction. I have updated the text to better reflect this.} 
-There are two important points in the box $\Rcal_n$. These are the intersection between the left boundary of $p^\prime$ and the right boundary of $p^\prime$, as it continues from the left side of the box, and the left boundary of $p$. We denote by $(x^\ast(p^\prime), y^\ast(p^\prime))$ the intersection between the left and right boundary of $p^\prime$ and by $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$ the intersection between the left boundary of $p$ and the right boundary of $p^\prime$, see Figure \ref{fig:comparing_triangles_diff_analysis}. After some simple algebra \TM{ I am not a big fan of writing "after some simple algebra" or similar. This is how errors can creep into your argument. Maybe we can just give the details? } we obtain the following expressions for the coordinates of these two points
+Since we have identified the left and right boundary of $\Rcal$ we can assume, without loss of generality that $x = 0$. Due to symmetry it is then enough to restrict the analysis to the case where $x^\prime > 0$. \TM{ does this not depend on $p$? }\PvdH{I do not think so, because we can always take $p = (0,y)$ due to the invariance in the $x$-direction. I have updated the text to better reflect this.} 
+There are two important points in the box $\Rcal$. These are the intersection between the left boundary of $p^\prime$ and the right boundary of $p^\prime$, as it continues from the left side of the box, and the left boundary of $p$. We denote by $(x^\ast(p^\prime), y^\ast(p^\prime))$ the intersection between the left and right boundary of $p^\prime$ and by $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$ the intersection between the left boundary of $p$ and the right boundary of $p^\prime$, see Figure \ref{fig:comparing_triangles_diff_intersections}. 
+
+Let us derive the expressions for the coordinates of these two points, starting with $(x^\ast(p^\prime), y^\ast(p^\prime))$. The $x$-coordinate $x^\ast(p^\prime)$ is the solution to the equation $b_{p^\prime}^+(z) = b_{p^\prime}^-(z)$ for $-\frac{\pi}{2} e^{R_n/2} \le z \le x + e^{(y + R_n)/2} - \pi e^{R_n/2}$. This equation becomes
+\[
+	2\log\left(\pi e^{R_n/2} + z - x^\prime\right) - y^\prime = 2 \log\left(x^\prime-z\right) - y^\prime,
+\]
+whose solution is $x^\ast(p^\prime) := x^\prime - \frac{\pi}{2} e^{R_n/2}$. Plugging this into either the left or right hand side of the above equation yields the $y$-coordinate $y^\ast(p^\prime) = 2\log\left(\frac{\pi}{2}e^{R_n/2}\right) - y^\prime$. In a similar way, the $x$-coordinate $\hat{x}(p,p^\prime)$ is the solution to the equation $b_{p^\prime}^+(z) = b_{p}^-(z)$ for $-\frac{\pi}{2} e^{R_n/2} \le z \le x + e^{(y + R_n)/2} - \pi e^{R_n/2}$, i.e.
+\[
+	2\log\left(\pi e^{R_n/2} + z - x^\prime\right) - y^\prime = 2 \log\left(x-z\right) - y.
+\] 
+This solution is $\frac{x^\prime - \pi e^{R_n/2}}{1 + e^{(y^\prime - y)/2}}$ and again $\hat{y}(p,p^\prime)$ is obtained by plugging the solution into either left or right hand side of the equation, yielding $\hat{y}(p,p^\prime) = 2 \log\left(\frac{\pi e^{R_n/2} - x^\prime}{e^{y/2} + e^{y^\prime/2}}\right)$.
+
+To summarize we have:
+% After some simple algebra \TM{ I am not a big fan of writing "after some simple algebra" or similar. This is how errors can creep into your argument. Maybe we can just give the details? } we obtain the following expressions for the coordinates of these two points
 \begin{align*}
 	x^\ast(p^\prime) &= x^\prime - \frac{\pi}{2} e^{R_n/2}\\
 	y^\ast(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{R_n/2}\right) - y^\prime\\
@@ -200,7 +218,7 @@ Solving this equation gives us the function
 \begin{equation}
 	b^\ast_p(z) = y - 2\log\left(1 - \frac{z}{\frac{\pi}{2} e^{R_n/2}}\right),
 \end{equation}
-which is displayed by the red curve in Figure \ref{fig:comparing_triangles_diff_analysis}. It holds that $y^\ast(p^\prime) > b_p^-(x^\ast(p^\prime))$ if and only if $y^\prime < b^\ast_p(x^\prime)$ and hence we have that $\mathcal{T}_{\Pcal \Delta \Pcal_n} = \emptyset$ for all $p^\prime \in \Rcal_n$ for which $y^\prime \ge b^\ast_p(x^\prime)$. We also not that when $y^\prime = b^\ast_p(x^\prime)$ the two points $(x^\ast(p^\prime), y^\ast(p^\prime))$ and $(\hat{x}(p,p^\prime),\hat{y}(p,p^\prime))$ coincide.
+which is displayed by the red curve in Figure \ref{fig:comparing_triangles_diff_analysis}. It holds that $y^\ast(p^\prime) > b_p^-(x^\ast(p^\prime))$ if and only if $y^\prime < b^\ast_p(x^\prime)$ and hence we have that $\mathcal{T}_{\Pcal \Delta \Pcal_n} = \emptyset$ for all $p^\prime \in \Rcal$ for which $y^\prime \ge b^\ast_p(x^\prime)$. We also not that when $y^\prime = b^\ast_p(x^\prime)$ the two points $(x^\ast(p^\prime), y^\ast(p^\prime))$ and $(\hat{x}(p,p^\prime),\hat{y}(p,p^\prime))$ coincide.
 
 
 
@@ -210,7 +228,7 @@ which is displayed by the red curve in Figure \ref{fig:comparing_triangles_diff_
 \begin{tikzpicture}
 	%Define the coordinates 
 	%p = (\u,\v) and p^\prime = (\uu, \vv)
-	%Box \Rcal_n has width 2\r and height \t
+	%Box \Rcal has width 2\r and height \t
 	\pgfmathsetmacro{\u}{0}
 	\pgfmathsetmacro{\v}{1}
 	\pgfmathsetmacro{\uu}{1.8}
@@ -218,7 +236,7 @@ which is displayed by the red curve in Figure \ref{fig:comparing_triangles_diff_
 	\pgfmathsetmacro{\r}{6}
 	\pgfmathsetmacro{\t}{4}
 	
-	%The box \Rcal_n
+	%The box \Rcal
 	\draw[line width=1pt] (-\r,0) -- (\r,0) -- (\r,\t) -- (-\r,\t) -- (-\r,0);	
 	
 	%Boundaries p = (\u,\v)
@@ -307,33 +325,33 @@ which is displayed by the red curve in Figure \ref{fig:comparing_triangles_diff_
 %    \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
 
 \end{tikzpicture}
-\caption{\PvdH{@All: This still needs a caption.}}
+\caption{Example for a given $p$ of the boundary function $x^\prime \mapsto b^\ast_p(x^\prime)$, given by the red curve, which determines whether $\mathcal{T}_{\Pcal \Delta \Pcal_n} = \emptyset$. We see that when $y^\prime = b^\ast_p(x^\prime)$ then $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime)) = (x^\ast(p^\prime), y^\ast(\prime))$.}
 \label{fig:comparing_triangles_diff_analysis}
 \end{figure}
 
 This analysis allows us to compute the expected difference in the number of triangles for $\Pcal$ and $\Pcal_n$, for a node with height $y$. 
 
 \begin{lemma}\label{lem:clustering_error_T_term}
-Let $(k_n)_{n \ge 1}$ be any sequence such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, for some $C > 0$ and $p \in \Kcal_{C}(k_n)$, as $n \to \infty$,
+Let $p_0 = (0,y)$ with $y \in \Kcal_{C}(k_n)$. Then for some $C > 0$, as $n \to \infty$,
 \[
-	\int_{\Rcal_n} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f_{\alpha, \nu}(x_1,y_1) 
+	\int_{\Rcal} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p_0,p_1)\right) f(x_1,y_1) 
 	\dd x_1 \dd y_1 = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
 \]
 \end{lemma}
 
-The proof of the lemma is not difficult but cumbersome, since it involves computing many different integrals. We postpone this proof till the end of this section and proceed with the main goal, proving Proposition~\ref{prop:convergence_average_clustering_P_n}. But first we state a small lemma about the scaling of $s_\alpha(k_n)$ that will be very useful.  
+The proof of the lemma is not difficult but cumbersome, since it involves computing many different integrals. We postpone this proof till the end of this section and proceed with the main goal, proving Proposition~\ref{prop:convergence_average_clustering_P_n}. But first we state a small lemma about the scaling of $s(k_n)$ that will be very useful.  
 
 \begin{lemma}\label{lem:scaling_s_alpha}
-Let $s_\alpha(k_n)$ be as defined in \eqref{eq:def_scaling_function}. Then for any $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$, as $n \to \infty$,
+Let $s(k_n)$ be as defined in \eqref{eq:def_scaling_function}. Then for any $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$, as $n \to \infty$,
 \[
-	n^{-(2\alpha - 1)} = \smallO{s_\alpha(k_n)}.
+	n^{-(2\alpha - 1)} = \smallO{s(k_n)}.
 \]
 \end{lemma}
 
 \begin{proof}
 First let $\frac{1}{2} < \alpha < \frac{3}{4}$. Then
 \[
-	n^{-(2\alpha - 1)}s_\alpha(k_n)^{-1} = n^{-(2\alpha -1)}k_n^{4\alpha - 2}
+	n^{-(2\alpha - 1)}s(k_n)^{-1} = n^{-(2\alpha -1)}k_n^{4\alpha - 2}
 	= \smallO{n^{-(2\alpha - 1) + \frac{4\alpha - 2}{2\alpha + 1}}} 
 	= \smallO{n^{-\frac{4\alpha^2 - 4\alpha + 1}{2\alpha + 1}}}
 	= \smallO{1},
@@ -348,117 +366,156 @@ that $4\alpha^2 > 2$ and hence,
 
 \begin{proof}[Proof of Proposition~\ref{prop:convergence_average_clustering_P_n}]
 
-Recall that
+Let $\mathrm{deg}_{\text{box}}(y)$ denote the number of nodes in the ball $\BallPon{y}$ (degree of typical node at height $y$) and similarly $\mathrm{deg}_n(y)$ is the number of nodes in $\BallHyp{y}$. Recall that
 \[
-	\Exp{c_{\Pcal,n}^\ast(k_n)} = \frac{\int_{\Rcal_n} \Exp{\ind{D_{\Pcal,n}(y) = k_n} T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}.
+	\Exp{c^\ast(k_n; \Gbox)} = \frac{\int_{\Rcal} \Exp{\ind{\mathrm{deg}_{\text{box}}(y) = k_n} T_{\Pcal,n}(y)} f(x,y) \dd x \dd y}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}},
 \]
-By Lemma~\ref{lem:average_degree_P_n} and a concentration argument \TM{ please give more details! }
+and the definition of $\Kcal_{C,n}(k_n)$
 \[
-	\Exp{N_{\Pcal,n}(k_n)} = (1+o(1)) \alpha n \int_{0}^\infty \rho(y,k_n) e^{-\alpha} \dd y 
-	= (1+\smallO{1}) n \Exp{N_{\Pcal}(k_n)},
+	\Kcal_{C,n}(k_n) = \left\{ (x,y) \in \Rcal \, : \, \frac{k_n - C k_n}{\xi} \le e^{\frac{y}{2}}
+		\le \frac{k_n + C \kappa_n}{\xi} \right\},
 \]
-and since $\Exp{\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y)} \le \rho_n(y,k_n) k_n^2$ another concentration argument yields
+where for $k_n \to \infty$ we defined $\kappa_n := \sqrt{k_n \log(k_n)}$.
+
+Since 
+\[
+	\Exp{N_{\text{box}}(k_n)} = \int_{\Rcal} \rho_{\text{box}}(y,k_n) f(x,y) \dd x \dd y,
+\]
+the Corollary~\ref{cor:concentration_argument_other_models}, using the second statement of Lemma~\ref{lem:concentration_argument_rho_approximation}, implies
+\[
+	\Exp{N_{\text{box}}(k_n)} = (1+o(1)) \alpha n \int_{0}^\infty \rho(y,k_n) e^{-\alpha} \dd y 
+	= (1+\smallO{1}) n \Exp{N_{\infty}(k_n)}.
+\]
+Moreover, since $\Exp{\ind{\mathrm{deg}_n(y)(y) = k_n} T_{\Pcal,n}(y)} \le \rho_{\text{box}}(y,k_n) k_n^2$ a concentration of heights argument (cf. first statement of Lemma~\ref{lem:concentration_argument_rho_approximation}) yields
 \begin{align*}
-	&\hspace{-30pt}\int_{\Rcal_n} \Exp{\ind{D_{\H,n}(y) = k_n} T_{\Pcal,n}(y)} 
-		f_{\alpha,\nu}(x,y) \dd x \dd y\\
-	&= (1+\smallO{1})\int_{\Kcal_C(k_n)} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y\\
-	&= (1 + \smallO{1}) \alpha n \int_{a_n^-}^{a_n^+} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha} \dd x \dd y,
+	&\hspace{-30pt}\int_{\Rcal} \Exp{\ind{\mathrm{deg}_n(y) = k_n} T_{\Pcal,n}(y)} 
+		f(x,y) \dd x \dd y\\
+	&= (1+\smallO{1})\int_{\Kcal_{C,n}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{T_{\Pcal,n}(y)} f(x,y) \dd x \dd y\\
+	&= (1 + \smallO{1}) \alpha n \int_{a_n^-}^{a_n^+} \rho_{\text{box}}(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha} \dd x \dd y,
 \end{align*}
-with $a_n^\pm = 2\log\left(\frac{k_n \pm C \kappa_n}{\xi_{\alpha,\nu}}\right)$. \TM{ again, this def has to be adapted. } Next we note that for $a_n^- \le y \le a_n^-$,
-\[
-	\Exp{T_\Pcal(y)} = \frac{\Mu{\BallPo{y}}^2}{2} \Delta_\Pcal(y) = (1+\smallO{1}) \binom{k_n}{2} \Delta_\Pcal(y)
-\]
+with $a_n^\pm = 2\log\left(\frac{(k_n \pm C \kappa_n) \wedge \xi_{\alpha, \nu}}{\xi}\right)$. %\TM{ again, this def has to be adapted. } 
+Next we note that for $a_n^- \le y \le a_n^+$,
+\begin{equation}\label{eq:relation_E_T_Pcal_vs_Delta_P}
+	\Exp{T_\Pcal(y)} = \frac{\Mu{\BallPo{y}}^2}{2} P(y) = (1+\smallO{1}) \binom{k_n}{2} P(y)
+\end{equation}
 and hence it now suffices to show that
 \[
-	\binom{k_n}{2}^{-1}\int_{a_n^-}^{a_n^+} \rho_n(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha y} \dd y
-	= (1+\smallO{1}) \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Delta_\Pcal(y) e^{-\alpha y} \dd y. 
+	\binom{k_n}{2}^{-1}\int_{a_n^-}^{a_n^+} \rho_{\text{box}}(y,k_n) \Exp{T_{\Pcal,n}(y)} e^{-\alpha y} \dd y
+	= (1+\smallO{1}) \int_{a_n^-}^{a_n^+} \rho(y,k_n) P(y) e^{-\alpha y} \dd y. 
 \]
 
 
-We do this in two stages. First we prove that
+We do this in two stages. First note that by a concentration of heights argument
 \begin{equation}\label{eq:transition_clustering_main_term}
-	\int_{a_n^-}^{a_n^+} \rho_{n}(y,k_n) \Delta_{\Pcal}(y) e^{-\alpha y} \dd y
-	= (1 + \smallO{1}) \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Delta_{\Pcal}(y) e^{-\alpha y} \dd y.
+	\int_{a_n^-}^{a_n^+} \rho_{n}(y,k_n) P(y) e^{-\alpha y} \dd y
+	= (1 + \smallO{1}) \int_{a_n^-}^{a_n^+} \rho(y,k_n) P(y) e^{-\alpha y} \dd y.
 \end{equation}
-Then we show that
+It therefore remains toshow that
 \begin{equation}\label{eq:transition_clustering_error_term}
-	\binom{k_n}{2}^{-1} \int_{a_n^-}^{a_n^+} \rho_n(y,k_n) \left|\Exp{T_{\Pcal,n}(y) - T_{\Pcal}(y)}\right| 
+	\binom{k_n}{2}^{-1} \int_{a_n^-}^{a_n^+} \rho_{\text{box}}(y,k_n) \left|\Exp{T_{\Pcal,n}(y) - T_{\Pcal}(y)}\right| 
 	e^{-\alpha y} \dd y
-	= \smallO{1} \int_{a_n^-}^{a_n^+} \rho(y,k_n) \Delta_{\Pcal}(y) e^{-\alpha y} \dd y.
+	= \smallO{1} \int_{a_n^-}^{a_n^+} \rho(y,k_n) P(y) e^{-\alpha y} \dd y.
 \end{equation}
 
-Since $h(y) := \Delta_\Pcal(y)$ is uniformly bounded \eqref{eq:transition_clustering_main_term} follows directly from the second statement in Lemma~\ref{lem:concentration_argument_rho_approximation}.
-
-For the error term~\eqref{eq:transition_clustering_error_term} we write
+For this we write
 \begin{align*}
-	\left|T_{\Pcal,n}(p) - T_{\Pcal}(p)\right| = \sum_{p_1, p_2 \in \Rcal_n} \ind{p_1 \in \BallPon{p}} \ind{p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p, p_1)} + \sum_{p_1, p_2 \in \Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2)
+	\left|T_{\Pcal,n}(p) - T_{\Pcal}(p)\right| = \sum_{p_1, p_2 \in \Rcal} \ind{p_1 \in \BallPon{p}} \ind{p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p, p_1)} + \sum_{p_1, p_2 \in \Rcal \setminus \Rcal} T_{\Pcal}(p,p_1,p_2)
 \end{align*}
-so that by the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke}
+so that by the Campbell-Mecke formula
 \begin{align*}
 	\left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right|
-	&\le \int_{\Rcal_n} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f_{\alpha, \nu}(x_1,y_1) 
+	&\le \int_{\Rcal} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f(x_1,y_1) 
 		\dd x_1 \dd y_1\\
-	&\hspace{10pt}+ \BL{\int_{\Rcal \setminus \Rcal_n}\int_{\Rcal \setminus \Rcal_n}} T_{\Pcal}(p,p_1,p_2) f_{\alpha, \nu}(x_1,y_1) f_{\alpha, \nu}(x_2,y_2)
+	&\hspace{10pt}+ \BL{\int_{\Rcal \setminus \Rcal}\int_{\Rcal \setminus \Rcal}} T_{\Pcal}(p,p_1,p_2) f(x_1,y_1) f(x_2,y_2)
 		\dd x_2 \dd y_2 \dd x_1 \dd y_1. 
 \end{align*}
 
-\TM{ in the 1st integral we could have restricted to
-the ball of $p$, and possibly saved a lot. 
-Does that not help? }
+\TM{ in the 1st integral we could have restricted to the ball of $p$, and possibly saved a lot. Does that not help? }\PvdH{the first integral is taken care of by another Lemma so it does not matter I think.}
 The first integral was taken care of in Lemma \ref{lem:clustering_error_T_term}. For the second integral we have
 \begin{align*}
-	&\hspace{-30pt}\iint_{\Rcal \setminus \Rcal_n} T_{\Pcal}(p,p_1,p_2) f_{\alpha, \nu}(x_1,y_1) f_{\mu, \nu}(x_2,y_2)
+	&\hspace{-30pt}\iint_{\Rcal \setminus \Rcal} T_{\Pcal}(p,p_1,p_2) f(x_1,y_1) f(x_2,y_2)
 		\dd x_2 \dd y_2 \dd x_1 \dd y_1\\
-	&\le \left(\int_{\Rcal \setminus \Rcal_n} \ind{p_1 \in \BallPo{p}} f_{\alpha, \nu}(x_1,y_1) \dd x_1 \dd y_1\right)^2\\
-	&= \bigO{\left(e^{y/2} \int_{R_n}^\infty e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\right)^2}
-		= \bigO{e^y n^{-(2\alpha - 1)}},
+	&\le \left(\int_{\Rcal \setminus \Rcal} \ind{p_1 \in \BallPo{p}} f(x_1,y_1) \dd x_1 \dd y_1\right)^2
+		= \bigO{\left(e^{y/2} \int_{R_n}^\infty e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\right)^2}\\
+	&= \bigO{e^{y} e^{-(2\alpha-1)R_n}} = \bigO{e^y n^{-(4\alpha - 2)}},
 \end{align*}
-\TM{ Typo : $f_{\mu, \nu}$? Also give more details how line 3 follows. }
+%\TM{ Typo : $f_{\mu, \nu}$? Also give more details how line 3 follows. }
 from which we conclude that
-\[
-	\left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
-	= \bigO{n^{-(2\alpha-1)} e^{y}}.
-\]
-Therefore 
+\begin{equation}\label{eq:triangle_count_diff_scaling}
+	\left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| = \bigO{y n^{-(2\alpha - 1)} + n^{-(4\alpha-2)} e^{y}}
+	= \bigO{n^{-(4\alpha-2)} e^{y}}.
+\end{equation}
+Therefore, since $e^{y} = \bigO{1} k_n^2$ on $\Kcal_C(k_n)$, 
 \begin{align*}
 	&\hspace{-30pt}\binom{k_n}{2}^{-1}\int_{a_n^-}^{a_n^+} \rho(y,k_n) \left|\Exp{T_{\Pcal,n}(p) - T_{\Pcal}(p)}\right| 
-		e^{-\alpha} \dd y\\
-	&= \bigO{1} n^{-(2\alpha - 1)} \int_{0}^\infty \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd y\\
-	&= \bigO{1} n^{-(2\alpha - 1)} k_n^{-(2\alpha + 1)} = \smallO{s_\alpha(k_n) k_n^{-(2\alpha + 1)} },
+		e^{-\alpha y} \dd y\\
+	&= \bigO{1} n^{-(4\alpha - 2)} \int_{0}^\infty \rho(y,k_n) e^{-\alpha y} \dd y\\
+	&= \bigO{1} n^{-(4\alpha - 2)} k_n^{-(2\alpha + 1)} = \smallO{s(k_n) k_n^{-(2\alpha + 1)} },
 \end{align*}
-\TM{ Typo : $e^{-\alpha}$ }
-where the last part follows from Lemma~\ref{lem:scaling_s_alpha}. \TM{ Also justify penultimate step! }
+%\TM{ Typo : $e^{-\alpha}$ }
+where the last part follows from Lemma~\ref{lem:scaling_s_alpha}. \TM{ Also justify penultimate step! }\PvdH{What do you mean?}
 To finish the argument we observe that
 \begin{align*}
-	\int_{a_n^-}^{a_n^+} \rho(y,k_n) \Delta_\Pcal(y) e^{-\alpha} \dd y
-	&= \bigT{1} \Exp{N_{\Pcal}(k_n)} c_\infty(k_n) = \bigT{ s_\alpha(k_n) k_n^{-(2\alpha + 1)}}.
+	\int_{a_n^-}^{a_n^+} \rho(y,k_n) P(y) e^{-\alpha} \dd y
+	&= \bigT{1} \Exp{N_{\infty}(k_n)} \gamma(k_n) = \bigT{ s(k_n) k_n^{-(2\alpha + 1)}}.
 \end{align*}
 \end{proof}
 
-Observe that the proof of Proposition~\ref{prop:convergence_average_clustering_P_n} yields the following two corollaries, which will be useful later on in Section~\ref{sec:concentration_c_P_n}.
+From the proof of Proposition~\ref{prop:convergence_average_clustering_P_n} we can extract the following corollary, which will be useful later on in Section~\ref{sec:concentration_c_P_n}.
 
 \begin{corollary}\label{cor:adjusted_triangle_counting_P_n}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $k_n$ be a positive sequence such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, uniformly for all $p \in \Kcal_C(k_n)$, as $n \to \infty$
+Uniformly for all $y \in \Kcal_C(k_n)$, as $n \to \infty$
 \[
-	\Exp{\widetilde{T}_{\Pcal,n}(p)} = (1+\smallO{1})\Exp{T_\Pcal(p)},
+	\Exp{\widetilde{T}_{\Pcal,n}(y)} = (1+\smallO{1})\Exp{T_\Pcal(y)},
 \]
 where
 \[
-	\widetilde{T}_{\Pcal,n}(p) = \sum_{(p_1, p_2) \in \Pcal\setminus p}^{\ne} 
-		\ind{p_1 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal}(p_1) \cap \Rcal_n}.
+	\widetilde{T}_{\Pcal,n}(y) = \sum_{(p_1, p_2) \in \Pcal}^{\ne} 
+		\ind{p_1 \in B_{\Pcal,n}(y)}\ind{p_2 \in B_{\Pcal,n}(y)}\ind{p_2 \in B_{\Pcal}(p_1) \cap \Rcal}.
 \]
 
 In particular,
 \[
-	\binom{k_n}{2}^{-1}\int_{\Kcal_{C}(k_n)} \rho_n(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(y)} f_{\alpha,\nu}(x,y) \dd x \dd y
-	= (1+\smallO{1}) \int_{\Rcal_n} \rho(y,k_n) \Delta_\Pcal(y) f_{\alpha, \nu}(x,y) \dd x \dd y. 
+	\binom{k_n}{2}^{-1}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(y)} f(x,y) \dd x \dd y
+	= (1+\smallO{1}) \int_{\Rcal} \rho(y,k_n) P(y) f(x,y) \dd x \dd y. 
 \]
 \end{corollary}
 
-\TM{ Some words spelling this out would help. I don't find it easy to see. Also, in general I think one should avoid saying things like "the proof of such-and-such also gives .." }
+\begin{proof}
+First we note that equation~\eqref{eq:triangle_count_diff_scaling} implies that for $y \in \Kcal_C(k_n)$
+\[
+	\Exp{\left|\widetilde{T}_{\Pcal,n}(y) - T_\Pcal(y)\right|} = \bigO{n^{-(4\alpha - 2)}k_n^2}.
+\]
+Next, equation~\ref{eq:relation_E_T_Pcal_vs_Delta_P} together with Proposition~\ref{prop:asymp} yield
+\[
+	\Exp{T_\Pcal(y)} = (1+\smallO{1})\binom{k_n}{2} P(y) = \bigT{k_n^2 s(k_n)},
+\]
+on $\Kcal_{C}(k_n)$, with $s(k)$ defined by~\eqref{eq:def_scaling_function}. By Lemma~\ref{lem:scaling_s_alpha} we now have that for all $y \in \Kcal_{C}(k_n)$
+\[
+	n^{-(4\alpha - 2)}k_n^2 = \smallO{k_n^2 s(k_n)} = \smallO{\Exp{T_\Pcal(y)}}
+\]
+and hence
+\[
+	\Exp{\widetilde{T}_{\Pcal,n}(y)} = \Exp{T_\Pcal(y)} + \bigO{\Exp{\left|\widetilde{T}_{\Pcal,n}(y) - T_\Pcal(y)\right|}}
+	= (1+\smallO{1})\Exp{T_\Pcal(y)}.
+\]
+
+Using this we derive the second statement as follows 
+\begin{align*}
+	&\hspace{-30pt}\binom{k_n}{2}^{-1}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(y)} 
+		f(x,y) \dd x \dd y\\
+	&=(1 + \smallO{1})\binom{k_n}{2}^{-1}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{T_\Pcal(y)} 
+		f(x,y) \dd x \dd y\\
+	&=(1 + \smallO{1})\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) P(y)f(x,y) \dd x \dd y \\
+	&=(1 + \smallO{1})\int_{\Rcal} \rho_{\text{box}}(y,k_n) P(y)f(x,y) \dd x \dd y
+\end{align*}
+where the third line is due to equation~\eqref{eq:relation_E_T_Pcal_vs_Delta_P} and the last line follows by a concentration of heights argument.
+\end{proof}
+
+%\TM{ Some words spelling this out would help. I don't find it easy to see. Also, in general I think one should avoid saying things like "the proof of such-and-such also gives .." }
 \subsection{Counting missing triangles}
 
-We now come back to computing the expected number of triangles attached to node at height $y$ in $G_{\Pcal,n}(\alpha,\nu)$ that are not present in $G_{\Pcal}(\alpha,\nu)$. 
+We now come back to computing the expected number of triangles attached to node at height $y$ in $\Gbox$ that are not present in $\Ginf$. 
 
 \begin{figure}[!t]
 
@@ -474,7 +531,7 @@ We now come back to computing the expected number of triangles attached to node 
 
 	%Define the coordinates 
 	%p = (\u,\v) and p^\prime = (\uu, \vv)
-	%Box \Rcal_n has width 2\r and height \t
+	%Box \Rcal has width 2\r and height \t
 	\pgfmathsetmacro{\u}{0}
 	\pgfmathsetmacro{\v}{1}
 	\pgfmathsetmacro{\uu}{1.8}
@@ -482,7 +539,7 @@ We now come back to computing the expected number of triangles attached to node 
 	\pgfmathsetmacro{\r}{6}
 	\pgfmathsetmacro{\t}{4}
 	
-	%The box \Rcal_n only positive x
+	%The box \Rcal only positive x
 	\draw[line width=1pt] (0,0) -- (\r,0) -- (\r,\t) -- (0,\t) -- (0,0);	
 	
 	%Boundaries p = (\u,\v)
@@ -543,19 +600,19 @@ We now come back to computing the expected number of triangles attached to node 
 \begin{proof}[Proof of Lemma \ref{lem:clustering_error_T_term}]
 Due to symmetry it is enough to show that
 \begin{equation}\label{eq:clustering_error_T_main}
-	\int_0^{R_n}\int_0^{I_n} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f_{\mu, \nu}(x_1,y_1) 
+	\int_0^{R_n}\int_0^{I_n} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) f(x_1,y_1) 
 	\dd x_1 \dd y_1 = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
 \end{equation}
-The proof goes in two stages. First we compute $\mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right)$ by splitting it over three disjoint regimes with respect to $p_1$, with $x_1 \ge 0$. Then we do the integration with respect to $p_1$.
+The proof goes in two stages. First we compute $\mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right)$ by splitting it over three disjoint regimes with respect to $p_1$, with $x_1 \ge 0$. Then we do the integration with respect to $p_1$.
 
-\subsubsection*{Computing $\bm{\mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right)}$}
+\subsubsection*{Computing $\bm{\mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right)}$}
 
 Recall that $I_n = \frac{\pi}{2} e^{R_n/2}$ and define the sets
 \begin{align*}
-	A_n^{(1)} &= \left\{p_1 \in \Rcal_n \, : \, 0 \le y_1 \le y - 2\log(I_n/(I_n-x_1)) \right\},\\
-	A_n^{(2)} &= \left\{p_1 \in \Rcal_n \, : \, y - 2\log(I_n/(I_n-x_1)) < y_1 
+	A_n^{(1)} &= \left\{p_1 \in \Rcal \, : \, 0 \le y_1 \le y - 2\log(I_n/(I_n-x_1)) \right\},\\
+	A_n^{(2)} &= \left\{p_1 \in \Rcal \, : \, y - 2\log(I_n/(I_n-x_1)) < y_1 
 		\le y + 2 \log\left(1 + \frac{x_1}{I_n}\right)\right\},\\
-	A_n^{(3)} &= \left\{p_1 \in \Rcal_n \, : \, y + 2 \log\left(1 + \frac{x_1}{I_n}\right) < y_1 
+	A_n^{(3)} &= \left\{p_1 \in \Rcal \, : \, y + 2 \log\left(1 + \frac{x_1}{I_n}\right) < y_1 
 			\le y + 2 \log\left(\frac{I_n}{I_n-x_1}\right)\right\},
 \end{align*}
 and let $B_n^{(i)} = \BallPon{p} \cap A_n^{(i)}$, for $i = 1, 2, 3$, see Figure~\ref{fig:comparing_triangles_B_areas}. Here the heights of the two intersections are given by
@@ -564,9 +621,9 @@ and let $B_n^{(i)} = \BallPon{p} \cap A_n^{(i)}$, for $i = 1, 2, 3$, see Figure~
 	h^\ast(y) &= y + 2 \log\left(\frac{I_n}{I_n - e^y}\right).
 \end{align}
 
-With these definitions we have that the union $B_n := \bigcup_{i = 1}^n B_n^{(i)}$ denotes the area under the red curve in Figure~\ref{fig:comparing_triangles_diff_analysis} and hence, for all $p_1 \in \Rcal_n\setminus B_n$ with $x_1 \ge 0$ we have that $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1) = \emptyset$. So we only need to consider $p_1 \in B_n$. We shall establish the following result:
+With these definitions we have that the union $B_n := \bigcup_{i = 1}^n B_n^{(i)}$ denotes the area under the red curve in Figure~\ref{fig:comparing_triangles_diff_analysis} and hence, for all $p_1 \in \Rcal\setminus B_n$ with $x_1 \ge 0$ we have that $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1) = \emptyset$. So we only need to consider $p_1 \in B_n$. We shall establish the following result:
 \begin{equation}\label{eq:mu_triangle_diff}
-	\mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) = 
+	\mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) = 
 	\begin{cases}
 		\bigO{I_n^{-2\alpha} e^{\alpha y_1}} &\mbox{if } p_1 \in B_n^{(1)}\\
 		\bigO{I_n^{-2\alpha} e^{\alpha y}} &\mbox{if } p_1 \in B_n^{(2)} \cup B_n^{(3)}
@@ -587,7 +644,7 @@ Depending on which regime $p_1$ belongs to, the set $\mathcal{T}_{\Pcal \Delta \
 
 	%Define the coordinates 
 	%p = (\u,\v) and p^\prime = (\uu, \vv)
-	%Box \Rcal_n has width 2\r and height \t
+	%Box \Rcal has width 2\r and height \t
 	\pgfmathsetmacro{\u}{0}
 	\pgfmathsetmacro{\v}{1}
 	\pgfmathsetmacro{\uu}{1.4}
@@ -645,7 +702,7 @@ Depending on which regime $p_1$ belongs to, the set $\mathcal{T}_{\Pcal \Delta \
 \begin{tikzpicture}[scale=5]
 	%Define the coordinates 
 	%p = (\u,\v) and p^\prime = (\uu, \vv)
-	%Box \Rcal_n has width 2\r and height \t
+	%Box \Rcal has width 2\r and height \t
 	\pgfmathsetmacro{\u}{0}
 	\pgfmathsetmacro{\v}{1}
 	\pgfmathsetmacro{\uu}{1.4}
@@ -720,7 +777,7 @@ Depending on which regime $p_1$ belongs to, the set $\mathcal{T}_{\Pcal \Delta \
 
 	%Define the coordinates 
 	%p = (\u,\v) and p^\prime = (\uu, \vv)
-	%Box \Rcal_n has width 2\r and height \t
+	%Box \Rcal has width 2\r and height \t
 	\pgfmathsetmacro{\u}{0}
 	\pgfmathsetmacro{\v}{1}
 	\pgfmathsetmacro{\uu}{2.5}
@@ -822,7 +879,7 @@ For $\mathcal{I}_n^{(2)}(p_1)$ we have
 
 We conclude that for $p_1 \in B_n^{(1)}$:
 \[
-	\mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y_1}},
+	\mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y_1}},
 \]
 which establishes the first part of \eqref{eq:mu_triangle_diff}.
 
@@ -830,7 +887,7 @@ which establishes the first part of \eqref{eq:mu_triangle_diff}.
 
 Here we split the integration into two parts (see Figure~\ref{fig:shapes_triangle_mismatches}). Recall that $x^\ast(p,p_1) = x_1 - I_n$. Then, for the first part we have
 \begin{align*}
-	\mathcal{I}_n^{(1)}(p,p_1) &\le \int_{h(y)}^{h_1(p_1)} \int_{-I_n}^{x^\ast(p,p_1)} f_{\alpha,\nu}(x_2, y_2) 
+	\mathcal{I}_n^{(1)}(p,p_1) &\le \int_{h(y)}^{h_1(p_1)} \int_{-I_n}^{x^\ast(p,p_1)} f(x_2, y_2) 
 		\dd x_2 \dd y_2\\
 	&= \bigO{x_1 \left(e^{-\alpha h(y)} - e^{-\alpha h_1(p_1)}\right)}\\
 	&= \bigO{x_1 I_n^{-2\alpha}\left(e^{\alpha y} - e^{\alpha y_1}\left(1 + \frac{x_1}{I_n}\right)^{-2\alpha}\right)}\\
@@ -854,7 +911,7 @@ since $y \in \Kcal_{C}(k_n)$ and $k_n = \smallO{\sqrt{n}}$, so that $e^y = \smal
 Then we have
 \begin{align*}
 	\mathcal{I}_n^{(2)} &= \int_{\hat{y}(p,p_1)}^{h(y)} \int_{-e^{(y + y_2)/2}}^{x_1 + e^{(y+y_1)/2} - 2 I_n} 
-		f_{\alpha,\nu}(x_2, y_2) \dd x_2 \dd y_2\\
+		f(x_2, y_2) \dd x_2 \dd y_2\\
 	&= \bigO{e^{y/2} \int_{\hat{y}(p,p_1)}^{h(y)} e^{-(\alpha -\frac{1}{2}) y_2} \dd y_2}\\
 	&= \bigO{e^{y/2} \left(e^{-(\alpha -\frac{1}{2}) \hat{y}(p,p_1)} - e^{-(\alpha -\frac{1}{2}) h(y)}\right)}\\
 	&= \bigO{e^{y/2} \left(\left(\frac{2I_n - x_1}{e^{y/2} + e^{y_1/2}}\right)^{-(2\alpha-1)} 
@@ -870,13 +927,13 @@ where for the last line we first used that $(2I_n - x_1)^{-(2\alpha-1)} \le I_n^
 
 It then follows that for $p_1 \in B_n^{(2)}$
 \[
-	\mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) = \bigO{I_n^{-(2\alpha-1)} e^{\alpha y}}.
+	\mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) = \bigO{I_n^{-(2\alpha-1)} e^{\alpha y}}.
 \]
 
 \paragraph{Regime III $\bm{p_1 \in B_n^{(3)}}$:}
 
 \begin{align*}
-	\mathcal{I}_n^{(1)} &= \int_{y^\ast}^{\tilde{y}} \int_{-e^{(y+y_2)/2}}^{x_1-e^{(y_1+y_2)/2}} f_{\alpha, \nu}(x_2,y_2)
+	\mathcal{I}_n^{(1)} &= \int_{y^\ast}^{\tilde{y}} \int_{-e^{(y+y_2)/2}}^{x_1-e^{(y_1+y_2)/2}} f(x_2,y_2)
 		\dd x_2 \dd y_2\\
 	&= \bigO{\int_{y^\ast}^{\tilde{y}} x_1 e^{-\alpha y_2} - \left(e^{y_1/2} - e^{y/2}\right)e^{-(\alpha - \frac{1}{2})y_2}
 		\dd y_2}\\
@@ -900,7 +957,7 @@ and hence we have
 For the second integral we have
 \begin{align*}
 	\mathcal{I}_n^{(2)} &= \int_{\hat{y}}^{y^\ast} \int_{-e^{(y+y_2)/2}}^{e^{(y_1 + y_2)/2} + x_1 - 2I_n} 
-		f_{\alpha, \nu}(x_2,y_2)\dd x_2 \dd y_2\\
+		f(x_2,y_2)\dd x_2 \dd y_2\\
 	&= \bigO{\int_{\hat{y}}^{y^\ast} \left(e^{y/2} + e^{y_1/2}\right)e^{-(\alpha - \frac{1}{2})y_2} \dd y_2}\\
 	&= \bigO{ e^{y_1/2} \int_{\hat{y}}^{y^\ast}e^{-(\alpha - \frac{1}{2})y_2} \dd y_2}.
 \end{align*}
@@ -919,7 +976,7 @@ so that
 \]
 and hence for $p_1 \in B_n^{(3)}$
 \[
-	\mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y}}
+	\mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y}}
 	= \bigO{I_n^{-(2\alpha - 1)} e^{\alpha y}}.
 \]
 
@@ -927,7 +984,7 @@ and hence for $p_1 \in B_n^{(3)}$
 
 
 
-We now proceed with the second part of the computation leading to \eqref{eq:clustering_error_T_main}. Here we will integrate $\mu_{\alpha, \nu}(\mathcal{T}_{\Pcal \Delta \Pcal_n})(p,p_1)$ over the region $B_n := B_n^{(1)} \cup B_n^{(2)} \cup B_n^{(3)}$, see Figure~\ref{fig:comparing_triangles_B_areas}. Let us first identify the boundaries of these areas. 
+We now proceed with the second part of the computation leading to \eqref{eq:clustering_error_T_main}. Here we will integrate $\mu(\mathcal{T}_{\Pcal \Delta \Pcal_n})(p,p_1)$ over the region $B_n := B_n^{(1)} \cup B_n^{(2)} \cup B_n^{(3)}$, see Figure~\ref{fig:comparing_triangles_B_areas}. Let us first identify the boundaries of these areas. 
 
 The area $B_n^{(1)}$ is bounded from above by the line given by the equation
 \[
@@ -954,16 +1011,16 @@ We continue is the same way to obtain for $B_n^{(3)}$
 	I_n\left(1 - e^{(y - y_1)/2}\right) \le x_1 \le I_n\left(e^{(y_1 - y)/2} - 1\right) \wedge e^{(y + y_1)/2} \wedge I_n \right\}.
 \]
 
-We these characterizations of the areas we now integrate $\mu_{\alpha, \nu}(\mathcal{T}_{\Pcal \Delta \Pcal_n})(p,p_1)$ over $B_n$, splitting the computations over the three different areas.
+We these characterizations of the areas we now integrate $\mu(\mathcal{T}_{\Pcal \Delta \Pcal_n})(p,p_1)$ over $B_n$, splitting the computations over the three different areas.
 
 \paragraph{$\bm{p_1 \in B_n^{(1)}}:$}
 
 We use that $I_n\left(1 - e^{(y_1-y)/2}\right) \wedge e^{(y + y_1)/2} \le I_n\left(1 - e^{(y_1-y)/2}\right)$ so that
 \begin{align*}
-	&\hspace{-30pt}\int_{B_n^{(1)}} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) 
-		f_{\alpha,\nu}(x_1,y_1)	\dd x_1 \dd y_1 \\
-	&\le  \int_0^y \int_0^{I_n(1-e^{(y_1-y)/2})} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) 
-		f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1\\
+	&\hspace{-30pt}\int_{B_n^{(1)}} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) 
+		f(x_1,y_1)	\dd x_1 \dd y_1 \\
+	&\le  \int_0^y \int_0^{I_n(1-e^{(y_1-y)/2})} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) 
+		f(x_1,y_1) \dd x_1 \dd y_1\\
 	&= \bigO{ I_n^{-2\alpha} \int_0^y \int_0^{e^{(y+y_1)/2}}  x_1 \dd x_1 \dd y_1 }\\
 	&= \bigO{I_n^{-(2\alpha-1)} \int_0^y \left(1 - e^{(y_1-y)/2}\right)^2 \dd y_1} \\
 	&= \bigO{I_n^{-(2\alpha - 1)} y} = \bigO{y n^{-(2\alpha - 1)}}.
@@ -973,28 +1030,28 @@ We use that $I_n\left(1 - e^{(y_1-y)/2}\right) \wedge e^{(y + y_1)/2} \le I_n\le
 
 We will show that
 \begin{equation}\label{eq:mu_triangle_diff_2}
-	\mu_{\alpha, \nu}(B_n^{(2)}) = \bigO{I_n^{-1} e^{(2-\alpha)y}},
+	\mu(B_n^{(2)}) = \bigO{I_n^{-1} e^{(2-\alpha)y}},
 \end{equation}
 which together with \eqref{eq:mu_triangle_diff} yields
 \begin{align*}
-	\int_{B_n^{(2)}} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) 
-		f_{\alpha,\nu}(x_1,y_1)	\dd x_1 \dd y_1
-	&= \bigO{\mu_{\alpha, \nu}(B_n^{(2)}) I_n^{-(2\alpha - 1)} e^{\alpha y}}\\
+	\int_{B_n^{(2)}} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) 
+		f(x_1,y_1)	\dd x_1 \dd y_1
+	&= \bigO{\mu(B_n^{(2)}) I_n^{-(2\alpha - 1)} e^{\alpha y}}\\
 	&= \bigO{I_n^{-2\alpha} e^{2y}}.
 \end{align*}
 
 The integration is split into two parts determined by $I_n\left(1 - e^{(y_1-y)/2}\right) \vee 
 	I_n\left(e^{(y_1 - y)/2} - 1\right)$:
 \begin{align*}
-	\mu_{\alpha, \nu}(B_n^{(3)}) &= \int_{h_\ast(y)}^{y} \int_{I_n(1-e^{(y_1-y)/2})}^{e^{(y + y_1)/2}} 
-		f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1\\
+	\mu(B_n^{(3)}) &= \int_{h_\ast(y)}^{y} \int_{I_n(1-e^{(y_1-y)/2})}^{e^{(y + y_1)/2}} 
+		f(x_1,y_1) \dd x_1 \dd y_1\\
 	&\hspace{10pt} + \int_y^{h^\ast(y)} \int_{I_n(e^{(y_1-y)/2}-1)}^{e^{(y + y_1)/2}} 
-		f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1.
+		f(x_1,y_1) \dd x_1 \dd y_1.
 \end{align*}
 
 For the first integral we use that $e^{(y + y_1)/2} - I_n(1-e^{(y_1-y)/2}) \le e^{y_1/2}\left(e^{y/2} + e^{-y/2}\right)$ to obtain
 \begin{align*}
-	&\hspace{-30pt}\int_{h_\ast(y)}^{y} \int_{I_n(1-e^{(y_1-y)/2})}^{e^{(y + y_1)/2}} f_{\alpha,\nu}(x_1,y_1) 
+	&\hspace{-30pt}\int_{h_\ast(y)}^{y} \int_{I_n(1-e^{(y_1-y)/2})}^{e^{(y + y_1)/2}} f(x_1,y_1) 
 		\dd x_1 \dd y_1\\
 	&= \bigO{e^{y/2} \int_{h_\ast(y)}^{y} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1}\\
 	&= \bigO{e^{y/2}\left(e^{-(\alpha - \frac{1}{2})y} - e^{-(\alpha - \frac{1}{2})y} 
@@ -1003,7 +1060,7 @@ For the first integral we use that $e^{(y + y_1)/2} - I_n(1-e^{(y_1-y)/2}) \le e
 \end{align*}
 For the second integral note that $e^{(y + y_1)/2} - I_n(e^{(y_1-y)/2}-1) \le e^{(y + y_1)/2}$ and hence
 \begin{align*}
-	&\hspace{-30pt}\int_y^{h^\ast(y)} \int_{I_n(e^{(y_1-y)/2}-1)}^{e^{(y + y_1)/2}} f_{\alpha,\nu}(x_1,y_1) 
+	&\hspace{-30pt}\int_y^{h^\ast(y)} \int_{I_n(e^{(y_1-y)/2}-1)}^{e^{(y + y_1)/2}} f(x_1,y_1) 
 		\dd x_1 \dd y_1\\
 	&= \bigO{e^{y/2} \int_y^{h^\ast(y)} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1}\\
 	&= \bigO{e^{y/2} \left(e^{-(\alpha - \frac{1}{2})y} - e^{-(\alpha - \frac{1}{2})y}
@@ -1016,30 +1073,30 @@ so that \eqref{eq:mu_triangle_diff_2} follows.
 
 For this area we show that 
 \begin{equation}\label{eq:mu_triangle_diff_3}
-	\mu_{\alpha, \nu}(B_n^{(3)}) = \bigO{e^{(1-\alpha)y}}
+	\mu(B_n^{(3)}) = \bigO{e^{(1-\alpha)y}}
 \end{equation} 
 so that
 \begin{align*}
-	\int_{B_n^{(3)}} \mu_{\alpha, \nu}\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) 
-		f_{\alpha,\nu}(x_1,y_1)	\dd x_1 \dd y_1
-	&= \bigO{\mu_{\alpha, \nu}(B_n^{(2)}) I_n^{-(2\alpha - 1)} e^{\alpha y}}\\
+	\int_{B_n^{(3)}} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p_1)\right) 
+		f(x_1,y_1)	\dd x_1 \dd y_1
+	&= \bigO{\mu(B_n^{(2)}) I_n^{-(2\alpha - 1)} e^{\alpha y}}\\
 	&= \bigO{I_n^{-(2\alpha-1)} e^{y}}.
 \end{align*}
 
 Here the integral is split into three parts:
 \begin{align*}
-	\mu_{\alpha, \nu}(B_n^{(3)}) &= \int_y^{h^\ast(y)} \int_{I_n(1-e^{(y-y_1)/2})}^{I_n(e^{(y_1-y)/2}-1)}
-		f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1\\
+	\mu(B_n^{(3)}) &= \int_y^{h^\ast(y)} \int_{I_n(1-e^{(y-y_1)/2})}^{I_n(e^{(y_1-y)/2}-1)}
+		f(x_1,y_1) \dd x_1 \dd y_1\\
 	&\hspace{10pt}+ \int_{h^\ast(y)}^{h(y)} \int_{I_n(1-e^{(y-y_1)/2})}^{e^{(y+y_1)/2}}
-		f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1\\
+		f(x_1,y_1) \dd x_1 \dd y_1\\
 	&\hspace{10pt}+ \int_{h(y)}^{R_n} \int_{I_n(1-e^{(y-y_1)/2})}^{I_n}
-		f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1.
+		f(x_1,y_1) \dd x_1 \dd y_1.
 \end{align*}
 
 Let us first focus on the first integral. Since	$I_n(e^{(y_1-y)/2}-1) - I_n(1-e^{(y-y_1)/2}) \le I_n e^{(y_1-y)/2}$ we get,
 using similar arguments as above
 \begin{align*}
-	\int_y^{h^\ast(y)} \int_{I_n(1-e^{(y-y_1)/2})}^{I_n(e^{(y_1-y)/2}-1)} f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1
+	\int_y^{h^\ast(y)} \int_{I_n(1-e^{(y-y_1)/2})}^{I_n(e^{(y_1-y)/2}-1)} f(x_1,y_1) \dd x_1 \dd y_1
 	&= \bigO{I_n e^{-y/2} \int_y^{h^\ast(y)} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1}\\
 	&= \bigO{I_n e^{-\alpha y} \left(1 - \left(\frac{I_n}{I_n - e^y}\right)^{-(2\alpha - 1)}\right)}\\
 	&= \bigO{e^{(1-\alpha)y}}.
@@ -1047,7 +1104,7 @@ using similar arguments as above
 
 Proceeding to the second integral, we first note that $e^{(y+y_1)/2} - I_n(1-e^{(y-y_1)/2}) = \bigO{I_n e^{(y_1-y)/2}}$ so that similar calculations as before yield
 \begin{align*}
-	\int_{h^\ast(y)}^{h(y)} \int_{I_n(1-e^{(y-y_1)/2})}^{e^{(y+y_1)/2}}	f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1
+	\int_{h^\ast(y)}^{h(y)} \int_{I_n(1-e^{(y-y_1)/2})}^{e^{(y+y_1)/2}}	f(x_1,y_1) \dd x_1 \dd y_1
 	&= \bigO{I_n e^{-y/2} \int_{h^\ast(y)}^{h(y)} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1}
 		= \bigO{e^{(1-\alpha)y}}.
 \end{align*}

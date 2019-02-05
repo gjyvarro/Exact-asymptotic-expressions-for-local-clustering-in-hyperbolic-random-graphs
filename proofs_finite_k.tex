@@ -1,2 +1,164 @@
 
-\section{Proofs of the main results for fixed $k$}\label{sec:proofs_fixed_k}
+
+
+\section{Proofs of Theorem~\ref{thm:maincc} and Theorem~\ref{thm:mainkfixed}\label{sec:proofs_fixed_k}}
+
+
+We will first derive Theorem~\ref{thm:mainkfixed}. It will turn out that Theorem~\ref{thm:maincc} has a quick derivation
+assuming Theorem~\ref{thm:mainkfixed}.
+
+
+
+\subsection{The proof of Theorem~\ref{thm:mainkfixed}}
+
+
+\TM{This is still in need of a serious polish}
+
+We first show we can restrict attention to the Poissonized instead of the standard KPKVB model.
+
+\begin{lemma} Let $\alpha>\frac12,\nu>0, k\geq 2$ be fixed and write $G_n := G(n;\alpha,\nu), G_{n,\text{Po}} := \GPo(n;\alpha,\nu)$.
+Then 
+
+$$ c(k; G_n)-c(k; G_{n,\text{Po}}) \xrightarrow[n\to\infty]{\Pee} 0. $$
+\end{lemma}
+
+\begin{proof}
+We use a sprinkling argument. 
+We observe that $G((1+\epsilon)n;\alpha,(1+\epsilon)\nu), G(n;\alpha,\nu)$ 
+and $\GPo(n;\alpha,\nu)$ all live on the same disk (with radius $R = 2\ln \frac{n}{\nu}$).
+We consider the coupling where we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ chosen according
+to the $(\alpha,R)$-quasi uniform distribution, the vertices of $G((1+\epsilon)n;\alpha,(1+\epsilon)\nu)$
+are $u_1,\dots, u_{(1+\epsilon)n}$; the vertices of $G(n;\alpha,\nu)$ are $u_1,\dots, u_n$ and 
+the vertices of $\GPo(n;\alpha,\nu)$ are $u_1,\dots, u_N$ with $N\isd \Po(n)$ indepenent of
+$u_1, u_2, \dots$.
+
+We imagine the situation where we remove $\eps n$ vertices from $G((1+\epsilon)n;\alpha,(1+\epsilon)\nu)$ to obtain
+$G(n;\alpha,\nu)$ and we remove (or add, in the event that $N > (1+\eps)n$) $|(1+\eps)n - N|$ vertices to obtain $\GPo(n;\alpha,\nu)$.
+Note that, by Chebyschev, $\Pee( |N-n| > \eps n ) = o(1)$. So, a.a.s., in both cases we remove no more than $2\eps n$ vertices.
+Now let $X$, respectively $X_{\text{Po}}$, denote the number of vertices that are either themselves removed or have at least one 
+neighbour that is removed.
+
+Let $\overline{D}$ denote the average degree of $G((1+\epsilon)n;\alpha,(1+\epsilon)\nu)$.
+By the results of Gugelmann et al.~\cite{gugelmann2012random} $\overline{D}$ converges in probability
+to a certain constant. In particular, there is a constant $C$ such that $\overline{D} \leq C$ a.a.s.
+
+Now note that, under the coupling described above:
+
+$$ \Ee\left( X | \overline{D} \leq C \right),  \Ee\left( X_{\text{Po}} | \overline{D} \leq C, |N-n|<\eps n \right) \leq (1+C)  2 \eps n. $$ 
+
+Markov's inequality gives
+
+$$ \Pee( X \geq \sqrt{\eps} n ), \Pee( X_{\text{Po}} \geq \sqrt{\eps} n ) = O( \sqrt{\eps} ). $$
+
+By the results of Gugelmann et al.~on the degree sequence the number of vertices of degree exactly
+$k$ in $G(n;\alpha,\nu)$ equals $(1+o(1)) n p_k$ a.a.s.
+In particular it is $\Omega(n)$ a.a.s.
+
+Since $c(k;G)$ is the average of $c(v)$ over all $v$ of degree $k$, and $0\leq c(v)\leq 1$, we have
+
+$$ \Pee( |c(k;G(n;\alpha,\nu)) - c(k;G((1+\epsilon)n;\alpha,(1+\epsilon)\nu))| > \sqrt{\eps} ) = O(\sqrt\eps), $$
+
+and simlarly for $\GPo$. In particular also 
+$|c(k;G(n;\alpha,\nu)) - c(k;\GPo(n;\alpha,\nu))| > \sqrt{\eps} ) = O(\sqrt\eps)$.
+Sending $\eps\searrow 0$ proves the lemma.
+\end{proof}
+
+
+\begin{lemma}\label{lem:n1}
+Let $N_1(H)$ denote the number of vertices with height at least $H \in [0,R]$ in the finite box model (with $n$ vertices).
+
+For all $\epsilon >0$, there is $H=H_\epsilon$ such that $\E N_1(H) \leq \epsilon n$.
+\end{lemma}
+\begin{proof}
+By linearity of expectation and the probability mass of a centered disk,
+\begin{align*}
+\E N_1 = n \Pee(B_{R-H}(0)) \leq n e^{-\alpha H}
+\end{align*}
+Now, choose $H$ large enough such that $e^{-\alpha H} \leq \epsilon$.
+\end{proof}
+\begin{lemma}
+Let $N_2(H)$ denote the number of vertices with no neighbour with height above $H \in [0,R]$ in the finite box model (with $n$ vertices).
+
+For all $\epsilon >0$, there is $H=H_\epsilon$ such that $\E N_2 \leq \epsilon n$.
+\end{lemma}
+\begin{proof}
+Let $\epsilon >0$. By Lemma~\ref{lem:n1}, there is $H_1$ such that the expected number of vertices with height at least $H_1$ is upper bounded by $\frac{\epsilon}{2}n$. So, if we write $N_{\geq H_1}$ for the number of vertices with height at least $H_1$ and $N_{\leq H_1}(H)$ for the number of vertices with height at most $H_1$ and no neighbour with height above $H$, then 
+$$N_2(H) \leq N_{\geq H_1} + N_{\leq H_1}(H)$$
+Let $\mu(H)$ denote the expected number of vertices in the neighbourhood ball above $H$ of a vertex with height $H_1$. For fixed $H_1$, $\mu(H)$ is a continuous function which is decreasing in $H$ and with $\mu(R)=0$. Therefore, there is $H_2$ large enough such that $1-e^{-\mu(H_2)} \leq \frac{\epsilon}{2}$. Hence,
+$$\E N_{\leq H_1}(H_2) \leq n (1-e^{-\mu(H_2)}) \leq \frac{\epsilon}{2}$$
+Finally, $\E N_2(H_2) \leq \E N_{\geq H_1} + \E N_{\leq H_1}(H_2) \leq \epsilon n$.
+%For any vertex with height at most $H_1$, the probability mass of the neighbourhood ball $U_v$ of such a vertex $v$ above $H_1$ is upper bounded by $w(H_1)$.
+%The expected number of points in $U_v$ is $\leq \epsilon n$.
+% Write
+%$$N_2 = \sum_{v = 1}^n \1_{\{v\text{ has no neighbour with rad. coord. }<R-H \}} $$
+\end{proof}
+
+\begin{lemma}
+Let $c(k)$ denote the clustering function of the KPKVB random graph for $k \in \N$ and $c_{\leq H}(k)$ denote the average of the clustering coefficient of all vertices with degree $k$ and height $\leq H$ and with no neighbour with height $>H$. Then,
+$c(k) = c_{\leq H}(k) + O(\sqrt{\epsilon})$ with probability $\geq 1-O(\sqrt{\epsilon})+o(1)$.
+\end{lemma}
+\begin{proof}
+Let $N(k)$ denote the number of vertices with degree $k$ in KPKVB.
+Let $N_H(k)$ denote the number of vertices with degree $k$ and height $\leq H$ and with no neighbour with height $>H$. From the previous two lemmas, it follows that $\E (n- N_H) \leq \epsilon n$ and from this also that $\E (N(k)-N_H(k))\leq \epsilon n$. Therefore, by Markov's inequality, 
+$$\Pee( n-N_H \geq \sqrt{\epsilon}n) \leq \frac{\E (n-N_H)}{n} \leq \sqrt{\epsilon}$$
+Consider 
+$$c(k)-c_{\leq H}(k) = \frac{1}{N(k)}\sum c(v) - \frac{1}{N_H(k)}\sum c(v) \leq \frac{N(k)-N_H(k)}{N(k)}$$
+So, finally
+$$\Pee( c-c_{\leq H} = O(\sqrt{\epsilon}) ) \geq 1-O(\sqrt{\epsilon})$$
+\end{proof}
+
+\begin{lemma}
+Let $c_{\leq H}(k)$ denote the average over all clustering coefficients of all vertices with degree $k$ and height $\leq H$ and with no neighbour with height $>H$ in the poissonized KPKVB model.
+
+Let $\Delta_H(y)$ denote the probability that two neighbours of $(0,y)$ are adjacent. Let $\tau(y,k)$ be the Poisson probability that $(0,y)$ has degree $k$. Let $\rho(y)$ denote the truncated exponential density.
+
+Then,
+$c_{\leq H}(k) = (1+o(1))\int_0^H \int_0^H \int_0^H \Delta_H(y) \tau(y,k)\rho(y_1)\rho(y_2)\rho(y) dy_1dy_2 dy$ a.a.s.
+\end{lemma}
+\begin{proof}
+First of all, as for $c_{\leq H}(k)$ all vertices involved have height $\leq H$, we can perform the computations in the box model: As $H$ is constant, for $R$ large enough, vertices with radial coordinates at least $R-H$ will have radial coordinate $\geq \frac{3}{4}R$, such that by Lemma~30(ii) from the paper on the largest component of KPKVB, edges exist between such vertices in the disk if and only if they exist in the box.
+
+Let $N_{trig}(k,H)$ denote the number of tuples $(v,uw)$ for pairwise distinct vertices $v,u,w$ such that $v,u,w$ form a triangle, the radial coordinates of $u,v,w$ are all at least $R-H$ and $v$ has degree $k$ (where $H$ is the cut-off from the first two lemmas). So, we have $c_{\leq H}(k) = \frac{N_{trig}(k,H)}{N_H}$.
+
+Let $M_{trig}(k,H)$ denote the number of tuples $(v,u,w)$ for pairwise distinct vertices $v,u,w$ such that $v,u,w$ form a triangle, the radial coordinates of $u,v,w$ are all at least $R-H$ and $v$ has degree $k$. Note that $N_{trig}(k,H) = \frac{1}{2}M_{trig}(k,H)$. $M_{trig}(k,H)$ can be written as a sum over $3$-tuples:
+\begin{align*}
+M_{trig}(k,H) = \sum_{(v,u,w) \in V_{\not =}^3} h(V,v,u,w)
+\end{align*}
+where $h$ is the indicator function that $v,u,w$ form a triangle, have radial coordinates at least $R-H$ and $v$ has degree $k$.
+Using Mecke's formula, we obtain that 
+\begin{align*}
+\E M_{trig}(k,H) = \int_{E_R} \int_{E_R}\int_{E_R} \E h(V,v,u,w) dvdudw
+\end{align*}
+%Let $V \subset E_R$ denote the vertex set of the finite box model in the box $E_R = (-\frac{\pi}{2}e^{\frac{R}{2}},\frac{\pi}{2}e^{\frac{R}{2}}]\times (0,R]$.
+
+
+
+From there, it follows that
+\begin{align*}
+\E c_{\leq H}(k) = \frac{1}{\Pee(D_H=k)} \int_0^H \int_0^H \int_0^H \Delta_{H}(y) \tau(y,k) \rho(y_1)\rho(y_2)dy_1dy_2 dy
+\end{align*}
+For $H\rightarrow \infty$, this converges to the integral obtained in the paper.
+
+In order to complete the proof, we need to show that $\E c_{\leq H}(k)^2 = (1+o(1))(\E c_{\leq H}(k))^2$. For this, it is sufficient to show that $\E N_{trig}^2 = (1+o(1))(\E N_{trig})^2$. In the box model, we know that two vertices with height at most $H$ and horizontal distance $>2e^H$ cannot be adjacent and their neighbourhood balls are disjoint (w.r.t. the connection rule of the box model). If the neighbourhood balls are disjoint, then the clustering coefficients of the vertices are independent. The horizontal coordinate is uniform in the width of the box which is $\pi e^{\frac{R}{2}}$. Therefore, the probability that two vertices have horizontal distance $\leq 2e^H$ is $\leq \frac{2e^H}{\pi e^{\frac{R}{2}}} = o(1)$.
+\end{proof}
+
+
+
+\subsection{The proof of Theorem~\ref{thm:maincc}}
+
+
+
+\begin{proofof}{Theorem~\ref{thm:maincc}}
+We first note that
+
+$$ \gamma = \Ee C = \sum_{k\geq 2} \Ee\left( C | D=k \right) \Pee( D=k ) = \sum_{k\geq 2} \gamma(k) p_k. $$
+
+Writing $N_k$ for the number of vertices of degree $k$, we have the similar relation
+
+$$ c(G) = \sum_{k\geq 2} c(k;G) \cdot (N_k/n). $$
+
+Theorem~\ref{thm:mainkfixed} establishes that $c(k;G(n;\alpha,\nu))$ converges to $\gamma(k)$ in probability 
+for any fixed $k$. The results of Gugelmann et al.~\cite{gugelmann2012random} on the degree sequence establish 
+that $N_k/n$ converges to $p_k$ in probability, for any fixed $k$.
+The result now follows in a straightforward manner from these observations.
+\end{proofof}

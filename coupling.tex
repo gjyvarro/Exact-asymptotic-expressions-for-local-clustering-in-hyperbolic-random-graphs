@@ -1,21 +1,21 @@
-\section{Equivalence for local clustering in hyperbolic and Poissonized random graph}\label{sec:coupling_H_P_n}
+\section{Equivalence for local clustering in $\GPo$ and $\Gbox$}\label{sec:coupling_H_P_n}
 
-In this section we establish the equivalence between $c_{\H,n}^\ast(k)$ and $c_{\Pcal,n}^\ast(k)$ as expressed in Proposition~\ref{prop:couling_c_H_P}, using the coupling procedure explained in Section~\ref{ssec:coupling_H_P}. 
+In this section we establish the equivalence between $c^\ast(k; G_n)$ and $c^\ast(k; \Gbox)$ as expressed in Proposition~\ref{prop:couling_c_H_P}, using the coupling procedure explained in Section~\ref{ssec:coupling_H_P}. 
 
-Recall that $\mathcal{P}_{\alpha,\nu}$ denotes a Poisson process on $\mathbb{R} \times \mathbb{R}_+$, with intensity $f_{\alpha,\nu}(x,y)$, $I_n = \left(-\frac{\pi}{2}e^{R_n/2}, \frac{\pi}{2}e^{R_n/2}\right)$, $\mathcal{R}_n = I_n \times (0,R_n]$ and $\mathcal{V}_n = \mathcal{P}_{\alpha, \nu}\cap \mathcal{R}_n$. In addition we define for any interval $I \subseteq \mathbb{R}_+$, $\Rcal_n(I) := I_n \times I$ and denote by $\BallPon{p}$ the \emph{ball}
+Recall that $\mathcal{P}$ denotes a Poisson process on $\mathbb{R} \times \mathbb{R}_+$, with intensity $f(x,y)$, $I_n = \frac{\pi}{2}e^{R_n/2}$, $\mathcal{R} = (-I_n, I_n] \times (0,R_n]$ and $\mathcal{V}_n = \mathcal{P}\cap \mathcal{R}$. In addition we define for any interval $I \subseteq \mathbb{R}_+$, $\Rcal(I) := (-I_n,I_n] \times I$ and denote by $\BallPon{p}$ the \emph{ball}
 \[
 	\BallPon{p} = \left\{p^\prime \in \mathcal{V}_n : |x - x^\prime |_{\pi e^{R_n/2}} < e^{\frac{y+y^\prime}{2}}\right\}.
 \]
-Note that when $p \in \mathcal{V}_n$ then $\BallPon{p}$ denotes its neighborhood in the graph $G_{\mathcal{P},n}$. 
+Note that when $p \in \mathcal{V}_n$ then $\BallPon{p}$ denotes its neighborhood in the graph $\Gbox$. 
 Note that the above definition implies that for all $y\in [0,R_n]$ we have 
 \begin{equation} \label{eq:upper_ballPo_inclusion}
-\Rcal_n([R_n-y - 2\ln (\pi/2), R_n]) \subseteq \BallPon{(0,y)}
+\Rcal([R_n-y - 2\ln (\pi/2), R_n]) \subseteq \BallPon{(0,y)}
 \end{equation}
 - this is a fact which we are going to use several times in our analysis. \PvdH{@All: Maybe we should either add figure to illustrate this or we could refer to a previous figure.}
 
 For any Borel-measurable subset $S \subseteq \mathbb{R} \times \mathbb{R}_+$, we let 
 \[
-	\mu_{\alpha, \nu} (S) = \int_S f_{\alpha, \nu}(x,y) \, dx \, dy = \frac{\nu \alpha}{\pi}\int_S e^{-\alpha y}dy.
+	\mu (S) = \int_S f(x,y) \, dx \, dy = \frac{\nu \alpha}{\pi}\int_S e^{-\alpha y}dy.
 \]
 Thus, the number of points of $\Pcal_{\alpha, \nu}$ inside $S$ is distributed as $\Po ({\mu_{\alpha, \nu,} (S)})$.
 
@@ -25,21 +25,21 @@ Finally, we recall the map $\Psi$ from~\eqref{eq:def_Psi}
 \] 
 and remind the reader that $\BallHyp{p}$ denotes the image under $\Psi$ of the ball of hyperbolic radius $R_n$ around the point $\Psi^{-1}(p)$ and that under the coupling between the hyperbolic random graph and the finite box model, described in Section~\ref{ssec:coupling_H_P}, two points $p$ and $p^\prime$ are connected if and only if
 \[
-	|x-x^\prime|_{\pi e^{r_n/2}} \le \Omega(R_n - y, R_n - y^\prime),
+	|x-x^\prime|_{\pi e^{r_n/2}} \le \Phi(R_n - y, R_n - y^\prime),
 \]
-where the function $\Omega$ can be approximated, for $y + y^\prime < R_n$, using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} by  
+where the function $\Phi$ can be approximated, for $y + y^\prime < R_n$, using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} by  
 \[
-	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R_n} \leq \Omega(R_n - y, R_n - y^\prime) 
+	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R_n} \leq \Phi(R_n - y, R_n - y^\prime) 
 		\leq  e^{\frac{1}{2}(y+y^\prime)} + K e^{\frac{3}{2}(y+y^\prime) - R_n}.
 \]
 
 %To prove Proposition~\ref{prop:couling_c_H_P} we calculate the error in two steps. First we show in Section~\ref{ssec:coupling_HP_ast_P} that
 %\[
-%	\lim_{n \to \infty} s_\alpha(k_n) \Exp{\left|c_{\HP,n}^\ast(k_n) - c_{\Pcal,n}^\ast(k_n)\right|} = 0,
+%	\lim_{n \to \infty} s(k_n) \Exp{\left|c^\ast(k_n; \GPo) - c_{\Pcal,n}^\ast(k_n)\right|} = 0,
 %\]
 %Then, in Section~\ref{ssec:coupling_H_HP}, we prove Proposition~\ref{prop:clustering_ast_H_Pois}, i.e.
 %\[
-%	\lim_{n \to \infty} s_\alpha(k_n) \Exp{\left| c_{\H,n}^\ast(k_n) - c_{\HP,n}^\ast(k_n)\right|} = 0.
+%	\lim_{n \to \infty} s(k_n) \Exp{\left| c^\ast(k_n; G_n) - c^\ast(k_n; \GPo)\right|} = 0.
 %\]
 %Together these results yield Proposition~\ref{prop:couling_c_H_P}.
 
@@ -48,18 +48,22 @@ where the function $\Omega$ can be approximated, for $y + y^\prime < R_n$, using
 We start with some basic results for the hyperbolic random geometric graph. Observe that~\eqref{eq:asymp2} from Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies the following. 
 \begin{corollary}\label{cor:balls_inclusion}
 \begin{equation*}
- \BallPo{p} \cap \Rcal_n ([K,R_n]) \subseteq \BallHyp{p} \cap \Rcal_n (K,R_n). 
+ \BallPo{p} \cap \Rcal ([K,R_n]) \subseteq \BallHyp{p} \cap \Rcal (K,R_n). 
 \end{equation*}
 \end{corollary}
 
 
 Furthermore, Lemma~\ref{lem:asymptotics_Omega_hyperbolic} enables us to determine the measure of a ball around a given point $p=(0,y)$ - this is will be fairly useful in our subsequent analysis. 
 
-Let $p \in \Rcal_n$. Then we can see that the curve $x^\prime = e^{\frac{1}{2} (y + y^\prime)}$ with $x^\prime \geq 0$ meets the right boundary of $\Rcal_N$, that is, the line $x^\prime = \frac{\pi}{2} e^{R_n/2}$ at $y^\prime = R_n - y + 2\ln \frac{\pi}{2}$. Hence, any point $p^{\prime} \in \Rcal_n ([R_n - y + 2\ln \frac{\pi}{2}, R_n])$ is included in $\BallPo{p}$. In other words,
+Let $p \in \Rcal$. Then we can see that the curve $x^\prime = e^{\frac{1}{2} (y + y^\prime)}$ with $x^\prime \geq 0$ meets the right boundary of $\Rcal_N$, that is, the line $x^\prime = \frac{\pi}{2} e^{R_n/2}$ at $y^\prime = R_n - y + 2\ln \frac{\pi}{2}$. Hence, any point $p^{\prime} \in \Rcal ([R_n - y + 2\ln \frac{\pi}{2}, R_n])$ is included in $\BallPo{p}$. In other words,
 \begin{equation*} \label{eq:P_ball_inclusion_lower}
-\BallPo{p} \cap \Rcal_n ([R_n - y +2\ln \frac{\pi}{2},R_n]) = \Rcal_n ([R_n - y + 2\ln \frac{\pi}{2},R_n]).
+\BallPo{p} \cap \Rcal ([R_n - y +2\ln \frac{\pi}{2},R_n]) = \Rcal ([R_n - y + 2\ln \frac{\pi}{2},R_n]).
 \end{equation*}
-This together with \eqref{eq:tail_inclusion_hyperbolic_ball} implies that 
+This together with the fact that for any $u^\prime = (r^\prime, \theta^\prime)$,
+\[
+	r^\prime < y = R_n -r \Rightarrow d_\H(\Psi^{-1}(p),u^\prime) \le R_n
+\]
+implies that 
 \begin{equation}\label{eq:symm_diff_upper_P} 
 (\BallHyp{p} \bigtriangleup \BallPo{p})  \cap \Rcal ([R_n - y + 2 \ln \frac{\pi}{2},R_n]) = \emptyset,
 \end{equation}
@@ -68,7 +72,7 @@ where $A \bigtriangleup B$ denotes the symmetric difference. We can now compute 
 \begin{lemma}\label{lem:sym_diff_measure_H_P}
 Let $0 \le y_n <R_n$ be such that $R_n - y_n \to \infty$ and write $p_n = (x_n, y_n)$. Then we have, as $n \to \infty$,
 \[
-	\mu_{\alpha,\nu} (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} ) 
+	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} ) 
 	= \Theta (1) \cdot \begin{cases} 
 		e^{(1/2-\alpha)R_n + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
 		(R_n-y_n) e^{3y/2 - R_n}, & \mbox{if }\alpha = 3/2\\
@@ -88,7 +92,7 @@ Now, if $p \in [r_n, r_n + 2 \ln \frac{\pi}{2})]$ and also $p \in \BallHyp{p_n} 
 \]
 Finally,~\eqref{eq:symm_diff_upper_P} implies that no point in $\Rcal ([r_n+2\ln \frac{\pi}{2},R_n])$ belongs to $\BallHyp{p_n} \bigtriangleup \BallPo{p_n}$. We first compute the expected number of points in $p \in \BallHyp{p_n} \bigtriangleup \BallPo{p_n}$ that have $R_n - y \le r_n$. The result depends on the value of $\alpha$, yielding the following three cases
 \begin{align*}
-	\mu_{\alpha,\nu} (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([0,r_n])) 
+	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([0,r_n])) 
 	&= \Theta(1) \cdot e^{3y_n/2 - R_n}\int_0^{r_n} e^{(3/2-\alpha) y} \, dy \\
 	&= \Theta(1)\cdot \begin{cases} e^{(1/2-\alpha)R_n + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
 		(R_n - y_n) e^{3y_n/2 - R_n}, & \mbox{if }\alpha = 3/2\\
@@ -97,7 +101,7 @@ Finally,~\eqref{eq:symm_diff_upper_P} implies that no point in $\Rcal ([r_n+2\ln
 \end{align*}
 Next we compute the number of remaining points in $\BallHyp{p_n} \bigtriangleup \BallPo{p_n}$, 
 \begin{align*}
-	\mu_{\alpha,\nu} (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([r_n, R_n])) 
+	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([r_n, R_n])) 
 	&= \frac{\nu\alpha}{\pi} \int_{r_n}^{r_n + 2 \ln \frac{\pi}{2}} 
 		\left(\frac{\pi}{2} e^{R_n/2} - e^{\frac{1}{2} (y_n + y)}\right)e^{-\alpha y} \, dy \\
 	&= O(1) \cdot e^{R_n/2} \int_{r_n}^{r_n + 2 \ln \frac{\pi}{2}} e^{-\alpha y} \, dy 
@@ -111,7 +115,7 @@ Now note that for any $\alpha > 3/2$, we have
 \]
 by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. From these observations, we deduce that 
 \[
-	\mu_{\alpha,\nu} (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} ) 
+	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} ) 
 	= \Theta (1) \cdot \begin{cases} 
 		e^{(1/2-\alpha)R_n + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
 		r_n e^{3y_n/2 - R_n}, & \mbox{if }\alpha = 3/2\\
@@ -148,7 +152,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 %\begin{tikzpicture}[scale=0.85]
 %	%Define the coordinates 
 %	%p = (\u,\v), p_1 = (\uu, \vv)
-%	%Box \Rcal_n has width 2\r and height \t (\r = \pi/2 e^{R_n/2})
+%	%Box \Rcal has width 2\r and height \t (\r = \pi/2 e^{R_n/2})
 %	\pgfmathsetmacro{\u}{0}
 %	\pgfmathsetmacro{\v}{0.5}
 %	\pgfmathsetmacro{\uu}{1}
@@ -166,7 +170,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 %	\pgfmathsetmacro{\leftintvvandvvv}{\uu-exp((\vv + \vvv)/2)}
 %	\pgfmathsetmacro{\rightintvvandvvv}{\uu+exp((\vv + \vvv)/2)}
 %		
-%	%The box \Rcal_n
+%	%The box \Rcal
 %	\draw[line width=1pt,dashed] (0,0) -- (\r,0) -- (\r,\t) -- (0,\t);
 %
 %	%Dram all three nodes
@@ -233,7 +237,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 %\begin{tikzpicture}[scale=0.85]
 %	%Define the coordinates 
 %	%p = (\u,\v), p_1 = (\uu, \vv)
-%	%Box \Rcal_n has width 2\r and height \t (\r = \pi/2 e^{R_n/2})
+%	%Box \Rcal has width 2\r and height \t (\r = \pi/2 e^{R_n/2})
 %	\pgfmathsetmacro{\u}{0}
 %	\pgfmathsetmacro{\v}{0.5}
 %	\pgfmathsetmacro{\uu}{1}
@@ -251,7 +255,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 %	\pgfmathsetmacro{\leftintvvandvvv}{\uu-exp((\vv + \vvv)/2)}
 %	\pgfmathsetmacro{\rightintvvandvvv}{\uu+exp((\vv + \vvv)/2)}
 %		
-%	%The box \Rcal_n
+%	%The box \Rcal
 %	\draw[line width=1pt,dashed] (0,0) -- (\r,0) -- (\r,\t) -- (0,\t);
 %
 %	%Dram all three nodes
@@ -320,7 +324,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 %\begin{tikzpicture}[scale=0.85]
 %	%Define the coordinates 
 %	%p = (\u,\v), p_1 = (\uu, \vv) and p_2 = (\uuu, \vvv)
-%	%Box \Rcal_n has width 2\r and height \t (\r = \pi/2 e^{R_n/2})
+%	%Box \Rcal has width 2\r and height \t (\r = \pi/2 e^{R_n/2})
 %	\pgfmathsetmacro{\u}{0}
 %	\pgfmathsetmacro{\v}{0.5}
 %	\pgfmathsetmacro{\uu}{1}
@@ -338,7 +342,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 %	\pgfmathsetmacro{\leftintvvandvvv}{\uu-exp((\vv + \vvv)/2)}
 %	\pgfmathsetmacro{\rightintvvandvvv}{\uu+exp((\vv + \vvv)/2)}
 %		
-%	%The box \Rcal_n
+%	%The box \Rcal
 %	\draw[line width=1pt,dashed] (0,0) -- (\r,0) -- (\r,\t) -- (0,\t);
 %
 %	%Dram all three nodes
@@ -407,78 +411,76 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 
 
 
-\subsection{Equivalence clustering $G_{\HP,n}(\alpha,\nu)$ and $G_{\Pcal,n}(\alpha,\nu)$}\label{ssec:coupling_HP_ast_P}
+\subsection{Equivalence clustering $\GPo$ and $\Gbox$}\label{ssec:coupling_HP_ast_P}
 
 
-Here we prove Proposition~\ref{prop:couling_c_H_P}. We first establish a few results regarding the number of nodes of degree $k_n$ in both the \TM{ Poissonized? } hyperbolic random graph $G_{\HP,n}$ and the finite box model $G_{\Pcal,n}$.
+Here we prove Proposition~\ref{prop:couling_c_H_P}. We first establish a few results regarding the number of nodes of degree $k_n$ in both the Poissonized KPKVB graph $\GPo$ and the finite box model $\Gbox$.
 
 \begin{lemma}\label{lem:N_k_HP_P}
 Let $\alpha > 1/2$, $\nu > 0$ and $\{k_n\}_{n\ge 1}$ be a sequence such that $k_n = \bigO{n^{1/(2\alpha + 1)}}$. Then
 \begin{equation} \label{eq:n_k_Hyp}
-	\Exp{N_{\HP,n}(k_n)} = \bigT{1} n k_n^{-(2\alpha + 1)},
+	\Exp{N_{\Po}(k_n)} = \bigT{1} n k_n^{-(2\alpha + 1)},
 \end{equation}
 and
 \begin{equation} \label{eq:n_k_Po}
-	\Exp{N_{\Pcal,n}(k_n)} = \bigT{1} n k_n^{-(2\alpha + 1)}.
+	\Exp{N_{\text{box}}(k_n)} = \bigT{1} n k_n^{-(2\alpha + 1)}.
 \end{equation}
 Moreover,
 \begin{equation}\label{eq:equivalence_N_HP_P}
-	\lim_{n \to \infty} \left|\frac{\Exp{N_{\HP,n}(k_n)}}{\Exp{N_{\Pcal,n}(k_n)}} - 1\right| = 0.
+	\lim_{n \to \infty} \left|\frac{\Exp{N_{\Po}(k_n)}}{\Exp{N_{\text{box}}(k_n)}} - 1\right| = 0.
 \end{equation}
 \end{lemma}
 
 \begin{proof}
 Recall that
 \[
-	\Exp{N_{\H,n}(k_n)} = \int_{\Rcal_n} \rho_{\HP,n}(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y. 
+	\Exp{N_{\Po}(k_n)} = \int_{\Rcal} \rho_{\Po}(y,k_n) f(x,y) \dd x \dd y. 
 \]
-Then by Lemma~\ref{lem:concentration_argument_rho_approximation} and a concentration argument \TM{ Please provide details for the ``concentration argumnent''. }
+Then by Lemma~\ref{lem:concentration_argument_rho_approximation} and a concentration argument 
+%\TM{ Please provide details for the ``concentration argumnent''. }
 \begin{align*}
-	\Exp{N_{\H,n}(k_n)} &= (1 + \smallO{1})\int_{\Rcal_n} \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y\\
-	&= (1 + \smallO{1}) n \int_{0}^{R_n} \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y = \bigT{1}n k_n^{-(2\alpha + 1)}.
+	\Exp{N_{\Po}(k_n)} &= (1 + \smallO{1})\int_{\Rcal} \rho(y,k_n) f(x,y) \dd x \dd y\\
+	&= (1 + \smallO{1}) n \int_{0}^{R_n} \rho(y,k_n) f(x,y) \dd x \dd y = \bigT{1}n k_n^{-(2\alpha + 1)}.
 \end{align*}
 Similarly,
 \[
-	\Exp{N_{\Pcal,n}(k_n)} = (1 + \smallO{1})\int_{\Rcal_n} \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y
+	\Exp{N_{\text{box}}(k_n)} = (1 + \smallO{1})\int_{\Rcal} \rho(y,k_n) f(x,y) \dd x \dd y
 \]
 From which both~\eqref{eq:n_k_Po} and~\eqref{eq:equivalence_N_HP_P} follow.
 \end{proof}
 
 Recall that Proposition~\ref{prop:couling_c_H_P} states
 \[
-	\lim_{n \to \infty} s_\alpha(k_n)^{-1} \, \Exp{\left|c_{\HP,n}^\ast(k_n) - c_{\Pcal,n}^\ast(k_n)\right|} = 0.
+	\lim_{n \to \infty} s(k_n)^{-1} \, \Exp{\left|c^\ast(k_n; \GPo) - c_{\Pcal,n}^\ast(k_n)\right|} = 0.
 \]
 Since for $\alpha > 3/4$, $s_{3/4}(k_n) = \log(k_n)^{-1} s_{\alpha}(k_n) = \smallO{s_{\alpha}(k_n)}$ it suffices to prove the following two cases:
 \begin{enumerate}
 \item if $1/2 < \alpha \leq 3/4$, then
 \[
-	\lim_{n\to \infty} k_n^{4\alpha -2}\cdot \Exp{\left|  c_{\HP}^\ast(k_n) - c_\Pcal^\ast(k_n)\right|}=0,
+	\lim_{n\to \infty} k_n^{4\alpha -2}\cdot \Exp{\left|  c^\ast(k_n; \GPo) - c^\ast(k_n; \Ginf)\right|}=0,
 \]
 \item if $3/4 < \alpha$, then
 \[ 
-	\lim_{n\to \infty} k_n \cdot \Exp{\left|  c_{\HP}^\ast(k_n) - c_\Pcal^\ast(k_n)\right|}=0.
+	\lim_{n\to \infty} k_n \cdot \Exp{\left|  c^\ast(k_n; \GPo) - c^\ast(k_n; \Ginf)\right|}=0.
 \]
 \end{enumerate}
 
 Recall the definition of $\Kcal_{C}(k_n)$
 \[
-	\Kcal_C(k_n) = \left\{p \in \R : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
+	\Kcal_C(k_n) = \left\{y \in \R_+ : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
 	\le \frac{k_n + C \kappa_n}{\xi_{\alpha,\nu}} \wedge e^{R_n/2} \right\},
 \]
 with $C > 0$ and 
 \[
-	\kappa_n := \begin{cases}
-		\log(n) &\mbox{if } k_n = \bigT{1},\\
-		\sqrt{k_n \log(k_n)} &\mbox{else.}
-	\end{cases}
+	\kappa_n =\sqrt{k_n \log(k_n)}.
 \]
 
 The following lemma will be frequently used in the proof of Proposition~\ref{prop:couling_c_H_P}.
 
 \begin{lemma} \label{lem:gamma_approx}
-Let $t, r \in \mathbb{R}$ be fixed and let $\hat{\rho}(y,k)$ be any of the three probability functions $\rho_{\HP,n}(y,k), \rho_{\Pcal,n}(y,k)$ or $\rho(y,k)$. Then for any sequence $k_n$ of positive integers with $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$ and $C > 0$ large enough,
+Let $t, r \in \mathbb{R}$ be fixed and let $\hat{\rho}(y,k)$ be any of the three probability functions $\rho_{\Po}(y,k), \rho_{\text{box}}(y,k)$ or $\rho(y,k)$. Then for any sequence $k_n$ of positive integers with $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$ and $C > 0$ large enough,
 \[
-	\int_{\Kcal_{C}} e^{t y} \hat{\rho}_n(y,k_n-r) e^{-\alpha y} \dd y = \bigO{1} n k_n^{-2\alpha - 1 + 2t}
+	\int_{\Kcal_{C}} e^{t y} \hat{\rho}_n(y,k_n-r) e^{-\alpha y} \dd y = \bigO{1} k_n^{-2\alpha - 1 + 2t}
 \]
 as $n \to \infty$.
 \end{lemma}
@@ -487,59 +489,59 @@ Note that on $\Kcal_{C}(k_n)$ we have that $e^{ty} = \bigT{k_n^{2t}}$. Hence, by
 \begin{align*}
 	\int_{\Kcal_{C}} e^{t y} \hat{\rho}_n(y,k_n-r) e^{-\alpha y} \dd y
 	&= \bigT{k_n^{2t}} \int_{\Kcal_{C}} \hat{\rho}_n(y,k_n-r) e^{-\alpha y} \dd y\\
-	&= \bigO{k_n^{2t}} n \Exp{N_{\Pcal}(k_n)} = \bigO{1} n k_n^{-2\alpha - 1 + 2t}.
+	&= \bigO{k_n^{2t}} n \Exp{N_{\infty}(k_n)} = \bigO{1} n k_n^{-2\alpha - 1 + 2t}.
 \end{align*}
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:couling_c_H_P}] 
 
-To keep notations concise we abbreviate $\Exp{N_{\HP} (k_n)}$ and $\Exp{N_{\Pcal} (k_n)}$ by $\expH$ and $\expP$, respectively. We will also suppress the subscripts $n$ in most expression regarding the graphs $G_{\HP,n}$ and $G_{\Pcal,n}$. Then we have
+To keep notations concise we abbreviate $\Exp{N_{\Po}(k_n)}$ and $\Exp{N_{\infty}(k_n)}$ by $\expH$ and $\expP$, respectively. We will also suppress the subscripts $n$ in most expression regarding the graphs $\GPo$ and $\Gbox$. Finally we will write $P_{\Po}(p)$ to denote the probability that two random neighbors of a point $p$ in $\GPo$ for a triangle. Then we have
 \begin{align*} 
-	&\Exp{\left|  c_{\HP}^\ast(k_n) - c_{\Pcal}^\ast(k_n)\right|}= 
+	&\Exp{\left|  c^\ast(k_n; \GPo) - c^\ast(k_n; \Ginf)\right|}= 
 	\binom{k_n}{2}^{-1}\Exp{\left|\sum_{p \in \Pcal} 
-    	\frac{\ind{D_{\HP}(p) = k_n}}{\expH} \Delta_{\HP}(p )
-        - \frac{\ind{D_\Pcal(p) = k_n}}{\expP}  \Delta_\Pcal(p)\right|} \\
-    &\le\binom{k_n}{2}^{-1} \expH^{-1} \Exp{\left|\sum_{p \in \Pcal} \ind{D_{\HP}((0,y)) = k_n} \Delta_{\HP}(p) 
-    	- \ind{D_\Pcal(p) = k_n} \Delta_\Pcal(p)\right|} \\
+    	\frac{\ind{\mathrm{deg}_{\Po}(p) = k_n}}{\expH} P_{\Po}(p)
+        - \frac{\ind{\mathrm{deg}_{\infty}(p) = k_n}}{\expP}  P(p)\right|} \\
+    &\le\binom{k_n}{2}^{-1} \expH^{-1} \Exp{\left|\sum_{p \in \Pcal} \ind{\mathrm{deg}_{\Po}(y) = k_n} P_{\Po}(p) 
+    	- \ind{\mathrm{deg}_{\infty}(p) = k_n} P(p)\right|} \\
     &\hspace{10pt}+ \binom{k_n}{2}^{-1} \left|\frac{1}{\expH} - \frac{1}{\expP}\right|\Exp{
-        	\sum_{p \in \Pcal} \ind{D_\Pcal(p) = k_n} \Delta_\Pcal(p) }
+        	\sum_{p \in \Pcal} \ind{\mathrm{deg}_{\infty}(p) = k_n} P(p) }
 \end{align*}
 The last term can be rewritten as
 \begin{align*}
-	\left|1 - \frac{\expH}{\expP}\right| \Exp{c_\Pcal^\ast(k_n)} = \left|1 - \frac{\expH}{\expP}\right|c_\infty(k_n)(1+o(1)),
+	\left|1 - \frac{\expH}{\expP}\right| \Exp{c^\ast(k_n; \Ginf)} = \left|1 - \frac{\expH}{\expP}\right|\gamma(k_n)(1+o(1)),
 \end{align*}
-where we used Proposition~\ref{prop:convergence_average_clustering_P_n} (See Section~\ref{sec:clustering_Pn_to_P}). The first term in this product converges to zero by Lemma~\ref{lem:N_k_HP_P} while the second term scales as $s_\alpha(k_n)$ by Theorem~\ref{thm:asymptotics_average_clustering_P}. Hence
+where we used Proposition~\ref{prop:convergence_average_clustering_P_n} (See Section~\ref{sec:clustering_Pn_to_P}). The first term in this product converges to zero by Lemma~\ref{lem:N_k_HP_P} while the second term scales as $s(k_n)$. Hence
 \[
-	\left|1 - \frac{\expH}{\expP}\right| \Exp{c_\Pcal^\ast(k_n)} = \smallO{s_\alpha(k_n)},
+	\left|1 - \frac{\expH}{\expP}\right| \Exp{c^\ast(k_n; \Ginf)} = \smallO{s(k_n)},
 \]
-and therefore we are left to analyze the other term. By the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke} we have that
+and therefore we are left to analyze the other term. By the Campbell-Mecke formula we have that
 \begin{align*}
-	    &\Exp{\left|\sum_{p \in \Pcal} \frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H(p) 
-	        	- \frac{\ind{D_\Pcal(p) = k_n}}{\expH} \Delta_\Pcal(p)\right|} \\
-	    &= \int_{\Rcal_n} 
-	        \Exp{\left|\frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y) ) 
-	        - \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH} \Delta_\Pcal ((0,y))\right|} 
-	        	f_{\alpha,\nu}(x,y) \dd y \dd x.
+	    &\Exp{\left|\sum_{p \in \Pcal} \frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} P_{\Po}(p) 
+	        	- \frac{\ind{\mathrm{deg}_{\infty}(p) = k_n}}{\expH} P(p)\right|} \\
+	    &= \int_{\Rcal} 
+	        \Exp{\left|\frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} P_{\Po}(y)
+	        - \frac{\ind{\mathrm{deg}_{\infty}(y) = k_n}}{\expH} P(y)\right|} 
+	        	f(x,y) \dd y \dd x.
 \end{align*}
 Since 
 \begin{align*}
-	\Exp{\frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y) )}
+	\Exp{\frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} P_{\Po}(y)}
 	&\le \binom{k_n}{2} \rho_{\HP}(y,k_n)\expH^{-1} \\
 	&= \binom{k_n}{2} \rho_{\HP}(y,k_n)\bigT{\expP^{-1}}\\
 	&= \bigT{n^{-1} k_n^{2\alpha + 3}}\rho_{\HP,n}(y,k_n)
 \end{align*}
 and similar for the other term, it follows that
 \begin{align*}
-	&\hspace{-60pt}\Exp{ \left| \frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y) )
-		- \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH}  \Delta_\Pcal ((0,y))\right|} \\
+	&\hspace{-60pt}\Exp{ \left| \frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} P_{\Po}(y)
+		- \frac{\ind{\mathrm{deg}_{\infty}(y) = k_n}}{\expH}  P(y)\right|} \\
 	&\le \bigT{n^{-1} k_n^{2\alpha + 3}}\left(\rho_{\HP,n}(k,n) + \rho_n(y,k_n)\right).
 \end{align*}
 Therefore, by a concentration argument (c.f. Corollary~\ref{cor:concentration_argument_other_models}), it is enough to consider the integral
 \begin{equation} \label{eq:expectation_total}
-	\int_{\Kcal_{C}(k_n)} \Exp{\left|\frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y) ) 
-		- \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH} \Delta_\Pcal ((0,y))\right|} e^{-\alpha y} \dd y \dd x,
+	\int_{\Kcal_{C}(k_n)} \Exp{\left|\frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} P_{\Po}(y)
+		- \frac{\ind{\mathrm{deg}_{\infty}(y) = k_n}}{\expH} P(y)\right|} e^{-\alpha y} \dd y \dd x,
 \end{equation}
-where we also used that $f_{\alpha,\nu}(x,y)$ is simply a constant multiple of the function $e^{-\alpha y}$. We shall proceed by expanding the integrand and analyzing the individual terms. With a slight abuse of notation we shall write $y$ instead of $(0,y)$ in expression such as $\BallHyp{y}$. In addition we write $D_{\H}(y,k_n;\Pcal)$ for the indicator which is equal to 1 if and only if $\BallHyp{(0,y)}$ contains $k_n$ points from $\Pcal \setminus \{(0,y)\}$. We define $D_{\Pcal}(y,k_n;\Pcal)$ analogously for the ball $\BallPo{(0,y)}$.
+where we also used that $f(x,y)$ is simply a constant multiple of the function $e^{-\alpha y}$. We shall proceed by expanding the integrand and analyzing the individual terms. With a slight abuse of notation we shall write $y$ instead of $(0,y)$ in expression such as $\BallHyp{y}$. In addition we write $D_{\H}(y,k_n;\Pcal)$ for the indicator which is equal to 1 if and only if $\BallHyp{(0,y)}$ contains $k_n$ points from $\Pcal \setminus \{(0,y)\}$. We define $D_{\Pcal}(y,k_n;\Pcal)$ analogously for the ball $\BallPo{(0,y)}$.
 
 %We shall divide the analysis into the two case $k_n = \bigO{1}$ and $k_n \to \infty$, the proof of the latter case being the most involved one. 
 
@@ -547,8 +549,8 @@ where we also used that $f_{\alpha,\nu}(x,y)$ is simply a constant multiple of t
 %
 %In this case we split the integrand as follows:
 %\begin{align*}
-%	&\Exp{\left|\frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y)) 
-%		- \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH} \Delta_\Pcal ((0,y))\right|}\\
+%	&\Exp{\left|\frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} \Delta_\H ((0,y)) 
+%		- \frac{\ind{\mathrm{deg}_{\infty}(y) = k_n}}{\expH} P(y)\right|}\\
 %	&\le \expH^{-1} {\mathbb{E}}\left[\sum_{p_1, p_2\in \Pcal_n \setminus \{(0,y)\}}^{\ne} \hspace{-3pt} 
 %		\left(D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\})+ D_{\Pcal}(y,k_n-2;\Pcal \setminus \{p_1,p_2\})\right) \right.\\
 %	&\hspace{75pt}\left. \times	\left|\Delta_\H (y,p_1,p_2) - \Delta_\Pcal (y,p_1,p_2)\right| 
@@ -569,7 +571,7 @@ where we also used that $f_{\alpha,\nu}(x,y)$ is simply a constant multiple of t
 %	&\hspace{10pt}+ \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
 %		\ind{y_1 \le R_n/4 - y} \ind{p_1 \in \BallSym{y}}}.
 %\end{align*}
-%Next we note that since $k_n = \bigO{1}$ we have that $\kappa_n = \log(n)$ and hence, since $y \in \Kcal_C(k_n)$ it follows that $y = \bigO{\log\log(n)}$. Now let $n$ be large enough such that $R_n/4 - y > 0$. Then for any $y^\prime \le R_n/4 - y$ it follows from \cite[Lemma 30]{fountoulakis2018law} that under the coupling we consider any edge between $p^{\prime} = (x^\prime, y^\prime)$ and $(0,y)$ is present a.a.s. in both $G_{\HP,n}$ and $G_{\Pcal,n}$. In particular we have that
+%Next we note that since $k_n = \bigO{1}$ we have that $\kappa_n = \log(n)$ and hence, since $y \in \Kcal_C(k_n)$ it follows that $y = \bigO{\log\log(n)}$. Now let $n$ be large enough such that $R_n/4 - y > 0$. Then for any $y^\prime \le R_n/4 - y$ it follows from \cite[Lemma 30]{fountoulakis2018law} that under the coupling we consider any edge between $p^{\prime} = (x^\prime, y^\prime)$ and $(0,y)$ is present a.a.s. in both $\GPo$ and $\Gbox$. In particular we have that
 %\[
 %	\int_{\Kcal_{C}(k_n)} \Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} \ind{y_1 \le R_n/4 - y} 
 %		\ind{p_1 \in \BallSym{y}}} \alpha e^{-\alpha y} \dd x \dd y = \smallO{1}.
@@ -588,7 +590,7 @@ where we also used that $f_{\alpha,\nu}(x,y)$ is simply a constant multiple of t
 %	&\Exp{\sum_{p_1 \in \Pcal_n \setminus \{(0,y)\}} \hspace{-3pt} 
 %				D_{\H}(y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \ind{y_1 > R_n/4 - y} \ind{p_1 \in \BallSym{y}}}\\
 %	&\le \int_{R_n/4 - y}^{R_n} \int_{-I_n}^{I_n} \left(\ind{p_1 \in \BallHyp{y}} + \ind{p_1 \in \BallPon{y}}\right)
-%		f_{\alpha,\nu}(x_1, y_1) \dd x_1 \dd y_1\\
+%		f(x_1, y_1) \dd x_1 \dd y_1\\
 %	&= \bigO{1} e^{y/2} \int_{R_n/4 - y}^{R_n - y} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1
 %		+ \bigO{1} n \int_{R_n - y}^{R_n} e^{-\alpha y_1} \dd y_1\\
 %	&= \bigO{e^{(1 - \alpha)y} e^{-(2\alpha - 1) R_n/8} + e^{\alpha y} n e^{-\alpha R_n}}\\
@@ -606,9 +608,9 @@ where we also used that $f_{\alpha,\nu}(x,y)$ is simply a constant multiple of t
 %\end{align*}
 %for any $a \in \R$, since $k_n = \bigT{1}$. We therefore conclude that
 %\[
-%	\int_{\Kcal_{C}(k_n)} \Exp{\left|\frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y) ) 
-%		- \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH} \Delta_\Pcal ((0,y))\right|} e^{-\alpha y} \dd y \dd x
-%	= \smallO{s_\alpha(k_n)},
+%	\int_{\Kcal_{C}(k_n)} \Exp{\left|\frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} P_{\Po}(y)
+%		- \frac{\ind{\mathrm{deg}_{\infty}(y) = k_n}}{\expH} P(y)\right|} e^{-\alpha y} \dd y \dd x
+%	= \smallO{s(k_n)},
 %\]
 %as required.
 
@@ -616,10 +618,10 @@ where we also used that $f_{\alpha,\nu}(x,y)$ is simply a constant multiple of t
 %
 %For this case 
 
-We need to split the integrand over several terms and then analyze each of these separately. Applying the Campbel-Mecke formula~\eqref{eq:def_Campbell-Mecke} yields
+We need to split the integrand over several terms and then analyze each of these separately. Applying the Campbel-Mecke formula yields
 \begin{align*} 
- &\hspace{-30pt}\Exp{ \left| \frac{\ind{D_\H((0,y)) = k_n}}{\expH} \Delta_\H ((0,y) )
-        - \frac{\ind{D_\Pcal((0,y)) = k_n}}{\expH}  \Delta_\Pcal ((0,y))
+ &\hspace{-30pt}\Exp{ \left| \frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} P_{\Po}(y)
+        - \frac{\ind{\mathrm{deg}_{\infty}(y) = k_n}}{\expH}  P(y)
         \right|}\leq \\
  & {\mathbb E} \left[ \sum_{(p_1,p_2) \in \Pcal \setminus \{(0,y)\}}^{\not =} 
   \left| \frac{D_{\H}(y,k_n-2; \Pcal \setminus \{p_1,p_2 \})}{\expH} \Delta_\H (y,p_1,p_2) \right. \right.\\
@@ -730,7 +732,7 @@ and
 		\, D_\H (y,k_n-2;\Pcal \setminus \{p_1,p_2\})} := \mathcal{I}_n^{(3)}.
 \end{split}
 \end{equation}
-We will bound each term using the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke} and show for $i = 1,2,3$ that for $1/2 < \alpha < 3/4$
+We will bound each term using the Campbell-Mecke formula and show for $i = 1,2,3$ that for $1/2 < \alpha < 3/4$
 \begin{equation}
 	\lim_{n \to \infty} k_n^{4\alpha - 2} \binom{k_n}{2}^{-1} \expH^{-1} 
 		\int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(i)} e^{-\alpha} \dd y = 0,
@@ -1135,7 +1137,7 @@ We bound the integral as follows:
 		\int_{-I_n}^{I_n} \int_{R_n - y_1}^{R_n - y} 
 		\ind{p_2 \in  \BallHyp{y}} e^{-\alpha(y_1 + y_2)} \dd y_2 \dd x_2 \dd y_1 \dd x_1.
 \end{align*}
-Now, by Lemma~\ref{} \PvdH{@Nikolaos: Which lemma are you referring to here?}
+Now,
 \begin{align*}
 &\int_{-I_n}^{I_n} \int_{R_n - y_1}^{R_n - y} \ind{p_2 \in  \BallHyp{y}} \cdot  
 e^{-\alpha y_2} dy_2 dx_2 = O(1) \cdot e^{y/2} \int_{R_n - y_1}^{R_n - y} e^{(1/2 - \alpha) y_2} dy_2 \\
@@ -1320,8 +1322,8 @@ We thus conclude that
 Hence, if we set 
 \[
 h_y(p_1, \Pcal) := \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} \cdot    
-\left( \mu_{\alpha,\nu} \left( \FatBallHyp{p_1} \cap \FatBallHyp{p} \right)
-+ \mu_{\alpha,\nu} \left( \Rcal([R_n-y,R_n]) \right) \right),
+\left( \mu \left( \FatBallHyp{p_1} \cap \FatBallHyp{p} \right)
++ \mu \left( \Rcal([R_n-y,R_n]) \right) \right),
 \]
 then 
 \begin{align*}
@@ -1330,7 +1332,7 @@ then
 D_\H (y,k_n-2;\Pcal \setminus \{ p_1, p_2\})
 } \\
 &=O(1)\cdot
-\ind{p_1\in \BallHyp{p}\setminus \BallPo{p}} \cdot \mu_{\alpha,\nu} (\BallHyp{p}\cap \BallHyp{p_1}) \rho_{\HP}(y,k_n-2) \\
+\ind{p_1\in \BallHyp{p}\setminus \BallPo{p}} \cdot \mu (\BallHyp{p}\cap \BallHyp{p_1}) \rho_{\HP}(y,k_n-2) \\
 & \leq O(1) \cdot  h_y (p_1, \Pcal) \rho_{\HP}(y,k_n-2) . 
 \end{align*}
 To calculate the expectation of the above function we need to approximate the 
@@ -1374,61 +1376,61 @@ We thus conclude that
 \]
 which in turn implies that
 \[
-	\mu_{\alpha,\nu} \left( \FatBallHyp{p_1} \cap \BallHyp{p} \right) \leq 
-	\mu_{\alpha,\nu}\left( \FatBallHyp{p} \cap  \Rcal([c(y_1,y), R_n]\right) + 
-	\mu_{\alpha,\nu} (\Rcal ([R_n - y, R_n]) ).
+	\mu \left( \FatBallHyp{p_1} \cap \BallHyp{p} \right) \leq 
+	\mu\left( \FatBallHyp{p} \cap  \Rcal([c(y_1,y), R_n]\right) + 
+	\mu (\Rcal ([R_n - y, R_n]) ).
 \]
 Therefore, 
 \begin{align*} 
 	h_y(p_1, \Pcal) &\leq \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} 
-    	\mu_{\alpha,\nu}  \left( \FatBallHyp{p} \cap  \Rcal([c(y_1,y), R_n])\right)
+    	\mu  \left( \FatBallHyp{p} \cap  \Rcal([c(y_1,y), R_n])\right)
         \\
 	&\hspace{10pt}+ \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}}
-    	\mu_{\alpha,\nu}  \left( \Rcal ([R_n - y, R_n]) \right).
+    	\mu  \left( \Rcal ([R_n - y, R_n]) \right).
 \end{align*}
 
 
 
-Now, the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke} gives
+Now, the Campbell-Mecke formula gives
 \begin{align*}
 	&\Exp{ \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y(p_1) \geq K} 
 		\hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
 		\, D_\H (y,k_n-2;\Pcal \setminus \{ p_1,p_2\})}\\
 	&\le \Exp{\left( \sum_{p_1 \in \Pcal} 
 		h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \\
-	&=\frac{\nu \alpha}{\pi} \int_{\Rcal_n} \Exp{h_y(p_1, \Pcal \setminus \{p_1\})}
+	&=\frac{\nu \alpha}{\pi} \int_{\Rcal} \Exp{h_y(p_1, \Pcal \setminus \{p_1\})}
 		e^{-\alpha y_1} \dd x_1 \dd y_1\\
-	&\le \frac{\nu \alpha}{\pi} \int_{\Rcal_n} \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} 
-	    	\mu_{\alpha,\nu}  \left( \FatBallHyp{p} \cap  \Rcal([c(y_1,y), R_n])\right)
+	&\le \frac{\nu \alpha}{\pi} \int_{\Rcal} \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} 
+	    	\mu  \left( \FatBallHyp{p} \cap  \Rcal([c(y_1,y), R_n])\right)
 	    	e^{-\alpha y_1} \dd x_1 \dd y_1 \numberthis \label{eq:h_upper_bound_1}\\
-	&\hspace{10pt}+ \frac{\nu \alpha}{\pi} \int_{\Rcal_n} \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}}
-	    	\mu_{\alpha,\nu}  \left( \Rcal ([R_n - y, R_n]) \right) e^{-\alpha y_1} \dd x_1 \dd y_1.
+	&\hspace{10pt}+ \frac{\nu \alpha}{\pi} \int_{\Rcal} \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}}
+	    	\mu  \left( \Rcal ([R_n - y, R_n]) \right) e^{-\alpha y_1} \dd x_1 \dd y_1.
 	    	\numberthis \label{eq:h_upper_bound_2}
 \end{align*}
 
 Recall that $(\BallSym{(0,y)})\cap \Rcal([R_n - y + 2 \log\left(\frac{\pi}{2}\right),R_n]) = \emptyset$. 
-We will first calculate the measures $\mu_{\alpha, \nu}$ appearing in~\eqref{eq:h_upper_bound_1} and~\eqref{eq:h_upper_bound_2}. The first one is:
+We will first calculate the measures $\mu$ appearing in~\eqref{eq:h_upper_bound_1} and~\eqref{eq:h_upper_bound_2}. The first one is:
 \begin{align*}
-	\mu_{\alpha,\nu}\left( \FatBallHyp{y} \cap  \Rcal([c(y_1,y), R_n])\right) 
+	\mu\left( \FatBallHyp{y} \cap  \Rcal([c(y_1,y), R_n])\right) 
 	&\leq (1+ K) \frac{\nu \alpha}{\pi} \cdot e^{y/2}  \int_{c(y_1,y)}^{R_n} e^{-(\alpha - \frac{1}{2}) y'} \, dy' \\
 	&=  \bigO{e^{\frac{y}{2} - (\alpha-\frac{1}{2}) \min \{y,y_1\}}}.
 \end{align*}
 
 The second term is: 
 \begin{align*}
-	\mu_{\alpha,\nu} \left( \Rcal([R_n - y,R_n]) \right) 
+	\mu \left( \Rcal([R_n - y,R_n]) \right) 
     &= \frac{\nu \alpha}{\pi} \int_{R_n - y}^{R_n} \pi e^{\frac{R_n}{2}} e^{-\alpha y'} \, dy' 
     	= \bigO{e^{\frac{R_n}{2}} e^{-\alpha (R_n-y)}} = \bigO{e^{\alpha y - (\alpha - \frac{1}{2})R_n}}. 
 \end{align*}
 
 Using these, we get
 \begin{align} 
-	&\int_{\Rcal_n ([0, R_n - y_n + 2 \ln \frac{\pi}{2}])} \Exp{h_y(p_1, \Pcal \setminus \{p_1\})} 
+	&\int_{\Rcal ([0, R_n - y_n + 2 \ln \frac{\pi}{2}])} \Exp{h_y(p_1, \Pcal \setminus \{p_1\})} 
     e^{-\alpha y_1} \, dx_1 \, dy_1 \notag \\
-	&= \bigO{1} \int_{\Rcal_n ([0, R_n - y+ 2 \ln \frac{\pi}{2}])} \ind{p_1 \in \BallSym{p}} 
+	&= \bigO{1} \int_{\Rcal ([0, R_n - y+ 2 \ln \frac{\pi}{2}])} \ind{p_1 \in \BallSym{p}} 
 		e^{\frac{y}{2} - (\alpha - \frac{1}{2}) \min \{y,y_1\} - \alpha y_1} \, dx_1 \, dy_1
 		\label{eq:Mecke_sum_1}\\ 
-	&\hspace{10pt}+ \bigO{1} \int_{\Rcal_n ([0, R_n - y + 2 \ln \frac{\pi}{2}])} 
+	&\hspace{10pt}+ \bigO{1} \int_{\Rcal ([0, R_n - y + 2 \ln \frac{\pi}{2}])} 
     	\ind{p_1 \in \BallHyp{(0,y)}} 
     	e^{\alpha y - (\alpha - \frac{1}{2})R_n - \alpha y_1} \, dx_1 \, dy_1.\label{eq:Mecke_sum_2}
 \end{align}
@@ -1658,7 +1660,7 @@ Now, we will first give an upper  bound on the term
 \Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}
 \ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}}.
 \end{equation*}
-Using the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke}, we write 
+Using the Campbell-Mecke formula, we write 
 \begin{align*}
 &\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\}, \ y_1 < K}
 \ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}} =\\
@@ -1666,13 +1668,13 @@ Using the Campbell-Mecke formula~\eqref{eq:def_Campbell-Mecke}, we write
 \ind{p_1 \in \BallSym{y}} 
  \ind{p_2 \in \BallHyp{y}\cap \BallPo{y}} e^{-\alpha y_2} e^{-\alpha y_1} 
  dx_2 dy_2 dx_1 dy_1 \\
- &\leq  \mu_{\alpha, \nu} (\BallHyp{y})\cdot
+ &\leq  \mu (\BallHyp{y})\cdot
  \int_{-I_n}^{I_n} \int_0^K \ind{p_1 \in \BallSym{y}} 
 e^{-\alpha y_1}  dx_1 dy_1.
 \end{align*}
 By Lemma~\ref{lem:average_degree_hyperbolic} and a concentration argument,  the first factor is 
 \[
-	\mu_{\alpha, \nu} (\BallHyp{y}) =O(1) e^{y/2}.
+	\mu (\BallHyp{y}) =O(1) e^{y/2}.
 \]
 We bound the second factor using Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. 
 In particular,~\eqref{eq:asymp1} implies that 
@@ -1732,22 +1734,22 @@ the above term is therefore $o(1)$.
 
 \end{proof}
 
-\subsection{Coupling $G_{\H,n}$ to $G_{\widetilde{\H},n}$}\label{ssec:coupling_H_HP}
+\subsection{Coupling $G_n$ to $G_{\Po}$}\label{ssec:coupling_H_HP}
 
-Now that we have established the equivalence of the local clustering function between the Poisson hyperbolic graph $G_{\HP,n}$ and $G_{\Pcal,n}$ the final step is to relate local clustering in $G_{\HP,n}$ to the original hyperbolic random graph $G_{\H,n}$. As mentioned in Section~\ref{ssec:coupling_H_P}, this is done by moving from $c_{\H,n}(k)$ to the adjusted local clustering $c_{\H,n}^\ast(k)$ (Lemma~\ref{lem:clustering_ast_H}) and then to $c_{\HP,n}^\ast(k)$ (Proposition~\ref{prop:clustering_ast_H_Pois}). We prove Proposition~\ref{prop:clustering_ast_H_Pois} first and will end this section with the proof of Lemma~\ref{lem:clustering_ast_H}.
+Now that we have established the equivalence of the local clustering function between the Poisson hyperbolic graph $\GPo$ and $\Gbox$ the final step is to relate local clustering in $\GPo$ to the original hyperbolic random graph $G_n$. As mentioned in Section~\ref{ssec:coupling_H_P}, this is done by moving from $c(k; G_n)$ to the adjusted local clustering $c^\ast(k; G_n)$ (Lemma~\ref{lem:clustering_ast_H}) and then to $c^\ast(k; \GPo)$ (Proposition~\ref{prop:clustering_ast_H_Pois}). We prove Proposition~\ref{prop:clustering_ast_H_Pois} first and will end this section with the proof of Lemma~\ref{lem:clustering_ast_H}.
 
-To achieve the results we consider the standard coupling between the binomial and Poisson process. That is, we take a sequence of i.i.d. random elements $z_1, z_2, \dots$ uniformly on the hyperbolic disk of radius $R_n$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the original hyperbolic random graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} \Po(n)$ many points ($N$ is a Poisson random variable with mean $n$). Under this coupling $N_{\H,n}(k) = \sum_{j=1}^n \ind{D_\H(z_j)=k}$ denotes the number of degree $k$ vertices in the original hyperbolic random graph model with $n$ vertices and $N_{\HP,n}(k)=\sum_{j=1}^{N} \ind{D_{\HP}(z_j)=k}$ denotes the (random) number of degree $k$ vertices in the Poisson version of the hyperbolic random graph.
+To achieve the results we consider the standard coupling between the binomial and Poisson process. That is, we take a sequence of i.i.d. random elements $z_1, z_2, \dots$ uniformly on the hyperbolic disk of radius $R_n$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the original hyperbolic random graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} \Po(n)$ many points ($N$ is a Poisson random variable with mean $n$). Under this coupling $N_n(k) = \sum_{j=1}^n \ind{\mathrm{deg}_n(z_j)=k}$ denotes the number of degree $k$ vertices in the original hyperbolic random graph model with $n$ vertices and $N_{\Po}(k)=\sum_{j=1}^{N} \ind{\mathrm{deg}_{\Po}(z_j)=k}$ denotes the (random) number of degree $k$ vertices in the Poisson version of the KPKVB graph.
 
 We start with a result that relates the number of nodes with degree $k_n$ in both models. 
 
 \begin{lemma}\label{lem:diff_Nk_hyperbolic_binomial_poisson}
 Let $\{k_n\}_{n \ge 1}$ be sequence of natural numbers with $0 \leq k_n \leq n-1$ and $k_n = o(n^{\frac{1}{2\alpha+1}})$. Then
 \[
-	\Exp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|} = \smallO{\Exp{N_{\HP,n}(k_n)}} = \smallO{n k^{-(2\alpha+1)}},
+	\Exp{\left|N_{\Po}(k_n)-N_{\Po}(k_n)\right|} = \smallO{\Exp{N_{\Po}(k_n)}} = \smallO{n k^{-(2\alpha+1)}},
 \]
 and in particular
 \[
-	\Exp{N_{\H,n}(k_n)} = \bigT{k_n^{-(2\alpha + 1)} n}.
+	\Exp{N_{\Po}(k_n)} = \bigT{k_n^{-(2\alpha + 1)} n}.
 \]
 \end{lemma}
 
@@ -1761,41 +1763,44 @@ Somehow I had expected we would include that. In fact Markus had prepared a shor
 Should not be too hard to add the rest, no? \\
 We already have the degree sequence for the infinite model somewhere in the paper.
 }
+\PvdH{Will happen but I honestly had no time to put it in.}
 
 \begin{proof}
 The second result follows directly from the first and Lemma~\ref{lem:N_k_HP_P}. Therefore we will only need to prove the first statement of the lemma.
 
-We use the Chernoff concentration result for a Poisson random~\eqref{eq:def_chernoff_bound_poisson}, which states that with probability $n^{-C^2/2}$ the Poisson random variable $N$ with expectation $n$ is contained in the interval $[n-C\sqrt{n\log n},n+C\sqrt{n \log n}]$. We proceed by bounding the effect on the number of degree $k_n$ vertices by adding or removing $C\sqrt{n\log n}$ many vertices to $G_{\H,n}(\alpha,\nu$ and from $G_{\HP,n}(\alpha,\nu)$, respectively.
+We use the Chernoff concentration result for a Poisson random~\eqref{eq:def_chernoff_bound_poisson}, which states that with probability $n^{-C^2/2}$ the Poisson random variable $N$ with expectation $n$ is contained in the interval $[n-C\sqrt{n\log n},n+C\sqrt{n \log n}]$. We proceed by bounding the effect on the number of degree $k_n$ vertices by adding or removing $C\sqrt{n\log n}$ many vertices to $G_n(\alpha,\nu$ and from $\GPo$, respectively.
 
 Define the events
 \begin{align*}
 	A_n^{\pm} := \{N \in [n, n \pm C\sqrt{n \log n}]\},
 \end{align*}
-\TM{ weird notation }
+\TM{ weird notation }\PvdH{Will be adjusted later}
 and let $A_n = A_n^{-} \cup A_n^{+}$. Then,
 \begin{align*}
-\Exp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|} 
-&\le \CExp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|}{A_n} + \bigO{n^{1 - C^2/2}}\\
-&= \CExp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|}{A_n} + \smallO{\Exp{N_{\HP,n}(k_n)}}
+\Exp{\left|N_{\Po}(k_n)-N_{\Po}(k_n)\right|} 
+&\le \CExp{\left|N_{\Po}(k_n)-N_{\Po}(k_n)\right|}{A_n} + \bigO{n^{1 - C^2/2}}\\
+&= \CExp{\left|N_{\Po}(k_n)-N_{\Po}(k_n)\right|}{A_n} + \smallO{\Exp{N_{\Po}(k_n)}}
 \end{align*}
 by choosing $C$ large enough, e.g. $C > \sqrt{2}$. What is left to show is that for any $C > 0$
 \[
-	 \CExp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|}{A_n} = \smallO{\Exp{N_{\HP,n}(k_n)}}.
+	 \CExp{\left|N_{\Po}(k_n)-N_{\Po}(k_n)\right|}{A_n} = \smallO{\Exp{N_{\Po}(k_n)}}.
 \]
 
-Let $V_{\H,n}(k_n)$ be the set of degree $k_n$ vertices in the binomial graph $G_{\H,n}$ and $V_{\HP,n}(k_n)$ be the set of degree $k_n$ vertices in the Poisson graph $G_{\HP,n}$. Then 
+Let $V_{\H,n}(k_n)$ be the set of degree $k_n$ vertices in the KPKVB graph $G_n$ and $V_{\HP,n}(k_n)$ be the set of degree $k_n$ vertices in the Poisson graph $\GPo$. Then 
 \[
-	\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right| = |V_{\H,n}(k_n) \Delta V_{\HP,n}(k_n)|, 
+	\left|N_{\Po}(k_n)-N_{\Po}(k_n)\right| = |V_{\H,n}(k_n) \Delta V_{\HP,n}(k_n)|, 
 	%= |V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n) | + |V_{\HP,n}(k_n) \setminus V_{\H,n}(k_n) |,
 \]
 where $A \Delta B$ denotes the symmetric difference between two sets $A$ and $B$.
 
-We first consider the case $N \in [n,n+C\sqrt{n\log n}]$, i.e. the event $A_n^{+}$. For $z \in V_{\HP,n}(k_n) \setminus V_{\H,n}(k_n)$, $z$ has degree $k_n$ in the Poisson graph, but not in the binomial graph; \TM{ I dont particularly like the name ``binomial graph''. Maybe just use ``standard KPKVB graph'' or ``fixed number of node graph'' } so as $N \geq n$, either $z$ or one of its $k_n$ neighbors must have been removed during the transition from the Poisson graph to the binomial graph. On the event $A_n$, at most $C\sqrt{n\log n}$ many vertices are removed. The probability of hitting a degree $k_n$ vertex or one of its neighbors is at most $\frac{k_n+1}{N} \leq \frac{k_n+1}{n}$. Therefore, by the union bound, the probability that a particular degree $k_n$ vertex of the Poisson graph is removed is upper bounded by $C\sqrt{n\log n}\frac{k_n+1}{n}$. Hence, the expected number of degree $k_n$ vertices that disappear in the transition from the Poisson graph to the binomial graph is bounded by 
+We first consider the case $N \in [n,n+C\sqrt{n\log n}]$, i.e. the event $A_n^{+}$. For $z \in V_{\HP,n}(k_n) \setminus V_{\H,n}(k_n)$, $z$ has degree $k_n$ in the Poisson graph, but not in the binomial graph; 
+\TM{ I dont particularly like the name ``binomial graph''. Maybe just use ``standard KPKVB graph'' or ``fixed number of node graph'' }\PvdH{I replaced it.} 
+so as $N \geq n$, either $z$ or one of its $k_n$ neighbors must have been removed during the transition from the Poisson graph to the binomial graph. On the event $A_n$, at most $C\sqrt{n\log n}$ many vertices are removed. The probability of hitting a degree $k_n$ vertex or one of its neighbors is at most $\frac{k_n+1}{N} \leq \frac{k_n+1}{n}$. Therefore, by the union bound, the probability that a particular degree $k_n$ vertex of the Poisson graph is removed is upper bounded by $C\sqrt{n\log n}\frac{k_n+1}{n}$. Hence, the expected number of degree $k_n$ vertices that disappear in the transition from the Poisson graph to the KPKVB graph is bounded by 
 \[
-	\CExp{|V_{\HP,n}(k_n) \setminus V_{\H,n}(k_n)}{A_n^{(1)}}\leq \E[N_{\HP,n}(k_n)] C\sqrt{n \log n}\frac{k_n+1}{n}  
-	= \smallO{\Exp{N_{\HP,n}(k_n)}},
+	\CExp{|V_{\HP,n}(k_n) \setminus V_{\H,n}(k_n)}{A_n^{(1)}}\leq \E[N_{\Po}(k_n)] C\sqrt{n \log n}\frac{k_n+1}{n}  
+	= \smallO{\Exp{N_{\Po}(k_n)}},
 \] 
-\TM{ absolute bar missing above }
+\TM{ absolute bar missing above }\PvdH{Fixed.}
 where the last line follows since for $\alpha > 1/2$,
 \[
 	k_n \sqrt{\frac{\log(n)}{n}} = \smallO{n^{\frac{1}{2\alpha + 1}}\sqrt{\frac{\log(n)}{n}}} 
@@ -1803,97 +1808,99 @@ where the last line follows since for $\alpha > 1/2$,
 \]
 
 For $z \in V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)$, $z$ is a degree $k_n$ vertex in the binomial graph, but 
-must have degree $k_n+\ell$ in the Poisson graph (where $1 \leq \ell \leq c\sqrt{n\log n}$). By linearity of expectation the expected number of degree $k_n+\ell$ vertices of the Poisson graph which turn into degree $k_n$ vertices of the binomial graph is equal to the expected number of degree $k_n+\ell$ vertices in the Poisson graph times the probability that a degree $k_n+\ell$ vertex turns into a degree $k_n$ vertex in the transition back, from the Poisson graph to the binomial graph. The probability of choosing uniformly a set of $\ell$ neighbors of a degree $k_n+\ell$ vertex of the Poisson graph is given by $\frac{k_n+\ell}{N}\cdots \frac{k_n+1}{N-\ell + 1}$. \TM{ what exactly is the chance experiment here? You are doing ordered, which is not what I would have expected. Maybe that can spelled out. } Now, using $k_n = \smallO{n^{\frac{1}{2\alpha+1}}} = \smallO{C\sqrt{n\log n}}$ for $\alpha > \frac{1}{2}$, $\ell \leq C\sqrt{n \log n}$ and $N-\ell + 1 \geq n$, this probability is bounded from above by $(C+1)^\ell (\frac{\sqrt{n \log n}}{n})^\ell =((C+1) \sqrt{\frac{\log n}{n}})^\ell$ which is upper bounded by $(\frac{1}{2})^\ell$ for $n$ large enough, i.e. $n \geq n_0$. Therefore, using the geometric series, we conclude
+must have degree $k_n+\ell$ in the Poisson graph (where $1 \leq \ell \leq c\sqrt{n\log n}$). By linearity of expectation the expected number of degree $k_n+\ell$ vertices of the Poisson graph which turn into degree $k_n$ vertices of the binomial graph is equal to the expected number of degree $k_n+\ell$ vertices in the Poisson graph times the probability that a degree $k_n+\ell$ vertex turns into a degree $k_n$ vertex in the transition back, from the Poisson graph to the binomial graph. The probability of choosing uniformly a set of $\ell$ neighbors of a degree $k_n+\ell$ vertex of the Poisson graph is given by $\frac{k_n+\ell}{N}\cdots \frac{k_n+1}{N-\ell + 1}$. 
+\TM{ what exactly is the chance experiment here? You are doing ordered, which is not what I would have expected. Maybe that can spelled out. } \PvdH{Will ask Markus to add more explanation (it is his proof).}
+Now, using $k_n = \smallO{n^{\frac{1}{2\alpha+1}}} = \smallO{C\sqrt{n\log n}}$ for $\alpha > \frac{1}{2}$, $\ell \leq C\sqrt{n \log n}$ and $N-\ell + 1 \geq n$, this probability is bounded from above by $(C+1)^\ell (\frac{\sqrt{n \log n}}{n})^\ell =((C+1) \sqrt{\frac{\log n}{n}})^\ell$ which is upper bounded by $(\frac{1}{2})^\ell$ for $n$ large enough, i.e. $n \geq n_0$. Therefore, using the geometric series, we conclude
 \begin{align*}
 \CExp{|V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)|}{A_n^{+}} 
 &\le  \sum_{\ell=1}^{\sqrt{n\log n}} \Exp{N_{\HP,n}(k_n+\ell)} \left((c+1)\sqrt{\frac{\log n}{n}}\right)^{\ell}\\
 &\le \sum_{\ell=1}^{\sqrt{n\log n}} \bigT{n (k_n+\ell)^{-2\alpha-1}} \left((c+1)\sqrt{\frac{\log n}{n}}\right)^{\ell}\\
-&= \bigO{\Exp{N_{\HP,n}(k_n)}} \sum_{\ell=1}^{\sqrt{n\log n}} \left((c+1)\sqrt{\frac{\log n}{n}}\right)^{\ell}
-= \smallO{\Exp{N_{\HP,n}(k_n)}},
+&= \bigO{\Exp{N_{\Po}(k_n)}} \sum_{\ell=1}^{\sqrt{n\log n}} \left((c+1)\sqrt{\frac{\log n}{n}}\right)^{\ell}
+= \smallO{\Exp{N_{\Po}(k_n)}},
 \end{align*}
 and hence
 \[
-	\CExp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|}{A_n^{+}} = \smallO{\Exp{N_{\HP,n}(k_n)}}.
+	\CExp{\left|N_{\Po}(k_n)-N_{\Po}(k_n)\right|}{A_n^{+}} = \smallO{\Exp{N_{\Po}(k_n)}}.
 \]
 
 The case $N \in [n-C\sqrt{n\log n},n)$ (event $A_n^{-}$) follows by similar arguments. As $N < n$, a vertex $z \in V_{\HP,n}(k_n) \setminus V_{\H,n}(k_n)$ with degree $k_n$ in the Poisson graph must have a strictly larger degree in the binomial graph, i.e. in the transition from the Poisson graph to the binomial graph, a vertex must have been dropped in the neighborhood of $z$. By the union bound, this can be upper bounded by the number of additional vertices (of the binomial graph) times the probability that a random point falls into the neighborhood of a degree $k_n$ vertex. We obtain
 \begin{align*}
-	\CExp{|V_{\HP,n}(k_n) \backslash V_{\H,n}(k_n)|}{A_n^{(2)}} = \bigO{ \sqrt{n\log n}\frac{k_n}{n} \Exp{N_{\HP,n}(k_n)} }
-	= \smallO{\Exp{N_{\HP,n}(k_n)}}
+	\CExp{|V_{\HP,n}(k_n) \backslash V_{\H,n}(k_n)|}{A_n^{(2)}} = \bigO{ \sqrt{n\log n}\frac{k_n}{n} \Exp{N_{\Po}(k_n)} }
+	= \smallO{\Exp{N_{\Po}(k_n)}}
 \end{align*}
 
 \TM{ Not so fast! You seem assume that dropping into 
 the ball around a {\bf degree} $k$ vertex has order 
-$k/n$. That has to be argued. It is of course only true if the height of the particular vertex is appropriate. Please correct / provide the relevant details. I guess we may have to appeal to ``concentration of heights'' here. }
+$k/n$. That has to be argued. It is of course only true if the height of the particular vertex is appropriate. Please correct / provide the relevant details. I guess we may have to appeal to ``concentration of heights'' here. }\PvdH{You are right. I overlooked this when proof reading Markus proof. I did not have time to fix it now, but the conclusion is still true. Will fix it at a later stage.}
 A vertex $z \in V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)$ could be one of the additional vertices in the binomial graph or it is a degree $k_n-\ell$ vertex of the Poisson graph which receives exactly $\ell$ new vertices in its neighborhood in the transition from the Poisson graph to the binomial graph. The probability that one of the additional vertices of the binomial graph (compared to the smaller Poisson graph) has degree $k_n$ is asymptotically of the order $k_n^{-(2\alpha+1)}$ (as can be seen by considering the alternative coupling between the binomial and the Poisson process, where instead of taking $z_1, \dots, z_N$ for the Poisson process, we take the points $z_n, z_{n-1}, \dots, z_{n-N+1}$ (resp. points with index larger than $n$ after we hit $z_1$):
-\TM{ I don't quite follow the construction here. } for this graph, we have that the expected number of degree $k_n$ vertices is $\bigT{n k^{-2\alpha-1}}$, so the probability that a vertex chosen uniformly from the Poisson graph has degree $k$ is $\Theta(k^{-2\alpha-1})$). Therefore, the expected number of additional points with degree $k_n$ is $\bigO{\sqrt{n\log n} k_n^{-2\alpha-1}} = \smallO{n k_n^{-2\alpha-1}} = \smallO{\Exp{N_{\HP,n}(k_n)}}$. The expected number of degree $k_n-\ell$ vertices of the Poisson graph which receive exactly $\ell$ new vertices can be bounded in a sum resp. series similarly as done for $z \in V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)$ in the case $N \geq n$. We therefore conclude that
+\TM{ I don't quite follow the construction here. }\PvdH{I will ask Markus to add more explanation.} for this graph, we have that the expected number of degree $k_n$ vertices is $\bigT{n k^{-2\alpha-1}}$, so the probability that a vertex chosen uniformly from the Poisson graph has degree $k$ is $\Theta(k^{-2\alpha-1})$). Therefore, the expected number of additional points with degree $k_n$ is $\bigO{\sqrt{n\log n} k_n^{-2\alpha-1}} = \smallO{n k_n^{-2\alpha-1}} = \smallO{\Exp{N_{\Po}(k_n)}}$. The expected number of degree $k_n-\ell$ vertices of the Poisson graph which receive exactly $\ell$ new vertices can be bounded in a sum resp. series similarly as done for $z \in V_{\H,n}(k_n) \setminus V_{\HP,n}(k_n)$ in the case $N \geq n$. We therefore conclude that
 \[
-	\CExp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|}{A_n^{-}} = \smallO{\Exp{N_{\HP,n}(k_n)}},
+	\CExp{\left|N_{\Po}(k_n)-N_{\Po}(k_n)\right|}{A_n^{-}} = \smallO{\Exp{N_{\Po}(k_n)}},
 \]
 which finishes the proof.
 \end{proof}
 
 We note that this result together with Lemma~\ref{lem:N_k_HP_P} implies Lemma~\ref{lem:N_k_H_P}. Next we prove Proposition~\ref{prop:clustering_ast_H_Pois}, which states
 \[
-	\lim_{n \to \infty} s_\alpha(k_n)\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\HP,n}^\ast(k_n)\right|} = 0.
+	\lim_{n \to \infty} s(k_n)\Exp{\left|c^\ast(k_n; G_n) - c^\ast(k_n; \GPo)\right|} = 0.
 \]
 
 \begin{proof}[Proof of Proposition~\ref{prop:clustering_ast_H_Pois}]
-First we note that Proposition~\ref{prop:couling_c_H_P}, Proposition~\ref{prop:concentration_local_clustering_P_n}, Proposition~\ref{prop:convergence_average_clustering_P_n} and Theorem~\ref{thm:asymptotics_average_clustering_P} together imply that
+First we note that Proposition~\ref{prop:couling_c_H_P}, Proposition~\ref{prop:concentration_local_clustering_P_n}, Proposition~\ref{prop:convergence_average_clustering_P_n} together imply that
 \[
-	\Exp{c_{\HP,n}^\ast(k_n)} = (1+\smallO{1})s_\alpha(k_n)
+	\Exp{c^\ast(k_n; \GPo)} = (1+\smallO{1})s(k_n)
 \]
 Therefore it suffices to show that
 \[
-	\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\HP,n}^\ast(k_n)\right|} = \smallO{\Exp{c_{\HP,n}^\ast(k_n)}}.
+	\Exp{\left|c^\ast(k_n; G_n) - c^\ast(k_n; \GPo)\right|} = \smallO{\Exp{c^\ast(k_n; \GPo)}}.
 \]
-For this we observe that we are looking at the modified clustering coefficient, where we divide by the expected number of degree $k_n$ vertices. As the expected numbers of degree $k_n$ vertices in $G_{\HP,n}$ and $G_{\H,n}$ are asymptotically equivalent (see Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}), it is therefore sufficient to consider the sum of the clustering coefficients of all vertices of degree $k_n$.
-Given again the standard coupling between the binomial and Poisson process (as used in the proof of Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}), we denote by $V_{\H,n}(k_n)$ the set of degree $k_n$ vertices in $G_{\H,n}$ and by $V_{\HP,n}(k_n)$ the set of degree $k_n$ vertices in the graph $G_{\HP,n}$. If a vertex is contained in both sets, it must have the same degree in both the Poisson and binomial graph, and given the nature of the coupling, the neighbourhoods are therefore the same and hence also their clustering coefficients agree.
+For this we observe that we are looking at the modified clustering coefficient, where we divide by the expected number of degree $k_n$ vertices. As the expected numbers of degree $k_n$ vertices in $\GPo$ and $G_n$ are asymptotically equivalent (see Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}), it is therefore sufficient to consider the sum of the clustering coefficients of all vertices of degree $k_n$.
+Given again the standard coupling between the binomial and Poisson process (as used in the proof of Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}), we denote by $V_{\H,n}(k_n)$ the set of degree $k_n$ vertices in $G_n$ and by $V_{\HP,n}(k_n)$ the set of degree $k_n$ vertices in the graph $\GPo$. If a vertex is contained in both sets, it must have the same degree in both the Poisson and binomial graph, and given the nature of the coupling, the neighbourhoods are therefore the same and hence also their clustering coefficients agree.
 
-The difference of the sum of the clustering coefficients therefore comes from all the clustering coefficients of the symmetric difference $V_{\H,n}(k_n) \Delta V_{\HP,n}(k_n)$. This symmetric difference is again a Poisson process, whose expected number of points is $\Exp{\left|N_{\H,n}(k_n) - N_{\HP,n}(k_n)\right|} = \smallO{\Exp{N_{\H,n}(k_n)}}$ by Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}. Therefore we have that
+The difference of the sum of the clustering coefficients therefore comes from all the clustering coefficients of the symmetric difference $V_{\H,n}(k_n) \Delta V_{\HP,n}(k_n)$. This symmetric difference is again a Poisson process, whose expected number of points is $\Exp{\left|N_{\Po}(k_n) - N_{\Po}(k_n)\right|} = \smallO{\Exp{N_{\Po}(k_n)}}$ by Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}. Therefore we have that
 \begin{align*}
-	\Exp{\left|c_{\H,n}^\ast(k_n) - c_{\HP,n}^\ast(k_n)\right|}
-	&\le \frac{\Exp{\left|N_{\H,n}(k_n)-N_{\HP,n}(k_n)\right|}}{\Exp{N_{\H,n}(k_n)}} \Exp{c_{\HP,n}^\ast(k_n)}
-	= \smallO{1}\Exp{c_{\HP,n}^\ast(k_n)},
+	\Exp{\left|c^\ast(k_n; G_n) - c^\ast(k_n; \GPo)\right|}
+	&\le \frac{\Exp{\left|N_{\Po}(k_n)-N_{\Po}(k_n)\right|}}{\Exp{N_{\Po}(k_n)}} \Exp{c^\ast(k_n; \GPo)}
+	= \smallO{1}\Exp{c^\ast(k_n; \GPo)},
 \end{align*}
 which finishes the proof.
 \end{proof}
 
 We end this section with the proof of Lemma~\ref{lem:clustering_ast_H}, whose statement is
 \[
-	\Exp{\left|c_{\H, n}^\ast(k_n) - c_{\H, n}(k_n)\right|} = \smallO{s_\alpha(k_n)}.
+	\Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|} = \smallO{s(k_n)}.
 \]
 
 \begin{proof}[Proof of Lemma~\ref{lem:clustering_ast_H}]
 Let $0 < \delta < 1$ and define the event
 \begin{align*}
-	A_n &= \left\{\left|N_{\H,n}(k_n) - \Exp{N_{\H,n}(k_n)}\right| \le \Exp{N_{\H,n}(k_n)}^{\frac{1 + \delta}{2}}\right\}.
-	%B_n &= \left\{\left|N_{\H,n}(k_n) - \Exp{N_{\H,n}(k_n)}\right| \le n\right\},
+	A_n &= \left\{\left|N_{\Po}(k_n) - \Exp{N_{\Po}(k_n)}\right| \le \Exp{N_{\Po}(k_n)}^{\frac{1 + \delta}{2}}\right\}.
+	%B_n &= \left\{\left|N_{\Po}(k_n) - \Exp{N_{\Po}(k_n)}\right| \le n\right\},
 \end{align*}
 
-Since $N_{\H,n}(k_n) = \sum_{i = 1}^n \ind{D_\H(i) = k_n}$ it follows from Lemma~\ref{lem:general_concentration_sum_indicators}, with $c = \Exp{N_{\H,n}(k_n)}^{-\frac{1-\delta}{2}}$, that
+Since $N_{\Po}(k_n) = \sum_{i = 1}^n \ind{\mathrm{deg}_{\Po}(i) = k_n}$ it follows from Lemma~\ref{lem:general_concentration_sum_indicators}, with $c = \Exp{N_{\Po}(k_n)}^{-\frac{1-\delta}{2}}$, that
 \begin{equation}\label{eq:clustering_ast_H_prob_A}
-	\Prob{A_n} \ge 1 - \bigO{e^{-\frac{\Exp{N_{\H,n}(k_n)}^\delta}{2}}} = 1 - \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}},
+	\Prob{A_n} \ge 1 - \bigO{e^{-\frac{\Exp{N_{\Po}(k_n)}^\delta}{2}}} = 1 - \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}},
 \end{equation}
 where the last part is due to Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}. 
 
 On the event $A_n$
 \[
-	\left|\frac{\Exp{N_{\H,n}(k_n)}}{N_{\H,n}(k_n)} - 1\right| 
-	\le \frac{\Exp{N_{\H,n}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{\H,n}(k_n)}+\Exp{N_{\H,n}(k_n)}^{\frac{1 + \delta}{2}}}
-	\le \Exp{N_{\H,n}(k_n)}^{-\frac{1 - \delta}{2}}.
+	\left|\frac{\Exp{N_{\Po}(k_n)}}{N_{\Po}(k_n)} - 1\right| 
+	\le \frac{\Exp{N_{\Po}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{\Po}(k_n)}+\Exp{N_{\Po}(k_n)}^{\frac{1 + \delta}{2}}}
+	\le \Exp{N_{\Po}(k_n)}^{-\frac{1 - \delta}{2}}.
 \]
 
 Therefore we have
 \begin{align*}
-	\Exp{\left|c_{\H, n}^\ast(k_n) - c_{\H, n}(k_n)\right|}
-	&\le \Exp{\left|c_{\H, n}^\ast(k_n) - c_{\H, n}(k_n)\right|\ind{A_n}} + \bigO{1 - \Prob{A_n}}\\
-	&= \Exp{c_{\H, n}^\ast(k_n)\left|\frac{\Exp{N_{\H,n}(k_n)}}{N_{\H,n}(k_n)} - 1\right|\ind{A_n}}
+	\Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|}
+	&\le \Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|\ind{A_n}} + \bigO{1 - \Prob{A_n}}\\
+	&= \Exp{c^\ast(k_n; G_n)\left|\frac{\Exp{N_{\Po}(k_n)}}{N_{\Po}(k_n)} - 1\right|\ind{A_n}}
 		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}\\
-	&\le \Exp{c_{\H, n}^\ast(k_n)}\Exp{N_{\H,n}(k_n)}^{-\frac{1 - \delta}{2}} 
+	&\le \Exp{c^\ast(k_n; G_n)}\Exp{N_{\Po}(k_n)}^{-\frac{1 - \delta}{2}} 
 		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}.
 \end{align*}
-The second term is clearly $\smallO{s_\alpha(k_n)}$. The first term is clearly $\smallO{\Exp{c_{\H, n}^\ast(k_n)}}$ which is $\smallO{s_\alpha(k_n)}$ by Proposition~\ref{prop:clustering_ast_H_Pois}. 
+The second term is clearly $\smallO{s(k_n)}$. The first term is clearly $\smallO{\Exp{c^\ast(k_n; G_n)}}$ which is $\smallO{s(k_n)}$ by Proposition~\ref{prop:clustering_ast_H_Pois}. 
 \end{proof}
 
 

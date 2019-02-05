@@ -1,377 +1,346 @@
-\section{Introduction and results}
-
-\subsection{Motivation}
-
-%\MS{I would not write a length introduction to complex networks here (because the paper is quite long already and we do not study networks in general in this paper). So, I would remove the first paragraph/list (or incorporate it as a single sentence in the ensuing paragraph). }
-%\PvdH{I agree.}
-
-Hyperbolic random graphs were suggested as a suitable model for complex networks by Krioukov et al.~\cite{krioukov2010hyperbolic}, exhibiting the three main characteristics commonly found in complex networks: 
-\begin{enumerate}[\upshape 1)]
-\item Broad degree distribution (power-law/scale-free),
-\item Strong clustering (community structure),
-\item Small path lengths (small world phenomenon).
-\end{enumerate}
-Indeed, in their seminal paper they showed that these graphs have a power-law degree distribution and exhibit strong clustering, while Abdullah et al.~\cite{abdullah2017typical} showed that hyperbolic random graphs have doubly logarithmic shortest path lengths. \TM{
-In general the proofs that GIRG = HRG are shaky at best, so I do not want to cite anything that relies on that.
-Of course, in this case Nikoloas \& his crew were  first anyway.
-Also, regarding "distances", we probably want to mention graph diameter, studied by Kiwi+Mitsche, Friedrich+Krohmer, M\"uller + Staps.
-}
-Many other results regarding hyperbolic random graphs have since been established: for instance the existence of efficient routing algorithms~\cite{bringmann2017greedy}, the size of the largest component~\cite{bode2015largest},~\cite{fountoulakis2018law} and the number of cliques and the largest clique~\cite{blasius2018cliques}. \PvdH{@All: Does anyone have other suggestions for results to add?}
-\TM{ Yes, of course! Everything Nikolaos\& his crew, and I and my crew, and Kiwi-Mitsche have done on this model. This includes 2nd largest componnent, connectivity, spectral gap, diameter, Hamilton cycles \& perfect matchings (with Markus, Nikolaos and Mitsche, in preparation but perhaps submitted around the same time as this one.).
-Also there is a recent paper on arxiv by Owada+Yogeshwaran on subgraph counts.}\PvdH{Great, could you add those to the bib file and mention them here.}
-
-The aim of this paper is to study local clustering in hyperbolic random graphs. The first rigorous mathematical analysis of the local clustering coefficient was done by Gugelmann et al.~\cite{gugelmann2012random}. They show~\cite[Theorem 2.1]{gugelmann2012random} that the local clustering coefficient\footnote{Note that in~\cite{gugelmann2012random} this is called the global clustering coefficient. However, since this term is more often associated in the literature with the density of triangles compared to the number of paths of length 2, we use the term local clustering coefficient as is done, for instance, in~\cite{candellero2016clustering}.} is concentrated around its expectation which is shown to be $\bigT{1}$ as the number of vertices tends to infinity. In particular this result implies that the local clustering coefficient is asymptotically bounded away from zero. The convergence of this coefficient was however not proven. In contrast, the global clustering coefficient was shown~\cite{candellero2016clustering} to converge in probability to some constant which can be explicitly stated as an integral expression, see Theorem 1.2 in \cite{candellero2016clustering}. The authors mention, however, that their analysis needs significant modification to be able to deal with convergence of the local clustering coefficient.
+\section{Introduction and main results}
 
 
 
-In addition to the clustering coefficients, an important clustering measure that is often studied is the local clustering function $c(k)$. This function computes for any value of $k$ the average of the local clustering coefficient over all vertices of degree $k$. A general expression of this function for hyperbolic random graphs is given in \cite[Equation (59)]{krioukov2010hyperbolic}. The authors conjecture that as $k$ tends to infinity, $c(k)$ decays as $k^{-1}$, which they observe (Figure 8 in \cite{krioukov2010hyperbolic}) in experiments on the infrastructure of the Internet obtained in~\cite{claffy2009internet}. However, despite the importance of the local clustering function and these interesting observations, its behavior in hyperbolic random graphs had not been completely determined and the following crucial questions regarding clustering in hyperbolic random graphs remained open so far:
-\begin{enumerate}[\upshape 1)]
-\item Does the local clustering coefficient converge, and if so, what is the limit?
-\item What is the limit of the local clustering function and how does it scale with the degree?
-\end{enumerate}
+In this paper, we will consider clustering in a model of random graphs that involves points taken randomly in the hyperbolic plane. This model was introduced by Krioukov, Papadopoulos, Kitsak, Vahdat and Bogu\~{n}\'a~\cite{krioukov2010hyperbolic} in 
+2010 - we abbreviate it as \emph{the KPKVB model}. We should however note that the model also goes by several other names in the literature, including {\em hyperbolic random geometric graphs} and {\em random hyperbolic graphs}. Krioukov et al.~suggested this model as a suitable model for complex networks. It exhibits the three main characteristics usually associated with complex networks: a power-law degree distribution, a non-vanishing clustering coefficient and short graph distances.
 
-In this work we resolve these important open questions. We obtain the asymptotic scaling of $c(k)$ as $k \to \infty$, including the leading constant, as well as an exact expression, in terms of known special functions, of the point-wise limit of the local clustering function as the number of vertices tends to infinity. Interestingly, the scaling of $c(k)$ depends on the exponent of the degree distribution and is only $k^{-1}$ when this exponent exceeds $5/2$. For values less than $5/2$ the scaling is $k^{-s}$ where the value of $s$ depends on the degree distribution exponent. Finally, our analysis allows us to also prove a convergence result for the local clustering coefficient where the limit can again be explicitly expressed in terms of known special functions. 
+%
+%\subsection{Hyperbolic random graphs}\label{ssec:hyperbolic_model}
 
-\TM{ I vote to remove this next paragraph. Use of GIRGs is fishy, and also we are not obliged to mention any and all possible alternative approaches. }\PvdH{I do not mind if we remove the paragraph. However, the results in J\'{u}lias's paper are rigorous so I do not think that is a good reason for removing the paragraph.}
-We remark that it is possible to prove that the local clustering coefficient converges to some limit, using the technical tools in the recent work on explosion times in Geometric Inhomogeneous Random Graphs~\cite{komjathy2018explosion}. However, this problem is not explicitly addressed in that paper, nor is there any reason to expect these tools to give us the exact expressions as we do derive in this work.
+\PvdH{I would try to refrain from making assumptions about the reader.}
+We start with the definition of the KPKVB model. %As the reader will probably already know, 
+As mentioned, its nodes are situated in the hyperbolic plane $\Haa$, which is a surface with constant Gaussian curvature $-1$. This surface has several convenient representations (i.e.~coordinate maps), including the Poincar\'e halfplane model, the Poincar\'e disk model and the Klein disk model. A gentle introduction to Gaussian curvature, hyperbolic geometry and these representations of the hyperbolic plane can be found in~\cite{stillwellboek}. Throughout this paper we will be working with a representation of the hyperbolic plane using {\em hyperbolic polar coordinates}, sometimes called the {\em native representation}. That is, a point $p \in \Haa$ is represented as $(r,\theta)$, where $r$ is the hyperbolic distance between $p$ and the origin $O$ and $\theta$ as the angle between the line segment $Op$ and the positive $x$-axis. 
+Here, when mentioning ``the origin'' and the angle between the line segment and the positive $x$-axis, we think of $\Haa$ embedded as the Poincar\'e disk in the ordinary euclidean plane.
 
-%\PvdH{I recall that J{\'u}lia told me that the results from~\cite{komjathy2018explosion} imply that the local clustering coefficient converges, although they do not mention it in the paper. Should we added a comment related to this?}
-
-%\MS{Yes, I think this would probably be good. Either after the sentence `the convergence of this coefficient was not proven' add something like, as you say, the results form .. imply convergence, although not specifically mentioned there. Or drop that sentence about that the convergence was not shown and also rephrase the sentence in 1, to just what is the limit. It should just be clear to the reader that we are not claiming the credit for the convergence itself, but mostly for finding the exact limit (in an analytic expression) and with a very strong sense of convergence. So, let's better emphasize those last two points and hope that they are good enough.}
-
-\subsection{Outline of the paper}
-
-\PvdH{@Tobias and Markus: I haven't update this section yet since it will also depend on your new proofs. Please update it once you have added these to the paper.}
-
-In the next two subsections \ref{ssec:hyperbolic_model} and \ref{ssec:local_clustering} of the introduction, we give the definitions of the hyperbolic random graph and of the local clustering coefficient and function as used in this paper. After this we present our main results in Section \ref{ssec:main_results} and discuss several insights that can be obtained from them and in Section \ref{ssec:simulations} show simulations which confirm these results. Section \ref{sec:proof_outline} contains a detailed high level outline of the proofs of our main results, split up into different propositions. The proofs of these propositions can be found in the last four sections. Section~\ref{sec:concentration_argument} contains a crucial technical result that will be used in the other sections. The Appendix contains a small section on Meijer's G-function and some known concentration results we use.
-
-\subsection{Hyperbolic random graphs}\label{ssec:hyperbolic_model}
-
-The hyperbolic plane is an infinite $2$-dimensional manifold with constant negative curvature. Many different representations of the hyperbolic plane exist and we refer to~\cite{anderson2006hyperbolic} \cite{katok1992fuchsian} \cite{beardon2012geometry} for an introduction to hyperbolic geometry.  We will work with the \emph{native representation} of the hyperbolic plane which takes the elements of $\R^2$ in polar coordinates $(r,\theta)$ as the underlying set of points and where distances are determined by the hyperbolic law of cosines.
-
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and define $R_n = 2\log(n/\nu)$. Then the hyperbolic random graph $G_{\H,n}(\alpha, \nu)$ is defined as follows:
-\begin{enumerate}
-\item The vertex set if given by $n$ points $u_1, \dots, u_n$ denoted in polar coordinates $(r_i, \theta_i)$, where the angular coordinate $\theta$ is chosen uniformly from $(-\pi,\pi]$ while the radial coordinate $r$ is sampled independently according to the cumulative distribution function
+The KPKVB model has three parameters: the number of vertices $n$, which we think of as going to infinity, and $\alpha > \frac{1}{2}$, $\nu > 0$ which we think of as fixed. Given $n, \alpha, \nu$ we define $R = 2\log(n/\nu)$. Then the hyperbolic random graph $G(n;\alpha, \nu)$ is defined as follows:
+\begin{itemize}
+\item The vertex set is given by $n$ i.i.d.~points $u_1, \dots, u_n$ denoted in polar coordinates $(r_i, \theta_i)$, where the angular coordinate $\theta$ is chosen uniformly from $(-\pi,\pi]$ while the radial coordinate $r$ is sampled independently according to the cumulative distribution function
 \begin{equation}\label{eq:def_hyperbolic_point_distribution}
-	F_{n,\alpha,\nu}(r) = \begin{cases}
+	F_{\alpha,R}(r) = \begin{cases}
 		0 &\mbox{if } r < 0\\
-		\frac{\cosh(\alpha r)-1}{\cosh(\alpha R_n) - 1} &\mbox{if } 0 \le r \le R_n\\
-		1&\mbox{if } r > R_n
+		\frac{\cosh(\alpha r)-1}{\cosh(\alpha R) - 1} &\mbox{if } 0 \le r \le R\\
+		1&\mbox{if } r > R
 	\end{cases}
 \end{equation}
-\item Any two vertices $u_i=(r_i,\theta_i)$ and $u_j=(r_j,\theta_j)$ are adjacent if and only if $d_\H(u_i,u_j) \le R_n$, where $d_\H$ denotes the distance in the hyperbolic plane, i.e.
+\item Any two vertices $u_i=(r_i,\theta_i)$ and $u_j=(r_j,\theta_j)$ are adjacent if and only if $d_\H(u_i,u_j) \le R$, where $d_\H$ denotes the distance in the hyperbolic plane. We will frequently be using that, by the hyperbolic law of cosines, $d_\H(u_i,u_j) \le R$ is equivalent to
 \[
-	\cosh(r_i) \cosh(r_j) - \sinh(r_i) \sinh( r_j) \cos(|\theta_i-\theta_j|_{2\pi}) \le \cosh(R_n),
+	\cosh(r_i) \cosh(r_j) - \sinh(r_i) \sinh( r_j) \cos(|\theta_i-\theta_j|_{2\pi}) \le \cosh(R),
 \]
-as follows from the hyperbolic law of cosines.% rule[CITE?].
-\TM{ This is only when $r_i+r_j \geq R$! Otherwise the equation does not have a solution as there is no triangle with side lengths $r_i, r_j, R$.}\PvdH{I do not understand this. The hyperbolic law of cosines defines the hyperbolic cosine of the distance between points in terms of hyperbolic cosines and sines of their radii and the cosine of their relative angle:
-\[
-	\cosh(d_\H(u_i, u_j)) = \cosh(r_i) \cosh(r_j) - \sinh(r_i) \sinh( r_j) \cos(|\theta_i-\theta_j|_{2\pi}).
-\] 
-Since $\cosh$ is strictly monotonically increasing we have that $\cosh(x) \le \cosh(y) \iff x \le y$ and hence 
-\begin{align*}
-	&d_\H(u_i, u_j) \le R_n \\
-	&\iff \cosh(d_\H(u_i, u_j)) \le \cosh(R_n) \\
-	&\iff \cosh(r_i) \cosh(r_j) - \sinh(r_i) \sinh( r_j) \cos(|\theta_i-\theta_j|_{2\pi}) \le \cosh(R_n)
-\end{align*}
-The approximation for the hyperbolic balls you and Nicolaos derived in Lemma 28 holds only when $r_i + r_j \ge R$. There were however some sloppy arguments later in Section~\ref{ssec:coupling_H_P}, regarding the hyperbolic balls, which I corrected.}
-\end{enumerate}
+where $|a|_{b} = \min( |a|, b - |a|)$ for $-b\leq a\leq b$.
+\end{itemize}
 
 \begin{figure}[!t]
 \centering
 \includegraphics[scale=0.3]{figures/KPKVB.png}
-\caption{Example of a Hyperbolic Random Graph $G_{\H,n}(\alpha, \nu)$ with $\alpha = 0.9$, $\nu = 0.2$ and $n = 5000$.
+\caption{Simulation $G(n;\alpha, \nu)$ with $\alpha = 0.9$, $\nu = 0.2$ and $n = 5000$.
 %\PvdH{@Tobias: this figure (HyperRGG\_N5000L5.eps) is taken from the figures you send me. Could you fill in the value of $\alpha$ and $\nu$ you used for the simulation.}
 }
 \label{fig:H_graph_example}
 \end{figure}
 
+\noindent
+Figure~\ref{fig:H_graph_example} shows a computer simulation of $G(n;\alpha, \nu)$.
 
 
-Figure~\ref{fig:H_graph_example} shows an example of $G_{\H,n}(\alpha, \nu)$.
+As observed by Krioukov et al~\cite{krioukov2010hyperbolic}, and proved rigorously by Gugelmann et al.~\cite{gugelmann2012random}, the degree sequence of the KPKVB model follows a power-law with exponent $2\alpha+1$.
+% More specifically, if $N_k$ denotes the number of vertices of degree exactly $k$ then Gugelmann et al.~\cite{gugelmann2012random} have shown that
+% 
+% \begin{equation}\label{eq:gugeldegseq} 
+% N_k = (1+o(1)) \cdot n \cdot p_k \quad \text{ a.a.s., }
+% \end{equation}
+% 
+% \noindent
+% where $p_k := 2\alpha \cdot \xi^{2\alpha} \cdot \Gamma^+\left(k - 2\alpha, \xi\right) / k!$
+% with, here and in the rest of the paper, $\xi := \frac{4\alpha\nu}{\pi(2\alpha-1)}$ and 
+% $\Gamma^+(a,b) := \int_b^\infty t^{a-1} e^{-t} \text{d}t$ the 
+% {\em upper incomplete gamma function} and, for $(E_n)_n$ a sequence of events, 
+% $E_n$ {\em asymptotically almost surely} (a.a.s.) means that $\Pee(E_n)\to 1$.
+%%In particular $X_n = (1+o(1)) Y_n$ is equivalent to $X_n/Y_n \plim 1$.
+%In fact~\eqref{eq:gugeldegseq} was shown in~\cite{gugelmann2012random} to hold not only when $k$ is constant but 
+%also if $k$ depends on $n$ as long as $k = o( n^\delta )$ for a suitable small constant $\delta = \delta( \alpha )$.
+%Standard asymptotic manipulations show that 
+%
+%$$p_k \sim 2\alpha\xi^{2\alpha} k^{-(2\alpha+1)}, $$
+%
+%as $k\to\infty$.
+%\TM{ \RD{We need to add something like the following} : 
+%In Appendix~\ref{} we settle the minor technical point of showing that~\eqref{eq:gugeldegseq} in fact extends 
+%to all $k$ with $k \ll n^{1/(2\alpha+1)}$, while 
+%$N_k = 0$ a.a.s.~whenever $k \gg n^{1/(2\alpha+1)}$. }
+Gugelmann et al~\cite{gugelmann2012random} also showed that the average degree converges in probability to the constant $8\nu\alpha^2/ \pi (2\alpha-1)^2$, and they showed that the (local) clustering coefficient is non-vanishing in the sense that it is bounded below by a positive constant a.a.s. Here, and in the rest of the paper, for a sequence $(E_n)_n$ of events, $E_n$ {\em asymptotically almost surely} (a.a.s.) means that $\Pee(E_n)\to 1$.
+%Their work however left open the question of whether the clustering coefficient actually converges in probability.
+
+Apart from the degree sequence and clustering, the third main characteristic associated with complex networks, ``short distances'', has also been established in the literature. In~\cite{abdullah2017typical} it is shown that for $\alpha < 1$ the largest component is what is called an \emph{ultra-small world}: if we randomly sample two vertices of the graph then, a.a.s., conditional on them being in the same component, their graph distance is of order $\log\log n$. In~\cite{KiwiMit} and~\cite{ar:FriedKrohmerDiam} a.a.s.~polylogarithmic upper and lower bounds on the graph diameter of the largest component 
+are shown, and in~\cite{ar:MullerDiam}, these were sharpened to show that $\log n$ is the correct order of the diameter.
+
+Earlier work of the first and third authors with Bode~\cite{bode2015largest} and of the first and third authors~\cite{fountoulakis2018law} has 
+established the ``threshold for a giant component'': when $\alpha < 1$ then there always is a unique component of size linear in $n$ no matter how small 
+$\nu$ (and hence the average degree) is; when $\alpha > 1$ all components are sublinear no matter the value of $\nu$; and when $\alpha=1$ then 
+there is a critical value $\nu_{\text{c}}$ such that for $\nu < \nu_{\text{c}}$ all components are sublinear and for $\nu > \nu_{\text{c}}$ there 
+is a unique linear sized component (all of these statements holding a.a.s.). 
+Whether or not there is a giant component when $\alpha=1$ and $\nu=\nu_{\text{c}}$ remains an open problem.
+In~\cite{KiwiMit} an ~\cite{KiwiMit2017+}, Kiwi and Mitsche considered the size of the second largest component and
+showed that when $\alpha \in (1/2, 1)$, a.a.s., the second largest component has polylogarithmic order with exponent 
+$1/(\alpha -1/2)$.
 
 
+In another paper of the first and third authors with Bode~\cite{BFMconnRSA} it was shown that $\alpha=1/2$ is the threshold for connectivity:
+for $\alpha < 1/2$ the graph is a.a.s.~connected, for $\alpha>1/2$ the graph is a.a.s.~disconnected and when $\alpha=1/2$ the probability 
+of being connected tends to a continuous, nondecreasing function of $\nu$ which is identically one for $\nu \geq \pi$ and strictly less than one 
+for $\nu < \pi$.
+Friedrich and Krohmer~\cite{blasius2018cliques} studied the size of the largest clique as well as the number of cliques of a given size.
+Bogu\~{n}a et al.~\cite{sustaining} and Bl\"asius et al.~\cite{BlasiusMLE} considered fitting the KPKVB model to data using maximum likelihood 
+estimation.
+Kiwi and Mitsche~\cite{KM18} studied the spectral gap and related properties, and Bl\"asius et al.~\cite{BlasiusTW} considered the treewidth 
+and related parameters of the KPKVB model.
+Recently Owada and Yogeshwaran~\cite{OY} considered subgraph counts, and in particular established a central limit theorem 
+for the number of copies of a fixed tree $T$ in $G(n;\alpha,\nu)$, subject to some restrictions on the parameter $\alpha$.
 
-%We say that the points $u_i \in G_{\H, n}$ are distributed according to a \emph{$(\alpha, R_n)$-quasi uniform distribution}.
+\subsubsection*{Clustering}
 
+In the literature there are unfortunately two distinct, rival definitions of the {\em clustering coefficient}.
+One of those, sometimes called the {\em global} clustering coefficient, is defined as 
+three times the ratio the number of triangles to the number of paths of length two in the graph.
+Results for this version of the clustering coefficient in the KPKVB model were obtained by Candellero and the first author~\cite{candellero2016clustering} and for the evolution of graphs on more general spaces with negative curvature by the first author in~\cite{F12}. 
 
-
-\subsection{Clustering}\label{ssec:local_clustering}
-
-Clustering measures for networks consider the fraction of triangles (triples of connected vertices) in the network. 
-For instance, for a simple graph $G$, with vertex set $V(G)$ and edge set $E(G)$, denote by $T_G$ and $\Lambda_G$, respectively, the total number of triangles and the total number of paths of length two in $G$. Then its \emph{global clustering coefficient} is defined as
+In this paper we will study the other notion of clustering, the one which is also considered by Krioukov et al.~\cite{krioukov2010hyperbolic} and
+Gugelmann et al.~\cite{gugelmann2012random}. 
+It is sometimes called the {\em local} clustering coefficient, although we should point out that Gugelmann et al.~actually
+call it the global clustering coefficient in their paper.
+For a graph $G$ and a vertex $v\in V(G)$ we define the clustering coefficient {\em of $v$} as:
 \[
-	c_G = \frac{3 \T_G}{\Lambda_G}.
+	c(v) := \left\{\begin{array}{cl}
+		\displaystyle \frac{1}{{\text{deg}(v)\choose 2}} \sum_{u,w\sim v} 1_{\{uw \in E(G)\}} 
+			& \text{ if $\text{deg}(v) \geq 2$, }\\
+		& \\
+        0 & \text{ otherwise,}
+        \end{array}\right.
 \]
-%This coefficient measures the fraction of triangles in the network compared to the total possible number of triangles. 
-\TM{ Do we even need to give this definition? We don't study it, so I would say it suffices to just mention there is another, rival defintion to the one we use.}
-A different concept for clustering is defined for each vertex and by taking averages also for the entire graph as well as for all vertices with a specified degree: the \emph{local clustering coefficient} of a vertex $v \in V(G)$ is a real number between zero and one for the extent to which the neighborhood of $v$ resembles a clique. If the vertex $v$ has $k\geq 2$ neighbors, there are ${k \choose 2}$ possible edges between them and its local clustering coefficient is the quotient of the number of these pairs that constitute an existing edge in the graph divided by ${k \choose 2}$. \TM{ Here I would add the formula for readability.} 
-If the vertex $v$ has no or only one neighbor, its clustering coefficient is set to zero. The (average) local clustering coefficient of the graph is the average over the clustering coefficients of all vertices. The local clustering function maps a natural number $k$ to the average over the clustering coefficients of all vertices with degree $k$ if there are vertices with degree $k$ and zero otherwise.
+where $E(G)$ denotes the edge set of $G$ and $\text{deg}(v)$ is the degree of vertex $v$. That is, provided $v$ has degree at least two, $c(v)$ equals the number of edges that are actually present between the neighbours \PvdH{I think it is neighbors in US English vs neighbours in UK English. Is there any specific reason to us the UK version?} of $v$ divided by the
+number of edges that could possibly be present between the neighbours given the degree of $v$.
+The clustering coefficient of $G$ is now defined as the average of $c(v)$ over all vertices $v$:
 
-To introduce the notations for these definitions, let $D_G(v)$ denote the degree of vertex $v$ and $N_G(k)$ the number of vertices with degree $k$ in the graph $G$. In addition let $$\T_G(v,v_1,v_2) = \ind{(v,v_1) \in E} \ind{(v, v_2) \in E} \ind{(v_1, v_2) \in E}$$ be the indicator that $v, v_1$ and $v_2$ form a triangle and write
-\begin{equation}
-	\T_G(v) = \sum_{v_1, v_2 \in V(G)} \T_G(v,v_1,v_2),
-\end{equation}
-to denote the number of triangles in which node $v$ participates. Then the \emph{local clustering coefficient} is given by
-\[
-	c_G = \frac{1}{|V(G)|} \sum_{v \in V(G)} \frac{T_G(v)}{\binom{D_G(v)}{2}}.
-\]
+$$ c(G) := \frac{1}{|V(G)|} \sum_{v\in V(G)} c(v). $$
 
-\TM{ I would find it natural to define $c(v)$ first and then let $c(G)$ be the average. }
-However, since the local clustering coefficient assigns just one value to the whole network, representing its triangular structure, it is unable to characterize local structural properties involving triangles. 
-\TM{ This last sentence seems a bit weird to me, rather abstract. }
-The local clustering function, on the other hand, measures the fraction of triangles to which vertices of a given degree belong, compared to the maximum number of triangles in which they could participate~\cite{vazquez2002large,serrano2006clustering}. It describes the triangular structure of vertices in the networks based on their degree and gives a more detailed look at the overall structure of the network.
-\TM{ Similar comment to the previous one. I am not really sure what this means. }
-The formal definition of the \emph{local clustering function} is 
-\begin{equation}\label{eq:def_local_clustering_general}
-	c_{G}(k) = \begin{cases}
-		\frac{1}{N_G(k)} \sum_{v \in V(G)}  \ind{D_G(v) = k} \frac{\T_G(v)}{\binom{k}{2}} &\mbox{if } N_G(k) \ge 1\\
+As mentioned above, Gugelmann et al.~\cite{gugelmann2012random}, have established that $c(G(n;\alpha,\nu))$ is non-vanishing a.a.s., but they left 
+open the question of convergence.
+Theorem~\ref{thm:maincc} below establishes that the clustering coefficient indeed converges in probability to a constant
+$\gamma$ that we give explicitly as a closed form expression involving $\alpha,\nu$ and several classical special functions.
+
+In addition to the clustering coefficient, we shall also be interested in the {\em clustering function}.
+This assigns to each integer $k$ the value
+
+$$ c(k; G) := \begin{cases}
+		\displaystyle \frac{1}{N_k} \sum_{v \in V(G), \atop \text{deg}(v)=k}  c(v)  &\mbox{ if } N_k \ge 1\\
 		0 &\mbox{else.}
-	\end{cases}
-\end{equation} 
+	\end{cases},
+	$$
+	
+\noindent
+where $N_k$ denotes the number of vertices of degree exactly $k$ in $G$.
+In other words, the clustering function assigns to the integer $k$ the average of the local clustering coefficient over all vertices of degree $k$. 
+We remark that, while it might seem natural to consider $c(k)$ to be ``undefined'' when $N_k=0$, we prefer to use the above definition for technical 
+convenience.  This way $c(k; G(n;\alpha,\nu) )$ is a plain vanilla random variable and we can for instance compute its moments without any issues.
 
-\TM{ Perhaps we should say that, while it may be more natural to consider $c(k)$ to be undefined when $N_k=0$, we use this definition for technical convenience. This way 
-$c(k)$ is a plain vanilla random variable and we can compute expectation and so on without issue, and speak about convergence in probability and what not. }
-%We note that other versions of the local clustering function have been considered, for instance where nodes with degree larger than $k$ are considered instead of nodes with degree exactly $k$. \PvdH{Motivate our choice for this local clustering function.} 
+A general expression of the clustering function for KPKVB random graphs is given in~\cite[Equation (59)]{krioukov2010hyperbolic}. 
+The authors conjecture that as $k$ tends to infinity, the clustering function decays as $k^{-1}$. They based this prediction 
+on observations (Figure 8 in \cite{krioukov2010hyperbolic}) in experiments on the infrastructure of the Internet obtained 
+in~\cite{claffy2009internet}. 
+Despite these interesting observations and the attention
+the KPKVB model has generated since then, the behaviour of the clustering function in 
+KPKVB random graphs had not been completely determined. In particular it has not been established whether it converges as $n\to\infty$ to some suitable limit function and, 
+how $c(k;G)$ scales with $k$.
+Theorems~\ref{thm:mainkfixed},~\ref{thm:mainktoinfty} and Proposition~\ref{prop:asymp} below settle these questions.
+Theorem~\ref{thm:mainkfixed} shows that for each fixed $k$, the value $c(k;G(n;\alpha,\nu))$ converges in probability to 
+a constant $\gamma(k)$ that we again give explicitly as a closed form expression involving $\alpha,\nu$ and several classical special functions.
+Theorem~\ref{thm:mainktoinfty} extends this result to growing sequences satisfying $k \ll n^{1/(2\alpha+1)}$.
+Propostion~\ref{prop:asymp} clarifies the asymptotics of the limiting function $\gamma(k)$, as $k\to\infty$.
+This depends on the parameter $\alpha$, and $\gamma(k)$ only scales with $k^{-1}$ when $\alpha > 3/4$, 
+which corresponds to the exponent of the degree distribution exceeding $5/2$. 
+So in particular our findings disprove the abovementioned conjecture of Krioukov et al.~\cite{krioukov2010hyperbolic}.
 
-\begin{remark}[Notational convention]\label{rmk:notation}
-In the remainder of this paper we will compare the local clustering function and many other characteristics between several different graph models. To make notation less cluttered we will often use a unique subscript to identify the graph with respect to which the specific property refers instead of the full graph description. For instance, we shall write $c_{\H,n}(k)$ to denote $c_{G_{\H,n}(\alpha, \nu)}(k)$ and similar, $D_{\H, n}(u)$ for $D_{G_{\H,n}(\alpha, \nu)}(u)$. For the infinite model we will use the subscript $\infty$.
-\end{remark}
 
+\subsubsection*{Notation}
 
-\subsection{Main results}\label{ssec:main_results}
+In the statement of our main results, and throughout the rest of the paper, we will use the following notations. 
+We set 
+$$\xi := \frac{4\alpha\nu}{\pi(2\alpha-1)}. $$
 
-We are now ready to state our main results for the clustering coefficient and local clustering function in the hyperbolic random graph. When the degree $k$ is a growing function of $n$ we are able to exactly compute the asymptotic behavior of $c_{\H,n}(k)$. 
-\TM{ Seems a little strong. We "exactly compute" the leading terms, I would say. }
-
-The results are obtained by coupling the hyperbolic random graph to an infinite random graph $G_\Pcal(\alpha,\nu)$, which we define in Section~\ref{ssec:infinite_model}, and show that the limit of the local clustering coefficient and function for the hyperbolic random graph are given by those for the infinite model. 
-
-%\MS{Here, I would just say that $B(a,b)$ denotes the beta function $B^-(x,a,b)$ the lower incomplete beta function etc. and put/refer to the integral representations in the appendix, as already done for the Meijer-G function.}
-%\subsubsection{Special functions}
-We let $B(a,b)$ denote the beta-function and $B^-(x,a,b)$ the lower incomplete beta-function. We also write $\Gamma(z)$ for the Gamma function, $\Gamma^+(q,z)$ for the \TM{ upper } incomplete Gamma function and define $\Gamma^\ast(q,z) := \Gamma^+(1 + q, z) + \Gamma^+(q, z)$. \TM{ How useful is this extra definiton? If it is just to make the expression in Thm 1.1 neater, then I dont think we need it. }
-Finally, we write $U(a,b,z)$ for the hypergeometric U-function (also called Tricomi's confluent hypergeometric function), which for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $\mathrm{Re}(a), \mathrm{Re}(z) >0$ has the integral representation 
+We write $\Gamma(z) := \int_0^\infty t^{z-1} e^{-t}\text{d}t$ for the gamma function, 
+$\Gamma^+(a,b) := \int_b^\infty t^{a-1} e^{-t}\text{d}t$ for the upper incomplete gamma function, 
+ $B(a,b) := \int_0^1 u^{a-1}(1-u)^{b-1}\text{d}u = \Gamma(a)\Gamma(b) / \Gamma(a+b)$ for the beta function and 
+ $B^-(x,a,b) := \int_0^x u^{a-1}(1-u)^{b-1}\text{d}u$ the lower incomplete beta function. 
+We write $U(a,b,z)$ for the hypergeometric U-function (also called Tricomi's confluent hypergeometric function), which 
+%for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $\mathrm{Re}(a), \mathrm{Re}(z) >0$ 
+has the integral representation 
 \[
 	U(a,b,z) = \frac{1}{\Gamma(a)} \int_0^\infty e^{-zt} t^{a-1} (1+t)^{b-a-1} dt,
 \] 
-see~\cite[p.255 Equation (2)]{erdelyi1953higher}, and let $\MeijerGnew{m}{\ell}{p}{q}{{\bf a}}{{\bf b}}{z}$ denote Meijer's G-Function~\cite{meijer1946gfunction}, see Appendix~\ref{sec:Meijer_G_functions} for more details.
-\TM{ Should we not maybe also say what the upper incomplete gamma and lower incomplete beta are then? }
+see~\cite[p.255 Equation (2)]{erdelyi1953higher}, and let $\MeijerGnew{m}{\ell}{p}{q}{{\bf a}}{{\bf b}}{z}$ denote 
+Meijer's G-Function~\cite{meijer1946gfunction}, see Appendix~\ref{sec:Meijer_G_functions} for more details.
+
+For a sequence $(X_n)_n$ of random variables, we write $X_n \xrightarrow[n\to\infty]{\Pee} X$ to denote that $X_n$ converges in probability to $X$, as $n \to \infty$. %In addition, $X_n \xrightarrow[n\to\infty]{L^1} X$ denotes convergence in expectation, i.e. $\Exp{|X_n - X|} \to 0$ as $n \to \infty$, which is a stronger notion than convergence in probability.
+
+\subsection{Main results}\label{ssec:main_results}
 
 
-\subsubsection{Local clustering coefficient}
+\subsubsection{The clustering coefficient}
 
-Our first result shows that the local clustering coefficient of the hyperbolic random graph converges in expectation to a constant $c_\infty$, which we can explicitly write down in terms of the special functions mentioned above.
+Our first result is the following.
 
-\begin{theorem}[Limit for local clustering coefficient in $G_{\H,n}(\alpha,\nu)$] \label{thm:clustering_coefficient_hyperbolic}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$, and $\xi_{\alpha,\nu} = \frac{4\alpha \nu}{\pi(2\alpha -1)}$. Then,
+\begin{theorem}\label{thm:clustering_coefficient_hyperbolic}\label{thm:maincc}
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ be fixed. Writing $G_n := G(n;\alpha,\nu)$, we have
 \[
-	\lim_{n \to \infty} \Exp{\left|c_{\H,n} - c_\infty\right|} = 0,
+	c( G_n ) \xrightarrow[n\to\infty]{\Pee} \gamma,
 \]
-\TM{ As far as I can tell this is just equivalent to 
-$c(G) \plim c_\infty$. I would prefer to use this more standard notation and terminology, certainly at least here, where we present our main results. } \PvdH{Convergence in expectation implies convergence in probability but is a much stronger notion. In addition, for integer valued sequences $a_n$ and $b_n$ we have that $\Exp{|a_n - b_n|} \to 0$ implies that $a_n = b_n$ a.a.s.. However, when they are real valued this is no longer true in general.}
-where $c_\infty$ is defined for $\alpha \ne 1$ as
+where $\gamma$ is defined for $\alpha \ne 1$ as
 \begin{align*}
-	c_\infty 
-	&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 + 24 \alpha^5}
-		{16(\alpha-1)^2 \alpha (\alpha+1) (2\alpha+1)} 
+	\gamma 
+	&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 + 24 \alpha^5}{16(\alpha-1)^2 \alpha (\alpha+1) (2\alpha+1)} 
 		+  \frac{2^{-1 - 4 \alpha}}{(\alpha - 1)^2} \\
-	&\hspace{10pt}+ \frac{(\alpha - 1/2) (B(2 \alpha, 2 \alpha + 1) + B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha))}
-		{2 (\alpha - 1) (3 \alpha - 1)} \\
-	&\hspace{10pt}+ \frac{\xi_{\alpha,\nu}^{2\alpha} \Gamma^\ast( - 2 \alpha, \xi_{\alpha,\nu})}{4(\alpha-1)}
-		+ \frac{\xi_{\alpha,\nu}^{2\alpha + 2}\alpha (\alpha - 1/2)^2 \Gamma^\ast(- 2 \alpha - 2, \xi_{\alpha,\nu})}
-		{2(\alpha-1)^2} \\
-	&\hspace{10pt}- \frac{\xi_{\alpha,\nu}^{2\alpha + 1}\alpha (2\alpha - 1) \Gamma^\ast( - 2 \alpha - 1,\xi_{\alpha,\nu})}{(\alpha-1)}
-		- \frac{\xi_{\alpha,\nu}^{6\alpha-2}2^{-4\alpha}(3\alpha - 1)\Gamma^\ast( - 6 \alpha + 2, \xi_{\alpha,\nu})}{(\alpha-1)^2}\\
-	&\hspace{10pt}-\frac{\xi_{\alpha,\nu}^{6\alpha - 2}(\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)\Gamma^\ast( - 6 \alpha + 2, \xi_{\alpha,\nu})}{(\alpha-1)} \\
-	&\hspace{10pt}- \frac{e^{-\xi_{\alpha,\nu}} \Gamma(2\alpha+1) 
-		\left(U(2\alpha+1,1-2\alpha,\xi_{\alpha,\nu}) + U(2\alpha+1,2-2\alpha,\xi_{\alpha,\nu})\right)}{4(\alpha-1)} \\
-	&\hspace{10pt}+ \frac{\xi_{\alpha,\nu}^{6\alpha - 2} \Gamma(2\alpha+1)\left( 	
-		\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+2,0}{\xi_{\alpha,\nu}}
-		+ \MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+3,0}{\xi_{\alpha,\nu}}\right)}{4(\alpha-1)},
+&\hspace{10pt}+ \frac{(\alpha - 1/2) (B(2 \alpha, 2 \alpha + 1) + B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha))}{2 (\alpha - 1) (3 \alpha - 1)} \\
+%
+&\hspace{10pt}+ \frac{\xi^{2\alpha} \left( \Gamma^+( 1 - 2 \alpha, \xi) + \Gamma^+( - 2 \alpha, \xi)\right) }{4(\alpha-1)} \\
+%
+&\hspace{10pt}+ \frac{\xi^{2\alpha + 2}\alpha (\alpha - 1/2)^2 \left( \Gamma^+(- 2 \alpha - 1, \xi) + \Gamma^+(- 2 \alpha - 2, \xi)\right)}%
+{2(\alpha-1)^2} \\
+%
+&\hspace{10pt}- \frac{\xi^{2\alpha + 1}\alpha (2\alpha - 1) \left( \Gamma^+( - 2\alpha,\xi)+\Gamma^+( - 2 \alpha - 1,\xi) \right)}%
+{(\alpha-1)} \\
+%
+&\hspace{10pt}- \frac{\xi^{6\alpha-2}2^{-4\alpha}(3\alpha - 1)
+\left( \Gamma^+( - 6 \alpha + 3, \xi)+\Gamma^+( - 6 \alpha + 2, \xi) \right)}{(\alpha-1)^2}\\
+%
+&\hspace{10pt}- \frac{\xi^{6\alpha - 2}(\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)%
+\left(\Gamma^+( - 6 \alpha + 3, \xi)+\Gamma^+( - 6 \alpha + 2, \xi)\right)}{(\alpha-1)} \\
+%
+&\hspace{10pt}- \frac{e^{-\xi} \Gamma(2\alpha+1) \left(U(2\alpha+1,1-2\alpha,\xi) + U(2\alpha+1,2-2\alpha,\xi)\right)}{4(\alpha-1)} \\
+%
+&\hspace{10pt}+ \frac{\xi^{6\alpha - 2} \Gamma(2\alpha+1)\left( \MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+2,0}{\xi}
+ 		+ \MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+3,0}{\xi}\right)}{4(\alpha-1)},
 \end{align*}
-and for $\alpha = 1$ as
-\begin{align*}
-	c_\infty &= \frac{575 - 12 \pi^2}{576} + \frac{\eta^4(7 + \pi^2)\Gamma^\ast(-4, \eta)}{4}\\
-	&\hspace{10pt}- \frac{1}{2} \int_0^1 (1 - 4z + 3z^3)\log(1-z)(z + \eta)e^{-\eta/z} \dd z\\
-	&\hspace{10pt}- \int_0^1 \Li_2(z)(z^3 + \eta z^2) e^{-\eta/z} \dd z,		
-\end{align*}
-with $\eta = 4\nu/\pi$ and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm function\footnote{Note that the integrals in the expression for $c_\infty$ for $\alpha = 1$ exists: for the first one note that $1-4z+3z^2=(1-z)(1-3z)$, so the integrand can be bounded by $C(1-z)\log(1-z)$ on $[0,1)$ for some constant $C$, which can be continued continuously to the compact interval $[0,1]$ by noting that the limit for $z \rightarrow 1$ is zero, so the integrand is bounded on a bounded domain and hence, this integral is finite; for the second integral note that $\Li_2(z)$ is bounded by $\Li_2(1)$ on $[0,1]$, which is a series with well-known finite limit, so again the integrand is bounded on a bounded domain and hence the second integral is also finite.}.
+and for $\alpha = 1$ as the $\alpha\to 1$ limit of the above expression. 
+% \begin{align*}
+% 	c_\infty &= \frac{575 - 12 \pi^2}{576} + \frac{\eta^4(7 + \pi^2)\Gamma^\ast(-4, \eta)}{4}\\
+% 	&\hspace{10pt}- \frac{1}{2} \int_0^1 (1 - 4z + 3z^3)\log(1-z)(z + \eta)e^{-\eta/z} \dd z\\
+% 	&\hspace{10pt}- \int_0^1 \Li_2(z)(z^3 + \eta z^2) e^{-\eta/z} \dd z,		
+% \end{align*}
+% with $\eta = 4\nu/\pi$ and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm function\footnote{Note that the integrals in the expression for $c_\infty$ for $\alpha = 1$ exists: for the first one note that $1-4z+3z^2=(1-z)(1-3z)$, so the integrand can be bounded by $C(1-z)\log(1-z)$ on $[0,1)$ for some constant $C$, which can be continued continuously to the compact interval $[0,1]$ by noting that the limit for $z \rightarrow 1$ is zero, so the integrand is bounded on a bounded domain and hence, this integral is finite; for the second integral note that $\Li_2(z)$ is bounded by $\Li_2(1)$ on $[0,1]$, which is a series with well-known finite limit, so again the integrand is bounded on a bounded domain and hence the second integral is also finite.}.
 \end{theorem}
 
-\TM{ Do we want to remark something re: closed form expression for the $\alpha=1$ case? }
+\noindent
+A plot of $\gamma$ can be found in Figure~\ref{fig:gamma}.
 
-\subsubsection{Local clustering function}
 
-For the local clustering function we also obtain convergence in expectation to a function $c_\infty(k)$ which can be explicitly stated using the special functions.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.6]{figures/SimulationClusteringCoefficientVariousNu.pdf}
+    \caption{Plot of $\gamma$ for $\alpha$ varying from $0.5$ to $5$ on the horizontal axis and 
+    for $\nu=\frac{1}{2}$ (blue), $\nu=1$ (purple), $\nu=2$ (green); simulations (red dots) with $n=1000$ and 20 repetitions.\label{fig:gamma}}
+\end{figure}
 
-\begin{theorem}[Limit for local clustering function in $G_{\H,n}(\alpha, \nu)$]
-\label{thm:local_clustering_hyperbolic}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$, $\xi = \frac{4\alpha\nu}{\pi(2\alpha-1)}$ and $(k_n)_{n \ge 1}$ be any positive sequence, possibly constant, such that $k_n \ge \GR{2}$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Then, 
+In the above expression for $\gamma$, a factor $\alpha-1$ occurs in the denominator of each term, but we will see that this
+corresponds to a removable singularity. We have not been able to find a closed form expression in terms of known functions in the case when $\alpha=1$, but in Section~\ref{ssec:alphais1} we do provide an explicit expression involving integrals.
+
+
+\subsubsection{The clustering function}
+
+Our second result in on the clustering function for constant $k$.
+
+\begin{theorem}\label{thm:local_clustering_hyperbolic}\label{thm:mainkfixed}
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $k\geq2$ be fixed. 
+Writing $G_n := G(n;\alpha,\nu)$, we have
+
 \[
-	\lim_{n \to \infty} \Exp{\left|\frac{c_{\H,n}(k_n)}{c_\infty(k_n)} - 1\right|} = 0,
+	c(k;G_n) \xrightarrow[n\to\infty]{\Pee} \gamma(k),
 \]
-where the function $c_\infty(k)$ is defined for $\alpha \ne 1$ as
+where $\gamma(k)$ is defined for $\alpha \ne 1$ as 
 \begin{align*}
-c_\infty(k)  =&\frac{1}{8\alpha (\alpha-1)\Gamma^+(k-2\alpha,\xi)} \left( -\Gamma^+(k - 2 \alpha, \xi) - 2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+(k - 2 \alpha - 2, \xi)}{(\alpha - 1)} \right. \\ 
+\gamma(k)  =&\frac{1}{8\alpha (\alpha-1)\Gamma^+(k-2\alpha,\xi)} \left( -\Gamma^+(k - 2 \alpha, \xi) - 2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+(k - 2 \alpha - 2, \xi)}{(\alpha - 1)} \right. \\ 
 &\left.+ 8 \alpha (\alpha - 1/2) \xi \Gamma^+(k - 2 \alpha - 1,\xi) \right.\\ 
 &\left.+ 4\xi^{4\alpha - 2} \Gamma^+(k - 6 \alpha + 2, 
       \xi) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
 &\left.+ \xi^{k-2\alpha} \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi) \right. \\ 
 &\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right)
 \end{align*}
-and for $\alpha = 1$ as
-\begin{align*}
-	c_\infty(k) &= \frac{9 \eta^3}{2 k!} 	
-		\Gamma^+(k-3,\eta)-\frac{\xi_{\alpha,\nu}^4}{k!}\frac{7+\pi^2}{4}\Gamma^+(k-4,\eta)\\
-	&\hspace{10pt}+ \frac{\eta^k}{2k!}\int_0^1 (1-4z+3z^2)\ln(1-z)z^{1-k}e^{-\eta/z}\dd z\\ 
-	&\hspace{10pt}+ \frac{\eta^k}{k!}\int_0^1 z^{3-k} \Li_2(z) e^{-\eta/z} \dd z,
-\end{align*}
-with $\eta = 4\nu/\pi$ and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm function.
+and for $\alpha = 1$ as the $\alpha\to1$ limit of the above expression.
+% \begin{align*}
+% 	c_\infty(k) &= \frac{9 \eta^3}{2 k!} 	
+% 		\Gamma^+(k-3,\eta)-\frac{\xi^4}{k!}\frac{7+\pi^2}{4}\Gamma^+(k-4,\eta)\\
+% 	&\hspace{10pt}+ \frac{\eta^k}{2k!}\int_0^1 (1-4z+3z^2)\ln(1-z)z^{1-k}e^{-\eta/z}\dd z\\ 
+% 	&\hspace{10pt}+ \frac{\eta^k}{k!}\int_0^1 z^{3-k} \Li_2(z) e^{-\eta/z} \dd z,
+% \end{align*}
+% with $\eta = 4\nu/\pi$ and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm function.
 \end{theorem}
 
-\TM{ I would be tempted to split this thm into two.
-The first states that for $k$ fixed
-$c(k) \plim c_\infty(k)$. Then we say the proof extends to ... the second thm which states that if
-$1 \ll k_n \ll n^{1/(2\alpha+1)}$ then
-$c(k_n) = (1+o(1)) c_\infty(k_n)$ a.a.s. \\
-In fact, maybe it is good to present a separate -- and short -- proof of the constant case. The equivalence of the models for constant $k$ can be worked out in a few pages while for the sequence we need 50+ pages of super technical computations. What do you think? } \PvdH{I agree with the splitting suggestion. However, as I mentioned before, since $c(k_n)/c_\infty(k_n)$ is real-valued our result does not necessarily imply that $c(k_n)/c_\infty(k_n) = 1$ a.a.s.. I guess this is what you mean with $c(k_n) = (1+o(1)) c_\infty(k_n)$ a.a.s. right?}
-
-From the expression for $c_\infty(k)$ we obtain its asymptotic behavior as $k \to \infty$. For this we first define, for any $\frac{1}{2} < \alpha < \frac{3}{4}$,
-\begin{equation}\label{eq:def_C_alpha}
-	C_\alpha = \frac{2^{-4\alpha - 1}(3\alpha - 1)}{\alpha(\alpha-1)^2} 
-	+ \frac{\alpha - \frac{1}{2}}{2(\alpha - 1)\alpha} B^-(\frac{1}{2},2\alpha + 1, 2\alpha - 2)
-	- \frac{1}{4(\alpha - 1)}B(2\alpha, 3\alpha - 4).
-\end{equation}
-Moreover, to simplify the statement we define the scaling function 
-\begin{equation}\label{eq:def_scaling_function}
-s_\alpha(k) = \begin{cases} 
-		k^{4\alpha-2} &\frac{1}{2}<\alpha<\frac{3}{4}, \\
-		\frac{k}{\log(k)} & \alpha = \frac{3}{4}, \\
-		k &\alpha > \frac{3}{4}.
-\end{cases}
-\end{equation}
-\TM{ These exponents are $>0$! (see next comment)}
-
-We now have the following result, where the constant $C_\alpha$ emerges when we consider the local clustering function for $\frac{1}{2} < \alpha < \frac{3}{4}$.
-
-\begin{theorem}[Asymptotic behavior of local clustering function limit]\label{thm:asymptotics_average_clustering_P}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$. Then,
-\[
-	\lim_{k \to \infty} \frac{c_\infty(k)}{s_\alpha(k)} 
-	= \begin{cases}
-			C_\alpha \left(\frac{4\alpha \nu}{\pi\left(2\alpha - 1\right)}\right)^{4\alpha - 2}
-			&\mbox{if } \frac{1}{2} < \alpha < \frac{3}{4},\\
-			\frac{3 \nu}{\pi} &\mbox{if } \alpha = \frac{3}{4},\\
-			\frac{8\alpha \nu}{\pi\left(4\alpha - 3\right)} &\mbox{if } \alpha > \frac{3}{4},
-	\end{cases}
-\]
-with $C_\alpha$ as defined in \eqref{eq:def_C_alpha}.
-\end{theorem}
-\TM{ There is a typo here. Since you divide by $s$ in this last thm and $s\to\infty$ as the exponents are $>0$ and clustering coefficients are $\in [0,1]$, you would get limiting value zero. }
-\TM{ Also, I dont know if this previous result really deserves the status of ``theorem''. Feels more like a lemma or proposition. } 
-The following is an immediate consequence of Theorem~\ref{thm:local_clustering_hyperbolic} and Theorem~\ref{thm:asymptotics_average_clustering_P}.
-
-\begin{corollary}[Asymptotic behavior of local clustering function in $G_{\H,n}(\alpha,\nu)$]
-\label{cor:asymptotic_local_clustering_hyperbolic}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$, $(k_n)_{n \ge 1}$ be any positive sequence such that $k_n \to \infty$ and $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$ and $s_\alpha(k)$ defined as in~\eqref{eq:def_scaling_function}. Then, as $n \to \infty$,
-\[
-	\frac{c_{\H,n}(k_n)}{s_\alpha(k_n)} \, \stackrel{L^1}{\rightarrow} \, 
-	\begin{cases}
-				C_\alpha \left(\frac{4\alpha \nu}{\pi\left(2\alpha - 1\right)}\right)^{4\alpha - 2}
-				&\mbox{if } \frac{1}{2} < \alpha < \frac{3}{4},\\
-				\frac{6\nu}{\pi} &\mbox{if } \alpha = \frac{3}{4},\\
-				\frac{8\alpha \nu}{\pi\left(4\alpha - 3\right)} &\mbox{if } \alpha > \frac{3}{4},
-		\end{cases}
-\]
-where $\stackrel{L^1}{\to}$ denotes convergence in expectation.
-\end{corollary}
-
-\TM{ I had not heard of ``convergence in expectation'' before this. I have heard of $L_1$-convergence though. }
-\MS{@Pim: Are you sure all constants are correct? I thought for $\alpha = 3/4$ it might be $6\nu/\pi$. But if you are sure, you can remove this comment of course.}
-\PvdH{@Markus: You might be right. I have updated it and we will later check if you were right.}
-
-This result completely \TM{ ``completely" is pretty strong. Note also we seem to stay away from 
-$k = \Theta( n^{1/(2\alpha+1)} )$. So unless we change that, there is reason to say we do not to it ``completely''.} 
-characterizes the asymptotic behavior of the local clustering function in Hyperbolic Random Graphs. In particular we observe that the conjectured scaling of $k^{-1}$ from~\cite{krioukov2010hyperbolic} only occurs when $\alpha > 3/4$, or equivalently, when the exponent of the pdf of the degree distribution is larger than $5/2$. 
-
-A major part of this paper is dedicated to prove the convergence result in Theorem~\ref{thm:local_clustering_hyperbolic}, which is based on a sequence of subsequent results for the local clustering function in related random graph models and Theorem~\ref{thm:asymptotics_average_clustering_P}. The exact flow of the argument is explained in Section \ref{sec:proof_outline}. The proof for the convergence result in Theorem~\ref{thm:local_clustering_hyperbolic}, using these results, can be found in Section \ref{ssec:proof_main_results}. Here we also give the proof of the convergence result in Theorem~\ref{thm:clustering_coefficient_hyperbolic}. Another major part of this paper is the exact computation of the local clustering coefficient and function limit $c_\infty$ and $c_\infty(k)$, which involves careful computations of several involved integrals. This is done in Section~\ref{sec:asymptotics_average_clustering_ast_P}, where we also prove Theorem~\ref{thm:asymptotics_average_clustering_P}.
-
-We end this section with some important observations regarding local clustering in hyperbolic random graphs.
-
-\PvdH{Populate these paragraphs}
-
-
- 
-
-\paragraph{Uniform convergence}
-
-Our results for the local clustering function in particular imply uniform convergence of $c_{\H,n}(k)$ for all $2 \le k \le a_n$ \TM{ Why 3? }\PvdH{Should have been $2$ (corrected) since there are no triangles for node with degree less than $2$.} where $a_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. To see this let
-\[
-	b_n = \arg \max_{3 \le k \le a_n} \Exp{\left|\frac{c_{\H ,n}(k)}{c_\infty(k)} - 1\right|}.
-\]
-Then $b_n \le a_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$ and therefore by Theorem~\ref{thm:local_clustering_hyperbolic}
-\[
-	\lim_{n \to \infty} \max_{3 \le k \le a_n} \Exp{\left|\frac{c_{\H ,n}(k)}{c_\infty(k)} - 1\right|} 
-	= \lim_{n \to \infty}\Exp{\left|\frac{c_{\H ,n}(b_n)}{c_\infty(b_n)} - 1\right|} = 0.
-\]
-The same is true for the result in Corollary~\ref{cor:asymptotic_local_clustering_hyperbolic}.
-
-\paragraph{Maximum scaling for $k_n$ is $n^{\frac{1}{2\alpha +1}}$}
-All our results for clustering in the hyperbolic random graph are valid for any sequence $k_n$ such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. Although one would like to have results for any sequence $k_n \le n$, it turns out that $n^{1/(2\alpha + 1)}$ is the optimal \TM{ again seems to strong to me } scaling for which Theorem~\ref{thm:clustering_coefficient_hyperbolic} can be true. To see why this is the case note that by definition of the local clustering function~\eqref{eq:def_local_clustering_general} we have that $c_{\H,n}(k_n) = 0$ if $N_{\H,n}(k_n) = 0$. Hence, it follows by Markov's inequality that for any positive function $f$
-\begin{align*}
-	\Exp{\left|\frac{c_{\H,n}(k_n)}{f(k_n)} - 1\right|} 
-	&\ge \Prob{N_{\H,n}(k_n) = 0} \ge 1 - \Exp{N_{\H,n}(k_n)}.
-\end{align*}
-We shall later establish (see Lemma~\ref{lem:N_k_H_P}) that $\Exp{N_{\H,n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$. Therefore if $k_n$ is such that $k_n^{-(2\alpha + 1)} n$ tends to zero as $n \to \infty$ we have that 
-\[
-	\lim_{n \to \infty} \Exp{N_{\H,n}(k_n)} = 0
-\]
-and hence
-\[
-	\lim_{n \to \infty} \Exp{\left|\frac{c_{\H,n}(k_n)}{f(k_n)} - 1\right|} 
-	\ge \lim_{n \to \infty} 1 - \Exp{N_{\H,n}(k_n)} = 1 \ne 0,
-\]
-for any positive function $f$. This implies that we cannot expect a result like that of Theorem~\ref{thm:clustering_coefficient_hyperbolic} to hold as soon as $k_n$ is not $\smallO{n^{\frac{1}{2\alpha + 1}}}$.
-
-\paragraph{Transition in the scaling of local clustering}
-
-\MS{@All: If we can, then it would be interesting to remark that there is this phase transition in $\alpha$ which appears when the power-law exponent is $2.5=\frac{5}{2}$ and it would be cool if we could give a brief intuitive reason for that or mention that this phase transition point has also been observed in other contexts/models etc.}
-
-\PvdH{@All: I agree with Markus. It would be nice to say something on this. Maybe we can leave it out of the first arXived version and in the mean time do some research on this. We could also ask Remco van der Hofstad.}
-
-\TM{ \RD{\bf VERY IMPORTANT:} we need to appropriately cite the vdHofstad-vLeeuwaarden-Stegehuis crew. We want to avoid a war. (Just between you and me : I do kind of feel theirs is pretty much non-rigorous though. I am not sure if there is some way to say their work is ``non-rigorous'' without offending them.) }
-
-\subsection{Simulations}\label{ssec:simulations}
-
-
-\TM{ I think the most important simulation to include is for the ``overall'' clustering coefficient $c(G)$. 
-Can someone please add that? \\
-(The value of $k$ in Figs 2 and 3 seems a bit arbitrary to me btw.) }
-
-The simulations of this section (see Figures \ref{fig:c2allnu}, \ref{fig:c4allnu}, \ref{fig:ckvariable} and \ref{fig:cvariable}) appear to be in agreement with the formulas from the result section. The simulations were obtained by generating the hyperbolic random graph for a given choice of the parameters and number of repetitions and then taking the average over all simulation instances.
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{figures/sim0123c2nualln1000rep20.pdf}
-    \caption{Simulation of $c_{\mathbb{H},n}(k_n)$ for $k_n= 2$, for $\alpha$ varying from $0.5$ to $5$ on the horizontal axis and for $\nu=\frac{1}{2}$ (blue), $\nu=1$ (purple), $\nu=2$ (green); simulations (red dots) with $n=1000$ and 20 repetitions.}
-    \label{fig:c2allnu}
-\end{figure}
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{figures/sim0128c4nualln10000rep20.pdf}
-    \caption{Simulation of $c_{\mathbb{H},n}(k_n)$ for $k_n= 4$, for $\alpha$ varying from $0.5$ to $5$ on the horizontal axis and for $\nu=\frac{1}{2}$ (blue), $\nu=1$ (purple), $\nu=2$ (green); simulations (red dots) with $n=10 000$ and 20 repetitions.}
-    \label{fig:c4allnu}
-\end{figure}
-\begin{figure}
+\noindent
+A plot of $\gamma(k)$ can be found in Figure~\ref{fig:gammak}. %
+%
+%
+\begin{figure}[h!]
     \centering
     \includegraphics[scale=0.6]{figures/sim1024ck225n10000a0609nu2rep20.pdf}
-    \caption{Simulation of $c_{\mathbb{H},n}(k_n)$ for $k_n$ varying from 2 to 26 on the horizontal axis, for $\nu=2$ and $\alpha=0.6$ (green) and $\alpha=0.9$ (blue); simulations (red dots) with $n=10 000$ and 20 repetitions.}
-    \label{fig:ckvariable}
-\end{figure}
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.6]{figures/SimulationClusteringCoefficientVariousNu.pdf}
-    \caption{Simulation of $c_{\mathbb{H},n}$ for $\alpha$ varying from $0.5$ to $5$ on the horizontal axis and for $\nu=\frac{1}{2}$ (blue), $\nu=1$ (purple), $\nu=2$ (green); simulations (red dots) with $n=1 000$ and 20 repetitions.}
-    \label{fig:cvariable}
-\end{figure}
+    \caption{Plot $\gamma(k)$ for $k$ varying from 2 to 26 on the horizontal axis, for $\nu=2$ and $\alpha=0.6$ 
+    (green) and $\alpha=0.9$ (blue); simulations (red dots) with $n=10000$ and 20 repetitions.\label{fig:gammak}}
+\end{figure}%
+%
+Again, we remark that the above expression for $\gamma(k)$ appears to have a singularity at $\alpha=1$, but this will turn out to be a
+removable singularity. Again we have not been able to find a closed form expression in terms of known functions in the case when $\alpha=1$, but
+in Section~\ref{ssec:alphais1} we do provide an explicit expression involving integrals.
 
-\TM{ We may want to put the source code in an appendix.
-In fact RuG now officially requires we deposit the source code in some archive. (gasp.) }
+Theorem~\ref{thm:mainkfixed} in fact generalises to increasing sequences $(k_n)_n$.
+
+\begin{theorem}\label{thm:mainktoinfty}
+Let $\alpha>\frac12, \nu>0$ be fixed and let $k_n$ be a sequence 
+satisfying $1 \ll k_n \ll n^{1/(2\alpha+1)}$. Then, writing $G_n := G(n;\alpha,\nu)$, we have
+\[
+	\E[|c(k_n;G_n)-\gamma(k_n)|] = \smallO{\gamma(k_n)},
+\]
+as $n \to \infty$, where $\gamma(.)$ is as in Theorem~\ref{thm:mainkfixed}.
+\end{theorem}
+
+In particular, Theorem~\ref{thm:mainktoinfty} implies that
+\[
+	\frac{c(k_n; G_n)}{\gamma(k_n)} \xrightarrow[n\to\infty]{L^1} 1,
+\]
+so that the clustering function if the KPKVB model scales as $\gamma(k)$ as $k$ grows.
+
+%We remark that the number of vertices of degree exactly $k$ satisfies $N_k = 0$ a.a.s.~when $k \gg n^{1/(2\alpha+1)}$, see~\TM{ add reference to correct thm / lemma here! }.
+%So the range in the above result is essentially to best possible.
+
+\subsubsection{Scaling of $\gamma(k)$}
+
+To clarify the scaling behaviour of $\gamma(k)$ with $k$ we offer the following result.
+
+\begin{proposition}\label{prop:asymp}
+As $k\to\infty$, we have
+
+$$ \gamma(k) = 
+(1+o(1)) \cdot \left\{ \begin{array}{cl}
+\frac{8\alpha \nu}{\pi\left(4\alpha - 3\right)} \cdot k^{-1} &\text{ if } \alpha > \frac{3}{4}, \\
+\frac{6 \nu}{\pi} \cdot \frac{\log \log (k/\xi)}{k}& \text{ if } \alpha = \frac{3}{4},\\
+ c_{\alpha} \cdot k^{2-4\alpha} & \text{ if } \frac12 < \alpha < \frac34, 
+\end{array} \right.,
+$$
+where $c_{\alpha} := \left( \frac{3\alpha - 1}{2^{4\alpha+1}\alpha(\alpha-1)^2} 
+	+ \frac{(\alpha - \frac{1}{2})B^-(\frac{1}{2},2\alpha + 1, 2\alpha - 2)}{2(\alpha - 1)\alpha} 
+	- \frac{B(2\alpha, 3\alpha - 4)}{4(\alpha - 1)} \right)  \cdot \xi^{4\alpha-2}$.
+\end{proposition}
+
+In particular this contradicts the scaling conjectured in~\cite{krioukov2010hyperbolic} for $\alpha \leq \frac34$, and confirms it for $\alpha > \frac34$.
+
+We remark that simultaneously and independently Stegehuis, van der Hofstad and van Leeuwaarden~\cite{stegehuis2018scale} found a similar, but less detailed result on the $k\to\infty$ scaling of the clustering function in the KPKVB model.
+
+
+\PvdH{I really think we should add a subsection where we discuss the results and their implications. Especially the addition $\log(k)$ term for degree distribution exponent $5/2$, and the fact that $n^{1/(2\alpha _ 1)}$ is the best scaling possible for $c(k_n; G_n)$.}
+
+
+\subsection{Outline of the paper}
+
+
+In the next section we will recall some useful tools from the literature and define a series of auxiliary random graph models that will be used in the proofs. In particular, we relate in a series of steps the KPKVB model to an infinite percolation model $\Ginf$ that was used in previous work of the first and third authors~\cite{fountoulakis2018law} on the largest component of the KPKVB model. The value of the limiting constant $\gamma$, respectively limiting clustering function $\gamma(k)$, correspond to the probability that two randomly chosen neighbours of a ``typical point'' in this infinite model are themselves neighbours, respectively the probability of this event conditional on the typical point having exactly $k$ neighbours. These probabilities can be expressed as certain integrals, which we solve explicitly in Section~\ref{sec:Ginf}. 
+In the same section we also prove Proposition~\ref{prop:asymp}, on the asymptotics of $\gamma(k)$. We then proceed to prove Theorems~\ref{thm:maincc} and~\ref{thm:mainkfixed} by relating said probabilities for the typical point of the infinite model to the corresponding clustering coefficient/function in the original KPKVB random graph, using the Campbell-Mecke formula and some other, relatively straightforward considerations.
+
+The remaining sections are devoted to the proof of Theorem~\ref{thm:mainktoinfty}, which turns out to be a lot more involved. 
+

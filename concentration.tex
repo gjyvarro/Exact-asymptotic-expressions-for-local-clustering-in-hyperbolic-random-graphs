@@ -1,35 +1,32 @@
-\section{Concentration for $c_{\Pcal, n}(k)$ (Proving Proposition \ref{prop:concentration_local_clustering_P_n})}
+\section{Concentration for $c(k; \Gbox)$ (Proving Proposition \ref{prop:concentration_local_clustering_P_n})}
 \label{sec:concentration_c_P_n}
 
-In this section we establish a concentration result for the local clustering function $c_{\Pcal, n}^\ast(k)$ in the finite model $G_{\Pcal,n}$. Similar to the previous section we will focus on those nodes $p = (x,y) \in \Kcal_{C}(k_n)$.
+In this section we establish a concentration result for the local clustering function $c^\ast(k; \Gbox)$ in the finite model $\Gbox$. Similar to the previous section we will focus on typical points $p = (0,y)$ with $y \in \Kcal_{C}(k_n)$.
 
 \subsection{The main contribution of triangles}
 
 Recall the adjusted triangle count function \eqref{eq:def_tilde_triangle_indicator}
 \[
-	\widetilde{T}_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal,n}(p)}\ind{p_2 \in B_{\Pcal}(p_1) \cap \Rcal_n}.
+	\widetilde{T}_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in \BallPon{p}}\ind{p_2 \in \BallPon{p}}\ind{p_2 \in \BallPo{p_1} \cap \Rcal}.
 \]
 and the concentration set
 \[
-	\Kcal_C(k_n) = \left\{p \in \R : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
-		\le \frac{k_n + C \kappa_n}{\xi_{\alpha,\nu}} \wedge e^{R_n/2} \right\},
+	\Kcal_C(k_n,n) = \left\{p \in \Rcal : \frac{k_n - C \kappa_n}{\xi} \vee 0 \le e^{\frac{y}{2}}
+		\le \frac{k_n + C \kappa_n}{\xi} \right\},
 \]
 with
 \[
-	\kappa_n := \begin{cases}
-		\log(n) &\mbox{if } k_n = \bigT{1},\\
-		\sqrt{k_n \log(k_n)} &\mbox{else.}
-	\end{cases}
+	\kappa_n = \sqrt{k_n \log(k_n)}.
 \]
 We will define the corresponding triangle degree function
 \begin{equation}\label{eq:def_degree_triangle_count_in_K}
-	\widetilde{T}_{\Pcal,n}(k, C) = \sum_{p \in \Pcal_n \cap K_C(k)} \ind{D_{\Pcal,n}(p) = k} \widetilde{T}_{\Pcal,n}(p),
+	\widetilde{T}_{\Pcal,n}(k, C) = \sum_{p \in \Pcal_n \cap \Kcal_{C,n}(k_n)} \ind{\text{deg}_{\text{box}}(p) = k} \widetilde{T}_{\Pcal,n}(p),
 \end{equation}
-where
+where 
 \[
-	\widetilde{T}_{\Pcal,n}(p) := \sum_{(p_1, p_2) \in \Pcal\setminus (0,y)}^{\ne} \widetilde{T}_{\Pcal,n}(p,p_1,p_2),
+	\widetilde{T}_{\Pcal,n}(p) := \sum_{(p_1, p_2) \in \Pcal \setminus p}^{\ne} \widetilde{T}_{\Pcal,n}(p,p_1,p_2),
 \]
-where the sum is over all distinct pairs $(p_1, p_2) \in \Pcal \setminus \{(0,y)\}$.
+where the sum is over all distinct pairs $(p_1, p_2) \in \Pcal \setminus p$.
 
 Next we note that the second result from Corollary~\ref{cor:adjusted_triangle_counting_P_n} states that
 \begin{equation}\label{eq:asymptotic_equivalence_contraint_triangle_count}
@@ -53,15 +50,15 @@ We postpone the proof of this proposition postpone till Section \ref{ssec:concen
 %\begin{lemma}\label{lem:L1_convergence_c_Pcal_n}
 %Let $\nu > 0$, $\alpha > \frac{1}{2}$ and $k_n = o\left(n^{\frac{1}{2\alpha + 1}}\right)$. Then, as $n \to \infty$,
 %\[
-%	\Exp{\left|c_{\Pcal, n}^\ast(k_n) - c_{\Pcal, n}(k_n)\right|} = \smallO{\Exp{c_{\Pcal,n}(k_n)^\ast}}.
+%	\Exp{\left|c^\ast(k_n; \Gbox) - c_{\Pcal, n}(k_n)\right|} = \smallO{\Exp{c_{\Pcal,n}(k_n)^\ast}}.
 %\]
 %\end{lemma}
 %
 %\begin{proof}
 %Let $0 < \delta < 1$ and define the following two events
 %\begin{align*}
-%	A_n &= \left\{\left|N_{\Pcal,n}(k_n) - \Exp{N_{\Pcal,n}(k_n)}\right| \le \Exp{N_{\Pcal,n}(k_n)}^{\frac{1 + \delta}{2}}\right\}\\
-%	B_n &= \left\{\left|N_{\Pcal,n}(k_n) - \Exp{N_{\Pcal,n}(k_n)}\right| \le n\right\},
+%	A_n &= \left\{\left|N_{\text{box}}(k_n) - \Exp{N_{\text{box}}(k_n)}\right| \le \Exp{N_{\text{box}}(k_n)}^{\frac{1 + \delta}{2}}\right\}\\
+%	B_n &= \left\{\left|N_{\text{box}}(k_n) - \Exp{N_{\text{box}}(k_n)}\right| \le n\right\},
 %\end{align*}
 %so that
 %\[
@@ -69,79 +66,79 @@ We postpone the proof of this proposition postpone till Section \ref{ssec:concen
 %\]
 %Next we note that on the event $A_n$
 %\[
-%	\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right| 
-%	\le \frac{\Exp{N_{\Pcal,n}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{\Pcal,n}(k_n)}+\Exp{N_{\Pcal,n}(k_n)}^{\frac{1 + \delta}{2}}}
-%	\le \Exp{N_{\Pcal,n}(k_n)}^{-\frac{1 - \delta}{2}},
+%	\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right| 
+%	\le \frac{\Exp{N_{\text{box}}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{\text{box}}(k_n)}+\Exp{N_{\text{box}}(k_n)}^{\frac{1 + \delta}{2}}}
+%	\le \Exp{N_{\text{box}}(k_n)}^{-\frac{1 - \delta}{2}},
 %\]
 %and on the event $B_n$
 %\[
-%	\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right| 
-%	\le \frac{n}{\Exp{N_{\Pcal,n}(k_n)} + n} \le 1.
+%	\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right| 
+%	\le \frac{n}{\Exp{N_{\text{box}}(k_n)} + n} \le 1.
 %\]
 %Therefore we have
 %\begin{align*}
-%	\Exp{\left|c_{\Pcal, n}^\ast(k_n) - c_{\Pcal, n}(k_n)\right|}
-%	&= \Exp{c_{\Pcal, n}^\ast(k_n)\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right|}\\
-%	&\le \Exp{c_{\Pcal, n}^\ast(k_n)\ind{A_n}}\Exp{N_{\Pcal,n}(k_n)}^{-\frac{1 - \delta}{2}} \\
-%	&\hspace{10pt}+ \Exp{c_{\Pcal, n}^\ast(k_n)\ind{A_n^c}\ind{B_n}} \\
-%	&\hspace{10pt}+ \Exp{c_{\Pcal, n}^\ast(k_n)\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right|\ind{B_n^c}}
+%	\Exp{\left|c^\ast(k_n; \Gbox) - c_{\Pcal, n}(k_n)\right|}
+%	&= \Exp{c^\ast(k_n; \Gbox)\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right|}\\
+%	&\le \Exp{c^\ast(k_n; \Gbox)\ind{A_n}}\Exp{N_{\text{box}}(k_n)}^{-\frac{1 - \delta}{2}} \\
+%	&\hspace{10pt}+ \Exp{c^\ast(k_n; \Gbox)\ind{A_n^c}\ind{B_n}} \\
+%	&\hspace{10pt}+ \Exp{c^\ast(k_n; \Gbox)\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right|\ind{B_n^c}}
 %\end{align*}
-%Since $\Exp{N_{\Pcal,n}(k_n)} \to \infty$, the first term is clearly $\smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}}$. For the third term we have
+%Since $\Exp{N_{\text{box}}(k_n)} \to \infty$, the first term is clearly $\smallO{\Exp{c^\ast(k_n; \Gbox)}}$. For the third term we have
 %\begin{align*}
-%	\Exp{c_{\Pcal, n}^\ast(k_n)\left|\frac{\Exp{N_{\Pcal,n}(k_n)}}{N_{\Pcal,n}(k_n)} - 1\right|\ind{B_n^c}} 
+%	\Exp{c^\ast(k_n; \Gbox)\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right|\ind{B_n^c}} 
 %	&= \bigO{\Prob{B_n^c}}
-%		= \bigO{\Prob{\left|N_{\Pcal,n}(k_n) - \Exp{N_{\Pcal,n}(k_n)}\right| > n}}\\
-%	&= \bigO{e^{-\frac{n^2}{\Exp{N_{k_n}} + n}}} = \bigO{e^{-n}} = \smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}}.
+%		= \bigO{\Prob{\left|N_{\text{box}}(k_n) - \Exp{N_{\text{box}}(k_n)}\right| > n}}\\
+%	&= \bigO{e^{-\frac{n^2}{\Exp{N_{k_n}} + n}}} = \bigO{e^{-n}} = \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
 %\end{align*}
 %Hence we are left to show that
 %\begin{equation}\label{eq:L1_convergence_second_term}
-%	\Exp{c_{\Pcal, n}^\ast(k_n)\ind{A_n^c}\ind{B_n}} = \smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}}.
+%	\Exp{c^\ast(k_n; \Gbox)\ind{A_n^c}\ind{B_n}} = \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
 %\end{equation}
 %By writing
 %\begin{align*}
-%	c_{\Pcal, n}^\ast(k_n) = \frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
-%	+ \frac{T_{\Pcal,n}(k_n,\varepsilon)- \widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
+%	c^\ast(k_n; \Gbox) = \frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
+%	+ \frac{T_{\Pcal,n}(k_n,\varepsilon)- \widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
 %\end{align*}
 %and using Lemma~\ref{lem:clustering_error_T_term} we get
 %\begin{align*}
-%	\Exp{c_{\Pcal, n}^\ast(k_n)\ind{A_n^c}\ind{B_n}}
-%	&\le \Exp{\frac{(1+\smallO{1})\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
-%		\ind{A_n^c}} + \smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}}.
+%	\Exp{c^\ast(k_n; \Gbox)\ind{A_n^c}\ind{B_n}}
+%	&\le \Exp{\frac{(1+\smallO{1})\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
+%		\ind{A_n^c}} + \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
 %\end{align*}
 %For the last step we use H\"{o}lder's inequality and Proposition \ref{prop:concentration_tilde_T_P_n} to get
 %\begin{align*}
-%	\Exp{\frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}\ind{A_n^c}}
+%	\Exp{\frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\ind{A_n^c}}
 %	&\le \Exp{\left(\frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}
-%		{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}\right)^2}^{\frac{1}{2}} \Prob{A_n^c}^{\frac{1}{2}}\\
+%		{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\right)^2}^{\frac{1}{2}} \Prob{A_n^c}^{\frac{1}{2}}\\
 %	&= \left(1 + \smallO{1}\right) 	
-%		\frac{\Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
+%		\frac{\Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
 %		\Prob{A_n^c}^{\frac{1}{2}}\\
-%	&= \bigO{\Exp{c_{\Pcal, n}^\ast(k_n)}}\Prob{A_n^c}^{\frac{1}{2}} = \smallO{\Exp{c_{\Pcal, n}^\ast(k_n)}},
+%	&= \bigO{\Exp{c^\ast(k_n; \Gbox)}}\Prob{A_n^c}^{\frac{1}{2}} = \smallO{\Exp{c^\ast(k_n; \Gbox)}},
 %\end{align*}
 %since $\Prob{A_n} = o(1)$. This establishes \eqref{eq:L1_convergence_second_term} and hence we conclude that
 %\[
-%	\Exp{\left|c_{\Pcal, n}^\ast(k_n) - c_{\Pcal, n}(k_n)\right|} = \smallO{\Exp{c_{\Pcal,n}(k_n)^\ast}}.
+%	\Exp{\left|c^\ast(k_n; \Gbox) - c_{\Pcal, n}(k_n)\right|} = \smallO{\Exp{c_{\Pcal,n}(k_n)^\ast}}.
 %\]
 %\end{proof}
 
 \begin{proof}[Proof of Proposition \ref{prop:concentration_local_clustering_P_n}]
 Again, we write
 \begin{align*}
-	c_{\Pcal, n}^\ast(k_n) = \frac{\widetilde{T}_{\Pcal,n}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
-	+ \frac{\left(T_{\Pcal,n}(k_n)-\widetilde{T}_{\Pcal,n}(k_n,C)\right)}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}},
+	c^\ast(k_n; \Gbox) = \frac{\widetilde{T}_{\Pcal,n}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
+	+ \frac{\left(T_{\Pcal,n}(k_n)-\widetilde{T}_{\Pcal,n}(k_n,C)\right)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}},
 \end{align*}
 so that by~\eqref{eq:asymptotic_equivalence_contraint_triangle_count},
 \begin{equation}\label{eq:concentration_local_clustering_P_n_main}
-	\Exp{c_{\Pcal,n}^\ast(k_n)} = \frac{\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
-	+ \smallO{\Exp{c_{\Pcal,n}^\ast(k_n)}}.
+	\Exp{c^\ast(k_n; \Gbox)} = \frac{\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
+	+ \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
 \end{equation}
 %Therefore, by Lemma \ref{lem:L1_convergence_c_Pcal_n},
 %\begin{align*}
-%	\Exp{\left|c_{\Pcal,n}(k_n) - \Exp{c_{\Pcal,n}^\ast(k_n)}\right|}
-%	&\le \Exp{\left|c_{\Pcal,n}^\ast(k_n) - \Exp{c_{\Pcal,n}^\ast(k_n)}\right|}
-%		+ \Exp{\left|c_{\Pcal,n}(k_n) - c_{\Pcal,n}^\ast(k_n)\right|}\\
+%	\Exp{\left|c_{\Pcal,n}(k_n) - \Exp{c^\ast(k_n; \Gbox)}\right|}
+%	&\le \Exp{\left|c^\ast(k_n; \Gbox) - \Exp{c^\ast(k_n; \Gbox)}\right|}
+%		+ \Exp{\left|c_{\Pcal,n}(k_n) - c^\ast(k_n; \Gbox)\right|}\\
 %	&= \frac{\Exp{\left|\widetilde{T}_{\Pcal,n}(k_n,\varepsilon) - \Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}\right|}}
-%		{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}} + \smallO{\Exp{c_{\Pcal,n}^\ast(k_n)}}.
+%		{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}} + \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
 %		\numberthis \label{eq:concentration_local_clustering_P_n_term1}
 %\end{align*}
 Next, we use Proposition \ref{prop:concentration_tilde_T_P_n} to obtain
@@ -153,26 +150,26 @@ Next, we use Proposition \ref{prop:concentration_tilde_T_P_n} to obtain
 \end{align*}
 This implies
 \begin{align*}
-	\frac{\Exp{\left|\widetilde{T}_{\Pcal,n}(k_n,\varepsilon) - \Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}\right|}}
-		{\binom{k_n}{2}\Exp{N_{\Pcal,n}(k_n)}}
-	&= \smallO{\Exp{c_{\Pcal,n}^\ast(k_n)}},
+	\frac{\Exp{\left|\widetilde{T}_{\Pcal,n}(k_n,C) - \Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}\right|}}
+		{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
+	&= \smallO{\Exp{c^\ast(k_n; \Gbox)}},
 \end{align*}
 which together with~\eqref{eq:concentration_local_clustering_P_n_main} yields the required result.
 \end{proof}
 
-\subsection{Joint neighborhoods and degrees in $G_{\Pcal,n}(\alpha,\nu)$}
+\subsection{Joint neighborhoods and degrees in $\Gbox$}
 
-To prove Proposition~\ref{prop:concentration_tilde_T_P_n} we need to understand the joint degree distribution in $G_{\Pcal,n}$ and subsequently the joint neighborhoods of two points $p, p^\prime \in \Rcal_n$. We perform the analysis in this section. The two main results, which will be the crucial technical ingredients for the proof of Proposition~\ref{prop:concentration_tilde_T_P_n}, are Lemma~\ref{lem:joint_degree_factorization} and Lemma~\ref{lem:joint_degree_distribution_shift}.
+To prove Proposition~\ref{prop:concentration_tilde_T_P_n} we need to understand the joint degree distribution in $\Gbox$ and subsequently the joint neighborhoods of two points $p, p^\prime \in \Rcal$. We perform the analysis in this section. The two main results, which will be the crucial technical ingredients for the proof of Proposition~\ref{prop:concentration_tilde_T_P_n}, are Lemma~\ref{lem:joint_degree_factorization} and Lemma~\ref{lem:joint_degree_distribution_shift}.
 
 \subsubsection*{Neighborhoods}
 
-We start with analyzing joint neighborhoods in $G_{\Pcal,n}$. Let $p, p^\prime \in \Rcal_n$. Then we denote by $\Ncal_{\Pcal,n}(p\Delta p^\prime)$ the number of disjoint neighbors of $p$ and $p^\prime$ in $G_{\Pcal,n}$, i.e. those points that belong to either $\BallPon{p}$ or $\BallPon{p^\prime}$ but not to their intersection. In addition we denote by $\Ncal_{\Pcal,n}(p,p^\prime)$ the number of joint neighbors of $p$ and $p^\prime$. We shall establish lower bounds on the expect number of these disjoint neighbors $\Exp{\Ncal_{\Pcal,n}(p\Delta p^\prime)}$ as well as an asymptotic expression for the expected number of joint neighbors. For this we will distinguish between the cases where the distance between the $x$-coordinates of $p$ and $p^\prime$ is small or large. Figure~\ref{fig:representation_disjoint_neighborhoods_P_n}-\ref{fig:representation_disjoint_neighborhoods_P_n_3} show the different situations that occur.
+We start with analyzing joint neighborhoods in $\Gbox$. Let $p, p^\prime \in \Rcal$. Then we denote by $\Ncal_{\text{box}}(p\Delta p^\prime)$ the number of disjoint neighbors of $p$ and $p^\prime$ in $\Gbox$, i.e. those points that belong to either $\BallPon{p}$ or $\BallPon{p^\prime}$ but not to their intersection. In addition we denote by $\Ncal_{\text{box}}(p,p^\prime)$ the number of joint neighbors of $p$ and $p^\prime$. We shall establish lower bounds on the expect number of these disjoint neighbors $\Exp{\Ncal_{\text{box}}(p\Delta p^\prime)}$ as well as an asymptotic expression for the expected number of joint neighbors. For this we will distinguish between the cases where the distance between the $x$-coordinates of $p$ and $p^\prime$ is small or large. Figure~\ref{fig:representation_disjoint_neighborhoods_P_n}-\ref{fig:representation_disjoint_neighborhoods_P_n_3} show the different situations that occur.
 
 \begin{figure}[p]
 \centering
 \begin{tikzpicture}
 	
-	%The box \Rcal_n
+	%The box \Rcal
 	\draw[line width=1pt] (-6,0) -- (6,0) -- (6,4) -- (-6,4) -- (-6,0);
 
     \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (0,1) {};
@@ -198,14 +195,14 @@ We start with analyzing joint neighborhoods in $G_{\Pcal,n}$. Let $p, p^\prime \
     \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
 
 \end{tikzpicture}
-\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $G_{\Pcal,n}(\alpha,\nu)$ when $|x-x^\prime| \le e^{\frac{y + y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbors_P_n} and Lemma~\ref{lem:common_neighbors_Pcal_n}.}
+\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x-x^\prime| \le e^{\frac{y + y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbors_P_n} and Lemma~\ref{lem:common_neighbors_Pcal_n}.}
 \label{fig:representation_disjoint_neighborhoods_P_n}
 \end{figure}~
 \begin{figure}[p]
 \centering
 \begin{tikzpicture}
 	
-	%The box \Rcal_n
+	%The box \Rcal
 	\draw[line width=1pt] (-6,0) -- (6,0) -- (6,4) -- (-6,4) -- (-6,0);
 
     \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (0,1) {};
@@ -238,14 +235,14 @@ We start with analyzing joint neighborhoods in $G_{\Pcal,n}$. Let $p, p^\prime \
     \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
 
 \end{tikzpicture}
-\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $G_{\Pcal,n}(\alpha,\nu)$ when $e^{\frac{y + y^\prime}{2}} < |x - x^\prime| \le e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbors_P_n} and Lemma~\ref{lem:common_neighbors_Pcal_n}.}
+\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $\Gbox$ when $e^{\frac{y + y^\prime}{2}} < |x - x^\prime| \le e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbors_P_n} and Lemma~\ref{lem:common_neighbors_Pcal_n}.}
 \label{fig:representation_disjoint_neighborhoods_P_n_2}
 \end{figure}~
 \begin{figure}[p]
 \centering
 \begin{tikzpicture}
 	
-	%The box \Rcal_n
+	%The box \Rcal
 	\draw[line width=1pt] (-6,0) -- (6,0) -- (6,4) -- (-6,4) -- (-6,0);
 
     \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (0,1) {};
@@ -283,12 +280,12 @@ We start with analyzing joint neighborhoods in $G_{\Pcal,n}$. Let $p, p^\prime \
     \draw node at (4.5,2.9) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
 
 \end{tikzpicture}
-\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $G_{\Pcal,n}(\alpha,\nu)$ when $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma \ref{lem:disjoint_neighbors_P_n_large}.}
+\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma \ref{lem:disjoint_neighbors_P_n_large}.}
 \label{fig:representation_disjoint_neighborhoods_P_n_3}
 \end{figure}
 
 
-We start by analyzing the shape of the neighborhoods. Due to symmetry and the fact that we have identified the left and right boundaries of the box $\Rcal_n$, we can, without loss of generality, assume that $p = (0,y)$ and $p^\prime = (x^\prime,y^\prime)$ with $x^\prime > 0$ and $y^\prime \le y$. To understand the computation it is helpful to have a picture of the different situations. Figure \ref{fig:representation_disjoint_neighborhoods_P_n} and Figure \ref{fig:representation_disjoint_neighborhoods_P_n_2} show two different situations for small distance in the $x$-coordinates, in which case the number of disjoint neighbors is small. The case where this distance is large, and the number of disjoint neighbors is expected to be large, is show in Figure \ref{fig:representation_disjoint_neighborhoods_P_n_3}. There are several different quantities that are important. The first are the heights $h_1(p^\prime)$ and $h_2(p^\prime)$ where, respectively, the left and right boundaries of the ball $\BallPon{p^\prime}$ go outside the box $\Rcal_n$. Note that when $x = 0$ then these height are the same and we denote this by $h(y)$. We also need to know the coordinates $h(p,p^\prime)$ and $x^\ast(p,p^\prime)$ of the intersection of the right boundary of the neighborhood of $p$ with the left boundary of the neighborhood of $p^\prime$. Finally we will denote by $d(p,p^\prime)$ the distance between the lower right boundary of $\BallPon{p}$ and the lower left of $\BallPon{p^\prime}$, which is positive only when the bottom parts of both neighborhoods do not intersect, compare Figures \ref{fig:representation_disjoint_neighborhoods_P_n} and \ref{fig:representation_disjoint_neighborhoods_P_n_3}. The full expressions of all these functions are given below for further reference.
+We start by analyzing the shape of the neighborhoods. Due to symmetry and the fact that we have identified the left and right boundaries of the box $\Rcal$, we can, without loss of generality, assume that $p = (0,y)$ and $p^\prime = (x^\prime,y^\prime)$ with $x^\prime > 0$ and $y^\prime \le y$. To understand the computation it is helpful to have a picture of the different situations. Figure \ref{fig:representation_disjoint_neighborhoods_P_n} and Figure \ref{fig:representation_disjoint_neighborhoods_P_n_2} show two different situations for small distance in the $x$-coordinates, in which case the number of disjoint neighbors is small. The case where this distance is large, and the number of disjoint neighbors is expected to be large, is show in Figure \ref{fig:representation_disjoint_neighborhoods_P_n_3}. There are several different quantities that are important. The first are the heights $h_1(p^\prime)$ and $h_2(p^\prime)$ where, respectively, the left and right boundaries of the ball $\BallPon{p^\prime}$ go outside the box $\Rcal$. Note that when $x = 0$ then these height are the same and we denote this by $h(y)$. We also need to know the coordinates $h(p,p^\prime)$ and $x^\ast(p,p^\prime)$ of the intersection of the right boundary of the neighborhood of $p$ with the left boundary of the neighborhood of $p^\prime$. Finally we will denote by $d(p,p^\prime)$ the distance between the lower right boundary of $\BallPon{p}$ and the lower left of $\BallPon{p^\prime}$, which is positive only when the bottom parts of both neighborhoods do not intersect, compare Figures \ref{fig:representation_disjoint_neighborhoods_P_n} and \ref{fig:representation_disjoint_neighborhoods_P_n_3}. The full expressions of all these functions are given below for further reference.
 
 \begin{align}
 	h(y) &= R_n - y + 2\log\left(\frac{\pi}{2}\right) \label{eq:def_height_y_P_n}\\
@@ -309,9 +306,9 @@ We start by analyzing the shape of the neighborhoods. Due to symmetry and the fa
 We start with the result for points whose $x$-coordinates are close, which is when $d(p,p^\prime) < 0$.
 
 \begin{lemma}\label{lem:disjoint_neighbors_P_n}
-Let $p, p ^\prime \in \Rcal_n$. Then whenever $|x - x^\prime| \le e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$,
+Let $p, p ^\prime \in \Rcal$. Then whenever $|x - x^\prime| \le e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$,
 \begin{align*}
-	\Exp{\Ncal_{\Pcal,n}(p \Delta p^\prime)}
+	\Exp{\Ncal_{\text{box}}(p \Delta p^\prime)}
 	&\ge \frac{\nu}{\pi}|x^\prime - x|\left(1 - \left(\frac{2}{\pi}\right)^{2\alpha}e^{-\alpha(R_n - y^\ast)}\right)\\
 	&\hspace{10pt}+ \xi_{\alpha, \nu}\left|e^{\frac{y}{2}} - e^{\frac{y^\prime}{2}}\right|
 		\left(1 - \left(\frac{2}{\pi}\right)^{2\alpha - 1}e^{-(\alpha - \frac{1}{2})(R_n-y^\ast)}\right).
@@ -324,8 +321,8 @@ $\BallPon{p^\prime}$ up to the height $h^\ast := \min\{h(y), h_2(p^\prime)\}$, s
 
 By the Campbell-Mecke formula we get
 \begin{align*}
-	\Exp{\Ncal_{\Pcal,n}(p \Delta p^\prime)} &=	\Mu{B_{\Pcal,n}(p) \Delta B_{\Pcal,n}(p^\prime)}\\
-	&\ge \int_0^{h^\ast} \int_{x - e^{\frac{y + y_1}{2}}}^{x^\prime - e^{\frac{y^\prime + y_1}{2}}} f_{\alpha,\nu}(x_1,y_1)
+	\Exp{\Ncal_{\text{box}}(p \Delta p^\prime)} &=	\Mu{\BallPon{p} \Delta B_{\Pcal,n}(p^\prime)}\\
+	&\ge \int_0^{h^\ast} \int_{x - e^{\frac{y + y_1}{2}}}^{x^\prime - e^{\frac{y^\prime + y_1}{2}}} f(x_1,y_1)
 		\, dx_1 \, dy_1 \\
 	&= \frac{\alpha \nu}{\pi}|x^\prime - x| \int_{0}^{h^\ast} e^{-\alpha y_1} dy_1
 		+ \frac{\alpha \nu}{\pi}\left|e^{\frac{y}{2}} - e^{\frac{y^\prime}{2}}\right| \int_0^{h^\ast} 
@@ -339,10 +336,10 @@ By the Campbell-Mecke formula we get
 Now we will consider the case where $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$
 
 \begin{lemma}\label{lem:disjoint_neighbors_P_n_large}
-Let $p, p^\prime \in \Rcal_n$. Then, whenever $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$,
+Let $p, p^\prime \in \Rcal$. Then, whenever $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$,
 \[
-	\Exp{\Ncal_{\Pcal,n}(p\Delta p^\prime)}
-	\ge \left(\mu_{\alpha,\nu}(\BallPon{p}) + \mu_{\alpha,\nu}(\BallPon{p^\prime})\right)
+	\Exp{\Ncal_{\text{box}}(p\Delta p^\prime)}
+	\ge \left(\mu(\BallPon{p}) + \mu(\BallPon{p^\prime})\right)
 		\left(1-\phi_n(p,p^\prime)\right).
 \]
 
@@ -355,12 +352,12 @@ Let $p, p^\prime \in \Rcal_n$. Then, whenever $|x - x^\prime| > e^{\frac{y}{2}} 
 \begin{proof}
 We will prove the results by using that
 \[
-	\Exp{\Ncal_{\Pcal,n}(p\Delta p^\prime)} 
-	\ge \int_0^{h(p,p^\prime)} \int_{-\frac{\pi}{2}e^{\frac{R_n}{2}}}^{\frac{\pi}{2}e^{\frac{R_n}{2}}} \ind{p_1 \in \BallPon{p} \cup \BallPon{p^\prime}} f_{\alpha,\nu}(x_1,y_1) \, dx_1 \, dy_1,
+	\Exp{\Ncal_{\text{box}}(p\Delta p^\prime)} 
+	\ge \int_0^{h(p,p^\prime)} \int_{-\frac{\pi}{2}e^{\frac{R_n}{2}}}^{\frac{\pi}{2}e^{\frac{R_n}{2}}} \ind{p_1 \in \BallPon{p} \cup \BallPon{p^\prime}} f(x_1,y_1) \, dx_1 \, dy_1,
 \]
 and computing the integral on the right. We refer to Figure~\ref{fig:representation_disjoint_neighborhoods_P_n_3} for further clarification. 
 
-Before we proceed we show that the neighborhoods of $p$ and $p^\prime$ below $h(p,p^\prime)$ are disjoint. This is clearly true when $h(p,p^\prime) \le h_2(p^\prime)$ so suppose that $h(p,p^\prime) > h_2(p^\prime)$. Then, because we identified the right and left boundaries of the box $\Rcal_n$ the right boundary of $\BallPon{p^\prime}$ continues from the left boundary of the box and is described by the equation
+Before we proceed we show that the neighborhoods of $p$ and $p^\prime$ below $h(p,p^\prime)$ are disjoint. This is clearly true when $h(p,p^\prime) \le h_2(p^\prime)$ so suppose that $h(p,p^\prime) > h_2(p^\prime)$. Then, because we identified the right and left boundaries of the box $\Rcal$ the right boundary of $\BallPon{p^\prime}$ continues from the left boundary of the box and is described by the equation
 \[
 	x_1 = x^\prime + e^{\frac{y^\prime + y_1}{2}} - \pi e^{\frac{R_n}{2}}.
 \]
@@ -375,12 +372,12 @@ Now, let $x_{\mathrm{right}}^\prime$ and $x_{\mathrm{left}}$ denote the $x$-coor
 \end{align*}
 and hence the neighborhoods of $p$ and $p^\prime$ below $h(p,p^\prime)$ are disjoint. It then follows that
 \begin{align*}
-	\Exp{\Ncal_{\Pcal,n}(p,p^\prime)} 
+	\Exp{\Ncal_{\text{box}}(p,p^\prime)} 
 	&\ge \int_0^{h(p,p^\prime)} \int_{-\frac{\pi}{2}e^{\frac{R_n}{2}}}^{\frac{\pi}{2}e^{\frac{R_n}{2}}} 
-		\ind{p_1 \in \BallPon{p} \cup \BallPon{p^\prime}} f_{\alpha,\nu}(x_1,y_1) \, dx_1 \, dy_1\\
+		\ind{p_1 \in \BallPon{p} \cup \BallPon{p^\prime}} f(x_1,y_1) \, dx_1 \, dy_1\\
 	&= \int_0^{h(p,p^\prime)} \int_{-\frac{\pi}{2}e^{\frac{R_n}{2}}}^{\frac{\pi}{2}e^{\frac{R_n}{2}}} 
 		\left(\ind{p_1 \in \BallPon{p}} + \ind{p_1 \in \BallPon{p^\prime}}\right) 
-		f_{\alpha,\nu}(x_1,y_1) \, dx_1 \, dy_1\\
+		f(x_1,y_1) \, dx_1 \, dy_1\\
 	&= \left(\mu_{\alpha,\nu ,n}(\BallPon{p}) + \mu_{\alpha,\nu ,n}(\BallPon{p^\prime})\right)
 		\left(1 - \frac{2\alpha \nu}{\pi}\int_{h(p,p^\prime)}^{R_n} e^{-(\alpha - \frac{1}{2})y_1} \, dy_1\right),
 \end{align*}
@@ -397,7 +394,7 @@ from which the result follows since
 %\centering
 %\begin{tikzpicture}
 %	
-%	%The box \Rcal_n
+%	%The box \Rcal
 %	\draw (-5,0) -- (10,0);
 %	\draw (-5,4) -- (10,4);
 %	
@@ -409,7 +406,7 @@ from which the result follows since
 %    
 %    
 %    
-%    \draw node at (-1,2.5) {$B_{\Pcal}(p) \setminus B_{\Pcal}(p^\prime)$};
+%    \draw node at (-1,2.5) {$\BallPo{p} \setminus B_{\Pcal}(p^\prime)$};
 %    
 %    \draw node at (-0.2,3.6) {$x_1 = x^\prime - e^{\frac{y^\prime+y_1}{2}}$};
 %    
@@ -417,7 +414,7 @@ from which the result follows since
 %    
 %    \draw node at (5.2,3.6) {$x_2 = x+e^{\frac{y+y_2}{2}}$};
 %    
-%    \draw node at (6,2.5) {$B_{\Pcal}(p^\prime) \setminus B_{\Pcal}(p)$};
+%    \draw node at (6,2.5) {$B_{\Pcal}(p^\prime) \setminus \BallPo{p}$};
 %    
 %    \draw[dashed,thick] (2.5,1.8326) -- (2.5,0.7);
 %    \draw node at (2.5,0.4) {$w(p,p^\prime)$};
@@ -434,16 +431,16 @@ from which the result follows since
 %    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (5,0) {};
 %    \draw node at (5,-0.5) {$p^\prime$};
 %\end{tikzpicture}
-%\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $G_{\Pcal,n}$ used for the proof of Lemma \ref{lem:common_neighbors_Pcal_n}.}
+%\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $\Gbox$ used for the proof of Lemma \ref{lem:common_neighbors_Pcal_n}.}
 %\label{fig:representation_joint_neighborhoods}
 %\end{figure}
 
-Next we consider the number of common neighbors between two nodes $p$ and $p^\prime$ in $G_{\Pcal}$, which we denote by $\Ncal_{\Pcal}(p,p^\prime)$. 
+Next we consider the number of common neighbors between two nodes $p$ and $p^\prime$ in $\Ginf$, which we denote by $\Ncal_{\Pcal}(p,p^\prime)$. 
 
 \begin{lemma}\label{lem:common_neighbors_Pcal_n}
-Let $p, p^\prime \in \Rcal_n$. Then, whenever $|x - x^\prime| > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)$,
+Let $p, p^\prime \in \Rcal$. Then, whenever $|x - x^\prime| > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)$,
 \[
-	\Exp{\Ncal_{\Pcal,n}(p,p^\prime)} = \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}\right)\phi_n(p,p^\prime),
+	\Exp{\Ncal_{\text{box}}(p,p^\prime)} = \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}\right)\phi_n(p,p^\prime),
 \]
 where
 \[
@@ -459,9 +456,9 @@ Assume, without loss of generality, that $y \ge y^\prime$ and $x \le x^\prime$ a
 \]
 Therefore,
 \begin{align*}
-	\Exp{\Ncal_{\Pcal,n}(p,p^\prime)} 
+	\Exp{\Ncal_{\text{box}}(p,p^\prime)} 
 	&= \int_{h(p,p^\prime)}^{R_n} \int_{x^\prime - e^{(y^\prime+y_1)/2}}^{x + e^{(y + y_1)/2}}
-		f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1\\
+		f(x_1,y_1) \dd x_1 \dd y_1\\
 	&= \left(e^{y/2} + e^{y^\prime/2}\right)\frac{\alpha \nu}{\pi}\int_{h(p,p^\prime)}^{R_n} 
 		e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\\
 	&\hspace{10pt}- (x^\prime - x) \frac{\alpha \nu}{\pi} \int_{h(p,p^\prime)}^{R_n} e^{-\alpha y_1} \dd y_1.
@@ -492,7 +489,7 @@ Combining these two results and noticing that $\xi_{\alpha, \nu} e^{y/2} = \Mu{\
 
 \subsubsection*{Degrees}
 
-We now turn to the joint degree distribution of nodes in $G_{\Pcal,n}$. To ease notations we introduce the following short-hand notation for the conditional joint degree distribution
+We now turn to the joint degree distribution of nodes in $\Gbox$. To ease notations we introduce the following short-hand notation for the conditional joint degree distribution
 \[
 	\rho_n(p,p^\prime,k,k^\prime) 
 	:= \Prob{D_{\Pcal,n}(p) = k, D_{\Pcal,n}(p^\prime) = k^\prime}.
@@ -500,7 +497,7 @@ We now turn to the joint degree distribution of nodes in $G_{\Pcal,n}$. To ease 
 
 We first establish an almost independence result for integrals over the joint degree distribution $\rho_{n}(p,p^\prime,k,k^\prime)$ for the case where  $p$ and $p^\prime$ are sufficiently separated. For this we note that when $|x - x^\prime| \gg e^{y/2} + e^{y^\prime/2}$ it follows from Lemma~\ref{lem:disjoint_neighbors_P_n_large}
 \[
-	\Exp{\Ncal_{\Pcal,n}(p \Delta p^\prime)} = \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}\right)(1 + \smallO{1}),
+	\Exp{\Ncal_{\text{box}}(p \Delta p^\prime)} = \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}\right)(1 + \smallO{1}),
 \] 
 for $p, p^\prime \in \Kcal_{C}(k_n) \times \Kcal_{C}(k_n)$. This implies that the joint neighborhoods are almost independent and hence their degrees must be as well. To make this more precise, let $0 < \varepsilon < \min\{(2\alpha - 1)^{-1},1\}$ and define the following two sets
 \begin{align}
@@ -508,7 +505,7 @@ for $p, p^\prime \in \Kcal_{C}(k_n) \times \Kcal_{C}(k_n)$. This implies that th
 			\, : \, |x - x^\prime| > \left(e^{y/2} + e^{y^\prime/2}\right) \log(n)
 		\right\} \label{eq:def_joint_degree_set_E_constant_k} \\
 	\mathcal{E}_{\varepsilon}(k_n) &= \left\{(p,p^\prime) \in \Kcal_C(k_n) \times \Kcal_C(k_n) 
-		\, : \, \Exp{\Ncal_{\Pcal,n}(p, p^\prime)} \ge k_n^{\varepsilon} \text{ and } |x - x^\prime| > k_n^{1 + \varepsilon} \right\}. \label{eq:def_joint_degree_set_E_growing_k}
+		\, : \, \Exp{\Ncal_{\text{box}}(p, p^\prime)} \ge k_n^{\varepsilon} \text{ and } |x - x^\prime| > k_n^{1 + \varepsilon} \right\}. \label{eq:def_joint_degree_set_E_growing_k}
 \end{align}
 
 The next result shows that for integrals over either $\mathcal{E}(k_n)$, when $k_n = \bigT{1}$, or $\mathcal{E}_{\varepsilon}(k_n)$, when $k_n \to \infty$, the joint degree distribution satisfies $\rho_n(p,p^\prime,k_n,k_n) = (1 + \smallO{1})\rho(p,k_n)\rho(p^\prime,k_n)$.
@@ -524,9 +521,9 @@ Let $k_n \to \infty$ be such that $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$ let
 Then, as $n \to \infty$,
 \begin{align*}
 	&\hspace{-30pt}\int_{\mathcal{E}_n} \rho_{n}(p,p^\prime,k_n,k_n) h(y)h(y^\prime) 
-		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+		f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
 	&= (1+\smallO{1})\int_{\mathcal{E}_n} \rho(y,k_n)\rho(y^\prime,k_n) h(y)h(y^\prime) 
-		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime.
+		f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime.
 \end{align*}
 \end{lemma}
 
@@ -543,10 +540,8 @@ and note that
 	&= \sum_{t = 0}^\infty \Prob{X_3(p,p^\prime) = t} \Prob{X_1(p,p^\prime) = k_n - t}\Prob{X_2(p,p^\prime) = k_n - t}.
 \end{align*}
 
-We proceed with the case $k_n \to \infty$.
 
-\noindent {\bf Case $\bm{k_n \to \infty}$:}\\
-Define $\delta_n = k_n^{-\frac{(1-\varepsilon)\varepsilon}{2}}$. Then, since $\Exp{X_3(p,p^\prime)} = \Exp{\Ncal_{\Pcal,n}(p,p^\prime)} \ge k_n^{\varepsilon}$ for $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, a Chernoff bound (c.f. \eqref{eq:def_chernoff_bound_poisson}) implies that
+Define $\delta_n = k_n^{-\frac{(1-\varepsilon)\varepsilon}{2}}$. Then, since $\Exp{X_3(p,p^\prime)} = \Exp{\Ncal_{\text{box}}(p,p^\prime)} \ge k_n^{\varepsilon}$ for $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, a Chernoff bound (c.f. \eqref{eq:def_chernoff_bound_poisson}) implies that
 \[
 	\Prob{|X_3(p,p^\prime) - \Exp{X_i(p,p^\prime)}| > \delta_n \Exp{X_3(p,p^\prime)}} = \bigO{e^{-k_n^{\varepsilon}}}.
 \]
@@ -579,7 +574,7 @@ The idea for the remainder of the proof is to first remove the dependence on $p$
 where $t_n = \smallO{k_n}$. Then, since $\Exp{X_1(p,p^\prime)} = \Mu{\BallPon{p}\setminus \BallPon{p^\prime}} = 
 (1 + \smallO{1})\Mu{\BallPon{p}}$, by Lemma~\ref{lem:disjoint_neighbors_P_n_large}, and similar for $X_2$, the proof will follow by applying a concentration argument twice.
 
-To execute this plan we note that $\Exp{X_3(p,p^\prime)} = \Exp{\Ncal_{\Pcal,n}(p,p^\prime)}$. Now recall the error function $\phi_n(p,p^\prime)$ from Lemma~\ref{lem:common_neighbors_Pcal_n}. Then, for $p,p^\prime \in \Kcal_{C}(k_n)$ we have that
+To execute this plan we note that $\Exp{X_3(p,p^\prime)} = \Exp{\Ncal_{\text{box}}(p,p^\prime)}$. Now recall the error function $\phi_n(p,p^\prime)$ from Lemma~\ref{lem:common_neighbors_Pcal_n}. Then, for $p,p^\prime \in \Kcal_{C}(k_n)$ we have that
 \begin{align*}
 	\phi_n(p,p^\prime) 
 	&\le \frac{1 + 2\alpha}{4\alpha}\left(\frac{k_n^{1 + \varepsilon}}{e^{y/2} + e^{y^\prime/2}}\right)^{-(2\alpha - 1)} 
@@ -637,18 +632,18 @@ This implies that on $\mathcal{E}_\varepsilon(k_n)$, $\mu_n^{(1)}(p) := \Exp{X_1
 Therefore, if we write $\hat{\rho}_n^{(i)}(p,k) := \Prob{X_i(p,p^\prime) = k - t_n^\pm}$, the second statement of the Lemma~\ref{lem:concentration_argument_rho_approximation} (applied twice) yields
 \begin{align*}
 	&\int_{\mathcal{E}_{\varepsilon}(k_n)} \hat{\rho}_{n}^{(1)}(p,k_n) \hat{\rho}_{n}^{(2)}(p^\prime,k_n) h(y)h(y^\prime) 
-		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+		f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
 	&= (1 + \smallO{1}) \int_{\mathcal{E}_{\varepsilon}(k_n)} \rho(y,k_n) \rho(y^\prime,k_n) h(y)h(y^\prime) 
-			f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime.
+			f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime.
 \end{align*}
 Together with the approximation~\eqref{eq:joint_degrees_separation} and the bounds~\eqref{eq:joint_degrees_upper_bound} and~\eqref{eq:joint_degrees_lower_bound} we get
 \begin{align*}
-	&\int_{\mathcal{E}_{\varepsilon}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) h(y) h(y^\prime) f_{\alpha,\nu}(x,y)
-		f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+	&\int_{\mathcal{E}_{\varepsilon}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) h(y) h(y^\prime) f(x,y)
+		f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
 	&=(1 + \smallO{1}) \int_{\mathcal{E}_{\varepsilon}(k_n)} \rho(y,k_n) \rho(y^\prime,k_n) h(y)h(y^\prime) 
-		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+		f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
 	&\hspace{10pt} + \bigO{1} e^{-k_n^{\varepsilon}} \int_{\mathcal{E}_{\varepsilon}(k_n)}
-		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime,			
+		f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime,			
 \end{align*}
 and the result follows since the last term is of smaller order than the first.\\
 \vspace{5pt}
@@ -675,23 +670,23 @@ and the result follows since the last term is of smaller order than the first.\\
 %Therefore we can apply the exact same arguments as for the case $k_n \to \infty$ to obtain
 %\begin{align*}
 %	&\int_{\mathcal{E}(k_n)} \rho_n(y,y^\prime,k_n,k_N) h(y)h(y^\prime) 
-%		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+%		f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
 %	&=(1+\smallO{1})\int_{\mathcal{E}(k_n)} \hspace{-5pt}\Prob{X_1(p,p^\prime) = k_n}\Prob{X_2(p,p^\prime) = k_n} h(y) h(y^\prime) 	
-%		f_{\alpha,\nu}(x,y)f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+%		f(x,y)f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
 %	&\hspace{10pt}+ \bigO{1}\log(n)^{-(2\alpha - 1)} \int_{\mathcal{E}(k_n)}
-%		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
+%		f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime\\
 %	&= (1+\smallO{1})\int_{\mathcal{E}(k_n)} \rho(y,k_n) \rho(y^\prime,k_n) h(y)h(y^\prime) 
-%		f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime,
+%		f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime,
 %\end{align*}
 %where we used that
 %\[
 %	\log(n)^{-(2\alpha - 1)}\int_{\mathcal{E}(k_n)}
-%			f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime
+%			f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime
 %\]
 %is of smaller order than
 %\[
 %	\int_{\mathcal{E}_(k_n)} \rho(y,k_n) \rho(y^\prime,k_n) h(y)h(y^\prime) 
-%			f_{\alpha,\nu}(x,y)	f_{\alpha,\nu}(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime.
+%			f(x,y)	f(x^\prime,y^\prime) \dd x \dd y \dd x^\prime \dd y^\prime.
 %\]
 \end{proof}
 
@@ -701,7 +696,7 @@ Next we show that when $k_n \to \infty$ and the expected number of disjoint neig
 \PvdH{@All: The proof of this lemma follows almost the exact same steps as that of the previous one. Is there any way we could merge them?}
 
 \begin{lemma}\label{lem:joint_degree_distribution_shift}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$, $k_n \to \infty$ and fix $\varepsilon > 0$. Then for any fixed $i, j, i^\prime, j^\prime \in \mathbb{Z}$ and $p, p^\prime \in \Kcal_{C}(k_n)$ such that $\Exp{\Ncal_{\Pcal,n}(p \Delta p^\prime)} \ge k_n^\varepsilon$,
+Let $\alpha > \frac{1}{2}$, $\nu > 0$, $k_n \to \infty$ and fix $\varepsilon > 0$. Then for any fixed $i, j, i^\prime, j^\prime \in \mathbb{Z}$ and $p, p^\prime \in \Kcal_{C}(k_n)$ such that $\Exp{\Ncal_{\text{box}}(p \Delta p^\prime)} \ge k_n^\varepsilon$,
 \[
 	\rho_n(p,p^\prime,k_n + i,k_n + i^\prime) 
 	= (1 + o(1))\rho_n(p,p^\prime, k_n + j,k_n + j^\prime)  \pm e^{-\Omega(k_n^\varepsilon)}.
@@ -715,7 +710,7 @@ Define
 	Y_n = \left|\BallPon{p} \cap \BallPon{p^\prime}\right|,\\
 	Z_n = \left|\BallPon{p^\prime} \setminus \BallPon{p}\right|.
 \end{align*}
-Then it follows that $X_n$, $Y_n$ and $Z_n$ are independent Poisson random variables satisfying $\Exp{X_n} + \Exp{Y_n} = \Mu{B_{\Pcal,n}(p)}$ and $\Exp{Z_n} + \Exp{Y_n} = \Mu{B_{\Pcal,n}(p^\prime)}$ while
+Then it follows that $X_n$, $Y_n$ and $Z_n$ are independent Poisson random variables satisfying $\Exp{X_n} + \Exp{Y_n} = \Mu{\BallPon{p}}$ and $\Exp{Z_n} + \Exp{Y_n} = \Mu{B_{\Pcal,n}(p^\prime)}$ while
 \begin{align*}
 	\rho_n(p,p^\prime,k_n + i,k_n + i^\prime) &= \Prob{X_n + Y_n = k + i, Z_n + Y_n = k + i^\prime}\\
 	&= \sum_{\ell = 0}^\infty \Prob{Y_n = \ell} \Prob{X_n = k + i - \ell, Z_n = k + i^\prime - \ell} \\
@@ -733,7 +728,7 @@ and similar for $Y_n$ and $Z_n$. Finally, we define
 \end{align*}
 We will now make distinguish between the cases $\Exp{Y_n} \le k_n/2$ and $\Exp{Y_n} > k_n/2$. 
 
-Let us first assume that $\Exp{Y_n} \le k_n/2$. Then, since $p \in \Kcal_{\varepsilon}(k_n)$ and $\mu_{\alpha,\nu}(B_{\Pcal,n}(p)) = \bigT{e^{y/2}} = \bigT{k_n}$ it follows that $\Exp{X_n} = \Omega(k_n)$ and hence
+Let us first assume that $\Exp{Y_n} \le k_n/2$. Then, since $p \in \Kcal_{\varepsilon}(k_n)$ and $\mu(\BallPon{p}) = \bigT{e^{y/2}} = \bigT{k_n}$ it follows that $\Exp{X_n} = \Omega(k_n)$ and hence
 \[
 	\Prob{|X_n - \Exp{X_n}| > \delta_n \Exp{X_n}} = \bigO{e^{-\frac{\delta_n^2}{4(1+\delta_n)} \Exp{X_n}}} = e^{-\Omega(k_n^{(1+\varepsilon)/2})} = e^{-\Omega(k_n^{\varepsilon})}.
 \]
@@ -763,7 +758,7 @@ and hence
 	&= (1+o(1))\rho_n(p,p^\prime,k+j,k^\prime+j^\prime) + e^{-\Omega(k_n^\varepsilon)}.
 \end{align*}
 
-Now assume that $\Exp{Y_n} > k_n/2$. Then, since $\Exp{\left|\Ncal_{\Pcal,n}(p \Delta p^\prime)\right|} \ge k_n^{\varepsilon}$ it follows that $\Exp{X_n} = \Omega(k_n^\varepsilon)$ or $\Exp{Z_n} = \Omega(k_n^\varepsilon)$. Without loss of generality we assume that $\Exp{X_n} = \Omega(k_n^\varepsilon)$. Similar to \eqref{eq:fraction_degree_prob} we have for $Y_n$
+Now assume that $\Exp{Y_n} > k_n/2$. Then, since $\Exp{\left|\Ncal_{\text{box}}(p \Delta p^\prime)\right|} \ge k_n^{\varepsilon}$ it follows that $\Exp{X_n} = \Omega(k_n^\varepsilon)$ or $\Exp{Z_n} = \Omega(k_n^\varepsilon)$. Without loss of generality we assume that $\Exp{X_n} = \Omega(k_n^\varepsilon)$. Similar to \eqref{eq:fraction_degree_prob} we have for $Y_n$
 \[
 	\frac{\Prob{Y_n = \ell}}{\Prob{Y_n = \ell + j^\prime - i^\prime}} \le (1 + \delta_n)^{2(|i^\prime - j^\prime|)}.
 \]
@@ -782,8 +777,7 @@ We now turn to Proposition \ref{prop:concentration_tilde_T_P_n}. Before we dive 
 
 Recall (see \eqref{eq:def_degree_triangle_count_in_K}) that for any $C > 0$
 \[
-	\widetilde{T}_{\Pcal,n}(k,C) = \sum_{p \in \Pcal_n \cap \Kcal_{C}(k)} \ind{D_{\Pcal,n}(p) = k}
-	\widetilde{T}_{\Pcal,n}(p)
+	\widetilde{T}_{\Pcal,n}(k,C) = \sum_{p \in \Pcal_n \cap \Kcal_{C,n}(k_n)} \ind{\text{deg}_{\text{box}}(p) = k} \widetilde{T}_{\Pcal,n}(p)
 \]
 Then we have
 \[
@@ -847,7 +841,7 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 %
 %Since 
 %\[
-%	|x - x^\prime| \le \left(e^{y/2} + e^{y^\prime/2}\right)\left(\frac{k_n + C \log(n)}{\xi_{\alpha,\nu}}\right)
+%	|x - x^\prime| \le \left(e^{y/2} + e^{y^\prime/2}\right)\left(\frac{k_n + C \log(n)}{\xi}\right)
 %	= \bigO{\log(n)^2}
 %\] 
 %for all $p,p ^\prime \in \mathcal{E}_C(k_n)^c$, it follows that
@@ -855,12 +849,12 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 %	&\Exp{\left|I_{a,b} - I^\ast_{a,b}\right|} \\
 %	&\le \int_{\mathcal{E}_{C}(k_n)^c} 
 %		\Exp{\ind{D_{\Pcal,n}(p) = k_n - i, \, D_{\Pcal,n}(p^\prime) = k_n - i^\prime} J_b(p,p^\prime)}
-%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%		f(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
 %	&\le \int_{\mathcal{E}_{C}(k_n)^c} \rho_{n}(y,k_n) \Exp{J_b(p,p^\prime)}
-%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%		f(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
 %	&\le \int_{\mathcal{E}_{C}(k_n)^c} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(p)}
 %		\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} 
-%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%		f(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
 %	&\le \bigO{\log(n)^2} \left(\int_{\Kcal_{C}(k_n)} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(p)} 
 %		f_{\alpha, \nu}(x,y) \dd x \dd y\right)	
 %		\left(\int_0^{a_n} \Delta_\Pcal(y^\prime) e^{-\alpha y^\prime} \dd y^\prime\right) \\
@@ -873,13 +867,13 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 %
 %We now proceed with computing $I_{a,b}^\ast$. For this we note that the parts of the neighborhoods $\BallPon{p}$ and $\BallPon{p^\prime}$ where $y_1, y_1^\prime \le h(p,p^\prime)$ are disjoint, see Figure~\ref{fig:representation_disjoint_neighborhoods_P_n_3}. In particular, this implies that when $b \ne 0$ this can only be if one of the $y_1, y_2, y_1^\prime, y_2^\prime$ exceeds $h(p,p^\prime)$. Now we observe that for $(p,p^\prime) \in \mathcal{E}(k_n)$ we have
 %\begin{align*}
-%	\int_{h(p,p^\prime)}^{R_n}\int_{-I_n}^{I_n} \ind{p_1 \in \BallPon{p}} f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1
+%	\int_{h(p,p^\prime)}^{R_n}\int_{-I_n}^{I_n} \ind{p_1 \in \BallPon{p}} f(x_1,y_1) \dd x_1 \dd y_1
 %	&= \bigO{e^{y/2} e^{-(\alpha - \frac{1}{2})h(p,p^\prime)}}
 %		= \bigO{\log(n)^{-(2\alpha - 1)}},
 %\end{align*}
 %while
 %\begin{align*}
-%	\int_0^{h(p,p^\prime)}\int_{-I_n}^{I_n} \ind{p_1 \in \BallPon{p}} f_{\alpha,\nu}(x_1,y_1) \dd x_1 \dd y_1
+%	\int_0^{h(p,p^\prime)}\int_{-I_n}^{I_n} \ind{p_1 \in \BallPon{p}} f(x_1,y_1) \dd x_1 \dd y_1
 %	&= \bigO{1}.
 %\end{align*} 
 %Hence if $b \ne 0$ then it follows that $\Exp{J_b} = \bigO{\log(n)^{-(2\alpha - 1)}}$ and we conclude that 
@@ -889,8 +883,8 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 %
 %For $I_{0,0}^\ast$ we define
 %\[
-%	\mathcal{J}_1^\ast = \int_{\Rcal_n^2} \ind{0\le y_1, y_2 \le h(p,p^\prime)} \widetilde{T}_{\Pcal,n}(p,p_1,p_2) 
-%			f_{\alpha,\nu}(x_1,y_1)	f_{\alpha,\nu}(x_2,y_2) \dd x_2 \dd x_1 \dd y_2 \dd y_1
+%	\mathcal{J}_1^\ast = \int_{\Rcal^2} \ind{0\le y_1, y_2 \le h(p,p^\prime)} \widetilde{T}_{\Pcal,n}(p,p_1,p_2) 
+%			f(x_1,y_1)	f(x_2,y_2) \dd x_2 \dd x_1 \dd y_2 \dd y_1
 %\] 
 %and define $\mathcal{J}_2^\ast$ in a similar way by interchanging the primed and non-primed variables. Then we get
 %\[
@@ -903,19 +897,19 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 %and similar for $\mathcal{J}_2^\ast$, while Lemma~\ref{lem:joint_degree_factorization} states that
 %\begin{align*}
 %	&\hspace{-30pt}\int_{\mathcal{E}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) \Delta_\Pcal(y) \Delta_\Pcal(y^\prime)
-%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
-%	&= (1+\smallO{1})\left(\int_{\Kcal_C(k_n)} \rho(y,k_n) \Delta_\Pcal(y) f_{\alpha,\nu}(x,y) \dd x \dd y\right)^2.
+%		f(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%	&= (1+\smallO{1})\left(\int_{\Kcal_C(k_n)} \rho(y,k_n) \Delta_\Pcal(y) f(x,y) \dd x \dd y\right)^2.
 %\end{align*}
 %We therefore conclude that
 %\begin{align*}
 %	\Exp{I_{0,0}^\ast} 
 %	&= \int_{\mathcal{E}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) \Exp{J_0(p,p^\prime)}
-%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y \\
+%		f(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y \\
 %	&= \int_{\mathcal{E}(k_n)} \rho_{n}(p,p^\prime,k_n,k_n) \Delta_\Pcal(y) \Delta_\Pcal(y^\prime)
-%		f_{\alpha,\nu}(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
+%		f(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
 %	&\hspace{10pt}+ \bigO{\log(n)^{-(2\alpha - 1)}n^2} \\
 %	&= (1 + \smallO{1}) \binom{k_n}{2}^2 
-%		\left(\int_{\Kcal_C(k_n)} \rho(y,k_n) \Delta_\Pcal(y) f_{\alpha,\nu}(x,y) \dd x \dd y\right)^2 \\
+%		\left(\int_{\Kcal_C(k_n)} \rho(y,k_n) \Delta_\Pcal(y) f(x,y) \dd x \dd y\right)^2 \\
 %	&= (1 + \smallO{1})\Exp{T_\Pcal(k_n)}^2,
 %\end{align*}
 %which finishes the proof for $k_n = \bigT{1}$
@@ -923,21 +917,21 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 Recall the definition of $\mathcal{E}_\varepsilon(k_n)$
 \[
 	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \Kcal_C(k_n) \times \Kcal_C(k_n) 
-	\, : \, \Exp{\left|\Ncal_{\Pcal,n}^c(p,p^\prime)\right|} \ge k_n^{\varepsilon} \text{ and } |x - x^\prime| > k_n^{1 + \varepsilon} \right\}
+	\, : \, \Exp{\left|\Ncal_{\text{box}}^c(p,p^\prime)\right|} \ge k_n^{\varepsilon} \text{ and } |x - x^\prime| > k_n^{1 + \varepsilon} \right\}
 \]
 let $\mathcal{E}_\varepsilon(k_n)^c$ denote its complement and let $I_{a,b}^\ast$ denote the the part of $I_{a,b}$ where $p,p^\prime \in \Pcal_n \cap \mathcal{E}_\varepsilon(k_n)$. We first show that
 \begin{equation}\label{eq:I_ab_ast_main}
 	\Exp{I_{a,b} - I_{a,b}^\ast} = \smallO{\Exp{T_{\Pcal,n}(k_n)}^2},
 \end{equation}
-so that for the remainder of the proof we only need to consider $p, p^\prime \in \mathcal{E}_\varepsilon(k_n)$ and hence, we can apply Lemma \ref{lem:joint_degree_factorization}. For this we note that by Lemma \ref{lem:disjoint_neighbors_P_n} and Lemma \ref{lem:disjoint_neighbors_P_n_large} we have for $p,p^\prime \in \Kcal_{\varepsilon}(k_n)$ that $\Exp{\left|\Ncal_{\Pcal,n}(p\Delta p^\prime)\right|} \le k_n^{\varepsilon}$ implies that eventually and $|x-x^\prime| \le k_n^{1+\varepsilon}$. In particular $|x - x^\prime| \le k_n^{1+\varepsilon}$ for all $(p, p^\prime) \in \mathcal{E}_{\varepsilon}(k_n)^c$. Therefore, we have
+so that for the remainder of the proof we only need to consider $p, p^\prime \in \mathcal{E}_\varepsilon(k_n)$ and hence, we can apply Lemma \ref{lem:joint_degree_factorization}. For this we note that by Lemma \ref{lem:disjoint_neighbors_P_n} and Lemma \ref{lem:disjoint_neighbors_P_n_large} we have for $p,p^\prime \in \Kcal_{\varepsilon}(k_n)$ that $\Exp{\left|\Ncal_{\text{box}}(p\Delta p^\prime)\right|} \le k_n^{\varepsilon}$ implies that eventually and $|x-x^\prime| \le k_n^{1+\varepsilon}$. In particular $|x - x^\prime| \le k_n^{1+\varepsilon}$ for all $(p, p^\prime) \in \mathcal{E}_{\varepsilon}(k_n)^c$. Therefore, we have
 \begin{align*}
 	&\Exp{I_{a,b} - I_{a,b}^\ast}\\
 	&\le \int_{\Kcal_C(k_n)^2 \setminus \mathcal{E}_\varepsilon(k_n)} \rho(p, p^\prime, k - i, k - i^\prime) 
-		\Exp{J_b(p,p^\prime)} f_{\alpha,\nu}(x,y) f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
+		\Exp{J_b(p,p^\prime)} f(x,y) f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
 	&\le \int_{\Kcal_C(k_n)^2 \setminus \mathcal{E}_\varepsilon(k_n)} \rho(p, p^\prime, k - i, k - i^\prime) 
-		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f_{\alpha,\nu}(x,y) f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
+		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f(x,y) f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
 	&= \bigO{\int_{\Kcal_C(k_n)^2} \ind{|x-x^\prime| \le k_n^{1 + \varepsilon}} \rho_{y}(k) 
-		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f_{\alpha,\nu}(x,y) f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy}\\
+		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f(x,y) f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy}\\
 	&= \bigO{k_n^{1+\varepsilon} \binom{k_n}{2} \left(\int_{a_n^-}^{a_n^+} \Delta_{\Pcal}(y^\prime) 
 			e^{-\alpha y^\prime} \, dy^\prime\right) \Exp{T_{\Pcal,n}(k_n)}}\\
 	&= \bigO{k_n^{3 + \varepsilon -2\alpha} s_\alpha(k_n) \Exp{T_{\Pcal,n}(k_n)}}\\
@@ -957,8 +951,8 @@ By Lemma~\ref{lem:joint_degree_distribution_shift}
 which now no longer depends on the other four points $p_1, p_2, p_1^\prime, p_2^\prime$. Hence, using the Campbell-Mecke formula, we get
 \[
 	\Exp{I_{0,0}^\ast} = (1 + \smallO{1})\int_{\mathcal{E}_{\varepsilon}(k_n)}\rho_{n}(p,p^\prime,k_n, k_n)
-		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f_{\alpha,\nu}(x,y)
-		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy,
+		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f(x,y)
+		f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy,
 \]
 
 Next, by Corollary~\ref{cor:adjusted_triangle_counting_P_n} we have for $y \in K_C(k_n)$,
@@ -968,28 +962,28 @@ Next, by Corollary~\ref{cor:adjusted_triangle_counting_P_n} we have for $y \in K
 and similar for $p^\prime$. Hence, by Lemma~\ref{lem:joint_degree_factorization} 
 \begin{align*}
 	&\hspace{-10pt}(1 + \smallO{1})\int_{\mathcal{E}_\varepsilon(k_n)} \rho_n(p, p^\prime, k_n, k_n)
-		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f_{\alpha,\nu}(x,y)
-		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
+		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f(x,y)
+		f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
 	&= (1+\smallO{1})\binom{k_n}{2}^2 \int_{\mathcal{E}_\varepsilon(k_n)} 
-		\rho(y, k_n) \rho(y^\prime, k_n) \Delta_{\Pcal}(y) \Delta_\Pcal(y^\prime) 	f_{\alpha,\nu}(x,y) 
-		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
+		\rho(y, k_n) \rho(y^\prime, k_n) \Delta_{\Pcal}(y) \Delta_\Pcal(y^\prime) 	f(x,y) 
+		f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
 	&= (1+\smallO{1}) \left( \binom{k_n}{2} \int_{a_n^-}^{a_n^+}\int_{I_n} \rho(y,k_n)
-		\Delta_{\Pcal}(y) f_{\alpha,\nu}(x,y) \, dx \, dy\right)^2\\
+		\Delta_{\Pcal}(y) f(x,y) \, dx \, dy\right)^2\\
 	&= (1 + \smallO{1})\left(\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}\right)^2,
 \end{align*}
 which proves \eqref{eq:variance_T_I_00}.
 
 Next we consider $I_{0,1}^\ast$. The proofs for the other two cases $I_{1,1}^\ast$ and $I_{0,2}^\ast$ follow using similar arguments and hence we omit them here.
 
-Without loss of generality we will assume that $p_1 = p_1^\prime$. Notice that now $i = |\{p^\prime, p_1, p_2, p_2^\prime\} \cap B_{\Pcal,n}(p)|$ and $j = |\{p^\prime\} \cap B_{\Pcal,n}(p)|$ and $i^\prime$, $j^\prime$ are defined, similarly, by interchanging the primed and non-primed variables. Then, if we define
+Without loss of generality we will assume that $p_1 = p_1^\prime$. Notice that now $i = |\{p^\prime, p_1, p_2, p_2^\prime\} \cap \BallPon{p}|$ and $j = |\{p^\prime\} \cap \BallPon{p}|$ and $i^\prime$, $j^\prime$ are defined, similarly, by interchanging the primed and non-primed variables. Then, if we define
 \[
 	T^{(0,1)}_{\Pcal,n}(p,p^\prime) = \sum_{(p_1,p_2) \in 2^{\Pcal_n}} \sum_{p_2^\prime \in \Pcal_n} \widetilde{T}_{\Pcal,n}(p,p_1,p_2) \widetilde{T}_{\Pcal,n}(p^\prime,p_1,p_2^\prime),
 \]
 we have
 \begin{align*}
 	\Exp{I_{0,1}^\ast} &= (1+\smallO{1})\int_{\mathcal{E}_{\varepsilon}(k_n)} \rho_n(p,p^\prime,k_n,k_n)
-			\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)} f_{\alpha,\nu}(x,y)
-			f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy,
+			\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)} f(x,y)
+			f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy,
 \end{align*} 
 where we again used Lemma  \ref{lem:joint_degree_distribution_shift}.
 We will show that 
@@ -1045,7 +1039,7 @@ Next, by integrating only over $x_2^\prime$ and $y_2^\prime $ we get the contrib
 %	a_n = -\frac{1}{\alpha} \log\left(\delta_n\right)
 %\]
 %
-%Then, for all $p,p^\prime \in \Rcal_n$ with 
+%Then, for all $p,p^\prime \in \Rcal$ with 
 %\[
 %	|x-x^\prime| > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)\max\{e^{\frac{a_n}{2}},e^{\frac{y^\ast}{2}}\}
 %	:= b_n(p,p^\prime)

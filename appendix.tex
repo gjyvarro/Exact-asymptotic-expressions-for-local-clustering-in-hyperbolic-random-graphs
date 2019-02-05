@@ -23,6 +23,82 @@ $$\Gamma^+(-a-1,\xi/s) = \MeijerGnew{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}}$$
 Let $x>0$ and $q\in\R$ and note that as the $\Gamma$-function is the Mellin transform of $e^{-x}$, by the inverse Mellin transform formula, we have $e^{-x}=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty} \Gamma(p)x^{-p}dp$ for $c>0$ (see \cite[p.196]{davies2012integral}). Applying the change of variable $p(r)=q-r$ yields $e^{-x}=\frac{1}{2\pi i}\int_{c+q-i\infty}^{c+q+i\infty} \Gamma(q-r) x^{r-q}dr$, then multiplying both sides with $-x^{q-1}$ gives $-x^{q-1}e^{-x} = -\frac{1}{2\pi i}\int_{c+q-i\infty}^{c+q+i\infty} \Gamma(q-r) x^{r-1}dr$. Now, integrating both sides gives $\int_x^\infty t^{q-1}e^{-t}dt = \frac{1}{2\pi i}\int_{c+q-i\infty}^{c+q+i\infty}\frac{\Gamma(q-r)}{-r}x^r dr$. On the left-hand side is the incomplete gamma function and on the right-hand side with using $-r= \frac{\Gamma(1-r)}{\Gamma(-r)}$ is the Meijer $G$-function, i.e. $\Gamma^+(q,x)=\MeijerG{2}{0}{1}{2}{1}{q,0}{x}$. The claim follows by plugging in $q=-a-1$ and $x=\frac{\xi}{s}$.
 \end{proof}
 
+\section{Incomplete Beta function}\label{sec:beta_function}
+
+Here we derive the asymptotic behavior for the function $B^-(1-z; 2\alpha, 3-4\alpha )$ as $z \to 0$, which is used to analyze the asymptotic behavior of $P(y)$, see Section~\ref{ssec:asymptotics_local_clustering_P}.
+
+\begin{lemma}\label{lem:asymptotics_incomplete_beta}
+We have the following asymptotic results for $B^-(1-z; 2\alpha, 3-4\alpha )$
+\begin{enumerate}
+\item For $1/2 < \alpha < 3/4$
+\[
+	\lim_{z \to 0} B^-(1-z, 2\alpha, 3-4\alpha ) = B(2\alpha, 3 - 4\alpha).
+\]
+\item When $\alpha = 3/4$,
+\[
+	\lim_{z \to 0} \frac{B^-(1-z, 2\alpha, 3-4\alpha)}{\log(z)} = -1.
+\]
+\item For $\alpha > 3/4$,
+\[
+	\lim_{z \to 0} z^{4\alpha - 3} B^-(1-z, 2\alpha, 3-4\alpha ) = \frac{1}{4\alpha - 3}.
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We use the hypergeometric representation of the incomplete Beta function,
+\[
+	B^-(x, a, b) = \frac{x^a}{2a}F(a, 1-b,a+1,x),
+\]
+where $F$ denote the hypergeometric function [REF]. In particular we have that
+\[
+	B^-(1-z; 2\alpha, 3-4\alpha ) = \frac{(1-z)^{2\alpha}}{2\alpha} F(2\alpha,4\alpha-2,2\alpha+1,1-z).
+\]
+
+The behavior of $F(a,b,c,1-z)$ as $z \to 0$ depend on the real part of the sum of $c - a - b$ and whether $c = a + b$ [REF]. Since in our case $a,b,c$ will be real it only depends on the sum of $c - a - b$. For $c - a - b > 0$ we have
+\begin{equation}\label{eq:F_cab_less_than_zero}
+	\lim_{z \to 0} F(a,b,c,1-z) = \frac{\Gamma(c)\Gamma(c-a-b)}{\Gamma(c-a)\Gamma(c-b)},
+\end{equation}
+if $c = a + b$ then
+\begin{equation}\label{eq:F_cab_zero}
+	\lim_{z \to 0} \frac{F(a,b,c,1-z)}{\log(z)} = -\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)},
+\end{equation}
+and finally, when $c - a - b < 0$
+\begin{equation}\label{eq:F_cab_greater_than_zero}
+	\lim_{z \to 0} \frac{F(a,b,c,1-z)}{z^{c - a - b}} = \frac{\Gamma(c)\Gamma(a + b -c)}{\Gamma(a)\Gamma(b)}.
+\end{equation}
+
+In our case we have,
+\[
+	B^-(1-z; 2\alpha, 3-4\alpha ) = \frac{(1-z)^{2\alpha}}{2\alpha} F(a,b,c,1-z),
+\]
+with $a := 2\alpha$, $b: = 4\alpha-2$ and $c := 2\alpha + 1$. Therefore,
+\[
+	c - a - b = 2\alpha + 1 - 2\alpha -(4\alpha - 2) = 3 - 4\alpha.
+\]
+
+Now if $\alpha < 3/4$ then $c - a - b > 0$ and hence
+\[
+	\lim_{z \to 0} B^-(1-z; 2\alpha, 3-4\alpha ) = \frac{1}{2\alpha} \frac{\Gamma(2\alpha + 1)\Gamma(3 - 4\alpha)}{\Gamma(1)\Gamma(3-2\alpha)} = \frac{\Gamma(2\alpha)\Gamma(3 - 4\alpha)}{\Gamma(3-2\alpha)}
+	= B(2\alpha, 3 - 4\alpha),
+\]
+where we used that $\Gamma(2\alpha + 1) = 2\alpha \Gamma(2\alpha)$.
+
+When $\alpha =3/4$ then $c - a - b = 0$ and therefore~\eqref{eq:F_cab_zero} implies that
+\begin{align*}
+	\lim_{z \to 0} \frac{B^-(1-z; 2\alpha, 3-4\alpha )}{\log(z)} 
+	= -\frac{1}{2\alpha} \frac{\Gamma(6\alpha - 2)}{\Gamma(2\alpha)\Gamma(4\alpha - 2)}
+	= - \frac{\Gamma(5/2)}{\frac{3}{2}\Gamma(3/2)} = -1.
+\end{align*}
+
+Finally, when $\alpha > 3/4$, $c - a - b = 3 - 4\alpha < 0$ and using~\eqref{eq:F_cab_greater_than_zero} we get
+\begin{align*}
+	\lim_{z \to 0} z^{4\alpha - 3} B^-(1-z, 2\alpha, 3-4\alpha ) 
+	= \frac{1}{2\alpha}\frac{\Gamma(2\alpha + 1)\Gamma(4\alpha - 3)}{\Gamma(2\alpha)\Gamma(4\alpha - 2)}
+	= \frac{\Gamma(4\alpha - 3)}{\Gamma(4\alpha - 2)} = \frac{1}{4\alpha - 3}.
+\end{align*}
+\end{proof}
+
 %\section*{Properties of $G_{\H,n}(\alpha,\nu)$}
 %
 %\PvdH{@Markus: is the lemma below only needed to prove the second lemma? If so than we can remove it because the statements of the second lemma have already been established in other parts of the paper.}
