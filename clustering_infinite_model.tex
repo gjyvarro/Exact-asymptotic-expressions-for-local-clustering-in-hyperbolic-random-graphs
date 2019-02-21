@@ -188,10 +188,10 @@ satisfy $|x_1-x_2| \leq e^{(y_1+y_2)/2}$, where $x_1$ and $x_2$ are independent 
 $[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$.
 We have that
 
-\begin{align}\label{eq:delta_P}
+\begin{equation}\label{eq:delta_P}
  P(y_0) = (\alpha-1/2)^2 \int_0^\infty \int_0^\infty P(y_0, y_1, y_2) e^{-(\alpha-1/2)(y_1+y_2)} 
  \dd y_2 \dd y_1.
-\end{align}
+\end{equation}
 
 \subsubsection{Determining $P(y_0,y_1,y_2)$}
 
@@ -525,7 +525,7 @@ The proof is structured using headers, to aid the reader.
 
 %\paragraph{When $\bm{\alpha \notin \{3/4,1\}}$}
 
-Note that when writing $P(y_0)$ as in integral as in equation \eqref{eq:def_delta_p}, by symmetry in the integration 
+Note that when writing $P(y_0)$ as an integral, see equation~\eqref{eq:delta_P}, by symmetry in the integration 
 variables $y_1$ and $y_2$, we can assume that $y_1<y_2$ in which case either $y_0$ or $y_1$ is the smallest height. 
 This gives half the value of $P(y_0)$ and hence
 \[ 
@@ -552,15 +552,15 @@ Applying the change of variables $z_i := e^{-y_i/2}$ and Lemma~\ref{lem:triangle
 		{\dd}z_2{\dd}z_1 \right. \\
 	&\hspace{10pt} \left. - \int_{{z_0>z_1>z_2>0,}\atop{z_0 < z_1+z_2}} G(z_0,z_1,z_2) \cdot z_1^{2\alpha-2} z_2^{2\alpha-2} 
 		{\dd}z_2{\dd}z_1 \right) \\
-	&=: 4 (\alpha-1/2)^2 ( I_{11}(y_0) - I_{12}(y_0)). \numberthis \label{eq:Delta_P_computation_I11}
+	&=: 4 (\alpha-1/2)^2 ( I_{11}(y_0) - I_{12}(y_0)). 
 \end{align*}
 
 The integral $I_{11}(y_0)$ is easily obtained:
 \begin{align*}
-	I_{11}(y_0) &= \int_0^{z_0} \int_0^{z_1} z_1^{2\alpha-2} z_2^{2\alpha-2} {\dd}z_2{\dd}z_1\\
-	&= \int_0^{z_0} z_1^{2\alpha-2} \left[ \frac{z_2^{2\alpha-1}}{2\alpha-1} \right]_0^{z_1} {\dd}z_1\\
-	&= \frac{1}{2\alpha-1} \cdot \int_0^{z_0} z_1^{4\alpha-3} {\dd}z_1 \\
-	&= \frac{1}{2(2\alpha-1)^2} \cdot z_0^{4\alpha-2}.
+	I_{11}(y_0) &= \int_0^{z_0} \int_0^{z_1} z_1^{2\alpha-2} z_2^{2\alpha-2} {\dd}z_2{\dd}z_1
+		= \int_0^{z_0} z_1^{2\alpha-2} \left[ \frac{z_2^{2\alpha-1}}{2\alpha-1} \right]_0^{z_1} {\dd}z_1\\
+	&= \frac{1}{2\alpha-1} \cdot \int_0^{z_0} z_1^{4\alpha-3} {\dd}z_1
+		= \frac{1}{2(2\alpha-1)^2} \cdot z_0^{4\alpha-2}. \numberthis \label{eq:Delta_P_computation_I11}
 \end{align*}
 
 To deal with $I_{12}$ we note that $G(z_0,z_1,z_2)$ is a linear combination of monomials of the form $z_0^az_1^bz_2^c$ with 
@@ -655,7 +655,7 @@ we get
 		{\dd}z_2{\dd}z_1 \right. \\
 	&\hspace{10pt}\left. - \int_{{1>z_1>z_0,z_2>0}\atop{z_1 < z_0+z_2}} G(z_1,z_0,z_2) z_0 z_1^{2\alpha-3} 	
 		z_2^{2\alpha-2} \dd z_2{\dd}z_1 \right) \\
-	&=: 4 (\alpha-1/2)^2 (I_{21}(y_0) - I_{22}(y_0)). \numberthis \label{eq:Delta_P_computation_I21}
+	&=: 4 (\alpha-1/2)^2 (I_{21}(y_0) - I_{22}(y_0)). 
 \end{align*}
 
 We proceed with the easy integral:
@@ -663,8 +663,8 @@ We proceed with the easy integral:
 	I_{21}(y_0) &= z_0 \int_{1>z_1>\max(z_2,z_0);z_0,z_2>0} z_1^{2\alpha-3} z_2^{2\alpha-2} {\dd}z_2{\dd}z_1   
 		= z_0 \int_{z_0}^1 \int_{0}^{z_1} z_1^{2\alpha-3} z_2^{2\alpha-2} {\dd}z_2{\dd}z_1\\
 	&= z_0 \int_{z_0}^1 \left[ \frac{z_2^{2\alpha-1}}{2\alpha-1}\right]_{0}^{z_1} z_1^{2\alpha-3} {\dd}z_1 
-		= \frac{z_0}{2\alpha-1}  \int_{z_0}^1 z_1^{4\alpha-4} {\dd}z_1 \\
-	&= \frac{z_0 - z_0^{4\alpha-2}}{(4\alpha-3)(2\alpha-1)}.
+		= \frac{z_0}{2\alpha-1}  \int_{z_0}^1 z_1^{4\alpha-4} {\dd}z_1
+		= \frac{z_0 - z_0^{4\alpha-2}}{(4\alpha-3)(2\alpha-1)}. \numberthis \label{eq:Delta_P_computation_I21}
 \end{align*}
 We note that the denominators above are non-zero as $\alpha > \frac{1}{2}$ and $\alpha \not =\frac{3}{4}$.
 
@@ -933,7 +933,7 @@ Using equation~\eqref{eq:integral_Delta_P_z}, \eqref{eq:integral_Delta_P_1_z} an
 \end{align*}%{4\alpha-k+1,6\alpha-k-1}{6\alpha-k-2,2\alpha-k+1,0}
 
 With the expressions for $J$ and $I^{(k)}$ and using $\Gamma^\ast(q,z) = \Gamma^+(q+1,z) + \Gamma^+(q,z)$ we now obtain, after 
-some algebra, the expression for $c_\Pcal$
+some algebra, the expression for $\gamma$
 \begin{align*}
 	\gamma &= J-I^{(0)}-I^{(1)} \\
 	&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 + 
@@ -1187,20 +1187,15 @@ Plugging this into ~\eqref{eq:gammaint} and~\eqref{eq:gammakint} yields the expr
 
 \subsection{The proof of Proposition~\ref{prop:asymp}\label{ssec:asymptotics_local_clustering_P}}
 
-Recall that
+Instead of extracting the scaling of $\gamma(k)$ from its explicit expression, it turns out to be more convenient to derive it directly. Recall that
 \[
 	\gamma(k) = \frac{\int_0^\infty \rho(y,k) P(y) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}.
 \]
 The asymptotic behavior for the denominator follows from~\eqref{eq:degree_distribution_P_asymptotics}. Hence, the main term to consider is the numerator
 \[
-	\int_0^{\infty} \Delta_{\mathcal{P}}(y) \, \rho(y,k) \alpha e^{-\alpha y} \, dy,
+	\int_0^{\infty} P(y) \, \rho(y,k) \alpha e^{-\alpha y} \, dy,
 \]
-and in particular the function $P(y)$. We therefore start with establishes the asymptotic behavior of the latter. First we combine~\eqref{eq:degree_distribution_P_asymptotics} and~\eqref{eq:general_integral_rho_y_k} to obtain the following scaling result
-\begin{equation}\label{eq:general_clustering_integral_scaling}
-	\frac{\int_0^\infty e^{-\beta y} \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	\sim \xi_{\alpha, \nu}^{2\beta} k^{-2\beta}.
-\end{equation}
+and in particular the function $P(y)$. We therefore start with establishing the asymptotic behavior of the latter. 
 
 
 %\TM{ Here we need a properly spelled out proof of the proposition. (Which Pim was preparing I believe.)}
@@ -1210,15 +1205,15 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $c_\alpha$ as defined in Proposition~\
 \begin{enumerate}
 \item for $\frac{1}{2} < \alpha < \frac{3}{4}$,
 \[
-	\Delta_{\Pcal}(y) \sim e^{-\frac{y}{2}(4\alpha - 2)} c_\alpha,
+	P(y) \sim e^{-\frac{y}{2}(4\alpha - 2)} c_\alpha \xi^{4\alpha - 2},
 \]
 \item for $\alpha = \frac{3}{4}$,
 \[
-	\Delta_\Pcal(y) \sim \frac{y}{2} e^{-\frac{y}{2}},
+	P(y) \sim \frac{y}{2} e^{-\frac{y}{2}},
 \]
 \item and for $\alpha > \frac{3}{4}$,
 \[
-	\Delta_{\Pcal}(y) \sim e^{-\frac{y}{2}} \frac{4\alpha - 3}{4(\alpha - 1)}.
+	P(y) \sim e^{-\frac{y}{2}} \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}}.
 \]
 \end{enumerate}
 \end{proposition}
@@ -1227,7 +1222,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $c_\alpha$ as defined in Proposition~\
 We shall deal with each of the three cases for $\alpha$ separately.
 
 \paragraph{Proof for \bm{$1/2 < \alpha < 3/4$}}
-By Lemme~\ref{lem:Paneq1} we get that
+By Lemma~\ref{lem:Paneq1} we get that
 \begin{align*}
 	e^{(4\alpha - 2)\frac{y}{2}}P(y) &= \frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha (\alpha - 1)^2} 
 		+ \frac{(\alpha - \frac{1}{2} ) B^-(\frac{1}{2}; 1 + 2 \alpha, -2 + 2 \alpha)}{2(\alpha - 1) \alpha}
@@ -1237,12 +1232,12 @@ By Lemme~\ref{lem:Paneq1} we get that
 		- \frac{(\alpha - \frac{1}{2})^2}{4(\alpha-1)^2} e^{4(\alpha-1)\frac{y}{2}}.
 \end{align*}
 Because for any $b < 1$, $B^-(1-z,a,b)$ converges to $B^-(a,b) < \infty$ as $z \to 0$, we get that as $y \to \infty$, the first line is asymptotically equivalent to
-\[,
-	\frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha (\alpha - 1)^2} 
+\[
+	\frac{3 \alpha - 1}{2^{4 \alpha+1} \alpha (\alpha - 1)^2} 
 			+ \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2(\alpha - 1) \alpha}
-			- \frac{B(2\alpha, 3-4\alpha)}{4(\alpha - 1)} = c_\alpha,
+			- \frac{B(2\alpha, 3-4\alpha)}{4(\alpha - 1)} = c_\alpha \xi^{-(4\alpha - 2)},
 \]
-as defined in Theorem~\eqref{thm:mainktoinfty}. The proof now follows since for $1/2 < \alpha < 3/4$, the remaining three terms go to zero as $y \to \infty$.
+with $c_\alpha$ as defined in Proposition~\eqref{prop:asymp}. The proof now follows since for $1/2 < \alpha < 3/4$, the remaining three terms go to zero as $y \to \infty$.
 
 \paragraph{Proof for \bm{$\alpha = 3/4$}}
 
@@ -1266,7 +1261,7 @@ which implies that
 \[
 	\lim_{y \to \infty} \frac{2}{y}\frac{e^{\frac{y}{2}}\left((1 - e^{-\frac{y}{2}})^{2\alpha} - 1\right)}{8(\alpha - 1)\alpha} = 0.
 \]
-It can now conclude that all terms in $\frac{2}{y} e^{\frac{y}{2}}\Delta_{\Pcal}(y)$ except the first one are $\smallO{1}$ as $y \to \infty$. By writing $z = e^{-\frac{y}{2}}$ we can rewrite this term as
+We can now conclude that all terms in $\frac{2}{y} e^{\frac{y}{2}}P(y)$ except the first one are $\smallO{1}$ as $y \to \infty$. By writing $z = e^{-\frac{y}{2}}$ we can rewrite the first term as
 \[
 	\frac{2}{y}\frac{B^-(1-e^{-\frac{y}{2}}, 2\alpha, 3 - 4\alpha)}{4(\alpha - 1)} 
 	= -\frac{1}{\log(z)}\frac{B^-(1-z, 2\alpha, 3 - 4\alpha)}{4(\alpha - 1)}.
@@ -1279,7 +1274,7 @@ that for $\alpha = 3/4$,
 \]
 We therefore conclude that
 \[
-	\frac{2}{y}e^{\frac{y}{2}}P(y) \sim \frac{y}{2} e^{-\frac{y}{2}},
+	P(y) \sim \frac{y}{2} e^{-\frac{y}{2}},
 \]
 as $y \to \infty$.
 
@@ -1293,6 +1288,7 @@ We first deal with the case $\alpha = 1$. Here it follows from Proposition~\ref{
 	&\hspace{10pt}-\log(1-e^{-y/2}) + e^{-y/2}\left(\frac{3}{4}\log(1-e^{-y/2}) - \frac{7 + \pi^2}{8} + 	
 		\frac{1}{2}\mathrm{Li}_2(e^{-y})\right)
 \end{align*}
+The last two terms are $\smallO{1}$ as $y \to \infty$, while $2 = (\alpha - 1/2)/(\alpha - 3/4)$ for $\alpha = 1$.
 
 Now we will proof all other cases with $\alpha > 3/4$. For simplicity we write
 \[
@@ -1317,12 +1313,12 @@ as $y \to \infty$. Finally, writing $z = e^{-\frac{y}{2}}$ we get that
 	= z^{4\alpha - 3} B^-(1 - z, 2 \alpha, 3 - 4 \alpha).
 \]
 Therefore it follows, see Lemma~\ref{lem:asymptotics_incomplete_beta}, that
-\[
+\begin{align*}
 	\lim_{y \to \infty} - e^{-(4\alpha - 3)\frac{y}{2}}
 		\frac{B^-(1 - e^{-\frac{1}{2}y}; 2 \alpha, 3 - 4 \alpha)}{4 (\alpha - 1)}
-	= \lim_{z \to 0} z^{4\alpha - 3} \frac{B^-(1 - z, 2 \alpha, 3 - 4 \alpha)}{4(\alpha - 1)}
-	= \frac{1}{4(\alpha - 1)(4\alpha - 3)}.
-\]
+	&= \lim_{z \to 0} z^{4\alpha - 3} \frac{B^-(1 - z, 2 \alpha, 3 - 4 \alpha)}{4(\alpha - 1)}\\
+	&= \frac{1}{4(\alpha - 1)(4\alpha - 3)}.
+\end{align*}
 We conclude that as $y \to \infty$
 \begin{align*}
 	e^{y/2} P(y) 
@@ -1337,22 +1333,17 @@ With the asymptotic behavior of $P(y)$ we are almost ready to prove Proposition~
 \[
 	a(k)^\pm = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
 \] 
-We will prove that, as $k \to \infty$,
+We will show that, as $k \to \infty$,
 \begin{equation}\label{eq:asymptotics_average_clustering_concentration}
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
 	= (1+\smallO{1}) \int_{a(k)^-}^{a(k)^+} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y.
 \end{equation}
-Note that this implies that for any bounded function $\varphi(y)$ satisfying $\lim_{y \to \infty} |\phi(y)| = 0$,
-\begin{equation}\label{eq:asymptotics_average_clustering_error_term}
-	\int_0^\infty \varphi(y) P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-	= \smallO{1} \int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y.
-\end{equation}
 
-To establish~\eqref{eq:asymptotics_average_clustering_concentration} recall that $\mu(y) = \xi e^{\frac{y}{2}}$ and consider $\rho(y,k)$ as a function of $y$. Then, since $\mu^\prime(y) = \mu(y)/2$, we get that
+To establish~\eqref{eq:asymptotics_average_clustering_concentration} recall that $\mu(y) = \xi e^{\frac{y}{2}}$ and consider $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$ as a function of $y$. Then, since $\mu^\prime(y) = \mu(y)/2$, we get that
 \[
-	\frac{\partial \rho}{\partial y} = \frac{1}{2}\left(k - \mu(y)\right)\rho(y,k),
+	\frac{\partial \rho(y,k)}{\partial y} = \frac{1}{2}\left(k - \mu(y)\right)\rho(y,k),
 \]
-which implies that $\rho(y,k)$ attains its maximum at $\mu(y) = k$. Moreover we see that the derivative is strictly positive when $\mu(y) < k$ and strictly negative when $\mu(k) > k$. Since $\mu(a(k)^- < k$ and $\mu(a(k)^+) > k$, we conclude that $\rho(y,k)$, as a function of $y$, is strictly increasing on $[0,a(k)^-]$ and strictly decreasing on $[a(k)^+,\infty)$. Hence, using that $P(y) \le 1$,
+which implies that $\rho(y,k)$ attains its maximum at $\mu(y) = k$. Moreover we see that the derivative is strictly positive when $\mu(y) < k$ and strictly negative when $\mu(k) > k$. Since $\mu(a(k)^-) < k$ and $\mu(a(k)^+) > k$, we conclude that $\rho(y,k)$, as a function of $y$, is strictly increasing on $[0,a(k)^-]$ and strictly decreasing on $[a(k)^+,\infty)$. Hence, using that $P(y) \le 1$,
 \begin{align*}
 	&\hspace{-20pt}\int_{\R_+ \setminus [a(k)^-, a(k)^+]} P(y) \rho(y,k) 
 		\alpha e^{-\alpha y} \dd y\\
@@ -1362,7 +1353,7 @@ which implies that $\rho(y,k)$ attains its maximum at $\mu(y) = k$. Moreover we 
    		+ \rho(a(k)^+,k) \int_{a(k)^+}^{\infty} e^{-\alpha y} \, \dd y\\
    	&= \bigO{1}\left(\rho(a(k)^-,k) + \rho(a(k)^+,k)\right),
 \end{align*}
-as $k \to \infty$. We will show that
+as $k \to \infty$. Next we show that
 \[
 	\rho(a(k)^\pm,k) = \bigO{k^{-(1+C^2)/2}}.
 \]
@@ -1370,18 +1361,18 @@ Since the arguments are almost completely identical, we give the prove for $a(k)
 
 Using Stirling's formula $k! \sim \sqrt{2\pi} k^{k + 1/2} e^{-k}$ as $k \to \infty$ we write
 \begin{align*}
-	\rho(a_k^+,k) &= \frac{\mu(a_k^+)^{k}}{k!} e^{-\mu(a_k^+)} \\
+	\rho(a(k)^+,k) &= \frac{\mu(a(k)^+)^{k}}{k!} e^{-\mu(a(k)^+)} \\
 	&\sim (2\pi)^{-1/2} k^{-1/2} \left(\frac{\mu(a(k)^+}{k}\right)^{k} e^{-(\mu(a(k)^+ - k)}\\
 	&= (2\pi)^{-1/2} k^{-1/2} 
-		e^{-k\left(\frac{\mu(a_k^+)}{k} - 1 - \log\left(\frac{\mu(a_k^+)}{k}\right)\right)}.
+		e^{-k\left(\frac{\mu(a(k)^+)}{k} - 1 - \log\left(\frac{\mu(a(k)^+)}{k}\right)\right)}.
 \end{align*}
 Since 
 \[
-	\frac{\mu(a_k^+)}{k} = 1 + C \sqrt{\frac{\log(k)}{k}}
+	\frac{\mu(a(k)^+)}{k} = 1 + C \sqrt{\frac{\log(k)}{k}}
 \]
 and $x - \log(1 + x) \sim x^2/2$ as $x \to 0$, we get 
 \begin{align*}
-	\rho(a_k^+,k) 
+	\rho(a(k)^+,k) 
 	&\sim \sqrt{2\pi} k^{-1/2} 
 		e^{-k \left(C \sqrt{\frac{\log(k)}{k}} - \log\left(1 + C \sqrt{\frac{\log(k)}{k}}\right)\right)}\\
 	&\sim (2\pi)^{-1/2} k^{-1/2} e^{-\frac{k \left(C \sqrt{\frac{\log(k)}{k}}\right)^2}{2}} \\
@@ -1391,34 +1382,45 @@ and $x - \log(1 + x) \sim x^2/2$ as $x \to 0$, we get
 Since $C > 0$ can be chosen arbitrarily large we conclude that
 \[
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-	= (1+\smallO{1}) \int_{a^-(k)}^{a^+(k)} \Delta_{\Pcal}(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
+	= (1+\smallO{1}) \int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
 \]
-as $k \to \infty$. 
+as $k \to \infty$. Note that this implies that if $P(y) = h(y)(1 + \smallO{1})$ as $y \to \infty$, then 
+\begin{equation}\label{eq:asymptotics_average_clustering_error_term}
+	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
+	\sim \int_0^\infty h(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
+\end{equation}
+as $y \to \infty$.
 
 
-We now proceed with the proof of Proposition~\ref{prop:asymptotics_P}, which is split over the different cases for $\alpha$.
+We now proceed with the proof of Proposition~\ref{prop:asymp}, which is split over the different cases for $\alpha$. First we combine~\eqref{eq:degree_distribution_P_asymptotics} and~\eqref{eq:general_integral_rho_y_k} to obtain the following scaling result
+\begin{equation}\label{eq:general_clustering_integral_scaling}
+	\frac{\int_0^\infty e^{-\beta y} \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	\sim \xi_{\alpha, \nu}^{2\beta} k^{-2\beta}.
+\end{equation}
 
 
 \paragraph{Proof when \bm{$1/2 < \alpha < 3/4$}}
-By Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term} it is enough to show that
-\[
-	\frac{\int_0^{\infty} e^{-(4\alpha - 2)y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y}
-	{\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y} \\
-	\sim \xi_{\alpha,\nu}^{4\alpha - 2} k^{-4\alpha + 2}.
-\]
-This follows immediately from~\eqref{eq:general_clustering_integral_scaling} with $\beta = 2\alpha - 1$.
+By Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term}  it follows that as $k \to \infty$,
+\begin{align*}
+	\gamma(k) \sim c_\alpha \xi^{-(4\alpha - 2)} \frac{\int_0^{\infty} e^{-(4\alpha - 2)y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y}
+		{\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y} 
+	\sim c_\alpha k^{-4\alpha + 2}.
+\end{align*}
+where the last line is due to~\eqref{eq:general_clustering_integral_scaling} with $\beta = 2\alpha - 1$.
 
 \paragraph{Proof when \bm{$\alpha = 3/4$}}
-Similar to the previous case Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term} imply that it is enough to show that
+Similar to the previous case Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term} imply that as $k \to \infty$
 \[
-	\frac{\int_0^{\infty} P(y) \rho(y,k) \alpha  e^{-\alpha y} \dd y}
+	\gamma(k) = \frac{\int_0^{\infty} P(y) \rho(y,k) \alpha  e^{-\alpha y} \dd y}
 	{\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y}
-	\sim \xi_{\alpha,\nu} \log(k) k^{-1},
+	\sim  \frac{\int_0^{\infty} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y}
+		{\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y}.
 \]
-This does not follow immediately from~\eqref{eq:general_clustering_integral_scaling} because of the additional logarithmic term. To establish the above result we first show that
+However, the final step does not follow immediately from~\eqref{eq:general_clustering_integral_scaling} because of the additional logarithmic term. To prove the result we first show that
 \begin{equation}\label{eq:average_clustering_proof_34_main}
 	\int_{a(k)^-}^{a(k)^+} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-	\sim \log(k) \int_{a(k)^-}^{a(k)^+} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y.
+	\sim \int_{a(k)^-}^{a(k)^+} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y.
 \end{equation}
 For this we establish an upper bound for the left hand side
 \begin{align*}
@@ -1432,7 +1434,7 @@ and similarly, a lower bound
 \end{align*}
 Now observe that
 \[
-	\frac{a^\pm(k)}{2} = \log\left(\frac{k \pm \sqrt{k\log(k)}}{\xi_{\alpha, \nu}}\right) \sim \log(k)
+	\frac{a(k)^\pm}{2} = \log\left(\frac{k \pm \sqrt{k\log(k)}}{\xi_{\alpha, \nu}}\right) \sim \log(k)
 \]
 and therefore it follows that
 \[
@@ -1449,31 +1451,30 @@ This proofs~\eqref{eq:average_clustering_proof_34_main}.
 Next we note that by~\eqref{eq:general_clustering_integral_scaling} with $\beta = 1/2$ we have
 \[
 	\frac{\int_0^\infty e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	\sim \xi_{\alpha, \nu}k^{-1}.
+	\sim \xi k^{-1}.
 \]
 Therefore, since by~\eqref{eq:asymptotics_average_clustering_concentration},
 \[
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y \sim \int_{a(k)^-}^{a(k)^+} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
 \]
-it follows from~\eqref{eq:average_clustering_proof_34_main} that
+it follows from~\eqref{eq:average_clustering_proof_34_main} that as $k \to \infty$,
 \begin{align*}
-	\frac{\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y}
-		{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	\gamma(k) &\sim \frac{\int_0^\infty \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
+		{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y} \\
 	&\sim \log(k) \frac{\int_0^\infty e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}\\
-	&\sim \xi_{\alpha, \nu}\log(k)k^{-1},
+	{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	\sim \xi \log(k)k^{-1} = \frac{6\nu}{\pi} \log(k) k^{-1},
 \end{align*}
-which finishes the proof for this case.
+when $\alpha = 3/4$.
 
 \paragraph{Proof when \bm{$\alpha > 3/4$}}
 
-Again, by Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term} it is enough to show that
+Again, by Proposition~\ref{prop:asymptotics_P}, equation~\eqref{eq:asymptotics_average_clustering_error_term} and~\eqref{eq:general_clustering_integral_scaling} with $\beta = 1/2$, it follows that as $k \to \infty$,
+%by Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term} it is enough to show that
 \[
-	\frac{\int_0^{\infty} e^{-y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y}
-	{\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y} 
-	\sim \xi_{\alpha,\nu} k^{-1},
+	\gamma(k) \sim \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} \, \frac{\int_0^{\infty} e^{-y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y} {\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y} 
+	\sim \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} \, \xi k^{-1} = \frac{8\alpha \nu}{\pi(4\alpha - 3)}.
 \]
-which follows from~\eqref{eq:general_clustering_integral_scaling} with $\beta = 1/2$.
 
 % %\begin{lemma}\label{lem:expectation_clustering_P}
 % %Let $\alpha > \frac{1}{2}$, $\nu > 0$. Then

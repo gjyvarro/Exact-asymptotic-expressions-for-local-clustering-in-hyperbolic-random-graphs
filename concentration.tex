@@ -5,7 +5,7 @@ In this section we establish a concentration result for the local clustering fun
 
 \subsection{The main contribution of triangles}
 
-Recall the adjusted triangle count function \eqref{eq:def_tilde_triangle_indicator}
+We define adjusted triangle count function as
 \[
 	\widetilde{T}_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in \BallPon{p}}\ind{p_2 \in \BallPon{p}}\ind{p_2 \in \BallPo{p_1} \cap \Rcal}.
 \]
@@ -27,6 +27,47 @@ where
 	\widetilde{T}_{\Pcal,n}(p) := \sum_{(p_1, p_2) \in \Pcal \setminus p}^{\ne} \widetilde{T}_{\Pcal,n}(p,p_1,p_2),
 \]
 where the sum is over all distinct pairs $(p_1, p_2) \in \Pcal \setminus p$.
+
+The following results follows from the proof of Proposition~\ref{prop:convergence_average_clustering_P_n}.
+
+\begin{corollary}\label{cor:adjusted_triangle_counting_P_n}
+Let $p_0 = (0,y)$. Then, uniformly for all $y \in \Kcal_C(k_n)$, as $n \to \infty$
+\[
+	\Exp{\widetilde{T}_{\text{box}}(p_0)} = (1+\smallO{1})\Exp{T_{\infty}(p_0)},
+\]
+where
+\[
+	\widetilde{T}_{\text{box}}(p_0) = \sum_{(p_1, p_2) \in \Pcal \setminus p_0}^{\ne} 
+		\ind{p_1 \in \BallPon{p_0}}\ind{p_2 \in \BallPon{p_0}}\ind{p_2 \in \BallPo{p_1} \cap \Rcal}.
+\]
+
+In particular,
+\[
+	\binom{k_n}{2}^{-1}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(p_0)} f(x,y) \dd x \dd y
+	= (1+\smallO{1}) n \int_{\Rcal} \rho(y,k_n) P(y) \alpha e^{-\alpha y} \dd y. 
+\]
+\end{corollary}
+
+\begin{proof}
+First we note that equation~\eqref{eq:triangle_count_diff_scaling} implies that uniformly for $y \in \Kcal_C(k_n)$
+\[
+	\Exp{\left|\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)\right|} = \bigO{n^{-(4\alpha - 2)}k_n^2}
+	= \smallO{s(k_n) k_n^2},
+\]
+where the last part is due to Lemma~\ref{lem:scaling_s_alpha}.
+Next, since $\Exp{T_\infty(y)} = \Mu{\BallPo{y}}^2 P(y)/2$, we get
+\[
+	\Exp{\widetilde{T}_{\text{box}}(y)} = \Exp{T_{\infty}(y)} + \Exp{\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)} = \binom{k_n}{2} P(y) + \bigO{s(k_n)k_n^2},
+\]
+uniformly on $\Kcal_{C}(k_n)$. Therefore, we can apply a concentration of height argument to obtain
+\begin{align*}
+	&\hspace{-30pt}\binom{k_n}{2}^{-1}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(y)} 
+		f(x,y) \dd x \dd y\\
+	&=\binom{k_n}{2}^{-1} n \int_{\Kcal_{C}(k_n)} \rho(y,k_n) \left(\binom{k_n}{2} P(y) + \bigO{s(k_n)k_n^2}\right)
+		\alpha e^{-\alpha y} \dd y.....
+\end{align*}
+\PvdH{Finish this proof!}
+\end{proof}
 
 Next we note that the second result from Corollary~\ref{cor:adjusted_triangle_counting_P_n} states that
 \begin{equation}\label{eq:asymptotic_equivalence_contraint_triangle_count}

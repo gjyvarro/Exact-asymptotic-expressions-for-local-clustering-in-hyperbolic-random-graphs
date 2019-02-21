@@ -99,6 +99,47 @@ Finally, when $\alpha > 3/4$, $c - a - b = 3 - 4\alpha < 0$ and using~\eqref{eq:
 \end{align*}
 \end{proof}
 
+\section{Some results on functions}
+
+\begin{lemma}\label{lem:arccos_approx}
+For any $0 < \lambda < 1$ there exists a $K > 0$, such that for all $0 < x \le (1 - \lambda)2$
+\[
+	\frac{1}{2}\arccos(1-x)\left(1 - \frac{(1+\sqrt{2})x}{1 + x}\right)
+	\le \frac{x}{\sqrt{1-(1-x)^2}} 
+	\le \frac{1}{2}\arccos(1-x)\left(1 + \frac{(K+1)x}{1-x}\right).
+\]
+In particular, as $x \to 0$,
+\[
+	\frac{x}{\sqrt{1-(1-x)^2}} \sim \frac{1}{2}\arccos(1-x).
+\]
+\end{lemma}
+
+\begin{proof}
+First we observe that for all $0 < x < 2$
+\[
+	0 < \sqrt{2x}\left(1 - \frac{x}{\sqrt{8}}\right) \le \arccos(1-x) \le 
+	\sqrt{2x}\left(1 + \frac{x}{\sqrt{8}}\right)
+\]
+while for every $0 < \lambda < 1$, there exists a $K > 0$ such that for all $0 < x \le (1-\lambda) 2$,
+\[
+	0 < \frac{1}{\sqrt{2x}}\left(1 - \frac{x}{2}\right) \le \frac{1}{\sqrt{1 - (1 - x)^2}} \le
+	\frac{1}{\sqrt{2x}}\left(1 + K x\right).
+\]
+It then follows that for all $0 < x \le (1-\lambda) 2$,
+\begin{align*}
+	\frac{x}{\sqrt{1 - (1-x^2)}} &\le \frac{1}{2} \sqrt{2x}\left(1 + K\frac{x}{\sqrt{2}}\right)\\
+	&\le \frac{1}{2} \arccos(1-x) \frac{1 + Kx}{1 - \frac{x}{\sqrt{8}}}\\
+	&\le \frac{1}{2} \arccos(1-x)\left(1 + \frac{(K + 1)x}{1 - x}\right),
+\end{align*}
+and
+\begin{align*}
+	\frac{x}{\sqrt{1 - (1-x^2)}} &\ge \frac{1}{2} \sqrt{2x}\left(1 - \frac{x}{2}\right)\\
+	&\ge \frac{1}{2} \arccos(1-x) \frac{1 - \frac{x}{2}}{1 + \frac{x}{\sqrt{8}}}\\
+	&\ge \frac{1}{2} \arccos(1-x)\left(1 - \frac{(1+\sqrt{2})x}{1 + x}\right),
+\end{align*}
+which finishes the proof.
+\end{proof}
+
 %\section*{Properties of $G_{\H,n}(\alpha,\nu)$}
 %
 %\PvdH{@Markus: is the lemma below only needed to prove the second lemma? If so than we can remove it because the statements of the second lemma have already been established in other parts of the paper.}

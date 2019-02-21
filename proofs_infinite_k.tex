@@ -303,12 +303,12 @@ As $n \to \infty$,
 
 This result is another one of the technical challenges we face when considering $k_n \to \infty$. For the proof, we first identify the specific range of heights that give the main contribution to the triangle count, showing that the triangles coming from nodes with heights outside this range is of smaller order. Then we prove a concentration result for the main term, by carefully analyzing the joint neighborhoods of two nodes whose heights fall into the identified range. The full details are found in Section~\ref{sec:concentration_c_P_n}.
 
-Assuming this concentration result, we are left with the task to compute the limit of $\Exp{c^\ast(k_n; \Gbox)}$ as $n \to \infty$ and show that it is equivalent to $\gamma(k_n)$. To accomplish this we move to the infinite limit model $\Ginf$ and show that the difference between the expected value of the clustering function $c^\ast(k;G)$ in $G_{\mathcal{P},n}(\alpha,\nu)$ and $G_{\mathcal{P}}(\alpha,\nu)$ goes to zero faster than the proposed scaling in Theorem \ref{thm:local_clustering_hyperbolic}.
+Assuming this concentration result, we are left with the task to compute the limit of $\Exp{c^\ast(k_n; \Gbox)}$ as $n \to \infty$ and show that it is equivalent to $\gamma(k_n)$. To accomplish this we move to the infinite limit model $\Ginf$ and show that the difference between the expected value of $c^\ast(k;\Gbox)$ and $\gamma(k_n)$ goes to zero faster than the proposed scaling in Theorem \ref{thm:local_clustering_hyperbolic}.
 
 \begin{proposition}[Transition to the infinite limit model]\label{prop:convergence_average_clustering_P_n}
 As $n \to \infty$,
 \[
-	\left|\Exp{c^\ast(k_n; \Gbox)} - c(k_n;\Ginf)\right| = \smallO{s(k_n)}.
+	\left|\Exp{c^\ast(k_n; \Gbox)} - \gamma(k_n)\right| = \smallO{s(k_n)}.
 \]
 \end{proposition}
 
@@ -343,8 +343,10 @@ Then, we take absolute values and apply the triangle inequality. By monotonicity
     \E[|c(k_n;G_n)-\gamma(k_n)|] \leq & \E[|c(k_n;G_n)-c^\ast(k_n;G_n)|]+\E[|c^\ast(k_n;G_n)-c^\ast(k_n; \GPo)|]\\&+\E[|c^\ast(k_n; \GPo)-c^\ast(k_n; \Gbox)|] 
     +\E[|c^\ast(k_n; \Gbox)-\E c^\ast(k_n; \Gbox)|]\\&+\E[|\E c^\ast(k_n; \Gbox)-\gamma(k_n)|]
 \end{align*}
-At this point, the lemmas and propositions presented above in this section can be applied in order to show that all summands are $\smallO{\gamma(k_n)}$: Lemma~\ref{lem:clustering_ast_H} for the transition to the modified clustering function in the first term, Proposition~\ref{prop:clustering_ast_H_Pois} for the Poissonization in the disk in the second term, Proposition~\ref{prop:couling_c_H_P} for the coupling from the disk to the finite box model in the third term, Proposition~\ref{prop:concentration_local_clustering_P_n} for the concentration in the fourth term and finally Proposition~\ref{prop:convergence_average_clustering_P_n} for the transition to the infinite limit model where we also used that $c(k_n;\Ginf) = \gamma(k_n)$ as obtained at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P}.
-\TM{ Maybe we can have a more clear reference? Now, at this place in the paper this proof feels a bit like cheating since there are almost no details given. } \PvdH{I completely agree. I think that once the results for fixed $k$ have been included we can include a specific statement at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P} we can refer to.} All of this together yields that:
+At this point, the lemmas and propositions presented above in this section can be applied in order to show that all summands are $\smallO{\gamma(k_n)}$: Lemma~\ref{lem:clustering_ast_H} for the transition to the modified clustering function in the first term, Proposition~\ref{prop:clustering_ast_H_Pois} for the Poissonization in the disk in the second term, Proposition~\ref{prop:couling_c_H_P} for the coupling from the disk to the finite box model in the third term, Proposition~\ref{prop:concentration_local_clustering_P_n} for the concentration in the fourth term and finally Proposition~\ref{prop:convergence_average_clustering_P_n} for the transition to the infinite limit model. 
+%where we also used that $c(k_n;\Ginf) = \gamma(k_n)$ as obtained at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P}.
+%\TM{ Maybe we can have a more clear reference? Now, at this place in the paper this proof feels a bit like cheating since there are almost no details given. } \PvdH{I completely agree. I think that once the results for fixed $k$ have been included we can include a specific statement at the end of Section~\ref{sec:asymptotics_average_clustering_ast_P} we can refer to.} 
+All of this together yields that:
 \begin{align*}
     \E[|c(k_n;G_n)-\gamma(k_n)|] = \smallO{s(k_n)} = \smallO{\gamma(k_n)},
 \end{align*}

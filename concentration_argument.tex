@@ -2,11 +2,11 @@
 
 In the proof of Proposition~\ref{prop:asymp} we used a result that allowed us to restrict integration over $y$ to the interval $[a(k)^-, a(k)^+]$, with
 \[
-	a(k)^\pm = 2\log\left(\frac{1 \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
+	a(k)^\pm = 2\log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
 \]
-The reason for this was that the integrand included the function $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$, where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$ and $\mu(y) = \mu(B_\Pcal(y)) = \xi e^{y/2}$, and Poisson random variables are well concentrated around their mean, i.e. around those values of $y$ for which $\mu(y) \approx k$.
+The reason for this was that the integrand included the function $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$, where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$ and Poisson random variables are well concentrated around their mean, i.e. around heights $y$ for which $\mu(y) \approx k$. Since $\mu(y) = \mu(\BallPo{y}) = \xi e^{y/2}$, this implies that integration with respect to $\rho(y,k)$ is concentrated around $y \approx 2\log(k/\xi)$.
 
-In the remainder of this paper we will often encounter integrands involving, for some $\mu_n(y)$, the function $\Prob{\Po(\mu_n(y)) = k}$. In these case we want to be able to restrict our integration around those heights $y$ for which $\mu_n(y) \approx k_n$. We will refer to as \emph{concentration of heights arguments}. In this section we establish such results. We start with a concentration of heights lemma for the infinite model $\Ginf$ (Lemma~\ref{lem:concentration_argument}) and explain in Remark~\ref{rmk:concentration_argument} how such a result will be used throughout the paper. To obtain similar results for the other two models we have to first analyze the expected number of nodes in a typical neighborhood in these models. We do in Sections~\ref{ssec:average_degree_HP_n} and~\ref{ssec:average_degree_P_n}. We conclude this section with a general result that allows us to extend the concentration lemma for the infinite model to the hyperbolic random graph and finite box model.
+In the remainder of this paper we will often encounter integrands involving the function $\Prob{\Po(\mu_n(y)) = k}$, for some $\mu_n(y)$. In these case we want to be able to restrict our integration around those heights $y$ for which $y \approx 2\log(k_n/\xi)$. We will refer to such results as \emph{concentration of heights arguments}. In this section we establish such results. We start with a concentration of heights lemma for the infinite model $\Ginf$ (Lemma~\ref{lem:concentration_argument}) and explain in Remark~\ref{rmk:concentration_argument} how such a result will be used throughout the paper. We then establish similar results for the Poissonized KPKVB and finite box model based on a generalization of Lemma~\ref{lem:concentration_argument} obtained in Section~\ref{ssec:general_concentration_lemma}. To apply this lemma to $\GPo$ and $\Gbox$ we have to analyze the expected number of nodes in a typical neighborhood in these models, which is done in Sections~\ref{ssec:average_degree_P_n} and~\ref{ssec:average_degree_HP_n}. 
 
 \subsection{Concentration of heights argument for the infinite model}
 
@@ -19,70 +19,48 @@ In the remainder of this paper we will often encounter integrands involving, for
 %	\end{cases}
 %\end{equation}
 %\TM{ This is not a good definition. There are sequences that neither stay bounded nor tend to infinity, e.q.~odd values equal to 2 even values equal to $\log n$. How do you decide for a given $k_n$ which of the two cases you pick. To solve this we could either restrict to sequences that are either a) constant or b) tending to infinity; or we could make a cut-off at some specific, slow growing function such as $\log\log\log n$. }\PvdH{You are right, I overlooked this fact. I would opt to go with the setting where we consider only sequences that are either asymptotically bounded or tend to infinity. After the new proves are added we can see where we specify this.}
-For any positive sequence $a_n \to \infty$ and $C > 0$ we define
-\begin{equation}\label{eq:def_K_C_set}
-	\Kcal_C(a_n) = \left\{y \in \R_+ : \frac{a_n - C \sqrt{a_n \log(a_n)}}{\xi} \vee 1 \le e^{\frac{y}{2}}
-	\le \frac{a_n + C \sqrt{a_n \log(a_n)}}{\xi} \right\}.
-\end{equation}
-In addition we define
-\begin{equation}\label{eq:def_K_C_n_set}
-	\Kcal_{C,n}(a_n) := (-I_n, I_n] \times ((0,R_n] \cap \Kcal_{C}(a_n)),
-\end{equation}
-where $I_n := \frac{\pi}{2}e^{R_n/2}$. In addition, for a sequence $a_n \to \infty$, we shall often use the shorthand notation
-\begin{equation}\label{eq:def_kappa_n}
-	\kappa_n := \sqrt{a_n \log(a_n)}
-\end{equation}
+
 
 
 %Where we recall that $a \vee b = \max\{a,b\}$ and $a \wedge b = \min\{a,b\}$.
 
-The next lemma states that for a large class of functions $h(y)$, to compute the integral 
+The next lemma states that for a large class of functions $h(y)$ and $k_n \to \infty$, to compute the integral 
 \[
 	\int_{0}^\infty \rho(y,k_n) h(y) e^{-\alpha y} \dd y
 \]
 %\TM{ This part is supposed to be for the infinite model, yet you integrate over the finite box $\Rcal_n$. Is this really meant?
 %I would have expected we just integrate wrt.~$y$ and replace $f_{\alpha,\nu}(x,y)$ by $\alpha e^{-\alpha y}$, the exponential density.}\PvdH{I understand this confusion and agree that your suggestion makes more sense here. However, I choose this setup to minimize notations later. I am for changing the setup to what you are suggesting but I will have to spend some time first on checking how that will effect the definitions in later sections.}
-it is enough to consider integration over $\Kcal_C(k_n)$ instead of $\R_+$. More precisely, for any $\ell_n = (1 + \smallO{1})k_n$ it is enough to consider $\Kcal_C(\ell_n)$. The flexibility of using $(1+\smallO{1})k_n$ instead of $k_n$ will prove useful in later sections.
+it is enough to consider integration over a small interval on which $e^{y/2} \approx k_n$, instead of $\R_+$. 
 
 \begin{lemma}\label{lem:concentration_argument}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$, $\{k_n\}_{n \ge 1}$ be any positive sequence such that $k_n = o(n^{\frac{1}{2\alpha + 1}})$ and let $\ell_n = k_n(1 + \epsilon_n)$, with $\epsilon_n \to 0$. In addition let $\beta < \alpha$ and $h : \R_+ \rightarrow  \R$ be a any function such that $h(y) = g(y)e^{\beta y}$ with $|g(y)|$ uniformly bounded on $\R_+$. Then, if we define for $C > 0$
+Let $\alpha > \frac{1}{2}$, $\nu > 0$, $\{k_n\}_{n \ge 1}$ be any positive sequence such that $k_n \to \infty$ and $k_n = \smallO{n}$ and let $\ell_n = k_n(1 + \epsilon_n)$, with $\epsilon_n \to 0$. In addition, define for any constant $C > 0$,
 \[
 	\lambda_n^\pm = (\ell_n \pm C \sqrt{\ell_n \log(\ell_n)}) \wedge \xi, 
-	\quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi}\right),
+	\quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi}\right).
 \] 
-%\TM{ If $k$ is constant, then $\ell^- < 0$ and hence 
-%$a^-$ is undefined! Need to change the definitions. }\PvdH{You are right. I changed it by taking the minimum with $\xi$.}
-we have
+Then the following holds.
+\begin{enumerate}
+\item For any continuous function $h : \R_+ \rightarrow  \R$, such that $h(y) = \bigO{e^{\beta y}}$ as $y \to \infty$ for some $\beta < \alpha$, 
 \begin{equation}\label{eq:error_bound_int_rho_not_K}
-	\int_{\R_+ \setminus \Kcal_{C}(\ell_n)} \rho(y,k_n) h(y) \alpha e^{-\alpha y} \dd y
-	= \bigO{k_n^{-(1+C^2)/2}}
+	\int_{\R_+ \setminus (a_n^-, a_n^+)} \rho(y,k_n) h(y) \alpha e^{-\alpha y} \dd y
+	= \bigO{k_n^{-(1+C^2)/2}},
 \end{equation}
-%\TM{ As before, this is not a proper dichotomy. (unless we assume more about the sequences $k_n$, i.e.~either constant or tending to infinity }
-as $n \to \infty$. 
-
-In particular, if $h_n(y)$ is a function such that $h_n(y) = \bigO{n^{-1} k_n^{s} e^{\beta y}}\rho(y,k_n)$ for some $s \in \R$ and $\beta < \alpha$ as $n \to \infty$. Then for $C > 0$ large enough we have
-\[
-	\lim_{n \to \infty} \int_{\Rcal_n \setminus \Kcal_{C,n}(\ell_n)} h_n(y) 
-	f_{\alpha, \nu}(x,y) \dd x \dd y = 0,
-\]
-or equivalently,
-\[
-	\int_{\Rcal_n} \hspace{-5pt} h_n(y) f_{\alpha, \nu}(x,y) \dd x \dd y
-	= (1+\smallO{1}) \int_{\Kcal_{C,n}(\ell_n)} \hspace{-5pt} h_n(y) f_{\alpha, \nu}(x,y) \dd x \dd y.
-\]
+as $n \to \infty$.
+\item If in addition, $h(a_n) \sim h(b_n)$ whenever $a_n \sim b_n$, as $n \to \infty$. Then,
+\begin{equation}\label{eq:concentration_h_rho}
+	\int_0^\infty h(y) \rho(y,k_n) \alpha e^{-\alpha y^\prime} \dd y^\prime \sim  
+		2\alpha \xi^{2\alpha} h(2\log(k_n/\xi)) k_n^{-(2\alpha + 1)},
+\end{equation}
+as $n \to \infty$.
+\end{enumerate}
 \end{lemma}
 
-\begin{proof}
+\begin{proof}\hfill
 
-
-
-Note that in this case we write
-\[
-	\kappa_n = \sqrt{\ell_n \log(\ell_n)}.
-\]
-and recall (see proof of Proposition~\ref{prop:asymp}) that $\rho(y,k_n)$, as a function of $y$, is strictly increasing on $[0,a_n^-]$ and strictly decreasing on $[a_n^+,\infty)$. Therefore, by our assumption on $h(y)$,
+\paragraph{Proof of the first statement.}
+Recall (see proof of Proposition~\ref{prop:asymp}) that $\rho(y,k_n)$, as a function of $y$, is strictly increasing on $[0,a_n^-]$ and strictly decreasing on $[a_n^+,\infty)$. Therefore, by our assumption on $h(y)$,
 \begin{align*}
-	&\hspace{-20pt}\int_{\R_+ \setminus [a_n^-, a_n^+]} h(y) \rho(y,k_n) 
+	&\hspace{-20pt}\int_{\R_+ \setminus (a_n^-, a_n^+)} h(y) \rho(y,k_n) 
 		\alpha e^{-\alpha y} \dd y\\
     &= \bigO{1} \int_0^{a_n^-} e^{\beta y} \rho(y,k_n) \alpha e^{-\alpha y} \dd y 
     	+ \bigO{1}\int_{a_n^+}^{\infty} e^{\beta y} \rho(y,k_n) \alpha e^{-\alpha y}x \dd y \\
@@ -93,7 +71,7 @@ and recall (see proof of Proposition~\ref{prop:asymp}) that $\rho(y,k_n)$, as a 
 \end{align*}
 Since $\alpha - \beta > 0$, we conclude that
 \begin{equation}\label{eq:concentration_lemma_integral_bound}
-	\int_{\R_+ \setminus [a_n^-, a_n^+]} h(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y
+	\int_{\R_+ \setminus (a_n^-, a_n^+)} h(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y
 	= \bigO{1} \left(\rho(a_n^-,k_n) + \rho(a_n^+,k_n)\right) 
 \end{equation}
 
@@ -126,92 +104,218 @@ A similar analysis as above yields
 \begin{equation}\label{eq:concentration_lemma_bound_an-}
 	\rho(a_n^-,k_n) \le \bigT{1} k_n^{-1/2} e^{-\frac{k_n \left(\epsilon_n - C \kappa_n/k_n\right)^2}{2}} = \bigO{k_n^{-(1+C^2)/2}}.
 \end{equation} 
+Plugging~\eqref{eq:concentration_lemma_bound_an-} and~\eqref{eq:concentration_lemma_bound_an+}  into~\eqref{eq:concentration_lemma_integral_bound} yields the result. 
 
-
-Plugging~\eqref{eq:concentration_lemma_bound_an-} and~\eqref{eq:concentration_lemma_bound_an+}  into~\eqref{eq:concentration_lemma_integral_bound} yields the result. The second statement immediately follows from the first by choosing a large enough $C$ and observing that
+\paragraph{Proof of the second statement.} By the mean value theorem for definite integrals, there exists a $c_n \in (a_n^-, a_n^+)$ such that
 \[
-	\int_{\Rcal_n \setminus \Kcal_{C,n}(\ell_n)} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y
-	\le n \int_{\R_+ \setminus [a_n^-, a_n^+]} h_n(y) \alpha e^{-\alpha y} \dd y.
+	\int_{a_n^-}^{a_n^+} h(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y
+	= h(c_n) \int_{a_n^+}^{a_n^+} \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
 \]
+Since $\int_0^\infty \rho(y,k_n) \alpha e^{-\alpha y} \dd y = \bigT{k_n^{-(2\alpha + 1)}}$, taking any $C > \sqrt{4\alpha + 1}$, \eqref{eq:error_bound_int_rho_not_K} implies that
+\[
+	\int_{a_n^+}^{a_n^+} \rho(y,k_n) \alpha e^{-\alpha y} \dd y
+	= (1 + \smallO{1})\int_0^\infty \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
+\]
+from which we conclude that (see~\eqref{eq:degree_distribution_P_asymptotics}),
+\[
+	\int_{a_n^+}^{a_n^+} \rho(y,k_n) \alpha e^{-\alpha y} \dd y = (1 + \smallO{1}) 2\alpha \xi^{2\alpha} k_n^{-(2\alpha + 1)},
+\]
+as $n \to \infty$. Finally, since $c_n \in (a_n^-, a_n^+)$ it follows that
+\[
+	\left|\frac{c_n}{2\log(k_n/\xi)} - 1\right| \le 2 C \sqrt{\frac{\log(k_n)}{k_n}}, 
+\]
+so that $c_n \sim k_n$. Therefore, by assumption on $h$ 
+\[
+	\int_{a_n^-}^{a_n^+} h(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y
+	\sim h(c_n) 2\alpha \xi^{2\alpha} k_n^{-(2\alpha + 1)} 
+	\sim 2\alpha \xi^{2\alpha} h(2\log(k_n/\xi)) k_n^{-(2\alpha + 1),}
+\]
+as $n \to \infty$.
+\end{proof}
+
+Note that we can tune the error in~\eqref{eq:error_bound_int_rho_not_K} by selecting an appropriately large $C > 0$, i.e. by restrict the function $h(y)$ inside the integral to an appropriate interval around $2\log(k_n/\xi)$. This makes Lemma~\ref{lem:concentration_argument} very powerful. Below we list several important corollaries. 
+
+\begin{corollary}\label{cor:concentration_of_heights_asymptotics}
+Let $h : \R_+ \to \R$ be any continuous function such that for some $\beta < \alpha$, $h(y) = \bigO{e^{\beta y}}$ as $y \to \infty$ and $h(a_n) \sim h(b_n)$ whenever $a_n \sim b_n$. Then for any other continuous function $g: \R_+ \to \R$, such that $g(y) \sim h(y)$ as $y \to \infty$
+\begin{equation}\label{eq:concentration_h_sim_rho}
+	\int_0^\infty g(y) \rho(y,k_n) \alpha e^{-\alpha y^\prime} \dd y^\prime \sim  
+		2\alpha \xi^{2\alpha} h(2\log(k_n/\xi)) k_n^{-(2\alpha + 1)},
+\end{equation}
+as $n \to \infty$.
+\end{corollary}
+
+\begin{proof}
+By assumption, $g$ satisfies the conditions of for the second statement of Lemma~\ref{lem:concentration_argument}. Since in addition $g(2\log(k_n/\xi)) \sim h(2\log(k_n/\xi))$, the result follows.
+\end{proof}
+
+
+For any positive sequence $a_n \to \infty$ and $C > 0$ we define
+\begin{equation}\label{eq:def_K_C_set}
+	\Kcal_C(a_n) = \left\{y \in \R_+ : \frac{a_n - C \sqrt{a_n \log(a_n)}}{\xi} \vee 1 \le e^{\frac{y}{2}}
+	\le \frac{a_n + C \sqrt{a_n \log(a_n)}}{\xi} \right\}.
+\end{equation}
+In addition we define
+\begin{equation}\label{eq:def_K_C_n_set}
+	\Kcal_{C,n}(a_n) := (-I_n, I_n] \times ((0,R_n] \cap \Kcal_{C}(a_n)),
+\end{equation}
+where $I_n := \frac{\pi}{2}e^{R_n/2}$. Recall that $\Rcal = (-I_n, I_n] \times [0,R]$. The following corollary allows us to bound integrals of function by considering there maximum of $\Kcal_{C}(k_n)$.
+
+\begin{corollary}\label{cor:concentration_heights_bounds_n}
+Let $h_n : \R_+ \to \R_+$ be a sequence of continuous functions which such that for some $s \in \R$ and $\beta < \alpha$, as $n \to \infty$, $h_n(y) = \bigO{k_n^{s} e^{\beta y}}$ and $h_n(y) = \Omega(1)$, uniformly on $0 \le y \le R$. Then, as $n \to \infty$,
+\[
+	\int_{\Rcal} h_n(y) \rho(y,k_n) f(x,y) \dd x \dd y 
+	= (1 + \smallO{1}) \, n \int_{\Kcal_{C}(k_n)} h_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
+\]
+In particular,
+\[
+	\int_{\Rcal} h_n(y) \rho(y,k_n) f(x,y) \dd x \dd y = \bigO{1} n \, k_n^{-(2\alpha + 1)} \max_{y \in \Kcal_{C}(k_n)} h_n(y),
+\]
+as $n \to \infty$.
+\end{corollary}
+
+\begin{proof}
+The second result follows immediately from the first. For the first result we note that by the first statement of Lemma~\ref{lem:concentration_argument}
+\begin{align*}
+	\int_{[0,R] \setminus (a_n^-, a_n^+)} h_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y
+	&\le \bigO{k_n^s} \int_{\R_+ \setminus (a_n^-, a_n^+)} e^{\beta y } \rho(y,k_n) \alpha e^{-\alpha y} \dd y\\
+	&= \bigO{k_n^{s - (1+C^2)/2}}.
+\end{align*}
+By assumption on $h_n(y)$,
+\[
+	\int_{\Kcal_{C}(k_n)} h_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y 
+	= \bigO{k_n^{s+2\beta}} \int_{\Kcal_{C}(k_n)} \rho(y,k_n) \alpha e^{-\alpha y} \dd y
+	= \bigO{k_n^{s+2\beta - (2\alpha + 1)}},
+\]
+and
+\[
+	\int_{\Kcal_{C}(k_n)} h_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y 
+	= \Omega(1) \int_{\Kcal_{C}(k_n)} \rho(y,k_n) \alpha e^{-\alpha y} \dd y
+	= \Omega(k_n^{-(2\alpha + 1)}).
+\]
+Hence, by taking $C > 0$ such that $(1+C^2)/2 > \max\{2\alpha + 1 + s, 2\alpha +1 - \beta\}$ we get that
+\[
+	\int_{[0,R] \setminus (a_n^-, a_n^+)} h_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y
+	= \smallO{1} \int_{\Kcal_{C}(k_n)} h_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
+\]
+The result then follows since
+\[
+	\int_{\Rcal} h_n(y) \rho(y,k_n) f(x,y) \dd x \dd y
+	= n \int_{0}^{R} h_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:concentration_heights_asymptotics_n}
+Let $h : \R_+ \to \R$ be a continuous function which  satisfies the conditions of Lemma~\ref{lem:concentration_argument} and let $h_n$ be a sequence of functions such that, as $n \to \infty$, $h_n(y) = \Omega(1)$ and $h_n(y) = \bigO{k_n^{s}} h(y)\rho(y,k_n)$, uniformly on $0 \le y \le R$. Then,
+\begin{equation}
+	\int_{\Rcal} h_n(y) \rho(y,k_n) f(x,y) \dd x \dd y 
+	\sim 2\alpha \xi^{2\alpha} \, n \, h_n(2\log(k_n/\xi)) k_n^{-(2\alpha + 1)},
+\end{equation}
+as $n \to \infty$.
+\end{corollary}
+
+\begin{proof}
+The result immediately follows by first applying Corollary~\ref{cor:concentration_heights_bounds_n} and then using the second statement from Lemma~\ref{lem:concentration_argument}.
 \end{proof}
 
 \begin{remark}[Concentration of heights argument]\label{rmk:concentration_argument}
 %\TM{ again, this is a loaded term. I would in the very least change to ``concentration of height'' everywhere }
-Lemma~\ref{lem:concentration_argument} will prove very useful in the remainder of this paper since we often have to deal with integrands of the form $g_n(y) f_{\alpha,\nu}(x,y)$ where $g_n(y) = \bigO{n^{-1} k_n^{s}}e^{\beta y}\rho(y,k_n)$ for some $s \in \R$ and $\beta < \alpha$. In this case the lemma tells us that for a suitable $C > 0$ we only need to integrate over $\Kcal_C(k_n)$. In order words, we may always assume for $g_n(y)$ (for a penalty of $\smallO{1}$) that $k_n - C \kappa_n \le \xi e^{y/2} \le k_n + C \kappa_n$. We will refer to this as a \emph{concentration of heights argument}, e.g. \emph{by a concentration of heights argument}
-\[
-	\int_{\Rcal_n} g_n(y) \rho(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y 
-	= (1+\smallO{1}) n \int_{\Kcal_C(k_n)} g_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
-\]
-\PvdH{ @All:It might be a good idea to add one more example of how the concentration argument is used in the paper. I someone finds a good example we use later on, please add it here.}
+All the above corollaries use the same reasoning, namely that when the integrand contains $h_n(y) \rho(y,k_n)$, for some "nice" functions $h_n(y)$, then the main contribution is determined by the integration over $\Kcal_{C}(k_n)$.  This implies, for instance, that we only need to carefully analyze the functions $h_n(y)$ on $\Kcal_{C}(y)$, while for a certain class of functions we can even simply replace it with $h_n(2\log(k_n/\xi))$. We will refer collectively to any of these arguments as a \emph{concentration of heights argument}. For example, suppose we know that $h_n(y) = \Omega(1)$ and $h_n(y) = \bigO{k_n^4} e^{\alpha/2 y}$, while $h_n(y) = (1 + \smallO{1}) k_n^2 e^{\alpha/2 y}$, uniformly on $\Kcal_{C}(k_n)$. Then by a concentration of heights argument (in this case Corollary~\ref{cor:concentration_heights_asymptotics_n})
+\begin{align*}
+	\int_{\Rcal} h_n(y) \rho(y,k_n) f(x,y) \dd x \dd y 
+	&= (1 + \smallO{1}) 2 \alpha \xi^{2\alpha} \, n \, k_n^2 (k_n/\xi)^{\alpha/2} k_n^{-(2\alpha + 1)} \\
+	&= (1 + \smallO{1}) 2\alpha \xi^{5\alpha/2} \, n \, k_n^{1 + 5\alpha/2}.
+\end{align*}
 \end{remark}
 
-We will later establish similar results for the cases where we consider the hyperbolic and finite box model. Here we have to consider Poisson distributions with mean $\mu(\BallHyp{y})$ and $\mu(\BallPon{y})$, respectively. For this the following, slightly more general version of Lemma~\ref{lem:concentration_argument} will be important.
+
+
+\begin{remark}[Proof of Proposition~\ref{prop:asymp} revisited]
+Note that due to Proposition~\ref{prop:asymptotics_P}, the function $P(y)$ from Section~\ref{sec:asymptotics_average_clustering_ast_P} satisfies all the necessary conditions in Corollary~\ref{cor:concentration_of_heights_asymptotics}. Hence, Proposition~\ref{prop:asymp} directly follows from Proposition~\ref{prop:asymptotics_P} and a concentration of heights argument (second statement of Lemma~\ref{lem:concentration_argument}).
+\end{remark}
+
+Although powerful, the current versions of the concentration of heights arguments are only valid for the function $\rho(y,k_n) := \Prob{\Po\left(\Mu{\BallPo{y}}\right) = k_n}$, which uses the neighborhoods in the infinite model $\Ginf$. Since we will also be working in the Poissonized KPKVB model $\GPo$ and the finite box model $\Gbox$, we would like to use concentration of heights arguments when the integrand contains either the function $\rho_{\Po}(y,k_n) := \Prob{\Po\left(\Mu{\BallHyp{y}}\right) = k_n}$ or $\rho_{\text{box}}(y,k_n) := \Prob{\Po\left(\Mu{\BallPon{y}}\right) = k_n}$. The next proposition establishes this result and we will spend the rest of this section on its proof.
+
+\begin{proposition}\label{prop:concentration_argument_all}
+The conclusions from Lemmas~\ref{lem:concentration_argument} and Corollaries~\ref{cor:concentration_of_heights_asymptotics}, \ref{cor:concentration_heights_bounds_n} and~\ref{cor:concentration_heights_asymptotics_n} still hold if we replace $\rho(y,k_n)$ with either $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$.
+\end{proposition}
+
+\subsection{A more general concentration of heights argument}\label{ssec:general_concentration_lemma}
+
+Note that since all three corollaries follow from Lemma~\ref{lem:concentration_argument}, Proposition~\ref{prop:concentration_argument_all} follows if we can prove that the conclusions from this lemma holds when we replace $\rho(y,k_n)$ with either $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$. For this the following, slightly more general version of Lemma~\ref{lem:concentration_argument} will be important.
 
 \begin{lemma}\label{lem:concentration_argument_rho_approximation}
-Let $\alpha > \frac{1}{2}, \nu > 0$, $k_n$ be any positive sequence such that $k_n = o(n^{\frac{1}{2\alpha + 1}})$, $\ell_n = (1 + \epsilon_n)k_n$, with $\epsilon_n \to 0$ and let $\Kcal_{C,n}(\ell_n)$ be defined as in~\eqref{eq:def_K_C_n_set}. In addition, define $\hat{\rho}_n(y,k) = \Prob{\Po(\hat{\mu}_n(y)) = k}$, where $\hat{\mu}_n(y)$ satisfies, 
+Let $\alpha > \frac{1}{2}, \nu > 0$, $k_n \to \infty$ be such that $k_n = \smallO{n}$, $\ell_n = (1 + \epsilon_n)k_n$, with $\epsilon_n \to 0$ and define
+\[
+	\lambda_n^\pm = (\ell_n \pm C \sqrt{\ell_n \log(\ell_n)}) \wedge \xi, \quad \text{and} \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi}\right).
+\] 
+In addition, define $\hat{\rho}_n(y,k) = \Prob{\Po(\hat{\mu}_n(y)) = k}$, where $\hat{\mu}_n(y)$ satisfies, 
 \[
 	\hat{\mu}_n(y) = (1 + \phi_n(y))\mu(y),
 \]
-where $\phi_n(y)$ is a continuous differentiable function such that for some $0 < \varepsilon < 1$
-\[
-	\sup_{0 \le y \le (1 - \varepsilon)R_n} |\phi_n(y)| = 0.
-\]
-Then the following holds for some $C > 0$ large enough:
+where $\phi_n(y)$ is a continuous differentiable function such that
+\begin{enumerate}[\upshape i)]
+\item For some $0 < \varepsilon < 1$, $\displaystyle \lim_{n \to \infty} \sup_{0 \le y \le (1 - \varepsilon)R_n} |\phi_n(y)| = 0$,
+\item $\displaystyle \lim_{n \to \infty}  \sup_{y \in \Kcal_{C}(\ell_n)} |\phi_n^\prime(y)| = 0.$
+\end{enumerate}
+Then the following holds.
 \begin{enumerate}
-\item For any sequence of continuous functions $h_n(y) : \R_+ \to \R$ such that, uniformly on $(0,R_n]$, $h_n(y) = \bigO{k_n^s e^{\beta y} \hat{\rho}_n(y,k_n)}$, as $n \to \infty$, 
-%\TM{ Why not adjust $h$ so that we incorporate $\hat\rho$ in line below. Then both items look more similar. }\PvdH{The reason for the bound on $h_n(y)$ in the first statement is that we want to use this for cases where $h_n(y) \le k_n^s \hat{\rho}_n(y,k_n)$ (see for instance the proof of Proposition~\ref{prop:convergence_average_clustering_P_n}.}  
-for some $s < 2\alpha(2\alpha + 1)$ and $\beta < \alpha$, we have,
-\[
-	\int_{\Rcal_n} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y 
-	= (1 + o(1)) \int_{\Kcal_{C,n}(\ell_n)} h_n(y) f_{\alpha,\nu}(x,y) \dd x \dd y.
-\]
-\item For any continuous bounded function $h(y)$,
-\[
-	\int_{\Kcal_{C,n}(\ell_n)} h(y) \hat{\rho}_n(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y
-	= (1+\smallO{1}) n \int_{0}^\infty h(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
-\]
+\item For any continuous function $h : \R_+ \rightarrow  \R$, such that $h(y) = \bigO{e^{\beta y}}$ as $y \to \infty$ for some $\beta < \alpha$, 
+\begin{equation}\label{eq:error_bound_int_rho_approx_not_K}
+	\int_{\R_+ \setminus (a_n^-, a_n^+)} \hat{\rho}_n(y,k_n) h(y) \alpha e^{-\alpha y} \dd y
+	= \bigO{k_n^{-(1+C^2)/2}},
+\end{equation}
+as $n \to \infty$.
+\item If in addition, $h(a_n) \sim h(b_n)$ whenever $a_n \sim b_n$, as $n \to \infty$. Then,
+\begin{equation}\label{eq:concentration_h_rho_approx}
+	\int_0^\infty h(y) \hat{\rho}_n(y,k_n) \alpha e^{-\alpha y^\prime} \dd y^\prime \sim  
+		2\alpha \xi^{2\alpha} h(2\log(k_n/\xi)) k_n^{-(2\alpha + 1)},
+\end{equation}
 as $n \to \infty$.
 \end{enumerate}
 \end{lemma}
 
-\begin{proof}
-Similarly to the proof of Lemma~\ref{lem:concentration_argument} we define 
-\[
-	\lambda_n^\pm = (\ell_n \pm C \kappa_n) \wedge \xi, \quad \text{and} \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi}\right).
-\] 
-%\TM{ Same problem as in L3.1. $\lambda^-$ can be negative, in which case $a^-$ is undefined.}
-
-In addition we fix $\varepsilon^\ast > 0$ such that $\varepsilon < \min\{1- \frac{s}{2\alpha(2\alpha + 1)},\varepsilon, 1\}$ and. Then since $h_n(y) = \hat{\rho}_n(y,k_n) \bigO{k_n^s}$ we have
-\begin{align*}
-	k_n^s \int_{(1-\varepsilon^\ast)R_n}^{R_n} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
-	&= \bigO{1} \hat{\rho}_n((1-\varepsilon^\ast)R_n,k_n) k_n^s e^{-\alpha(1-\varepsilon^\ast)R_n} \\
-	&= \bigO{\hat{\rho}_n((1-\varepsilon^\ast)R_n,k_n) k_n^s n^{-2\alpha(1 - \varepsilon^\ast)}} \\
-	&= \smallO{ \hat{\rho}_n((1-\varepsilon^\ast)R_n,k_n) n^{\frac{s}{2\alpha + 1} - 2\alpha(1-\varepsilon^\ast)}} = \smallO{1},
-\end{align*}
-where the last step follows by our choice of $\varepsilon^\ast$. Hence it is enough to prove both statement on $\Rcal_n((1-\varepsilon)R_n, R_n)$ instead of $\Rcal_n$.
-\PvdH{@All: This is where we use that $s < 2\alpha(2\alpha + 1)$. I think this can be removed by using a more careful bound but I am not sure this is needed.}
+\begin{proof} \hfill
 
 \paragraph{Proof of statement 1.}
-Since we already showed that
+Let $0 < \varepsilon < 1$ be such that condition ii) holds and take $\varepsilon^\prime = \min\{\varepsilon,1/3\} < 1/2$. We first show that the integration over $(1-\varepsilon^\prime)R \le y \le R$ is negligible.
+ 
+Since $h(y) = \bigO{e^{\beta y}}$ we have
+\begin{align*}
+	\int_{(1-\varepsilon^\prime)R_n}^{R_n} h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	&= \bigO{1} \hat{\rho}_n((1-\varepsilon^\prime)R,k_n) e^{-(\alpha-\beta)(1-\varepsilon^\prime)R} \\
+	&= \bigO{\hat{\rho}_n((1-\varepsilon^\prime)R,k_n) n^{-2(\beta-\alpha)(1-\varepsilon^\prime)}}.
+\end{align*}
+By assumption on $\hat{\mu}_n(y)$ we have that $\hat{\mu}_n((1-\varepsilon^\prime)R) = \bigT{\mu((1-\varepsilon^\prime)R} = \bigT{n^{2(1-\varepsilon^\prime)}}$. Since $k_n = \smallO{n}$, by our choice of $\varepsilon^\prime$, $\hat{\mu}_n((1-\varepsilon^\prime)R)/k_n = \omega\left(n^{1 - 2\varepsilon^\prime}\right) \to \infty$ as $n \to \infty$. We can now use Stirling's approximation to bound $\hat{\rho}_n((1-\varepsilon^\prime)R,k_n)$ as
+\begin{align*}
+	\hat{\rho}_n((1-\varepsilon^\prime)R,k_n) &= \Prob{\Po(\hat{\mu}_n((1-\varepsilon^\prime)R)) = k_n} \\
+	&= \frac{\hat{\mu}_n((1-\varepsilon^\prime)R)^{k_n}}{k_n!} e^{-\hat{\mu}_n((1-\varepsilon^\prime)R)}\\
+	&= \bigO{1} k_n^{-1/2} \left(\frac{\hat{\mu}_n((1-\varepsilon^\prime)R)}{k_n}\right)^{k_n} e^{k_n - \hat{\mu}_n((1-\varepsilon^\prime)R)}\\
+	&= \bigO{1} k_n^{-1/2} e^{k_n\left(1 - \frac{\hat{\mu}_n((1-\varepsilon^\prime)R)}{k_n}\right)+ \log\left(\frac{\hat{\mu}_n((1-\varepsilon^\prime)R)}{k_n}\right)}\\
+	&\le \bigO{1} k_n^{-1/2} e^{-\hat{\mu}_n((1-\varepsilon^\prime)R)/2},
+\end{align*}
+where the last line follows since $1 - x + \log(x) \le -x/2$ for large enough $x$. We conclude that
 \[
-	\lim_{n \to \infty} k_n^s \int_{(1-\varepsilon)R_n}^{R_n} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = 0,
+	\int_{(1-\varepsilon^\prime)R_n}^{R_n} h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	= \bigO{k_n^{-1/2} n^{-2(\beta-\alpha)(1-\varepsilon^\prime)} e^{-n^{2(1-\varepsilon^\prime)}}}
+	= \bigO{k_n^{(1+C^2)/2}}.
 \]
-by our assumption on $h_n(y)$, it is enough to show that for sufficiently large $C > 0$,
+
+We are left to show that for sufficiently large $C > 0$,
 \begin{equation}\label{eq:concentration_argument_an_-}
-	\lim_{n \to \infty} k_n^s \int_0^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = 0,
+	 \int_0^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = \bigO{k_n^{-(1+C^2)/2}},
 \end{equation}
 and
 \begin{equation}\label{eq:concentration_argument_an_+}
-	\lim_{n \to \infty} k_n^s \int_{a_n^+}^{(1-\varepsilon)R_n} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = 0.
+	\int_{a_n^+}^{(1-\varepsilon^\prime)R_n} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = \bigO{k_n^{-(1+C^2)/2}}.
 \end{equation}
 %\TM{ Why can we change the upper limit of the integral? PLease elaborate (in the paper) }
 
-For simplicity we write $\mu(y) := \mu_{\alpha,\nu}\left(\BallPo{y}\right)$.. Now fix some $0 < \delta < 1$ and let $n$ be large enough such that 
-\begin{enumerate}
-\item $\sup_{0 < y \le (1-\varepsilon)R_n} |\phi_n(y)| < \delta$,
-\item $(\ell_n + C \kappa_n)(1 - \delta) > k_n$ and
-\item $(\ell_n - C \kappa_n)(1 + \delta) < k_n$
-\end{enumerate}
+For simplicity we write $\mu(y) := \mu\left(\BallPo{y}\right)$. Now fix some $0 < \delta < 1$ and let $n$ be large enough such that 
+\[
+\sup_{0 < y \le (1-\varepsilon^\prime)R_n} |\phi_n(y)| < \delta, \quad
+\lambda_n^+(1 - \delta) > k_n \quad \text{and} \quad
+\lambda_n^-(1 + \delta) < k_n.
+\]
 
 Next, recall that the function $\lambda \mapsto \Prob{\Po(\lambda) = k}$ is monotonic increasing on $[0,k]$ and monotonic decreasing on $[k, \infty)$. Then since for $n$ large enough we have 
 \[
@@ -222,20 +326,23 @@ it follows that
 \[
 	\hat{\rho}_n(y,k_n) = \Prob{\Po(\hat{\mu}_n(y)) = k_n} \le \Prob{\Po(\mu(y)(1-\delta)) = k_n},
 \]
-for all $a_n^+ \le y \le (1-\varepsilon)R_n$. By making the change of variables $z = \mu^{-1}(\mu(y)(1-\delta)) = y + 2 \log(1-\delta)$ we then get
+for all $a_n^+ \le y \le (1-\varepsilon^\prime)R_n$. By making the change of variables $z = \mu^{-1}(\mu(y)(1-\delta)) = y + 2 \log(1-\delta)$ we then get
 \begin{align*}
-	k_n^s \int_{a_n^+}^{(1-\varepsilon)R_n} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y
-	&\le k_n^s \int_{a_n^+}^{(1-\varepsilon)R_n} \Prob{\Po(\mu(y)(1-\delta)) = k_n} 
+	\int_{a_n^+}^{(1-\varepsilon^\prime)R_n} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y
+	&\le \int_{a_n^+}^{(1-\varepsilon^\prime)R_n} \Prob{\Po(\mu(y)(1-\delta)) = k_n} 
 		e^{(\beta-\alpha) y} \dd y\\
-	&= k_n^s (1-\delta)^{\beta - \alpha} \int_{a_n^+ + 2\log(1-\delta)}^{(1-\varepsilon)R_n + 2\log(1-\delta)} 
+	&= (1-\delta)^{\beta - \alpha} \int_{a_n^+ + 2\log(1-\delta)}^{(1-\varepsilon^\prime)R_n + 2\log(1-\delta)} 
 		\Prob{\Po(\mu(z)) = k_n} e^{(\beta - \alpha)z} \dd z\\
-	&\le k_n^s (1-\delta)^{\beta - \alpha} \int_{a_n^+}^{\infty} \rho(z,k_n) e^{(\beta - \alpha)z} \dd z.
+	&= \bigO{1} \int_{a_n^+}^{\infty} \rho(z,k_n) e^{(\beta - \alpha)z} \dd z\\
+	&= \bigO{k_n^{-(1+C^2)/2}},
 \end{align*}
-Since Lemma~\ref{lem:concentration_argument} implies that for large enough $C$,
-\[
-	\lim_{n \to \infty} k_n^s \int_{a_n^+}^{\infty} \rho(z,k_n) e^{(\beta - \alpha)z} \dd z = 0,
-\]
-we have proven~\eqref{eq:concentration_argument_an_+}.
+where the last line is due to Lemma~\ref{lem:concentration_argument}. This proves~\eqref{eq:concentration_argument_an_+}.
+
+%implies that for large enough $C$,
+%\[
+%	\lim_{n \to \infty} k_n^s \int_{a_n^+}^{\infty} \rho(z,k_n) e^{(\beta - \alpha)z} \dd z = 0,
+%\]
+%we have proven~\eqref{eq:concentration_argument_an_+}.
 
 The proof of~\eqref{eq:concentration_argument_an_-} follows the same line of reasoning. This time we use that for $0 \le y \le a_n^-$,
 \[
@@ -248,165 +355,68 @@ so that
 \]
 Making a similar change of variables $z = y + 2 \log(1+\delta)$ we then get
 \begin{align*}
-	k_n^s \int_0^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y
-	&= k_n^s \int_0^{a_n^-}\Prob{\Po(\mu(y)(1-\delta)) = k_n} 
+	\int_0^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y
+	&= \int_0^{a_n^-}\Prob{\Po(\mu(y)(1-\delta)) = k_n} 
 		e^{(\beta-\alpha) y} \dd y\\
-	&\le k_n^s (1+\delta)^{\beta - \alpha} \int_0^{a_n^- + 2\log(1+\delta)} 
+	&\le (1+\delta)^{\beta - \alpha} \int_0^{a_n^- + 2\log(1+\delta)} 
 		\rho(z,k_n) e^{(\beta - \alpha)z} \dd z,
 \end{align*}
-and~\eqref{eq:concentration_argument_an_-} follows by another application of Lemma~\ref{lem:concentration_argument}. 
+and hence~\eqref{eq:concentration_argument_an_-} follows by another application of Lemma~\ref{lem:concentration_argument}. 
 
 \paragraph{Proof of statement 2.}
 
-The proof of the second statement follows the same line of reasoning as above. First note that by Lemma~\ref{lem:concentration_argument} and the first statement, it is enough to show that
+The proof of the second statement follows the same line of reasoning as above. First, by the mean value theorem for definite integrals 
 \[
 	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) h(y) e^{-\alpha y} \dd y
-	= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) h(z) e^{-\alpha z} \dd z.
+	= h(c_n) \int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z,
+\]
+for some $c_n \in (a_n^-, a_n^+)$. Since, $c_n \sim 2 \log(k_n/\xi)$, by assumption on $h$, $h(c_n)\sim h(2\log(k_n/\xi))$. Therefore it is enough to show that
+\[
+	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z.
 \] 
 or equivalently,
 \[
-	\int_{a_n^-}^{a_n^+} \rho(z,k_n) h(z) e^{-\alpha z} \dd z
-	= \left(1 + o(1)\right)\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) h(y) e^{-\alpha y} \dd y.
+	\int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z
+	= \left(1 + o(1)\right)\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y.
 \] 
 
 Using the change of variable $z = \mu^{-1}(\hat{\mu}_n(y))$ and writing $\hat{a}_n^\pm = \hat{\mu}_n^{-1}(\mu(a_n^\pm))$, we get
 \begin{align*}
-	&\hspace{-30pt}\int_{a_n^-}^{a_n^+} \rho(z,k_n) h(z) e^{-\alpha z} \dd z \\
-	&= \int_{a_n^-}^{a_n^+} \Prob{\Po(\mu(z)) = k_n} h(z) e^{-\alpha z} \dd z\\
-	&= \int_{\hat{a}_n^-}^{\hat{a}_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} h(\mu^{-1}(\hat{\mu}_n(y))) e^{-\alpha \mu^{-1}(\hat{\mu}_n(y))} 
+	\int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z 
+	&= \int_{a_n^-}^{a_n^+} \Prob{\Po(\mu(z)) = k_n} e^{-\alpha z} \dd z\\
+	&= \int_{\hat{a}_n^-}^{\hat{a}_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} e^{-\alpha \mu^{-1}(\hat{\mu}_n(y))} 
 		\frac{\hat{\mu}_n^\prime(y)}{\mu^\prime(\mu^{-1}(\hat{\mu}_n(y)))} \dd y,
 \end{align*}
-where the fraction is the last line follows from the chain rule and the fact that $(\mu^{-1})^\prime(t) = (\mu^\prime(\mu^{-1}(t)))^{-1}$.
+where the fraction in the last line follows from the chain rule and the fact that $(\mu^{-1})^\prime(t) = (\mu^\prime(\mu^{-1}(t)))^{-1}$.
 
-Now recall that $\hat{\mu}_n(y) = \mu(y)(1 + \phi_n(y))$, with $\phi_n(y)$ continuous and differentiable and satisfying
-$\max_{0 \le y \le (1 - \varepsilon)R_n} |\phi_n(y)| \to 0$. It follows that $\max_{0 \le y \le (1 - \varepsilon)R_n} |\phi_n^\prime(y)| \to 0$ which then implies that $\hat{\mu}_n^\prime(y) = (1 + \smallO{1})\mu^\prime(y)$ as $n \to \infty$, uniformly on $(0,(1-\varepsilon)R_n)$. In particular this holds uniformly on $[a_n^-, a_n^+]$. Next we note that $\mu^\prime(y) = \mu(y)/2$ from which it follows that uniformly on $[a_n^-, a_n^+]$,
+Now recall that $\hat{\mu}_n(y) = \mu(y)(1 + \phi_n(y))$, with $\phi_n(y)$ satisfying conditions i) and ii). It then follows $\hat{\mu}_n^\prime(y) = (1 + \smallO{1})\mu^\prime(y)$ as $n \to \infty$, uniformly on $(a_n^-, a_n^+)$. Next we note that $\mu^\prime(y) = \mu(y)/2$ from which it follows that uniformly on $[a_n^-, a_n^+]$,
 \[
 	\frac{\hat{\mu}_n^\prime(y)}{\mu^\prime(\mu^{-1}(\hat{\mu}_n(y)))}
 	= \frac{2\hat{\mu}_n^\prime(y)}{\hat{\mu}_n(y)}
 	= \frac{(1 + \smallO{1})2\mu^\prime(y)}{(1 + \smallO{1})\mu(y)}
 	= (1+\smallO{1})
 \]
-In addition, uniformly on $[0,(1-\varepsilon)R_n]$,
-\[
-	\mu^{-1}(\hat{\mu}_n(y)) = 2 \log(\hat{\mu}(y)/\xi) = 2 \log(\mu(y)/\xi) + 2 \log(1 + \smallO{1}) = y + \smallO{1}.
-\]
-Therefore, by assumption on $h(y)$,
+Therefore,
 \begin{align*}
-	&\hspace{-30pt}\int_{a_n^-}^{a_n^+} \rho(z,k_n) h(z) e^{-\alpha z} \dd z \\
-	&= (1 + \smallO{1})e^{-\alpha b_n}\int_{\hat{a}_n^-}^{\hat{a}_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} h(y + \smallO{1})  
-		e^{-\alpha y} \dd y\\
-	&= (1 + \smallO{1}) \int_{\hat{a}_n^-}^{\hat{a}_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} h(y)  
-		e^{-\alpha y} \dd y \\
-	&= (1 + \smallO{1}) \int_{a_n^-}^{a_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} h(y)  
-			e^{-\alpha y} \dd y,
+	\int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z
+	&= (1 + \smallO{1})\int_{\hat{a}_n^-}^{\hat{a}_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} e^{-\alpha y} \dd y\\
+	&= (1 + \smallO{1}) \int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y\\
+	&= (1 + \smallO{1}) \int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
 \end{align*}
 which finishes the proof.
 \end{proof}
 
-\subsection{Expected number of points in balls in the hyperbolic random graph}\label{ssec:average_degree_HP_n}
+With this lemma, the proof of Proposition~\ref{prop:concentration_argument_all} follows if we can show that both $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$ are of the form $\rho(y,k_n)(1 + \phi_n(y))$, where $\phi_n(y)$ satisfies the conditions i) and ii). We deal with each of these cases separately.
 
-\TM{  the term ``average degree" does not fit very well with what goes on in this section. We are considering the expected number of points in a ball, but not yet computing the average degree of the graph. }\PvdH{I agree and have changed the header.}
-Recall that under the coupling between the hyperbolic random graph and the finite box model, for two points $p, p^\prime$ with $y + y^\prime < R_n$, $p^\prime \in \BallHyp{p}$ exactly when $|x-x^\prime|_{\pi e^{R_n/2}} \le \Phi(r,r^\prime)$. In this setting, the coupling lemma (Lemma~\ref{lem:asymptotics_Omega_hyperbolic}) gives that  
-\[
-	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R_n} \leq \Phi(r, r^\prime) 
-		\leq  e^{\frac{1}{2}(y+y^\prime)} + K e^{\frac{3}{2}(y+y^\prime) - R_n},
-\]
-for some constant $K$. %\TM{ Say what $K$ is and what the restrictions on $r, r'$ are. } 
-This result enables us to determine the measure of a ball around a given point $p=(0,y)$ which will be fairly useful in our subsequent analysis. Recall that the hyperbolic ball $\BallHyp{p}$ is a subset of $\Rcal_n$ and not of the hyperbolic disc $\Dcal_{R_n}$, i.e. the balls $\BallHyp{p}$ "live" in the finite box and not the hyperbolic disc.
+\subsection{Concentration of heights for the finite box model}\label{ssec:average_degree_P_n}
 
-\begin{lemma}\label{lem:average_degree_hyperbolic}
-Let $\eps \in (0, 1)$. Then for all $0 \le y \le (1 - \eps)R_n$
-\[
-	 1 - \phi_{\H,n}^{(1)}(y) - \phi_{\H,n}^{(2)}(y) \le \frac{\Mu{\BallHyp{0,y}}}{\Mu{\BallPo{0,y}}} 
-	 \le 1 - \phi_{\H,n}^{(1)}(y) + \phi_{\H,n}^{(2)}(y),
-\]
-where
-\[
-	\phi_{\H,n}^{(1)}(y) = \frac{2\alpha - 1 - 4\pi}{4\pi} e^{-(\alpha - \frac{1}{2})(R_n - y)} 
-		+ \left(\alpha - \frac{1}{2}\right)\pi e^{-(\alpha - \frac{1}{2})R_n - y/2},
-\]
-and
-\[
-	\phi_{\H,n}^{(2)}(y) = 
-	+ \begin{cases}
-			\frac{(2\alpha - 1)K}{3 - 2\alpha}\left(e^{-(\alpha - \frac{1}{2})(R_n - y)} - e^{-(R_n - y)}\right)
-			&\mbox{if } 1/2 < \alpha < 3/2,\\
-			\frac{(2\alpha -1)K}{2} (R_n - y)e^{-(R_n - y)} &\mbox{if } \alpha = 3/2,\\
-			\frac{(2\alpha - 1)K}{2\alpha - 3} \left(e^{-(R_n - y)} - e^{-(\alpha - \frac{1}{2})(R_n - y)}\right)
-			&\mbox{if } \alpha > 3/2,
-		\end{cases}
-\]
-with $K$ being the constant coming from the approximation of $\Phi$ in Lemma~\ref{lem:asymptotics_Omega_hyperbolic}.
-%\TM{ We want to say in the lemma where $K$ comes from. (not everyone reads surrounding text, or reads linearly, in a paper as long as this one.) }
-\end{lemma}
-
-\begin{proof}
-We perform the computation of $\Mu{\BallHyp{0,y}}$ by splitting the integration with respect to the height $y^\prime$ into the cases $y^\prime > R_n - y$ and $y^\prime \le R_n - y$, %\TM{ You have not said what $y^\prime$ is! } 
-where for the latter we utilize Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. Recall that $\Mu{\BallPo{0,y}} = \xi e^{y/2}$ where $\xi = \frac{4\alpha\nu}{\pi(2\alpha - 1)}$.
-
-Note that $\BallHyp{(0,y)} \cap \Rcal_n ([R_n - y, R_n])= \Rcal_n([R_n-y,R_n])$. 
-Thus, 
-\begin{align*}
-	&\hspace{-30pt}\Mu{\BallHyp{(0,y)} \cap \Rcal_n ([R_n - y, R_n])} \\
-	&= \int_{R_n - y}^{R_n} \int_{I_n} f_{\alpha,\nu}(x^\prime, y^\prime) \dd x^\prime \dd y^\prime
-		= \nu \alpha e^{R_n/2}\left(e^{-\alpha(R_n - y)} - e^{-\alpha R_n}\right)\\
-	&= \Mu{\BallPo{0,y}} \frac{2\alpha - 1}{4\pi} \left( e^{-(\alpha - \frac{1}{2})(R_n - y)}
-		- e^{-(\alpha - \frac{1}{2})R_n - y/2}\right) \numberthis \label{eq:mu_hyperbolic_ball_part_1}
-\end{align*}
-
-
-Next we will establish upper and lower bounds on $\Mu{\BallHyp{(0,y)} \cap\Rcal_n[(0,R_n-y)]}$. Using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} we have 
-\begin{align*}
-	\Mu{\BallHyp{(0,y)} \cap\Rcal_n[(0,R_n-y)]} 
-	&\le \frac{2\nu \alpha}{\pi} \int_{0}^{R_n - y} \left(e^{\frac{y + y^\prime}{2}} + K e^{\frac{3}{2}(y + y^\prime) - R_n}\right)
-		e^{-\alpha y^\prime} \dd y^\prime\\
-	&= \Mu{\BallPo{0,y}}\left(1 - e^{-(\alpha - \frac{1}{2})(R_n - y)}\right) \\
-	&\hspace{10pt}+ \frac{2\nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime
-\end{align*}
-The last integral depends on the value of $\alpha$,
-\[
-	\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime
-	= \begin{cases}
-		\frac{2}{3 - 2\alpha}\left(e^{(\frac{3}{2} - \alpha)(R_n - y)} - 1\right) &\mbox{if } 1/2 < \alpha < 3/2,\\
-		R_n - y &\mbox{if } \alpha = 3/2,\\
-		\frac{2}{2\alpha-3}\left(1 - e^{-(\alpha - \frac{3}{2})(R_n - y)}\right) &\mbox{if } \alpha > 3/2.
-	\end{cases}
-\]
-Therefore we get
-\begin{align*}
-	&\hspace{-30pt}\frac{2\nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}
-		\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime\\
-	&= \Mu{\BallPo{0,y}}\begin{cases}
-		\frac{(2\alpha - 1)K}{3 - 2\alpha}\left(e^{-(\alpha - \frac{1}{2})(R_n - y)} - e^{-(R_n - y)}\right)
-		&\mbox{if } 1/2 < \alpha < 3/2,\\
-		\frac{(2\alpha -1)K}{2} (R_n - y)e^{-(R_n - y)} &\mbox{if } \alpha = 3/2,\\
-		\frac{(2\alpha - 1)K}{2\alpha - 3} \left(e^{-(R_n - y)} - e^{-(\alpha - \frac{1}{2})(R_n - y)}\right)
-		&\mbox{if } \alpha > 3/2.
-	\end{cases}\\
-	&= \Mu{\BallPo{0,y}} \phi_{\H,n}^{(2)}(y)
-\end{align*}
-and hence
-\[
-	\Mu{\BallHyp{(0,y)} \cap\Rcal_n[(0,R_n-y)]} = \Mu{\BallPo{0,y}}\left(1 - e^{-(\alpha - \frac{1}{2})(R_n - y)} 
-	+ \phi_{\H,n}^{(2)}(y)\right).
-\]
-Combining this with~\eqref{eq:mu_hyperbolic_ball_part_1} yields the required upper bound.
-
-The lower bound follows by observing that the only difference with the above computations is the change of sign in front of 
-\[
-	\frac{2 \nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime.
-\]
-\end{proof}
-
-\subsection{Expected number of points in balls in the finite box model}\label{ssec:average_degree_P_n}
-
-%\TM{ same comment Re: average degree. }
-For the finite box model $\Gbox$ we obtain a similar result for expected size of the balls.
+The following lemma immediately implies that $\Mu{\BallPon{y}}$ satisfies the conditions of Lemma~\ref{lem:concentration_argument_rho_approximation} and hence that Proposition~\ref{prop:concentration_argument_all} holds for $\rho_{\text{box}}(y,k_n)$.
 
 \begin{lemma}\label{lem:average_degree_P_n}
-For all $p \in \Rcal_n$, such that $y > 2\log(\pi/2)$,
+For all $y > 2\log(\pi/2)$,
 \[
-	\mu_{\alpha,\nu}(\BallPon{p}) = \mu_{\alpha,\nu}(\BallPo{p})\left(1 - \phi_n(y)\right)
+	\Mu{\BallPon{p}} = \Mu{\BallPo{p}}\left(1 - \phi_n(y)\right)
 \]
 %\TM{ where did the curly B's go? }\PvdH{Typo. Fixed}
 where $\phi_n(y) \ge 0$ is given by
@@ -459,34 +469,396 @@ When $y \le 2 \log(\pi/2)$ we have
 \end{align*}
 \end{proof}
 
-\subsection{Concentration of heights argument for hyperbolic and finite box model}
+\subsection{Concentration of heights for the KPKVB model}\label{ssec:average_degree_HP_n}
 
-Let us define $\rho_{\Po}(y,k) = \Prob{\Po(\Mu{\BallHyp{y}}) = k}$ and $\rho_{\text{box}} = \Prob{\Po(\Mu{\BallPon{y}}) = k}$. Then since Lemma~\ref{lem:average_degree_P_n} implies that $\Mu{\BallHyp{(y)}}$ satisfies the requirements in Lemma~\ref{lem:concentration_argument_rho_approximation} while Lemma~\ref{lem:average_degree_hyperbolic} states that this holds for $\Mu{\BallPon{0,y}}$, we have the following important Corollary.
+%\TM{  the term ``average degree" does not fit very well with what goes on in this section. We are considering the expected number of points in a ball, but not yet computing the average degree of the graph. }\PvdH{I agree and have changed the header.}
 
-\begin{corollary}\label{cor:concentration_argument_other_models}
-The statements of Lemma~\ref{lem:concentration_argument_rho_approximation} holds for the two distribution functions $\rho_{\Po}(y,k)$ and $\rho_{n}(y,k)$. 
-\end{corollary}
+We will now show that a concentration of heights argument also applies to the KPKVB model. Due to the hyperbolic distance formula, the computations are however more involved than for the finite box model. Recall that under the coupling between the hyperbolic random graph and the finite box model, for two points $p, p^\prime$ with $y + y^\prime < R_n$, $p^\prime \in \BallHyp{p}$ exactly when $|x-x^\prime|_{\pi e^{R_n/2}} \le \Phi(y,y^\prime)$, where we slightly abused notation to write $\Phi(y,y^\prime) = \Phi(R - y, R - y^\prime)$. In this setting, the coupling lemma (Lemma~\ref{lem:asymptotics_Omega_hyperbolic}) gives that  
+\[
+	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R_n} \leq \Phi(y, y^\prime) 
+		\leq  e^{\frac{1}{2}(y+y^\prime)} + K e^{\frac{3}{2}(y+y^\prime) - R_n},
+\]
+for some constant $K$. This result enables us to determine the measure of a ball around a given point $p=(0,y)$. Recall that the hyperbolic ball $\BallHyp{p}$ is a subset of $\Rcal_n$ and not of the hyperbolic disc $\Dcal_{R_n}$, i.e. the balls $\BallHyp{p}$ "live" in the finite box and not the hyperbolic disc. We start with the following preliminary result.
 
-%\begin{corollary}\label{cor:concentration_argument_other_models}
-%Let $\hat{\rho}_n(y,k)$ be any of the two distribution functions $\rho_{\Po}(y,k)$ and $\rho_{n}(y,k)$ and let $\Kcal_{C,n}(\kappa_n)$ be defined as in~\eqref{eq:def_K_C_n_set}. Then, for any function $g_n(y)$ such that, uniformly on $(0, R_n]$, $g_n(y) = \bigO{k_n^{s} e^{\beta y}}$,
-%%\TM{ Where did the $n^{-1}$ come from? Does not appear in L3.4. }\PvdH{I will elaborate on this once the statement of Lemma~\ref{lem:concentration_argument} is updated}, 
-%as $n \to \infty$, for some $s < 2\alpha(2\alpha + 1)$ and $\beta < \alpha$,
+\begin{lemma}\label{lem:hyperbolic_ball_lower_part}
+Let $\Phi(y,y^\prime) := \Phi(R - y,R - y^\prime)$ be defined as in~\eqref{eq:def_Omega_hyperbolic}. Then, for any $0 \le \delta < 1$
+\[
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} \frac{2\nu \alpha}{\pi} \int_0^{(1-\delta)(R-y)} \Phi(y,y^\prime) e^{-\alpha y^\prime} = 1.
+\]
+\end{lemma}
+
+\begin{proof}
+Recall that $\Mu{\BallPo{0,y}} = \xi e^{y/2}$ where $\xi = \frac{4\alpha\nu}{\pi(2\alpha - 1)}$. Using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} we have 
+\begin{align*}
+	\frac{2\nu \alpha}{\pi} \int_0^{(1-\delta)(R-y)} \Phi(y,y^\prime) e^{-\alpha y^\prime} 
+	&\le \frac{2\nu \alpha}{\pi} \int_{0}^{(1-\delta)(R-y)} \left(e^{\frac{y + y^\prime}{2}} + K e^{\frac{3}{2}(y + y^\prime) - R_n}\right)
+		e^{-\alpha y^\prime} \dd y^\prime\\
+	&= \Mu{\BallPo{0,y}}\left(1 - e^{-(\alpha - \frac{1}{2})(1-\delta)(R_n - y)}\right) \\
+	&\hspace{10pt}+ \frac{2\nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}\int_0^{(1-\delta)(R-y)} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime
+\end{align*}
+
+We first compute the integral, which depends on the value of $\alpha$,
+\[
+	\int_0^{(1-\delta)(R-y)} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime
+	= \begin{cases}
+		\frac{2}{3 - 2\alpha}\left(e^{(\frac{3}{2} - \alpha)(1-\delta)(R-y)} - 1\right) &\mbox{if } 1/2 < \alpha < 3/2,\\
+		(1-\delta)(R-y) &\mbox{if } \alpha = 3/2,\\
+		\frac{2}{2\alpha-3}\left(1 - e^{-(\alpha - \frac{3}{2})(1-\delta)(R-y)}\right) &\mbox{if } \alpha > 3/2.
+	\end{cases}
+\]
+Therefore we get
+\begin{align*}
+	&\frac{2\nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}
+		\int_0^{(1-\delta)(R-y)} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime\\
+	&= \Mu{\BallPo{0,y}}\begin{cases}
+		\frac{(2\alpha - 1)K}{3 - 2\alpha}\left(e^{-(\alpha - \frac{1}{2})(R_n - y)-(\frac{3}{2}-\alpha)\delta(R-y)} 
+			- e^{-(R_n - y)}\right)
+		&\mbox{if } 1/2 < \alpha < 3/2,\\
+		\frac{(2\alpha -1)K}{2} (1-\delta)(R - y)e^{-(R_n - y)} &\mbox{if } \alpha = 3/2,\\
+		\frac{(2\alpha - 1)K}{2\alpha - 3} \left(e^{-(R_n - y)} - e^{-(\alpha - \frac{1}{2})(R_n - y) 
+			-(\alpha - \frac{3}{2})(R-y)}\right)
+		&\mbox{if } \alpha > 3/2,
+	\end{cases}
+\end{align*}
+and hence
+\[
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1}
+	\frac{2\nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}
+			\int_0^{(1-\delta)(R-y)} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime = 0.
+\]
+Since $\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} e^{-(\alpha - \frac{1}{2})(1-\delta)(R_n - y)} = 0$, we conclude that
+\[
+	\limsup_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} \int_0^{(1-\delta)(R-y)} \Phi(y,y^\prime)
+		\alpha e^{-\alpha y^\prime} = 1.
+\]
+The proof that this also holds for the limit infimum immediately follows, by observing that the only difference with the above computations is the change of sign in front of 
+\[
+	\frac{2 \nu \alpha}{\pi} K e^{\frac{3 y}{2} - R_n}\int_0^{R_n-y} e^{(\frac{3}{2} - \alpha)y^\prime} \dd y^\prime.
+\]
+\end{proof}
+
+We can now show that the measure of the balls in the KPKVB model and the infinite model are asymptotically equivalent.
+
+\begin{lemma}\label{lem:average_degree_hyperbolic}
+For any $0 < \varepsilon < 1$
+\[
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \frac{\Mu{\BallHyp{0,y}}}{\Mu{\BallPo{0,y}}} = 1.
+\]
+%Let $\eps \in (0, 1)$. Then for all $0 \le y \le (1 - \eps)R_n$
 %\[
-%	\int_{\Rcal_n} g_n(y) \hat{\rho}_n(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y
-%	= (1+\smallO{1})n\int_{0}^\infty g_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
+%	 1 - \phi_{\H,n}^{(1)}(y) - \phi_{\H,n}^{(2)}(y) \le \frac{\Mu{\BallHyp{0,y}}}{\Mu{\BallPo{0,y}}} 
+%	 \le 1 - \phi_{\H,n}^{(1)}(y) + \phi_{\H,n}^{(2)}(y),
 %\]
-%for some $C > 0$ large enough.
-%\end{corollary}
+%where
+%\[
+%	\phi_{\H,n}^{(1)}(y) = \frac{2\alpha - 1 - 4\pi}{4\pi} e^{-(\alpha - \frac{1}{2})(R_n - y)} 
+%		+ \left(\alpha - \frac{1}{2}\right)\pi e^{-(\alpha - \frac{1}{2})R_n - y/2},
+%\]
+%and
+%\[
+%	\phi_{\H,n}^{(2)}(y) = 
+%	+ \begin{cases}
+%			\frac{(2\alpha - 1)K}{3 - 2\alpha}\left(e^{-(\alpha - \frac{1}{2})(R_n - y)} - e^{-(R_n - y)}\right)
+%			&\mbox{if } 1/2 < \alpha < 3/2,\\
+%			\frac{(2\alpha -1)K}{2} (R_n - y)e^{-(R_n - y)} &\mbox{if } \alpha = 3/2,\\
+%			\frac{(2\alpha - 1)K}{2\alpha - 3} \left(e^{-(R_n - y)} - e^{-(\alpha - \frac{1}{2})(R_n - y)}\right)
+%			&\mbox{if } \alpha > 3/2,
+%		\end{cases}
+%\]
+%with $K$ being the constant coming from the approximation of $\Phi$ in Lemma~\ref{lem:asymptotics_Omega_hyperbolic}.
+%%\TM{ We want to say in the lemma where $K$ comes from. (not everyone reads surrounding text, or reads linearly, in a paper as long as this one.) }
+\end{lemma}
 
-In particular we conclude that, similarly to the infinite limit model, concentration of heights arguments as described in Remark~\ref{rmk:concentration_argument} can be applied in the case of the hyperbolic random graphs and the finite box model.
+\begin{proof}
+We perform the computation of $\Mu{\BallHyp{0,y}}$ by splitting the integration with respect to the height $y^\prime$ into the cases $y^\prime > R_n - y$ and $y^\prime \le R_n - y$,
+\[
+	\Mu{\BallHyp{y}} 
+	= \Mu{\BallHyp{y} \cap \Rcal_n ([0,R_n - y))} + \Mu{\BallHyp{y} \cap \Rcal_n ([R_n - y, R_n])}.
+\]
 
-\begin{remark}[Most frequent use of concentration of argument]
-Note that it follows from Proposition~\ref{prop:asymp} that $P(y)$ satisfies the conditions in the both statements of Lemma~\ref{lem:concentration_argument_rho_approximation}. In particular, if $\hat{\rho}_n$ denote either $\rho_{\Po}$ or $\rho_{\text{box}}$, then as $n \to \infty$
-\begin{equation}\label{eq:concentration_heights_argument_Py}
-	\int_{\Rcal_n} P(y) \hat{\rho}_n(y,k_n) f_{\alpha,\nu}(x, y) \dd x \dd y
-	= (1 + \smallO{1}) n \int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
+For the first part we have that
+\[
+	\Mu{\BallHyp{(0,y)} \cap\Rcal_n[(0,R_n-y)]} = \frac{2\nu \alpha}{\pi} \int_0^{R-y} \Phi(y,y^\prime) e^{-\alpha y^\prime}
+	\dd y^\prime.
+\]
+Hence, by applying Lemma~\ref{lem:hyperbolic_ball_lower_part} with $\delta = 0$ we conclude that
+\[
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1}
+	\Mu{\BallHyp{(0,y)} \cap\Rcal_n[(0,R_n-y)]} = 1.
+\]
+
+For the second part we observer that $\BallHyp{(0,y)} \cap \Rcal_n ([R_n - y, R_n])= \Rcal_n([R_n-y,R_n])$. 
+Thus, 
+\begin{align*}
+	&\hspace{-30pt}\Mu{\BallHyp{(0,y)} \cap \Rcal_n ([R_n - y, R_n])} \\
+	&= \int_{R_n - y}^{R_n} \int_{I_n} f_{\alpha,\nu}(x^\prime, y^\prime) \dd x^\prime \dd y^\prime
+		= \nu \alpha e^{R_n/2}\left(e^{-\alpha(R_n - y)} - e^{-\alpha R_n}\right)\\
+	&= \Mu{\BallPo{0,y}} \frac{2\alpha - 1}{4\pi} \left( e^{-(\alpha - \frac{1}{2})(R_n - y)}
+		- e^{-(\alpha - \frac{1}{2})R_n - y/2}\right), \numberthis \label{eq:mu_hyperbolic_ball_part_1}
+\end{align*}
+from which we conclude that
+\[
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} 
+	\Mu{\BallHyp{(0,y)} \cap \Rcal_n ([R_n - y, R_n])} = 0,
+\]
+which finishes the proof.
+\end{proof}
+
+A direct consequence of Lemma~\ref{lem:average_degree_hyperbolic} is that $\Mu{\BallHyp{y}} = \Mu{\BallPo{y}}(1 + \phi_n(y))$, where $\phi_n(y) := \Mu{\BallHyp{y}}/\Mu{\BallPo{y}} - 1$ satisfies condition i) in Lemma~\ref{lem:concentration_argument_rho_approximation}. To show that condition ii) is also satisfied we need to analyze
+\[
+	\phi_n^\prime(y) = 
+	\Mu{\BallPo{y}}^{-1} \frac{\partial}{\partial y} \mu\left(\BallHyp{y}\right) -  \frac{1}{2} \frac{\Mu{\BallHyp{y}}}{\Mu{\BallPo{y}}},
+\]
+where we used that $\frac{\partial}{\partial y}\Mu{\BallPo{y}} = \frac{1}{2}\Mu{\BallPo{y}}$. Again, Lemma~\ref{lem:average_degree_hyperbolic} implies that 
+\[
+	\lim_{n \to \infty} \sup_{0 \le y \le (1-\varepsilon)R_n} \frac{1}{2} \frac{\Mu{\BallHyp{y}}}{\Mu{\BallPo{y}}}
+	= \frac{1}{2}.
+\]
+The following lemma shows that the same holds for the first term from which we conclude that $\phi_n(y)$ satisfies condition ii) in Lemma~\ref{lem:concentration_argument_rho_approximation} and hence that Proposition~\ref{prop:concentration_argument_all} also holds for $\rho_{\Po}(y,k_n)$.
+
+\begin{lemma}
+For any $0 < \varepsilon < 1$,
+\[
+	\lim_{n \to \infty} \sup_{0 \le y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1}
+	\frac{\partial}{\partial y} \mu\left(\BallHyp{y}\right) 
+	= \frac{1}{2}.
+\]
+\end{lemma}
+
+\begin{proof}
+We again split $\Mu{\BallHyp{y}}$ over the top and bottom part,
+\[
+	\Mu{\BallHyp{y}} 
+	= \Mu{\BallHyp{y} \cap \Rcal_n ([0,R_n - y))} + \Mu{\BallHyp{y} \cap \Rcal_n ([R_n - y, R_n])},
+\]
+where
+\[
+	\Mu{\BallHyp{y} \cap \Rcal_n ([0,R_n - y))} = \frac{2\alpha \nu}{\pi}\int_0^{R - y} \Phi(y,y^\prime) 
+		e^{-\alpha y^\prime} \dd y^\prime,
+\]
+with $\Phi(y,y^\prime)$ defined as in~\eqref{eq:def_Omega_hyperbolic} and, see~\eqref{eq:mu_hyperbolic_ball_part_1},
+\[
+	\Mu{\BallHyp{y} \cap \Rcal_n ([R_n - y, R_n])}
+	= \xi e^{y/2}\frac{2\alpha - 1}{4\pi} \left( e^{-(\alpha - \frac{1}{2})(R_n - y)}
+	- e^{-(\alpha - \frac{1}{2})R_n - y/2}\right).
+\]
+Taking the derivative of the last expression gives
+\begin{align*}
+	&\frac{\partial}{\partial y} \Mu{\BallHyp{y} \cap \Rcal_n ([R_n - y, R_n])}\\
+	&= \frac{1}{2}\Mu{\BallHyp{y} \cap \Rcal_n ([R_n - y, R_n])}
+		+ \xi e^{y/2}\frac{2\alpha - 1}{4\pi}\left(
+		\left(\alpha - \frac{1}{2}\right)e^{-(\alpha - \frac{1}{2})(R_n - y)} 
+		+ \frac{1}{2}e^{-(\alpha - \frac{1}{2})R_n - y/2}\right)\\
+	&= \frac{1}{2}\Mu{\BallHyp{y} \cap \Rcal_n ([R_n - y, R_n])}\left(1 +
+		\frac{(2\alpha - 1)e^{-(\alpha - \frac{1}{2})(R_n - y)} + e^{-(\alpha - \frac{1}{2})R_n - y/2}}
+		{e^{-(\alpha - \frac{1}{2})(R_n - y)} - e^{-(\alpha - \frac{1}{2})R_n - y/2}}\right).
+\end{align*}
+Since, $\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} \Mu{\BallHyp{y} \cap \Rcal_n ([R_n - y, R_n])} = 0$, we are left to show that
+\begin{equation}\label{eq:derivative_mu_hyp_ball_main}
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} \frac{2\alpha \nu}{\pi} \frac{\partial}{\partial y} \int_0^{R - y} \Phi(r,r^\prime) e^{-\alpha y^\prime} \dd y^\prime
+	= \frac{1}{2}.
 \end{equation}
-This is the form that will be use most frequently in the remainder of this paper.
-\end{remark}
+
+We start with some preliminary computations. For convenience we define
+\[
+	\Xi_n(y,y^\prime) = 1 - \frac{\cosh(R- y)\cosh(R-y^\prime) - \cosh(R)}{\sinh(R - y) \sinh(R - y^\prime)},
+\]
+so that
+\[
+	\Phi(R -y, R - y^\prime) = \frac{1}{2}e^{R/2} \arccos\left(1 - \Xi_n(y,y^\prime)\right).
+\]
+Next, following the same calculation as in the proof of~\cite[Lemma 28]{fountoulakis2018law}, we write
+\begin{align*}
+	\Xi(y,y^\prime)
+	&= 2 e^{-(R - y - y^\prime)} \frac{\left(1 - e^{y^\prime - y - R}\right)\left(1 - e^{y - y^\prime - R}\right)}
+		{\left(1 - e^{-2(R - y^\prime)}\right)\left(1 - e^{-2(R- y)}\right)}\\
+	&:= 2 e^{-(R - y - y^\prime)} \frac{h_1(y) h_2(y)}{h_3(y^\prime) h_3(y)},
+\end{align*}
+with
+\[
+	h_1(y) = 1 - e^{y^\prime - y - R}, \quad h_2(y) = 1 - e^{y - y^\prime - R}
+	\quad \text{and} \quad h_3(y) = 1 - e^{-2(R- y)}.
+\]
+We suppressed the dependence on $n$ and, in some cases, on $y^\prime$ for notation convenience.
+
+We make two important observations. First, $\Xi(y,y^\prime)$ is an increasing function in both arguments, for $y, y^\prime < R$ and $y + y^\prime < R$. Second, for all $y + y^\prime < R$, $h_1(y) \le h_3(y^\prime)$ and $h_2(y) \le h_3(y)$, while $h_3(y), h_3(y^\prime) < 1$, so that
+\begin{equation}\label{eq:derivative_hyp_ball_Xi_bounds}
+	2 e^{-(R - y - y^\prime)}h_1(y) h_2(y) \le \Xi_n(y,y^\prime) \le 2 e^{-(R - y - y^\prime)}.
+\end{equation}
+In particular, there exists a $0 < \delta < 1$ such that $1 \le \Xi(y,y^\prime) \le 2$ for all $0 < y < R$ and $(1-\delta)(R-y) < y^\prime < R$.
+
+Next, taking the derivative of $\Xi_n(y,y^\prime)$ yields,
+\begin{align*}
+	\frac{\partial}{\partial y} \Xi(y,y^\prime) &= \Xi(y,y^\prime) + 2 e^{-(R - y - y^\prime)}
+		\left(\frac{h_1^\prime(y) h_2(y)}{h_3(y^\prime) h_3(y)} + \frac{h_1(y)h_2^\prime(y)}{h_3(y^\prime) h_3(y)}
+		- \frac{h_1(y) h_2(y) h_3^\prime(y)}{h_3(y^\prime) h_3(y)^2}\right)\\
+	&= \Xi(y,y^\prime)\left(1 + \frac{h_1^\prime(y)}{h_1(y)} + \frac{h_2^\prime(y)}{h_2(y)} 
+		- \frac{h_3^\prime(y)}{h_3(y)}\right)\\
+	&:= \Xi(y,y^\prime)\left(1 + \varphi_n(y,y^\prime)\right),
+\end{align*}
+with
+\[
+	\varphi_n(y,y^\prime) = \frac{e^{y^\prime - y- R}}{1 - e^{y^\prime - y - R}} 
+	- \frac{e^{y - y^\prime - R}}{1 - e^{y - y^\prime - R}} - \frac{2e^{-2(R - y)}}{1 - e^{-2(R-y)}}. 
+\]
+Therefore, by the chain rule,
+\begin{align*}
+	\frac{\partial}{\partial y} \Phi(R -y, R - y^\prime)
+	&= \frac{1}{2}e^{R/2} \frac{1}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}} 
+		\frac{\partial}{\partial y} \Xi(y,y^\prime)\\
+	&=  \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}\left(1 + 
+		\varphi_n(y,y^\prime)\right). \numberthis \label{eq:derivative_Phi}
+\end{align*}
+Applying the Leibniz's rule we then get
+\begin{align*}
+	&\hspace{-30pt}\frac{\partial}{\partial y} \int_0^{R - y} \Phi(y,y^\prime) \alpha e^{-\alpha y^\prime} \dd y^\prime\\
+	&= - \alpha\Phi(y,R - y)e^{-\alpha(R-y)} + \int_0^{R - y} \frac{\partial}{\partial y}  \Phi(y,y^\prime) 
+		\alpha e^{-\alpha y^\prime} \dd y^\prime\\
+	&= -\frac{\pi}{2}e^{-(\alpha-\frac{1}{2})R_n + \alpha y} + \int_0^{R- y} \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
+		\left(1 + \varphi_n(y,y^\prime)\right) \alpha e^{-\alpha y^\prime} \dd y^\prime\\
+	&= -\frac{\pi}{2}e^{-(\alpha-\frac{1}{2})R_n + \alpha y}  + \int_0^{(1-\delta)(R- y)} \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}
+		{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
+		\left(1 + \varphi_n(y,y^\prime)\right) \alpha e^{-\alpha y^\prime} \dd y^\prime\\
+	&\hspace{10pt}+ \int_{(1-\delta)(R- y)}^{R - y} \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}
+			{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
+			\left(1 + \varphi_n(y,y^\prime)\right) \alpha e^{-\alpha y^\prime} \dd y^\prime\\
+	&:= -I_1(y) + I_2(y) + I_3(y),
+\end{align*}
+with $\delta$ such that $1 \le \Xi(y,y^\prime) \le 2$ for all $0 < y < R$ and $(1-\delta)(R-y) < y^\prime < R$.
+
+We proceed by showing that
+\begin{equation}\label{eq:derivative_hyp_ball_error_1}
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} I_t(y) = 0, \quad \text{for } t = 1,3
+\end{equation}
+while
+\begin{equation}\label{eq:derivative_hyp_ball_main_part}
+	\lim_{n \to \infty} \sup_{0 \le y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} \frac{2\nu \alpha}{\pi} I_2(y) = \frac{1}{2}.
+\end{equation}
+This then implies~\eqref{eq:derivative_mu_hyp_ball_main} and finishes the proof.
+
+Let us first consider $I_1(y)$. Since 
+\[
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} I_1(y) 
+	\le \lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \frac{\pi}{2\xi} e^{-(\alpha - \frac{1}{2})(R - y)} = 0.
+\]
+
+For $I_3(y)$ we first use that $y^\prime < R - y$ to bound $\varphi(y,y^\prime)$ as follows,
+\[
+	\varphi_n(y,y^\prime) \le \frac{e^{y^\prime - y - R}}{1 - e^{y^\prime - y - R}} \le \frac{e^{-2y}}{1 - e^{-2y}}.
+\]
+This then yields that
+\[
+	I_3(y) \le \frac{\alpha}{2}\left(1 + \frac{e^{-2y}}{1 - e^{-2y}}\right)e^{R/2}
+	\int_{(1-\delta)(R- y)}^{R - y} \frac{ \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
+	e^{-\alpha y^\prime} \dd y^\prime.
+\]
+Since for all $1 \le x < 2$,
+\[
+	\frac{1}{\sqrt{1- (1-x)^2}} \le \frac{2}{\sqrt{2(2-x)}},
+\]
+and $1 \le \Xi(y,y^\prime) \le 2$, for all $(1-\delta)(R -y) \le y\prime < R-y$ and $y < R$, it follows that
+\begin{align*}
+	&\hspace{-30pt}\int_{(1-\delta)(R- y)}^{R - y} \frac{ \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
+		e^{-\alpha y^\prime} \dd y^\prime \\
+	&\le 2 \int_{(1-\delta)(R- y)}^{R - y} \frac{\Xi(y,y^\prime)}{\sqrt{2(2-\Xi(y,y^\prime))}} e^{-\alpha y^\prime} 
+		\dd y^\prime \\
+	&\le 2 e^{-\alpha(R - y)} \int_{(1-\delta)(R- y)}^{R - y} 
+		\frac{e^{-(R - y - y^\prime)}}{\sqrt{1 - e^{-(R - y - y^\prime)}}} e^{\alpha (R - y - y^\prime)} \dd y^\prime.
+\end{align*}
+Making the change of variables $z = e^{-(R - y - y^\prime)}$ ($\dd y^\prime = z^{-1} \dd z$) we get that
+\begin{align*}
+	2 e^{-\alpha(R - y)} \int_{(1-\delta)(R- y)}^{R - y} 
+			\frac{e^{-(R - y - y^\prime)}}{\sqrt{1 - e^{-(R - y - y^\prime)}}} e^{\alpha (R - y - y^\prime)} \dd y^\prime
+	&= 2 e^{-\alpha(R - y)} \int_{e^{-\delta (R - y)}}^{1} \frac{z^{-\alpha}}{\sqrt{1 - z}} \dd z\\
+	&\le 2 e^{-\alpha(R - y)} \sqrt{1 - e^{-\delta (R - y)}}\\
+	&\le 2 e^{-\alpha (R -y)}.
+\end{align*}
+We therefore conclude that
+\[
+	I_3(y) \le \alpha \left(1 + \frac{e^{-2y}}{1 - e^{-2y}}\right)e^{-(\alpha -\frac{1}{2})R + \alpha y}.
+\]
+which implies
+\[
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} I_3(y) 
+	\le \lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \alpha \left(1 + \frac{e^{-2y}}{1 - e^{-2y}}\right) e^{-(\alpha - \frac{1}{2})(R - y)} = 0.
+\]
+
+Finally, to show~\eqref{eq:derivative_hyp_ball_main_part} we define 
+\begin{align*}
+	\varphi^-_n &:= \sup_{0 < y \le (1-\varepsilon)R_n} \, \inf_{0 \le y^\prime \le (1 - \delta)(R-y)} 
+		\varphi_n(y,y^\prime)\\
+	\varphi^+_n &:= \sup_{0 < y \le (1-\varepsilon)R_n} \, \sup_{0 \le y^\prime \le (1 - \delta)(R-y)} \varphi_n(y,y^\prime)
+\end{align*}
+and note that since for $0 \le y^\prime \le (1-\delta)(R-y)$,
+\[
+	\frac{e^{-(R + y)}}{1 - e^{-(R+y)}} - \frac{e^{-(R- y)}}{1 - e^{-(R-y)}} - \frac{2e^{-2(R-y)}}{1 - e^{-2(R-y)}}
+	\le \varphi_n(y,y^\prime) \le \frac{e^{-\delta(R-y)}}{1 - e^{-\delta(R-y)}}.
+\] 
+we get $\lim_{n \to \infty} \varphi^\pm_n = 0$. Next, recall that $\Phi(y,y^\prime) = \frac{1}{2}e^{R/2}\Xi(y,y^\prime)$. Then, since $\Xi(y,y^\prime) < 2$ for all $y^\prime < (1-\delta)(R-y)$ and $y < R$, there exists a $K > 0$ such that (see Lemma~\ref{lem:arccos_approx}),
+\[
+	\frac{1}{2}\Phi(y,y^\prime)\left(1 - \frac{(1+\sqrt{2})\Xi(y,y^\prime)}{1 + \Xi(y,y^\prime)}\right)
+	\le \frac{\frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}} 
+	\le \frac{1}{2}\Phi(y,y^\prime)\left(1 + \frac{(1+K)\Xi(y,y^\prime)}{1 - \Xi(y,y^\prime)}\right)
+\]
+for all $y^\prime < (1-\delta)(R - y)$ and $y < R$. Using that $e^{-(r-y)} \le e^{-(R - y - y^\prime)} \le e^{-\delta(R- y)}$, for $0 < y^\prime < (1-\delta)(R-y)$, we get
+\[
+	1 - \frac{(1+\sqrt{2})\Xi(y,y^\prime)}{1 + \Xi(y,y^\prime)} \ge 1 - 2(1+\sqrt{2})e^{-(R-y)}
+\]
+and
+\[
+	1 + \frac{(1+K)\Xi(y,y^\prime)}{1 - \Xi(y,y^\prime)} 
+	\le 1 + \frac{2(1 + K)e^{-\delta(R - y)}}{1-e^{-\delta(R-y)}}.
+\]
+
+We thus have the following upper and lower bound on $I_2(y)$
+\begin{align*}
+	I_2(y) \le \frac{1}{2} \left(1 + \phi_n^+\right)
+	\left(1 + \frac{2(1 + K)e^{-\delta(R - y)}}{1-e^{-\delta(R-y)}}\right)
+	\int_{0}^{(1-\delta)(R-y)} \Phi(y,y^\prime) \alpha e^{-\alpha y^\prime} \dd y^\prime,
+\end{align*}
+and
+\[
+	I_2(y) \ge \frac{1}{2} \left(1 + \phi_n^-\right)\left(1 - 2(1+\sqrt{2})e^{-(R-y)}\right)
+	\int_{0}^{(1-\delta)(R-y)} \Phi(y,y^\prime) \alpha e^{-\alpha y^\prime} \dd y^\prime.
+\]
+From this~\eqref{eq:derivative_hyp_ball_main_part} follows since, $\lim_{n \to \infty} \varphi_n^\pm = 0$ and by Lemma~\ref{lem:hyperbolic_ball_lower_part},
+\[
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R_n} \Mu{\BallPo{y}}^{-1} \frac{2\nu \alpha}{\pi} 
+	\int_{0}^{(1-\delta)(R-y)} \Phi(y,y^\prime) \alpha e^{-\alpha y^\prime} \dd y^\prime
+	= 1.
+\] 
+\end{proof}
+
+
+
+%\subsection{Concentration of heights argument for hyperbolic and finite box model}
+%
+%Let us define $\rho_{\Po}(y,k) = \Prob{\Po(\Mu{\BallHyp{y}}) = k}$ and $\rho_{\text{box}} = \Prob{\Po(\Mu{\BallPon{y}}) = k}$. Then since Lemma~\ref{lem:average_degree_P_n} implies that $\Mu{\BallHyp{(y)}}$ satisfies the requirements in Lemma~\ref{lem:concentration_argument_rho_approximation} while Lemma~\ref{lem:average_degree_hyperbolic} states that this holds for $\Mu{\BallPon{0,y}}$, we have the following important Corollary.
+%
+%\begin{corollary}\label{cor:concentration_argument_other_models}
+%The statements of Lemma~\ref{lem:concentration_argument_rho_approximation} holds for the two distribution functions $\rho_{\Po}(y,k)$ and $\rho_{n}(y,k)$. 
+%\end{corollary}
+%
+%%\begin{corollary}\label{cor:concentration_argument_other_models}
+%%Let $\hat{\rho}_n(y,k)$ be any of the two distribution functions $\rho_{\Po}(y,k)$ and $\rho_{n}(y,k)$ and let $\Kcal_{C,n}(\kappa_n)$ be defined as in~\eqref{eq:def_K_C_n_set}. Then, for any function $g_n(y)$ such that, uniformly on $(0, R_n]$, $g_n(y) = \bigO{k_n^{s} e^{\beta y}}$,
+%%%\TM{ Where did the $n^{-1}$ come from? Does not appear in L3.4. }\PvdH{I will elaborate on this once the statement of Lemma~\ref{lem:concentration_argument} is updated}, 
+%%as $n \to \infty$, for some $s < 2\alpha(2\alpha + 1)$ and $\beta < \alpha$,
+%%\[
+%%	\int_{\Rcal_n} g_n(y) \hat{\rho}_n(y,k_n) f_{\alpha,\nu}(x,y) \dd x \dd y
+%%	= (1+\smallO{1})n\int_{0}^\infty g_n(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
+%%\]
+%%for some $C > 0$ large enough.
+%%\end{corollary}
+%
+%In particular we conclude that, similarly to the infinite limit model, concentration of heights arguments as described in Remark~\ref{rmk:concentration_argument} can be applied in the case of the hyperbolic random graphs and the finite box model.
+%
+%\begin{remark}[Most frequent use of concentration of argument]
+%Note that it follows from Proposition~\ref{prop:asymp} that $P(y)$ satisfies the conditions in the both statements of Lemma~\ref{lem:concentration_argument_rho_approximation}. In particular, if $\hat{\rho}_n$ denote either $\rho_{\Po}$ or $\rho_{\text{box}}$, then as $n \to \infty$
+%\begin{equation}\label{eq:concentration_heights_argument_Py}
+%	\int_{\Rcal_n} P(y) \hat{\rho}_n(y,k_n) f_{\alpha,\nu}(x, y) \dd x \dd y
+%	= (1 + \smallO{1}) n \int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
+%\end{equation}
+%This is the form that will be use most frequently in the remainder of this paper.
+%\end{remark}
 
 
