@@ -1195,7 +1195,12 @@ The asymptotic behavior for the denominator follows from~\eqref{eq:degree_distri
 \[
 	\int_0^{\infty} P(y) \, \rho(y,k) \alpha e^{-\alpha y} \, dy,
 \]
-and in particular the function $P(y)$. We therefore start with establishing the asymptotic behavior of the latter. 
+and in particular the function $P(y)$. We therefore start with establishing the asymptotic behavior of the latter. First we combine~\eqref{eq:degree_distribution_P_asymptotics} and~\eqref{eq:general_integral_rho_y_k} to obtain the following scaling result
+\begin{equation}\label{eq:general_clustering_integral_scaling}
+	\frac{\int_0^\infty e^{-\beta y} \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	\sim \xi_{\alpha, \nu}^{2\beta} k^{-2\beta}.
+\end{equation}
 
 
 %\TM{ Here we need a properly spelled out proof of the proposition. (Which Pim was preparing I believe.)}
@@ -1290,7 +1295,7 @@ We first deal with the case $\alpha = 1$. Here it follows from Proposition~\ref{
 \end{align*}
 The last two terms are $\smallO{1}$ as $y \to \infty$, while $2 = (\alpha - 1/2)/(\alpha - 3/4)$ for $\alpha = 1$.
 
-Now we will proof all other cases with $\alpha > 3/4$. For simplicity we write
+Now we will deal with the case $\alpha > 3/4$ and $\alpha \not = 1$. For simplicity we write
 \[
 	Q_\alpha := \frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha (\alpha - 1)^2} 
 		+ \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2(\alpha - 1) \alpha}.
@@ -1302,7 +1307,7 @@ Then, by Lemma~\ref{lem:Paneq1} we get
 	&\hspace{10pt}- e^{-(4\alpha - 3)\frac{y}{2}}\frac{B^-(1 - e^{-\frac{1}{2}y}; 2 \alpha, 3 - 4 \alpha)}{4 (\alpha - 1)}\\
 	&\hspace{10pt}+ e^{-(4\alpha - 3)\frac{y}{2}}Q_\alpha + \frac{(\alpha-\frac{1}{2})^2}{4(\alpha-1)^2} e^{-\frac{y}{2}}.
 \end{align*}
-The first term is constant while the last two terms go to zero as $y \to \infty$. We will therefore focus on the remain two terms. For the first we have, see~\eqref{eq:asymptotics_Delta_P_auxiliary} 
+The first term is constant while the last two terms go to zero as $y \to \infty$. We will therefore focus on the remaining two terms. For the first we have, see~\eqref{eq:asymptotics_Delta_P_auxiliary} 
 \[
 	\frac{e^{\frac{y}{2}}}{8(\alpha - 1)\alpha}\left(\left(1 - e^{-\frac{y}{2}}\right)^{2\alpha}-1\right) 
 	\sim \frac{-2\alpha}{8(\alpha - 1)\alpha} = -\frac{1}{4(\alpha -1)},
