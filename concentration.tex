@@ -1,201 +1,108 @@
 \section{Concentration for $c(k; \Gbox)$ (Proving Proposition \ref{prop:concentration_local_clustering_P_n})}
 \label{sec:concentration_c_P_n}
 
-In this section we establish a concentration result for the local clustering function $c^\ast(k; \Gbox)$ in the finite model $\Gbox$. Similar to the previous section we will focus on typical points $p = (0,y)$ with $y \in \Kcal_{C}(k_n)$.
+In this section we establish a concentration result for the local clustering function $c^\ast(k; \Gbox)$ in the finite box model $\Gbox$. Similar to the previous section we will focus on typical points $p = (0,y)$ with $y \in \Kcal_{C}(k_n)$.
 
 \subsection{The main contribution of triangles}
 
-We define adjusted triangle count function as
+Recall the adjusted triangle count function
 \[
-	\widetilde{T}_{\Pcal,n}(p_0,p_1,p_2) = \ind{p_1 \in \BallPon{p}}\ind{p_2 \in \BallPon{p}}\ind{p_2 \in \BallPo{p_1} \cap \Rcal}.
-\]
-and the concentration set
-\[
-	\Kcal_C(k_n,n) = \left\{p \in \Rcal : \frac{k_n - C \kappa_n}{\xi} \vee 0 \le e^{\frac{y}{2}}
-		\le \frac{k_n + C \kappa_n}{\xi} \right\},
-\]
-with
-\[
-	\kappa_n = \sqrt{k_n \log(k_n)}.
-\]
-We will define the corresponding triangle degree function
-\begin{equation}\label{eq:def_degree_triangle_count_in_K}
-	\widetilde{T}_{\Pcal,n}(k, C) = \sum_{p \in \Pcal_n \cap \Kcal_{C,n}(k_n)} \ind{\text{deg}_{\text{box}}(p) = k} \widetilde{T}_{\Pcal,n}(p),
-\end{equation}
-where 
-\[
-	\widetilde{T}_{\Pcal,n}(p) := \sum_{(p_1, p_2) \in \Pcal \setminus p}^{\ne} \widetilde{T}_{\Pcal,n}(p,p_1,p_2),
-\]
-where the sum is over all distinct pairs $(p_1, p_2) \in \Pcal \setminus p$.
-
-The following results follows from the proof of Proposition~\ref{prop:convergence_average_clustering_P_n}.
-
-\begin{corollary}\label{cor:adjusted_triangle_counting_P_n}
-Let $p_0 = (0,y)$. Then, uniformly for all $y \in \Kcal_C(k_n)$, as $n \to \infty$
-\[
-	\Exp{\widetilde{T}_{\text{box}}(p_0)} = (1+\smallO{1})\Exp{T_{\infty}(p_0)},
+	\widetilde{T}_{\text{box}}(p_0) = \sum_{(p_1, p_2) \in \Pcal \setminus p_0}^{\ne} 
+		\widetilde{T}_{\text{box}}(p_0,p_1,p_2).
 \]
 where
 \[
-	\widetilde{T}_{\text{box}}(p_0) = \sum_{(p_1, p_2) \in \Pcal \setminus p_0}^{\ne} 
-		\ind{p_1 \in \BallPon{p_0}}\ind{p_2 \in \BallPon{p_0}}\ind{p_2 \in \BallPo{p_1} \cap \Rcal}.
+	\widetilde{T}_{\text{box}}(p_0,p_1,p_2) = \ind{p_1 \in \BallPon{p}}\ind{p_2 \in \BallPon{p}}\ind{p_2 \in \BallPo{p_1} \cap \Rcal},
+\]
+and recall the definition of $\Kcal_{C,n}(k_n)$
+\[
+	\Kcal_{C,n}(k_n) = \left\{p \in \Rcal : \frac{k_n - C \sqrt{k_n \log(k_n)}}{\xi} \vee 1 \le e^{\frac{y}{2}}
+		\le \frac{k_n + C \sqrt{k_n \log(k_n)}}{\xi} \right\}.
 \]
 
-In particular,
-\[
-	\binom{k_n}{2}^{-1}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(p_0)} f(x,y) \dd x \dd y
-	= (1+\smallO{1}) n \int_{\Rcal} \rho(y,k_n) P(y) \alpha e^{-\alpha y} \dd y. 
-\]
-\end{corollary}
 
-\begin{proof}
-First we note that equation~\eqref{eq:triangle_count_diff_scaling} implies that uniformly for $y \in \Kcal_C(k_n)$
-\[
-	\Exp{\left|\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)\right|} = \bigO{n^{-(4\alpha - 2)}k_n^2}
-	= \smallO{s(k_n) k_n^2},
-\]
-where the last part is due to Lemma~\ref{lem:scaling_s_alpha}.
-Next, since $\Exp{T_\infty(y)} = \Mu{\BallPo{y}}^2 P(y)/2$, we get
-\[
-	\Exp{\widetilde{T}_{\text{box}}(y)} = \Exp{T_{\infty}(y)} + \Exp{\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)} = \binom{k_n}{2} P(y) + \bigO{s(k_n)k_n^2},
-\]
-uniformly on $\Kcal_{C}(k_n)$. Therefore, we can apply a concentration of height argument to obtain
-\begin{align*}
-	&\hspace{-30pt}\binom{k_n}{2}^{-1}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(y)} 
-		f(x,y) \dd x \dd y\\
-	&=\binom{k_n}{2}^{-1} n \int_{\Kcal_{C}(k_n)} \rho(y,k_n) \left(\binom{k_n}{2} P(y) + \bigO{s(k_n)k_n^2}\right)
-		\alpha e^{-\alpha y} \dd y.....
-\end{align*}
-\PvdH{Finish this proof!}
-\end{proof}
 
-Next we note that the second result from Corollary~\ref{cor:adjusted_triangle_counting_P_n} states that
-\begin{equation}\label{eq:asymptotic_equivalence_contraint_triangle_count}
-	\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)} = (1+\smallO{1})\Exp{T_{\Pcal}(k_n)},
+Slightly abusing notation, we will define the corresponding triangle degree function
+\begin{equation}\label{eq:def_degree_triangle_count_in_K}
+	\widetilde{T}_{\text{box}}(k, C) = \sum_{p \in \Pcal_n \cap \Kcal_{C,n}(k_n)} \ind{\text{deg}_{\text{box}}(p) = k} \widetilde{T}_{\text{box}}(p).
 \end{equation}
-so that we can conclude that the main contribution of triangles of degree $k_n$ is given by $\widetilde{T}_{\Pcal,n}(k_n, C)$. Therefore, in order to prove Proposition \ref{prop:concentration_local_clustering_P_n} it suffices to show that $\widetilde{T}_{\Pcal,n}(k_n,C)$ is sufficiently concentrated around its mean. This is done in the following proposition.
+The idea is that the main contribution of triangles of degree $k_n$ is given by $\widetilde{T}_{\text{box}}(k_n, C)$. Therefore, in order to prove Proposition \ref{prop:concentration_local_clustering_P_n} it suffices to show that $\widetilde{T}_{\text{box}}(k_n,C)$ is sufficiently concentrated around its mean. This is done in the following proposition.
 
 %\subsection{The proof of Proposition \ref{prop:concentration_local_clustering_P_n}}
 %
-%We start with the concentration result for $\widetilde{T}_{\Pcal,n}(k_n)$.
+%We start with the concentration result for $\widetilde{T}_{\text{box}}(k_n)$.
 
-\begin{proposition}[Concentration $\widetilde{T}_{\Pcal,n}(k_n,C)$]\label{prop:concentration_tilde_T_P_n}
+\begin{proposition}[Concentration $\widetilde{T}_{\text{box}}(k_n,C)$]\label{prop:concentration_tilde_T_P_n}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any positive sequence satisfying $k_n = \smallO{n^{\frac{1}{2\alpha+1}}}$. Then for any $C > 0$, as $n \to \infty$,
 \[
-	\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)^2} = \left(1 + \smallO{1}\right)\Exp{\widetilde{T}_{\Pcal,n}(k_n, C)}^2.
+	\Exp{\widetilde{T}_{\text{box}}(k_n,C)^2} = \left(1 + \smallO{1}\right)\Exp{\widetilde{T}_{\text{box}}(k_n, C)}^2.
 \]
 \end{proposition}
 
-We postpone the proof of this proposition postpone till Section \ref{ssec:concentration_tilde_T} and first use it to prove Proposition \ref{prop:concentration_local_clustering_P_n}. 
-
-%\begin{lemma}\label{lem:L1_convergence_c_Pcal_n}
-%Let $\nu > 0$, $\alpha > \frac{1}{2}$ and $k_n = o\left(n^{\frac{1}{2\alpha + 1}}\right)$. Then, as $n \to \infty$,
-%\[
-%	\Exp{\left|c^\ast(k_n; \Gbox) - c_{\Pcal, n}(k_n)\right|} = \smallO{\Exp{c_{\Pcal,n}(k_n)^\ast}}.
-%\]
-%\end{lemma}
-%
-%\begin{proof}
-%Let $0 < \delta < 1$ and define the following two events
-%\begin{align*}
-%	A_n &= \left\{\left|N_{\text{box}}(k_n) - \Exp{N_{\text{box}}(k_n)}\right| \le \Exp{N_{\text{box}}(k_n)}^{\frac{1 + \delta}{2}}\right\}\\
-%	B_n &= \left\{\left|N_{\text{box}}(k_n) - \Exp{N_{\text{box}}(k_n)}\right| \le n\right\},
-%\end{align*}
-%so that
-%\[
-%	1 = \ind{A_n} + \ind{A_n^c}\ind{B_n} + \ind{B_n^c}.
-%\]
-%Next we note that on the event $A_n$
-%\[
-%	\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right| 
-%	\le \frac{\Exp{N_{\text{box}}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{\text{box}}(k_n)}+\Exp{N_{\text{box}}(k_n)}^{\frac{1 + \delta}{2}}}
-%	\le \Exp{N_{\text{box}}(k_n)}^{-\frac{1 - \delta}{2}},
-%\]
-%and on the event $B_n$
-%\[
-%	\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right| 
-%	\le \frac{n}{\Exp{N_{\text{box}}(k_n)} + n} \le 1.
-%\]
-%Therefore we have
-%\begin{align*}
-%	\Exp{\left|c^\ast(k_n; \Gbox) - c_{\Pcal, n}(k_n)\right|}
-%	&= \Exp{c^\ast(k_n; \Gbox)\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right|}\\
-%	&\le \Exp{c^\ast(k_n; \Gbox)\ind{A_n}}\Exp{N_{\text{box}}(k_n)}^{-\frac{1 - \delta}{2}} \\
-%	&\hspace{10pt}+ \Exp{c^\ast(k_n; \Gbox)\ind{A_n^c}\ind{B_n}} \\
-%	&\hspace{10pt}+ \Exp{c^\ast(k_n; \Gbox)\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right|\ind{B_n^c}}
-%\end{align*}
-%Since $\Exp{N_{\text{box}}(k_n)} \to \infty$, the first term is clearly $\smallO{\Exp{c^\ast(k_n; \Gbox)}}$. For the third term we have
-%\begin{align*}
-%	\Exp{c^\ast(k_n; \Gbox)\left|\frac{\Exp{N_{\text{box}}(k_n)}}{N_{\text{box}}(k_n)} - 1\right|\ind{B_n^c}} 
-%	&= \bigO{\Prob{B_n^c}}
-%		= \bigO{\Prob{\left|N_{\text{box}}(k_n) - \Exp{N_{\text{box}}(k_n)}\right| > n}}\\
-%	&= \bigO{e^{-\frac{n^2}{\Exp{N_{k_n}} + n}}} = \bigO{e^{-n}} = \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
-%\end{align*}
-%Hence we are left to show that
-%\begin{equation}\label{eq:L1_convergence_second_term}
-%	\Exp{c^\ast(k_n; \Gbox)\ind{A_n^c}\ind{B_n}} = \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
-%\end{equation}
-%By writing
-%\begin{align*}
-%	c^\ast(k_n; \Gbox) = \frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
-%	+ \frac{T_{\Pcal,n}(k_n,\varepsilon)- \widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
-%\end{align*}
-%and using Lemma~\ref{lem:clustering_error_T_term} we get
-%\begin{align*}
-%	\Exp{c^\ast(k_n; \Gbox)\ind{A_n^c}\ind{B_n}}
-%	&\le \Exp{\frac{(1+\smallO{1})\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
-%		\ind{A_n^c}} + \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
-%\end{align*}
-%For the last step we use H\"{o}lder's inequality and Proposition \ref{prop:concentration_tilde_T_P_n} to get
-%\begin{align*}
-%	\Exp{\frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\ind{A_n^c}}
-%	&\le \Exp{\left(\frac{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}
-%		{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\right)^2}^{\frac{1}{2}} \Prob{A_n^c}^{\frac{1}{2}}\\
-%	&= \left(1 + \smallO{1}\right) 	
-%		\frac{\Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
-%		\Prob{A_n^c}^{\frac{1}{2}}\\
-%	&= \bigO{\Exp{c^\ast(k_n; \Gbox)}}\Prob{A_n^c}^{\frac{1}{2}} = \smallO{\Exp{c^\ast(k_n; \Gbox)}},
-%\end{align*}
-%since $\Prob{A_n} = o(1)$. This establishes \eqref{eq:L1_convergence_second_term} and hence we conclude that
-%\[
-%	\Exp{\left|c^\ast(k_n; \Gbox) - c_{\Pcal, n}(k_n)\right|} = \smallO{\Exp{c_{\Pcal,n}(k_n)^\ast}}.
-%\]
-%\end{proof}
+We postpone the proof of this proposition till Section~\ref{ssec:concentration_tilde_T} and first use it to prove Proposition~\ref{prop:concentration_local_clustering_P_n}. 
 
 \begin{proof}[Proof of Proposition \ref{prop:concentration_local_clustering_P_n}]
-Again, we write
+We bound the expectation as follows,
 \begin{align*}
-	c^\ast(k_n; \Gbox) = \frac{\widetilde{T}_{\Pcal,n}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
-	+ \frac{\left(T_{\Pcal,n}(k_n)-\widetilde{T}_{\Pcal,n}(k_n,C)\right)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}},
+	\Exp{\left|c^\ast(k_n; \Gbox) - \Exp{c^\ast(k_n; \Gbox)}\right|} 
+	&\le \frac{\Exp{\left|\widetilde{T}_{\text{box}}(k_n,C) - \Exp{\widetilde{T}_{\text{box}}(k_n,C)}\right|}}
+		{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\\
+	&\hspace{10pt} + 2 \Exp{\left|c^\ast(k_n; \Gbox) - \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\right|}.
 \end{align*}
-so that by~\eqref{eq:asymptotic_equivalence_contraint_triangle_count},
-\begin{equation}\label{eq:concentration_local_clustering_P_n_main}
-	\Exp{c^\ast(k_n; \Gbox)} = \frac{\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
-	+ \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
-\end{equation}
-%Therefore, by Lemma \ref{lem:L1_convergence_c_Pcal_n},
-%\begin{align*}
-%	\Exp{\left|c_{\Pcal,n}(k_n) - \Exp{c^\ast(k_n; \Gbox)}\right|}
-%	&\le \Exp{\left|c^\ast(k_n; \Gbox) - \Exp{c^\ast(k_n; \Gbox)}\right|}
-%		+ \Exp{\left|c_{\Pcal,n}(k_n) - c^\ast(k_n; \Gbox)\right|}\\
-%	&= \frac{\Exp{\left|\widetilde{T}_{\Pcal,n}(k_n,\varepsilon) - \Exp{\widetilde{T}_{\Pcal,n}(k_n,\varepsilon)}\right|}}
-%		{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}} + \smallO{\Exp{c^\ast(k_n; \Gbox)}}.
-%		\numberthis \label{eq:concentration_local_clustering_P_n_term1}
-%\end{align*}
-Next, we use Proposition \ref{prop:concentration_tilde_T_P_n} to obtain
+We will show that both terms are $\smallO{s(k_n)}$.
+
+First we note that $\ind{p_2 \in \BallPo{p_1} \cap \Rcal} \le \ind{p_2 \in \BallPon{p_1}}$ and hence $\widetilde{T}_{\text{box}}(p) \le T_{\text{box}}(p)$. This implies that
+\[
+	 \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}} \le c^\ast(k_n; \Gbox). 
+\]
+and therefore
+\[
+	\Exp{\left|c^\ast(k_n; \Gbox) - \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\right|}
+	= \Exp{c^\ast(k_n; \Gbox)} 
+	- \frac{\Exp{\widetilde{T}_{\text{box}}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}.
+\]
+For the expectation of $\widetilde{T}_{\text{box}}(k_n,C)$ we use that 
+\[
+	\CExp{\widetilde{T}_{\text{box}}(p)}{\Dbox(p) = k_n}
+= \binom{k_n}{2} \Mu{\BallPon{y}}^{-2} \Exp{\widetilde{T}_{\text{box}}(p)},
+\] to get
 \begin{align*}
-	\Exp{\left|\widetilde{T}_{\Pcal,n}(k_n,C) - \Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}\right|}
-	&\le \left(\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)^2} 
-		- \Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}^2\right)^{\frac{1}{2}}\\
-	&= \smallO{\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}}.
+	\Exp{\widetilde{T}_{\text{box}}(k_n,C)} 
+	&= \int_{\Kcal_{C,n}(k_n)} \CExp{\widetilde{T}_{\text{box}}(p)}{\Dbox(p) = k_n}
+		\rho_{\text{box}}(y,k_n) f(x,y) \dd x \dd y\\
+	&= (1+\smallO{1}) \binom{k_n}{2} \int_{\Kcal_{C,n}(k_n)} \Mu{\BallPon{y}}^{-2} \Exp{\widetilde{T}_{\text{box}}(y)}
+		\rho_{\text{box}}(y,k_n) \alpha e^{-\alpha y} \dd y\\
+	&= (1+\smallO{1}) \frac{1}{2} \int_{\Kcal_{C,n}(k_n)} \Exp{\widetilde{T}_{\text{box}}(y)}
+			\rho_{\text{box}}(y,k_n) \alpha e^{-\alpha y} \dd y\\
+	&= (1+\smallO{1}) n \binom{k_n}{2} \int_0^\infty P(y) \alpha e^{-\alpha y} \dd y,
+\end{align*}
+where the last line is due to Corollary~\ref{cor:adjusted_triangle_counting_P_n}. Since $\Exp{N_{\text{box}}(k_n)} = (1+\smallO{1}n p_{k_n}$ it follows that
+\[
+	\frac{\Exp{\widetilde{T}_{\text{box}}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
+	= (1+\smallO{1}) \frac{\int_0^\infty P(y) \alpha e^{-\alpha y} \dd y}{p_{k_n}}
+	= (1 + \smallO{1}) \gamma(k_n).
+\]
+On the other hand, Proposition~\ref{prop:convergence_average_clustering_P_n} implies that $\Exp{c^\ast(k_n; \Gbox)} = (1+\smallO{1})\gamma(k_n)$ and thus we conclude that
+\[
+	2\Exp{\left|c^\ast(k_n; \Gbox) - \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\right|}
+	= \smallO{s(k_n)}.	
+\]
+
+For the remaining term we use Proposition \ref{prop:concentration_tilde_T_P_n} to obtain
+\begin{align*}
+	\Exp{\left|\widetilde{T}_{\text{box}}(k_n,C) - \Exp{\widetilde{T}_{\text{box}}(k_n,C)}\right|}
+	&\le \left(\Exp{\widetilde{T}_{\text{box}}(k_n,C)^2} 
+		- \Exp{\widetilde{T}_{\text{box}}(k_n,C)}^2\right)^{\frac{1}{2}}\\
+	&= \smallO{\Exp{\widetilde{T}_{\text{box}}(k_n,C)}}.
 \end{align*}
 This implies
 \begin{align*}
-	\frac{\Exp{\left|\widetilde{T}_{\Pcal,n}(k_n,C) - \Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}\right|}}
+	\frac{\Exp{\left|\widetilde{T}_{\text{box}}(k_n,C) - \Exp{\widetilde{T}_{\text{box}}(k_n,C)}\right|}}
 		{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
-	&= \smallO{\Exp{c^\ast(k_n; \Gbox)}},
+	&= \smallO{\frac{\Exp{\widetilde{T}_{\text{box}}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}}
+	= \smallO{s(k_n)},
 \end{align*}
-which together with~\eqref{eq:concentration_local_clustering_P_n_main} yields the required result.
+which finishes the proof.
 \end{proof}
 
 \subsection{Joint neighborhoods and degrees in $\Gbox$}
@@ -818,11 +725,11 @@ We now turn to Proposition \ref{prop:concentration_tilde_T_P_n}. Before we dive 
 
 Recall (see \eqref{eq:def_degree_triangle_count_in_K}) that for any $C > 0$
 \[
-	\widetilde{T}_{\Pcal,n}(k,C) = \sum_{p \in \Pcal_n \cap \Kcal_{C,n}(k_n)} \ind{\text{deg}_{\text{box}}(p) = k} \widetilde{T}_{\Pcal,n}(p)
+	\widetilde{T}_{\text{box}}(k,C) = \sum_{p \in \Pcal_n \cap \Kcal_{C,n}(k_n)} \ind{\text{deg}_{\text{box}}(p) = k} \widetilde{T}_{\text{box}}(p)
 \]
 Then we have
 \[
-	\widetilde{T}_{\Pcal,n}(k,C)^2 = \hspace{-5pt} \sum_{p, p^\prime \in \Pcal_n \cap \Kcal_C(k)}
+	\widetilde{T}_{\text{box}}(k,C)^2 = \hspace{-5pt} \sum_{p, p^\prime \in \Pcal_n \cap \Kcal_C(k)}
 		\hspace{-3pt} \ind{D_{\Pcal,n}(p), \, D_{\Pcal,n}(p^\prime) = k} 
 		\sum_{(p_1, p_2), (p_1^\prime, p_2^\prime) \in \Pcal_n \setminus (0,y)}^{\ne} \hspace{-3pt}
 		\widetilde{T}_{\Pcal}(p,p_1,p_2) \widetilde{T}_{\Pcal}(p^\prime, p_1^\prime, p_2^\prime),
@@ -840,18 +747,18 @@ where
 \]
 with the summation being over all two distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\prime)$. Then we have
 \[
-	\widetilde{T}_{\Pcal,n}(k, C)^2 = \sum_{a = 0}^1 \sum_{b = 0}^2 I_{a,b}.
+	\widetilde{T}_{\text{box}}(k, C)^2 = \sum_{a = 0}^1 \sum_{b = 0}^2 I_{a,b}.
 \]
 
 To prove Proposition \ref{prop:concentration_tilde_T_P_n} we will deal with each of the $I_{a,b}$ separately, showing that 
 \begin{equation}\label{eq:variance_T_I_00}
-	\Exp{I_{0,0}} = (1+\smallO{1})\Exp{\widetilde{T}_{\Pcal,n}(k_n)}^2
+	\Exp{I_{0,0}} = (1+\smallO{1})\Exp{\widetilde{T}_{\text{box}}(k_n)}^2
 \end{equation}
 and for all other combinations
 \begin{equation}\label{eq:variance_T_I_ab}
-	\Exp{I_{a,b}} = \smallO{\Exp{\widetilde{T}_{\Pcal,n}(k_n)}^2}.
+	\Exp{I_{a,b}} = \smallO{\Exp{\widetilde{T}_{\text{box}}(k_n)}^2}.
 \end{equation}
-Note that $J_{b}(p,p^\prime) \le J_{0}(p,p^\prime)$ and, since $I_{1,2} = \widetilde{T}_{\Pcal,n}(k_n,C)$, \eqref{eq:variance_T_I_ab} holds for $I_{1,2}$. 
+Note that $J_{b}(p,p^\prime) \le J_{0}(p,p^\prime)$ and, since $I_{1,2} = \widetilde{T}_{\text{box}}(k_n,C)$, \eqref{eq:variance_T_I_ab} holds for $I_{1,2}$. 
 
 To prove~\eqref{eq:transition_clustering_main_term} and~\eqref{eq:transition_clustering_error_term} we have to consider the cases $k_n = \bigT{1}$ and $k_n \to \infty$ separately. However, each case follows a similar strategy. First we define a set $\mathcal{E} \subseteq \Kcal_{C}(k_n) \times \Kcal_{C}(k_n)$ such that outside this set the contributions of $\Exp{I_{a,b}}$ are negligible while on this set the joint degree distribution factorizes. These will be the sets defined by~\eqref{eq:def_joint_degree_set_E_constant_k} and~\eqref{eq:def_joint_degree_set_E_growing_k}. In particular, for these sets we have that $a = 1$ is not possible and hence we only need to consider the three different cases for $b$. For $a =0 = b$, the factorization of the degree distributions will enable us to prove~\eqref{eq:transition_clustering_main_term}. For $b = 1, 2$ we derive sufficient bounds for $\Exp{J_b(p,p^\prime)}$ in terms of $k_n$ for $(p,p^\prime)$ in the set $\mathcal{E}$.
 
@@ -866,7 +773,7 @@ Throughout this proof we set $i = |\{p^\prime, p_1, p_2, p_1^\prime, p_2^\prime\
 	&= \Exp{\sum_{p_1, p_2, p_1^\prime, p_2^\prime \in \Pcal_n 
 		\atop |\{p_1, p_2\} \cap \{p_1^\prime, p_2^\prime\}| = b}^{\ne}
 			\hspace{-7pt} D_{\Pcal,n}(p,p^\prime, k_n-i,k_n- i^\prime) \,
-			\widetilde{T}_{\Pcal,n}(p,p_1,p_2) \widetilde{T}_{\Pcal,n}(p^\prime, p_1^\prime, p_2^\prime)},
+			\widetilde{T}_{\text{box}}(p,p_1,p_2) \widetilde{T}_{\text{box}}(p^\prime, p_1^\prime, p_2^\prime)},
 \end{align*}
 where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\prime)$. We also that 
 \[
@@ -893,10 +800,10 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 %		f(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
 %	&\le \int_{\mathcal{E}_{C}(k_n)^c} \rho_{n}(y,k_n) \Exp{J_b(p,p^\prime)}
 %		f(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
-%	&\le \int_{\mathcal{E}_{C}(k_n)^c} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(p)}
-%		\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} 
+%	&\le \int_{\mathcal{E}_{C}(k_n)^c} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(p)}
+%		\Exp{\widetilde{T}_{\text{box}}(p^\prime)} 
 %		f(x,y) f_{\alpha, \nu}(x^\prime, y^\prime) \dd x^\prime \dd x \dd y^\prime \dd y\\
-%	&\le \bigO{\log(n)^2} \left(\int_{\Kcal_{C}(k_n)} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\Pcal,n}(p)} 
+%	&\le \bigO{\log(n)^2} \left(\int_{\Kcal_{C}(k_n)} \rho_{n}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(p)} 
 %		f_{\alpha, \nu}(x,y) \dd x \dd y\right)	
 %		\left(\int_0^{a_n} \Delta_\Pcal(y^\prime) e^{-\alpha y^\prime} \dd y^\prime\right) \\
 %	&= \bigO{\log(n)^2 s_\alpha(k_n) \Exp{T_\Pcal(k_n)}},
@@ -924,7 +831,7 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 %
 %For $I_{0,0}^\ast$ we define
 %\[
-%	\mathcal{J}_1^\ast = \int_{\Rcal^2} \ind{0\le y_1, y_2 \le h(p,p^\prime)} \widetilde{T}_{\Pcal,n}(p,p_1,p_2) 
+%	\mathcal{J}_1^\ast = \int_{\Rcal^2} \ind{0\le y_1, y_2 \le h(p,p^\prime)} \widetilde{T}_{\text{box}}(p,p_1,p_2) 
 %			f(x_1,y_1)	f(x_2,y_2) \dd x_2 \dd x_1 \dd y_2 \dd y_1
 %\] 
 %and define $\mathcal{J}_2^\ast$ in a similar way by interchanging the primed and non-primed variables. Then we get
@@ -933,7 +840,7 @@ where the sum is over all distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\pri
 %\]
 %In addition, for $(p,p^\prime) \in \mathcal{E}(k_n)$ Corollary~\ref{cor:adjusted_triangle_counting_P_n} implies that 
 %\[
-%	\mathcal{J}_1^\ast = (1+\smallO{1})\Exp{\widetilde{T}_{\Pcal,n}(p)} = (1 + \smallO{1})\binom{k_n}{2} \Delta_\Pcal(y),
+%	\mathcal{J}_1^\ast = (1+\smallO{1})\Exp{\widetilde{T}_{\text{box}}(p)} = (1 + \smallO{1})\binom{k_n}{2} \Delta_\Pcal(y),
 %\] 
 %and similar for $\mathcal{J}_2^\ast$, while Lemma~\ref{lem:joint_degree_factorization} states that
 %\begin{align*}
@@ -970,15 +877,15 @@ so that for the remainder of the proof we only need to consider $p, p^\prime \in
 	&\le \int_{\Kcal_C(k_n)^2 \setminus \mathcal{E}_\varepsilon(k_n)} \rho(p, p^\prime, k - i, k - i^\prime) 
 		\Exp{J_b(p,p^\prime)} f(x,y) f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
 	&\le \int_{\Kcal_C(k_n)^2 \setminus \mathcal{E}_\varepsilon(k_n)} \rho(p, p^\prime, k - i, k - i^\prime) 
-		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f(x,y) f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
+		\Exp{\widetilde{T}_{\text{box}}(p)}\Exp{\widetilde{T}_{\text{box}}(p^\prime)} f(x,y) f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
 	&= \bigO{\int_{\Kcal_C(k_n)^2} \ind{|x-x^\prime| \le k_n^{1 + \varepsilon}} \rho_{y}(k) 
-		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f(x,y) f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy}\\
+		\Exp{\widetilde{T}_{\text{box}}(p)}\Exp{\widetilde{T}_{\text{box}}(p^\prime)} f(x,y) f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy}\\
 	&= \bigO{k_n^{1+\varepsilon} \binom{k_n}{2} \left(\int_{a_n^-}^{a_n^+} \Delta_{\Pcal}(y^\prime) 
 			e^{-\alpha y^\prime} \, dy^\prime\right) \Exp{T_{\Pcal,n}(k_n)}}\\
 	&= \bigO{k_n^{3 + \varepsilon -2\alpha} s_\alpha(k_n) \Exp{T_{\Pcal,n}(k_n)}}\\
 	&= \smallO{n k_n^{-(2\alpha - 1)}s_\alpha(k_n) \Exp{T_{\Pcal,n}(k_n)}} = \smallO{\Exp{T_{\Pcal,n}(k_n)}^2},
 \end{align*}
-which proves \eqref{eq:I_ab_ast_main}. Here we used that $k_n^{2 + \varepsilon} = \smallO{n}$ and $\Exp{T_{\Pcal,n}(k_n)} = \bigT{n k_n^{-(2\alpha - 1)}s_\alpha(k_n)}$ for the last line.
+which proves \eqref{eq:I_ab_ast_main}. Here we used that $k_n^{2 + \varepsilon} = \smallO{n}$ and $\Exp{T_{\Pcal,n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}s_\alpha(k_n)}$ for the last line.
 
 
 We will now proceed to establish \eqref{eq:variance_T_I_00} and \eqref{eq:variance_T_I_ab}. We start with $I_{0,0}^\ast$ 
@@ -992,25 +899,25 @@ By Lemma~\ref{lem:joint_degree_distribution_shift}
 which now no longer depends on the other four points $p_1, p_2, p_1^\prime, p_2^\prime$. Hence, using the Campbell-Mecke formula, we get
 \[
 	\Exp{I_{0,0}^\ast} = (1 + \smallO{1})\int_{\mathcal{E}_{\varepsilon}(k_n)}\rho_{n}(p,p^\prime,k_n, k_n)
-		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f(x,y)
+		\Exp{\widetilde{T}_{\text{box}}(p)}\Exp{\widetilde{T}_{\text{box}}(p^\prime)} f(x,y)
 		f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy,
 \]
 
 Next, by Corollary~\ref{cor:adjusted_triangle_counting_P_n} we have for $y \in K_C(k_n)$,
 \[
-	\Exp{\widetilde{T}_{\Pcal,n}(p)} = (1+\smallO{1})\Exp{\widetilde{T}_{\Pcal}(p)} = (1 + \smallO{1}) \binom{k_n}{2} \Delta_{\Pcal}(y)
+	\Exp{\widetilde{T}_{\text{box}}(p)} = (1+\smallO{1})\Exp{\widetilde{T}_{\Pcal}(p)} = (1 + \smallO{1}) \binom{k_n}{2} \Delta_{\Pcal}(y)
 \] 
 and similar for $p^\prime$. Hence, by Lemma~\ref{lem:joint_degree_factorization} 
 \begin{align*}
 	&\hspace{-10pt}(1 + \smallO{1})\int_{\mathcal{E}_\varepsilon(k_n)} \rho_n(p, p^\prime, k_n, k_n)
-		\Exp{\widetilde{T}_{\Pcal,n}(p)}\Exp{\widetilde{T}_{\Pcal,n}(p^\prime)} f(x,y)
+		\Exp{\widetilde{T}_{\text{box}}(p)}\Exp{\widetilde{T}_{\text{box}}(p^\prime)} f(x,y)
 		f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
 	&= (1+\smallO{1})\binom{k_n}{2}^2 \int_{\mathcal{E}_\varepsilon(k_n)} 
 		\rho(y, k_n) \rho(y^\prime, k_n) \Delta_{\Pcal}(y) \Delta_\Pcal(y^\prime) 	f(x,y) 
 		f(x^\prime,y^\prime) \, dx^\prime \, dx \, dy^\prime \, dy\\
 	&= (1+\smallO{1}) \left( \binom{k_n}{2} \int_{a_n^-}^{a_n^+}\int_{I_n} \rho(y,k_n)
 		\Delta_{\Pcal}(y) f(x,y) \, dx \, dy\right)^2\\
-	&= (1 + \smallO{1})\left(\Exp{\widetilde{T}_{\Pcal,n}(k_n,C)}\right)^2,
+	&= (1 + \smallO{1})\left(\Exp{\widetilde{T}_{\text{box}}(k_n,C)}\right)^2,
 \end{align*}
 which proves \eqref{eq:variance_T_I_00}.
 
@@ -1018,7 +925,7 @@ Next we consider $I_{0,1}^\ast$. The proofs for the other two cases $I_{1,1}^\as
 
 Without loss of generality we will assume that $p_1 = p_1^\prime$. Notice that now $i = |\{p^\prime, p_1, p_2, p_2^\prime\} \cap \BallPon{p}|$ and $j = |\{p^\prime\} \cap \BallPon{p}|$ and $i^\prime$, $j^\prime$ are defined, similarly, by interchanging the primed and non-primed variables. Then, if we define
 \[
-	T^{(0,1)}_{\Pcal,n}(p,p^\prime) = \sum_{(p_1,p_2) \in 2^{\Pcal_n}} \sum_{p_2^\prime \in \Pcal_n} \widetilde{T}_{\Pcal,n}(p,p_1,p_2) \widetilde{T}_{\Pcal,n}(p^\prime,p_1,p_2^\prime),
+	T^{(0,1)}_{\Pcal,n}(p,p^\prime) = \sum_{(p_1,p_2) \in 2^{\Pcal_n}} \sum_{p_2^\prime \in \Pcal_n} \widetilde{T}_{\text{box}}(p,p_1,p_2) \widetilde{T}_{\text{box}}(p^\prime,p_1,p_2^\prime),
 \]
 we have
 \begin{align*}
@@ -1031,7 +938,7 @@ We will show that
 \[
 	\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)} = \smallO{k_n^4 s_\alpha(k_n)^2},
 \] 
-from which \eqref{eq:variance_T_I_ab} follows since $k_n^4 s_\alpha(k_n)^2 = \bigO{\Exp{\widetilde{T}_{\Pcal,n}(p)} \Exp{\widetilde{T}_{\Pcal,n}(p^\prime)}}$ on $\Kcal_{C}(k_n) \times \Kcal_{C}(k_n)$.
+from which \eqref{eq:variance_T_I_ab} follows since $k_n^4 s_\alpha(k_n)^2 = \bigO{\Exp{\widetilde{T}_{\text{box}}(p)} \Exp{\widetilde{T}_{\text{box}}(p^\prime)}}$ on $\Kcal_{C}(k_n) \times \Kcal_{C}(k_n)$.
 
 First we consider the contribution coming from $y_1 > 4 \log(k_n)$. Since the integration of $T_\Pcal(p,p_1,p_2) T_\Pcal(p^\prime,p_1,p_2^\prime)$ over $x_1, x_2$ and $x_2^\prime$ is bounded by $\bigO{e^{y}e^{\frac{y^\prime}{2}} e^{\frac{y_1 + y_2 + y_2^\prime}{2}}}$ it follows that contribution to $\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)}$ is bounded by
 \begin{align*}
@@ -1044,9 +951,9 @@ To deal with the case where $y_1 \le 4\log(k_n)$ we define $b_n = 2\varepsilon\l
 
 When $y_1 \le 4\log(k_n)$ and $y_2 > b_n$, the contribution to $\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)}$ is bounded by
 \begin{align*}
-	\Exp{\widetilde{T}_{\Pcal,n}(p)}
+	\Exp{\widetilde{T}_{\text{box}}(p)}
 		\bigO{e^{\frac{y^\prime}{2}}\int_{b_n}^{a_n^+} e^{-(\alpha -\frac{1}{2})y_2} \, dy_2}
-	&= \bigO{k_n^{1 - \varepsilon}}\Exp{\widetilde{T}_{\Pcal,n}(p)}
+	&= \bigO{k_n^{1 - \varepsilon}}\Exp{\widetilde{T}_{\text{box}}(p)}
 	= \smallO{k_n^4 s_\alpha(k_n)^2}.
 \end{align*}
 Due to the symmetry in $p_2$ and $p_2^\prime$ the same results holds for the cases where $y_2 > b_n$.
@@ -1061,8 +968,8 @@ whenever $T_\Pcal(p,p_1,p_2) T_\Pcal(p^\prime,p_1,p_2^\prime) > 0$ while both $|
 \]
 Next, by integrating only over $x_2^\prime$ and $y_2^\prime $ we get the contribution to $\Exp{T^{(0,1)}_{\Pcal,n}(p,p^\prime)}$ for this regime is bounded by
 \[
-	\bigO{e^{\frac{y^\prime}{2}} \Exp{\widetilde{T}_{\Pcal,n}(p)}}
-	= \bigO{k_n \Exp{\widetilde{T}_{\Pcal,n}(p)}} = \smallO{k_n^4 s_\alpha(k_n)^2}.
+	\bigO{e^{\frac{y^\prime}{2}} \Exp{\widetilde{T}_{\text{box}}(p)}}
+	= \bigO{k_n \Exp{\widetilde{T}_{\text{box}}(p)}} = \smallO{k_n^4 s_\alpha(k_n)^2}.
 \]
 
 

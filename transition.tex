@@ -205,16 +205,41 @@ which means we have to compute the expected difference in triangles between both
 
 \subsection{Comparing triangles between $\Ginf$ and $\Gbox$}
 
-To analyze $T_{\text{box}}(y_0) - T_\infty(y_0)$ we first reiterate that the difference between the indicator $\ind{p_1 \in \BallPon{p}}$ in the finite box model and $\ind{p_1 \in \BallPo{p}}$ is that in $\Gbox$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R_n/2}, \frac{\pi}{2} e^{R_n/2}]$ and we stop at height $y = R_n$. It is clear that for any $p = (x,y)$ with $0 \le y \le R_n$ we have that $\BallPon{p} = \BallPo{p} \cap \Rcal$. However, when we take another point $p^\prime \in \BallPon{p}$ then it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$, see Figure~\ref{fig:comparing_triangles_diff_intersections} for an example of this region. Then, any $p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $\Gbox$ that is not present in $\Ginf$.  
+To analyze $T_{\text{box}}(y_0) - T_\infty(y_0)$ we first reiterate that the difference between the indicator $\ind{p_1 \in \BallPon{p}}$ in the finite box model and $\ind{p_1 \in \BallPo{p}}$ is that in $\Gbox$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R_n/2}, \frac{\pi}{2} e^{R_n/2}]$ and we stop at height $y = R_n$. This induces a difference in triangle counts between both models. 
+To see this, note that for any $p = (x,y)$ with $0 \le y \le R_n$ we have that $\BallPon{p} = \BallPo{p} \cap \Rcal$. This means that if $p^\prime, p_2 \in \BallPon{p}$ and $p_2 \in \BallPo{p^\prime} \cap \Rcal$ then $p_2 \in \BallPon{p} \cap \BallPon{p^\prime}$ and hence $(p,p^\prime,p_2)$ form a triangle both in $\Gbox$ and $\Ginf$. However, it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}(p \Delta p^\prime)$, see Figure~\ref{fig:comparing_triangles_diff_intersections} for an example of this region. Then, any $p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $\Gbox$ that is not present in $\Ginf$. Finally, any point $p_2 \in \BallPo{p} \cap \BallPo{p6\prime}$ with height $y_2 > R$ creates a triangle with $p, p^\prime$ in $\Ginf$ but not in $\Gbox$.
+
+Let us now define the following triangle count function
+\[
+	\widetilde{T}_{\text{box}}(p_0) = \sum_{(p_1, p_2) \in \Pcal \setminus p_0}^{\ne} 
+		\widetilde{T}_{\text{box}}(p_0,p_1,p_2).
+\]
+where
+\[
+	\widetilde{T}_{\text{box}}(p_0,p_1,p_2) = \ind{p_1 \in \BallPon{p}}\ind{p_2 \in \BallPon{p}}\ind{p_2 \in \BallPo{p_1} \cap \Rcal}.
+\]
+Then $\widetilde{T}_{\text{box}}(p_0)$ only counts those triangles attached to $p_0$ that exist in both $\Gbox$ and $\Ginf$ and thus, by definition of the region $\mathcal{T}(p_0,p_1)$,
+\[
+	T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)
+	= \sum_{p_1, p_2 \in \Pcal }^{\ne} \ind{p_1 \in \BallPon{p_0}} 
+			\ind{p_2 \in \mathcal{T}(p_0, p_1)}.
+\]
+%Thus, $\widetilde{T}_{\text{box}}(p_0)$ only count those triangles $(p_0,p_1,p_2)$ that also exist in $\Ginf$.
+%Observe that the difference between $\widetilde{T}_{\text{box}}(p_0)$ and $T_{\text{box}}(p_0)$ is in the last indicator in $\widetilde{T}_{\text{box}}(p_0,p_1,p_2)$.  counts those points $p_2$ in the box $\Rcal$ that are in the neighborhood $\BallPo{p_1}$ of $p_1$ in the infinite model. Thus, $\widetilde{T}_{\text{box}}(p_0)$ only count those triangles $(p_0,p_1,p_2)$ that also exist in $\Ginf$.
+
+  
 
 The next result, which is crucial for the proof of Proposition~\ref{prop:convergence_average_clustering_P_n}, computes the expected measure of $\mathcal{T}_{\Pcal \Delta \Pcal_n}(p,p^\prime)$ with respect to $p^\prime$. 
 
 \begin{lemma}\label{lem:clustering_error_T_term}
-Let $p_0 = (0,y)$ with $y \in \Kcal_{C}(k_n)$. Then for some $C > 0$, as $n \to \infty$,
+Let $p_0 = (0,y)$ with $y \in \Kcal_{C}(k_n)$. Then as $n \to \infty$,
 \[
-	\int_{\Rcal} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p_0,p_1)\right) f(x_1,y_1) 
-	\dd x_1 \dd y_1 = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
+	\Exp{\left|T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right|}
+	= y \, \bigO{n^{-(2\alpha - 1)}} + e^{y}\,\bigO{n^{-(4\alpha-2)}}.
 \]
+%\[
+%	\int_{\Rcal} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p_0,p_1)\right) f(x_1,y_1) 
+%	\dd x_1 \dd y_1 = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
+%\]
 \end{lemma}
 
 The proof of the lemma is not difficult but cumbersome, since it involves computing many different integrals. We postpone this proof till the end of this section and proceed with the main goal, proving Proposition~\ref{prop:convergence_average_clustering_P_n}. 
@@ -247,25 +272,24 @@ that $4\alpha^2 > 2$ and hence,
 We now proceed with proving the main result of this section.
 
 \begin{proof}[Proof of Proposition~\ref{prop:convergence_average_clustering_P_n}]
+Let us write $\Rcal^\prime := \R \times \R_+ \setminus \Rcal$ and let $p_0 = (0,y)$ denote the typical point. Next we recall that it is enough to show~\eqref{eq:triangle_diff_main_term}, so that in particular we have that $y \in \Kcal_{C}(k_n)$.
 
-Let us write $\Rcal^\prime := \R \times \R_+ \setminus \Rcal$ and let $p_0 = (0,y)$ denote the typical point. Then
+Now
 \begin{align*}
 	\left|T_{\text{box}}(p_0) - T_{\infty}(p_0)\right| 
-	&= \sum_{p_1, p_2 \in \Pcal }^{\ne} \ind{p_1 \in \BallPon{p_0}} 
-		\ind{p_2 \in \mathcal{T}_{\Pcal \Delta \Pcal_n}(p_0, p_1)} 
+	&= \left|T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right| 
 		+ \sum_{p_1, p_2 \in \Pcal \cap \Rcal^\prime}^{\ne} T_{\infty}(p_0,p_1,p_2),
 \end{align*}
 so that by the Campbell-Mecke formula
 \begin{align*}
 	\left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right|
-	&\le \int_{\Rcal} \mu\left(\mathcal{T}_{\Pcal \Delta \Pcal_n}(p_0,p_1)\right) f(x_1,y_1) 
-		\dd x_1 \dd y_1\\
+	&\le \Exp{\left|T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right|}\\
 	&\hspace{10pt}+ \int_{\Rcal^\prime}\int_{\Rcal^\prime} T_{\infty}(p_0,p_1,p_2) f(x_1,y_1) f(x_2,y_2)
 		\dd x_2 \dd y_2 \dd x_1 \dd y_1. 
 \end{align*}
 
 \TM{ in the 1st integral we could have restricted to the ball of $p$, and possibly saved a lot. Does that not help? }\PvdH{the first integral is taken care of by another Lemma so it does not matter I think.}
-The first integral was taken care of in Lemma \ref{lem:clustering_error_T_term}. For the second integral we have
+The part is taken care of by Lemma~\ref{lem:clustering_error_T_term}. For the other integral we have
 \begin{align*}
 	&\hspace{-30pt}\iint_{\Rcal^\prime} T_{\infty}(p_0,p_1,p_2) f(x_1,y_1) f(x_2,y_2)
 		\dd x_2 \dd y_2 \dd x_1 \dd y_1\\
@@ -274,21 +298,20 @@ The first integral was taken care of in Lemma \ref{lem:clustering_error_T_term}.
 	&= \bigO{e^{y} e^{-(2\alpha-1)R_n}} = \bigO{e^y n^{-(4\alpha - 2)}}.
 \end{align*}
 %\TM{ Typo : $f_{\mu, \nu}$? Also give more details how line 3 follows. }
-We thus we conclude that,
+We thus we conclude, using Lemma~\ref{lem:clustering_error_T_term}, that,
 \begin{equation}\label{eq:triangle_count_diff_scaling}
-	\left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right| = \bigO{y n^{-(2\alpha - 1)} + n^{-(4\alpha-2)} e^{y}}
-	= \bigO{n^{-(4\alpha-2)} e^{y}}.
+	\left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right| = \bigO{y n^{-(2\alpha - 1)} + n^{-(4\alpha-2)} e^{y}}.
 \end{equation}
-
-Therefore, since $e^{y} = \bigO{1} k_n^2$ on $\Kcal_C(k_n)$, 
+Therefore, since $y = \bigO{\log(k_n)}$ on $\Kcal_C(k_n)$, 
 \begin{align*}
 	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \rho(y,k_n) \left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right| 
 		e^{-\alpha y_0} \dd y_0\\
-	&= \bigO{1} n^{-(4\alpha - 2)} k_n^2 \int_{0}^\infty \rho(y_0,k_n) e^{-\alpha y_0} \dd y_0\\
-	&= \bigO{1} n^{-(4\alpha - 2)} k_n^2 p_{k_n} = \smallO{s(k_n) p_{k_n} k_n^2},
+	&= \bigO{1} \left(\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)} \right) 
+		\int_{0}^\infty \rho(y_0,k_n) e^{-\alpha y_0} \dd y_0\\
+	&= \bigO{1} \left(\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)} \right) p_{k_n} = \smallO{s(k_n) p_{k_n} k_n^2},
 \end{align*}
 %\TM{ Typo : $e^{-\alpha}$ }
-where the last part follows from Lemma~\ref{lem:scaling_s_alpha}. This establishes~\eqref{eq:triangle_diff_main_term} and hence finishes the proof.
+where the last part follows from Lemma~\ref{lem:scaling_s_alpha} and the fact that $s(k_n)^2 = \smallO{s(k_n)}$. This establishes~\eqref{eq:triangle_diff_main_term} and hence finishes the proof.
 %
 % \TM{ Also justify penultimate step! }\PvdH{What do you mean?}
 %To finish the argument we observe that
@@ -296,6 +319,55 @@ where the last part follows from Lemma~\ref{lem:scaling_s_alpha}. This establish
 %	\int_{a_n^-}^{a_n^+} \rho(y,k_n) P(y) e^{-\alpha} \dd y
 %	&= \bigT{1} \Exp{N_{\infty}(k_n)} \gamma(k_n) = \bigT{ s(k_n) k_n^{-(2\alpha + 1)}}.
 %\end{align*}
+\end{proof}
+
+From the proof of Proposition~\ref{prop:convergence_average_clustering_P_n} we obtain the following useful corollary, which will be used in Section~\ref{sec:concentration_c_P_n}. 
+
+\begin{corollary}\label{cor:adjusted_triangle_counting_P_n}
+Let $p_0 = (0,y)$. Then, as $n \to \infty$,
+\[
+	\int_{-I_n}^{I_n}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(p_0)} f(x,y) \dd x \dd y
+	= (1+\smallO{1}) n k_n^2 \int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y. 
+\]
+In particular,
+\[
+	\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(p_0)} f(x,y) \dd x \dd y
+	= \bigT{n k_n^{-(2\alpha - 1)} s(k_n)}.
+\]
+\end{corollary}
+
+\begin{proof}
+We first write
+\[
+	\Exp{\left|\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)\right|} 
+	\le \Exp{\left|T_{\text{box}}(y) - \widetilde{T}_{\text{box}}(y) \right|}
+	+\Exp{\left|T_{\text{box}}(y) - T_{\infty}(y)\right|}.
+\]
+Therefore, Lemma~\ref{lem:clustering_error_T_term} and equation~\eqref{eq:triangle_count_diff_scaling} imply that, uniformly for $y \in \Kcal_C(k_n)$,
+\[
+	\Exp{\left|\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)\right|} = \bigO{\log(k_n)n^{-(2\alpha - 1)}
+	+ k_n^2 n^{-(4\alpha - 2)}}	= \smallO{s(k_n) k_n^2},
+\]
+where the last part is due to Lemma~\ref{lem:scaling_s_alpha}.
+Next, since $\Exp{T_\infty(y)} = \Mu{\BallPo{y}}^2 P(y)$, we get
+\[
+	\Exp{\widetilde{T}_{\text{box}}(y)} = \Exp{T_{\infty}(y)} + \Exp{\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)} 
+	= k_n^2 P(y) + \smallO{s(k_n)k_n^2},
+\]
+uniformly on $\Kcal_{C}(k_n)$. Therefore, we can apply a concentration of height argument to replace $\rho_{\text{box}}(y,k_n)$ with $\rho(y,k_n)$ and thus obtain
+\begin{align*}
+	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(y)} 
+		f(x,y) \dd x \dd y\\
+	&= n k_n^2 \int_{\Kcal_{C}(k_n)} \rho(y,k_n) \left(P(y) + \smallO{s(k_n)}\right)
+		\alpha e^{-\alpha y} \dd y\\
+	&= (1+\smallO{1}) n k_n^2 \int_{\Kcal_{C}(k_n)} P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y\\
+	&= (1+\smallO{1}) n k_n^2 \int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
+\end{align*}
+where we used that on $\Kcal_{C}(k_n)$, $P(y) = \bigT{s(k_n)}$. This proves the first statement. The second statement follows by observing that
+\[
+	\int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y = p_{k_n} \gamma(k_n)
+	= \bigT{k_n^{-(2\alpha + 1)} s(k_n)}.
+\]
 \end{proof}
 
 %Define
@@ -412,7 +484,7 @@ We now come back to computing the expected number of triangles attached to node 
     \draw node at (\r+0.75,\hhh-0.1) {\color{blue}$h_2(p^\prime)$};
 
 \end{tikzpicture}
-\caption{Example configuration of two points $p$ and $p^\prime$ for which $\BallPon{p} \cap \BallPon{p^\prime}$ is not a subset of $\BallPo{p} \cap \BallPo{p^\prime}$. The red region indicates the area of points belonging to $\BallPon{p} \cap \BallPon{p^\prime}$ but not to $\BallPo{p} \cap \BallPo{p^\prime}$.}
+\caption{Example configuration of two points $p$ and $p^\prime$ for which $\BallPon{p} \cap \BallPon{p^\prime}$ is not a subset of $\BallPo{p} \cap \BallPo{p^\prime}$. The red region indicates the area belonging to $\BallPon{p} \cap \BallPon{p^\prime}$ but not to $\BallPo{p} \cap \BallPo{p^\prime}$.}
 \label{fig:comparing_triangles_diff_intersections}
 \end{figure}
 
