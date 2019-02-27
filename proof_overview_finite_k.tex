@@ -10,7 +10,7 @@ Let $\mathcal{P}=\mathcal{P}_{\alpha,\nu}$
 be a Poisson point process on $\eR^2$ with intensity function $f=f_{\alpha,\nu}$ given by
 
 \begin{equation}\label{eq:def_intensity_function_f}
-	f(x,y) = \frac{\alpha \nu}{\pi} e^{-\alpha y} \cdot 1_{\{y>0\}}.
+	f(x,y) = \frac{\alpha \nu}{\pi} e^{-\alpha y} \cdot \1_{\{y>0\}}.
 \end{equation} 
 
 The \emph{infinite limit model} $\Ginf = \Ginf(\alpha,\nu)$ has vertex set $\mathcal{P}$ and edge set such that
@@ -19,10 +19,10 @@ The \emph{infinite limit model} $\Ginf = \Ginf(\alpha,\nu)$ has vertex set $\mat
 \]
 for $p=(x,y),p'=(x',y')\in\Pcal$.
 
-For any point $p \in \Rcal$, we write $\BallPo{p}$ to denote the \emph{ball} around $p$, i.e.
+For any point $p \in \R \times (0,\infty)$, we write $\BallPo{p}$ to denote the \emph{ball} around $p$, i.e.
 
 \begin{equation}\label{eq:def_ball_P}
-	\BallPo{p} = \{p^\prime \in \eR\times[0,\infty) : |x - x^\prime| \leq e^{\frac{y + y^\prime}{2}}\}.
+	\BallPo{p} = \{p^\prime \in \eR\times(0,\infty) : |x - x^\prime| \leq e^{\frac{y + y^\prime}{2}}\}.
 \end{equation}
 
 With this notation we then have that $\BallPo{p} \cap \Pcal$ denotes the set of neighbors of a vertex $p \in \Ginf$.
@@ -35,7 +35,7 @@ Borel-measurable subset $S \subseteq \eR^2$ we have $\mu(S) = \int_S f(x,y) \, d
 
 For the definition of the finite graph, recall that in the definition of the KPKVB model we set $R = 2\log(n/\nu)$.
 We consider the box $\Rcal = (-\frac{\pi}{2}e^{R/2}, \frac{\pi}{2}e^{R/2}] \times (0, R]$ in $\eR^2$. 
-Then the \emph{finite box model} $\Gbox := \Gbox(n;\alpha, \nu)$ has vertex set $\mathcal{V} := \mathcal{P} \cap \Rcal$ and edges set such that
+Then the \emph{finite box model} $\Gbox := \Gbox(n;\alpha, \nu)$ has vertex set $\mathcal{V}_n := \mathcal{P} \cap \Rcal$ and edge set such that
 \[
 	pp' \in E(\Gbox(n;\alpha, \nu)) \iff |x - x'|_{\pi e^{R/2}} \leq e^{\frac{y + y'}{2}},
 \]

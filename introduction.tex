@@ -43,7 +43,7 @@ where $|a|_{b} = \min( |a|, b - |a|)$ for $-b\leq a\leq b$.
 Figure~\ref{fig:H_graph_example} shows a computer simulation of $G(n;\alpha, \nu)$.
 
 
-As observed by Krioukov et al~\cite{krioukov2010hyperbolic}, and proved rigorously by Gugelmann et al.~\cite{gugelmann2012random}, the degree sequence of the KPKVB model follows a power-law with exponent $2\alpha+1$.
+As observed by Krioukov et al.~\cite{krioukov2010hyperbolic}, and proved rigorously by Gugelmann et al.~\cite{gugelmann2012random}, the degree sequence of the KPKVB model follows a power-law with exponent $2\alpha+1$.
 % More specifically, if $N_k$ denotes the number of vertices of degree exactly $k$ then Gugelmann et al.~\cite{gugelmann2012random} have shown that
 % 
 % \begin{equation}\label{eq:gugeldegseq} 
@@ -68,20 +68,20 @@ As observed by Krioukov et al~\cite{krioukov2010hyperbolic}, and proved rigorous
 %In Appendix~\ref{} we settle the minor technical point of showing that~\eqref{eq:gugeldegseq} in fact extends 
 %to all $k$ with $k \ll n^{1/(2\alpha+1)}$, while 
 %$N_k = 0$ a.a.s.~whenever $k \gg n^{1/(2\alpha+1)}$. }
-Gugelmann et al~\cite{gugelmann2012random} also showed that the average degree converges in probability to the constant $8\nu\alpha^2/ \pi (2\alpha-1)^2$, and they showed that the (local) clustering coefficient is non-vanishing in the sense that it is bounded below by a positive constant a.a.s. Here, and in the rest of the paper, for a sequence $(E_n)_n$ of events, $E_n$ {\em asymptotically almost surely} (a.a.s.) means that $\Pee(E_n)\to 1$.
+Gugelmann et al.~\cite{gugelmann2012random} also showed that the average degree converges in probability to the constant $8\nu\alpha^2/ \pi (2\alpha-1)^2$, and they showed that the (local) clustering coefficient is non-vanishing in the sense that it is bounded below by a positive constant a.a.s. Here, and in the rest of the paper, for a sequence $(E_n)_n$ of events, $E_n$ {\em asymptotically almost surely} (a.a.s.) means that $\Pee(E_n)\to 1$.
 %Their work however left open the question of whether the clustering coefficient actually converges in probability.
 
 Apart from the degree sequence and clustering, the third main characteristic associated with complex networks, ``short distances'', has also been established in the literature. In~\cite{abdullah2017typical} it is shown that for $\alpha < 1$ the largest component is what is called an \emph{ultra-small world}: if we randomly sample two vertices of the graph then, a.a.s., conditional on them being in the same component, their graph distance is of order $\log\log n$. In~\cite{KiwiMit} and~\cite{ar:FriedKrohmerDiam} a.a.s.~polylogarithmic upper and lower bounds on the graph diameter of the largest component 
 are shown, and in~\cite{ar:MullerDiam}, these were sharpened to show that $\log n$ is the correct order of the diameter.
 
 Earlier work of the first and third authors with Bode~\cite{bode2015largest} and of the first and third authors~\cite{fountoulakis2018law} has 
-established the ``threshold for a giant component'': when $\alpha < 1$ then there always is a unique component of size linear in $n$ no matter how small 
-$\nu$ (and hence the average degree) is; when $\alpha > 1$ all components are sublinear no matter the value of $\nu$; and when $\alpha=1$ then 
+established the ``threshold for a giant component'': if $\alpha < 1$ then there is a unique component of size linear in $n$ no matter how small 
+$\nu$ (and hence the average degree); if $\alpha > 1$ all components are sublinear no matter the value of $\nu$; and if $\alpha=1$ then 
 there is a critical value $\nu_{\text{c}}$ such that for $\nu < \nu_{\text{c}}$ all components are sublinear and for $\nu > \nu_{\text{c}}$ there 
-is a unique linear sized component (all of these statements holding a.a.s.). 
-Whether or not there is a giant component when $\alpha=1$ and $\nu=\nu_{\text{c}}$ remains an open problem.
-In~\cite{KiwiMit} an ~\cite{KiwiMit2017+}, Kiwi and Mitsche considered the size of the second largest component and
-showed that when $\alpha \in (1/2, 1)$, a.a.s., the second largest component has polylogarithmic order with exponent 
+is a unique linearly sized component (all of these statements holding a.a.s.). 
+Whether or not there is a giant component if $\alpha=1$ and $\nu=\nu_{\text{c}}$ remains an open problem.
+In~\cite{KiwiMit} and~\cite{KiwiMit2017+}, Kiwi and Mitsche considered the size of the second largest component and
+showed that for $\alpha \in (1/2, 1)$, a.a.s., the second largest component has polylogarithmic order with exponent 
 $1/(\alpha -1/2)$.
 
 
@@ -101,7 +101,7 @@ for the number of copies of a fixed tree $T$ in $G(n;\alpha,\nu)$, subject to so
 
 In the literature there are unfortunately two distinct, rival definitions of the {\em clustering coefficient}.
 One of those, sometimes called the {\em global} clustering coefficient, is defined as 
-three times the ratio the number of triangles to the number of paths of length two in the graph.
+three times the ratio of the number of triangles to the number of paths of length two in the graph.
 Results for this version of the clustering coefficient in the KPKVB model were obtained by Candellero and the first author~\cite{candellero2016clustering} and for the evolution of graphs on more general spaces with negative curvature by the first author in~\cite{F12}. 
 
 In this paper we will study the other notion of clustering, the one which is also considered by Krioukov et al.~\cite{krioukov2010hyperbolic} and
@@ -111,10 +111,10 @@ call it the global clustering coefficient in their paper.
 For a graph $G$ and a vertex $v\in V(G)$ we define the clustering coefficient {\em of $v$} as:
 \[
 	c(v) := \left\{\begin{array}{cl}
-		\displaystyle \frac{1}{{\text{deg}(v)\choose 2}} \sum_{u,w\sim v} 1_{\{uw \in E(G)\}} 
+		\displaystyle \frac{1}{{\text{deg}(v)\choose 2}} \sum_{u,w\sim v} 1_{\{uw \in E(G)\}}, 
 			& \text{ if $\text{deg}(v) \geq 2$, }\\
 		& \\
-        0 & \text{ otherwise,}
+        0, & \text{ otherwise,}
         \end{array}\right.
 \]
 where $E(G)$ denotes the edge set of $G$ and $\text{deg}(v)$ is the degree of vertex $v$. That is, provided $v$ has degree at least two, $c(v)$ equals the number of edges that are actually present between the neighbours \PvdH{I think it is neighbors in US English vs neighbours in UK English. Is there any specific reason to us the UK version?} of $v$ divided by the
@@ -132,9 +132,9 @@ In addition to the clustering coefficient, we shall also be interested in the {\
 This assigns to each integer $k$ the value
 
 $$ c(k; G) := \begin{cases}
-		\displaystyle \frac{1}{N_k} \sum_{v \in V(G), \atop \text{deg}(v)=k}  c(v)  &\mbox{ if } N_k \ge 1\\
-		0 &\mbox{else.}
-	\end{cases},
+		\displaystyle \frac{1}{N_k} \sum_{v \in V(G), \atop \text{deg}(v)=k}  c(v),  &\mbox{ if } N_k \ge 1,\\
+		0, &\mbox{else,}
+	\end{cases}
 	$$
 	
 \noindent
@@ -170,7 +170,7 @@ $$\xi := \frac{4\alpha\nu}{\pi(2\alpha-1)}. $$
 We write $\Gamma(z) := \int_0^\infty t^{z-1} e^{-t}\text{d}t$ for the gamma function, 
 $\Gamma^+(a,b) := \int_b^\infty t^{a-1} e^{-t}\text{d}t$ for the upper incomplete gamma function, 
  $B(a,b) := \int_0^1 u^{a-1}(1-u)^{b-1}\text{d}u = \Gamma(a)\Gamma(b) / \Gamma(a+b)$ for the beta function and 
- $B^-(x,a,b) := \int_0^x u^{a-1}(1-u)^{b-1}\text{d}u$ the lower incomplete beta function. 
+ $B^-(x,a,b) := \int_0^x u^{a-1}(1-u)^{b-1}\text{d}u$ for the lower incomplete beta function. 
 We write $U(a,b,z)$ for the hypergeometric U-function (also called Tricomi's confluent hypergeometric function), which 
 %for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $\mathrm{Re}(a), \mathrm{Re}(z) >0$ 
 has the integral representation 
@@ -262,7 +262,7 @@ where $\gamma(k)$ is defined for $\alpha \ne 1$ as
 &\left.+ 4\xi^{4\alpha - 2} \Gamma^+(k - 6 \alpha + 2, 
       \xi) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
 &\left.+ \xi^{k-2\alpha} \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi) \right. \\ 
-&\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right)
+&\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right)
 \end{align*}
 and for $\alpha = 1$ as the $\alpha\to1$ limit of the above expression.
 % \begin{align*}
