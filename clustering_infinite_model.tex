@@ -18,7 +18,7 @@ We can however without any issues speak of the (expected) clustering coefficient
 If $p = (x,y) \in \eR\times[0,\infty)$ is a point, not necessarily part of the Poisson process, then we will write
 
 $$ \mu(y) = \mu(p) := \mu(\BallPo{p}). $$
-Integrating the intensity function of $\Pcal$ over $\BallPo{p}$ gives
+Integrating the intensity function of $\Pcal$ over $\BallPo{p}$ gives, using $\alpha>\frac{1}{2}$,
 
 $$ \begin{array}{rcl} 
 \mu(y) & = & \int_{\BallPo{p}} f(x',y') \, dx' \,d y'  
@@ -45,11 +45,11 @@ For $p = (x,y) \in \eR\times[0,\infty)$ we define
 	\rho(p,k) := \Prob{\Po(\mu(y)) = k},
 \end{equation}
 
-where $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$. 
+where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$. 
 We will often write $\rho(y,k)$ instead of $\rho(p,k)$.
 
 Let the random variable $D$ denote the degree of the typical point.
-Since the typical point has a height that is independent of the Poisson process and exponential($\alpha$)-distributed:
+Since the typical point has a height that is independent of the Poisson process and exponential($\alpha$)-distributed, for $k \in \N_0$:
 \begin{equation}\label{eq:def_pk}
 	p_k := \Pee( D=k ) = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy.
 \end{equation}
@@ -88,19 +88,19 @@ Let the random variable $C$ denote the clustering coefficient of the typical poi
 \[
 	\gamma := \Ee C, \quad \gamma(k) := \Ee\left( C | D = k \right).
 \]
-(Where we take the expection over both the Poisson point process $\Pcal$ and $y \isd \text{exp}(\alpha)$, independent of the Poisson process $\Pcal$.) We shall show shortly that these take on the values stated in Theorem~\ref{thm:maincc} and~\ref{thm:mainkfixed}.
+(Where we take the expectation over both the Poisson point process $\Pcal$ and $y \isd \text{exp}(\alpha)$, independently of the Poisson process $\Pcal$.) We shall show shortly that these take on the values stated in Theorem~\ref{thm:maincc} and~\ref{thm:mainkfixed}.
 
 
-For any fixed value $y_0>0$, the set of points inside $\BallPo{(0,y_0)}$ is a Poisson process with intensity $f \cdot 1_{\BallPo{(0,y_0)}}$. As $\mu(\BallPo{(0,y_0)}) = \mu(y_0) = \xi e^{y_0/2} < \infty$, this can be described alternatively by the experiment where we first pick $N \isd \Po( \mu(y_0) )$ then and we take $N$ i.i.d.~points in $\BallPo{(0,y_0)}$ according to the probability density $f \cdot 1_{\BallPo{(0,y_0)}} / \mu(y_0)$. (That is, the intesity function of the Poisson point process, but set to zero outside of $\BallPo{(0,y_0)}$ and renormalized in such a way that it integrates to one.) Hence, if we condition on the event that $y$ takes on some fixed value $y_0$ and that there are exactly $k$ points of $\Pcal$ inside $\BallPo{(0,y_0)}$, then those $k$ points behave like $k$ i.i.d.~points in $\BallPo{(0,y_0)}$ chosen according to the mentioned renormalized probability density function. This shows that, for every $k\geq 2$:
+For any fixed value $y_0>0$, the set of points inside $\BallPo{(0,y_0)}$ is a Poisson process with intensity $f \cdot 1_{\BallPo{(0,y_0)}}$. As $\mu(\BallPo{(0,y_0)}) = \mu(y_0) = \xi e^{y_0/2} < \infty$, this can be described alternatively by the experiment where we first pick $N \isd \Po( \mu(y_0) )$ and then we take $N$ i.i.d.~points in $\BallPo{(0,y_0)}$ according to the probability density $f \cdot 1_{\BallPo{(0,y_0)}} / \mu(y_0)$. (That is, the intensity function of the Poisson point process, but set to zero outside of $\BallPo{(0,y_0)}$ and re-normalized in such a way that it integrates to one.) Hence, if we condition on the event that $y$ takes on some fixed value $y_0$ and that there are exactly $k$ points of $\Pcal$ inside $\BallPo{(0,y_0)}$, then those $k$ points behave like $k$ i.i.d.~points in $\BallPo{(0,y_0)}$ chosen according to the mentioned re-normalized probability density function. This shows that, for every $k\geq 2$:
 \[
 	\Ee\left( C | D=k, y=y_0 \right) 
-	= \frac{1}{{k\choose 2}} \Ee\left( \sum_{1\leq i < j \leq k} 1_{\{u_i\in \BallPo{u_j}\}} \right)
-	= \Exp{1_{\{u_1\in\BallPo{u_2}\}}},
+	= \frac{1}{{k\choose 2}} \Ee\left( \sum_{1\leq i < j \leq k} \1_{\{u_i\in \BallPo{u_j}\}} \right)
+	= \Exp{\1_{\{u_1\in\BallPo{u_2}\}}},
 \]
 where $u_1,\dots, u_n$ are i.i.d.~points in $\BallPo{(0,y_0)}$ with the above mentioned density.
-Note that this does not depend on the value of $k$. For notational convenience, we'll write 
+Note that this does not depend on the value of $k$. For notational convenience, we will write 
 \[ 
-	P(y_0) := \Exp{1_{\{u_1\in\BallPo{u_2}\}}},
+	P(y_0) := \Exp{\1_{\{u_1\in\BallPo{u_2}\}}},
 \]
 with $u_1, u_2$ as above.
 
@@ -160,13 +160,13 @@ A key step is to derive the following explicit expression for $P(y)$.
 We will prove this lemma in a sequence of steps.
 
 Recall that $P(y_0)$ is the probability that $u_1 = (x_1,y_1), u_2 = (x_2,y_2)$ are neighbours in $\Ginf$, where
-$u_1, u_2$ are i.i.d.~with probability density $f \cdot 1_{\BallPo{(0,y_0)}} / \mu(y_0)$.
+$u_1, u_2$ are i.i.d.~with probability density $f \cdot \1_{\BallPo{(0,y_0)}} / \mu(y_0)$.
 In particular
 
 $$ \begin{array}{rcl} 
 \Pee( y_i > t ) 
 & = & 
-\frac{\nu\alpha}{\pi \mu(y_0)} \int_t^\infty \int_{-e^{(s+y_0)/2}}^{e^{(s+y_0)/2}} e^{-\alpha s}\, d s \\
+\frac{\nu\alpha}{\pi \mu(y_0)} \int_t^\infty \int_{-e^{(s+y_0)/2}}^{e^{(s+y_0)/2}} e^{-\alpha s}\, d x \, d s \\
 & = & 
 \frac{\nu\alpha}{\pi \mu(y_0)} \int_t^\infty 2 e^{(s+y_0)/2} \cdot e^{-\alpha s}\, d s \\
 & = & 
@@ -204,16 +204,16 @@ The following result completely characterizes $P(y_0,y_1,y_2)$.
 \begin{lemma}\label{lem:triangle_prob_y_coordinates}
 \begin{align*}
 P(y_0(z_0),y_1(z_1),y_2(z_2)) = \begin{cases}
-	1 &\text{ if } z_0 \geq z_1+z_2, z_0 > z_1 > z_2, \\
-	1-G(z_0,z_1,z_2) &\text{ if } z_0 < z_1+z_2, z_0 > z_1 > z_2, \\
-	\frac{z_0}{z_1} &\text{ if } z_1 \geq z_0+z_2, z_1 > \max(z_0,z_2), \\
-	\frac{z_0}{z_1}\left(1-G(z_1,z_0,z_2)\right) &\text{ if } z_1 < z_0+z_2, z_1 > \max(z_0,z_2),
+	1, &\text{ if } z_0 \geq z_1+z_2, z_0 > z_1 > z_2, \\
+	1-G(z_0,z_1,z_2), &\text{ if } z_0 < z_1+z_2, z_0 > z_1 > z_2, \\
+	\frac{z_0}{z_1}, &\text{ if } z_1 \geq z_0+z_2, z_1 > \max(z_0,z_2), \\
+	\frac{z_0}{z_1}\left(1-G(z_1,z_0,z_2)\right), &\text{ if } z_1 < z_0+z_2, z_1 > \max(z_0,z_2),
 \end{cases}
 \end{align*}
 where 
 \begin{align*}
 G(a,b,c) = \frac{1}{4}
-\left( b^{-1}c + bc^{-1} + a^2b^{-1}c^{-1} + 2 - 2ab^{-1}-2ac^{-1}\right)
+\left( b^{-1}c + bc^{-1} + a^2b^{-1}c^{-1} + 2 - 2ab^{-1}-2ac^{-1}\right).
 \end{align*}
 \end{lemma}
 
@@ -407,7 +407,7 @@ P(y_0(z_0),y_1(z_1),y_2(z_2)) = \begin{cases}
 \end{figure}
 
 \begin{proof}
-Note that $P(y_0,y_1,y_2)$ is the probability that $x_2$ falls into the interval $[x_1-e^{(y_1+y_2)/2},x_1+e^{(y_1+y_2)/2}]$ , as well as into the interval $[-e^{(y_0+y_2)/2},e^{(y_0+y_2)/2}]$. By symmetry considerations, we can take $x_1$ uniformly at random from $[0,e^{y_0/2+y_1/2}]$ as opposed to $[-e^{y_0/2+y_1/2}, e^{y_0/2+y_1/2}]$. Figure~\ref{fig:triangle_prob_lemma} show the intersection of the intervals (red line) for two different cases for $x_1 \le e^{(y_0 + y_1)/2}$. 
+Note that $P(y_0,y_1,y_2)$ is the probability that $x_2$ falls into the interval $[x_1-e^{(y_1+y_2)/2},x_1+e^{(y_1+y_2)/2}]$, as well as into the interval $[-e^{(y_0+y_2)/2},e^{(y_0+y_2)/2}]$. By symmetry considerations, we can take $x_1$ uniformly at random from $[0,e^{y_0/2+y_1/2}]$ as opposed to $[-e^{y_0/2+y_1/2}, e^{y_0/2+y_1/2}]$. Figure~\ref{fig:triangle_prob_lemma} shows the intersection of the intervals (red line) for two different cases for $x_1 \le e^{(y_0 + y_1)/2}$. 
 
 Since $y_0 < y_1 < y_2$ we have that $e^{(y_1+y_2)/2} > e^{(y_0+y_2)/2}$ and so, when $x_1 \geq 0$, the ``right half'' of the 
 interval $[-e^{(y_0+y_2)/2}, e^{(y_0+y_2)/2}]$ is always covered by the interval $[x_1-e^{(y_1+y_2)/2}, x_1+e^{(y_1+y_2)/2}]$.
@@ -449,7 +449,7 @@ We now conclude that
 \]
 while for $z_0 > z_1 > z_2$ and $z_0 < z_1 + z_2$
 \begin{align*}
-	P(y_0, y_1, y_2) 
+	P(y_0(z_0), y_1(z_1), y_2(z_2)) 
 	&= 1 - \frac{z_0^2z_1z_2}{4} \cdot \left( z_0^{-1}z_1^{-1}+z_0^{-1}z_2^{-1}-z_1^{-1}z_2^{-1} \right)^2 \\
 %	&= 1 - \frac{z_0^2z_1z_2}{4} \cdot \left( z_0^{-2}z_1^{-2} + z_0^{-2}z_2^{-2} + z_1^{-2}z_2^{-2}
 %		+ 2z_0^{-2}z_1^{-1}z_2^{-1} - 2 z_0^{-1}z_1^{-2}z_2^{-1} - 2z_0^{-1}z_1^{-1}z_2^{-2} \right) \\
@@ -465,7 +465,7 @@ Let $y_i >0$ and $z_i = e^{-y_i/2}$, $i=0,1,2$. Lemma~\ref{lem:ordered} gives th
 \[ 
 	h(x_0, x_1, x_2) := \ind{ |x_0 - x_1| < e^{(y_0+y_1)/2}, |x_0 - x_2| < e^{(y_0+y_2)/2}, |x_1-x_2| < e^{(y_1+y_2)/2}}, 
 \]
-where $x_0$ was set to zero, without loss of generality, and the other two $x_i$ are uniform random variables on $[-e^{(y_0)+y_i)/2}, e^{(y_0+y_i)/2}]$. When we consider the probability $P(y_1,y_0,y_2)$, this is the 2-fold integral of $h(x_0,0,x_2)$ so that
+where $x_0$ was set to zero, without loss of generality, and the other two $x_i$ are uniform random variables on $[-e^{(y_0+y_i)/2}, e^{(y_0+y_i)/2}]$. When we consider the probability $P(y_1,y_0,y_2)$, this is the 2-fold integral of $h(x_0,0,x_2)$ so that
 \begin{align*}
 	P(y_1,y_0,y_2) &= \frac{1}{2e^{(y_1+y_0)/2}} \cdot \frac{1}{2e^{(y_1+y_2)/2}} 
 		\iint_{\R} h(x_0,0,x_2) \dd x_0 \dd x_2\\
@@ -544,7 +544,7 @@ and~\eqref{eq:Delta_P_computation_I22}.
 
 \paragraph{Computing $\bm{I_1(y_0)}$}
 
-Applying the change of variables $z_i := e^{-y_i/2}$ and Lemma~\ref{lem:triangle_prob_y_coordinates} gives %${\dd}y_i = -\frac{2{\dd}z_i}{z_i}$ and therefore
+Applying the change of variables $z_i := e^{-y_i/2}$, $i=1,2$, and Lemma~\ref{lem:triangle_prob_y_coordinates} gives %${\dd}y_i = -\frac{2{\dd}z_i}{z_i}$ and therefore
 \begin{align*}
 	I_1(y_0) &=	4 (\alpha-1/2)^2 \cdot \int_{z_0>z_1>z_2>0} P(y_0,y_1(z),y_2(z)) z_1^{2\alpha-2} z_2^{2\alpha-2} 
 		{\dd}z_2{\dd}z_1 \\
@@ -576,7 +576,7 @@ and note that
 
 Next we compute $J_{a,b,c}(z_0)$.
 \begin{align*}
-	J_{a,b,c} 
+	J_{a,b,c}(z_0) 
 	&= z_0^a \int_{z_0/2}^{z_0}\int_{z_0-z_1}^{z_1} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} {\dd}z_2{\dd}z_1
 		= z_0^a \int_{z_0/2}^{z_0} z_1^{b+2\alpha-2} \left[ \frac{ z_2^{c+2\alpha-1} }{ c+2\alpha-1 } \right]_{z_0-z_1}^{z_1} \dd z_1\\
 	&= \frac{z_0^a}{c+2\alpha-1} \cdot \left( \int_{z_0/2}^{z_0} z_1^{b+c+4\alpha-3} \dd z_1
@@ -590,8 +590,8 @@ Next we compute $J_{a,b,c}(z_0)$.
 	&= \frac{z_0^{4\alpha-2}(1-(1/2)^{b+c+4\alpha-2})}{(c+2\alpha-1)(b+c+4\alpha-2)} 
 		- \frac{z_0^{4\alpha-2}}{c+2\alpha-1} B^-(1/2;c+2\alpha, b+2\alpha-1),
 \end{align*}
-where we've used the substitution $u := z_1/z_0$ giving $z_0 {\dd} u = {\dd} z_1$ in the penultimate line and
-$B^-$ denotes the (lower) incomplete beta-function. Note that since $c \geq -1$, $-a \in \{0,-1,-2\}$ and by our assumption $\alpha \not \in \{\frac{3}{4},1\}$, the denominators that occur during the integration are all non-zero.
+where we have used the substitution $u := z_1/z_0$ giving $z_0 {\dd} u = {\dd} z_1$ in the penultimate line and
+$B^-$ denotes the (lower) incomplete beta function. Note that since $c \geq -1$, $-a \in \{0,-1,-2\}$ and by our assumption $\alpha \not \in \{\frac{3}{4},1\}$, the denominators that occur during the integration are all non-zero.
 
 Plugging this back into~\eqref{eq:Delta_P_computation_I12_with_J} gives
 \begin{align*}
@@ -646,10 +646,10 @@ to obtain
 
 \paragraph{Computing $\bm{I_2(y_0)}$}
 
-We will follow a similar strategy as for $I_1(y_0)$. First, using the change of variables $z_i := e^{-y_i/2}$
+We will follow a similar strategy as for $I_1(y_0)$. First, using the change of variables $z_i := e^{-y_i/2}$, $i=1,2$,
 we get
 \begin{align*}
-	I_2(y_0) &= 4 (\alpha-1/2)^2 \cdot \int_{1>z_1>z_2,z_0>0} P(y_0(z_0),y_1(z_1),y_2(z_2)) z_1^{2\alpha-2} z_2^{2\alpha-2} 
+	I_2(y_0) &= 4 (\alpha-1/2)^2 \cdot \int_{1>z_1>z_2,z_0>0} P(y_0,y_1(z_1),y_2(z_2)) z_1^{2\alpha-2} z_2^{2\alpha-2} 
 		{\dd}z_2{\dd}z_1 \\
 	&= 4 (\alpha-1/2)^2 \cdot \left( \int_{1>z_1>z_0,z_2>0}  z_0 z_1^{2\alpha-3} z_2^{2\alpha-2} 
 		{\dd}z_2{\dd}z_1 \right. \\
@@ -681,7 +681,7 @@ and note that
 \end{aligned}
 \end{equation}
 
-We know compute $J_{a,b,c}^\prime(z_0)$
+We now compute $J_{a,b,c}^\prime(z_0)$
 \begin{align*}
 	J_{a,b,c}^\prime(z_0) 
 	&= z_0^a \int_{z_0}^1 \int_{z_1-z_0}^{z_1}  z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} {\dd} z_2 {\dd} z_1  \\
@@ -774,7 +774,7 @@ appears twice in the expression for $P(y_0)$.
 Note that the factor $\alpha-\frac{3}{4}$ does not occur in any denominator of the previously obtained expression. 
 For the lower incomplete beta function, the last argument $3-4\alpha$ is zero for $\alpha=\frac{3}{4}$, however as $z_0 < 1$ the 
 integration domain of the lower incomplete beta function does not touch the singularity at $t=1$ 
-(note $B^-(1-z_0;2\alpha;3-4\alpha) = \int_0^{1-z_0} t^{2\alpha-1} (1-t)^{2-4\alpha}$). 
+(note $B^-(1-z_0;2\alpha,3-4\alpha) = \int_0^{1-z_0} t^{2\alpha-1} (1-t)^{2-4\alpha}dt$). 
 Therefore, the previous expression holds for this case as well.
 
 
@@ -818,16 +818,16 @@ and
 
 We shall be assuming $\alpha \not = 1$. 
 We observe from Lemma~\ref{lem:Paneq1} that for $\alpha \not =1$, $P(y(z))$ is in fact a linear combination 
-of terms of the form $z^u$, $(1-z)^u$ and $z_0^u B^-(1-z_0,v,w)$.
+of terms of the form $z^u$, $(1-z)^u$ and $z^u B^-(1-z;v,w)$.
 
-To compute $J$ we observe that, by partial integration, 
+To compute $J$ we observe that, by integration by parts, 
 \begin{align*}
 	\int_0^1 z^{u+2\alpha-1} B^-(1-z;v,w) \dd z 
 	&= \left[ \frac{z^{u+2\alpha}}{u+2\alpha} B^-(1-z;v,w) \right]_0^1 
 		+ \frac{1}{u+2\alpha} \int_0^1 z^{u+2\alpha+w-1} (1-z)^{v-1} \dd z \\
 	&= \frac{1}{u+2\alpha} B(u+w+2\alpha,v)
 \end{align*}
-where we used that $\frac{\partial}{\partial z} B^-(1-z;v,w) = - z^{w-1} (1-z)^{v-1}$. This takes care of the two integrands involving the Beta function in $P(y)$. The other integrals are easily computed and yield the following expression for $J$ (note that it only depends on $\alpha$ but not on $\nu$)
+where we used that $\frac{\partial}{\partial z} B^-(1-z;v,w) = - z^{w-1} (1-z)^{v-1}$. This takes care of the two integrands involving the beta function in $P(y)$. The other integrals are easily computed and yield the following expression for $J$ (note that it only depends on $\alpha$ but not on $\nu$)
 \begin{align*}
 J&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 + 
 	24 \alpha^5}{16(\alpha-1)^2 \alpha (\alpha+1) (2\alpha+1)} +  \frac{2^{-1 - 
@@ -840,14 +840,14 @@ We proceed to work out $I^{(k)}$. For this we will compute the integrals involvi
 \begin{align*}
 	\int_a^b z^{u+2\alpha-(k+1)} e^{-\xi z^{-1}} \dd z
 	&= \xi^{u+2\alpha-k} \int_{\xi/b}^{\xi/a} t^{k-1-2\alpha-u} e^{-t} \dd t \\
-	&= \xi^{u+2\alpha-k} \left( \Gamma^+( k-2\alpha-u;\xi/b) - \Gamma^+( k-2\alpha-u; \xi/a) \right), 
+	&= \xi^{u+2\alpha-k} \left( \Gamma^+( k-2\alpha-u,\xi/b) - \Gamma^+( k-2\alpha-u, \xi/a) \right), 
 \end{align*}
 In particular
 \begin{equation}\label{eq:integral_Delta_P_z}
-	\int_0^1 z^{u+2\alpha-k-1} e^{-\xi z^{-1}} \dd z = \xi^{u+2\alpha-k} \Gamma^+(k-2\alpha-u;\xi)
+	\int_0^1 z^{u+2\alpha-k-1} e^{-\xi z^{-1}} \dd z = \xi^{u+2\alpha-k} \Gamma^+(k-2\alpha-u,\xi)
 \end{equation}
-where $\Gamma^+$ denotes the (upper) incomplete gamma function, and we've used the subsitution
-$t = \xi / z$ which gives $\dd z = -\xi_{\alpha, \nu} t^{-2} \dd t$. (And of course it is understood that 
+where $\Gamma^+$ denotes the (upper) incomplete gamma function, and we have used the substitution
+$t = \xi / z$ which gives $\dd z = -\xi t^{-2} \dd t$. (And of course it is understood that 
 $\xi/0 = \infty$). This takes care of the integrals of all terms in $P(y(z))$ of the form $z^{u}$. 
 
 
@@ -868,14 +868,14 @@ Plugging in $a=2\alpha+1 >0$, $b=-2\alpha+k+1$, $z=\xi>0$, then gives
 	\int_0^1 z_0^{2\alpha-k-1} e^{-\xi/z_0} (1-z_0)^{2\alpha} dz_0 = \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi)
 \end{equation}
 
-Finally we need to deal with the terms in $P(y(z))$ that involve the incomplete Beta-function. Let $a, c \in \R$, $\xi, b >0$ 
+Finally we need to deal with the terms in $P(y(z))$ that involve the incomplete beta function. Let $a, c \in \R$, $\xi, b >0$ 
 positive real numbers. Using the integral definition of the incomplete beta function, the change of variables $s=1-t$ gives:
 \begin{align*}
 	\int_0^1 z^a e^{-\xi/z} B^-(1-z;b,c) \dd z 
 	&=\int_0^1 z^a e^{-\xi/z} \int_0^{1-z} t^{b-1} (1-t)^{c-1} \dd t \dd z \\
 	&=\int_0^1 z^a e^{-\xi/z} \int_z^1 s^{c-1} (1-s)^{b-1} \dd s \dd z
 \end{align*}
-Then changing the order of integration and using the substitution $u = \xi/z$  and recognizing the upper incomplete $\Gamma$-function yields
+Then changing the order of integration and using the substitution $u = \xi/z$  and recognizing the upper incomplete gamma function yields
 \begin{align*}
 	&\hspace{-30pt}\int_0^1 z^a e^{-\xi/z} \int_z^1 s^{c-1} (1-s)^{b-1} \dd s \dd z\\
 	&=\int_0^1 \int_0^s z^a e^{-\xi/z} \dd z \, s^{c-1} (1-s)^{b-1} \dd s \\
@@ -888,7 +888,7 @@ Meijer's $G$-function (see Lemma~\ref{lem:gamma_meijer_G} in Appendix~\ref{sec:M
 \[
 	\Gamma^+(-a-1,\xi/s) = \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}},
 \] 
-which holds for any $a\in \R$ and $s>0$ (that for a fixed second argument, the upper incomplete $\Gamma$-function is entire 
+which holds for any $a\in \R$ and $s>0$ (that for a fixed second argument, the upper incomplete gamma function is entire 
 in the first argument, see~\cite[pp. 899, 1032ff.]{gradshteyn2015table}). 
 We can now evaluate the integral in~\eqref{eq:integral_gamma_function} using several identities for Meijer's $G$-function. 
 %formula 8.351.3, p. 

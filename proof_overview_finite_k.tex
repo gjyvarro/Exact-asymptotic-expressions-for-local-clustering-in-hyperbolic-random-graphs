@@ -87,12 +87,12 @@ Then there exists a coupling such that, a.a.s., $\mathcal{W} = \Psi[\mathcal{V}]
 \end{lemma}
 
 In the remainder of this paper we will write $\BallHyp{p}$ to denote the image under $\Psi$ of the ball of hyperbolic radius $R$ around the point 
-$\Psi^{-1}(p)$, i.e. 
+$\Psi^{-1}(p)$ for $p \in \Rcal$, i.e. 
 \[
 	\BallHyp{p} := 
 	%\left\{p^\prime := \Psi(u) \, : \, u \in \Dcal_{R_n} \text{ and } d_\H(\Psi^{-1}(p),u) \le R_n\right\}.
 	\Psi\left[ \left\{ u \in \Haa : 
-	d_\H(\Psi^{-1}(p),u), d_\H(O,u) \le R \right\}\right].
+	d_\H(\Psi^{-1}(p),u), d_\H(O,u) \le R \right\}\right] \subset \Rcal.
 \]
 
 Under the map $\Psi$, a point $p = (x,y) \in \Rcal$ corresponds to $u := \Psi^{-1}(p) = (2 e^{-R/2} x, R - y)$. 
@@ -109,7 +109,7 @@ This can be rephrased as $p'\in \BallHyp{p}$ iff.~either $y+y'\geq R$ or $y+y'<R
 
 
 \begin{equation}\label{eq:def_Omega_hyperbolic}
-	|x-x'|_{\pi e^{R/2}} \leq \Phi(r,r') := \frac{1}{2}e^{R/2} \arccos\left( \frac{\cosh r \cosh r' - \cosh R_n}
+	|x-x'|_{\pi e^{R/2}} \leq \Phi(r,r') := \frac{1}{2}e^{R/2} \arccos\left( \frac{\cosh r \cosh r' - \cosh R}
 	{\sinh r \sinh r'} \right).
 \end{equation}
 
