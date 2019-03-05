@@ -7,162 +7,193 @@
 We will first derive Theorem~\ref{thm:mainkfixed}. It will turn out that Theorem~\ref{thm:maincc} has a quick derivation
 assuming Theorem~\ref{thm:mainkfixed}.
 
+\subsection{Clustering function, proving Theorem~\ref{thm:mainkfixed}}
+In this subsection, we want to show that the clustering function of the KPKVB model $c_n(k) \xrightarrow{\Pee} \gamma(k)$ for a fixed $k$. The key idea is that for the poissonized KPKVB model the coupling with the box model is guaranteed to be exact (in the sense that it also preserves edges) for all vertices up to height $H = \frac{R}{4}$ (which is all we need to show the convergence of the clustering function for constant $k$).
 
+The overall proof proceeds in four steps: firstly poissonizing the KPKVB model, secondly truncating the poissonized KPKVB model at height $H=H_n \rightarrow \infty$, thirdly using that the coupling between the poissonized KPKVB and box model is exact when truncated at this height $H$ and finally showing that the clustering function in the truncated box model agrees with the integral for $\gamma(k)$.
 
-\subsection{The proof of Theorem~\ref{thm:mainkfixed}}
+We will encouter the following models: we will start with the KPKVB model $G_n = G(n;\alpha,\nu)$, then the Poissonized KPKVB model $\GPo  = G_{Po}(n;\alpha,\nu)$, moving to the truncated Poissonized KPKVB model $\GPoH$ which is the subgraph of $\GPo$ induced on all vertices with height at most $H$ resp. radial coordinate at least $R-H$, then the coupling will bring us to the truncated box model $\GboxH$ which is the subgraph of the box model $G_{box}$ induced by all vertices with height at most $H$.
 
-
-\TM{This is still in need of a serious polish}
-
+\subsubsection{Poissonization}
 We first show we can restrict attention to the Poissonized instead of the standard KPKVB model.
 
-\begin{lemma} Let $\alpha>\frac12,\nu>0, k\geq 2$ be fixed and write $G_n := G(n;\alpha,\nu), G_{n,\text{Po}} := \GPo(n;\alpha,\nu)$.
+\begin{lemma}\label{lem:pok} Let $\alpha>\frac12,\nu>0, k\geq 2$ be fixed. % and write $G_n := G(n;\alpha,\nu), G_{n,\text{Po}} := \GPo(n;\alpha,\nu)$.
 Then 
-\[
-	\left|c(k; G_n)-c(k; G_{n,\text{Po}})\right| \xrightarrow[n\to\infty]{\Pee} 0.
-\]
+$$ c(k; G_n)-c(k; \GPo) \xrightarrow[n\to\infty]{\Pee} 0. $$
 \end{lemma}
 
 \begin{proof}
-We use a sprinkling argument. 
-We observe that $G((1+\epsilon)n;\alpha,(1+\epsilon)\nu), G(n;\alpha,\nu)$ 
-and $\GPo(n;\alpha,\nu)$ all live on the same disk (with radius $R = 2\log\left(\frac{n}{\nu}\right)$).
 We consider the coupling where we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ chosen according
-to the $(\alpha,R)$-quasi uniform distribution, the vertices of $G((1+\epsilon)n;\alpha,(1+\epsilon)\nu)$
-are $u_1,\dots, u_{(1+\epsilon)n}$; the vertices of $G(n;\alpha,\nu)$ are $u_1,\dots, u_n$ and 
-the vertices of $\GPo(n;\alpha,\nu)$ are $u_1,\dots, u_N$ with $N\isd \Po(n)$ indepenent of
+to the $(\alpha,R)$-quasi uniform distribution, the vertices of $G(n;\alpha,\nu)$ are $u_1,\dots, u_n$ and 
+the vertices of $\GPo(n;\alpha,\nu)$ are $u_1,\dots, u_N$ with $N\isd \Po(n)$ independently of
 $u_1, u_2, \dots$.
 
-We imagine the situation where we remove $\eps n$ vertices from $G((1+\epsilon)n;\alpha,(1+\epsilon)\nu)$ to obtain
-$G(n;\alpha,\nu)$ and we remove (or add, in the event that $N > (1+\eps)n$) $|(1+\eps)n - N|$ vertices to obtain $\GPo(n;\alpha,\nu)$.
-Note that, by Chebyschev, $\Pee( |N-n| > \eps n ) = o(1)$. So, a.a.s., in both cases we remove no more than $2\eps n$ vertices.
-Now let $X$, respectively $X_{\text{Po}}$, denote the number of vertices that are either themselves removed or have at least one 
-neighbour that is removed.
+Due to the coupling, the KPKVB graph or its poissonization is contained in the other, i.e. we can use new graph labels $G_1 \subset G_2$; e.g. if $N\geq n$, then $G_1 = G(n;\alpha,\nu)$ and $G_2 = \GPo(n;\alpha,\nu)$. We write $V_{1,k}$ for the set of vertices of $G_1$ which have $k$ neighbours in $G_1$ and $V_{2,k}$ for the set of vertices of $G_2$ which have $k$ neighbours in $G_2$. Write $N_{1,k}=|V_{1,k}|$ and $N_{2,k}=|V_{2,k}|$.
 
-Let $\overline{D}$ denote the average degree of $G((1+\epsilon)n;\alpha,(1+\epsilon)\nu)$.
-By the results of Gugelmann et al.~\cite{gugelmann2012random} $\overline{D}$ converges in probability
-to a certain constant. In particular, there is a constant $C$ such that $\overline{D} \leq C$ a.a.s.
+Write $W_1$ for the set of all vertices of $G_1$ which have $k$ neighbours in $G_1$ but no neighbour in $G_2 \backslash G_1$. Write $W_2$ for the set of all vertices of $G_1$ which have $k$ neighbours in $G_1$ and at least one neighbour in $G_2 \backslash G_1$. Write $W_3$ for the set of all vertices of $G_2$ which have strictly less than $k$ neighbours in $G_1$, but $k$ neighbours in $G_2$.
 
-Now note that, under the coupling described above:
+With this notation, we can rewrite:
+\begin{align*}
+|c(k;G_n)-c(k;\GPo)| &= \left|\sum_{v \in V_{1,k}}\frac{c_{G_1}(v)}{N_{1,k}}-\sum_{v \in V_{2,k}}\frac{c_{G_2}(v)}{N_{2,k}}\right| \\
+&=\left|\sum_{v \in W_1}\frac{c_{G_1}(v)}{N_{1,k}}+\sum_{v \in W_2}\frac{c_{G_1}(v)}{N_{1,k}}-\sum_{v \in W_1}\frac{c_{G_2}(v)}{N_{2,k}}-\sum_{v \in W_3}\frac{c_{G_2}(v)}{N_{2,k}}\right|
+\end{align*}
 
-$$ \Ee\left( X | \overline{D} \leq C \right),  \Ee\left( X_{\text{Po}} | \overline{D} \leq C, |N-n|<\eps n \right) \leq (1+C)  2 \eps n. $$ 
+For every vertex of $W_1$, the clustering coefficient in $G_1$ and in $G_2$ have the same value. Hence, we can simplify:
+\begin{align*}
+|c(k;G_n)-c(k;\GPo)| &= \left|\sum_{v \in W_1}c_{G_1}(v)\frac{N_{2,k}-N_{1,k}}{N_{1,k}N_{2,k}}+\sum_{v \in W_2}\frac{c_{G_1}(v)}{N_{1,k}}-\sum_{v \in W_3}\frac{c_{G_2}(v)}{N_{2,k}}\right|
+\end{align*}
+Using the triangle inequality for the absolute value and the fact that $|c_G(v)|\leq 1$,
+\begin{align*}
+|c(k;G_n)-c(k;\GPo)| &\leq \frac{|W_1| |N_{2,k}-N_{1,k}|}{N_{1,k}N_{2,k}}+\frac{|W_2|}{N_{1,k}}+\frac{|W_3|}{N_{2,k}}
+\end{align*}
+Using that $|W_1|\leq N_{1,k}$,
+\begin{align*}
+|c(k;G_n)-c(k;\GPo)| &\leq \frac{|N_{2,k}-N_{1,k}|}{N_{2,k}}+\frac{|W_2|}{N_{1,k}}+\frac{|W_3|}{N_{2,k}}
+\end{align*}
 
-Markov's inequality gives
+From the Chernoff bound for Poisson random variables, it follows that for any $c>0$, $N \in [n-c\sqrt{n\log n},n+c\sqrt{n\log n}]$ a.a.s.. This implies that a.a.s. the vertex sets of $G_1$ and $G_2$ differ by at most $c\sqrt{n\log n}$ many vertices. In particular also $|N_{1,k}-N_{2,k}|,|W_2|,|W_3|=O(\sqrt{n \log n})$ a.a.s. 
 
-$$ \Pee( X \geq \sqrt{\eps} n ), \Pee( X_{\text{Po}} \geq \sqrt{\eps} n ) = O( \sqrt{\eps} ). $$
+By the paper by Gugelmann et al. it holds that $N_{1,k}$ or $N_{2,k}$ is $\Theta(n)$ a.a.s. for fixed degree $k$ and as $|N_{1,k}-N_{2,k}| =O(\sqrt{n\log n})$ a.a.s., it follows that both $N_{1,k},N_{2,k} = \Theta(n)$ a.a.s. Putting everything together yields the claim:
+\begin{align*}
+|c(k;G_n)-c(k;\GPo)| &\leq \frac{|N_{2,k}-N_{1,k}|}{N_{2,k}}+\frac{|W_2|}{N_{1,k}}+\frac{|W_3|}{N_{2,k}} \xrightarrow[n\rightarrow\infty]{\Pee} 0
+\end{align*}
 
-By the results of Gugelmann et al.~on the degree sequence the number of vertices of degree exactly
-$k$ in $G(n;\alpha,\nu)$ equals $(1+o(1)) n p_k$ a.a.s.
-In particular it is $\Omega(n)$ a.a.s.
 
-Since $c(k;G)$ is the average of $c(v)$ over all $v$ of degree $k$, and $0\leq c(v)\leq 1$, we have
-
-$$ \Pee( |c(k;G(n;\alpha,\nu)) - c(k;G((1+\epsilon)n;\alpha,(1+\epsilon)\nu))| > \sqrt{\eps} ) = O(\sqrt\eps), $$
-
-and simlarly for $\GPo$. In particular also 
-$\Prob{|c(k;G(n;\alpha,\nu)) - c(k;\GPo(n;\alpha,\nu))| > \sqrt{\eps} } = O(\sqrt\eps)$.
-Sending $\eps\searrow 0$ proves the lemma. \PvdH{I think we need to be a bit more precise here and set $\varepsilon = \varepsilon_n := Q n^{-1}$.
-}
 \end{proof}
 
 
+\subsubsection{Truncation}
+Consider the truncated Poissonized KPKVB model $\GPoH$ with $H =H_n= \frac{R}{4}$.
+%H,R-H tend to infinity and coupling is still exact
 \begin{lemma}\label{lem:n1}
-Let $N_1(H)$ denote the number of vertices with height at least $H \in [0,R]$ in the finite box model (with $n$ vertices).
-
-For all $\epsilon >0$, there is $H=H_\epsilon$ such that $\E N_1(H) \leq \epsilon n$.
+Let $N_1(H)$ denote the number of vertices with radial coordinate at most $R-H \in [0,R]$ in the Poissonized KPKVB model $\GPo$. If $H \rightarrow \infty$, then $\E N_1(H) = o(n)$.
+%For all $\epsilon >0$, there is $H_\epsilon$ such that for all $H\geq H_\epsilon$, it holds that $\E N_1(H) \leq \epsilon n$.
 \end{lemma}
 \begin{proof}
-By linearity of expectation and the probability mass of a centered disk,
+By the Campbell-Mecke formula applied to the vertex set of $\GPo$, by the asymptotic behaviour of $\cosh$ and using $H\rightarrow \infty$,
 \begin{align*}
-\E N_1(H) = n \Pee(B_{R-H}(0)) \leq n e^{-\alpha H}
+\E N_1(H) = n \frac{\cosh(\alpha(R-H))-1}{\cosh(\alpha R) -1} = (1+o(1)) n e^{-\alpha H} = o(n)
 \end{align*}
-Now, choose $H$ large enough such that $e^{-\alpha H} \leq \epsilon$.
 \end{proof}
-\begin{lemma}
-Let $N_2(H)$ denote the number of vertices with no neighbour with height above $H \in [0,R]$ in the finite box model (with $n$ vertices).
-
-For all $\epsilon >0$, there is $H=H_\epsilon$ such that $\E N_2 \leq \epsilon n$.
+\begin{lemma}\label{lem:n2}
+Let $N_2(H)$ denote the number of vertices with at least one neighbour with radial coordinate at most $R-H \in [0,R]$ in the Poissonized KPKVB model. If $H \rightarrow \infty$, then $\E N_2(H) = o(n)$.
 \end{lemma}
 \begin{proof}
-Let $\epsilon >0$. By Lemma~\ref{lem:n1}, there is $H_1$ such that the expected number of vertices with height at least $H_1$ is upper bounded by $\frac{\epsilon}{2}n$. So, if we write $N_{\geq H_1}$ for the number of vertices with height at least $H_1$ and $N_{\leq H_1}(H)$ for the number of vertices with height at most $H_1$ and no neighbour with height above $H$, then 
-$$N_2(H) \leq N_{\geq H_1} + N_{\leq H_1}(H)$$
-Let $\mu(H)$ denote the expected number of vertices in the neighbourhood ball above $H$ of a vertex with height $H_1$. For fixed $H_1$, $\mu(H)$ is a continuous function which is decreasing in $H$ and with $\mu(R)=0$. Therefore, there is $H_2$ large enough such that $1-e^{-\mu(H_2)} \leq \frac{\epsilon}{2}$. Hence,
-$$\E N_{\leq H_1}(H_2) \leq n (1-e^{-\mu(H_2)}) \leq n \frac{\epsilon}{2}$$
-Finally, $\E N_2(H_2) \leq \E N_{\geq H_1} + \E N_{\leq H_1}(H_2) \leq \epsilon n$.
-%For any vertex with height at most $H_1$, the probability mass of the neighbourhood ball $U_v$ of such a vertex $v$ above $H_1$ is upper bounded by $w(H_1)$.
-%The expected number of points in $U_v$ is $\leq \epsilon n$.
-% Write
-%$$N_2 = \sum_{v = 1}^n \1_{\{v\text{ has no neighbour with rad. coord. }<R-H \}} $$
+Among the vertices with at least one neighbour with radial coordinate at most $R-H$, we distinguish between those that themselves have radial coordinate at most $R-H_0$ and those that themselves have radial coordinate at least $R-H_0$ where $H_0 = \log H$. We will show that the expectation of both numbers is sublinear in $n$.
+
+If $H \rightarrow \infty$, then also $H_0 = \log H \rightarrow \infty$. Hence by Lemma~\ref{lem:n1}, the expected number of vertices with radial coordinate at most $R-H_0$ (in particular those vertices among them with at least one neighbour with radial coordinate at most $R-H$), $\E N_1(H_0) = o(n)$ is sublinear. For a vertex with radial coordinate at least $R-H_0$, the probability that it has a neighbour with radial coordinate at most $R-H$, tends to zero. Therefore, by the Campbell-Mecke formula the number of such vertices is sublinear.
 \end{proof}
 
-\begin{lemma}
-Let $c(k)$ denote the clustering function of the KPKVB random graph for $k \in \N$ and $c_{\leq H}(k)$ denote the average of the clustering coefficient of all vertices with degree $k$ and height $\leq H$ and with no neighbour with height $>H$. Then,
-$c(k) = c_{\leq H}(k) + O(\sqrt{\epsilon})$ with probability $\geq 1-O(\sqrt{\epsilon})+o(1)$.
+\begin{lemma}\label{lem:trunc}
+Let $\alpha>\frac{1}{2}$, $\nu>0$ and $k \geq 2$ be fixed. Let $\GPo$ denote the Poissonized KPKVB model and $\GPoH$ denote the truncated Poissonized KPKVB model. Then 
+$$c(k;\GPo)-c(k;\GPoH) \xrightarrow[n \rightarrow \infty]{\Pee} 0.$$
 \end{lemma}
 \begin{proof}
-Let $N(k)$ denote the number of vertices with degree $k$ in KPKVB.
-Let $N_H(k)$ denote the number of vertices with degree $k$ and height $\leq H$ and with no neighbour with height $>H$. From the previous two lemmas, it follows that $\E (n- N_H) \leq \epsilon n$ and from this also that $\E (N(k)-N_H(k))\leq \epsilon n$. Therefore, by Markov's inequality, 
-$$\Pee( n-N_H \geq \sqrt{\epsilon}n) \leq \frac{\E (n-N_H)}{n \sqrt{\epsilon}} \leq \sqrt{\epsilon}$$
-Consider 
-$$c(k)-c_{\leq H}(k) = \frac{1}{N(k)}\sum c(v) - \frac{1}{N_H(k)}\sum c(v) \leq \frac{N(k)-N_H(k)}{N(k)}$$
-So, finally
-$$\Pee( c-c_{\leq H} = O(\sqrt{\epsilon}) ) \geq 1-O(\sqrt{\epsilon})$$
+Let $V_n(k)$ denote the set of all vertices with degree $k$ in the Poissonized KPKVB model $\GPo$ and $V_{n,\leq H}(k)$ the set of all vertices with degree $k$ in the truncated Poissonized KPKVB model $\GPoH$. Note that a vertex may have a smaller degree and different clustering coefficient in $\GPo$ and $\GPoH$ (even if it is a vertex of both graphs). We write $c_n(v)$ for the clustering coefficient of a vertex $v$ in $\GPo$ and $c_{n,\leq H}(v)$ for the clustering coefficient in $\GPoH$. Let $N_n(k)=|V_n(k)|$ denote the number of degree $k$ vertices in $\GPo$. Then there is a constant $a_1(k)>0$ such that $N_n(k) \geq a_1(k) n$. Let $N_{n,\leq H}(k) = |V_{n,\leq H}(k)|$ be the number of degree $k$ vertices in $\GPoH$.
+
+Using a telescoping sum, we obtain that
+\begin{align*}
+|c(k;\GPo)-c(k;\GPoH)| \leq & \left|c(k;\GPo)-\frac{1}{N_n(k)}\sum_{v \in V_{n,\leq H}(k)} c_n(v)\right|\\
+&+\left|\frac{1}{N_n(k)}\sum_{v \in V_{n,\leq H}(k)} c_n(v) -\frac{1}{N_n(k)}\sum_{v \in V_{n,\leq H}(k)}c_{n,\leq H}(v)\right| \\
+&+\left|\frac{1}{N_n(k)}\sum_{v \in V_{n,\leq H}(k)} c_{n,\leq H}(v)-c(k;\GPoH)\right| 
+\end{align*}
+Now we use $X_1 := |V_n(k)\backslash V_{n,\leq H}(k)|$, $X_2 := \sum_{v \in V_{n,\leq H}(k)}|c_n(k)-c_{n,\leq H}(k)|$ and $X_3 :=|N_{n,\leq H}(k)-N_n(k)|$ to bound the three differences. In the first difference, after factorizing $N_n(k)$, all terms in $V_{n,\leq H}(k)$ cancel and the remaining terms are all bounded by one. In the second difference, the sums can be aligned and then the triangle inequality for the absolute value applied. In the third difference, the two sums agree. Thus, we end up with the upper bound,
+\begin{align*}
+&\leq \frac{X_1}{N_n(k)}+\frac{X_2}{N_n(k)}+\frac{X_3}{N_n(k)}\frac{\sum_{v \in V_{n,\leq H}(k)}c_{n,\leq H}(k)}{N_{n,\leq H}(k)} \\
+&\leq \frac{X_1+X_2+X_3}{N_n(k)} \leq \frac{X_1+X_2+X_3}{a_1(k)n} \\
+%&\leq \frac{|V_n(k)\backslash V_{n,\leq H}(k)|+X_2+|N_{n,\leq H}(k)-N_n(k)|}{a_1(k)n}
+\end{align*}
+using that $c_{n,\leq H}(k) \leq 1$ and $N_n(k) \geq a_1(k)n$ in the last line.
+
+By Lemma~\ref{lem:n1}, we have that $\E X_1 = \E X_3 = o(n)$ and by Lemma~\ref{lem:n2}, we have that $\E X_2 = o(n)$. We conclude that $\E |c(k;\GPo)-c(k;\GPoH)| = o(1)$. From this, convergence in probability follows by Markov's inequality: for $\epsilon >0$, $\Pee(|c(k;\GPo)-c(k;\GPoH)| \geq \epsilon) \leq \frac{\E|c(k;\GPo)-c(k;\GPoH)|}{\epsilon} = o(1)$.
 \end{proof}
-
-\begin{lemma}
-Let $c_{\leq H}(k)$ denote the average over all clustering coefficients of all vertices with degree $k$ and height $\leq H$ and with no neighbour with height $>H$ in the poissonized KPKVB model.
-
-Let $\Delta_H(y)$ denote the probability that two neighbours of $(0,y)$ are adjacent. Let $\tau(y,k)$ be the Poisson probability that $(0,y)$ has degree $k$. Let $\rho(y)$ denote the truncated exponential density.
-\PvdH{These notations are not in sync with the rest of the paper.}
-Then,
-$c_{\leq H}(k) = (1+o(1))\int_0^H \int_0^H \int_0^H \Delta_H(y) \tau(y,k)\rho(y_1)\rho(y_2)\rho(y) dy_1dy_2 dy$ a.a.s.
-\PvdH{I do not understand how a.a.s. is proven.}
+\subsubsection{Coupling}
+\begin{lemma}\label{lem:coup}
+The clustering function in the truncated Poissonized KPKVB model $\GPoH$ and in the truncated box model $\GboxH$ agree, i.e. $c(k;\GPoH) = c(k;\GboxH)$.
 \end{lemma}
 \begin{proof}
-First of all, as for $c_{\leq H}(k)$ all vertices involved have height $\leq H$, we can perform the computations in the box model: As $H$ is constant, for $R$ large enough, vertices with radial coordinates at least $R-H$ will have radial coordinate $\geq \frac{3}{4}R$, such that by Lemma~\ref{lem:coupling_edges}, edges exist between such vertices in the disk if and only if they exist in the box.
-
-Let $N_{trig}(k,H)$ denote the number of tuples $(v,uw)$ for pairwise distinct vertices $v,u,w$ such that $v,u,w$ form a triangle, the radial coordinates of $u,v,w$ are all at least $R-H$ and $v$ has degree $k$ (where $H$ is the cut-off from the first two lemmas). So, we have $c_{\leq H}(k) = \frac{N_{trig}(k,H)}{N_H}$.
-
-Let $M_{trig}(k,H)$ denote the number of tuples $(v,u,w)$ for pairwise distinct vertices $v,u,w$ such that $v,u,w$ form a triangle, the radial coordinates of $u,v,w$ are all at least $R-H$ and $v$ has degree $k$. Note that $N_{trig}(k,H) = \frac{1}{2}M_{trig}(k,H)$. $M_{trig}(k,H)$ can be written as a sum over $3$-tuples:
-\begin{align*}
-M_{trig}(k,H) = \sum_{(v,u,w) \in V_{\not =}^3} h(V,v,u,w)
-\end{align*}
-where $h$ is the indicator function that $v,u,w$ form a triangle, have radial coordinates at least $R-H$ and $v$ has degree $k$.
-Using Mecke's formula, we obtain that 
-\begin{align*}
-\E M_{trig}(k,H) = \int_{E_R} \int_{E_R}\int_{E_R} \E h(V,v,u,w) dvdudw
-\end{align*}
-\PvdH{What is $E_R$ and what is $D_H$?}
-%Let $V \subset E_R$ denote the vertex set of the finite box model in the box $E_R = (-\frac{\pi}{2}e^{\frac{R}{2}},\frac{\pi}{2}e^{\frac{R}{2}}]\times (0,R]$.
-
-
-
-From there, it follows that
-\begin{align*}
-\E c_{\leq H}(k) = \frac{1}{\Pee(D_H=k)} \int_0^H \int_0^H \int_0^H \Delta_{H}(y) \tau(y,k) \rho(y_1)\rho(y_2)dy_1dy_2 dy
-\end{align*}
-For $H\rightarrow \infty$, this converges to the integral obtained in the paper.
-
-In order to complete the proof, we need to show that $\E c_{\leq H}(k)^2 = (1+o(1))(\E c_{\leq H}(k))^2$. For this, it is sufficient to show that $\E N_{trig}^2 = (1+o(1))(\E N_{trig})^2$. In the box model, we know that two vertices with height at most $H$ and horizontal distance $>2e^H$ cannot be adjacent and their neighbourhood balls are disjoint (w.r.t. the connection rule of the box model). If the neighbourhood balls are disjoint, then the clustering coefficients of the vertices are independent. The horizontal coordinate is uniform in the width of the box which is $\pi e^{\frac{R}{2}}$. Therefore, the probability that two vertices have horizontal distance $\leq 2e^H$ is $\leq \frac{2e^H}{\pi e^{\frac{R}{2}}} = o(1)$.
+As all vertices involved have height $\leq H$ resp. radial coordinate $\geq R-H$ and as $H\leq \frac{R}{4}$, all vertices involved (in the disk)  will have radial coordinate $\geq \frac{3}{4}R$, such that by Lemma~30(ii) from the paper on the largest component of KPKVB, see Lemma~\ref{lem:coupling_edges}, edges exist between such vertices in the disk if and only if they exist in the box. So the two graphs are isomorphic and hence the clustering functions agree.
 \end{proof}
 
-\PvdH{Where is the proof of Theorem~\ref{thm:mainkfixed}?}
+\subsubsection{Deriving the limit integral expression}
+\begin{lemma}\label{lem:lim}
+Let $\alpha > \frac{1}{2}$, $\nu>0$ and $k\geq 2$ be fixed. Then
+$$c(k;\GboxH)\xrightarrow[n\rightarrow\infty]{\Pee}\gamma(k).$$
+\end{lemma}
+%\begin{proof}
+%We will show that $\E c(k;G_{n,Po,H}) \rightarrow \gamma(k)$ as $n\rightarrow\infty$ and $Var(c(k;G_{n,Po,H})) \rightarrow  0$. From there, the claim will follow by Chebychev's inequality: Let $\epsilon>0$, then $$\Pee(|c(k;G_{n,Po,H})-\E c(k;G_{n,Po,H})|\geq \epsilon)\leq \frac{Var(c(k;G_{n,Po,H}))}{\epsilon^2} = o(1),$$
+%i.e. $c(k;G_{n,Po,H})-\E c(k;G_{n,Po,H}) \xrightarrow[n\rightarrow\infty]{\Pee} 0$, hence also $c(k;G_{n,Po,H})-\gamma(k) = c(k;G_{n,Po,H})-\E c(k;G_{n,Po,H})+\E c(k;G_{n,Po,H})-\gamma(k) \xrightarrow[n\rightarrow\infty]{\Pee} 0$.
+%\end{proof}
 
-\subsection{The proof of Theorem~\ref{thm:maincc}}
+Let $\Rcal_H = \Rcal([0,H])$ denote the truncated box.
+For a vertex $v$ of the vertex set $V=V(\GboxH)$, let $h(V,v) = {k \choose 2}^{-1} \sum_{uw \in {\Gamma(v) \choose 2}} \1_{\{uw \in E(\GboxH)\}} \1_{\{ D_{\GboxH}(v)=k\}}$.
+Let $X = \frac{1}{n}\sum_{v \in V(G_{box,H})} h(V(G_{box,H}),v)$. Let $Z = \frac{N_{box,H}(k)}{n} = \frac{1}{n}\sum_{v \in \GboxH} \1_{\{D_{\GboxH}(v)=k\}}$. Then we have that $c(k;\GboxH) = \frac{X}{Z}$. We will show separately that numerator $X$ and denominator $Z$ converge in probability (where the limit of $Z$ is a positive constant). From this, the claim of the lemma will follow as convergence in probability is closed under taking quotients.
 
 
+
+By the Campbell-Mecke formula, we have
+\begin{align*}
+\E X = \frac{1}{n}\int_{\Rcal_H} \E h(V,v) \mu(dv) = \int_0^H \E h(V,(0,y))\alpha e^{-\alpha y} dy
+\end{align*}
+Then, we condition on that the additional vertex $(0,y) \in \Rcal_H$ has degree $k$,
+\begin{align*}
+\E X = \int_0^H \E[h(V,(0,y))|D_{G_{box,H}}(0,y)=k)\Pee(D_{G_{box,H}}(0,y)=k)\alpha e^{-\alpha y}dy
+\end{align*}
+We observe that for $H \rightarrow \infty$, the integrand converges pointwise for $y \in (0,\infty)$ to $P(y)\rho(y,k)\alpha e^{-\alpha y}$ and is always bounded by the integrable function $\alpha e^{-\alpha y}$.
+Therefore, by the theorem of dominated convergence, as $H \rightarrow \infty$,
+\begin{align*}
+\E X \rightarrow \int_0^\infty P(y)\rho(y,k)\alpha e^{-\alpha y}dy
+\end{align*}
+Note that for $X^2$, the summation can be split into off-diagonal (with $v_1 \not = v_2$) and diagonal (with $v_1=v_2$) terms, i.e. write $X^2 = \frac{1}{n^2}(Y_1+Y_2)$ where 
+$$Y_1 = \sum_{v_1 \not = v_2 \in V(G_{box,H})} h(V(G_{box,H}),v_1)h(V(G_{box,H}),v_2)$$ and $Y_2 = \sum_{v_1 \in V(G_{box,H})} h(V(G_{box,H}),v_1)^2$. As $h \leq 1$, $Y_2 \leq n X\leq n$ and so, $\E Y_2 \leq n$, we have by the Campbell-Mecke formula,
+\begin{align*}
+\E Y_1 = \int_{\Rcal_H} \int_{\Rcal_H} \E[h(V(G_{box,H}),v_1)h(V(G_{box,H}),v_2)\mu(dv_1)\mu(dv_2)
+\end{align*}
+If $v_1$ and $v_2$ have horizontal distance $>2e^H$, their neighbourhood balls are disjoint (w.r.t. the connection rule of the truncated box model $\GboxH$) and hence, $h(V,v_1)$ and $h(V,v_2)$ are independent. The horizontal distance is uniform in $[0,\frac{\pi n}{2\nu}]$. Therefore, the probability that two vertices have horizontal distance $\leq 2e^H$ is $\leq \frac{4\nu e^H}{\pi n} = o(1)$. Writing $d_H$ for the horizontal distance, we can continue the calculation of the second moment,
+\begin{align*}
+\E Y_1^2 &= \int_{} \int_{\substack{\Rcal_H\times \Rcal_H:\\ d_H(v_1,v_2)>2 e^H}} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2)+o(n) \\
+&= (n\E X)^2+o((n\E X)^2)+o(n)
+\end{align*}
+It follows that $\E X^2 = (\E X)^2 + o((\E X)^2)+o(1)$, which implies $Var(X) \rightarrow 0$. We conclude
+$$X \xrightarrow[n\rightarrow\infty]{\Pee} \int_0^\infty P(y)\rho(y,k)\alpha e^{-\alpha y}dy.$$
+In a similar fashion, by the Campbell-Mecke formula,
+\begin{align*}
+\E Z =\frac{1}{n} \int_{\Rcal_H} \Pee(D_{G_{box,H}}(v)=k) \mu(dv) = \int_0^H \Pee(D_{G_{box,H}}(0,y)=k) \alpha e^{-\alpha y}dy
+\end{align*}
+By the theorem of dominated convergence, it follows that
+\begin{align*}
+\E Z \rightarrow \int_0^\infty \rho(y,k)\alpha e^{-\alpha y}dy
+\end{align*}
+The statement that $Var(Z) \rightarrow 0$ follows by the same steps as for $X$, just using $h(V,v) = \1_{\{D_{\GboxH}(v)=k\}}$ instead. Hence,
+\begin{align*}
+\E Z \xrightarrow[n\rightarrow\infty]{\Pee} \int_0^\infty \rho(y,k)\alpha e^{-\alpha y}dy
+\end{align*}
+Finally note that 
+\begin{align*}
+\gamma(k) = \frac{\int_0^\infty P(y)\rho(y,k)\alpha e^{-\alpha y}dy}{\int_0^\infty \rho(y,k)\alpha e^{-\alpha y}dy}.
+\end{align*}
+
+\subsubsection{Putting everything together}
+\begin{proofof}{Theorem~\ref{thm:mainkfixed}}
+The overall statement follows from the lemmas together with the fact that convergence in probability is closed under addition.
+Write 
+$$c(k;G_n)-\gamma(k) = c(k;G_n) - c(k;\GPo)+c(k;\GPo)-c(k;\GPoH)+c(k;\GPoH)-\gamma(k).$$ 
+The first difference converges in probability to zero due to the Poissonization Lemma~\ref{lem:pok}, the second difference due to the truncation Lemma~\ref{lem:trunc}, then for the third difference we use $c(k;\GPoH)=c(k;\GboxH)$ from Lemma~\ref{lem:coup} and then Lemma~\ref{lem:lim} on the derivation of the limit integral.
+\end{proofof}
+
+\subsection{Overall clustering coefficient, proving Theorem~\ref{thm:maincc}}
+In this subsection, we want to infer that the clustering coefficient of the KPKVB random graph $c \xrightarrow{\Pee} \gamma$ by only using that $c(k) \xrightarrow{\Pee} \gamma(k)$ for fixed $k$.
 
 \begin{proofof}{Theorem~\ref{thm:maincc}}
-We first note that
-
-$$ \gamma = \Ee C = \sum_{k\geq 2} \Ee\left( C | D=k \right) \Pee( D=k ) = \sum_{k\geq 2} \gamma(k) p_k. $$
-
-Writing $N_k$ for the number of vertices of degree $k$, we have the similar relation
-
-$$ c(G) = \sum_{k\geq 2} c(k;G) \cdot (N_k/n). $$
-
-Theorem~\ref{thm:mainkfixed} establishes that $c(k;G(n;\alpha,\nu))$ converges to $\gamma(k)$ in probability 
-for any fixed $k$. The results of Gugelmann et al.~\cite{gugelmann2012random} on the degree sequence establish 
-that $N_k/n$ converges to $p_k$ in probability, for any fixed $k$.
-The result now follows in a straightforward manner from these observations.
+Let $\epsilon >0$.
+First of all, from the paper we know that $\gamma = \sum_{k=2}^\infty \gamma(k)p_k$ (as can be seen e.g. via their integral representations), where $p_k$ is the limit degree frequency as obtained by Gugelmann et al. for fixed $k$. In particular, we know that this series converges (we can use that $\gamma(k)\in [0,1]$ and $\sum_{k=0}^\infty p_k = 1$). Therefore, for $\delta >0$ with $\epsilon-2\delta>0$, there is $K_\delta$ such that $|\gamma - \sum_{k=2}^{K_\delta} \gamma(k)p_k| \leq \delta$. Furthermore, $c_n = \sum_{k=2}^\infty c_n(k)p_n(k)$, so by possibly choosing a larger value for $K_\delta$, we have that $|c_n-\sum_{k=2}^{K_\delta} c_n(k)p_n(k)| \leq \delta$.
+Putting these observations together:
+\begin{align*}
+|c_n-\gamma| &\leq \left|c_n-\sum_{k=2}^{K_\delta}c_n(k)p_n(k)\right|+\left|\sum_{k=2}^{K_\delta} c_n(k)p_n(k) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| +\left|\sum_{k=2}^{K_\delta} \gamma(k)p_k-\gamma\right| \\
+ &\leq \delta +\left|\sum_{k=2}^{K_\delta} c_n(k)p_n(k) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| +\delta 
+\end{align*}
+Therefore, $\Pee(|c_n-\gamma|\geq \epsilon) \leq \Pee(\left|\sum_{k=2}^{K_\delta} c_n(k)p_n(k) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| \geq \epsilon - 2\delta) \rightarrow 0$ because $c_n(k) \xrightarrow{\Pee} \gamma(k)$ for $k=2,\dots,K_\delta$ and $p_n(k) \xrightarrow{\Pee} p_k$ together imply that $\sum_{k=2}^{K_\delta} c_n(k)p_n(k) \xrightarrow{\Pee} \sum_{k=2}^{K_\delta} \gamma(k) p_k$. %p_k =  = \Theta(k^{-(2\alpha +1)})
 \end{proofof}
+
+
+

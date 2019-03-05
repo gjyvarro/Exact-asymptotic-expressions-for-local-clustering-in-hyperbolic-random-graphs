@@ -1729,21 +1729,21 @@ When $\alpha \geq 2$, we will bound $\log k_n$ and 1 by $k_n$ and we will consid
 \[
 	k_n \cdot n^{-2} \cdot k_n^{2\alpha -1 +1}= n^{-2} k_n^{2\alpha +1}.
 \] 
-But $k_n = O(1)\cdot n^{\frac{1}{2\alpha +1}}$, whereby $k_n^{2\alpha +1} =O(n)$ and 
+As $k_n = O(n^{\frac{1}{2\alpha +1}})$, we have $k_n^{2\alpha +1} =O(n)$ and 
 the above term is therefore $o(1)$.
 
 \end{proof}
 
 \subsection{Coupling $G_n$ to $G_{\Po}$}\label{ssec:coupling_H_HP}
 
-Now that we have established the equivalence of the local clustering function between the Poisson hyperbolic graph $\GPo$ and $\Gbox$ the final step is to relate local clustering in $\GPo$ to the original hyperbolic random graph $G_n$. As mentioned in Section~\ref{ssec:coupling_H_P}, this is done by moving from $c(k; G_n)$ to the adjusted local clustering $c^\ast(k; G_n)$ (Lemma~\ref{lem:clustering_ast_H}) and then to $c^\ast(k; \GPo)$ (Proposition~\ref{prop:clustering_ast_H_Pois}). We prove Proposition~\ref{prop:clustering_ast_H_Pois} first and will end this section with the proof of Lemma~\ref{lem:clustering_ast_H}.
+Now that we have established the equivalence of the local clustering function between the Poisson hyperbolic graph $\GPo$ and $\Gbox$ the final step is to relate local clustering in $\GPo$ to the KPKVB hyperbolic random graph $G_n$. As mentioned in Section~\ref{ssec:coupling_H_P}, this is done by moving from $c(k_n; G_n)$ to the adjusted local clustering $c^\ast(k_n; G_n)$ (Lemma~\ref{lem:clustering_ast_H}) and then to $c^\ast(k_n; \GPo)$ (Proposition~\ref{prop:clustering_ast_H_Pois}). We prove Proposition~\ref{prop:clustering_ast_H_Pois} first and will end this section with the proof of Lemma~\ref{lem:clustering_ast_H}.
 
-To achieve the results we consider the standard coupling between the binomial and Poisson process. That is, we take a sequence of i.i.d. random elements $z_1, z_2, \dots$ uniformly on the hyperbolic disk of radius $R_n$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the original hyperbolic random graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} \Po(n)$ many points ($N$ is a Poisson random variable with mean $n$). Under this coupling $N_n(k) = \sum_{j=1}^n \ind{\mathrm{deg}_n(z_j)=k}$ denotes the (random) number of degree $k$ vertices in the KPKVB hyperbolic random graph model with $n$ vertices and $N_{\Po}(k)=\sum_{j=1}^{N} \ind{\mathrm{deg}_{\Po}(z_j)=k}$ denotes the (random) number of degree $k$ vertices in the poissonized KPKVB model.
+To achieve the results we consider the standard coupling between the binomial and Poisson process. That is, we take a sequence of i.i.d. random elements $u_1, u_2, \dots$ uniformly on the hyperbolic disk of radius $R_n$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the KPKVB hyperbolic random graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} \Po(n)$ many points ($N$ is a Poisson random variable with expectation $n$, independent of $u_1, u_2, \dots$). Under this coupling $N_n(k) = \sum_{j=1}^n \ind{\mathrm{deg}_n(z_j)=k}$ denotes the (random) number of degree $k$ vertices in the KPKVB hyperbolic random graph model with $n$ vertices and $N_{\Po}(k)=\sum_{j=1}^{N} \ind{\mathrm{deg}_{\Po}(z_j)=k}$ denotes the (random) number of degree $k$ vertices in the poissonized KPKVB model.
 
 We start with a result that relates the number of nodes with degree $k_n$ in both models. 
 
 \begin{lemma}\label{lem:diff_Nk_hyperbolic_binomial_poisson}
-Let $\{k_n\}_{n \ge 1}$ be sequence of natural numbers with $0 \leq k_n \leq n-1$ and $k_n = o(n^{\frac{1}{2\alpha+1}})$. Then
+Let $(k_n)_{n \ge 1}$ be sequence of natural numbers with $0 \leq k_n \leq n-1$ and $k_n = o(n^{\frac{1}{2\alpha+1}})$. Then
 \[
 	\Exp{\left|N_{n}(k_n)-N_{\Po}(k_n)\right|} = \smallO{\Exp{N_{\Po}(k_n)}} = \smallO{n k^{-(2\alpha+1)}},
 \]
