@@ -53,7 +53,7 @@ Using that $|W_1|\leq N_{1,k}$,
 
 From the Chernoff bound for Poisson random variables, it follows that for any $c>0$, $N \in [n-c\sqrt{n\log n},n+c\sqrt{n\log n}]$ a.a.s.. This implies that a.a.s. the vertex sets of $G_1$ and $G_2$ differ by at most $c\sqrt{n\log n}$ many vertices. In particular also $|N_{1,k}-N_{2,k}|,|W_2|,|W_3|=O(\sqrt{n \log n})$ a.a.s. 
 
-By the paper by Gugelmann et al. it holds that $N_{1,k}$ or $N_{2,k}$ is $\Theta(n)$ a.a.s. for fixed degree $k$ and as $|N_{1,k}-N_{2,k}| =O(\sqrt{n\log n})$ a.a.s., it follows that both $N_{1,k},N_{2,k} = \Theta(n)$ a.a.s. Putting everything together yields the claim:
+By the paper by Gugelmann et al.~\cite{gugelmann2012random} it holds that $N_{1,k}$ or $N_{2,k}$ is $\Theta(n)$ a.a.s. for fixed degree $k$ and as $|N_{1,k}-N_{2,k}| =O(\sqrt{n\log n})$ a.a.s., it follows that both $N_{1,k},N_{2,k} = \Theta(n)$ a.a.s. Putting everything together yields the claim:
 \begin{align*}
 |c(k;G_n)-c(k;\GPo)| &\leq \frac{|N_{2,k}-N_{1,k}|}{N_{2,k}}+\frac{|W_2|}{N_{1,k}}+\frac{|W_3|}{N_{2,k}} \xrightarrow[n\rightarrow\infty]{\Pee} 0
 \end{align*}
@@ -70,7 +70,7 @@ Let $N_1(H)$ denote the number of vertices with radial coordinate at most $R-H \
 %For all $\epsilon >0$, there is $H_\epsilon$ such that for all $H\geq H_\epsilon$, it holds that $\E N_1(H) \leq \epsilon n$.
 \end{lemma}
 \begin{proof}
-By the Campbell-Mecke formula applied to the vertex set of $\GPo$, by the asymptotic behaviour of $\cosh$ and using $H\rightarrow \infty$,
+By the Campbell-Mecke formula applied to the vertex set of $\GPo$, by the asymptotic behaviour of $\cosh$ and using that all $R, R-H, H \rightarrow \infty$,
 \begin{align*}
 \E N_1(H) = n \frac{\cosh(\alpha(R-H))-1}{\cosh(\alpha R) -1} = (1+o(1)) n e^{-\alpha H} = o(n)
 \end{align*}
@@ -89,21 +89,35 @@ Let $\alpha>\frac{1}{2}$, $\nu>0$ and $k \geq 2$ be fixed. Let $\GPo$ denote the
 $$c(k;\GPo)-c(k;\GPoH) \xrightarrow[n \rightarrow \infty]{\Pee} 0.$$
 \end{lemma}
 \begin{proof}
-Let $V_n(k)$ denote the set of all vertices with degree $k$ in the Poissonized KPKVB model $\GPo$ and $V_{n,\leq H}(k)$ the set of all vertices with degree $k$ in the truncated Poissonized KPKVB model $\GPoH$. Note that a vertex may have a smaller degree and different clustering coefficient in $\GPo$ and $\GPoH$ (even if it is a vertex of both graphs). We write $c_n(v)$ for the clustering coefficient of a vertex $v$ in $\GPo$ and $c_{n,\leq H}(v)$ for the clustering coefficient in $\GPoH$. Let $N_n(k)=|V_n(k)|$ denote the number of degree $k$ vertices in $\GPo$. Then there is a constant $a_1(k)>0$ such that $N_n(k) \geq a_1(k) n$. Let $N_{n,\leq H}(k) = |V_{n,\leq H}(k)|$ be the number of degree $k$ vertices in $\GPoH$.
+Let $V_n(k)$ denote the set of all vertices with degree $k$ in the Poissonized KPKVB model $\GPo$ and $V_{n,H}(k)$ the set of all vertices with degree $k$ in the truncated Poissonized KPKVB model $\GPoH$. Note that a vertex may have a smaller degree and different clustering coefficient in $\GPo$ and $\GPoH$ (even if it is a vertex of both graphs). We write $c_n(v)$ for the clustering coefficient of a vertex $v$ in $\GPo$ and $c_{n,H}(v)$ for the clustering coefficient in $\GPoH$. Let $N_n(k)=|V_n(k)|$ denote the number of degree $k$ vertices in $\GPo$. Then as $N_n(k) = \Theta(n k^{-(2\alpha+1)})$ a.a.s., there is a constant $a_1(k)>0$ such that a.a.s. $N_n(k) \geq a_1(k) n$. Let $N_{n,H}(k) = |V_{n,H}(k)|$ be the number of degree $k$ vertices in $\GPoH$.
 
 Using a telescoping sum, we obtain that
 \begin{align*}
-|c(k;\GPo)-c(k;\GPoH)| \leq & \left|c(k;\GPo)-\frac{1}{N_n(k)}\sum_{v \in V_{n,\leq H}(k)} c_n(v)\right|\\
-&+\left|\frac{1}{N_n(k)}\sum_{v \in V_{n,\leq H}(k)} c_n(v) -\frac{1}{N_n(k)}\sum_{v \in V_{n,\leq H}(k)}c_{n,\leq H}(v)\right| \\
-&+\left|\frac{1}{N_n(k)}\sum_{v \in V_{n,\leq H}(k)} c_{n,\leq H}(v)-c(k;\GPoH)\right| 
+|c(k;\GPo)-c(k;\GPoH)| \leq & \left|c(k;\GPo)-\frac{1}{N_n(k)}\sum_{v \in V_{n,H}(k)} c_n(v)\right|\\
+&+\left|\frac{1}{N_n(k)}\sum_{v \in V_{n,H}(k)} c_n(v) -\frac{1}{N_n(k)}\sum_{v \in V_{n,H}(k)}c_{n,H}(v)\right| \\
+&+\left|\frac{1}{N_n(k)}\sum_{v \in V_{n,H}(k)} c_{n, H}(v)-c(k;\GPoH)\right| 
 \end{align*}
-Now we use $X_1 := |V_n(k)\backslash V_{n,\leq H}(k)|$, $X_2 := \sum_{v \in V_{n,\leq H}(k)}|c_n(k)-c_{n,\leq H}(k)|$ and $X_3 :=|N_{n,\leq H}(k)-N_n(k)|$ to bound the three differences. In the first difference, after factorizing $N_n(k)$, all terms in $V_{n,\leq H}(k)$ cancel and the remaining terms are all bounded by one. In the second difference, the sums can be aligned and then the triangle inequality for the absolute value applied. In the third difference, the two sums agree. Thus, we end up with the upper bound,
+Now we use $X_1 := |V_n(k)\backslash V_{n,H}(k)|$, $X_2 := \sum_{v \in V_{n,H}(k)}|c_n(k)-c_{n,H}(k)|$ and $X_3 :=|N_{n,H}(k)-N_n(k)|$ to bound the three differences. In the first difference, after factorizing $N_n(k)$, all terms in $V_{n,H}(k)$ cancel and the remaining terms are all bounded by one:
 \begin{align*}
-&\leq \frac{X_1}{N_n(k)}+\frac{X_2}{N_n(k)}+\frac{X_3}{N_n(k)}\frac{\sum_{v \in V_{n,\leq H}(k)}c_{n,\leq H}(k)}{N_{n,\leq H}(k)} \\
-&\leq \frac{X_1+X_2+X_3}{N_n(k)} \leq \frac{X_1+X_2+X_3}{a_1(k)n} \\
-%&\leq \frac{|V_n(k)\backslash V_{n,\leq H}(k)|+X_2+|N_{n,\leq H}(k)-N_n(k)|}{a_1(k)n}
+\left|c(k;\GPo)-\frac{1}{N_n(k)}\sum_{v \in V_{n,H}(k)} c_n(v)\right| = \left| \frac{1}{N_n(k)}\sum_{v \in V_n \backslash V_{n,H}(k)} c_n(v) \right| \leq \frac{X_1}{N_n(k)}
 \end{align*}
-using that $c_{n,\leq H}(k) \leq 1$ and $N_n(k) \geq a_1(k)n$ in the last line.
+In the second difference, the sums can be aligned and then the triangle inequality for the absolute value applied:
+\begin{align*}
+\left|\frac{1}{N_n(k)}\sum_{v \in V_{n,H}(k)} c_n(v) -\frac{1}{N_n(k)}\sum_{v \in V_{n,H}(k)}c_{n,H}(v)\right| \leq \frac{1}{N_n(k)}\sum_{v \in V_{n,H}(k)} \left|c_n(v)-c_{n,H}(v)\right| =\frac{X_2}{N_n(k)}
+\end{align*}
+In the third difference, we can simplify:
+\begin{align*}
+\left|\frac{1}{N_n(k)}\sum_{v \in V_{n,H}(k)} c_{n, H}(v)-c(k;\GPoH)\right| &= \left|\sum_{v\in V_{n,H}(k)} c_{n,H} \left(\frac{1}{N_n(k)}-\frac{1}{N_{n,H}(k)}\right)\right| \\
+&= \frac{|N_{n,H}(k)-N_n(k)|}{N_n(k)N_{n,H}(k)}\sum_{v \in V_{n,H}(k)}c_{n,H}(k)
+\end{align*}
+Thus, we end up with the upper bound, using that $c_{n,H}(k) \leq 1$ and $N_{n,H}(k) = |V_{n,H}(k)|$,
+\begin{align*}
+|c(k;\GPo)-c(k;\GPoH)| \leq \frac{X_1}{N_n(k)}+\frac{X_2}{N_n(k)}+\frac{X_3}{N_n(k)}\frac{\sum_{v \in V_{n,H}(k)}c_{n,\leq H}(k)}{N_{n,H}(k)} \leq \frac{X_1+X_2+X_3}{N_n(k)}
+\end{align*}
+Now using that a.a.s. $N_n(k) \geq a_1(k)n$ gives that a.a.s.
+\begin{align*}
+|c(k;\GPo)-c(k;\GPoH)| \leq \frac{X_1+X_2+X_3}{a_1(k)n} 
+\end{align*}
 
 By Lemma~\ref{lem:n1}, we have that $\E X_1 = \E X_3 = o(n)$ and by Lemma~\ref{lem:n2}, we have that $\E X_2 = o(n)$. We conclude that $\E |c(k;\GPo)-c(k;\GPoH)| = o(1)$. From this, convergence in probability follows by Markov's inequality: for $\epsilon >0$, $\Pee(|c(k;\GPo)-c(k;\GPoH)| \geq \epsilon) \leq \frac{\E|c(k;\GPo)-c(k;\GPoH)|}{\epsilon} = o(1)$.
 \end{proof}
@@ -126,7 +140,7 @@ $$c(k;\GboxH)\xrightarrow[n\rightarrow\infty]{\Pee}\gamma(k).$$
 %\end{proof}
 
 Let $\Rcal_H = \Rcal([0,H])$ denote the truncated box.
-For a vertex $v$ of the vertex set $V=V(\GboxH)$, let $h(V,v) = {k \choose 2}^{-1} \sum_{uw \in {\Gamma(v) \choose 2}} \1_{\{uw \in E(\GboxH)\}} \1_{\{ D_{\GboxH}(v)=k\}}$.
+For a vertex $v$ of the vertex set $V=V(\GboxH)$, writing $\Gamma(v)$ for the set of all neighbours of vertex $v$, let $$h(V,v) = {k \choose 2}^{-1} \sum_{uw \in {\Gamma(v) \choose 2}} \1_{\{uw \in E(\GboxH)\}} \1_{\{ D_{\GboxH}(v)=k\}}.$$
 Let $X = \frac{1}{n}\sum_{v \in V(G_{box,H})} h(V(G_{box,H}),v)$. Let $Z = \frac{N_{box,H}(k)}{n} = \frac{1}{n}\sum_{v \in \GboxH} \1_{\{D_{\GboxH}(v)=k\}}$. Then we have that $c(k;\GboxH) = \frac{X}{Z}$. We will show separately that numerator $X$ and denominator $Z$ converge in probability (where the limit of $Z$ is a positive constant). From this, the claim of the lemma will follow as convergence in probability is closed under taking quotients.
 
 
@@ -137,9 +151,9 @@ By the Campbell-Mecke formula, we have
 \end{align*}
 Then, we condition on that the additional vertex $(0,y) \in \Rcal_H$ has degree $k$,
 \begin{align*}
-\E X = \int_0^H \E[h(V,(0,y))|D_{G_{box,H}}(0,y)=k)\Pee(D_{G_{box,H}}(0,y)=k)\alpha e^{-\alpha y}dy
+\E X = \int_0^H \E[h(V,(0,y))|D_{G_{box,H}}(0,y)=k]\Pee(D_{G_{box,H}}(0,y)=k)\alpha e^{-\alpha y}dy
 \end{align*}
-We observe that for $H \rightarrow \infty$, the integrand converges pointwise for $y \in (0,\infty)$ to $P(y)\rho(y,k)\alpha e^{-\alpha y}$ and is always bounded by the integrable function $\alpha e^{-\alpha y}$.
+We observe that for $H \rightarrow \infty$, the integrand converges point-wise for $y \in (0,\infty)$ to $P(y)\rho(y,k)\alpha e^{-\alpha y}$ and is always bounded by the integrable function $\alpha e^{-\alpha y}$.
 Therefore, by the theorem of dominated convergence, as $H \rightarrow \infty$,
 \begin{align*}
 \E X \rightarrow \int_0^\infty P(y)\rho(y,k)\alpha e^{-\alpha y}dy
@@ -147,16 +161,19 @@ Therefore, by the theorem of dominated convergence, as $H \rightarrow \infty$,
 Note that for $X^2$, the summation can be split into off-diagonal (with $v_1 \not = v_2$) and diagonal (with $v_1=v_2$) terms, i.e. write $X^2 = \frac{1}{n^2}(Y_1+Y_2)$ where 
 $$Y_1 = \sum_{v_1 \not = v_2 \in V(G_{box,H})} h(V(G_{box,H}),v_1)h(V(G_{box,H}),v_2)$$ and $Y_2 = \sum_{v_1 \in V(G_{box,H})} h(V(G_{box,H}),v_1)^2$. As $h \leq 1$, $Y_2 \leq n X\leq n$ and so, $\E Y_2 \leq n$, we have by the Campbell-Mecke formula,
 \begin{align*}
-\E Y_1 = \int_{\Rcal_H} \int_{\Rcal_H} \E[h(V(G_{box,H}),v_1)h(V(G_{box,H}),v_2)\mu(dv_1)\mu(dv_2)
+\E Y_1 = \int_{\Rcal_H} \int_{\Rcal_H} \E[h(V(G_{box,H}),v_1)h(V(G_{box,H}),v_2)]\mu(dv_1)\mu(dv_2)
 \end{align*}
-If $v_1$ and $v_2$ have horizontal distance $>2e^H$, their neighbourhood balls are disjoint (w.r.t. the connection rule of the truncated box model $\GboxH$) and hence, $h(V,v_1)$ and $h(V,v_2)$ are independent. The horizontal distance is uniform in $[0,\frac{\pi n}{2\nu}]$. Therefore, the probability that two vertices have horizontal distance $\leq 2e^H$ is $\leq \frac{4\nu e^H}{\pi n} = o(1)$. Writing $d_H$ for the horizontal distance, we can continue the calculation of the second moment,
+If $v_1=(x_1,y_1)$ and $v_2=(x_2,y_2)$ have horizontal distance $>2e^H$, their neighbourhood balls are disjoint w.r.t. the connection rule of the truncated box model $\GboxH$. To see this, assume that $v_3=(x_3,y_3)$ is adjacent to both $v_1$ and $v_2$, then $|x_1-x_3|\leq e^{\frac{1}{2}(y_1+y_3)}$ and $|x_2-x_3|\leq e^{\frac{1}{2}(y_2+y_3)}$. As $y_1, y_2, y_3 \leq H$, it follows that $|x_1-x_3| \leq e^H$ and $|x_2-x_3|\leq e^H$, which implies that $|x_1-x_2| \leq |x_1-x_3|+|x_2-x_3|\leq 2e^H$, contradiction.
+
+Due to the disjointedness of the neighbourhood balls and the properties of the Poisson process $h(V,v_1)$ and $h(V,v_2)$ are independent. The horizontal distance is uniform in $[0,\frac{\pi n}{2\nu}]$. Therefore, the probability that two vertices have horizontal distance $\leq 2e^H$ is $\leq \frac{4\nu e^H}{\pi n} = o(1)$. Writing $d_H$ for the horizontal distance, we can continue the calculation of the second moment,
 \begin{align*}
-\E Y_1^2 &= \int_{} \int_{\substack{\Rcal_H\times \Rcal_H:\\ d_H(v_1,v_2)>2 e^H}} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2)+o(n) \\
+\E Y_1 &= \int_{} \int_{\substack{\Rcal_H\times \Rcal_H:\\ |x_1-x_2|>2 e^H}} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2)\\
+&\qquad+\int_{} \int_{\substack{\Rcal_H\times \Rcal_H:\\ |x_1-x_2|\leq2 e^H}} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2) \\
 &= (n\E X)^2+o((n\E X)^2)+o(n)
 \end{align*}
 It follows that $\E X^2 = (\E X)^2 + o((\E X)^2)+o(1)$, which implies $Var(X) \rightarrow 0$. We conclude
 $$X \xrightarrow[n\rightarrow\infty]{\Pee} \int_0^\infty P(y)\rho(y,k)\alpha e^{-\alpha y}dy.$$
-In a similar fashion, by the Campbell-Mecke formula,
+In a similar way, by the Campbell-Mecke formula,
 \begin{align*}
 \E Z =\frac{1}{n} \int_{\Rcal_H} \Pee(D_{G_{box,H}}(v)=k) \mu(dv) = \int_0^H \Pee(D_{G_{box,H}}(0,y)=k) \alpha e^{-\alpha y}dy
 \end{align*}
@@ -186,7 +203,7 @@ In this subsection, we want to infer that the clustering coefficient of the KPKV
 
 \begin{proofof}{Theorem~\ref{thm:maincc}}
 Let $\epsilon >0$.
-First of all, from the paper we know that $\gamma = \sum_{k=2}^\infty \gamma(k)p_k$ (as can be seen e.g. via their integral representations), where $p_k$ is the limit degree frequency as obtained by Gugelmann et al. for fixed $k$. In particular, we know that this series converges (we can use that $\gamma(k)\in [0,1]$ and $\sum_{k=0}^\infty p_k = 1$). Therefore, for $\delta >0$ with $\epsilon-2\delta>0$, there is $K_\delta$ such that $|\gamma - \sum_{k=2}^{K_\delta} \gamma(k)p_k| \leq \delta$. Furthermore, $c_n = \sum_{k=2}^\infty c_n(k)p_n(k)$, so by possibly choosing a larger value for $K_\delta$, we have that $|c_n-\sum_{k=2}^{K_\delta} c_n(k)p_n(k)| \leq \delta$.
+First of all, from Equations~\ref{eq:def_pk}, \ref{eq:gammakint} and \ref{eq:gammaint}, we know that $\gamma = \sum_{k=2}^\infty \gamma(k)p_k$. In particular, we know that this series converges (we can use that $\gamma(k)\in [0,1]$ and $\sum_{k=0}^\infty p_k = 1$). Therefore, for $\delta >0$ with $\epsilon-2\delta>0$, there is $K_\delta$ such that $|\gamma - \sum_{k=2}^{K_\delta} \gamma(k)p_k| \leq \delta$. Furthermore, $c_n = \sum_{k=2}^\infty c_n(k)p_n(k)$, so by possibly choosing a larger value for $K_\delta$, we have that $|c_n-\sum_{k=2}^{K_\delta} c_n(k)p_n(k)| \leq \delta$.
 Putting these observations together:
 \begin{align*}
 |c_n-\gamma| &\leq \left|c_n-\sum_{k=2}^{K_\delta}c_n(k)p_n(k)\right|+\left|\sum_{k=2}^{K_\delta} c_n(k)p_n(k) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| +\left|\sum_{k=2}^{K_\delta} \gamma(k)p_k-\gamma\right| \\
