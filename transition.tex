@@ -118,7 +118,7 @@ By the Campbell-Mecje formula
 	&= (1+\smallO{1})\frac{n}{\Exp{\Nbox(k_n)}} \int_{\Kcal_C(k_n)} \CExp{c_{\text{box}}(y)}{\Dbox(y) = k_n}
 		\rho(y,k_n) \alpha e^{-\alpha y} \dd y,
 \end{align*}
-where the last line follows from a concentration of heights argument, for which we used that $\CExp{c_{\text{box}}(y)}{\Dbox(y) = k_n} \le \binom{k_n}{2}$. To analyze the conditional expectation we observe that, similar to the analysis of $\gamma(k_n)$, conditioned on their being $k_n$ points in $\BallPon{y}$, each points $u_i = (x_i,y_i)$ is independently distributed according to the probability density $\Mu{\BallPon{y}}^{-1} \ind{u_i \in \BallPon{y}} f(x_i,y_i)$. Therefore,
+where the last line follows from a concentration of heights argument, for which we used that $\CExp{c_{\text{box}}(y)}{\Dbox(y) = k_n} \le 1$. To analyze the conditional expectation we observe that, similar to the analysis of $\gamma(k_n)$, conditioned on their being $k_n$ points in $\BallPon{y}$, each points $u_i = (x_i,y_i)$ is independently distributed according to the probability density $\Mu{\BallPon{y}}^{-1} \ind{u_i \in \BallPon{y}} f(x_i,y_i)$. Therefore,
 \begin{align*}
 	\CExp{c_{\text{box}}(y)}{\Dbox(y) = k_n}
 	&= \binom{k_n}{2}^{-1} \Exp{\sum_{1 \le i < j \le k_n} \ind{u_i \in \BallPon{u_j}}} \\
