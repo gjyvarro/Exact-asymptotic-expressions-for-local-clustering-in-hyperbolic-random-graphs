@@ -417,7 +417,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 Here we prove Proposition~\ref{prop:couling_c_H_P}. We first establish a few results regarding the number of nodes of degree $k_n$ in both the Poissonized KPKVB graph $\GPo$ and the finite box model $\Gbox$.
 
 \begin{lemma}\label{lem:N_k_HP_P}
-Let $\alpha > 1/2$, $\nu > 0$ and $\{k_n\}_{n\ge 1}$ be a sequence such that $k_n = \bigO{n^{1/(2\alpha + 1)}}$. Then
+Let $\alpha > 1/2$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be a sequence such that $k_n = \bigO{n^{1/(2\alpha + 1)}}$. Then
 \begin{equation} \label{eq:n_k_Hyp}
 	\Exp{N_{\Po}(k_n)} = \bigT{1} n k_n^{-(2\alpha + 1)},
 \end{equation}
@@ -427,7 +427,7 @@ and
 \end{equation}
 Moreover,
 \begin{equation}\label{eq:equivalence_N_HP_P}
-	\lim_{n \to \infty} \left|\frac{\Exp{N_{\Po}(k_n)}}{\Exp{N_{\text{box}}(k_n)}} - 1\right| = 0.
+	\lim_{n \to \infty} \frac{\Exp{N_{\Po}(k_n)}}{\Exp{N_{\text{box}}(k_n)}} = 1.
 \end{equation}
 \end{lemma}
 
@@ -436,7 +436,7 @@ Recall that
 \[
 	\Exp{N_{\Po}(k_n)} = \int_{\Rcal} \rho_{\Po}(y,k_n) f(x,y) \dd x \dd y. 
 \]
-Then by Lemma~\ref{lem:concentration_argument_rho_approximation} and a concentration argument 
+Then by Lemma~\ref{lem:concentration_argument_rho_approximation} and a concentration of heights argument 
 %\TM{ Please provide details for the ``concentration argumnent''. }
 \begin{align*}
 	\Exp{N_{\Po}(k_n)} &= (1 + \smallO{1})\int_{\Rcal} \rho(y,k_n) f(x,y) \dd x \dd y\\
@@ -451,9 +451,9 @@ From which both~\eqref{eq:n_k_Po} and~\eqref{eq:equivalence_N_HP_P} follow.
 
 Recall that Proposition~\ref{prop:couling_c_H_P} states
 \[
-	\lim_{n \to \infty} s(k_n)^{-1} \, \Exp{\left|c^\ast(k_n; \GPo) - c_{\Pcal,n}^\ast(k_n)\right|} = 0.
+	\lim_{n \to \infty} s(k_n)^{-1} \, \Exp{\left|c^\ast(k_n; \GPo) - c^\ast(k_n;\Gbox)\right|} = 0.
 \]
-Since for $\alpha > 3/4$, $s_{3/4}(k_n) = \log(k_n)^{-1} s_{\alpha}(k_n) = \smallO{s_{\alpha}(k_n)}$ it suffices to prove the following two cases:
+Since for $\alpha > 3/4$, $s_{3/4}(k_n) = \log(k_n)^{-1} s_\alpha(k_n) = \smallO{s_\alpha(k_n)}$ it suffices to prove the following two cases:
 \begin{enumerate}
 \item if $1/2 < \alpha \leq 3/4$, then
 \[
@@ -467,8 +467,8 @@ Since for $\alpha > 3/4$, $s_{3/4}(k_n) = \log(k_n)^{-1} s_{\alpha}(k_n) = \smal
 
 Recall the definition of $\Kcal_{C}(k_n)$
 \[
-	\Kcal_C(k_n) = \left\{y \in \R_+ : \frac{k_n - C \kappa_n}{\xi_{\alpha,\nu}} \vee 0 \le e^{\frac{y}{2}}
-	\le \frac{k_n + C \kappa_n}{\xi_{\alpha,\nu}} \wedge e^{R_n/2} \right\},
+	\Kcal_C(k_n) = \left\{y \in \R_+ : \frac{k_n - C \kappa_n}{\xi} \vee 0 \le e^{\frac{y}{2}}
+	\le \frac{k_n + C \kappa_n}{\xi} \wedge e^{R_n/2} \right\},
 \]
 with $C > 0$ and 
 \[

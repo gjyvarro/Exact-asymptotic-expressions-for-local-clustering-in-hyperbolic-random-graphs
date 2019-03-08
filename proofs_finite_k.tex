@@ -169,9 +169,10 @@ Due to the disjointedness of the neighbourhood balls and the properties of the P
 \begin{align*}
 \E Y_1 &= \int_{} \int_{\substack{\Rcal_H\times \Rcal_H:\\ |x_1-x_2|>2 e^H}} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2)\\
 &\qquad+\int_{} \int_{\substack{\Rcal_H\times \Rcal_H:\\ |x_1-x_2|\leq2 e^H}} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2) \\
-&= (n\E X)^2+o((n\E X)^2)+o(n)
+&= (1+o(1))\int_{} \int_{\Rcal_H\times \Rcal_H} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2) \\
+&= (1+o(1)) (n\E X)^2%+o((n\E X)^2)+o(n)
 \end{align*}
-It follows that $\E X^2 = (\E X)^2 + o((\E X)^2)+o(1)$, which implies $Var(X) \rightarrow 0$. We conclude
+It follows that $\E X^2 = (1+o(1))(\E X)^2$, which implies $Var(X) \rightarrow 0$. We conclude
 $$X \xrightarrow[n\rightarrow\infty]{\Pee} \int_0^\infty P(y)\rho(y,k)\alpha e^{-\alpha y}dy.$$
 In a similar way, by the Campbell-Mecke formula,
 \begin{align*}
