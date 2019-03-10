@@ -306,6 +306,8 @@ Let $X_n$ be a sum of $n$, possibly dependent, indicators and $c > 0$. Then
 \]
 \end{lemma}
 
+Next we recall two Chernoff bound for Poisson and Binomial random variables
+
 Let $H(x) = x\log(x) - x + 1$. Then by a Chernoff bound, see for instance \cite[Lemma 1.2]{penrose2003random},
 \begin{align*}
 	&\Prob{\Po(\lambda) \ge k} \le e^{-\lambda H(k/\lambda)} \quad \text{for all } k \ge \lambda\\
@@ -328,7 +330,10 @@ In particular, if $\lambda_n \to \infty$, then, for any $0 < \varepsilon < 1$,
 	= \bigO{e^{-\lambda_n^\varepsilon}}.
 \]
 
-
+Let $X = \mathrm{Bin}(n,p)$ and $0 < \delta < 1$. Then
+\[
+	\Prob{|X - np| > \delta np} \le e^{-\frac{\delta^2 np}{3}}.
+\]
 
 %\PvdH{The results below still need to be converted to match style and notation.}
 %\begin{lemma}\label{lem:Poissonstab}

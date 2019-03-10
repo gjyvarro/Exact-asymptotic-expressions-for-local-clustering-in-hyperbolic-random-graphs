@@ -35,6 +35,10 @@ Slightly abusing notation, we will define the corresponding triangle degree func
 \begin{equation}\label{eq:def_degree_triangle_count_in_K}
 	\widetilde{T}_{\text{box}}(k_n, C) = \sum_{p \in \Pcal \cap \Rcal(k_n,C)} \ind{\text{deg}_{\text{box}}(p) = k_n} \widetilde{T}_{\text{box}}(p).
 \end{equation}
+and with that a different clustering function.
+\begin{equation}\label{eq:def_tilde_c_box}
+	\widetilde{c}_{\text{box}}(k_n) = \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
+\end{equation}
 The idea is that the main contribution of triangles of degree $k_n$ to the triangle count $T_{\text{box}}(k_n)$ is given by $\widetilde{T}_{\text{box}}(k_n, C)$. Therefore, in order to prove Proposition \ref{prop:concentration_local_clustering_P_n} it suffices to show that $\widetilde{T}_{\text{box}}(k_n,C)$ is sufficiently concentrated around its mean. This last part is done in the following proposition.
 
 %\subsection{The proof of Proposition \ref{prop:concentration_local_clustering_P_n}}
@@ -56,25 +60,25 @@ We bound the expectation as follows,
 	\Exp{\left|c^\ast(k_n; \Gbox) - \Exp{c^\ast(k_n; \Gbox)}\right|} 
 	&\le \frac{\Exp{\left|\widetilde{T}_{\text{box}}(k_n,C) - \Exp{\widetilde{T}_{\text{box}}(k_n,C)}\right|}}
 		{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\\
-	&\hspace{10pt} + 2 \Exp{\left|c^\ast(k_n; \Gbox) - \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\right|}.
+	&\hspace{10pt} + 2 \Exp{\left|c^\ast(k_n; \Gbox) - \widetilde{c}_{\text{box}}(k_n)\right|}.
 \end{align*}
 We will show that both terms are $\smallO{s(k_n)}$.
 
 First we note that $\ind{p_2 \in \BallPo{p_1} \cap \Rcal} \le \ind{p_2 \in \BallPon{p_1}}$ and hence $\widetilde{T}_{\text{box}}(p) \le T_{\text{box}}(p)$. This implies that
 \[
-	 \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}} \le c^\ast(k_n; \Gbox). 
+	 \widetilde{c}_{\text{box}}(k_n) = \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}} \le c^\ast(k_n; \Gbox). 
 \]
 and therefore
 \[
-	\Exp{\left|c^\ast(k_n; \Gbox) - \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\right|}
-	= \Exp{c^\ast(k_n; \Gbox)} 
-	- \frac{\Exp{\widetilde{T}_{\text{box}}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}.
+	\Exp{\left|c^\ast(k_n; \Gbox) - \widetilde{c}_{\text{box}}(k_n)\right|}
+	= \Exp{c^\ast(k_n; \Gbox)} - \widetilde{c}_{\text{box}}(k_n).
 \]
 For the expectation of $\widetilde{T}_{\text{box}}(k_n,C)$ we use that 
 \[
 	\CExp{\widetilde{T}_{\text{box}}(p)}{\Dbox(p) = k_n}
 = \binom{k_n}{2} \Mu{\BallPon{y}}^{-2} \Exp{\widetilde{T}_{\text{box}}(p)},
-\] to get
+\] 
+to get
 \begin{align*}
 	\Exp{\widetilde{T}_{\text{box}}(k_n,C)} 
 	&= \int_{\Rcal(k_n,C)} \CExp{\widetilde{T}_{\text{box}}(p)}{\Dbox(p) = k_n}
@@ -92,13 +96,13 @@ where the last line is due to Corollary~\ref{cor:adjusted_triangle_counting_P_n}
 
 Since $\Exp{N_{\text{box}}(k_n)} = (1+\smallO{1}n p_{k_n}$ it follows that
 \[
-	\frac{\Exp{\widetilde{T}_{\text{box}}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
+	\widetilde{c}_{\text{box}}(k_n) = \frac{\Exp{\widetilde{T}_{\text{box}}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
 	= (1+\smallO{1}) \frac{\int_0^\infty P(y) \alpha e^{-\alpha y} \dd y}{p_{k_n}}
 	= (1 + \smallO{1}) \gamma(k_n).
 \]
 On the other hand, Proposition~\ref{prop:convergence_average_clustering_P_n} implies that $\Exp{c^\ast(k_n; \Gbox)} = (1+\smallO{1})\gamma(k_n)$ and thus we conclude that
 \[
-	2\Exp{\left|c^\ast(k_n; \Gbox) - \frac{\widetilde{T}_{\text{box}}(k_n,C)}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}\right|}
+	2\Exp{\left|c^\ast(k_n; \Gbox) - \widetilde{c}_{\text{box}}(k_n)\right|}
 	= \smallO{\gamma(k_n)} = \smallO{s(k_n)}.	
 \]
 
@@ -118,6 +122,15 @@ This implies
 \end{align*}
 which finishes the proof.
 \end{proof}
+
+We note that the above proof establishes the following important result
+
+\begin{corollary}\label{cor:c_ast_box_2_tilde_c_box}
+Let $k_n \to \infty$. Then, as $n \to \infty$,
+\[
+	\Exp{\left|c^\ast(k_n; \Gbox) - \widetilde{c}_{\text{box}}(k_n)\right|} = \smallO{s(k_n)}.
+\]
+\end{corollary}
 
 \subsection{Joint neighborhoods and degrees in $\Gbox$}
 
@@ -894,7 +907,7 @@ We first show that
 so that for the remainder of the proof we only need to consider $p, p^\prime \in \mathcal{E}_\varepsilon(k_n)$ and hence, we can apply Lemma \ref{lem:joint_degree_factorization}. 
 
 %For this we note that by Lemma \ref{lem:disjoint_neighbors_P_n} and Lemma \ref{lem:disjoint_neighbors_P_n_large} we have for $p,p^\prime \in \Kcal_{\varepsilon}(k_n)$ that $\Exp{\left|\Ncal_{\text{box}}(p\Delta p^\prime)\right|} \le k_n^{\varepsilon}$ implies that eventually and $|x-x^\prime| \le k_n^{1+\varepsilon}$. In particular $|x - x^\prime| \le k_n^{1+\varepsilon}$ for all $(p, p^\prime) \in \mathcal{E}_{\varepsilon}(k_n)^c$. Therefore, we have
-For $J_0$ we have, using Lemma [??]
+For $J_0$ we have, using Lemma~\ref{lem:joint_degree_factorization}
 \begin{align*}
 	&\Exp{\ind{\Dbox(p) = k_n, \Dbox(p^\prime) = k_n} J_0(p,p^\prime)}\\
 	&= \Exp{\sum_{p_1, p_2, p_1^\prime, p_2^\prime \in \Pcal \setminus p,p^\prime 
