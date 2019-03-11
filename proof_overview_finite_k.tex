@@ -6,8 +6,7 @@ In this section we recall some definitions and tools that we will need in our pr
 \subsection{The infinite limit model $\Ginf$\label{ssec:infinite_model}}
 
 We start by recalling the definition of the infinite limit model from~\cite{fountoulakis2018law}.
-Let $\mathcal{P}=\mathcal{P}_{\alpha,\nu}$ 
-be a Poisson point process on $\eR^2$ with intensity function $f=f_{\alpha,\nu}$ given by
+Let $\mathcal{P}=\mathcal{P}_{\alpha,\nu}$ be a Poisson point process on $\eR^2$ with intensity function $f=f_{\alpha,\nu}$ given by
 
 \begin{equation}\label{eq:def_intensity_function_f}
 	f(x,y) = \frac{\alpha \nu}{\pi} e^{-\alpha y} \cdot \1_{\{y>0\}}.
@@ -27,7 +26,7 @@ For any point $p \in \R \times (0,\infty)$, we write $\BallPo{p}$ to denote the 
 
 With this notation we then have that $\BallPo{p} \cap \Pcal$ denotes the set of neighbors of a vertex $p \in \Ginf$.
 We will denote the intensity measure of the Poisson process $\mathcal{P}$ by $\mu = \mu_{\alpha, \nu}$, i.e. for every 
-Borel-measurable subset $S \subseteq \eR^2$ we have $\mu(S) = \int_S f(x,y) \, dx \, dy$
+Borel-measurable subset $S \subseteq \eR^2$ we have $\mu(S) = \int_S f(x,y) \dd x \dd y$
 
 
 \subsection{The finite box model $\Gbox$\label{ssec:finite_model}}
@@ -35,20 +34,13 @@ Borel-measurable subset $S \subseteq \eR^2$ we have $\mu(S) = \int_S f(x,y) \, d
 
 For the definition of the finite graph, recall that in the definition of the KPKVB model we set $R = 2\log(n/\nu)$.
 We consider the box $\Rcal = (-\frac{\pi}{2}e^{R/2}, \frac{\pi}{2}e^{R/2}] \times (0, R]$ in $\eR^2$. 
-Then the \emph{finite box model} $\Gbox := \Gbox(n;\alpha, \nu)$ has vertex set $\mathcal{V}_n := \mathcal{P} \cap \Rcal$ and edge set such that
+Then the \emph{finite box model} $\Gbox := \Gbox(n;\alpha, \nu)$ has vertex set $\Vbox := \mathcal{P} \cap \Rcal$ and edge set such that
 \[
 	pp' \in E(\Gbox(n;\alpha, \nu)) \iff |x - x'|_{\pi e^{R/2}} \leq e^{\frac{y + y'}{2}},
 \]
-where $|x|_{r} = \min( |x|, r - |x|)$ for $-r\leq x\leq r$. 
-Using $|.|_{\pi e^{R/2}}$ instead of $|.|$ results in the left and right boundaries of the box $\Rcal$ getting 
-identified, which in particular 
-%excludes boundary effects and 
-makes the model invariant under horizontal shifts and reflections in vertical lines. 
-The graph $\Gbox$ can thus be seen as a subgraph of $\Ginf$ induced on $\mathcal{V}_n$, with some additional edges caused by 
-the identification of the boundaries.
+where $|x|_{r} = \min( |x|, r - |x|)$ for $-r\leq x\leq r$. Using $|.|_{\pi e^{R/2}}$ instead of $|.|$ results in the left and right boundaries of the box $\Rcal$ getting identified, which in particular makes the model invariant under horizontal shifts and reflections in vertical lines. The graph $\Gbox$ can thus be seen as a subgraph of $\Ginf$ induced on $\Vbox$, with some additional edges caused by the identification of the boundaries.
 
 Similar to the infinite graph, for a point $p \in \Rcal$ we define the ball $\BallPon{p}$ as
-
 \begin{equation}\label{eq:def_ball_P_n}
 	\BallPon{p} = 
 	\left\{p' \in \Rcal : |x - x'|_{\pi e^{R/2}} \leq e^{\frac{y + y'}{2}}\right\}.
@@ -58,8 +50,8 @@ Similar to the infinite graph, for a point $p \in \Rcal$ we define the ball $\Ba
 \subsection{The Poissonized KPKVB model $\GPo$}
 
 
-Imagine that we have an infinite supply of i.i.d.~points $p_1, p_2, \dots$ in the hyperbolic plane $\Haa$ chosen according to the $(\alpha, R)$-quasi uniform distribution. In the standard KPKVB random graph $G(n;\alpha,\nu)$ we take $p_1,\dots, p_n$ as our vertex set and add edges between points at hyperbolic distance at most $R = 2\log(n/\nu)$. In the {\em Poissonized} KPKVB random graph $\GPo := \GPo(n;\alpha,\nu)$, we instead take $N\isd \Po(n)$, a Poisson random variable 
-with mean $n$, independent of our i.i.d.~sequence of points and let the vertex set be $p_1,\dots, p_N$ and add edges 
+Imagine that we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ in the hyperbolic plane $\Haa$ chosen according to the $(\alpha, R)$-quasi uniform distribution. In the standard KPKVB random graph $G(n;\alpha,\nu)$ we take $u_1,\dots, u_n$ as our vertex set and add edges between points at hyperbolic distance at most $R = 2\log(n/\nu)$. In the {\em Poissonized} KPKVB random graph $\GPo := \GPo(n;\alpha,\nu)$, we instead take $N\isd \Po(n)$, a Poisson random variable 
+with mean $n$, independent of our i.i.d.~sequence of points and let the vertex set be $u_1,\dots, u_N$ and add edges 
 according to the same rule as before. Equivalently, we could say that the vertex set consists of the points of a Poisson point process with intensity function $n g$, where $g$ denotes the probability density of the $(\alpha,R)$-quasi uniform distribution. That is,
 \[
 	g(r,\theta) = \frac{\alpha\sinh(\alpha r)}{2\pi(\cosh(\alpha R) - 1)} \cdot 1_{\{0\leq r\leq R, -\pi<\theta\leq \pi\}}.
@@ -75,12 +67,12 @@ The following lemmas from \cite{fountoulakis2018law} establish a useful coupling
 and the finite box model and relate the edge  sets of the two graphs. 
 
 \begin{lemma}[{\cite[Lemma 27]{fountoulakis2018law}}]\label{lem:coupling_hyperbolic_poisson}
-Let $\mathcal{V}$ denote the vertex set of $\GPo(n;\alpha, \nu)$ and $\mathcal{W}$ the vertex set of $\Gbox(n;\alpha, \nu)$. 
+Let $\VPo$ denote the vertex set of $\GPo(n;\alpha, \nu)$ and $\Vbox$ the vertex set of $\Gbox(n;\alpha, \nu)$. 
 Define the map $\Psi : [0,R] \times (-\pi, \pi] \to \Rcal$ by
 \begin{equation}\label{eq:def_Psi}
 	\Psi(r,\theta) = \left(\theta \frac{e^{R/2}}{2}, R - r\right).
 \end{equation}
-Then there exists a coupling such that, a.a.s., $\mathcal{W} = \Psi[\mathcal{V}]$. %Moreover, if $\Ccal_n$ is the event that ${\cal V}_n = \Psi\left(\mathcal{V}_{\HP,n}\right)$ then
+Then there exists a coupling such that, a.a.s., $\Vbox = \Psi[\VPo]$. %Moreover, if $\Ccal_n$ is the event that ${\cal V}_n = \Psi\left(\mathcal{V}_{\HP,n}\right)$ then
 %\begin{equation}\label{eq:convergence_miscoupling_hyperbolic_poisson}
 %	\Prob{\Ccal_n^c} = \bigO{n^{-(2\alpha - 1)}}. 
 %\end{equation}
@@ -97,51 +89,45 @@ $\Psi^{-1}(p)$ for $p \in \Rcal$, i.e.
 
 Under the map $\Psi$, a point $p = (x,y) \in \Rcal$ corresponds to $u := \Psi^{-1}(p) = (2 e^{-R/2} x, R - y)$. 
 
-By the hyperbolic rule of cosines, for two points $p = (x,y) = \Psi( (r,\theta) ), p' = (x',y') = \Psi( (r',\theta') ) \in \Rcal$ we have that
-$p' \in \BallHyp{p}$ iff.~either $r+r'\leq R$ or $r+r'>R$ and
-
-$$
+By the hyperbolic rule of cosines, for two points $p = (x,y) = \Psi( (r,\theta) ), p' = (x',y') = \Psi( (r',\theta') ) \in \Rcal$ we have that $p' \in \BallHyp{p}$ iff.~either $r+r'\leq R$ or $r+r'>R$ and
+\[
 	\cosh r \cosh r' - \sinh r \sinh r'\cos\left( |\theta-\theta'|_{2\pi} \right) \le \cosh(R),
-$$
-
-\noindent
+\]
 This can be rephrased as $p'\in \BallHyp{p}$ iff.~either $y+y'\geq R$ or $y+y'<R$ and 
 
 
 \begin{equation}\label{eq:def_Omega_hyperbolic}
-	|x-x'|_{\pi e^{R/2}} \leq \Phi(r,r') := \frac{1}{2}e^{R/2} \arccos\left( \frac{\cosh r \cosh r' - \cosh R}
-	{\sinh r \sinh r'} \right).
+	|x-x'|_{\pi e^{R/2}} \leq \Phi(y,y^\prime) := \frac{1}{2}e^{R/2} \arccos\left( \frac{\cosh(R-y) \cosh(R-y^\prime) - \cosh R}{\sinh(R-y) \sinh(R-y^\prime)} \right).
 \end{equation}
 
-The following lemma provides useful bounds on the function $\Phi(r,r^\prime)$.
+The following lemma provides useful bounds on the function $\Phi(r,r^\prime)$. Note that in~\cite{fountoulakis2018law} the function $\Phi$ is written in terms of where $r := R - y, r^\prime := R - y^\prime$. 
 
 \begin{lemma}[{\cite[Lemma 28]{fountoulakis2018law}}]\label{lem:asymptotics_Omega_hyperbolic}
 There exists a constant $K>0$ such that, for every $\varepsilon > 0$ and for $R$ sufficiently large, the following holds.
-For every $r,r^\prime \in [\varepsilon R,R]$ with $r + r^\prime > R$ we have that 
+For every $r,r^\prime \in [\varepsilon R,R]$ with $y + y^\prime < R$ we have that 
 \begin{equation}\label{eq:asymp1}
-	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R} \leq \Phi(r, r^\prime) 
+	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R} \leq \Phi(y, y^\prime) 
 	\leq  e^{\frac{1}{2}(y+y^\prime)} + K e^{\frac{3}{2}(y+y^\prime) - R},
 \end{equation}
-where $y := R - r, y^\prime := R - r^\prime$. 
 Moreover:
 \begin{equation}\label{eq:asymp2} 
-\Phi(r,r^\prime) \geq e^{\frac12(y+y^\prime)} \quad \text{if \quad $r, r^\prime < R - K$.} 
+\Phi(y,y^\prime) \geq e^{\frac12(y+y^\prime)} \quad \text{if \quad $y, y^\prime > K$.} 
 \end{equation}
 \end{lemma}
 
-A key consequence of Lemma~\ref{lem:asymptotics_Omega_hyperbolic} is that the coupling from Lemma~\ref{lem:coupling_hyperbolic_poisson} 
-preserves edges between points whose heights are not too large.  
+A key consequence of Lemma~\ref{lem:asymptotics_Omega_hyperbolic} is that the coupling from Lemma~\ref{lem:coupling_hyperbolic_poisson} preserves edges between points whose heights are not too large.  
 
 \begin{lemma}[{\cite[Lemma 30]{fountoulakis2018law}}]\label{lem:coupling_edges}
 On the coupling space of Lemma~\ref{lem:coupling_hyperbolic_poisson} the following holds a.a.s.:
 \begin{enumerate}
-\item for any two points $p, p' \in \mathcal{W}$ with $y, y'\le R/2$, we have 
-
-$$pp' \in E(\Gbox) \Rightarrow \Psi^{-1}(p)\Psi^{-1}(p') \in E(\GPo), $$ 
-
-\item for any two points $p, p' \in \mathcal{W}$ with $y, y' \le R/4$, we have that 
-
-$$pp' \in E(\Gbox) \iff \Psi^{-1}(p)\Psi^{-1}(p') \in E(\GPo).$$
+\item for any two points $p, p' \in \Vbox$ with $y, y'\le R/2$, we have 
+\[
+	pp' \in E(\Gbox) \Rightarrow \Psi^{-1}(p)\Psi^{-1}(p') \in E(\GPo),
+\]
+\item for any two points $p, p' \in \Vbox$ with $y, y' \le R/4$, we have that 
+\[
+	pp' \in E(\Gbox) \iff \Psi^{-1}(p)\Psi^{-1}(p') \in E(\GPo).
+\]
 
 \end{enumerate}
 \end{lemma}
