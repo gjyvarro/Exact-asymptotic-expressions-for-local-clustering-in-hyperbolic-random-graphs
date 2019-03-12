@@ -200,17 +200,19 @@ The first difference converges in probability to zero due to the Poissonization 
 \end{proofof}
 
 \subsection{Overall clustering coefficient, proving Theorem~\ref{thm:maincc}}
-In this subsection, we want to infer that the clustering coefficient of the KPKVB random graph $c \xrightarrow{\Pee} \gamma$ by only using that $c(k) \xrightarrow{\Pee} \gamma(k)$ for fixed $k$.
+In this subsection, we want to infer that the clustering coefficient of the KPKVB random graph $c(G_n) \xrightarrow{\Pee} \gamma$ by using that $c(k;G_n) \xrightarrow{\Pee} \gamma(k)$ for fixed $k$.
 
 \begin{proofof}{Theorem~\ref{thm:maincc}}
-Let $\epsilon >0$.
-First of all, from Equations~\ref{eq:def_pk}, \ref{eq:gammakint} and \ref{eq:gammaint}, we know that $\gamma = \sum_{k=2}^\infty \gamma(k)p_k$. In particular, we know that this series converges (we can use that $\gamma(k)\in [0,1]$ and $\sum_{k=0}^\infty p_k = 1$). Therefore, for $\delta >0$ with $\epsilon-2\delta>0$, there is $K_\delta$ such that $|\gamma - \sum_{k=2}^{K_\delta} \gamma(k)p_k| \leq \delta$. Furthermore, $c_n = \sum_{k=2}^\infty c_n(k)p_n(k)$, so by possibly choosing a larger value for $K_\delta$, we have that $|c_n-\sum_{k=2}^{K_\delta} c_n(k)p_n(k)| \leq \delta$.
+Let $\epsilon >2\delta >0$.
+As the $p_k$ form the probability mass function of an $\N_0$-valued random variable, we have that $\sum_{k=0}^\infty p_k = 1$, which implies that there is $K_\delta >0$ such that $1-\delta < \sum_{k=0}^{K_\delta} p_k \leq 1$.
+From Equations~\ref{eq:def_pk}, \ref{eq:gammakint} and \ref{eq:gammaint}, we know that $\gamma = \sum_{k=2}^\infty \gamma(k)p_k$. 
+From this, it follows that $(1-\delta)\gamma < \sum_{k=2}^{K_\delta} \gamma(k) p_k \leq 1$ and hence that $|\gamma - \sum_{k=2}^{K_\delta} \gamma(k)p_k| \leq \delta$. Write $p(k;G_n)=\frac{N_n(k)}{n}$ for the fraction of degree $k$ vertices in the KPKVB model. From the definition of the clustering coefficient and function, it follows immediately that $c(G_n) = \sum_{k=2}^\infty c(k;G_n)p(k;G_n)$. By the initial observation, it follows again that $(1-\delta)c(k;G_n) < \sum_{k=2}^{K_\delta} c(k;G_n)p(k;G_n) \leq 1$, and hence, $|c(G_n)-\sum_{k=2}^{K_\delta} c(k;G_n)p(k;G_n)| \leq \delta$.
 Putting these observations together:
 \begin{align*}
-|c_n-\gamma| &\leq \left|c_n-\sum_{k=2}^{K_\delta}c_n(k)p_n(k)\right|+\left|\sum_{k=2}^{K_\delta} c_n(k)p_n(k) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| +\left|\sum_{k=2}^{K_\delta} \gamma(k)p_k-\gamma\right| \\
- &\leq \delta +\left|\sum_{k=2}^{K_\delta} c_n(k)p_n(k) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| +\delta 
+|c(G_n)-\gamma| &\leq \left|c(G_n)-\sum_{k=2}^{K_\delta}c(k;G_n)p(k;G_n)\right|+\left|\sum_{k=2}^{K_\delta} c(k;G_n)p(k;G_n) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| +\left|\sum_{k=2}^{K_\delta} \gamma(k)p_k-\gamma\right| \\
+ &\leq \delta +\left|\sum_{k=2}^{K_\delta} c(k;G_n)p(k;G_n) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| +\delta 
 \end{align*}
-Therefore, $\Pee(|c_n-\gamma|\geq \epsilon) \leq \Pee(\left|\sum_{k=2}^{K_\delta} c_n(k)p_n(k) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| \geq \epsilon - 2\delta) \rightarrow 0$ because $c_n(k) \xrightarrow{\Pee} \gamma(k)$ for $k=2,\dots,K_\delta$ and $p_n(k) \xrightarrow{\Pee} p_k$ together imply that $\sum_{k=2}^{K_\delta} c_n(k)p_n(k) \xrightarrow{\Pee} \sum_{k=2}^{K_\delta} \gamma(k) p_k$. %p_k =  = \Theta(k^{-(2\alpha +1)})
+Therefore, $\Pee(|c(G_n)-\gamma|\geq \epsilon) \leq \Pee(\left|\sum_{k=2}^{K_\delta} c(k;G_n)p(k;G_n) -\sum_{k=2}^{K_\delta} \gamma(k)p_k\right| \geq \epsilon - 2\delta) \rightarrow 0$ because $c(k;G_n) \xrightarrow{\Pee} \gamma(k)$ for $k=2,\dots,K_\delta$ and $p(k;G_n) \xrightarrow{\Pee} p_k$ together imply that $\sum_{k=2}^{K_\delta} c(k;G_n)p(k;G_n) \xrightarrow{\Pee} \sum_{k=2}^{K_\delta} \gamma(k) p_k$. %p_k =  = \Theta(k^{-(2\alpha +1)})
 \end{proofof}
 
 

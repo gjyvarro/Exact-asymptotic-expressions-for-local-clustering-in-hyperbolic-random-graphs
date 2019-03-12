@@ -241,10 +241,10 @@ The conclusions from Lemmas~\ref{lem:concentration_argument} and Corollaries~\re
 
 \subsection{A more general concentration of heights argument}\label{ssec:general_concentration_lemma}
 
-Note that since all three corollaries follow from Lemma~\ref{lem:concentration_argument}, Proposition~\ref{prop:concentration_argument_all} follows if we can prove that the conclusions from this lemma holds when we replace $\rho(y,k_n)$ with either $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$. For this the following, slightly more general version of Lemma~\ref{lem:concentration_argument} will be important.
+Note that since all three corollaries follow from Lemma~\ref{lem:concentration_argument}, Proposition~\ref{prop:concentration_argument_all} follows if we can prove that the conclusions from this lemma hold when we replace $\rho(y,k_n)$ with either $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$. For this the following, slightly more general version of Lemma~\ref{lem:concentration_argument} will be important.
 
 \begin{lemma}\label{lem:concentration_argument_rho_approximation}
-Let $\alpha > \frac{1}{2}, \nu > 0$, $k_n \to \infty$ be such that $k_n = \smallO{n}$, $\ell_n = (1 + \epsilon_n)k_n$, with $\epsilon_n \to 0$ and define
+Let $\alpha > \frac{1}{2}, \nu > 0$ and $k_n \to \infty$ such that $k_n = \smallO{n}$, $\ell_n = (1 + \epsilon_n)k_n$, with $\epsilon_n \to 0$ and define
 \[
 	\lambda_n^\pm = (\ell_n \pm C \sqrt{\ell_n \log(\ell_n)}) \wedge \xi, \quad \text{and} \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi}\right).
 \] 
@@ -252,7 +252,7 @@ In addition, define $\hat{\rho}_n(y,k) = \Prob{\Po(\hat{\mu}_n(y)) = k}$, where 
 \[
 	\hat{\mu}_n(y) = (1 + \phi_n(y))\mu(y),
 \]
-where $\phi_n(y)$ is a continuous differentiable function such that
+where $\phi_n(y)$ is a continuously differentiable function such that
 \begin{enumerate}[\upshape i)]
 \item For some $0 < \varepsilon < 1$, $\displaystyle \lim_{n \to \infty} \sup_{0 \le y \le (1 - \varepsilon)R_n} |\phi_n(y)| = 0$,
 \item $\displaystyle \lim_{n \to \infty}  \sup_{y \in \Kcal_{C}(\ell_n)} |\phi_n^\prime(y)| = 0.$
@@ -265,9 +265,9 @@ Then the following holds.
 	= \bigO{k_n^{-(1+C^2)/2}},
 \end{equation}
 as $n \to \infty$.
-\item If in addition, $h(a_n) \sim h(b_n)$ whenever $a_n \sim b_n$, as $n \to \infty$. Then,
+\item If in addition, $h(a_n) \sim h(b_n)$ whenever $a_n \sim b_n$, as $n \to \infty$, then,
 \begin{equation}\label{eq:concentration_h_rho_approx}
-	\int_0^\infty h(y) \hat{\rho}_n(y,k_n) \alpha e^{-\alpha y^\prime} \dd y^\prime \sim  
+	\int_0^\infty h(y) \hat{\rho}_n(y,k_n) \alpha e^{-\alpha y} \dd y \sim  
 		2\alpha \xi^{2\alpha} h(2\log(k_n/\xi)) k_n^{-(2\alpha + 1)},
 \end{equation}
 as $n \to \infty$.
