@@ -297,6 +297,8 @@ which finishes the proof.
 
 \section{Some results for random variables}
 
+Here we summarize several known results for random variables and provide one technical lemma for Binomial random variables.
+
 We start with the following concentration result which follows from~\cite[Theorem 4]{freedman1973another}, together with the note directly after it.
 
 \begin{lemma}\label{lem:general_concentration_sum_indicators}
@@ -306,34 +308,30 @@ Let $X_n$ be a sum of $n$, possibly dependent, indicators and $c > 0$. Then
 \]
 \end{lemma}
 
-Next we recall two Chernoff bound for Poisson and Binomial random variables
+Next we recall two Chernoff bound for Poisson and Binomial random variables. The following Chernoff bound can be found in \cite[Lemma 1.2]{penrose2003random}.
 
-Let $H(x) = x\log(x) - x + 1$. Then by a Chernoff bound, see for instance \cite[Lemma 1.2]{penrose2003random},
+\begin{lemma}
+Let $\Po(\lambda)$ denote a Poisson random variable with mean $\lambda$ and let $H(x) = x\log(x) - x + 1$. Then
 \begin{align*}
 	&\Prob{\Po(\lambda) \ge k} \le e^{-\lambda H(k/\lambda)} \quad \text{for all } k \ge \lambda\\
 	&\Prob{\Po(\lambda) \le k} \le e^{-\lambda H(k/\lambda)} \quad \text{for all } k \le \lambda.
 \end{align*}
-Note that $H(x) \le (x-1)^2/2$ for all $0 \le x \le 1$. Therefore, 
-\begin{align*}
-	\Prob{\left|\mathrm{Po}(\lambda) - \lambda\right| \ge x} \ge 1 - e^{-\lambda H(1 - x/\lambda)} - e^{-\lambda H(1 + x/\lambda)}
-\end{align*}
- $\Pee(X >k) \leq e^{-\mu H(\frac{k}{\mu})}$ and for $k<\mu$, $\Pee(X< k) \leq e^{-\mu H(\frac{k}{\mu})}$, where $H(x) = x\ln x -x+1$, \cite{penrose2003random}), it follows that $\Pee(N \in [n-c\sqrt{n\log n},n+c\sqrt{n\log n}]) \geq 1-e^{-n H(\frac{n-c\sqrt{n\log n}}{n})}-e^{-nH(\frac{n+c\sqrt{n \log n}}{n})} \geq  1-2e^{-n \frac{c^2 n \log n}{n^2}} = 1-2e^{-c^2\log n}=1-2n^{-c^2}$ (where we have used that $H(x) = (x-1)^2$ for $x$ close to 1)
+\end{lemma}
 
-By a Chernoff bound we have
+It follows from the above lemma that
 \begin{equation}\label{eq:def_chernoff_bound_poisson}
 	\Prob{\left|\mathrm{Po}(\lambda) - \lambda\right| \ge x} \le 2e^{-\frac{x^2}{2(\lambda + x)}}.
 \end{equation}
+In particular, if $\lambda_n \to \infty$, then, for any $C>0$,
+\begin{equation}\label{eq:def_chernoff_bound_poisson_C}
+	\Prob{\left|\mathrm{Po}(\lambda_n) - \lambda_n\right| \ge C \sqrt{\lambda_n\log(\lambda_n)}} \le 2e^{-\frac{C^2 \lambda_n \log(\lambda_n}{2\left(\lambda_n + C\sqrt{\lambda_n\log(\lambda_n)}\right)}}
+	= \bigO{\lambda_n^{-\frac{C^2}{2}}}.
+\end{equation}
 
-In particular, if $\lambda_n \to \infty$, then, for any $0 < \varepsilon < 1$,
-\[
-	\Prob{\left|\mathrm{Po}(\lambda_n) - \lambda_n\right| \ge \lambda_n^{\frac{1+\varepsilon}{2}}} \le 2e^{-\frac{\lambda_n^\varepsilon}{2\left(1 + \lambda_n^{-(1 - \varepsilon)/2}\right)}}
-	= \bigO{e^{-\lambda_n^\varepsilon}}.
-\]
-
-Let $X = \mathrm{Bin}(n,p)$ and $0 < \delta < 1$. Then
-\[
-	\Prob{|X - np| > \delta np} \le e^{-\frac{\delta^2 np}{3}}.
-\]
+Let $\mathrm{Bin}(n,p)$ denote a Binomial random variable with $n$ trials and success probability $p$, and $0 < \delta < 1$. Then we have the following well-known Chernoff bound.
+\begin{equation}\label{eq:def_chernoff_bound_binomial}
+	\Prob{|\mathrm{Bin}(n,p) - np| > \delta np} \le e^{-\frac{\delta^2 np}{3}}.
+\end{equation}
 
 The following technical lemma establishes two results that are important in Section~\ref{sec:coupling_H_P_n}.
 
@@ -472,77 +470,6 @@ which implies that
 \] 
 as thus finishes the proof.
 \end{proof}
-
-%\PvdH{The results below still need to be converted to match style and notation.}
-%\begin{lemma}\label{lem:Poissonstab}
-%Let $k_n$ be a sequence of natural numbers, $\mu_n^{(1)}, \mu_n^{(2)}$ sequences of positive real numbers and $X_n \sim \mathrm{Po}(\mu_n^{(1)})$ be Poisson random variables with expectation $\mu_n^{(1)}$. In addition, Let $h_n = \smallO{\sqrt{\frac{k_n}{\log k_n}}}$, $c > 0$ and assume that $k_n-\mu_n^{(2)} = \mu_n^{(1)}+a_n$ with $a_n \in [-c\sqrt{k_n\log k_n},c\sqrt{k_n\log k_n}]$ and $\mu_n^{(1)}=\Theta(k_n)$. 
-%Then, as $n \to \infty$,
-%\[
-%	\Prob{X_n = k_n - \mu_n^{(2)}} \sim \Prob{X_n = k_n - \mu_n^{(2)} + h_n}.
-%\]
-%\end{lemma}
-%\begin{proof}
-%	Firstly, we upper bound the ratio:
-%	\begin{align*}
-%	\frac{\Pee(Po(\mu_1)=k-\mu_3)}{\Pee(Po(\mu_1)=k-\mu_3 +h)} &= \mu_1^{-h} \frac{(k-\mu_3+h)!}{(k-\mu_3)!}  \leq \mu_1^{-h} (k-\mu_3+h)^h\\
-%	 &= \mu_1^{-h} (\mu_1+g+h)^h = (1+\frac{g+h}{\mu_1})^h \leq e^{\frac{(g+h)h}{\mu_1}}
-%	\end{align*}
-%	which tends to 1 by the assumptions on $g,h$ and $\mu_1$.
-%	
-%	Similarly, the ratio can be lower bounded by 1:
-%	\begin{align*}
-%	\frac{\Pee(Po(\mu_1)=k-\mu_3)}{\Pee(Po(\mu_1)=k-\mu_3 +h)} &= \mu_1^{h} \frac{(k-\mu_3+h)!}{(k-\mu_3)!}  \geq \mu_1^{-h} (k-\mu_3)^h\\
-%	 &= \mu_1^{-h} (\mu_1+g)^h = (1+\frac{g}{\mu_1})^h \geq 1 
-%	\end{align*}
-%\end{proof}
-%
-%\begin{lemma}[Near independence of Poisson variables]\label{lem:joint_distribution_Poisson}
-%Let $\lambda_1(n), \lambda_2(n), \lambda_3(n)$ be sequences of positive numbers and $X_1(n), X_2(n), X_3(n)$ be sequences independent Poisson random variables with expectations $\lambda_1(n), \lambda_2(n)$ and $\lambda_3(n)$, respectively. 
-%Let $k_n, \ell_n \in \N_0$ be a sequences of natural numbers. Then as $n \to \infty$ the following holds
-%\[
-%	\Prob{X_1(n) + X_3(n) = k_n, X_2(n) + X_3(n) = \ell_n} = \Prob{X_1(n) = k_n}\Prob{X_2(n) = \ell_n}
-%	+ \bigO{\lambda_3(n)}
-%\]
-%
-%If in addition $\lambda_3(n) \le k_n^{1-\varepsilon}$, for large enough $n$ and some $0 < \varepsilon < 1$ and $\lambda_1(n), \lambda_2(n) = \bigT{k_n}$, then for any $C > 0$, as $n \to \infty$,
-%\begin{align*}
-%	&\hspace{-30pt}\Prob{X_1(n) + X_3(n) = k_n, X_2(n) + X_3(n) = k_n} \\
-%	&= (1+\smallO{1})\Prob{X_1(n) + X_3(n) = k_n}\Prob{X_2(n) + X_3(n) = k_n} + \bigO{k_n^{-\frac{C^2}{2}}}.
-%\end{align*}
-%\end{lemma}
-%\begin{proof}
-%Let $C>0$ and $c = \sqrt{C}$.
-%From $\lambda_3 \leq k^{1-\epsilon}$ it follows by the Chernoff bound for Poisson random variables that $\Pee(|X_3-\lambda_3| \geq c\sqrt{k^{1-\epsilon} \log k}) \leq k^{-c^2} = k^{-C}$. Note that $h:= c\sqrt{k^{1-\epsilon} \log k} = o(\sqrt{\frac{k}{\log k}})$.
-%
-%Conditioning on the value of $X_3$ and then separating the values according to the event $A$ that $X_3 \in [\lambda_3-h,\lambda_3 +h]$ gives
-%\begin{align*}
-%\Pee( X_1+X_3 = X_2 + X_3 =k) &= \sum_{\kappa \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=X_2=k-\kappa)\Pee(X_3=\kappa) \\
-% \\ &\qquad \qquad+ \sum_{\kappa \not \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=X_2=k-\kappa)\Pee(X_3=\kappa) \\
-%&=\sum_{\kappa \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=k-\kappa)\Pee(X_2=k-\kappa)\Pee(X_3=\kappa) + k^{-C}
-%\end{align*}
-%where we have used the independence of $X_1$ and $X_2$ in the last line. Now applying Lemma~\ref{lem:Poissonstab} (as $k-\kappa = k-\lambda_3+\lambda_3-\kappa$ and $\lambda_3-\kappa \leq h = o(\sqrt{\frac{k}{\log k}})$) and then summarizing all the terms results in
-%\begin{align*}
-%=\sum_{\kappa \in [\lambda_3-h,\lambda_3+h]} (1+o(1))\Pee(X_1=k-\lambda_3)\Pee(X_2=k-\lambda_3)\Pee(X_3=\kappa) +k^{-C} \\
-%= (1+o(1)) \Pee( X_1 =k- \lambda_3 ) \Pee(  X_2 = k-\lambda_3) +k^{-C}
-%\end{align*}
-%On the other hand, again by conditioning on the event $A$,
-%\begin{align*}
-%\Pee(X_1+X_3=k) = \sum_{\kappa \in [\lambda_3-h,\lambda_3+h]} \Pee(X_1=k-\kappa)\Pee(X_3 = \kappa)+\Pee(X_1+X_3=k|A^c)\Pee(A^c)\\
-% = (1+o(1))\Pee(X_1=k- \lambda_3)\Pee(A) +k^{-C} \\
-% =(1+o(1))\Pee(X_1=k-\lambda_3)+k^{-C}
-%\end{align*}
-%and likewise
-%\begin{align*}
-%\Pee(X_2+X_3=k)
-% = (1+o(1))\Pee(X_2=k- \lambda_3) +k^{-C}
-%\end{align*}
-%Therefore, their product has the form
-%\begin{align*}
-%&\Pee(X_1+X_3=k)\Pee(X_2+X_3=k) \\
-%&= (1+o(1))\Pee(X_1=k-\lambda_3)\Pee(X_2=k-\lambda_3)+O(k^{-C})
-%\end{align*}
-%We conclude that both sides in the claim agree.
-%\end{proof}
 
 \section{Code for the simulations}
 

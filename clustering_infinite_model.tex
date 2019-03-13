@@ -4,10 +4,10 @@
 \section{Clustering and the degree of the typical point in $\Ginf$\label{sec:Ginf}\label{sec:asymptotics_average_clustering_ast_P}}
 
 
-As mentioned earlier, we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of $\GPo$ with certain quantities associated with $\Ginf$. We will be considering the Poisson process $\Pcal$ to which we add one additinal point $(0,y)$ on the $y$-axis. In some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and independent of $\Pcal$.
+As mentioned earlier, we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of $\GPo$ with certain quantities associated with $\Ginf$. We will be considering the Poisson process $\Pcal$ to which we add one additional point $(0,y)$ on the $y$-axis. In some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and independent of $\Pcal$.
 We refer to $(0,y)$ as ``the typical point''.
 
-To provide some intu\"{\i}tion for this definition and name, note that we can alternatively view $\Pcal$ as follows. 
+To provide some intuition for this definition and name, note that we can alternatively view $\Pcal$ as follows. 
 We take a constant intensity Poisson process on $\eR$ corresponding to the $x$-coordinates, and to each point
 we attach a random ``mark'', corresponding to the $y$-coordinate, where the marks are i.i.d.~exponentially distributed with parameter $\alpha$.
 
@@ -16,40 +16,29 @@ Since $c(G)$ is defined as an average over all vertices of the graph, it is not 
 We can however without any issues speak of the (expected) clustering coefficient of the typical point, or the expected clustering coefficient given that it has degree k, or the distribution of the degree of the typical point. (All considered in the graph obtained from $\Ginf$ by adding the typical point to its vertex set.)
 
 If $p = (x,y) \in \eR\times[0,\infty)$ is a point, not necessarily part of the Poisson process, then we will write
-
-$$ \mu(y) = \mu(p) := \mu(\BallPo{p}). $$
+\[ 
+	\mu(y) = \mu(p) := \mu(\BallPo{p}).
+\]
 Integrating the intensity function of $\Pcal$ over $\BallPo{p}$ gives, using $\alpha>\frac{1}{2}$,
-
-$$ \begin{array}{rcl} 
-\mu(y) & = & \int_{\BallPo{p}} f(x',y') \, dx' \,d y'  
- = \int_0^\infty \int_{-e^{(y+y')/2}}^{e^{(y+y')/2}} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dx' \, dy' \\
-& = & \int_0^\infty 2 e^{(y+y')/2} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dy' 
- = \frac{2\alpha \nu e^{y/2}}{\pi} \int_0^\infty e^{(\frac12-\alpha)y'} \, dy' \\
-& = & \frac{2\alpha \nu e^{y/2}}{\pi(\alpha-\frac12)} = \xi e^{y/2}.
-\end{array} $$
-
-
-
+\begin{align*}
+	\mu(y) &= \int_{\BallPo{p}} f(x',y') \, dx' \,d y'  
+ 		= \int_0^\infty \int_{-e^{(y+y')/2}}^{e^{(y+y')/2}} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dx' \, dy' \\
+	&= \int_0^\infty 2 e^{(y+y')/2} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dy' 
+ 		= \frac{2\alpha \nu e^{y/2}}{\pi} \int_0^\infty e^{(\frac12-\alpha)y'} \, dy' \\
+	&= \frac{2\alpha \nu e^{y/2}}{\pi(\alpha-\frac12)} = \xi e^{y/2}.
+\end{align*}
 
 
 \subsection{The degree of the typical point\label{ssec:degrees_infinite_model}}
 
-
-
-
-
-Before considering clustering we briefly investigate the distribution of the degree of 
-the typical point. 
+Before considering clustering we briefly investigate the distribution of the degree of the typical point. 
 For $p = (x,y) \in \eR\times[0,\infty)$ we define
-\begin{equation}
-	\rho(p,k) := \Prob{\Po(\mu(y)) = k},
+\begin{equation}\label{eq:def_degree_inf_model}
+	\rho(p,k) := \Prob{\Po(\Mu{p}) = k},
 \end{equation}
+where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$. We will often write $\rho(y,k)$ instead of $\rho(p,k)$.
 
-where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$. 
-We will often write $\rho(y,k)$ instead of $\rho(p,k)$.
-
-Let the random variable $D$ denote the degree of the typical point.
-Since the typical point has a height that is independent of the Poisson process and exponential($\alpha$)-distributed, for $k \in \N_0$:
+Let the random variable $D$ denote the degree of the typical point. Since the typical point has a height that is independent of the Poisson process and exponential($\alpha$)-distributed, for $k \in \N_0$:
 \begin{equation}\label{eq:def_pk}
 	p_k := \Pee( D=k ) = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy.
 \end{equation}
@@ -58,13 +47,13 @@ Using the transformation of variables $z = \xi e^{\frac{y}{2}}$ (so $dy = \frac{
 \begin{align*}
 	p_k
     &= \frac{1}{k!} \int_0^\infty \left(\xi e^{\frac{y}{2}}\right)^k 
-    	e^{-\xi e^{\frac{y}{2}}} \alpha e^{-\alpha y} \, dy\\
-    &= \frac{\alpha \xi^{2\alpha}}{k!} \int_0^\infty 
+    	e^{-\xi e^{\frac{y}{2}}} \alpha e^{-\alpha y} \, dy
+    	= \frac{\alpha \xi^{2\alpha}}{k!} \int_0^\infty 
     	\left(\xi e^{\frac{y}{2}}\right)^{k - 2\alpha} e^{-\xi e^{\frac{y}{2}}}
         \, dy\\
     &= \frac{2\alpha \xi^{2\alpha}}{k!} \int_{\xi}^{\infty} 
-    	z^{k -2\alpha-1} e^{-z} \, dz\\
-    &= \frac{2\alpha \xi^{2\alpha}\Gamma^+(k - 2\alpha, \xi)}{k!},
+    	z^{k -2\alpha-1} e^{-z} \, dz
+    	= \frac{2\alpha \xi^{2\alpha}\Gamma^+(k - 2\alpha, \xi)}{k!},
 \end{align*}
 where we recall that $\Gamma$ denotes the Gamma-function and $\Gamma^{+}$ the upper incomplete Gamma-function.
 Note that, unsurprisingly, this is identical to the expression Gugelmann et al.~\cite{gugelmann2012random} gave for the limiting degree distribution of $G(n;\alpha,\nu)$. Using Stirling's approximation to the gamma function, we find that 
@@ -84,14 +73,14 @@ By a similar computation we have the following result, which will be useful late
 \subsection{The expected clustering coefficient and function of the typical point}
 
 
-Let the random variable $C$ denote the clustering coefficient of the typical point $(0,y)$, in the graph obtained from $\Ginf$ by adding $(0,y)$. We {\em define}
+Let the random variable $C$ denote the clustering coefficient of the typical point $(0,y)$, in the graph obtained from $\Ginf$ by adding $(0,y)$. We now {\em define}
 \[
 	\gamma := \Ee C, \quad \gamma(k) := \Ee\left( C | D = k \right).
 \]
 (Where we take the expectation over both the Poisson point process $\Pcal$ and $y \isd \text{exp}(\alpha)$, independently of the Poisson process $\Pcal$.) We shall show shortly that these take on the values stated in Theorem~\ref{thm:maincc} and~\ref{thm:mainkfixed}.
 
 
-For any fixed value $y_0>0$, the set of points inside $\BallPo{(0,y_0)}$ is a Poisson process with intensity $f \cdot 1_{\BallPo{(0,y_0)}}$. As $\mu(\BallPo{(0,y_0)}) = \mu(y_0) = \xi e^{y_0/2} < \infty$, this can be described alternatively by the experiment where we first pick $N \isd \Po( \mu(y_0) )$ and then we take $N$ i.i.d.~points in $\BallPo{(0,y_0)}$ according to the probability density $f \cdot 1_{\BallPo{(0,y_0)}} / \mu(y_0)$. (That is, the intensity function of the Poisson point process, but set to zero outside of $\BallPo{(0,y_0)}$ and re-normalized in such a way that it integrates to one.) Hence, if we condition on the event that $y$ takes on some fixed value $y_0$ and that there are exactly $k$ points of $\Pcal$ inside $\BallPo{(0,y_0)}$, then those $k$ points behave like $k$ i.i.d.~points in $\BallPo{(0,y_0)}$ chosen according to the mentioned re-normalized probability density function. This shows that, for every $k\geq 2$:
+For any fixed value $y_0>0$, the set of points inside $\BallPo{(0,y_0)}$ is a Poisson process with intensity $f \cdot 1_{\BallPo{(0,y_0)}}$. As $\mu(\BallPo{(0,y_0)}) = \mu(y_0) = \xi e^{y_0/2} < \infty$, this can be described alternatively by first picking $N \isd \Po( \mu(y_0) )$ and then taking $N$ i.i.d.~points in $\BallPo{(0,y_0)}$ according to the probability density $f \cdot 1_{\BallPo{(0,y_0)}} / \mu(y_0)$. (That is, the intensity function of the Poisson point process, but set to zero outside of $\BallPo{(0,y_0)}$ and re-normalized in such a way that it integrates to one.) Hence, if we condition on the event that $y$ takes on some fixed value $y_0$ and that there are exactly $k$ points of $\Pcal$ inside $\BallPo{(0,y_0)}$, then those $k$ points behave like $k$ i.i.d.~points in $\BallPo{(0,y_0)}$ chosen according to the mentioned re-normalized probability density function. This shows that, for every $k\geq 2$:
 \[
 	\Ee\left( C | D=k, y=y_0 \right) 
 	= \frac{1}{{k\choose 2}} \Ee\left( \sum_{1\leq i < j \leq k} \1_{\{u_i\in \BallPo{u_j}\}} \right)
@@ -162,20 +151,13 @@ We will prove this lemma in a sequence of steps.
 Recall that $P(y_0)$ is the probability that $u_1 = (x_1,y_1), u_2 = (x_2,y_2)$ are neighbours in $\Ginf$, where
 $u_1, u_2$ are i.i.d.~with probability density $f \cdot \1_{\BallPo{(0,y_0)}} / \mu(y_0)$.
 In particular
-
-$$ \begin{array}{rcl} 
-\Pee( y_i > t ) 
-& = & 
-\frac{\nu\alpha}{\pi \mu(y_0)} \int_t^\infty \int_{-e^{(s+y_0)/2}}^{e^{(s+y_0)/2}} e^{-\alpha s}\, d x \, d s \\
-& = & 
-\frac{\nu\alpha}{\pi \mu(y_0)} \int_t^\infty 2 e^{(s+y_0)/2} \cdot e^{-\alpha s}\, d s \\
-& = & 
-\frac{2 \nu\alpha e^{y_0/2} }{\pi \xi e^{y_0/2} (\alpha-\frac12) }  \cdot e^{(\frac12-\alpha)t} \\
-& = & 
- e^{(\frac12-\alpha)t},
-\end{array} $$
-
-\noindent
+\begin{align*}
+	\Prob{y_i > t} &= \frac{\nu\alpha}{\pi \mu(y_0)} \int_t^\infty \int_{-e^{(y+y_0)/2}}^{e^{(y+y_0)/2}} e^{-\alpha y}
+		\dd x \dd y
+		= \frac{\nu\alpha}{\pi \mu(y_0)} \int_t^\infty 2 e^{(y+y_0)/2} \cdot e^{-\alpha y} \dd y \\
+	&= \frac{2 \nu\alpha e^{y_0/2} }{\pi \xi e^{y_0/2} (\alpha-\frac{1}{2}) }  \cdot e^{(\frac{1}{2}-\alpha)t}
+		= e^{(\frac{1}{2}-\alpha)t},
+\end{align*}
 using that $\mu(y_0) = \xi e^{y_0/2} = \left(\frac{2\alpha\nu}{\pi(\alpha-\frac12)}\right) e^{y_0/2}$.
 Thus, $y_1, y_2$ are exponentially distributed with parameter $\alpha-\frac12$.
 Now note that, for each $t>0$, the probability density $f \cdot 1_{\BallPo{(0,y_0)}} / \mu(y_0)$
