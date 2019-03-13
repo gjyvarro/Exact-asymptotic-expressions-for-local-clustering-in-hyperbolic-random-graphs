@@ -53,9 +53,9 @@ Similar to the infinite graph, for a point $p \in \Rcal$ we define the ball $\Ba
 Imagine that we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ in the hyperbolic plane $\Haa$ chosen according to the $(\alpha, R)$-quasi uniform distribution. In the standard KPKVB random graph $G(n;\alpha,\nu)$ we take $u_1,\dots, u_n$ as our vertex set and add edges between points at hyperbolic distance at most $R = 2\log(n/\nu)$. In the {\em Poissonized} KPKVB random graph $\GPo := \GPo(n;\alpha,\nu)$, we instead take $N\isd \Po(n)$, a Poisson random variable 
 with mean $n$, independent of our i.i.d.~sequence of points and let the vertex set be $u_1,\dots, u_N$ and add edges 
 according to the same rule as before. Equivalently, we could say that the vertex set consists of the points of a Poisson point process with intensity function $n g$, where $g$ denotes the probability density of the $(\alpha,R)$-quasi uniform distribution. That is,
-\[
+\begin{equation}\label{eq:def_quasi_uniform_density}
 	g(r,\theta) = \frac{\alpha\sinh(\alpha r)}{2\pi(\cosh(\alpha R) - 1)} \cdot 1_{\{0\leq r\leq R, -\pi<\theta\leq \pi\}}.
-\] 
+\end{equation}
 
 Working with the Poissonized model has the advantage that when we take two disjoint regions $A, B$ then the number of points in $A$ and the number of points  in $B$ are independent Poisson-distributed random variables. As we will see, and as is to be expected, switching to the Poissonized model does not significantly alter the limiting behaviour of the clustering coefficient and function.
 
