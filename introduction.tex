@@ -100,12 +100,12 @@ As mentioned above, Gugelmann et al.~\cite{gugelmann2012random}, have establishe
 
 In addition to the clustering coefficient, we shall also be interested in the {\em clustering function}.
 This assigns to each integer $k$ the value
-\[ 
+\begin{equation}\label{eq:def_clustering_function}
 	c(k; G) := \begin{cases}
 		\displaystyle \frac{1}{N_k} \sum_{v \in V(G), \atop \text{deg}(v)=k}  c(v),  &\mbox{ if } N_k \ge 1,\\
 		0, &\mbox{else,}
 	\end{cases}
-\]
+\end{equation}
 where $N_k$ denotes the number of vertices of degree exactly $k$ in $G$. In other words, the clustering function assigns to the integer $k$ the average of the local clustering coefficient over all vertices of degree $k$. We remark that, while it might seem natural to consider $c(k)$ to be ``undefined'' when $N_k=0$, we prefer to use the above definition for technical 
 convenience.  This way $c(k; G(n;\alpha,\nu) )$ is a plain vanilla random variable and we can for instance compute its moments without any issues.
 
@@ -132,7 +132,11 @@ has the integral representation
 see~\cite[p.255 Equation (2)]{erdelyi1953higher}, and let $\MeijerGnew{m}{\ell}{p}{q}{{\bf a}}{{\bf b}}{z}$ denote 
 Meijer's G-Function~\cite{meijer1946gfunction}, see Appendix~\ref{sec:Meijer_G_functions} for more details.
 
-For a sequence $(X_n)_n$ of random variables, we write $X_n \xrightarrow[n\to\infty]{\Pee} X$ to denote that $X_n$ converges in probability to $X$, as $n \to \infty$. %In addition, $X_n \xrightarrow[n\to\infty]{L^1} X$ denotes convergence in expectation, i.e. $\Exp{|X_n - X|} \to 0$ as $n \to \infty$, which is a stronger notion than convergence in probability.
+For a sequence $(X_n)_n$ of random variables, we write $X_n \xrightarrow[n\to\infty]{\Pee} X$ to denote that $X_n$ converges in probability to $X$, as $n \to \infty$.
+
+%We further adopt standard notations on asymptotic behavior of functions and sequences. That is, for two functions $f$ and $g$, we write $f(n) = \smallO{g(n)}$ as $n \to \infty$ if $\limsup_{n \to \infty} f(n)/g(n) = 0$ and $f(n) = \bigO{g(n)}$ as $n \to \infty$ if $\limsup_{n \to \infty} |f(n)|/g(n) < \infty$. Furthermore, $f(n) = \Omega(g(n))$ as $n \to \infty$ if $\limsup_{n \to \infty} |f(n)/g(n)| > 0$ and $f(n) = \omega(g(n))$ as $n \to \infty$ if $\limsup_{n \to \infty} |f(n)/g(n)| = \infty$. Finally, $f(n) = \bigT{g(n)}$ as $n \to \infty$ if $f(n) = \bigO{g(n)}$ and $g(n) = \Omega(f(n))$.
+
+ %In addition, $X_n \xrightarrow[n\to\infty]{L^1} X$ denotes convergence in expectation, i.e. $\Exp{|X_n - X|} \to 0$ as $n \to \infty$, which is a stronger notion than convergence in probability.
 
 \subsection{Main results}\label{ssec:main_results}
 
@@ -247,16 +251,11 @@ satisfying $1 \ll k_n \ll n^{1/(2\alpha+1)}$. Then, writing $G_n := G(n;\alpha,\
 \[
 	\E[|c(k_n;G_n)-\gamma(k_n)|] = \smallO{\gamma(k_n)},
 \]
-as $n \to \infty$, where $\gamma(\cdot)$ is as in Theorem~\ref{thm:mainkfixed}.
-\end{theorem}
-
-In particular, Theorem~\ref{thm:mainktoinfty} implies that
+as $n \to \infty$, where $\gamma(\cdot)$ is as in Theorem~\ref{thm:mainkfixed}. In particular
 \[
-	\frac{c(k_n; G_n)}{\gamma(k_n)} \xrightarrow[n\to\infty]{L^1} 1,
+	\lim_{n \to \infty} \Exp{\left|\frac{c(k_n; G_n)}{\gamma(k_n)}- 1 \right|} = 0.
 \]
-so that the clustering function of the KPKVB model scales as $\gamma(k)$ as $k$ grows.
-
-\PvdH{ToDo: add remark on maximum scaling for $k_n$.}
+\end{theorem}
 
 %We remark that the number of vertices of degree exactly $k$ satisfies $N_k = 0$ a.a.s.~when $k \gg n^{1/(2\alpha+1)}$, see~\TM{ add reference to correct thm / lemma here! }.
 %So the range in the above result is essentially to best possible.
@@ -280,10 +279,48 @@ where $c_{\alpha} := \left( \frac{3\alpha - 1}{2^{4\alpha+1}\alpha(\alpha-1)^2}
 	- \frac{B(2\alpha, 3\alpha - 4)}{4(\alpha - 1)} \right)  \cdot \xi^{4\alpha-2}$.
 \end{proposition}
 
-In particular this contradicts the scaling conjectured in~\cite{krioukov2010hyperbolic} for $\alpha \leq \frac34$, and confirms it for $\alpha > \frac34$.
+Note that Theorem~\ref{thm:mainktoinfty} implies that the clustering function of the KPKVB model scales as $\gamma(k)$ as $k$ grows, whose scaling is given in the above result. In particular, this contradicts the scaling conjectured in~\cite{krioukov2010hyperbolic} for $\alpha \leq \frac34$, and confirms it for $\alpha > \frac34$.
 
 We remark that simultaneously and independently Stegehuis, van der Hofstad and van Leeuwaarden~\cite{stegehuis2018scale} found a similar, but less detailed result on the $k\to\infty$ scaling of the clustering function in the KPKVB model.
 
+\subsection{Observations}
+
+There are a few other observation to be made regarding our results.
+
+\paragraph{Uniform convergence.}
+
+Our results for the local clustering function in particular imply uniform convergence of $c(k; G_n)$ for all $2 \le k \le a_n$ where $a_n \ll n^{\frac{1}{2\alpha + 1}}$. To see this let
+\[
+	b_n = \arg \max_{2 \le k \le a_n} \Exp{\left|\frac{c(k_n; G_n)}{\gamma(k)} - 1\right|}.
+\]
+Then $b_n \le a_n \ll n^{\frac{1}{2\alpha + 1}}$ and therefore by Theorem~\ref{thm:local_clustering_hyperbolic}
+\[
+	\lim_{n \to \infty} \max_{2 \le k \le a_n} \Exp{\left|\frac{c(k; G_n)}{\gamma(k)} - 1\right|} 
+	= \lim_{n \to \infty}\Exp{\left|\frac{c(b_n; G_n)}{\gamma(b_n)} - 1\right|} = 0.
+\]
+
+
+\paragraph{Near maximum scaling for $k_n$.}
+Our results for the clustering function in the KPKVB model are valid for any sequence of integers $k_n \to \infty$ such that $k_n \ll n^{\frac{1}{2\alpha + 1}}$. Although one would like to have results for any sequence $k_n \le n$, it turns out that $n^{1/(2\alpha + 1)}$ is the near maximum scaling for which Theorem~\ref{thm:clustering_coefficient_hyperbolic} can be true. To see why this is the case note that by definition of the local clustering function~\eqref{eq:def_clustering_function} we have that $c(k_n; G_n) = 0$ if $N_{n}(k_n) = 0$, where $N_n(k_n)$ denote the number of vertices in a KPKVB graph $G(n; \alpha, \nu)$ with degree $k_n$. It follows by Markov's inequality that for any positive function $f : \R_+ \to \R_+$
+\begin{align*}
+	\Exp{\left|\frac{c_{\H,n}(k_n)}{f(k_n)} - 1\right|} 
+	&\ge \Exp{\left|\frac{c_{\H,n}(k_n)}{f(k_n)} - 1\right|\ind{N_n(k_n) = 0}}\\ 
+	&\ge \Prob{N_{n}(k_n) = 0} \ge 1 - \Exp{N_{\H,n}(k_n)}.
+\end{align*}
+We shall later establish (see Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}) that $\Exp{N_n(k_n)}$ scales as $n k_n^{-(2\alpha + 1)}$. Therefore if $k_n$ is such that $k_n^{-(2\alpha + 1)} n$ tends to zero as $n \to \infty$ we have that 
+\[
+	\lim_{n \to \infty} \Exp{N_{n}(k_n)} = 0
+\]
+and hence
+\[
+	\lim_{n \to \infty} \Exp{\left|\frac{c(k_n; G_n)}{f(k_n)} - 1\right|} 
+	\ge \lim_{n \to \infty} 1 - \Exp{N_{n}(k_n)} = 1 \ne 0,
+\]
+for any positive function $f$. This implies that we cannot expect a result like that of Theorem~\ref{thm:mainktoinfty} to hold as soon as $k_n \gg n^{\frac{1}{2\alpha + 1}}$.
+
+\paragraph{Transition in scaling at $\bm{\alpha = 3/4}$.}
+
+\PvdH{We should try and add something here. Not necessarily needed for the submission to arXiv though.}
 
 \subsection{Outline of the paper}
 
@@ -291,5 +328,7 @@ We remark that simultaneously and independently Stegehuis, van der Hofstad and v
 In the next section we will recall some useful tools from the literature and define a series of auxiliary random graph models that will be used in the proofs. In particular, we relate in a series of steps the KPKVB model to an infinite percolation model $\Ginf$ that was used in previous work of the first and third authors~\cite{fountoulakis2018law} on the largest component of the KPKVB model. The value of the limiting constant $\gamma$, respectively limiting clustering function $\gamma(k)$, correspond to the probability that two randomly chosen neighbours of a ``typical point'' in this infinite model are themselves neighbours, respectively the probability of this event conditional on the typical point having exactly $k$ neighbours. These probabilities can be expressed as certain integrals, which we solve explicitly in Section~\ref{sec:Ginf}. 
 In the same section we also prove Proposition~\ref{prop:asymp}, on the asymptotics of $\gamma(k)$. We then proceed to prove Theorems~\ref{thm:maincc} and~\ref{thm:mainkfixed} by relating said probabilities for the typical point of the infinite model to the corresponding clustering coefficient/function in the original KPKVB random graph, using the Campbell-Mecke formula and some other, relatively straightforward considerations.
 
-The remaining sections are devoted to the proof of Theorem~\ref{thm:mainktoinfty}, which turns out to be a lot more involved. In particular, since we push the possible scaling of $k_n$ to its maximum, a great deal of work is needed to properly control the arising error terms. 
+The remaining sections are devoted to the proof of Theorem~\ref{thm:mainktoinfty}, which turns out to be a lot more involved. The main reason for this is that we push the possible scaling of $k_n$ to its maximum and hence a great deal of work is needed to properly control the arising error terms and make sure these are of smaller order than $\gamma(k_n)$. 
+
+Finally, the Appendix includes some technical results on Meijer's G-function, Chernoff bounds for Poisson and Binomial random variables and the code used for simulations.
 
