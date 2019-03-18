@@ -31,7 +31,7 @@ The next lemma states that for a large class of functions $h(y)$ and $k_n \to \i
 it is enough to consider integration over a small interval on which $e^{y/2} \approx k_n$, instead of $\R_+$. 
 
 \begin{lemma}\label{lem:concentration_argument}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$, $\{k_n\}_{n \ge 1}$ be any positive sequence such that $k_n \to \infty$ and $k_n = \smallO{n}$ and let $\ell_n = k_n(1 + \epsilon_n)$, with $\epsilon_n \to 0$. In addition, define for any constant $C > 0$,
+Let $\alpha > \frac{1}{2}$, $\nu > 0$, $(k_n)_{n \ge 1}$ be any positive sequence such that $k_n \to \infty$ and $k_n = \smallO{n}$ and let $\ell_n = k_n(1 + \epsilon_n)$, with $\epsilon_n \to 0$. In addition, define for any constant $C > 0$,
 \[
 	\lambda_n^\pm = (\ell_n \pm C \sqrt{\ell_n \log(\ell_n)}) \wedge \xi, 
 	\quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi}\right).
@@ -46,7 +46,7 @@ Then the following holds.
 as $n \to \infty$.
 \item If in addition, $h(a_n) \sim h(b_n)$ whenever $a_n \sim b_n$, as $n \to \infty$. Then,
 \begin{equation}\label{eq:concentration_h_rho}
-	\int_0^\infty h(y) \rho(y,k_n) \alpha e^{-\alpha y^\prime} \dd y^\prime \sim  
+	\int_0^\infty h(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y \sim  
 		2\alpha \xi^{2\alpha} h(2\log(k_n/\xi)) k_n^{-(2\alpha + 1)},
 \end{equation}
 as $n \to \infty$.
@@ -61,7 +61,7 @@ Recall (see proof of Proposition~\ref{prop:asymp}) that $\rho(y,k_n)$, as a func
 	&\hspace{-20pt}\int_{\R_+ \setminus (a_n^-, a_n^+)} h(y) \rho(y,k_n) 
 		\alpha e^{-\alpha y} \dd y\\
     &= \bigO{1} \int_0^{a_n^-} e^{\beta y} \rho(y,k_n) \alpha e^{-\alpha y} \dd y 
-    	+ \bigO{1}\int_{a_n^+}^{\infty} e^{\beta y} \rho(y,k_n) \alpha e^{-\alpha y}x \dd y \\
+    	+ \bigO{1}\int_{a_n^+}^{\infty} e^{\beta y} \rho(y,k_n) \alpha e^{-\alpha y} \dd y \\
     &= \bigO{1} \int_0^{a_n^-} \rho(y,k_n) e^{-(\alpha-\beta) y} \dd y 
    		+ \bigO{1} \int_{a_n^+}^{\infty} \rho(y,k_n) e^{-(\alpha-\beta) y} \dd y\\
    	&\le \bigO{1}\rho(a_n^-,k_n)\int_0^{a_n^-} e^{-(\alpha-\beta) y} \, \dd y
@@ -86,7 +86,7 @@ Since
 	\frac{\mu(a_n^+)}{k_n} = \frac{\lambda_n^{+}}{k_n} = 1 + \epsilon_n + C \frac{\kappa_n}{k_n} 
 	= 1 + \epsilon_n + C \sqrt{\frac{(1+\epsilon_n)\log((1+\epsilon_n)k_n)}{k_n}},
 \]
-and $x - \log(1 + x) \sim x^2/2$ as $x \to 0$, we get 
+and as $x - \log(1 + x) \sim x^2/2$ as $x \to 0$, we get 
 \begin{align*}
 	\rho(a_n^+,k_n) 
 	&\le \sqrt{2\pi} k_n^{-1/2} 
