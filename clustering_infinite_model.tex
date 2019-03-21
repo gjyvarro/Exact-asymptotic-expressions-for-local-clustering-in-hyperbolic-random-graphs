@@ -1075,11 +1075,23 @@ and
 &\sum_{i\in \{1,2,5,6,7\}} s_i(1) + s_3'(1)+s_4'(1) \\
 &= -\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(\frac{z_0}{2}) 
 +\frac{z_0^2}{4}B^-(1/2;3,0)+\frac{(1-z_0)^2}{8}-\frac{z_0^2}{4}B^-(1-z_0;2,-1) \\
-&=-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(z_0)-\frac{z_0^2}{4}\ln 2 
--\frac{5z_0^2}{32}+\frac{z_0^2}{4}\ln2 \\ 
-&\hspace{50pt}+\frac{1}{8}-\frac{z_0}{4}+\frac{z_0^2}{8}+\frac{z_0^2}{4}-\frac{z_0}{4}-\frac{z_0^2}{4}\ln z_0 \\
+&=-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\left(\frac{z_0^2}{4}\ln(z_0)-\frac{z_0^2}{4}\ln 2\right) 
++\left(-\frac{5z_0^2}{32}+\frac{z_0^2}{4}\ln2\right) \\ 
+&\hspace{50pt}+\left(\frac{1}{8}-\frac{z_0}{4}+\frac{z_0^2}{8}\right)+\left(\frac{z_0^2}{4}-\frac{z_0}{4}-\frac{z_0^2}{4}\ln z_0\right) \\
 &=0
 \end{align*}
+using that %$B^-(\frac{1}{2};3,0)=-\frac{5}{8}+\ln 2$ and $B^-(1-z_0;2,-1)=-1+z_0^{-1}+\ln z_0$.
+\begin{align*}
+B^-(\frac{1}{2};3,0)&=\int_0^\frac{1}{2}t^2(1-t)^-1dt=\int_\frac{1}{2}^1 (1-s)^2 s^{-1}ds\\
+&=\int_\frac{1}{2}^1 s^{-1}-2+sds = -2+\frac{1}{2}-\ln\frac{1}{2}+1-\frac{1}{8}=-\frac{5}{8}+\ln 2
+\end{align*}
+and
+\begin{align*}
+B^-(1-z_0;2,-1)&=\int_0^{1-z_0} t(1-t)^{-2}dt = \int_{z_0}^1 (1-s)s^{-2}ds \\
+&=\int_{z_0}^1 s^{-2}-s^{-1}ds = -1+z_0^{-1}+\ln z_0.
+\end{align*}
+
+
 Finally, it follows that
 \begin{align*}
 P(y_0(z_0)) = \sum_{i \in\{1,2,5,6,7\}} s_i'(1)+\frac{1}{2}(s_3''(1)+s_4''(1)) + o(1)
