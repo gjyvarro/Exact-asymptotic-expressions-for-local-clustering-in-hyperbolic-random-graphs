@@ -132,9 +132,9 @@ Let $k_n \to \infty$. Then, as $n \to \infty$,
 \]
 \end{corollary}
 
-\subsection{Joint neighborhoods and degrees in $\Gbox$}
+\subsection{Joint neighbourhoods and degrees in $\Gbox$}
 
-To prove Proposition~\ref{prop:concentration_tilde_T_P_n} we need to understand the joint degree distribution in $\Gbox$. This subsequently requires us to compute the joint neighborhoods in $\Gbox$ of two points $p, p^\prime \in \Rcal$. We perform the analysis in this section. We start with a general result for near independent Poisson random variables.
+To prove Proposition~\ref{prop:concentration_tilde_T_P_n} we need to understand the joint degree distribution in $\Gbox$. This subsequently requires us to compute the joint neighbourhoods in $\Gbox$ of two points $p, p^\prime \in \Rcal$. We perform the analysis in this section. We start with a general result for near independent Poisson random variables.
 
 \begin{lemma}\label{lem:near_independence_poisson}
 Let $k_n \to \infty$ and $X_1 = \Po(\lambda_1(n))$, $X_2 = \Po(\lambda_2(n))$ and $Y = \Po(\lambda_3(n))$, be three Poisson random variables where $\lambda_3(n) = \bigO{k_n^{1-\varepsilon}}$, for some $0 < \varepsilon < 1$ and for some $C > 0$,
@@ -239,20 +239,20 @@ To make this more precise, we define, for any $0 < \varepsilon < 1$, the followi
 	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \Rcal \times \Rcal
 		\, : \, y,y^\prime \in \Kcal_{C}(k_n) \text{ and } |x - x^\prime| > k_n^{1 + \varepsilon} \right\}. 
 \end{equation}
-We will show (see Corollary~\ref{cor:expected_common_neighbors_Ecal_set}) that for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ it holds that $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon}}$ and hence the joint degree distribution factorizes on this set. We will use this set later in Section~\ref{ssec:concentration_tilde_T} to prove Proposition~\ref{prop:concentration_tilde_T_P_n}. The main idea behind the above result is that if $p$ and $p^\prime$ are sufficiently separated in the $x$-direction, then the overlap of their neighborhoods $\BallPon{p} \cap \BallPon{p^\prime}$ is of smaller order than $\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}$. We shall therefore proceed with analyzing the joint neighborhoods in $\Gbox$.
+We will show (see Corollary~\ref{cor:expected_common_neighbours_Ecal_set}) that for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ it holds that $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon}}$ and hence the joint degree distribution factorizes on this set. We will use this set later in Section~\ref{ssec:concentration_tilde_T} to prove Proposition~\ref{prop:concentration_tilde_T_P_n}. The main idea behind the above result is that if $p$ and $p^\prime$ are sufficiently separated in the $x$-direction, then the overlap of their neighbourhoods $\BallPon{p} \cap \BallPon{p^\prime}$ is of smaller order than $\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}$. We shall therefore proceed with analyzing the joint neighbourhoods in $\Gbox$.
 %
 %
 %The following result shows that for any two points in the set
 %
 %The two main results, which will be the crucial technical ingredients for the proof of Proposition~\ref{prop:concentration_tilde_T_P_n}, are Lemma~\ref{lem:joint_degree_factorization} and Lemma~\ref{lem:joint_degree_distribution_shift}.
 
-\subsubsection*{Joint neighborhoods}
+\subsubsection*{Joint neighbourhoods}
 
 Let $p, p^\prime \in \Rcal$ and denote by
-%Then we denote by $\Ncal_{\text{box}}(p\Delta p^\prime)$ the number of disjoint neighbors of $p$ and $p^\prime$ in $\Gbox$, i.e. those points that belong to either $\BallPon{p}$ or $\BallPon{p^\prime}$ but not to their intersection. In addition we denote by 
-$\Ncal_{\text{box}}(p,p^\prime)$ the number of joint neighbors of $p$ and $p^\prime$. We shall establish an upper bound on the expected number of joint neighbors when $p$ and $p6\prime$ are sufficiently separated. Observe that $\Exp{\Ncal_{\text{box}}(p,p^\prime)} = \Mu{\BallPon{p} \cap \BallPon{p^\prime}}$. 
+%Then we denote by $\Ncal_{\text{box}}(p\Delta p^\prime)$ the number of disjoint neighbours of $p$ and $p^\prime$ in $\Gbox$, i.e. those points that belong to either $\BallPon{p}$ or $\BallPon{p^\prime}$ but not to their intersection. In addition we denote by 
+$\Ncal_{\text{box}}(p,p^\prime)$ the number of joint neighbours of $p$ and $p^\prime$. We shall establish an upper bound on the expected number of joint neighbours when $p$ and $p6\prime$ are sufficiently separated. Observe that $\Exp{\Ncal_{\text{box}}(p,p^\prime)} = \Mu{\BallPon{p} \cap \BallPon{p^\prime}}$. 
 
-%as well as an asymptotic expression for the expected number points in the joint neighborhood. For this we will distinguish between the cases where the distance between the $x$-coordinates of $p$ and $p^\prime$ is small or large. Figure~\ref{fig:representation_disjoint_neighborhoods_P_n}-\ref{fig:representation_disjoint_neighborhoods_P_n_3} show the different situations that occur.
+%as well as an asymptotic expression for the expected number points in the joint neighbourhood. For this we will distinguish between the cases where the distance between the $x$-coordinates of $p$ and $p^\prime$ is small or large. Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n}-\ref{fig:representation_disjoint_neighbourhoods_P_n_3} show the different situations that occur.
 %
 %\begin{figure}[p]
 %\centering
@@ -284,8 +284,8 @@ $\Ncal_{\text{box}}(p,p^\prime)$ the number of joint neighbors of $p$ and $p^\pr
 %    \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
 %
 %\end{tikzpicture}
-%\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x-x^\prime| \le e^{\frac{y + y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbors_P_n} and Lemma~\ref{lem:common_neighbors_Pcal_n}.}
-%\label{fig:representation_disjoint_neighborhoods_P_n}
+%\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x-x^\prime| \le e^{\frac{y + y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbours_P_n} and Lemma~\ref{lem:common_neighbours_Pcal_n}.}
+%\label{fig:representation_disjoint_neighbourhoods_P_n}
 %\end{figure}~
 %\begin{figure}[p]
 %\centering
@@ -324,8 +324,8 @@ $\Ncal_{\text{box}}(p,p^\prime)$ the number of joint neighbors of $p$ and $p^\pr
 %    \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
 %
 %\end{tikzpicture}
-%\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $\Gbox$ when $e^{\frac{y + y^\prime}{2}} < |x - x^\prime| \le e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbors_P_n} and Lemma~\ref{lem:common_neighbors_Pcal_n}.}
-%\label{fig:representation_disjoint_neighborhoods_P_n_2}
+%\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ when $e^{\frac{y + y^\prime}{2}} < |x - x^\prime| \le e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbours_P_n} and Lemma~\ref{lem:common_neighbours_Pcal_n}.}
+%\label{fig:representation_disjoint_neighbourhoods_P_n_2}
 %\end{figure}~
 
 \begin{figure}[!ht]
@@ -396,12 +396,12 @@ $\Ncal_{\text{box}}(p,p^\prime)$ the number of joint neighbors of $p$ and $p^\pr
 	
 	
 \end{tikzpicture}
-\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma \ref{lem:disjoint_neighbors_P_n_large}. Note that although here $p^\prime \notin \BallPon{p}$, this is not true in general. This situation was merely chosen to improve readability of the figure.}
-\label{fig:representation_disjoint_neighborhoods_P_n_3}
+\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma \ref{lem:disjoint_neighbours_P_n_large}. Note that although here $p^\prime \notin \BallPon{p}$, this is not true in general. This situation was merely chosen to improve readability of the figure.}
+\label{fig:representation_disjoint_neighbourhoods_P_n_3}
 \end{figure}
 
 
-We start by analyzing the shape of joint neighborhood. Due to symmetry and the fact that we have identified the left and right boundaries of the box $\Rcal$, we can, without loss of generality, assume that $p = (0,y)$ and $p^\prime = (x^\prime,y^\prime)$ with $x^\prime > 0$. To understand the computation it is helpful to have a picture. Figure~\ref{fig:representation_disjoint_neighborhoods_P_n_3} shows such an example. There are several different quantities that are important. The first are the heights where the left and right boundaries of the ball $\BallPon{p}$ go outside the box $\Rcal$. Since $x = 0$ these heights are the same and we denote this by $h(y)$. We also need to know the coordinates $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ of the intersection of the right boundary of the neighborhood of $p$ with the left boundary of the neighborhood of $p^\prime$ and those for the intersection of the left boundary of the neighborhood of $p$ with the right boundary of the neighborhood of $p^\prime$, which we denote by $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$. Finally we will denote by $d(p,p^\prime)$ the distance between the lower right boundary of $\BallPon{p}$ and the lower left of $\BallPon{p^\prime}$, which is positive only when the bottom parts of both neighborhoods do not intersect, as is the case in Figure~\ref{fig:representation_disjoint_neighborhoods_P_n_3}. The condition $d(p,p^\prime) > 0$ is exactly the right notion for $p$ and $p^\prime$ being sufficiently separated.
+We start by analyzing the shape of joint neighbourhood. Due to symmetry and the fact that we have identified the left and right boundaries of the box $\Rcal$, we can, without loss of generality, assume that $p = (0,y)$ and $p^\prime = (x^\prime,y^\prime)$ with $x^\prime > 0$. To understand the computation it is helpful to have a picture. Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3} shows such an example. There are several different quantities that are important. The first are the heights where the left and right boundaries of the ball $\BallPon{p}$ go outside the box $\Rcal$. Since $x = 0$ these heights are the same and we denote this by $h(y)$. We also need to know the coordinates $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ of the intersection of the right boundary of the neighbourhood of $p$ with the left boundary of the neighbourhood of $p^\prime$ and those for the intersection of the left boundary of the neighbourhood of $p$ with the right boundary of the neighbourhood of $p^\prime$, which we denote by $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$. Finally we will denote by $d(p,p^\prime)$ the distance between the lower right boundary of $\BallPon{p}$ and the lower left of $\BallPon{p^\prime}$, which is positive only when the bottom parts of both neighbourhoods do not intersect, as is the case in Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3}. The condition $d(p,p^\prime) > 0$ is exactly the right notion for $p$ and $p^\prime$ being sufficiently separated.
 
 Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$ correspond to, respectively, $\hat{y}(p,p^\prime)$ and $\hat{x}(p,p^\prime)$ considered in Section~\ref{ssec:missing_triangles}. The derivation of $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ is done in a similar manner and we omit the details here. The full expressions of all these functions are given below for further reference.
 
@@ -425,7 +425,7 @@ Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\pr
 
 %We start with the result for points whose $x$-coordinates are close, which is when $d(p,p^\prime) < 0$.
 %
-%\begin{lemma}\label{lem:disjoint_neighbors_P_n}
+%\begin{lemma}\label{lem:disjoint_neighbours_P_n}
 %Let $p, p ^\prime \in \Rcal$ and denote $y^\ast = \min\{y, y^\prime\}$. Then whenever $|x - x^\prime| \le e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$,
 %\begin{align*}
 %	\Exp{\Ncal_{\text{box}}(p \Delta p^\prime)}
@@ -437,7 +437,7 @@ Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\pr
 %
 %\begin{proof}
 %In order to proof the result we will consider the area in between the two left boundaries of the balls $\BallPon{p}$ and
-%$\BallPon{p^\prime}$ up to the height $h^\ast := \min\{h(y), h_2(p^\prime)\}$, see Figure~\ref{fig:representation_disjoint_neighborhoods_P_n} and Figure~\ref{fig:representation_disjoint_neighborhoods_P_n_2} for reference. Note that here we do not need to consider different cases depending on whether $|x - x^\prime| \le e^{(y + y^\prime)/2}$ or $|x - x^\prime| > e^{(y + y^\prime)/2}$. 
+%$\BallPon{p^\prime}$ up to the height $h^\ast := \min\{h(y), h_2(p^\prime)\}$, see Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n} and Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_2} for reference. Note that here we do not need to consider different cases depending on whether $|x - x^\prime| \le e^{(y + y^\prime)/2}$ or $|x - x^\prime| > e^{(y + y^\prime)/2}$. 
 %
 %By the Campbell-Mecke formula we get
 %\begin{align*}
@@ -455,7 +455,7 @@ Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\pr
 %
 %Now we will consider the case where $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$
 %
-%\begin{lemma}\label{lem:disjoint_neighbors_P_n_large}
+%\begin{lemma}\label{lem:disjoint_neighbours_P_n_large}
 %Let $p, p^\prime \in \Rcal$. Then, whenever $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$,
 %\[
 %	\Exp{\Ncal_{\text{box}}(p\Delta p^\prime)}
@@ -475,9 +475,9 @@ Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\pr
 %	\Exp{\Ncal_{\text{box}}(p\Delta p^\prime)} 
 %	\ge \int_0^{\hat{y}_{\text{right}}(p,p^\prime)} \int_{-\frac{\pi}{2}e^{\frac{R_n}{2}}}^{\frac{\pi}{2}e^{\frac{R_n}{2}}} \ind{p_1 \in \BallPon{p} \cup \BallPon{p^\prime}} f(x_1,y_1) \, dx_1 \, dy_1,
 %\]
-%We shall compute the integral on the right. We refer to Figure~\ref{fig:representation_disjoint_neighborhoods_P_n_3} for further clarification. 
+%We shall compute the integral on the right. We refer to Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3} for further clarification. 
 %
-%Before we proceed we show that the neighborhoods of $p$ and $p^\prime$ below $\hat{y}_{\text{right}}(p,p^\prime)$ are disjoint. This is clearly true when $\hat{y}_{\text{right}}(p,p^\prime) \le h_2(p^\prime)$ so suppose that $\hat{y}_{\text{right}}(p,p^\prime) > h_2(p^\prime)$. Then, because we identified the right and left boundaries of the box $\Rcal$ the right boundary of $\BallPon{p^\prime}$ continues from the left boundary of the box and is described by the equation
+%Before we proceed we show that the neighbourhoods of $p$ and $p^\prime$ below $\hat{y}_{\text{right}}(p,p^\prime)$ are disjoint. This is clearly true when $\hat{y}_{\text{right}}(p,p^\prime) \le h_2(p^\prime)$ so suppose that $\hat{y}_{\text{right}}(p,p^\prime) > h_2(p^\prime)$. Then, because we identified the right and left boundaries of the box $\Rcal$ the right boundary of $\BallPon{p^\prime}$ continues from the left boundary of the box and is described by the equation
 %\[
 %	x_1 = x^\prime + e^{\frac{y^\prime + y_1}{2}} - \pi e^{\frac{R_n}{2}}.
 %\]
@@ -489,7 +489,7 @@ Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\pr
 %	&= 2x^\prime - e^{\frac{y + \hat{y}_{\text{right}}(p,p^\prime)}{2}} - \pi e^{\frac{R_n}{2}}\\
 %	&\le - e^{\frac{y + \hat{y}_{\text{right}}(p,p^\prime)}{2}} = x_{\mathrm{left}},
 %\end{align*}
-%and hence the neighborhoods of $p$ and $p^\prime$ below $\hat{y}_{\text{right}}(p,p^\prime)$ are disjoint. It then follows that
+%and hence the neighbourhoods of $p$ and $p^\prime$ below $\hat{y}_{\text{right}}(p,p^\prime)$ are disjoint. It then follows that
 %\begin{align*}
 %	\Exp{\Ncal_{\text{box}}(p,p^\prime)} 
 %	&\ge \int_0^{\hat{y}_{\text{right}}(p,p^\prime)} \int_{-\frac{\pi}{2}e^{\frac{R_n}{2}}}^{\frac{\pi}{2}e^{\frac{R_n}{2}}} 
@@ -552,13 +552,13 @@ Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\pr
 %    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (5,0) {};
 %    \draw node at (5,-0.5) {$p^\prime$};
 %\end{tikzpicture}
-%\caption{Schematic representation of the neighborhoods of $p$ and $p^\prime$ in $\Gbox$ used for the proof of Lemma \ref{lem:common_neighbors_Pcal_n}.}
-%\label{fig:representation_joint_neighborhoods}
+%\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ used for the proof of Lemma \ref{lem:common_neighbours_Pcal_n}.}
+%\label{fig:representation_joint_neighbourhoods}
 %\end{figure}
 
-The following result shows that if $d(p,p^\prime) > 0$, then the expected number of common neighbors is $\smallO{\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}}$.
+The following result shows that if $d(p,p^\prime) > 0$, then the expected number of common neighbours is $\smallO{\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}}$.
 
-\begin{lemma}\label{lem:common_neighbors_Pcal_n}
+\begin{lemma}\label{lem:common_neighbours_Pcal_n}
 Let $p, p^\prime \in \Rcal$. Then, whenever $|x - x^\prime| > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)$,
 \[
 	\Exp{\Ncal_{\text{box}}(p,p^\prime)} \le \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}\right)\phi_n(p,p^\prime),
@@ -712,9 +712,9 @@ We now return to the joint degree distribution of nodes in $\Gbox$. Recall the d
 	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \Rcal \times \Rcal
 			\, : \, y,y^\prime \in \Kcal_{C}(k_n) \text{ and } |x - x^\prime| > k_n^{1 + \varepsilon} \right\}. 
 \]
-The following result, which follows from Lemma~\ref{lem:common_neighbors_Pcal_n}, shows that on this set, the expected number of common neighbors is $\smallO{k_n}$.
+The following result, which follows from Lemma~\ref{lem:common_neighbours_Pcal_n}, shows that on this set, the expected number of common neighbours is $\smallO{k_n}$.
 
-\begin{lemma}\label{cor:expected_common_neighbors_Ecal_set}
+\begin{lemma}\label{cor:expected_common_neighbours_Ecal_set}
 Fix $0 < \varepsilon < 1$ and let $\varepsilon^\prime = \min\{\varepsilon(2\alpha - 1),\varepsilon\}$. Then for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, as $n \to \infty$,
 \[
 	\Mu{\BallPon{p} \cup \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon^\prime}}.
@@ -722,7 +722,7 @@ Fix $0 < \varepsilon < 1$ and let $\varepsilon^\prime = \min\{\varepsilon(2\alph
 \end{lemma}
 
 \begin{proof}
-Since for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ we have $\Mu{\BallPon{p}}, \Mu{\BallPon{p^\prime}} = \bigT{k_n}$, Lemma~\ref{lem:common_neighbors_Pcal_n} implies that
+Since for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ we have $\Mu{\BallPon{p}}, \Mu{\BallPon{p^\prime}} = \bigT{k_n}$, Lemma~\ref{lem:common_neighbours_Pcal_n} implies that
 \[
 	\Mu{\BallPon{p} \cup \BallPon{p^\prime}} \le \bigO{k_n} \phi_n(p,p^\prime),
 \]
@@ -819,7 +819,7 @@ so that
 \begin{align*}
 	\rho_{\text{box}}(p,p^\prime,k_n-t_n,k_n-t_n^\prime) &= \Prob{X_1(p,p^\prime) + Y(p,p^\prime) = k_n-t_n, X_2(p,p^\prime) + Y(p,p^\prime) = k_n - t_n^\prime}.
 \end{align*}
-Since by Lemma~\ref{cor:expected_common_neighbors_Ecal_set} $\Mu{\BallPon{p} \cup \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon^\prime}}$, it follows from Lemma~\ref{lem:near_independence_poisson} that
+Since by Lemma~\ref{cor:expected_common_neighbours_Ecal_set} $\Mu{\BallPon{p} \cup \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon^\prime}}$, it follows from Lemma~\ref{lem:near_independence_poisson} that
 \[
 	\rho_{\text{box}}(p,p^\prime,k_n-t_n,k_n-t_n^\prime) = (1+\smallO{1})\rho_{\text{box}}(p,k_n-t_n)\rho_{\text{box}}(p^\prime,k_n-t_n^\prime).
 \]
@@ -906,7 +906,7 @@ We first show that
 \end{equation}
 so that for the remainder of the proof we only need to consider $p, p^\prime \in \mathcal{E}_\varepsilon(k_n)$ and hence, we can apply Lemma \ref{lem:joint_degree_factorization}. 
 
-%For this we note that by Lemma \ref{lem:disjoint_neighbors_P_n} and Lemma \ref{lem:disjoint_neighbors_P_n_large} we have for $p,p^\prime \in \Kcal_{\varepsilon}(k_n)$ that $\Exp{\left|\Ncal_{\text{box}}(p\Delta p^\prime)\right|} \le k_n^{\varepsilon}$ implies that eventually and $|x-x^\prime| \le k_n^{1+\varepsilon}$. In particular $|x - x^\prime| \le k_n^{1+\varepsilon}$ for all $(p, p^\prime) \in \mathcal{E}_{\varepsilon}(k_n)^c$. Therefore, we have
+%For this we note that by Lemma \ref{lem:disjoint_neighbours_P_n} and Lemma \ref{lem:disjoint_neighbours_P_n_large} we have for $p,p^\prime \in \Kcal_{\varepsilon}(k_n)$ that $\Exp{\left|\Ncal_{\text{box}}(p\Delta p^\prime)\right|} \le k_n^{\varepsilon}$ implies that eventually and $|x-x^\prime| \le k_n^{1+\varepsilon}$. In particular $|x - x^\prime| \le k_n^{1+\varepsilon}$ for all $(p, p^\prime) \in \mathcal{E}_{\varepsilon}(k_n)^c$. Therefore, we have
 For $J_0$ we have, using Lemma~\ref{lem:joint_degree_factorization}
 \begin{align*}
 	&\Exp{\ind{\Dbox(p) = k_n, \Dbox(p^\prime) = k_n} J_0(p,p^\prime)}\\

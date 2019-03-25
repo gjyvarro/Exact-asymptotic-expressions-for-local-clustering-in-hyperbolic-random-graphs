@@ -13,7 +13,7 @@ we attach a random ``mark'', corresponding to the $y$-coordinate, where the mark
 
 
 Since $c(G)$ is defined as an average over all vertices of the graph, it is not immediately obvious how to meaningfully define a corresponding notion for infinite graphs, and similarly for the clustering function, the degree sequence, etc.
-We can however without any issues speak of the (expected) clustering coefficient of the typical point, or the expected clustering coefficient given that it has degree k, or the distribution of the degree of the typical point. (All considered in the graph obtained from $\Ginf$ by adding the typical point to its vertex set.)
+We can however without any issues speak of the (expected) clustering coefficient of the typical point, or the expected clustering coefficient given that it has degree $k$, or the distribution of the degree of the typical point. (All considered in the graph obtained from $\Ginf$ by adding the typical point to its vertex set.)
 
 If $p = (x,y) \in \eR\times[0,\infty)$ is a point, not necessarily part of the Poisson process, then we will write
 \[ 
@@ -40,7 +40,7 @@ where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda
 
 Let the random variable $D$ denote the degree of the typical point. Since the typical point has a height that is independent of the Poisson process and exponential($\alpha$)-distributed, for $k \in \N_0$:
 \begin{equation}\label{eq:def_pk}
-	p_k := \Pee( D=k ) = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy.
+	p_k :=  \Prob{D = k} = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy.
 \end{equation}
 
 Using the transformation of variables $z = \xi e^{\frac{y}{2}}$ (so $dy = \frac{2}{z}dz$), we compute
@@ -75,14 +75,14 @@ By a similar computation we have the following result, which will be useful late
 
 Let the random variable $C$ denote the clustering coefficient of the typical point $(0,y)$, in the graph obtained from $\Ginf$ by adding $(0,y)$. We now {\em define}
 \[
-	\gamma := \Ee C, \quad \gamma(k) := \Ee\left( C | D = k \right).
+	\gamma := \Exp{C}, \quad \gamma(k) := \CExp{C}{D = k}.
 \]
 (Where we take the expectation over both the Poisson point process $\Pcal$ and $y \isd \text{exp}(\alpha)$, independently of the Poisson process $\Pcal$.) We shall show shortly that these take on the values stated in Theorem~\ref{thm:maincc} and~\ref{thm:mainkfixed}.
 
 
 For any fixed value $y_0>0$, the set of points inside $\BallPo{(0,y_0)}$ is a Poisson process with intensity $f \cdot 1_{\BallPo{(0,y_0)}}$. As $\mu(\BallPo{(0,y_0)}) = \mu(y_0) = \xi e^{y_0/2} < \infty$, this can be described alternatively by first picking $N \isd \Po( \mu(y_0) )$ and then taking $N$ i.i.d.~points in $\BallPo{(0,y_0)}$ according to the probability density $f \cdot 1_{\BallPo{(0,y_0)}} / \mu(y_0)$. (That is, the intensity function of the Poisson point process, but set to zero outside of $\BallPo{(0,y_0)}$ and re-normalized in such a way that it integrates to one.) Hence, if we condition on the event that $y$ takes on some fixed value $y_0$ and that there are exactly $k$ points of $\Pcal$ inside $\BallPo{(0,y_0)}$, then those $k$ points behave like $k$ i.i.d.~points in $\BallPo{(0,y_0)}$ chosen according to the mentioned re-normalized probability density function. This shows that, for every $k\geq 2$:
 \[
-	\Ee\left( C | D=k, y=y_0 \right) 
+	\CExp{C}{D=k, y=y_0} 
 	= \frac{1}{{k\choose 2}} \Ee\left( \sum_{1\leq i < j \leq k} \1_{\{u_i\in \BallPo{u_j}\}} \right)
 	= \Exp{\1_{\{u_1\in\BallPo{u_2}\}}},
 \]
@@ -95,7 +95,7 @@ with $u_1, u_2$ as above.
 
 We now observe that 
 \[
-	\gamma(k) = \Ee( C | D=k ) = \int_0^\infty \Ee\left( C | D=k, y=y_0 \right) g_k(y_0) \, d y_0,
+	\gamma(k) = \CExp{C}{D=k} = \int_0^\infty \CExp{C}{D=k, y=y_0} g_k(y_0) \, d y_0,
 \]
 where $g_k$ denotes the density of $y$ {\em conditional on} $D=k$. That is,
 \[
@@ -111,7 +111,7 @@ This also gives
 \begin{equation}\label{eq:gammaint}
 \begin{array}{rcl} 
 \gamma 
-& = & \displaystyle \Ee C = \sum_{k\geq 2} \Ee( C | D=k )\Pee( D=k ) \\
+& = & \displaystyle \Exp{C} = \sum_{k\geq 2} \CExp{ C }{ D=k }\Prob{ D=k } \\
 & = & \displaystyle \int_0^\infty P(y_0) \left( \sum_{k=2}^\infty \rho(y_0,k) \right) \alpha e^{-\alpha y_0} \, d y_0 \\
 & = & \displaystyle \int_0^\infty P(y_0) \left(1 - \rho(y_0,0)-\rho(y_0,1)\right) \alpha e^{-\alpha y_0} \, d y_0.
 \end{array}
@@ -128,9 +128,8 @@ A key step is to derive the following explicit expression for $P(y)$.
 	 P(y) &=-\frac{1}{8 (\alpha - 1) \alpha} + \frac{(\alpha - 1/2) e^{-\frac{1}{2}y}}{\alpha - 1} - \frac{(\alpha - 1/2)^2 e^{-y}}{
 		4 (\alpha - 1)^2} \\
 	&+ 
-	(e^{-\frac{1}{2}y})^{4\alpha -2} \left(\frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha (\alpha - 1)^2} + \frac{(\alpha - 
-		1/2 ) B^-(1/2; 1 + 2 \alpha, 
-		-2 + 2 \alpha)}{2(\alpha - 1) \alpha} \right) \\
+	(e^{-\frac{1}{2}y})^{4\alpha -2} \left(\frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha (\alpha - 1)^2} 
+		+ \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2(\alpha - 1) \alpha} \right) \\
 	&+ \frac{(1 - 
 		e^{-\frac{1}{2}y})^{2 \alpha}}{8 (\alpha - 1) \alpha} - \frac{  
 		(e^{-\frac{1}{2}y})^{4 \alpha - 2} B^-(1 - e^{-\frac{1}{2}y}; 2 \alpha, 3 - 4 \alpha)}{4 (\alpha - 1)}
@@ -166,10 +165,8 @@ vanishes on $(-\infty, -e^{(t+y_0)/2}) \times \{t\} \cup (e^{(t+y_0)/2},\infty)\
 
 Hence, given the height $y_i$ of $u_i$, the $x$-coordinate of $u_i$ is uniform in $[-e^{\frac{1}{2}(y+y_i)},e^{\frac{1}{2}(y+y_i)}]$. 
 With this in mind we define $P(y_0,y_1,y_2)$ to be the probability that $(0,y_0), (x_1,y_1), (x_2,y_2)$ 
-satisfy $|x_1-x_2| \leq e^{(y_1+y_2)/2}$, where $x_1$ and $x_2$ are independent uniform random variables in, respectively, 
-$[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$.
-We have that
-
+satisfy \\ $|x_1-x_2| \leq e^{(y_1+y_2)/2}$, where $x_1$ and $x_2$ are independent uniform random variables in the intervals
+$[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$, respectively. We have that
 \begin{equation}\label{eq:delta_P}
  P(y_0) = (\alpha-1/2)^2 \int_0^\infty \int_0^\infty P(y_0, y_1, y_2) e^{-(\alpha-1/2)(y_1+y_2)} 
  \dd y_2 \dd y_1.
@@ -384,7 +381,7 @@ P(y_0(z_0),y_1(z_1),y_2(z_2)) = \begin{cases}
 	\path (\rightintvvandvvv,\vvv)+(-0.5,0.5) node[red] {$x_1 + e^{\frac{y_0 + y_2}{2}}$};
 
 \end{tikzpicture}
-\caption{Situation for the intersections of the connection intervals considered in Lemma~\ref{lem:ordered}, with $y_0 < y_1 <y_2$ fixed and for different cases of $0 \le x_1 \le e^{(y_0 + y_1)/2}$. The top figure shows the case where $0 \le x_1 \le e^{(y_1 + y_2)/2} - e^{(y_0 + y_2)/2}$, while the bottom one shows the case $x_1 > e^{(y_1 + y_2)/2} - e^{(y_0 + y_2)/2}$. The solid red line indicates the range for $x_2$ such that the points $p_0$, $p_1$ and $p_2$ form a triangle. The boundaries of their neighborhoods are shown in, respectively, black, blue and green.}
+\caption{Situation for the intersections of the connection intervals considered in Lemma~\ref{lem:ordered}, with $y_0 < y_1 <y_2$ fixed and for different cases of $0 \le x_1 \le e^{(y_0 + y_1)/2}$. The top figure shows the case where $0 \le x_1 \le e^{(y_1 + y_2)/2} - e^{(y_0 + y_2)/2}$, while the bottom one shows the case $x_1 > e^{(y_1 + y_2)/2} - e^{(y_0 + y_2)/2}$. The solid red line indicates the range for $x_2$ such that the points $p_0$, $p_1$ and $p_2$ form a triangle. The boundaries of their neighbourhoods are shown in, respectively, black, blue and green.}
 \label{fig:triangle_prob_lemma}
 \end{figure}
 
@@ -414,7 +411,7 @@ Hence, when $e^{(y_1+y_2)/2} - e^{(y_0+y_1)/2} < e^{(y_0+y_2)/2}$ we have
 	    \left(1 - \frac{x_1 - (e^{(y_1+y_2)/2} - e^{(y_0+y_2)/2)}) }{ 2e^{(y_0+y_2)/2} }\right)
 	    \cdot \frac{1}{e^{(y_0+y_1)/2}} \dd x_1 \\
 	&= 1 - \frac{1}{2e^{y_0+y_1/2+y_2/2} } \int_0^{ e^{(y_0+y_1)/2}+e^{(y_0+y_2)/2}-e^{(y_1+y_2)/2} } x_1 \dd x_1 \\
-	&= 1 - \frac{ \left( e^{(y_0+y_1)/2}+e^{(y_0+y_2)/2}-e^{(y_1+y_2)/2} \right)^2 }{ 4 e^{y_0+y_1/2+y_2/2} },
+	&= 1 - \frac{ \left( e^{(y_0+y_1)/2}+e^{(y_0+y_2)/2}-e^{(y_1+y_2)/2} \right)^2 }{ 4 e^{y_0+y_1/2+y_2/2} }.
 \end{align*}
 
 At this point it is convenient to rewrite everything in terms of $z_i := e^{-y_i/2}$.
@@ -526,22 +523,22 @@ and~\eqref{eq:Delta_P_computation_I22}.
 
 \paragraph{Computing $\bm{I_1(y_0)}$}
 
-Applying the change of variables $z_i := e^{-y_i/2}$, $i=1,2$, and Lemma~\ref{lem:triangle_prob_y_coordinates} gives %${\dd}y_i = -\frac{2{\dd}z_i}{z_i}$ and therefore
+Applying the change of variables $z_i := e^{-y_i/2}$, $i=1,2$, and Lemma~\ref{lem:triangle_prob_y_coordinates} gives 
 \begin{align*}
 	I_1(y_0) &=	4 (\alpha-1/2)^2 \cdot \int_{z_0>z_1>z_2>0} P(y_0,y_1(z),y_2(z)) z_1^{2\alpha-2} z_2^{2\alpha-2} 
-		{\dd}z_2{\dd}z_1 \\
+		\dd z_2\dd z_1 \\
 	&= 4 (\alpha-1/2)^2 \cdot \left( \int_{z_0>z_1>z_2>0} 1 \cdot z_1^{2\alpha-2} z_2^{2\alpha-2} 
-		{\dd}z_2{\dd}z_1 \right. \\
+		\dd z_2 \dd z_1 \right. \\
 	&\hspace{10pt} \left. - \int_{{z_0>z_1>z_2>0,}\atop{z_0 < z_1+z_2}} G(z_0,z_1,z_2) \cdot z_1^{2\alpha-2} z_2^{2\alpha-2} 
-		{\dd}z_2{\dd}z_1 \right) \\
+		\dd z_2 \dd z_1 \right) \\
 	&=: 4 (\alpha-1/2)^2 ( I_{11}(y_0) - I_{12}(y_0)). 
 \end{align*}
 
 The integral $I_{11}(y_0)$ is easily obtained:
 \begin{align*}
-	I_{11}(y_0) &= \int_0^{z_0} \int_0^{z_1} z_1^{2\alpha-2} z_2^{2\alpha-2} {\dd}z_2{\dd}z_1
-		= \int_0^{z_0} z_1^{2\alpha-2} \left[ \frac{z_2^{2\alpha-1}}{2\alpha-1} \right]_0^{z_1} {\dd}z_1\\
-	&= \frac{1}{2\alpha-1} \cdot \int_0^{z_0} z_1^{4\alpha-3} {\dd}z_1
+	I_{11}(y_0) &= \int_0^{z_0} \int_0^{z_1} z_1^{2\alpha-2} z_2^{2\alpha-2} \dd z_2 \dd z_1
+		= \int_0^{z_0} z_1^{2\alpha-2} \left[ \frac{z_2^{2\alpha-1}}{2\alpha-1} \right]_0^{z_1} \dd z_1\\
+	&= \frac{1}{2\alpha-1} \cdot \int_0^{z_0} z_1^{4\alpha-3} \dd z_1
 		= \frac{1}{2(2\alpha-1)^2} \cdot z_0^{4\alpha-2}. \numberthis \label{eq:Delta_P_computation_I11}
 \end{align*}
 
@@ -549,7 +546,7 @@ To deal with $I_{12}$ we note that $G(z_0,z_1,z_2)$ is a linear combination of m
 $a,b,c \in \{-1,0,1,2\}$ and $a+b+c=0$. Let us consider the integral $J_{(a,b,c)}(z_0)$ defined by 
 
 \begin{equation}\label{eq:def_Delta_P_computation_int_J_1}
-	J_{a,b,c}(z_0) := z_0^a \int_{{z_0>z_1>z_2>0,}\atop{z_0 < z_1+z_2}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} {\dd}z_2{\dd}z_1.
+	J_{a,b,c}(z_0) := z_0^a \int_{{z_0>z_1>z_2>0,}\atop{z_0 < z_1+z_2}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2\dd z_1.
 \end{equation}
 and note that
 \begin{equation}\label{eq:Delta_P_computation_I12_with_J}
@@ -559,10 +556,10 @@ and note that
 Next we compute $J_{a,b,c}(z_0)$.
 \begin{align*}
 	J_{a,b,c}(z_0) 
-	&= z_0^a \int_{z_0/2}^{z_0}\int_{z_0-z_1}^{z_1} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} {\dd}z_2{\dd}z_1
+	&= z_0^a \int_{z_0/2}^{z_0}\int_{z_0-z_1}^{z_1} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2 \dd z_1
 		= z_0^a \int_{z_0/2}^{z_0} z_1^{b+2\alpha-2} \left[ \frac{ z_2^{c+2\alpha-1} }{ c+2\alpha-1 } \right]_{z_0-z_1}^{z_1} \dd z_1\\
 	&= \frac{z_0^a}{c+2\alpha-1} \cdot \left( \int_{z_0/2}^{z_0} z_1^{b+c+4\alpha-3} \dd z_1
-	   - \int_{z_0/2}^{z_0} z_1^{b+2\alpha-2} (z_0-z_1)^{c+2\alpha-1} {\dd}z_1 \right) \\
+	   - \int_{z_0/2}^{z_0} z_1^{b+2\alpha-2} (z_0-z_1)^{c+2\alpha-1} \dd z_1 \right) \\
 	&= \frac{z_0^{a+b+c+4\alpha-2}(1-(1/2)^{b+c+4\alpha-2})}{(c+2\alpha-1)(b+c+4\alpha-2)} \\
 	&\hspace{10pt}- \frac{z_0^{a+b+c+4\alpha-3}}{c+2\alpha-1} \int_{z_0/2}^{z_0}  \left(z_1/z_0\right)^{b+2\alpha-2} 
 	    \left(1-(z_1/z_0)\right)^{c+2\alpha-1} \dd z_1\\
@@ -572,7 +569,7 @@ Next we compute $J_{a,b,c}(z_0)$.
 	&= \frac{z_0^{4\alpha-2}(1-(1/2)^{b+c+4\alpha-2})}{(c+2\alpha-1)(b+c+4\alpha-2)} 
 		- \frac{z_0^{4\alpha-2}}{c+2\alpha-1} B^-(1/2;c+2\alpha, b+2\alpha-1),
 \end{align*}
-where we have used the substitution $u := z_1/z_0$ giving $z_0 {\dd} u = {\dd} z_1$ in the penultimate line and
+where we have used the substitution $u := z_1/z_0$ giving $z_0 \dd u = \dd z_1$ in the penultimate line and
 $B^-$ denotes the (lower) incomplete beta function. Note that since $c \geq -1$, $-a \in \{0,-1,-2\}$ and by our assumption $\alpha \not \in \{\frac{3}{4},1\}$, the denominators that occur during the integration are all non-zero.
 
 Plugging this back into~\eqref{eq:Delta_P_computation_I12_with_J} gives
@@ -592,7 +589,7 @@ Plugging this back into~\eqref{eq:Delta_P_computation_I12_with_J} gives
    		+ \frac{z_0^{4\alpha-2}}{2(2\alpha-2)} B^-(1/2;-1+2\alpha, 2\alpha-1) \\
 	&=\frac{\left(\frac{3}{64}- \frac{3}{16} 2^{-4\alpha}+ 
    		\alpha (-\frac{41}{128} + \frac{13}{16}  2^{-4\alpha}) 
-   		+ \alpha^2 (\frac{5}{8} - \frac{3}{4} 2^{-4\alpha}) - \frac{15}{32}\alpha^3 +\frac{1}{8} a^4\right) 
+   		+ \alpha^2 (\frac{5}{8} - \frac{3}{4} 2^{-4\alpha}) - \frac{15}{32}\alpha^3 +\frac{1}{8} \alpha^4\right) 
    		z_0^{4 \alpha-2} }{4(\alpha-1/2)^2 (\alpha-1)^2 (\alpha-3/4) \alpha} \\
 	&\hspace{10pt}+ \frac{z_0^{4\alpha-2}}{8 (\alpha-1) \alpha (2\alpha-1)}(4 (\alpha-1) \alpha 
 		(B^-(1/2; 2\alpha, 2\alpha-2) - B^-(1/2;2 \alpha,2\alpha-1) ) \\
@@ -602,7 +599,7 @@ Plugging this back into~\eqref{eq:Delta_P_computation_I12_with_J} gives
     &\hspace{10pt}- (2\alpha-1)(\alpha-1) B^-(1/2; 1 + 2\alpha, 2\alpha-2)) \\
 	&=\frac{\left(\frac{3}{64}- \frac{3}{16} 2^{-4\alpha} 
 		+ \alpha (-\frac{41}{128} + \frac{13}{16}  2^{-4\alpha})  
-		+ \alpha^2 (\frac{5}{8} - \frac{3}{4} 2^{-4\alpha}) - \frac{15}{32}\alpha^3 +\frac{1}{8} a^4\right) 
+		+ \alpha^2 (\frac{5}{8} - \frac{3}{4} 2^{-4\alpha}) - \frac{15}{32}\alpha^3 +\frac{1}{8} \alpha^4\right) 
 		z_0^{4 \alpha-2} }{4(\alpha-1/2)^2 (\alpha-1)^2 (\alpha-3/4) \alpha} \\
  	&\hspace{10pt}+ \frac{z_0^{4\alpha-2}}{8 (\alpha-1) \alpha (2\alpha-1)}(4 (\alpha-1) \alpha 
  		B^-(1/2; 2\alpha+1, 2\alpha-2) \\
@@ -619,7 +616,7 @@ to obtain
 \begin{aligned}
 	I_{1,2}(y_0) &=\frac{\left(\frac{3}{64}- \frac{3}{16} 2^{-4\alpha}
 		+ \alpha (-\frac{41}{128} + \frac{13}{16}  2^{-4\alpha})
-		+ \alpha^2 (\frac{5}{8} - \frac{3}{4} 2^{-4\alpha}) - \frac{15}{32}\alpha^3 +\frac{1}{8} a^4\right) 
+		+ \alpha^2 (\frac{5}{8} - \frac{3}{4} 2^{-4\alpha}) - \frac{15}{32}\alpha^3 +\frac{1}{8} \alpha^4\right) 
 		z_0^{4 \alpha-2} }{4(\alpha-1/2)^2 (\alpha-1)^2 (\alpha-3/4) \alpha} \\
  	&\hspace{10pt}- \frac{z_0^{4\alpha-2}B^-(1/2; 2\alpha+1, 2\alpha-2) }{8 (\alpha-1) \alpha (2\alpha-1)}	\label{eq:Delta_P_computation_I12}
 \end{aligned}
@@ -632,29 +629,29 @@ We will follow a similar strategy as for $I_1(y_0)$. First, using the change of 
 we get
 \begin{align*}
 	I_2(y_0) &= 4 (\alpha-1/2)^2 \cdot \int_{1>z_1>z_2,z_0>0} P(y_0,y_1(z_1),y_2(z_2)) z_1^{2\alpha-2} z_2^{2\alpha-2} 
-		{\dd}z_2{\dd}z_1 \\
+		\dd z_2 \dd z_1 \\
 	&= 4 (\alpha-1/2)^2 \cdot \left( \int_{1>z_1>z_0,z_2>0}  z_0 z_1^{2\alpha-3} z_2^{2\alpha-2} 
-		{\dd}z_2{\dd}z_1 \right. \\
+		 \dd z_2 \dd z_1 \right. \\
 	&\hspace{10pt}\left. - \int_{{1>z_1>z_0,z_2>0}\atop{z_1 < z_0+z_2}} G(z_1,z_0,z_2) z_0 z_1^{2\alpha-3} 	
-		z_2^{2\alpha-2} \dd z_2{\dd}z_1 \right) \\
+		z_2^{2\alpha-2} \dd z_2 \dd z_1 \right) \\
 	&=: 4 (\alpha-1/2)^2 (I_{21}(y_0) - I_{22}(y_0)). 
 \end{align*}
 
-We proceed with the easy integral:
+We start with the easy integral:
 \begin{align*}
-	I_{21}(y_0) &= z_0 \int_{1>z_1>\max(z_2,z_0);z_0,z_2>0} z_1^{2\alpha-3} z_2^{2\alpha-2} {\dd}z_2{\dd}z_1   
-		= z_0 \int_{z_0}^1 \int_{0}^{z_1} z_1^{2\alpha-3} z_2^{2\alpha-2} {\dd}z_2{\dd}z_1\\
-	&= z_0 \int_{z_0}^1 \left[ \frac{z_2^{2\alpha-1}}{2\alpha-1}\right]_{0}^{z_1} z_1^{2\alpha-3} {\dd}z_1 
-		= \frac{z_0}{2\alpha-1}  \int_{z_0}^1 z_1^{4\alpha-4} {\dd}z_1
+	I_{21}(y_0) &= z_0 \int_{1>z_1>\max(z_2,z_0);z_0,z_2>0} z_1^{2\alpha-3} z_2^{2\alpha-2}  \dd z_2 \dd z_1   
+		= z_0 \int_{z_0}^1 \int_{0}^{z_1} z_1^{2\alpha-3} z_2^{2\alpha-2}  \dd z_2 \dd z_1\\
+	&= z_0 \int_{z_0}^1 \left[ \frac{z_2^{2\alpha-1}}{2\alpha-1}\right]_{0}^{z_1} z_1^{2\alpha-3} \dd z_1 
+		= \frac{z_0}{2\alpha-1}  \int_{z_0}^1 z_1^{4\alpha-4} \dd z_1
 		= \frac{z_0 - z_0^{4\alpha-2}}{(4\alpha-3)(2\alpha-1)}. \numberthis \label{eq:Delta_P_computation_I21}
 \end{align*}
 We note that the denominators above are non-zero as $\alpha > \frac{1}{2}$ and $\alpha \not =\frac{3}{4}$.
 
-To deal with $I_{22}(y_0)$ we consider the integral function
+To deal with $I_{22}(y_0)$ we consider the function
 \[
-	J_{a,b,c}^\prime(z_0) := z_0^a \int_{{1>z_1>\max(z_0,z_2); z_0,z_2>0}\atop{z_1 < z_0+z_2}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} {\dd}z_2{\dd}z_1
+	J_{a,b,c}^\prime(z_0) := z_0^a \int_{{1>z_1>\max(z_0,z_2); z_0,z_2>0}\atop{z_1 < z_0+z_2}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2 \dd z_1
 \]
-and note that
+and write
 \begin{equation}\label{eq:Delta_P_computation_I22_J}
 \begin{aligned}
 		I_{2,2}(y_0) &= \frac{1}{4}\left(J_{0,-1,1}^\prime(z_0) + J_{2,-1,-1}^\prime(z_0)
@@ -666,10 +663,10 @@ and note that
 We now compute $J_{a,b,c}^\prime(z_0)$
 \begin{align*}
 	J_{a,b,c}^\prime(z_0) 
-	&= z_0^a \int_{z_0}^1 \int_{z_1-z_0}^{z_1}  z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} {\dd} z_2 {\dd} z_1  \\
- 	&= z_0^a \int_{z_0}^1 \frac{1}{c+2\alpha-1}  z_1^{b+2\alpha-2}( z_1^{c+2\alpha-1}-(z_1-z_0)^{c+2\alpha-1})  {\dd} z_1  \\
+	&= z_0^a \int_{z_0}^1 \int_{z_1-z_0}^{z_1}  z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2 \dd z_1  \\
+ 	&= z_0^a \int_{z_0}^1 \frac{1}{c+2\alpha-1}  z_1^{b+2\alpha-2}( z_1^{c+2\alpha-1}-(z_1-z_0)^{c+2\alpha-1})  \dd z_1  \\
  	&=z_0^a \int_{z_0}^1 \frac{1}{c+2\alpha-1} z_1^{b+c+4\alpha-3} {\dd } z_1 -z_0^{a} \int_{z_0}^1 	
- 		\frac{1}{c+2\alpha-1}z_1^{b+2\alpha-2}(z_1-z_0)^{c+2\alpha-1}  {\dd} z_1  \\
+ 		\frac{1}{c+2\alpha-1}z_1^{b+2\alpha-2}(z_1-z_0)^{c+2\alpha-1}  \dd z_1  \\
  	&= z_0^a  \frac{1}{(c+2\alpha-1)(b+c+4\alpha-2)}(1-z_0^{b+c+4\alpha-2}) \\
  	&\hspace{10pt}- \frac{z_0^a}{c+2\alpha-1}z_0^{b+c+4\alpha-2}B^-(1-z_0;c+2\alpha,-b-c-4\alpha+2) \\
 	&= \frac{z_0^a -z_0^{4\alpha-2}}{(c+2\alpha-1)(b+c+4\alpha-2)}  
@@ -677,11 +674,11 @@ We now compute $J_{a,b,c}^\prime(z_0)$
 \end{align*}
 Here we used that for $x  \in \R,y>-1$ (note that as $c\geq -1$, it holds that $c+2\alpha-1 >-1$):
 \begin{align*}
- \int_{z_0}^{1} z_1^x (z_1-z_0)^y {\dd} z_1 
- &= \int_0^{1-z_0} (s+z_0)^x s^y {\dd} s \\
- &= z_0^{x+y} \int_0^{1-z_0} \left( (s/z_0) + 1 \right)^x (s/z_0)^y {\dd} s \\
- &= z_0^{x+y+1} \int_{0}^{1/z_0 -1 } (t+1)^x t^y {\dd} t \\
- &= z_0^{x+y+1} \int_0^{1-z_0} u^y (1-u)^{-(x+y+2)} {\dd} u \\
+ \int_{z_0}^{1} z_1^x (z_1-z_0)^y \dd z_1 
+ &= \int_0^{1-z_0} (s+z_0)^x s^y \dd s \\
+ &= z_0^{x+y} \int_0^{1-z_0} \left( (s/z_0) + 1 \right)^x (s/z_0)^y \dd s \\
+ &= z_0^{x+y+1} \int_{0}^{1/z_0 -1 } (t+1)^x t^y \dd t \\
+ &= z_0^{x+y+1} \int_0^{1-z_0} u^y (1-u)^{-(x+y+2)} \dd u \\
  &= z_0^{x+y+1} B^-(1-z_0; y+1,-x-y-1 ).
 \end{align*}
 As $c \geq -1$ and $-a \in \{0,-1,-2\}$ and by our assumption $\alpha \not \in \{\frac{3}{4}\}$, the denominators 
@@ -815,18 +812,18 @@ J&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 +
 	24 \alpha^5}{16(\alpha-1)^2 \alpha (\alpha+1) (2\alpha+1)} +  \frac{2^{-1 - 
 		4 \alpha}}{(\alpha - 1)^2} \\
 	&\qquad+ \frac{(\alpha - 1/2) (B(2 \alpha, 2 \alpha + 1) + 
-	B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha))}{2 (\alpha - 1) (3 \alpha - 1)}
+	B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha))}{2 (\alpha - 1) (3 \alpha - 1)}.
 \end{align*}
 
 We proceed to work out $I^{(k)}$. For this we will compute the integrals involving terms in $P(y(z))$ of the form $z^u$, $(1-z)^u$ and $B(1-z,v,w)$ separately. We first point out that for any $0 \le a < b \le 1$
 \begin{align*}
 	\int_a^b z^{u+2\alpha-(k+1)} e^{-\xi z^{-1}} \dd z
 	&= \xi^{u+2\alpha-k} \int_{\xi/b}^{\xi/a} t^{k-1-2\alpha-u} e^{-t} \dd t \\
-	&= \xi^{u+2\alpha-k} \left( \Gamma^+( k-2\alpha-u,\xi/b) - \Gamma^+( k-2\alpha-u, \xi/a) \right), 
+	&= \xi^{u+2\alpha-k} \left( \Gamma^+( k-2\alpha-u,\xi/b) - \Gamma^+( k-2\alpha-u, \xi/a) \right).
 \end{align*}
 In particular
 \begin{equation}\label{eq:integral_Delta_P_z}
-	\int_0^1 z^{u+2\alpha-k-1} e^{-\xi z^{-1}} \dd z = \xi^{u+2\alpha-k} \Gamma^+(k-2\alpha-u,\xi)
+	\int_0^1 z^{u+2\alpha-k-1} e^{-\xi z^{-1}} \dd z = \xi^{u+2\alpha-k} \Gamma^+(k-2\alpha-u,\xi).
 \end{equation}
 where $\Gamma^+$ denotes the (upper) incomplete gamma function, and we have used the substitution
 $t = \xi / z$ which gives $\dd z = -\xi t^{-2} \dd t$. (And of course it is understood that 
@@ -836,7 +833,7 @@ $\xi/0 = \infty$). This takes care of the integrals of all terms in $P(y(z))$ of
 Next we will consider the integrals over the terms in $P(y(z))$ of the form $(1-z)^u$. For this we need the 
 hypergeometric U-function (also called Tricomi's confluent hypergeometric function), which has the integral representation 
 \[
-	U(a,b,z) = \frac{1}{\Gamma(a)} \int_0^\infty e^{-zt} t^{a-1} (1+t)^{b-a-1} \dd t
+	U(a,b,z) = \frac{1}{\Gamma(a)} \int_0^\infty e^{-zt} t^{a-1} (1+t)^{b-a-1} \dd t.
 \] 
 which holds for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $Re(a), Re(z) >0$, see~\cite[p.255]{erdelyi1953higher}. 
 Applying the change of variables $t=\frac{1-s}{s}$ (i.e. $\dd t = -s^{-2} \dd s$ and $s = \frac{1}{t+1}$) yields
@@ -845,9 +842,9 @@ Applying the change of variables $t=\frac{1-s}{s}$ (i.e. $\dd t = -s^{-2} \dd s$
 \begin{align*}
 	U(a,b,z) = \frac{e^z}{\Gamma(a)} \int_0^1 s^{-b} (1-s)^{a-1} e^{-z/s} ds
 \end{align*}
-Plugging in $a=2\alpha+1 >0$, $b=-2\alpha+k+1$, $z=\xi>0$, then gives
+Setting $a=2\alpha+1 >0$, $b=-2\alpha+k+1$, $z=\xi>0$, then gives
 \begin{equation}\label{eq:integral_Delta_P_1_z}
-	\int_0^1 z_0^{2\alpha-k-1} e^{-\xi/z_0} (1-z_0)^{2\alpha} dz_0 = \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi)
+	\int_0^1 z_0^{2\alpha-k-1} e^{-\xi/z_0} (1-z_0)^{2\alpha} dz_0 = \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi).
 \end{equation}
 
 Finally we need to deal with the terms in $P(y(z))$ that involve the incomplete beta function. Let $a, c \in \R$, $\xi, b >0$ 
@@ -855,7 +852,7 @@ positive real numbers. Using the integral definition of the incomplete beta func
 \begin{align*}
 	\int_0^1 z^a e^{-\xi/z} B^-(1-z;b,c) \dd z 
 	&=\int_0^1 z^a e^{-\xi/z} \int_0^{1-z} t^{b-1} (1-t)^{c-1} \dd t \dd z \\
-	&=\int_0^1 z^a e^{-\xi/z} \int_z^1 s^{c-1} (1-s)^{b-1} \dd s \dd z
+	&=\int_0^1 z^a e^{-\xi/z} \int_z^1 s^{c-1} (1-s)^{b-1} \dd s \dd z.
 \end{align*}
 Then changing the order of integration and using the substitution $u = \xi/z$  and recognizing the upper incomplete gamma function yields
 \begin{align*}
@@ -868,7 +865,7 @@ Then changing the order of integration and using the substitution $u = \xi/z$  a
 To compute this last integral we make use of the fact that the incomplete $\Gamma$-function has a representation in terms of 
 Meijer's $G$-function (see Lemma~\ref{lem:gamma_meijer_G} in Appendix~\ref{sec:Meijer_G_functions})
 \[
-	\Gamma^+(-a-1,\xi/s) = \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}},
+	\Gamma^+(-a-1,\xi/s) = \MeijerGnew{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}},
 \] 
 which holds for any $a\in \R$ and $s>0$ (that for a fixed second argument, the upper incomplete gamma function is entire 
 in the first argument, see~\cite[pp. 899, 1032ff.]{gradshteyn2015table}). 
@@ -877,24 +874,24 @@ We can now evaluate the integral in~\eqref{eq:integral_gamma_function} using sev
  %(see the wolfram functions website \url{http://functions.wolfram.com/06.06.26.0005.01}, it can also be found in the paper \url{https://arxiv.org/pdf/1507.05571}; , so we get the integral
 First, inserting the expression for the incomplete Gamma-function into~\eqref{eq:integral_gamma_function} gives
 \begin{align*}
-	\xi^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerG{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}} \dd s
+	\xi^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerGnew{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}} \dd s.
 \end{align*}
 Next we apply the inversion identity for Meijer's $G$-function (see \cite[p. 209, 5.3.1.(9))]{erdelyi1953higher}) to get
 \begin{align*}
-	\xi^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerG{0}{2}{2}{1}{2+a,1}{0}{\frac{s}{\xi}} \dd s
+	\xi^{a+1} \int_0^1 s^{c-1} (1-s)^{b-1} \MeijerGnew{0}{2}{2}{1}{2+a,1}{0}{\frac{s}{\xi}} \dd s.
 \end{align*}
 This expression is actually the Euler transform of Meijer's $G$-function (see \cite[p. 214, 5.5.2.(5)]{erdelyi1953higher}) and (as the conditions $2+1<2(0+2)$ and $|\arg(\xi^{-1})| < \frac{\pi}{2}$ (as $\xi>0$) and $1-c-b<1-c$ (as $b>0$)  are satisfied) it equals
 \begin{align*}
-	\xi^{a+1} \Gamma(b) \MeijerG{0}{3}{3}{2}{1-c,2+a,1}{0,1-c-b}{\xi^{-1}}
+	\xi^{a+1} \Gamma(b) \MeijerGnew{0}{3}{3}{2}{1-c,2+a,1}{0,1-c-b}{\xi^{-1}}.
 \end{align*}
 Using again the inversion identity for Meijer's $G$-function we now get
 \begin{align*}
-	\xi^{a+1} \Gamma(b) \MeijerG{3}{0}{2}{3}{1,b+c}{c,-1-a,0}{\xi}
+	\xi^{a+1} \Gamma(b) \MeijerGnew{3}{0}{2}{3}{1,b+c}{c,-1-a,0}{\xi}.
 \end{align*}
 Finally, plugging in $a= 6\alpha-k-3$, $b=2\alpha$, $c=3-4\alpha$ we obtain
 \begin{equation}\label{eq:integral_Delta_P_Beta}
 	\int_0^1 z^a e^{-\xi/z} B^-(1-z;b,c) \dd z =
-	\xi^{6a-k-2} \Gamma(2\alpha) \MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}
+	\xi^{6a-k-2} \Gamma(2\alpha) \MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}.
 \end{equation}
 %(note that this agrees with the result in the old approach, after `bringing the power of $\xi$ into Meijer's $G$-function'.)
 
@@ -911,7 +908,7 @@ Using equation~\eqref{eq:integral_Delta_P_z}, \eqref{eq:integral_Delta_P_1_z} an
 	&\hspace{15pt}\left.+ \xi^{k-2\alpha} \Gamma(2\alpha+1)e^{-\xi} 	
 		U(2\alpha+1,1+k-2\alpha,\xi) \right. \\ 
 	&\hspace{15pt}\left.- \xi^{4\alpha-2} 
-		\Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right)\\
+		\Gamma(2\alpha+1)\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right)\\
 \end{align*}%{4\alpha-k+1,6\alpha-k-1}{6\alpha-k-2,2\alpha-k+1,0}
 
 With the expressions for $J$ and $I^{(k)}$ and using $\Gamma^\ast(q,z) = \Gamma^+(q+1,z) + \Gamma^+(q,z)$ we now obtain, after 
@@ -931,7 +928,7 @@ some algebra, the expression for $\gamma$
 	&\hspace{10pt}\hspace{10pt}\left.+ \xi^{-2\alpha} \Gamma(2\alpha+1)e^{-\xi} 
 		U(2\alpha+1,1-2\alpha,\xi) \right. \\ 
 	&\hspace{10pt}\hspace{10pt}\left.- \xi^{4\alpha-2} 
-		\Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+2,0}{\xi}  \right) \\
+		\Gamma(2\alpha+1)\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+2,0}{\xi}  \right) \\
 	&\hspace{10pt}-\frac{\xi^{2\alpha}}{4(\alpha-1)} \left( -\Gamma^+(1 - 2 \alpha, \xi) - 
 		2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+( - 2 \alpha - 1, \xi)}{(\alpha - 1)} \right. \\ 
 	&\hspace{10pt}\hspace{10pt}\left.+ 8 \alpha (\alpha - 1/2) \xi \Gamma^+(1 - 2 \alpha - 1,\xi) 
@@ -941,7 +938,7 @@ some algebra, the expression for $\gamma$
 	&\hspace{10pt}\hspace{10pt}\left.+ \xi^{1-2\alpha} \Gamma(2\alpha+1)e^{-\xi} 
 		U(2\alpha+1,2-2\alpha,\xi) \right. \\ 
 	&\hspace{10pt}\hspace{10pt}\left.- \xi^{4\alpha-2} 
-		\Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+3,0}{\xi}  \right)\\
+		\Gamma(2\alpha+1)\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+3,0}{\xi}  \right)\\
 	&=\frac{2 + 4 \alpha + 13 \alpha^2 - 34 \alpha^3 - 12\alpha^4 + 24 \alpha^5}
 		{16(\alpha-1)^2 \alpha (\alpha+1) (2\alpha+1)} 
 		+  \frac{2^{-1 - 4 \alpha}}{(\alpha - 1)^2} \\
@@ -959,7 +956,7 @@ some algebra, the expression for $\gamma$
 		\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+2,0}{\xi}
 		+ \MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+3,0}{\xi}\right)}{4(\alpha-1)}.
 \end{align*}
-and note that this equals the expression in Theorem~\ref{thm:clustering_coefficient_hyperbolic}. %% when $\alpha \ne 1$.
+which is the expression in Theorem~\ref{thm:clustering_coefficient_hyperbolic}.
 
 Similarly, we get
 \begin{align*}
@@ -970,7 +967,7 @@ Similarly, we get
 	&\hspace{10pt}\left.+ 4\xi^{4\alpha - 2} \Gamma^+(k - 6 \alpha + 2, 
       \xi) \left( \frac{2^{ - 4\alpha}(3 \alpha - 1)}{(\alpha - 1)} + (\alpha - 1/2) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha) \right)  \right.\\ 
 	&\hspace{10pt}\left.+ \xi^{k-2\alpha} \Gamma(2\alpha+1)e^{-\xi} U(2\alpha+1,1+k-2\alpha,\xi) \right. \\ 
-	&\hspace{10pt}\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerG{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right),
+	&\hspace{10pt}\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right),
 \end{align*}
 which equals the expression in Theorem~\ref{thm:local_clustering_hyperbolic}. %% when $\alpha \ne 1$.
 
@@ -984,7 +981,7 @@ which equals the expression in Theorem~\ref{thm:local_clustering_hyperbolic}. %%
 
 Although we've already established that $\gamma, \gamma(k)$ can be obtained at $\alpha=1$ by
 taking the $\alpha\to 1$ limit of the expression obtained for $\alpha=1$, it is still helpful
-to derive an alternate, more explicit expression.
+to derive an alternative, more explicit expression.
 This is what we will do in the current section.
 We will prove 
 
@@ -1029,6 +1026,11 @@ e^{-y}  +
 \begin{proof}
 \TM{\RD{Warning!} this has not been properly proofread by me, or anyone else.}
 We want to compute the limit $\lim_{\alpha \rightarrow 1} P_\alpha(y_0(z_0))$. For $\alpha \neq 1$, we label the terms as follows:
+%\begin{align*}
+%&P_\alpha(y_0(z_0)) \\
+%&= \frac{1}{\alpha-1}\left(s_1(\alpha,z_0)+s_2(\alpha,z_0)+s_3(\alpha,z_0)+s_4(\alpha,z_0) 
+%+s_5(\alpha,z_0)+s_6(\alpha,z_0)+s_7(\alpha,z_0)\right)
+%\end{align*}
 \begin{align*}
 &P_\alpha(y_0(z_0)) \\
 &= \frac{1}{\alpha-1}\left(s_1(\alpha,z_0)+s_2(\alpha,z_0)+\frac{1}{\alpha-1}(s_3(\alpha,z_0)+s_4(\alpha,z_0)) 
@@ -1048,23 +1050,34 @@ Now, we consider the functions $s_i(\alpha) = s_i(\alpha,z_0)$ as functions of $
 expansion at $\alpha=1$, for $i\in \{1,2,5,6,7\}$ up to linear and for $i\in \{3,4\}$ up to quadratic order, i.e. we 
 write $s_i(\alpha) = s_i(1)+s_i'(1)(\alpha-1)+o(\alpha-1)$ for $i\in \{1,2,5,6,7\}$ and 
 $s_i(\alpha)=s_i(1)+s_i'(1)(\alpha-1)+\frac{s_i''(1)}{2}(\alpha-1)^2+o((\alpha-1)^2)$ for $i\in \{3,4\}$. Using these expansions, we can rewrite
+%\begin{align*}
+%&P(y_0(z_0)) = \frac{1}{\alpha-1}\left( \sum_{i\in \{1,2,5,6,7\}} s_i(1)+\sum_{i\in\{1,2,5,6,7\}} 
+%s_i'(1)(\alpha-1)+o(\alpha-1) \right. \\
+%&\left.+\frac{1}{\alpha-1}(s_3(1)+s_4(1)+(s_3'(1)+s_4'(1))(\alpha-1)+\frac{1}{2}(s_3''(1)+s_4''(1))(\alpha-1)^2 +o((\alpha-1)^2)) \right)
+%\end{align*}
 \begin{align*}
 &P(y_0(z_0)) = \frac{1}{\alpha-1}\left( \sum_{i\in \{1,2,5,6,7\}} s_i(1)+\sum_{i\in\{1,2,5,6,7\}} 
 s_i'(1)(\alpha-1)+o(\alpha-1) \right. \\
-&\left.+\frac{1}{\alpha-1}(s_3(1)+s_4(1)+(s_3'(1)+s_4'(1))(\alpha-1)+\frac{1}{2}(s_3''(1)+s_4''(1))(\alpha-1)^2 +o((\alpha-1)^2)) \right)
+&\left.+\frac{s_3(1)+s_4(1)}{\alpha-1} + s_3'(1)+s_4'(1)+\frac{1}{2}(s_3''(1)+s_4''(1))(\alpha-1) +o((\alpha-1)) \right)
 \end{align*}
 In order to continue, we compute:
 \begin{align*}
 s_1(\alpha) &=-\frac{1}{8}+\frac{1}{8}(\alpha-1)+o(\alpha-1) \\
 s_2(\alpha) &=\frac{1}{2}z_0 +z_0 (\alpha-1)+o(\alpha-1) \\
-s_3(\alpha) &= -\frac{1}{16}z_0^2 -\frac{1}{4}z_0^2(\alpha-1)-\frac{1}{4}z_0^2(\alpha-1)^2+o( (\alpha-1)^2) \\
+%s_3(\alpha) &= -\frac{1}{16}z_0^2 -\frac{1}{4}z_0^2(\alpha-1)-\frac{1}{4}z_0^2(\alpha-1)^2+o( (\alpha-1)^2) \\
+s_3(\alpha) &= -\frac{1}{16}z_0^2 -\frac{1}{4}z_0^2(\alpha-1)-\frac{1}{2}z_0^2(\alpha-1)^2+o( (\alpha-1)^2) \\
+%s_4(\alpha) &= \frac{1}{16}z_0^2 +\frac{z_0^2}{4}\left(\frac{1}{8}+\ln\frac{z_0}{2}\right)(\alpha-1)\\
+%&\qquad+\frac{z_0^2}{8}\left(4\left(\ln\frac{z_0}{2}\right)^2+\ln\frac{z_0}{2} - \frac{1}{4}\right)(\alpha-1)^2+o( (\alpha-1)^2)\\
 s_4(\alpha) &= \frac{1}{16}z_0^2 +\frac{z_0^2}{4}\left(\frac{1}{8}+\ln\frac{z_0}{2}\right)(\alpha-1)\\
-&\qquad+\frac{z_0^2}{8}\left(4\left(\ln\frac{z_0}{2}\right)^2+\ln\frac{z_0}{2} - \frac{1}{4}\right)(\alpha-1)^2+o( (\alpha-1)^2)\\
-s_5(\alpha) &= \frac{z_0^2}{4} B^-(1/2;3,0) + z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0) \right. \\
- 	&\hspace{20pt}\left.+1/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \right)  (\alpha-1)+o (\alpha-1)\\
-s_6(\alpha) &= \frac{(1-z_0)^2}{8}+\frac{(1-z_0)^2}{4} (\ln(1-z_0)-1/2 )(\alpha-1)+o(\alpha-1)\\
-s_7(\alpha) &= -\frac{z_0^2}{4}B^-(1-z_0;2,-1) - z_0^2 \left(\ln(z_0)B^-(1-z_0;2,-1) \right. \\
-&\qquad \left.+\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \right) (\alpha-1)+o(\alpha-1)
+&\qquad+\frac{z_0^2}{8}\left(8\left(\ln\frac{z_0}{2}\right)^2+2\ln\frac{z_0}{2} - \frac{1}{2}\right)(\alpha-1)^2+o( (\alpha-1)^2)\\
+s_5(\alpha) &= \frac{z_0^2}{4} B^-(1/2;3,0) +o(\alpha-1) \\
+	&\hspace{10pt}+ z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0) +1/2\int_0^{\frac{1}{2}} \ln(t(1-t))t^2(1-t)^{-1} \dd t \right)  (\alpha-1)+o (\alpha-1)\\
+s_6(\alpha) &= \frac{(1-z_0)^2}{8}+\frac{(1-z_0)^2}{4} (\ln(1-z_0)-1/2 )(\alpha-1 + \smallO{a-1})\\
+%s_7(\alpha) &= -\frac{z_0^2}{4}B^-(1-z_0;2,-1) - z_0^2 \left(\ln(z_0)B^-(1-z_0;2,-1) \right. \\
+%&\qquad \left.+\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \right) (\alpha-1)+o(\alpha-1)
+s_7(\alpha) &= -\frac{z_0^2}{4}B^-(1-z_0;2,-1) +o(\alpha-1) \\
+	&\hspace{10pt}- z_0^2 \left(\ln(z_0)B^-(1-z_0;2,-1) 
+		+\int_0^{1-z_0} t(1-t)^{-2}\ln\left(\frac{\sqrt{t}}{1-t}\right)t(1-t)^{-2} \dd t \right) (\alpha-1).
 \end{align*}
 Based on this we see that
 \begin{align*}
@@ -1077,8 +1090,7 @@ and
 +\frac{z_0^2}{4}B^-(1/2;3,0)+\frac{(1-z_0)^2}{8}-\frac{z_0^2}{4}B^-(1-z_0;2,-1) \\
 &=-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\left(\frac{z_0^2}{4}\ln(z_0)-\frac{z_0^2}{4}\ln 2\right) 
 +\left(-\frac{5z_0^2}{32}+\frac{z_0^2}{4}\ln2\right) \\ 
-&\hspace{50pt}+\left(\frac{1}{8}-\frac{z_0}{4}+\frac{z_0^2}{8}\right)+\left(\frac{z_0^2}{4}-\frac{z_0}{4}-\frac{z_0^2}{4}\ln z_0\right) \\
-&=0
+&\hspace{50pt}+\left(\frac{1}{8}-\frac{z_0}{4}+\frac{z_0^2}{8}\right)+\left(\frac{z_0^2}{4}-\frac{z_0}{4}-\frac{z_0^2}{4}\ln z_0\right) &=0,
 \end{align*}
 using that %$B^-(\frac{1}{2};3,0)=-\frac{5}{8}+\ln 2$ and $B^-(1-z_0;2,-1)=-1+z_0^{-1}+\ln z_0$.
 \begin{align*}
@@ -1092,7 +1104,7 @@ B^-(1-z_0;2,-1)&=\int_0^{1-z_0} t(1-t)^{-2}dt = \int_{z_0}^1 (1-s)s^{-2}ds \\
 \end{align*}
 
 
-Finally, it follows that
+Finally, it follows that as $\alpha \to 1$,
 \begin{align*}
 P(y_0(z_0)) = \sum_{i \in\{1,2,5,6,7\}} s_i'(1)+\frac{1}{2}(s_3''(1)+s_4''(1)) + o(1)
 \end{align*}
@@ -1101,21 +1113,22 @@ Therefore, the desired value of $\lim_{\alpha \rightarrow 1} P(y_0(z_0))$ is giv
 &\sum_{i \in\{1,2,5,6,7\}} s_i'(1)+\frac{1}{2}(s_3''(1)+s_4''(1))\\
 	&=\frac{1}{8}+z_0-\frac{z_0^2}{4}+\frac{z_0^2}{8}(4(\ln\frac{z_0}{2})^2+\ln\frac{z_0}{2} - \frac{1}{4}) 
 		+\frac{(1-z_0)^2}{4} (\ln(1-z_0)-1/2 )\\
-	&\hspace{10pt}+z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0)+1/2\int_0^{\frac{1}{2}} 
-		\ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \right) \\
-	&\hspace{10pt}- z_0^{2}\left(\ln(z_0)B^-(1-z_0;2,-1)+\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \right) \\
+	&\hspace{10pt}+z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0)+ \frac{1}{2}\int_0^{\frac{1}{2}} 
+		\ln(t(1-t)) \, t^2(1-t)^{-1} \dd t \right) \\
+	&\hspace{10pt}- z_0^{2}\left(\ln(z_0)B^-(1-z_0;2,-1)+\int_0^{1-z_0}\ln\left(\frac{\sqrt{t}}{1-t}\right)t(1-t)^{-2} 
+		\dd t \right) \\
 	&=\frac{1}{8}+z_0-\frac{z_0^2}{4}+\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2
 		+\frac{z_0^2}{8}\ln\frac{z_0}{2} - \frac{z_0^2}{32} \\
 	&\hspace{10pt}-\frac{5}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2-\frac{5z_0^2}{32} +\frac{z_0^2 \ln2}{4}\\
-	&\hspace{10pt}+z_0^2/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}\dd t \\
+	&\hspace{10pt}+z_0^2/2\int_0^{\frac{1}{2}} \ln(t(1-t)) \, t^2(1-t)^{-1}\dd t \\
 	&\hspace{10pt}+\frac{(1-z_0)^2}{4}\ln(1-z_0) -\frac{1}{8}+\frac{z_0}{4}-\frac{z_0^2}{8}\\
 	&\hspace{10pt}+ z_0^2\ln(z_0)-z_0 \ln z_0-z_0^2(\ln z_0)^2
-		-z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \\
+		-z_0^2\int_0^{1-z_0} \ln\left(\frac{\sqrt{t}}{1-t}\right)t(1-t)^{-2}  \dd t \\
 	&=\frac{5}{4}z_0-\frac{9}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} 
 		+\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
 	&\hspace{10pt}+\frac{3}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}
-		+z_0^2/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1}dt \\
-	&\hspace{10pt}-z_0 \ln z_0-z_0^2(\ln z_0)^2-z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \\
+		+z_0^2/2\int_0^{\frac{1}{2}} \ln(t(1-t)) \, t^2(1-t)^{-1} \dd t \\
+	&\hspace{10pt}-z_0 \ln z_0-z_0^2(\ln z_0)^2-z_0^2\int_0^{1-z_0} \ln\left(\frac{\sqrt{t}}{1-t}\right)t(1-t)^{-2} \dd t \\
 	&=\frac{5}{4}z_0-\frac{9}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} 
 		+\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
 	&\hspace{10pt}+\frac{3}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}
@@ -1136,8 +1149,8 @@ where we used that
 \end{align*}
 and
 \begin{align*}
-	&z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt\\
-	&= -\frac{1}{z_0} (1 + \frac{1}{2}(2-z_0) \ln(z_0) + \frac{1}{2}z_0 \ln(z_0)^2 - \frac{1}{2} (1-z_0) \ln(1-z_0) +\frac{1}{2}z_0 Li_2(z_0))+1   +\frac{1}{2}  \Li_2(1).
+	&z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2} \dd t\\
+	&= -\frac{1}{z_0} (1 + \frac{1}{2}(2-z_0) \ln(z_0) + \frac{1}{2}z_0 \ln(z_0)^2 - \frac{1}{2} (1-z_0) \ln(1-z_0) +\frac{1}{2}z_0 \Li_2(z_0))+1   +\frac{1}{2}  \Li_2(1).
 \end{align*}
 By expanding the squares and collecting terms, the last expression can be simplified to
 \begin{align*}
@@ -1193,7 +1206,7 @@ and in particular the function $P(y)$. We therefore start with establishing the 
 \begin{equation}\label{eq:general_clustering_integral_scaling}
 	\frac{\int_0^\infty e^{-\beta y} \rho(y,k) \alpha e^{-\alpha y} \dd y}
 	{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	\sim \xi_{\alpha, \nu}^{2\beta} k^{-2\beta}.
+	\sim \xi^{2\beta} k^{-2\beta}.
 \end{equation}
 
 
@@ -1230,7 +1243,7 @@ By Lemma~\ref{lem:Paneq1} we get that
 		+ \frac{\alpha-\frac{1}{2}}{\alpha-1} e^{(4\alpha-3)\frac{y}{2}}
 		- \frac{(\alpha - \frac{1}{2})^2}{4(\alpha-1)^2} e^{4(\alpha-1)\frac{y}{2}}.
 \end{align*}
-Because for any $b < 1$, $B^-(1-z,a,b)$ converges to $B^-(a,b) < \infty$ as $z \to 0$, we get that as $y \to \infty$, the first line is asymptotically equivalent to
+Because for any $b < 1$, $B^-(1-z: a,b)$ converges to $B(a,b) < \infty$ as $z \to 0$, we get that as $y \to \infty$, the first line is asymptotically equivalent to
 \[
 	\frac{3 \alpha - 1}{2^{4 \alpha+1} \alpha (\alpha - 1)^2} 
 			+ \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2(\alpha - 1) \alpha}
@@ -1240,36 +1253,35 @@ with $c_\alpha$ as defined in Proposition~\eqref{prop:asymp}. The proof now foll
 
 \paragraph{Proof for \bm{$\alpha = 3/4$}}
 
-Similar to the previous case we use Lemma~\ref{lem:Paneq1} to obtain
+Similar to the previous case we use Lemma~\ref{lem:Paneq1} to obtain (evaluating the expressions for $\alpha = 3/4$)
 \begin{align*}
 	\frac{2}{y} e^{\frac{y}{2}}P(y) 
-	&= \frac{2}{y}\frac{B^-(1-e^{-\frac{y}{2}}, 2\alpha, 3 - 4\alpha)}{4(\alpha - 1)}\\
-	&\hspace{10pt} + \frac{2}{y}\frac{e^{\frac{y}{2}}\left((1 - e^{-\frac{y}{2}})^{2\alpha} - 1\right)}{8(\alpha - 1)\alpha}
-		+ \frac{(\alpha - \frac{1}{2})}{(\alpha - 1)y} 
-		-\frac{(\alpha - \frac{1}{2})^2 e^{-\frac{y}{2}}}{4(\alpha - 1)^2 y} \\
+	&= \frac{2}{y}B^-(1-e^{-\frac{y}{2}}; 3/2, 0)
+		- \frac{4}{y}\frac{e^{\frac{y}{2}}\left((1 - e^{-\frac{y}{2}})^{3/2} - 1\right)}{3}
+		- \frac{1}{y} - \frac{ e^{-\frac{y}{2}}}{4 y} \\
 	&\hspace{10pt}+ \frac{2}{y} 
-		\left(\frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha (\alpha - 1)^2} 
-		+ \frac{(\alpha - \frac{1}{2}) B^-(\frac{1}{2}; 1 + 2 \alpha, -2 + 2 \alpha)}{2(\alpha - 1) \alpha} \right)
+		\left(\frac{5}{3} 
+		- \frac{2 B^-(\frac{1}{2}; 5/2, -1/2)}{3}\right)
 \end{align*}
 First we note that as $y \to \infty$,
 \begin{equation}\label{eq:asymptotics_Delta_P_auxiliary}
-	e^{\frac{y}{2}}\left(\left(1 - e^{-\frac{y}{2}}\right)^{2\alpha}-1\right) 
-	\sim -2\alpha,
+	e^{\frac{y}{2}}\left(\left(1 - e^{-\frac{y}{2}}\right)^{3/2}-1\right) 
+	\sim -\frac{3}{2},
 \end{equation}
 which implies that
 \[
-	\lim_{y \to \infty} \frac{2}{y}\frac{e^{\frac{y}{2}}\left((1 - e^{-\frac{y}{2}})^{2\alpha} - 1\right)}{8(\alpha - 1)\alpha} = 0.
+	\lim_{y \to \infty} \frac{4}{y}\frac{e^{\frac{y}{2}}\left((1 - e^{-\frac{y}{2}})^{3/2} - 1\right)}{3} = 0.
 \]
 We can now conclude that all terms in $\frac{2}{y} e^{\frac{y}{2}}P(y)$ except the first one are $\smallO{1}$ as $y \to \infty$. By writing $z = e^{-\frac{y}{2}}$ we can rewrite the first term as
 \[
-	\frac{2}{y}\frac{B^-(1-e^{-\frac{y}{2}}, 2\alpha, 3 - 4\alpha)}{4(\alpha - 1)} 
-	= -\frac{1}{\log(z)}\frac{B^-(1-z, 2\alpha, 3 - 4\alpha)}{4(\alpha - 1)}.
+	\frac{2}{y}B^-(1-e^{-\frac{y}{2}}; 3/2, 0) 
+	= -\frac{B^-(1-z; 3/2, 0)}{\log(z)} .
 \]
-Since $B^-(1-z,2\alpha,0) \sim - \log(z)$ as $z \to \infty$, see Lemma~\ref{lem:asymptotics_incomplete_beta}, it now follows
+Since $B^-(1-z,3/2,0) \sim - \log(z)$ as $z \to 0$, see Lemma~\ref{lem:asymptotics_incomplete_beta}, it now follows
 that for $\alpha = 3/4$,
 \[
-	\lim_{y \to \infty} \frac{2}{y}\frac{B^-(1-e^{-\frac{y}{2}}, 2\alpha, 3 - 4\alpha)}{4(\alpha - 1)}
-	= \lim_{z \to 0} -\frac{1}{\log(z)}\frac{B^-(1-z, 2\alpha, 3 - 4\alpha)}{4(\alpha - 1)} = 1.
+	\lim_{y \to \infty} \frac{2}{y} B^-(1-e^{-\frac{y}{2}}; 3/2, 0)
+	= \lim_{z \to 0} -\frac{1}{\log(z)} B^-(1-z; 3/2, 0) = 1.
 \]
 We therefore conclude that
 \[
@@ -1315,7 +1327,7 @@ Therefore it follows, see Lemma~\ref{lem:asymptotics_incomplete_beta}, that
 \begin{align*}
 	\lim_{y \to \infty} - e^{-(4\alpha - 3)\frac{y}{2}}
 		\frac{B^-(1 - e^{-\frac{1}{2}y}; 2 \alpha, 3 - 4 \alpha)}{4 (\alpha - 1)}
-	&= \lim_{z \to 0} z^{4\alpha - 3} \frac{B^-(1 - z, 2 \alpha, 3 - 4 \alpha)}{4(\alpha - 1)}\\
+	&= \lim_{z \to 0} z^{4\alpha - 3} \frac{B^-(1 - z; 2 \alpha, 3 - 4 \alpha)}{4(\alpha - 1)}\\
 	&= \frac{1}{4(\alpha - 1)(4\alpha - 3)}.
 \end{align*}
 We conclude that as $y \to \infty$
@@ -1330,48 +1342,48 @@ which finishes the proof.
 
 With the asymptotic behavior of $P(y)$ we are almost ready to prove Proposition~\ref{prop:asymp}. First we will prove a result that will allow us to limit the values of $y$, when performing the integration. For this, fix some $C > 0$ and define
 \[
-	a(k)^\pm = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
+	a^\pm(k) = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
 \] 
 We will show that, as $k \to \infty$,
 \begin{equation}\label{eq:asymptotics_average_clustering_concentration}
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-	= (1+\smallO{1}) \int_{a(k)^-}^{a(k)^+} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y.
+	= (1+\smallO{1}) \int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y.
 \end{equation}
 
 To establish~\eqref{eq:asymptotics_average_clustering_concentration} recall that $\mu(y) = \xi e^{\frac{y}{2}}$ and consider $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$ as a function of $y$. Then, since $\mu^\prime(y) = \mu(y)/2$, we get that
 \[
 	\frac{\partial \rho(y,k)}{\partial y} = \frac{1}{2}\left(k - \mu(y)\right)\rho(y,k),
 \]
-which implies that $\rho(y,k)$ attains its maximum at $\mu(y) = k$. Moreover we see that the derivative is strictly positive when $\mu(y) < k$ and strictly negative when $\mu(k) > k$. Since $\mu(a(k)^-) < k$ and $\mu(a(k)^+) > k$, we conclude that $\rho(y,k)$, as a function of $y$, is strictly increasing on $[0,a(k)^-]$ and strictly decreasing on $[a(k)^+,\infty)$. Hence, using that $P(y) \le 1$,
+which implies that $\rho(y,k)$ attains its maximum at $\mu(y) = k$. Moreover we see that the derivative is strictly positive when $\mu(y) < k$ and strictly negative when $\mu(y) > k$. Since $\mu(a^-(k)) < k$ and $\mu(a^+(k)) > k$, we conclude that $\rho(y,k)$, as a function of $y$, is strictly increasing on $[0,a^-(k)]$ and strictly decreasing on $[a^+(k),\infty)$. Hence, using that $P(y) \le 1$,
 \begin{align*}
-	&\hspace{-20pt}\int_{\R_+ \setminus [a(k)^-, a(k)^+]} P(y) \rho(y,k) 
+	&\hspace{-20pt}\int_{\R_+ \setminus [a^-(k), a^+(k)]} P(y) \rho(y,k) 
 		\alpha e^{-\alpha y} \dd y\\
-    &\le \int_0^{a(k)^-} \rho(y,k) \alpha e^{-\alpha y} \dd y 
-    	+ \int_{a(k)^+}^{\infty}\rho(y,k) \alpha e^{-\alpha y}x \dd y \\
-   	&\le \rho(a(k)^-,k)\int_0^{a(k)^-} e^{-\alpha y} \, \dd y
-   		+ \rho(a(k)^+,k) \int_{a(k)^+}^{\infty} e^{-\alpha y} \, \dd y\\
-   	&= \bigO{1}\left(\rho(a(k)^-,k) + \rho(a(k)^+,k)\right),
+    &\le \int_0^{a^-(k)} \rho(y,k) \alpha e^{-\alpha y} \dd y 
+    	+ \int_{a^+(k)}^{\infty}\rho(y,k) \alpha e^{-\alpha y}x \dd y \\
+   	&\le \rho(a^-(k),k)\int_0^{a^-(k)} e^{-\alpha y} \, \dd y
+   		+ \rho(a^+(k),k) \int_{a^+(k)}^{\infty} e^{-\alpha y} \, \dd y\\
+   	&= \bigO{1}\left(\rho(a^-(k),k) + \rho(a^+(k),k)\right),
 \end{align*}
 as $k \to \infty$. Next we show that
 \[
-	\rho(a(k)^\pm,k) = \bigO{k^{-(1+C^2)/2}}.
+	\rho(a^\pm(k),k) = \bigO{k^{-(1+C^2)/2}}.
 \]
-Since the arguments are almost completely identical, we give the prove for $a(k)^+$.
+Since the arguments are almost completely identical, we give the prove for $a^+(k)$.
 
 Using Stirling's formula $k! \sim \sqrt{2\pi} k^{k + 1/2} e^{-k}$ as $k \to \infty$ we write
 \begin{align*}
-	\rho(a(k)^+,k) &= \frac{\mu(a(k)^+)^{k}}{k!} e^{-\mu(a(k)^+)} \\
-	&\sim (2\pi)^{-1/2} k^{-1/2} \left(\frac{\mu(a(k)^+}{k}\right)^{k} e^{-(\mu(a(k)^+ - k)}\\
+	\rho(a^+(k),k) &= \frac{\mu(a^+(k))^{k}}{k!} e^{-\mu(a^+(k))} \\
+	&\sim (2\pi)^{-1/2} k^{-1/2} \left(\frac{\mu(a^+(k))}{k}\right)^{k} e^{-(\mu(a^+(k) - k)}\\
 	&= (2\pi)^{-1/2} k^{-1/2} 
-		e^{-k\left(\frac{\mu(a(k)^+)}{k} - 1 - \log\left(\frac{\mu(a(k)^+)}{k}\right)\right)}.
+		e^{-k\left(\frac{\mu(a^+(k))}{k} - 1 - \log\left(\frac{\mu(a^+(k))}{k}\right)\right)}.
 \end{align*}
-Since 
+Since, for sufficiently large $k$,
 \[
-	\frac{\mu(a(k)^+)}{k} = 1 + C \sqrt{\frac{\log(k)}{k}}
+	\frac{\mu(a^+(k))}{k} = 1 + C \sqrt{\frac{\log(k)}{k}}
 \]
 and $x - \log(1 + x) \sim x^2/2$ as $x \to 0$, we get 
 \begin{align*}
-	\rho(a(k)^+,k) 
+	\rho(a^+(k),k) 
 	&\sim \sqrt{2\pi} k^{-1/2} 
 		e^{-k \left(C \sqrt{\frac{\log(k)}{k}} - \log\left(1 + C \sqrt{\frac{\log(k)}{k}}\right)\right)}\\
 	&\sim (2\pi)^{-1/2} k^{-1/2} e^{-\frac{k \left(C \sqrt{\frac{\log(k)}{k}}\right)^2}{2}} \\
@@ -1383,7 +1395,7 @@ Since $C > 0$ can be chosen arbitrarily large we conclude that
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
 	= (1+\smallO{1}) \int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
 \]
-as $k \to \infty$. Note that this implies that if $P(y) = h(y)(1 + \smallO{1})$ as $y \to \infty$, then 
+as $k \to \infty$. Note that this implies that if $P(y) = h(y)(1 + \smallO{1})$, uniformly in $y$, as $y \to \infty$, then 
 \begin{equation}\label{eq:asymptotics_average_clustering_error_term}
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
 	\sim \int_0^\infty h(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
@@ -1391,12 +1403,7 @@ as $k \to \infty$. Note that this implies that if $P(y) = h(y)(1 + \smallO{1})$ 
 as $y \to \infty$.
 
 
-We now proceed with the proof of Proposition~\ref{prop:asymp}, which is split over the different cases for $\alpha$. First we combine~\eqref{eq:degree_distribution_P_asymptotics} and~\eqref{eq:general_integral_rho_y_k} to obtain the following scaling result
-\begin{equation}\label{eq:general_clustering_integral_scaling}
-	\frac{\int_0^\infty e^{-\beta y} \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	\sim \xi_{\alpha, \nu}^{2\beta} k^{-2\beta}.
-\end{equation}
+We now proceed with the proof of Proposition~\ref{prop:asymp}, which is split over the different cases for $\alpha$. 
 
 
 \paragraph{Proof when \bm{$1/2 < \alpha < 3/4$}}
@@ -1418,34 +1425,34 @@ Similar to the previous case Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:
 \]
 However, the final step does not follow immediately from~\eqref{eq:general_clustering_integral_scaling} because of the additional logarithmic term. To prove the result we first show that
 \begin{equation}\label{eq:average_clustering_proof_34_main}
-	\int_{a(k)^-}^{a(k)^+} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-	\sim \int_{a(k)^-}^{a(k)^+} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y.
+	\int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
+	\sim \int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y.
 \end{equation}
 For this we establish an upper bound for the left hand side
 \begin{align*}
-	\int_{a(k)^-}^{a(k)^+} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
-	&\le \frac{a(k)^+}{2} \int_{a(k)^-}^{a(k)^+} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
+	\int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
+	&\le \frac{a^+(k)}{2} \int_{a^-(k)}^{a^+(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
 \end{align*}
 and similarly, a lower bound
 \begin{align*}
-	\int_{a(k)^-}^{a(k)^+} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
-	&\ge \frac{a(k)^-}{2} \int_{a(k)^-}^{a(k)^+} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
+	\int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
+	&\ge \frac{a^-(k)}{2} \int_{a^-(k)}^{a^+(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
 \end{align*}
-Now observe that
+Now observe that as $k \to \infty$,
 \[
-	\frac{a(k)^\pm}{2} = \log\left(\frac{k \pm \sqrt{k\log(k)}}{\xi_{\alpha, \nu}}\right) \sim \log(k)
+	\frac{a^\pm(k)}{2} = \log\left(\frac{k \pm \sqrt{k\log(k)}}{\xi_{\alpha, \nu}}\right) \sim \log(k)
 \]
 and therefore it follows that
 \[
-	\limsup_{k \to \infty} \frac{\int_{a(k)^-}^{a(k)^+} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	{\log(k) \int_{a(k)^-}^{a(k)^+} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y} \le 1.
+	\limsup_{k \to \infty} \frac{\int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	{\log(k) \int_{a^-(k)}^{a^+(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y} \le 1.
 \]
 and
 \[
-	\liminf_{k \to \infty} \frac{\int_{a(k)^-}^{a(k)^+} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	{\log(k) \int_{a(k)^-}^{a(k)^+} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y} \ge 1.
+	\liminf_{k \to \infty} \frac{\int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	{\log(k) \int_{a^-(k)}^{a^+(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y} \ge 1.
 \]
-This proofs~\eqref{eq:average_clustering_proof_34_main}.
+This proves~\eqref{eq:average_clustering_proof_34_main}.
 
 Next we note that by~\eqref{eq:general_clustering_integral_scaling} with $\beta = 1/2$ we have
 \[
@@ -1454,7 +1461,7 @@ Next we note that by~\eqref{eq:general_clustering_integral_scaling} with $\beta 
 \]
 Therefore, since by~\eqref{eq:asymptotics_average_clustering_concentration},
 \[
-	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y \sim \int_{a(k)^-}^{a(k)^+} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
+	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y \sim \int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
 \]
 it follows from~\eqref{eq:average_clustering_proof_34_main} that as $k \to \infty$,
 \begin{align*}
@@ -1471,7 +1478,7 @@ when $\alpha = 3/4$.
 Again, by Proposition~\ref{prop:asymptotics_P}, equation~\eqref{eq:asymptotics_average_clustering_error_term} and~\eqref{eq:general_clustering_integral_scaling} with $\beta = 1/2$, it follows that as $k \to \infty$,
 %by Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term} it is enough to show that
 \[
-	\gamma(k) \sim \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} \, \frac{\int_0^{\infty} e^{-y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y} {\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y} 
+	\gamma(k) \sim \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} \, \frac{\int_0^{\infty} e^{-y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y} {\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y} 
 	\sim \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} \, \xi k^{-1} = \frac{8\alpha \nu}{\pi(4\alpha - 3)}.
 \]
 

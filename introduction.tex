@@ -9,12 +9,12 @@ In this paper, we will consider clustering in a model of random graphs that invo
 %\subsection{Hyperbolic random graphs}\label{ssec:hyperbolic_model}
 
 
-We start with the definition of the KPKVB model. As mentioned, its nodes are situated in the hyperbolic plane $\Haa$, which is a surface with constant Gaussian curvature $-1$. This surface has several convenient representations (i.e.~coordinate maps), including the Poincar\'e halfplane model, the Poincar\'e disk model and the Klein disk model. A gentle introduction to Gaussian curvature, hyperbolic geometry and these representations of the hyperbolic plane can be found in~\cite{stillwell2012geometry}. Throughout this paper we will be working with a representation of the hyperbolic plane using {\em hyperbolic polar coordinates}, sometimes called the {\em native representation}. That is, a point $u \in \Haa$ is represented as $(r,\theta)$, where $r$ is the hyperbolic distance between $u$ and the origin $O$ and $\theta$ as the angle between the line segment $Ou$ and the positive $x$-axis. 
+We start with the definition of the KPKVB model. As mentioned, its nodes are situated in the hyperbolic plane $\Haa$, which is a surface with constant Gaussian curvature $-1$. This surface has several convenient representations (i.e.~coordinate maps), such as the Poincar\'e halfplane model, the Poincar\'e disk model and the Klein disk model. A gentle introduction to Gaussian curvature, hyperbolic geometry and these representations of the hyperbolic plane can be found in~\cite{stillwell2012geometry}. Throughout this paper we will be working with a representation of the hyperbolic plane using {\em hyperbolic polar coordinates}, sometimes called the {\em native representation}. That is, a point $u \in \Haa$ is represented as $(r,\theta)$, where $r$ is the hyperbolic distance between $u$ and the origin $O$ and $\theta$ as the angle between the line segment $Ou$ and the positive $x$-axis. 
 Here, when mentioning ``the origin'' and the angle between the line segment and the positive $x$-axis, we think of $\Haa$ embedded as the Poincar\'e disk in the ordinary euclidean plane.
 
 The KPKVB model has three parameters: the number of vertices $n$, which we think of as going to infinity, and $\alpha > \frac{1}{2}$, $\nu > 0$ which we think of as fixed. Given $n, \alpha, \nu$ we define $R = 2\log(n/\nu)$. Then the hyperbolic random graph $G(n;\alpha, \nu)$ is defined as follows:
 \begin{itemize}
-\item The vertex set is given by $n$ i.i.d.~points $u_1, \dots, u_n$ denoted in polar coordinates $(r_i, \theta_i)$, where the angular coordinate $\theta$ is chosen uniformly from $(-\pi,\pi]$ while the radial coordinate $r$ is sampled independently according to the cumulative distribution function
+\item The vertex set is given by $n$ i.i.d.~points $u_1, \dots, u_n$ denoted in polar coordinates $u_i = (r_i, \theta_i)$, where the angular coordinate $\theta$ is chosen uniformly from $(-\pi,\pi]$ while the radial coordinate $r$ is sampled independently according to the cumulative distribution function
 \begin{equation}\label{eq:def_hyperbolic_point_distribution}
 	F_{\alpha,R}(r) = \begin{cases}
 		0 &\mbox{if } r < 0\\
@@ -75,7 +75,7 @@ Apart from the degree sequence and clustering, the third main characteristic ass
 Earlier work of the first and third authors with Bode~\cite{bode2015largest} and of the first and third authors~\cite{fountoulakis2018law} has established the ``threshold for a giant component'': if $\alpha < 1$ then there is a unique component of size linear in $n$ no matter how small $\nu$ (i.e. the average degree); if $\alpha > 1$ all components are sublinear no matter the value of $\nu$; and if $\alpha=1$ then there is a critical value $\nu_{\text{c}}$ such that for $\nu < \nu_{\text{c}}$ all components are sublinear and for $\nu > \nu_{\text{c}}$ there is a unique linearly sized component (all of these statements holding a.a.s.). Whether or not there is a giant component if $\alpha=1$ and $\nu=\nu_{\text{c}}$ remains an open problem. In~\cite{kiwi2015bound} and~\cite{kiwi2017second}, Kiwi and Mitsche considered the size of the second largest component and showed that for $\alpha \in (1/2, 1)$, a.a.s., the second largest component has polylogarithmic order with exponent $1/(\alpha -1/2)$.
 
 
-In another paper of the first and third authors with Bode~\cite{bode2016probability} it was shown that $\alpha=1/2$ is the threshold for connectivity: for $\alpha < 1/2$ the graph is a.a.s.~connected, for $\alpha>1/2$ the graph is a.a.s.~disconnected and when $\alpha=1/2$ the probability of being connected tends to a continuous, nondecreasing function of $\nu$ which is identically one for $\nu \geq \pi$ and strictly less than one for $\nu < \pi$. Friedrich and Krohmer~\cite{blasius2018cliques} studied the size of the largest clique as well as the number of cliques of a given size. Bogu\~{n}a et al.~\cite{boguna2010sustaining} and Bl\"asius et al.~\cite{BlasiusMLE} considered fitting the KPKVB model to data using maximum likelihood estimation. Kiwi and Mitsche~\cite{kiwi2018spectral} studied the spectral gap and related properties, and Bl\"asius et al.\cite{blasius2016hyperbolic} considered the tree-width and related parameters of the KPKVB model. Recently Owada and Yogeshwaran~\cite{owada2018sub} considered subgraph counts, and in particular established a central limit theorem for the number of copies of a fixed tree $T$ in $G(n;\alpha,\nu)$, subject to some restrictions on the parameter $\alpha$.
+In another paper of the first and third authors with Bode~\cite{bode2016probability} it was shown that $\alpha=1/2$ is the threshold for connectivity: for $\alpha < 1/2$ the graph is a.a.s.~connected, for $\alpha>1/2$ the graph is a.a.s.~disconnected and when $\alpha=1/2$ the probability of being connected tends to a continuous, nondecreasing function of $\nu$ which is identically one for $\nu \geq \pi$ and strictly less than one for $\nu < \pi$. Friedrich and Krohmer~\cite{blasius2018cliques} studied the size of the largest clique as well as the number of cliques of a given size. Bogu\~{n}a et al.~\cite{boguna2010sustaining} and Bl\"asius et al.~\cite{blasius2018efficient} considered fitting the KPKVB model to data using maximum likelihood estimation. Kiwi and Mitsche~\cite{kiwi2018spectral} studied the spectral gap and related properties, and Bl\"asius et al.\cite{blasius2016hyperbolic} considered the tree-width and related parameters of the KPKVB model. Recently Owada and Yogeshwaran~\cite{owada2018sub} considered subgraph counts, and in particular established a central limit theorem for the number of copies of a fixed tree $T$ in $G(n;\alpha,\nu)$, subject to some restrictions on the parameter $\alpha$.
 
 \subsubsection*{Clustering}
 
@@ -90,7 +90,7 @@ We will study the other notion of clustering, the one which is also considered b
         0, & \text{ otherwise,}
         \end{array}\right.
 \]
-where $E(G)$ denotes the edge set of $G$ and $\text{deg}(v)$ is the degree of vertex $v$. That is, provided $v$ has degree at least two, $c(v)$ equals the number of edges that are actually present between the neighbours \PvdH{I think it is neighbors in US English vs neighbours in UK English. Is there any specific reason to us the UK version?} of $v$ divided by the number of edges that could possibly be present between the neighbours given the degree of $v$.
+where $E(G)$ denotes the edge set of $G$ and $\text{deg}(v)$ is the degree of vertex $v$. That is, provided $v$ has degree at least two, $c(v)$ equals the number of edges that are actually present between the neighbours of $v$ divided by the number of edges that could possibly be present between the neighbours given the degree of $v$.
 The clustering coefficient of $G$ is now defined as the average of $c(v)$ over all vertices $v$:
 \[
 	c(G) := \frac{1}{|V(G)|} \sum_{v\in V(G)} c(v).
@@ -99,14 +99,14 @@ The clustering coefficient of $G$ is now defined as the average of $c(v)$ over a
 As mentioned above, Gugelmann et al.~\cite{gugelmann2012random}, have established that $c(G(n;\alpha,\nu))$ is non-vanishing a.a.s., but they left open the question of convergence. Theorem~\ref{thm:maincc} below establishes that the clustering coefficient indeed converges in probability to a constant $\gamma$ that we give explicitly as a closed form expression involving $\alpha,\nu$ and several classical special functions.
 
 In addition to the clustering coefficient, we shall also be interested in the {\em clustering function}.
-This assigns to each integer $k$ the value
+This assigns to each non-negative integer $k$ the value
 \begin{equation}\label{eq:def_clustering_function}
 	c(k; G) := \begin{cases}
-		\displaystyle \frac{1}{N_k} \sum_{v \in V(G), \atop \text{deg}(v)=k}  c(v),  &\mbox{ if } N_k \ge 1,\\
+		\displaystyle \frac{1}{N(k)} \sum_{v \in V(G), \atop \text{deg}(v)=k}  c(v),  &\mbox{ if } N(k) \ge 1,\\
 		0, &\mbox{else,}
 	\end{cases}
 \end{equation}
-where $N_k$ denotes the number of vertices of degree exactly $k$ in $G$. In other words, the clustering function assigns to the integer $k$ the average of the local clustering coefficient over all vertices of degree $k$. We remark that, while it might seem natural to consider $c(k)$ to be ``undefined'' when $N_k=0$, we prefer to use the above definition for technical 
+where $N(k)$ denotes the number of vertices of degree exactly $k$ in $G$. In other words, the clustering function assigns to the integer $k$ the average of the local clustering coefficient over all vertices of degree $k$. We remark that, while it might seem natural to consider $c(k)$ to be ``undefined'' when $N(k)=0$, we prefer to use the above definition for technical 
 convenience.  This way $c(k; G(n;\alpha,\nu) )$ is a plain vanilla random variable and we can for instance compute its moments without any issues.
 
 A general expression of the clustering function for KPKVB random graphs is given in~\cite[Equation (59)]{krioukov2010hyperbolic}. The authors conjecture that as $k$ tends to infinity, the clustering function decays as $k^{-1}$. They based this prediction on observations (Figure 8 in \cite{krioukov2010hyperbolic}) in experiments on the infrastructure of the Internet obtained in~\cite{claffy2009internet}. Despite these interesting observations and the attention the KPKVB model has generated since then, the behaviour of the clustering function in KPKVB random graphs had not been completely determined. In particular it has not been established whether it converges as $n\to\infty$ to some suitable limit function, nor how $c(k;G)$ scales with $k$. Theorems~\ref{thm:mainkfixed},~\ref{thm:mainktoinfty} and Proposition~\ref{prop:asymp} below settle these questions. Theorem~\ref{thm:mainkfixed} shows that for each fixed $k$, the value $c(k;G(n;\alpha,\nu))$ converges in probability to a constant $\gamma(k)$ that we again give explicitly as a closed form expression involving $\alpha,\nu$ and several classical special functions. Theorem~\ref{thm:mainktoinfty} extends this result to growing sequences satisfying $k \ll n^{1/(2\alpha+1)}$. Proposition~\ref{prop:asymp} clarifies the asymptotic behavior of the limiting function $\gamma(k)$, as $k\to\infty$. This depends on the parameter $\alpha$, and $\gamma(k)$ only scales with $k^{-1}$ when $\alpha > 3/4$, which corresponds to the exponent of the degree distribution exceeding $5/2$. 
@@ -122,7 +122,7 @@ $$\xi := \frac{4\alpha\nu}{\pi(2\alpha-1)}. $$
 We write $\Gamma(z) := \int_0^\infty t^{z-1} e^{-t}\text{d}t$ for the gamma function, 
 $\Gamma^+(a,b) := \int_b^\infty t^{a-1} e^{-t}\text{d}t$ for the upper incomplete gamma function, 
  $B(a,b) := \int_0^1 u^{a-1}(1-u)^{b-1}\text{d}u = \Gamma(a)\Gamma(b) / \Gamma(a+b)$ for the beta function and 
- $B^-(x,a,b) := \int_0^x u^{a-1}(1-u)^{b-1}\text{d}u$ for the lower incomplete beta function. 
+ $B^-(x ; a,b) := \int_0^x u^{a-1}(1-u)^{b-1}\text{d}u$ for the lower incomplete beta function. 
 We write $U(a,b,z)$ for the hypergeometric U-function (also called Tricomi's confluent hypergeometric function), which 
 %for $a,b,z\in \mathbb{C}$, $b \not \in \mathbb{Z}_{\leq 0}$, $\mathrm{Re}(a), \mathrm{Re}(z) >0$ 
 has the integral representation 
@@ -243,7 +243,7 @@ A plot of $\gamma(k)$ can be found in Figure~\ref{fig:gammak}. %
 %
 Again, we remark that the above expression for $\gamma(k)$ appears to have a singularity at $\alpha=1$, but this will turn out to be a removable singularity. Again, we have not been able to find a closed form expression in terms of known functions in the case when $\alpha=1$, but in Section~\ref{ssec:alphais1} we do provide an explicit expression involving integrals.
 
-Theorem~\ref{thm:mainkfixed} in fact generalises to increasing sequences $(k_n)_n$.
+Theorem~\ref{thm:mainkfixed} in fact generalises to increasing sequences $(k_n)_{n \ge 1}$.
 
 \begin{theorem}\label{thm:mainktoinfty}
 Let $\alpha>\frac12, \nu>0$ be fixed and let $k_n$ be a sequence of integers
@@ -279,7 +279,7 @@ where $c_{\alpha} := \left( \frac{3\alpha - 1}{2^{4\alpha+1}\alpha(\alpha-1)^2}
 	- \frac{B(2\alpha, 3\alpha - 4)}{4(\alpha - 1)} \right)  \cdot \xi^{4\alpha-2}$.
 \end{proposition}
 
-Note that Theorem~\ref{thm:mainktoinfty} implies that the clustering function of the KPKVB model scales as $\gamma(k)$ as $k$ grows, whose scaling is given in the above result. In particular, this contradicts the scaling conjectured in~\cite{krioukov2010hyperbolic} for $\alpha \leq \frac34$, and confirms it for $\alpha > \frac34$.
+Note that Theorem~\ref{thm:mainktoinfty} implies that the clustering function of the KPKVB model scales as $\gamma(k)$ as $k$ grows, whose scaling is given in the above result. In particular, this contradicts the scaling conjectured in~\cite{krioukov2010hyperbolic} for $\alpha \leq \frac34$, and confirms it only for $\alpha > \frac34$.
 
 We remark that simultaneously and independently Stegehuis, van der Hofstad and van Leeuwaarden~\cite{stegehuis2018scale} found a similar, but less detailed result on the $k\to\infty$ scaling of the clustering function in the KPKVB model.
 
@@ -303,9 +303,9 @@ Then $b_n \le a_n \ll n^{\frac{1}{2\alpha + 1}}$ and therefore by Theorem~\ref{t
 \paragraph{Near maximum scaling for $k_n$.}
 Our results for the clustering function in the KPKVB model are valid for any sequence of integers $k_n \to \infty$ such that $k_n \ll n^{\frac{1}{2\alpha + 1}}$. Although one would like to have results for any sequence $k_n \le n$, it turns out that $n^{1/(2\alpha + 1)}$ is the near maximum scaling for which Theorem~\ref{thm:clustering_coefficient_hyperbolic} can be true. To see why this is the case note that by definition of the local clustering function~\eqref{eq:def_clustering_function} we have that $c(k_n; G_n) = 0$ if $N_{n}(k_n) = 0$, where $N_n(k_n)$ denote the number of vertices in a KPKVB graph $G(n; \alpha, \nu)$ with degree $k_n$. It follows by Markov's inequality that for any positive function $f : \R_+ \to \R_+$
 \begin{align*}
-	\Exp{\left|\frac{c_{\H,n}(k_n)}{f(k_n)} - 1\right|} 
-	&\ge \Exp{\left|\frac{c_{\H,n}(k_n)}{f(k_n)} - 1\right|\ind{N_n(k_n) = 0}}\\ 
-	&\ge \Prob{N_{n}(k_n) = 0} \ge 1 - \Exp{N_{\H,n}(k_n)}.
+	\Exp{\left|\frac{c(k_n; G_n)}{f(k_n)} - 1\right|} 
+	&\ge \Exp{\left|\frac{c(k_n; G_n)}{f(k_n)} - 1\right|\ind{N_n(k_n) = 0}}\\ 
+	&\ge \Prob{N_{n}(k_n) = 0} \ge 1 - \Exp{N_n(k_n)}.
 \end{align*}
 We shall later establish (see Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}) that $\Exp{N_n(k_n)}$ scales as $n k_n^{-(2\alpha + 1)}$. Therefore if $k_n$ is such that $k_n^{-(2\alpha + 1)} n$ tends to zero as $n \to \infty$ we have that 
 \[
@@ -314,7 +314,7 @@ We shall later establish (see Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson
 and hence
 \[
 	\lim_{n \to \infty} \Exp{\left|\frac{c(k_n; G_n)}{f(k_n)} - 1\right|} 
-	\ge \lim_{n \to \infty} 1 - \Exp{N_{n}(k_n)} = 1 \ne 0,
+	\ge 1 - \lim_{n \to \infty} \Exp{N_{n}(k_n)} = 1 \ne 0,
 \]
 for any positive function $f$. This implies that we cannot expect a result like that of Theorem~\ref{thm:mainktoinfty} to hold as soon as $k_n \gg n^{\frac{1}{2\alpha + 1}}$.
 
