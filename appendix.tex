@@ -7,11 +7,11 @@ Recall that $\Gamma(z)$ denotes the Gamma function. Let $p, q, m, \ell$ be four 
 	\MeijerGnew{m}{\ell}{p}{q}{{\bf a}}{{\bf b}}{z} 
 	= \frac{1}{2 \pi \iota} \int_L 
 	\frac{\prod_{j = 1}^{m}\Gamma(b_j - t) \prod_{j = 1}^\ell \Gamma(1 - a_j + t)}
-	{\prod_{j = m + 1}^{q}\Gamma(1 - b_j + t) \prod_{j = \ell + 1}^p\Gamma_n(a_j-t)} \, z^t \dd t,
+	{\prod_{j = m + 1}^{q}\Gamma(1 - b_j + t) \prod_{j = \ell + 1}^p\Gamma(a_j-t)} \, z^t \dd t,
 \end{equation}
 where the path $L$ is an upward oriented loop contour which separates the poles of the function $\prod_{j = 1}^{m}\Gamma(b_j - t)$ from those of $\prod_{j = 1}^n \Gamma(1 - a_j + t)$ and begins and ends at $+\infty$ or $-\infty$.
 
-The Meijer's G-Function is of a very general nature and has relation to many known special functions such as the Gamma function and the generalized hypergeometric function. For more details, such as many identities for $\MeijerGnew{m}{\ell}{p}{q}{{\bf a}}{{\bf b}}{z}$ see \cite{gradshteyn2015table,luke2014mathematical}.
+The Meijer's G-Function is of very general nature and has relation to many known special functions such as the Gamma function and the generalized hypergeometric function. For more details, such as many identities for $\MeijerGnew{m}{\ell}{p}{q}{{\bf a}}{{\bf b}}{z}$ see \cite{gradshteyn2015table,luke2014mathematical}.
 
 For our purpose we need the following identity which follows from an Mellin transform operation.
 
@@ -20,7 +20,7 @@ For any $a\in \R$ and $\xi, s>0$,
 $$\Gamma^+(-a-1,\xi/s) = \MeijerGnew{2}{0}{1}{2}{1}{-a-1,0}{\frac{\xi}{s}}$$
 \end{lemma}
 \begin{proof}
-Let $x>0$ and $q\in\R$ and note that as the $\Gamma$-function is the Mellin transform of $e^{-x}$, by the inverse Mellin transform formula, we have $e^{-x}=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty} \Gamma(p)x^{-p}dp$ for $c>0$ (see \cite[p.196]{davies2012integral}). Applying the change of variable $p(r)=q-r$ yields $e^{-x}=\frac{1}{2\pi i}\int_{c+q-i\infty}^{c+q+i\infty} \Gamma(q-r) x^{r-q}dr$, then multiplying both sides with $-x^{q-1}$ gives $-x^{q-1}e^{-x} = -\frac{1}{2\pi i}\int_{c+q-i\infty}^{c+q+i\infty} \Gamma(q-r) x^{r-1}dr$. Now, integrating both sides gives $\int_x^\infty t^{q-1}e^{-t}dt = \frac{1}{2\pi i}\int_{c+q-i\infty}^{c+q+i\infty}\frac{\Gamma(q-r)}{-r}x^r dr$. On the left-hand side is the incomplete gamma function and on the right-hand side with using $-r= \frac{\Gamma(1-r)}{\Gamma(-r)}$ is the Meijer $G$-function, i.e. $\Gamma^+(q,x)=\MeijerG{2}{0}{1}{2}{1}{q,0}{x}$. The claim follows by plugging in $q=-a-1$ and $x=\frac{\xi}{s}$.
+Let $x>0$ and $q\in\R$ and note that as the $\Gamma$-function is the Mellin transform of $e^{-x}$, by the inverse Mellin transform formula, we have $e^{-x}=\frac{1}{2\pi \iota}\int_{c-\iota\infty}^{c+\iota\infty} \Gamma(p)x^{-p}dp$ for $c>0$ (see \cite[p.196]{davies2012integral}). Applying the change of variable $p(r)=q-r$ yields $e^{-x}=\frac{1}{2\pi \iota}\int_{c+q-\iota\infty}^{c+q+\iota\infty} \Gamma(q-r) x^{r-q}dr$, then multiplying both sides with $-x^{q-1}$ gives $-x^{q-1}e^{-x} = -\frac{1}{2\pi \iota}\int_{c+q-\iota\infty}^{c+q+\iota\infty} \Gamma(q-r) x^{r-1}dr$. Now, integrating both sides gives $\int_x^\infty t^{q-1}e^{-t}dt = \frac{1}{2\pi \iota}\int_{c+q-\iota\infty}^{c+q+\iota\infty}\frac{\Gamma(q-r)}{-r}x^r dr$. On the left-hand side is the incomplete gamma function and on the right-hand side with using $-r= \frac{\Gamma(1-r)}{\Gamma(-r)}$ is the Meijer $G$-function, i.e. $\Gamma^+(q,x)=\MeijerGnew{2}{0}{1}{2}{1}{q,0}{x}$. The claim follows by plugging in $q=-a-1$ and $x=\frac{\xi}{s}$.
 \end{proof}
 
 \section{Incomplete Beta function}\label{sec:beta_function}
