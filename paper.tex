@@ -55,7 +55,8 @@
 
 % Redefines the space between sections in the TOC so that the entire thing fits on one page. 
 % Comment this out when not using the tocloft package
-\setlength{\cftbeforesecskip}{5pt}
+\setlength{\cftbeforesecskip}{7pt}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                        Probability                                              %
@@ -177,7 +178,7 @@
 \newcommand{\hsym}[1]{h_{\H \bigtriangleup \Pcal}(#1)}
 \newcommand{\EdgeDiff}{E_{\H \setminus \mathcal{P}}}
 \newcommand{\expH}{\overline{n}_{\Po}(k_n)}
-\newcommand{\expP}{\overline{n}_{\infty}(k_n)}
+\newcommand{\expP}{\overline{n}_{\mathrm{box}}(k_n)}
 \newcommand{\Pop}[2]{\mathrm{Po} (#2;#1)}
 \newcommand{\Nsymdiff}{N_{\H \bigtriangleup \Pcal}(k_n)}
 \renewcommand{\deg}{\mathrm{deg}}
@@ -278,7 +279,7 @@
 \begin{abstract}
 In this paper we consider the clustering coefficient, and clustering function in a random graph model proposed by Krioukov et al.~in 2010. In this model, nodes are chosen randomly inside a disk in the hyperbolic plane and two nodes are connected if they are at most a certain hyperbolic distance from each other. It has been previously shown that this model has various properties associated with complex networks, including a power-law degree distribution, ``short distances'' and a non-vanishing clustering coefficient. The model is specified using three parameters: the number of nodes $n$, which we think of as going to infinity, and $\alpha, \nu > 0$, which we think of as constant. Roughly speaking, the parameter $\alpha$ controls the power law exponent of the degree sequence and $\nu$ the average degree.
 
-Here we show that the clustering coefficient tends in probability to a constant $\gamma$ that we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. This improves over earlier work by Gugelmann et al., who proved that the clustering coefficient remains bounded away from zero with high probability, but left open the issue of convergence to a limiting constant. Similarly, we are able to show that $c(k)$, the average clustering coefficient over all vertices of degree exactly $k$, tends in probability to a limit $\gamma(k)$ given explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. We are able to extend this last result also to sequences $(k_n)_n$ where $k_n$ grows as a function of $n$. Our results show that $\gamma(k)$ scales differently, as $k$ grows, for different ranges of $\alpha$. More precisely, $\gamma(k) = \Theta( k^{2 - 4\alpha})$ if $\frac{1}{2} < \alpha < \frac{3}{4}$, $\gamma(k) = \Theta( \log(k) / k )$ if $\alpha=\frac{3}{4}$ and $\gamma = \bigT{k^{-1}}$ when $\alpha > \frac{3}{4}$. These results contradict a prediction of Krioukov et al., which stated that the limiting values $\gamma(k)$ should always scale with $k^{-1}$ as we let $k$ grow. 
+Here we show that the clustering coefficient tends in probability to a constant $\gamma$ that we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. This improves over earlier work by Gugelmann et al., who proved that the clustering coefficient remains bounded away from zero with high probability, but left open the issue of convergence to a limiting constant. Similarly, we are able to show that $c(k)$, the average clustering coefficient over all vertices of degree exactly $k$, tends in probability to a limit $\gamma(k)$ which we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. We are able to extend this last result also to sequences $(k_n)_n$ where $k_n$ grows as a function of $n$. Our results show that $\gamma(k)$ scales differently, as $k$ grows, for different ranges of $\alpha$. More precisely, there exists constants $Q_{\alpha,\nu}$ depending on $\alpha$ and $\nu$, such that as $k \to \infty$, $\gamma(k) \sim Q_{\alpha,\nu} k^{2 - 4\alpha}$ if $\frac{1}{2} < \alpha < \frac{3}{4}$, $\gamma(k) \sim Q_{\alpha,\nu} \log(k) k^{-1} $ if $\alpha=\frac{3}{4}$ and $\gamma = Q_{\alpha,\nu} k^{-1}$ when $\alpha > \frac{3}{4}$. These results contradict a prediction of Krioukov et al., which stated that the limiting values $\gamma(k)$ should always scale with $k^{-1}$ as we let $k$ grow. 
 \end{abstract}
 
 \newpage
@@ -308,7 +309,7 @@ Here we show that the clustering coefficient tends in probability to a constant 
 \TM{ Maybe a ``conclusion and further work'' section here,  before the references and appendix? \\
 Also, appendix usually comes after references in my experience.}
 
-\paragraph{Acknowledgments} We are grateful to Dmitri Krioukov for pointing us to the problem of local clustering and helpful discussions.
+\paragraph{Acknowledgments} We are grateful to Dmitri Krioukov for pointing us to the problem of local clustering in this model and his helpful insights during discussions of the topic.
 
 \bibliographystyle{plain}
 \bibliography{references}

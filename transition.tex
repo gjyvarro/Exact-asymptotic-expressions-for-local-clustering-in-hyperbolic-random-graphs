@@ -5,10 +5,9 @@ In this section we shall relate the clustering in the finite box model $\Gbox$ t
 	\left|\Exp{c^\ast(k_n; \Gbox)} - \gamma(k_n)\right| = \smallO{s(k_n)}.
 \] 
 
-Recall that $\Gbox$ is obtained by restricting the Poisson point process $\PPP$ to the box $\Rcal = (-I_n, I_n] \times (0, R_n]$, with $I_n = \frac{\pi}{2} e^{R_n/2}$ and connecting two points $p_1, p_2 \in \Rcal$ if and only if $|x_1 - x_2|_{\pi e^{R_n/2}} \le e^{(y_1 + y_2)/2}$. We also recall that by definition of the norm $|.|_{\pi e^{R_n/2}}$ the left and right boundaries of $\Rcal$ are identified. See Section~\ref{ssec:finite_model} for more details. Due to this identification of the boundaries some triples of nodes that form a triangle in the finite box model do not form a triangle in the infinite model. Therefore, to establish the required result we need to compute the asymptotic difference between triangle counts in both models.
+Recall that $\Gbox$ is obtained by restricting the Poisson point process $\PPP$ to the box $\Rcal = (-I_n, I_n] \times (0, R]$, with $I_n = \frac{\pi}{2} e^{R/2}$ and connecting two points $p_1, p_2 \in \Rcal$ if and only if $|x_1 - x_2|_{\pi e^{R/2}} \le e^{(y_1 + y_2)/2}$. We also recall that by definition of the norm $|.|_{\pi e^{R/2}}$ the left and right boundaries of $\Rcal$ are identified. See Section~\ref{ssec:finite_model} for more details. Due to this identification of the boundaries some triples of nodes that form a triangle in the finite box model do not form a triangle in the infinite model. Therefore, to establish the required result we need to compute the asymptotic difference between triangle counts in both models. To keep notation concise we write $|\cdot|_n$ for the norm $|\cdot|_{\pi e^{R/2}}$.
 
-
-%\TM{ This last bit of the sentence is already contained in the fact we us $|.|_{\pi e^{R_n/2}}$. To me it does not add anything, except possibly confusion. } \PvdH{I have updated this and just added a reminder of this.}
+%\TM{ This last bit of the sentence is already contained in the fact we us $|.|_{\pi e^{R/2}}$. To me it does not add anything, except possibly confusion. } \PvdH{I have updated this and just added a reminder of this.}
 
 %In this section we shall compute the asymptotic difference between triangle counts in the finite box and infinite model. First we recall the definition of $\Kcal_{C}(k_n)$
 %\[
@@ -27,9 +26,9 @@ Recall that $\Gbox$ is obtained by restricting the Poisson point process $\PPP$ 
 %\TM{ Same issue as before. }
 %In addition we note that the function $\phi_n(y)$ in Lemma~\ref{lem:average_degree_P_n} satisfies
 %\[
-%	\phi_n(y) = \bigT{e^{-(\alpha - \frac{1}{2})(R_n - y)}},
+%	\phi_n(y) = \bigT{e^{-(\alpha - \frac{1}{2})(R - y)}},
 %\]
-%as $R_n - y \to \infty$. Since $e^{y/2} = \bigT{k_n} = \smallO{e^{R_n}}$ as $n \to \infty$, uniformly on $\Kcal_C(k_n)$, it follows that $\phi_n(y) = \bigT{k_n^{2\alpha - 1} n^{-(2\alpha - 1)}}$, uniformly on $\Kcal_C$. This yields the following useful corollary to Lemma~\ref{lem:average_degree_P_n}.
+%as $R - y \to \infty$. Since $e^{y/2} = \bigT{k_n} = \smallO{e^{R}}$ as $n \to \infty$, uniformly on $\Kcal_C(k_n)$, it follows that $\phi_n(y) = \bigT{k_n^{2\alpha - 1} n^{-(2\alpha - 1)}}$, uniformly on $\Kcal_C$. This yields the following useful corollary to Lemma~\ref{lem:average_degree_P_n}.
 %
 %\begin{corollary}\label{cor:average_degree_P_n_K}
 %Let $\alpha > \frac{1}{2}$, $C > 0$. Then, for all $y \in \Kcal_{C}(k_n)$,
@@ -60,7 +59,7 @@ where
 \[
 	T_{\infty}(y,p_1,p_2) = \ind{p_1 \in \BallPo{y}}\ind{p_2 \in \BallPo{y}}\ind{p_2 \in \BallPo{p_1}}.
 \]
-Here we slightly abuse notation and write $\BallPo{y}$ for $\BallPo{(0,y)}$. We will adopt this notational convention throughout the remainder of this section, to keep notation concise.
+Here we slightly abuse notation and write $\BallPo{y}$ for $\BallPo{(0,y)}$. We will adopt this notational convention throughout the remainder of this section, to keep notation concise. We further write $\Nbox(k)$ to denote the number of vertices with degree $k$ in $\Gbox$.
 
 We will first relate $\gamma(k_n)$ and $\Exp{c^\ast(k_n; \Gbox)}$ using $T_\infty(y)$ and $T_{\text{box}}(y)$. Recall the definition of $\Kcal_{C}(k_n)$
 \[
@@ -207,8 +206,8 @@ which means we have to compute the expected difference in triangles between both
 
 \subsection{Comparing triangles between $\Ginf$ and $\Gbox$}
 
-To analyze $T_{\text{box}}(y_0) - T_\infty(y_0)$ we first reiterate that the difference between the indicator $\ind{p_1 \in \BallPon{p}}$ in the finite box model and $\ind{p_1 \in \BallPo{p}}$ is that in $\Gbox$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R_n/2}, \frac{\pi}{2} e^{R_n/2}]$ and we stop at height $y = R_n$. This induces a difference in triangle counts between both models. 
-To see this, note that for any $p = (x,y)$ with $0 \le y \le R_n$ we have that $\BallPon{p} = \BallPo{p} \cap \Rcal$. This means that if $p^\prime, p_2 \in \BallPon{p}$ and $p_2 \in \BallPo{p^\prime} \cap \Rcal$ then $p_2 \in \BallPon{p} \cap \BallPon{p^\prime}$ and hence $(p,p^\prime,p_2)$ form a triangle both in $\Gbox$ and $\Ginf$. However, it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}(p,p^\prime)$, see Figure~\ref{fig:comparing_triangles_diff_intersections} for an example of this region. Then, any $p_2 \in \mathcal{T}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $\Gbox$ that is not present in $\Ginf$. Finally, any point $p_2 \in \BallPo{p} \cap \BallPo{p^\prime}$ with height $y_2 > R$ creates a triangle with $p, p^\prime$ in $\Ginf$ but not in $\Gbox$.
+To analyze $T_{\text{box}}(y_0) - T_\infty(y_0)$ we first reiterate that the difference between the indicator $\ind{p_1 \in \BallPon{p}}$ in the finite box model and $\ind{p_1 \in \BallPo{p}}$ is that in $\Gbox$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R/2}, \frac{\pi}{2} e^{R/2}]$ and we stop at height $y = R$. This induces a difference in triangle counts between both models. 
+To see this, note that for any $p = (x,y)$ with $0 \le y \le R$ we have that $\BallPon{p} = \BallPo{p} \cap \Rcal$. This means that if $p^\prime, p_2 \in \BallPon{p}$ and $p_2 \in \BallPo{p^\prime} \cap \Rcal$ then $p_2 \in \BallPon{p} \cap \BallPon{p^\prime}$ and hence $(p,p^\prime,p_2)$ form a triangle both in $\Gbox$ and $\Ginf$. However, it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}(p,p^\prime)$, see Figure~\ref{fig:comparing_triangles_diff_intersections} for an example of this region. Then, any $p_2 \in \mathcal{T}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $\Gbox$ that is not present in $\Ginf$. Finally, any point $p_2 \in \BallPo{p} \cap \BallPo{p^\prime}$ with height $y_2 > R$ creates a triangle with $p, p^\prime$ in $\Ginf$ but not in $\Gbox$.
 
 Let us now define the following triangle count function
 \[
@@ -290,14 +289,14 @@ so that by the Campbell-Mecke formula
 		\dd x_2 \dd y_2 \dd x_1 \dd y_1. 
 \end{align*}
 
-\TM{ in the 1st integral we could have restricted to the ball of $p$, and possibly saved a lot. Does that not help? }\PvdH{the first integral is taken care of by another Lemma so it does not matter I think.}
+%\TM{ in the 1st integral we could have restricted to the ball of $p$, and possibly saved a lot. Does that not help? }\PvdH{the first integral is taken care of by another Lemma so it does not matter I think.}
 The first part is taken care of by Lemma~\ref{lem:clustering_error_T_term}. For the other integral we have
 \begin{align*}
 	&\hspace{-30pt}\iint_{\Rcal^\prime} T_{\infty}(p_0,p_1,p_2) f(x_1,y_1) f(x_2,y_2)
 		\dd x_2 \dd y_2 \dd x_1 \dd y_1\\
 	&\le \left(\int_{\Rcal^\prime} \ind{p_1 \in \BallPo{p_0}} f(x_1,y_1) \dd x_1 \dd y_1\right)^2
-		= \bigO{\left(e^{y/2} \int_{R_n}^\infty e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\right)^2}\\
-	&= \bigO{e^{y} e^{-(2\alpha-1)R_n}} = \bigO{e^y n^{-(4\alpha - 2)}}.
+		= \bigO{\left(e^{y/2} \int_{R}^\infty e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\right)^2}\\
+	&= \bigO{e^{y} e^{-(2\alpha-1)R}} = \bigO{e^y n^{-(4\alpha - 2)}}.
 \end{align*}
 %\TM{ Typo : $f_{\mu, \nu}$? Also give more details how line 3 follows. }
 Thus we conclude, using Lemma~\ref{lem:clustering_error_T_term}, that,
@@ -499,15 +498,15 @@ Recall that $\mathcal{T}(p,p^\prime)$ denotes the region of points which form tr
 To further analyze this, let us introduce some notation. For any $p = (x,y) \in \Rcal$ we will define the left and right boundary functions as, respectively,
 \begin{align}
 	b_p^-(z) &= \begin{cases}
-		2 \log\left(x-z\right) - y &\mbox{if }  -\frac{\pi}{2} e^{R_n/2} \le z \le x - e^{y/2}  \\
-		2\log\left(\pi e^{R_n/2} + x - z\right) - y 
-			&\mbox{if } x - e^{(y + R_n)/2} + \pi e^{R_n/2} \le z \le \frac{\pi}{2} e^{R_n/2}\\
+		2 \log\left(x-z\right) - y &\mbox{if }  -\frac{\pi}{2} e^{R/2} \le z \le x - e^{y/2}  \\
+		2\log\left(\pi e^{R/2} + x - z\right) - y 
+			&\mbox{if } x - e^{(y + R)/2} + \pi e^{R/2} \le z \le \frac{\pi}{2} e^{R/2}\\
 		0 &\mbox{otherwise}
 	\end{cases}\\
 	b_p^+(z) &= \begin{cases}
-		2 \log\left(z-x\right) - y &\mbox{if } x + e^{y/2} \le z \le \frac{\pi}{2} e^{R_n/2} \\
-		2\log\left(\pi e^{R_n/2} + z - x\right) - y 
-			&\mbox{if } -\frac{\pi}{2} e^{R_n/2} \le z \le x + e^{(y + R_n)/2} - \pi e^{R_n/2}\\
+		2 \log\left(z-x\right) - y &\mbox{if } x + e^{y/2} \le z \le \frac{\pi}{2} e^{R/2} \\
+		2\log\left(\pi e^{R/2} + z - x\right) - y 
+			&\mbox{if } -\frac{\pi}{2} e^{R/2} \le z \le x + e^{(y + R)/2} - \pi e^{R/2}\\
 		0 &\mbox{otherwise}
 	\end{cases}
 \end{align}
@@ -516,32 +515,32 @@ Note that these functions describe the boundaries of the ball $\BallPon{p}$. In 
 Since we have identified the left and right boundary of $\Rcal$ we can assume, without loss of generality that $x = 0$. Due to symmetry it is then enough to restrict the analysis to the case where $x^\prime > 0$. \TM{ does this not depend on $p$? }\PvdH{I do not think so, because we can always take $p = (0,y)$ due to the invariance in the $x$-direction. I have updated the text to better reflect this.} 
 For this case there are two important points in the box $\Rcal$. These are the intersection between the left boundary of $p^\prime$ and the right boundary of $p^\prime$, as it continues from the left side of the box, and the left boundary of $p$. We denote by $(x^\ast(p^\prime), y^\ast(p^\prime))$ the intersection between the left and right boundary of $p^\prime$ and by $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$ the intersection between the left boundary of $p$ and the right boundary of $p^\prime$, see Figure \ref{fig:comparing_triangles_diff_intersections}. 
 
-Let us derive the expressions for the coordinates of these two points, starting with $(x^\ast(p^\prime), y^\ast(p^\prime))$. The $x$-coordinate $x^\ast(p^\prime)$ is the solution to the equation $b_{p^\prime}^+(z) = b_{p^\prime}^-(z)$ for $-\frac{\pi}{2} e^{R_n/2} \le z \le x + e^{(y + R_n)/2} - \pi e^{R_n/2}$. This equation becomes
+Let us derive the expressions for the coordinates of these two points, starting with $(x^\ast(p^\prime), y^\ast(p^\prime))$. The $x$-coordinate $x^\ast(p^\prime)$ is the solution to the equation $b_{p^\prime}^+(z) = b_{p^\prime}^-(z)$ for $-\frac{\pi}{2} e^{R/2} \le z \le x + e^{(y + R)/2} - \pi e^{R/2}$. This equation becomes
 \[
-	2\log\left(\pi e^{R_n/2} + z - x^\prime\right) - y^\prime = 2 \log\left(x^\prime-z\right) - y^\prime,
+	2\log\left(\pi e^{R/2} + z - x^\prime\right) - y^\prime = 2 \log\left(x^\prime-z\right) - y^\prime,
 \]
-whose solution is $x^\ast(p^\prime) := x^\prime - \frac{\pi}{2} e^{R_n/2}$. Plugging this into either the left or right hand side of the above equation yields the $y$-coordinate $y^\ast(p^\prime) = 2\log\left(\frac{\pi}{2}e^{R_n/2}\right) - y^\prime$. In a similar way, the $x$-coordinate $\hat{x}(p,p^\prime)$ is the solution to the equation $b_{p^\prime}^+(z) = b_{p}^-(z)$ for $-\frac{\pi}{2} e^{R_n/2} \le z \le x + e^{(y + R_n)/2} - \pi e^{R_n/2}$, i.e.
+whose solution is $x^\ast(p^\prime) := x^\prime - \frac{\pi}{2} e^{R/2}$. Plugging this into either the left or right hand side of the above equation yields the $y$-coordinate $y^\ast(p^\prime) = 2\log\left(\frac{\pi}{2}e^{R/2}\right) - y^\prime$. In a similar way, the $x$-coordinate $\hat{x}(p,p^\prime)$ is the solution to the equation $b_{p^\prime}^+(z) = b_{p}^-(z)$ for $-\frac{\pi}{2} e^{R/2} \le z \le x + e^{(y + R)/2} - \pi e^{R/2}$, i.e.
 \[
-	2\log\left(\pi e^{R_n/2} + z - x^\prime\right) - y^\prime = 2 \log\left(x-z\right) - y.
+	2\log\left(\pi e^{R/2} + z - x^\prime\right) - y^\prime = 2 \log\left(x-z\right) - y.
 \] 
-This solution is $\frac{x^\prime - \pi e^{R_n/2}}{1 + e^{(y^\prime - y)/2}}$ and again $\hat{y}(p,p^\prime)$ is obtained by plugging the solution into either the left or right hand side of the equation, yielding $\hat{y}(p,p^\prime) = 2 \log\left(\frac{\pi e^{R_n/2} - x^\prime}{e^{y/2} + e^{y^\prime/2}}\right)$.
+This solution is $\frac{x^\prime - \pi e^{R/2}}{1 + e^{(y^\prime - y)/2}}$ and again $\hat{y}(p,p^\prime)$ is obtained by plugging the solution into either the left or right hand side of the equation, yielding $\hat{y}(p,p^\prime) = 2 \log\left(\frac{\pi e^{R/2} - x^\prime}{e^{y/2} + e^{y^\prime/2}}\right)$.
 
 To summarize we have:
 % After some simple algebra \TM{ I am not a big fan of writing "after some simple algebra" or similar. This is how errors can creep into your argument. Maybe we can just give the details? } we obtain the following expressions for the coordinates of these two points
 \begin{align*}
-	x^\ast(p^\prime) &= x^\prime - \frac{\pi}{2} e^{R_n/2}\\
-	y^\ast(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{R_n/2}\right) - y^\prime\\
-	\hat{x}(p,p^\prime) &= \frac{x^\prime - \pi e^{R_n/2}}{1 + e^{(y^\prime - y)/2}} \\
-	\hat{y}(p,p^\prime) &= 2 \log\left(\frac{\pi e^{R_n/2} - x^\prime}{e^{y/2} + e^{y^\prime/2}}\right)
+	x^\ast(p^\prime) &= x^\prime - \frac{\pi}{2} e^{R/2}\\
+	y^\ast(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{R/2}\right) - y^\prime\\
+	\hat{x}(p,p^\prime) &= \frac{x^\prime - \pi e^{R/2}}{1 + e^{(y^\prime - y)/2}} \\
+	\hat{y}(p,p^\prime) &= 2 \log\left(\frac{\pi e^{R/2} - x^\prime}{e^{y/2} + e^{y^\prime/2}}\right)
 \end{align*}
 
 The crucial observation is that $\mathcal{T}(p,p^\prime) = \emptyset$ as long as the point $(x^\ast(p^\prime), y^\ast(p^\prime))$ is above the left boundary of $p$. This happens exactly when $y^\ast(p^\prime) > b_p^-(x^\ast(p^\prime))$. Therefore the boundary of this event is given by the equation $y^\ast(p^\prime) = b_p^-(x^\ast(p^\prime))$ which reads
 \[
-	2\log\left(\frac{\pi}{2}e^{R_n/2}\right) - y^\prime = 2\log\left(\frac{\pi}{2} e^{R_n/2} -x^\prime\right) - y.
+	2\log\left(\frac{\pi}{2}e^{R/2}\right) - y^\prime = 2\log\left(\frac{\pi}{2} e^{R/2} -x^\prime\right) - y.
 \]
 Solving this equation gives us the function
 \begin{equation}
-	b^\ast_p(z) = y - 2\log\left(1 - \frac{z}{\frac{\pi}{2} e^{R_n/2}}\right),
+	b^\ast_p(z) = y - 2\log\left(1 - \frac{z}{\frac{\pi}{2} e^{R/2}}\right),
 \end{equation}
 which is displayed by the red curve in Figure \ref{fig:comparing_triangles_diff_analysis}. It holds that $y^\ast(p^\prime) > b_p^-(x^\ast(p^\prime))$ if and only if $y^\prime < b^\ast_p(x^\prime)$ and hence we have that $\mathcal{T}(p,p^\prime) = \emptyset$ for all $p^\prime \in \Rcal$ for which $y^\prime \ge b^\ast_p(x^\prime)$. We also note that when $y^\prime = b^\ast_p(x^\prime)$ the two points $(x^\ast(p^\prime), y^\ast(p^\prime))$ and $(\hat{x}(p,p^\prime),\hat{y}(p,p^\prime))$ coincide.
 
@@ -739,14 +738,14 @@ This analysis allows us to compute the expected difference in the number of tria
 \begin{proof}[Proof of Lemma \ref{lem:clustering_error_T_term}]
 Due to symmetry it is enough to show that
 \begin{equation}\label{eq:clustering_error_T_main}
-	\int_0^{R_n}\int_0^{I_n} \mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right) f(x_1,y_1) 
+	\int_0^{R}\int_0^{I_n} \mu\left(\mathcal{T}(p,p_1)\right) f(x_1,y_1) 
 	\dd x_1 \dd y_1 = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
 \end{equation}
-The proof goes in two stages. First we compute $\mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right)$ by splitting it over three disjoint regimes with respect to $p_1$, with $x_1 \ge 0$. Then we do the integration with respect to $p_1$.
+The proof goes in two stages. First we compute $\mu\left(\mathcal{T}(p,p_1)\right)$ by splitting it over three disjoint regimes with respect to $p_1$, with $x_1 \ge 0$. Then we do the integration with respect to $p_1$.
 
-\subsubsection*{Computing $\bm{\mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right)}$}
+\subsubsection*{Computing $\bm{\mu\left(\mathcal{T}(p,p_1)\right)}$}
 
-Recall that $I_n = \frac{\pi}{2} e^{R_n/2}$ and define the sets
+Recall that $I_n = \frac{\pi}{2} e^{R/2}$ and define the sets
 \begin{align*}
 	A_n^{(1)} &= \left\{p_1 = (x_1,y_1) \in \Rcal \, : \, 0 \le y_1 \le y - 2\log(I_n/(I_n-x_1)) \right\},\\
 	A_n^{(2)} &= \left\{p_1 = (x_1,y_1) \in \Rcal \, : \, y - 2\log(I_n/(I_n-x_1)) < y_1 
@@ -760,16 +759,16 @@ and let $B_n^{(i)} = \BallPon{p} \cap A_n^{(i)}$, for $i = 1, 2, 3$, see Figure~
 	h^\ast(y) &= y + 2 \log\left(\frac{I_n}{I_n - e^y}\right).
 \end{align}
 
-With these definitions we have that the union $B_n := \bigcup_{i = 1}^n B_n^{(i)}$ denotes the area under the red curve in Figure~\ref{fig:comparing_triangles_diff_analysis} and hence, for all $p_1 \in \Rcal\setminus B_n$ with $x_1 \ge 0$ we have that $\mathcal{T}(p,p^\prime)(p,p_1) = \emptyset$. So we only need to consider $p_1 \in B_n$. We shall establish the following result:
+With these definitions we have that the union $B_n := \bigcup_{i = 1}^n B_n^{(i)}$ denotes the area under the red curve in Figure~\ref{fig:comparing_triangles_diff_analysis} and hence, for all $p_1 \in \Rcal\setminus B_n$ with $x_1 \ge 0$ we have that $\mathcal{T}(p,p_1) = \emptyset$. So we only need to consider $p_1 \in B_n$. We shall establish the following result:
 \begin{equation}\label{eq:mu_triangle_diff}
-	\mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right) = 
+	\mu\left(\mathcal{T}(p,p_1)\right) = 
 	\begin{cases}
 		\bigO{I_n^{-2\alpha} e^{\alpha y_1}} &\mbox{if } p_1 \in B_n^{(1)}\\
 		\bigO{I_n^{-2\alpha} e^{\alpha y}} &\mbox{if } p_1 \in B_n^{(2)} \cup B_n^{(3)}
 	\end{cases}
 \end{equation}
 
-Depending on which set $p_1$ belongs to, the set $\mathcal{T}(p,p^\prime)(p,p_1)$ has a different shape. We displayed these shapes in Figure~\ref{fig:shapes_triangle_mismatches} as a visual aid to follow the computations below. 
+Depending on which set $p_1$ belongs to, the set $\mathcal{T}(p,p_1)$ has a different shape. We displayed these shapes in Figure~\ref{fig:shapes_triangle_mismatches} as a visual aid to follow the computations below. 
 
 \begin{figure}[!tp]
 \centering
@@ -818,15 +817,17 @@ Depending on which set $p_1$ belongs to, the set $\mathcal{T}(p,p^\prime)(p,p_1)
 	
 	\draw[red, dashed,line width=1pt] (-\r,\vvast) -- (\uuast,\vvast);
 
-    \draw node at (-\r-0.2,\hh+0.1) {\color{blue}$(-\frac{\pi}{2} e^{R_n/2}, h_1(p^\prime))$};
-    \draw node at (-\r-0.2,\hhh-0.1) {$(-\frac{\pi}{2} e^{R_n/2}, h_2(p^\prime))$};
-    \draw node at (\uuast+0.2,\vvast+0.1) {\color{blue}$(x^\ast(p^\prime), y^\ast(p^\prime))$};
+    \draw node at (-\r-0.2,\hh+0.1) {\color{blue}$(-\frac{\pi}{2} e^{R/2}, h_1(p_1))$};
+    \draw node at (-\r-0.2,\hhh-0.1) {$(-\frac{\pi}{2} e^{R/2}, h_2(p_1))$};
+    \draw node at (\uuast+0.2,\vvast+0.1) {\color{blue}$(x^\ast(p_1), y^\ast(p_1))$};
+    
+    \draw node at (\uuast-2,\vvast) {$\bm{p_1 \in B^{(1)}_n}$};
     
     \draw node at (-\r+0.3,\vvast+0.2) {$I_n^{(2)}$};
     \draw node at (-\r+0.3,\vvast-0.2) {$I_n^{(1)}$};
     
-    \draw node (f2) at (\uuast-0.3,\hh+0.1) {\color{blue}$b_{p^\prime}^-(z)$};
-    \draw node (f3) at (\uuast-0.3,\hhh) {\color{blue}$b_{p^\prime}^+(z)$};
+    \draw node (f2) at (\uuast-0.3,\hh+0.1) {\color{blue}$b_{p_1}^-(z)$};
+    \draw node (f3) at (\uuast-0.3,\hhh) {\color{blue}$b_{p_1}^+(z)$};
     \path (f2)+(230:0.35) node (f2_arrow) {};
     \path (f3)+(130:0.35) node (f3_arrow) {};
     \draw[->,thick,blue] (f2.south west) -- (f2_arrow);
@@ -880,18 +881,20 @@ Depending on which set $p_1$ belongs to, the set $\mathcal{T}(p,p^\prime)(p,p_1)
 	%\draw[red,dashed,line width=1pt] (\uast,\vast) -- (\uast,\hp);
 	\draw[red,dashed,line width=1pt] (-\r,\hp) -- (\rb,\hp);
 
-    \draw node at (-\r-0.2,\hh+0.1) {\color{blue}$(-\frac{\pi}{2} e^{R_n/2}, h_1(p^\prime))$};
-    \draw node at (-\r-0.2,\hp-0.1) {$(-\frac{\pi}{2} e^{R_n/2}, h(y))$};
-    \draw node at (\uuast+0.2,\vvast+0.1) {\color{blue}$(x^\ast(p^\prime), y^\ast(p^\prime))$};
-    \draw node at (\uast,\vast-0.1) {$(\hat{x}(p,p^\prime), \hat{y}(p, p^\prime))$};
+    \draw node at (-\r-0.2,\hh+0.1) {\color{blue}$(-\frac{\pi}{2} e^{R/2}, h_1(p_1))$};
+    \draw node at (-\r-0.2,\hp-0.1) {$(-\frac{\pi}{2} e^{R/2}, h(y))$};
+    \draw node at (\uuast+0.2,\vvast+0.1) {\color{blue}$(x^\ast(p_1), y^\ast(p_1))$};
+    \draw node at (\uast,\vast-0.1) {$(\hat{x}(p,p_1), \hat{y}(p, p_1))$};
+    
+    \draw node at (\uuast-2,\vvast) {$\bm{p_1 \in B^{(2)}_n}$};
     
     \draw node at (\uast,\vvast+0.1) {$\mathcal{I}_n^{(1)}$};
     \draw node at (\uast,\hp-0.05) {$\mathcal{I}_n^{(2)}$};
     %\draw node at (\uast+0.1,\hp-0.05) {$\mathcal{I}_n^{(3)}$};
     
     \draw node (f1) at (-\r-0.05,\hhh) {$b_p^-(z)$};
-    \draw node (f2) at (\uast+0.5,\hh+0.1) {\color{blue}$b_{p^\prime}^-(z)$};
-    \draw node (f3) at (\uuast-0.3,\hhh) {\color{blue}$b_{p^\prime}^+(z)$};
+    \draw node (f2) at (\uast+0.5,\hh+0.1) {\color{blue}$b_{p_1}^-(z)$};
+    \draw node (f3) at (\uuast-0.3,\hhh) {\color{blue}$b_{p_1}^+(z)$};
     \path (f1)+(45:0.35) node (f1_arrow) {};
     \path (f2)+(230:0.35) node (f2_arrow) {};
     \path (f3)+(130:0.35) node (f3_arrow) {};
@@ -955,16 +958,18 @@ Depending on which set $p_1$ belongs to, the set $\mathcal{T}(p,p^\prime)(p,p_1)
 	\pgfmathsetmacro{\i}{-exp((\v+\vvast)/2)}
 	\draw[red, dashed,line width=1pt] (\i,\vvast) -- (\uuast,\vvast);
 
-    \draw node at (\utilde,\vtilde+0.1) {\color{black}$(\tilde{x}(p,p^\prime), \tilde{y}(p,p^\prime))$};
-    \draw node at (\uast,\vast-0.1) {$(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$};
-    \draw node at (\uuast+0.2,\vvast+0.1) {\color{blue}$(x^\ast(p^\prime), y^\ast(p^\prime))$};
+    \draw node at (\utilde,\vtilde+0.1) {\color{black}$(\tilde{x}(p,p_1), \tilde{y}(p,p_1))$};
+    \draw node at (\uast,\vast-0.1) {$(\hat{x}(p,p_1), \hat{y}(p,p_1))$};
+    \draw node at (\uuast+0.2,\vvast+0.1) {\color{blue}$(x^\ast(p_1), y^\ast(p_1))$};
    
-    \draw node at (\uuast-0.45,\vvast+0.07) {$\mathcal{I}_n^{(2)}$};
-    \draw node at (\uast+0.025,\vvast-0.045) {$\mathcal{I}_n^{(1)}$};
+   \draw node at (\uuast-2,\vvast) {$\bm{p_1 \in B^{(3)}_n}$};
+   
+    \draw node at (\uuast-0.45,\vvast+0.07) {$\mathcal{I}_n^{(1)}$};
+    \draw node at (\uast+0.025,\vvast-0.045) {$\mathcal{I}_n^{(2)}$};
    
     \draw node (f1) at (\uast-0.7,\vast-0.1) {\color{black}$b_{p}^-(z)$};
-    \draw node (f2) at (\uuast-0.2,\vvast+0.5) {\color{blue}$b_{p^\prime}^-(z)$};
-    \draw node (f3) at (\uast+0.5,\vast+0.025) {\color{blue}$b_{p^\prime}^+(z)$};
+    \draw node (f2) at (\uuast-0.2,\vvast+0.5) {\color{blue}$b_{p_1}^-(z)$};
+    \draw node (f3) at (\uast+0.5,\vast+0.025) {\color{blue}$b_{p_1}^+(z)$};
     \path (f1)+(45:0.35) node (f1_arrow) {};
     \path (f2)+(230:0.35) node (f2_arrow) {};
     \path (f3)+(180:0.3) node (f3_arrow) {};
@@ -977,11 +982,11 @@ Depending on which set $p_1$ belongs to, the set $\mathcal{T}(p,p^\prime)(p,p_1)
 	\draw node[red, fill, circle, inner sep=0pt, minimum size=5pt] at (\uuast,\vvast) {};
 
 \end{tikzpicture}
-\caption{The different shapes of $\mathcal{T}(p,p^\prime)(p,p_1)$ depending on the regime to which $p_1$ belongs. The top figure is for $p_1 \in B_n^{(1)}$, the middle for $p_1 \in B_n^{(2)}$ and the bottom one for $p_1 \in B_n^{(3)}$.}
+\caption{The different shapes of $\mathcal{T}(p,p_1)$ depending on the regime to which $p_1$ belongs. The top figure is for $p_1 \in B_n^{(1)}$, the middle for $p_1 \in B_n^{(2)}$ and the bottom one for $p_1 \in B_n^{(3)}$.}
 \label{fig:shapes_triangle_mismatches}
 \end{figure}
 
-\paragraph{Regime 1: $0 \le y_1 \le y - 2\log(I_n/(I_n-x_1))$}
+\paragraph{Case $p_1 \in B_n^{(1)}$: $0 \le y_1 \le y - 2\log(I_n/(I_n-x_1))$}
 
 In this case the integral over $p_2$ splits into two parts
 \begin{align*}
@@ -1003,7 +1008,7 @@ We first compute $\mathcal{I}_n^{(1)}$.
 \end{align*}
 where we used that $x_1 \le e^{(y+y_1)/2} = \smallO{I_n}$ for all $y_1\le y$ and $y \in \Kcal_{C}(k_n)$ so that
 \[
-	\left(\left(1 - \frac{x_1}{I_n}\right)^{-(2\alpha - 1)}-1\right) = \bigO{\frac{x^\prime}{I_n}} \quad 
+	\left(\left(1 - \frac{x_1}{I_n}\right)^{-(2\alpha - 1)}-1\right) = \bigO{\frac{x_1}{I_n}} \quad 
 	\text{as } n \to \infty.
 \]
 
@@ -1018,11 +1023,11 @@ For $\mathcal{I}_n^{(2)}(p_1)$ we have
 
 We conclude that for $p_1 \in B_n^{(1)}$:
 \[
-	\mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right) = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y_1}},
+	\mu\left(\mathcal{T}(p,p_1)\right) = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y_1}},
 \]
 which establishes the first part of \eqref{eq:mu_triangle_diff}.
 
-\paragraph{Regime 2: $y - 2\log(I_n/(I_n-x_1)) < y_1 \le y + 2 \log\left(1 + \frac{x_1}{I_n}\right)$}
+\paragraph{Case $p_1 \in B_n^{(2)}$: $y - 2\log(I_n/(I_n-x_1)) < y_1 \le y + 2 \log\left(1 + \frac{x_1}{I_n}\right)$}
 
 Here we split the integration into two parts (see Figure~\ref{fig:shapes_triangle_mismatches}). Recall that $x^\ast(p,p_1) = x_1 - I_n$. Then, for the first part we have
 \begin{align*}
@@ -1041,13 +1046,12 @@ were we used that $y \le y_1 + 2\log(I_n/(I_n-x_1))$ for $p_1 \in B_n^{(2)}$ for
 \]
 for the last line.
 
-For the second part we first compute that 
+For the second part we first us the upper bound on $y_1$ to compute that 
 \begin{align*}
 	x_1 + e^{(y_1+y_2)/2} - 2 I_n + e^{(y + y_2)/2} &\le \left(e^{y/2} + e^{y_1/2}\right)e^{y_2/2}\\
-	&\le e^{y/2}\left(1 + \frac{I_n}{I_n - e^y}\right)e^{y_2/2} = \bigO{e^{(y+y_2)/2}},
+	&\le e^{y/2}\left(2 + \frac{x_1}{I_n}\right)e^{y_2/2} = \bigO{e^{(y+y_2)/2}},
 \end{align*}
-since $y \in \Kcal_{C}(k_n)$ and $k_n = \smallO{\sqrt{n}}$, so that $e^y = \smallO{n} = \smallO{I_n}$. 
-Then we have
+since $|x_1| \le I_n$. Then we have
 \begin{align*}
 	\mathcal{I}_n^{(2)} &= \int_{\hat{y}(p,p_1)}^{h(y)} \int_{-e^{(y + y_2)/2}}^{x_1 + e^{(y+y_1)/2} - 2 I_n} 
 		f(x_2, y_2) \dd x_2 \dd y_2\\
@@ -1066,10 +1070,10 @@ where for the last line we first used that $(2I_n - x_1)^{-(2\alpha-1)} \le I_n^
 
 It then follows that for $p_1 \in B_n^{(2)}$
 \[
-	\mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right) = \bigO{I_n^{-(2\alpha-1)} e^{\alpha y}}.
+	\mu\left(\mathcal{T}(p,p_1)\right) = \bigO{I_n^{-(2\alpha-1)} e^{\alpha y}}.
 \]
 
-\paragraph{Regime 3:}
+\paragraph{Case $p_1 \in B_n^{(3)}$: $y +2\log(1+x_1/I_n) < y_1 \le y + 2\log(I_n/(I_n-x_1))$}
 
 \begin{align*}
 	\mathcal{I}_n^{(1)} &= \int_{y^\ast}^{\tilde{y}} \int_{-e^{(y+y_2)/2}}^{x_1-e^{(y_1+y_2)/2}} f(x_2,y_2)
@@ -1093,7 +1097,7 @@ and hence we have
 	\mathcal{I}_n^{(1)} = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y_1}}.
 \]
 
-For the second integral we have
+For the second integral we have, using that $y \le y_1$ for $p_1 \in B_n^{(3)}$,
 \begin{align*}
 	\mathcal{I}_n^{(2)} &= \int_{\hat{y}}^{y^\ast} \int_{-e^{(y+y_2)/2}}^{e^{(y_1 + y_2)/2} + x_1 - 2I_n} 
 		f(x_2,y_2)\dd x_2 \dd y_2\\
@@ -1103,23 +1107,22 @@ For the second integral we have
 
 For the integral we have
 \begin{align*}
-	\int_{\hat{y}}^{y^\ast}e^{-(\alpha - \frac{1}{2})y_2} \dd y_2
-	&= \frac{2}{2\alpha - 1} \left(e^{-(\alpha - \frac{1}{2})\hat{y}} - e^{-(\alpha - \frac{1}{2})y^\ast}\right)\\
+	&\hspace{-30pt}\int_{\hat{y}}^{y^\ast}e^{-(\alpha - \frac{1}{2})y_2} \dd y_2
+		= \frac{2}{2\alpha - 1} \left(e^{-(\alpha - \frac{1}{2})\hat{y}} - e^{-(\alpha - \frac{1}{2})y^\ast}\right)\\
 	&= \frac{2}{2\alpha - 1}\left(\left(\frac{2I_n - x_1}{e^{y/2} + e^{y_1/2}}\right)^{-(2\alpha - 1)} 
-		- I_n^{-(2\alpha - 1)} e^{-(\alpha - \frac{1}{2})y_1}\right)\\
-	&= \bigO{I_n^{-2\alpha} x_1 e^{-(\alpha - \frac{1}{2})y_1}}
+		- I_n^{-(2\alpha - 1)} e^{(\alpha - \frac{1}{2})y_1}\right) = \bigO{I_n^{-(2\alpha-1)} e^{(\alpha - \frac{1}{2})y_1}},
 \end{align*}
-so that
+where we used the upper bound on $y_1$ and the fact that $2I_n - x_1 = \bigT{I_n}$ for all $x_1 \in [-I_n,I_n]$. We conclude that
 \[
-	\mathcal{I}_n^{(2)} = \bigO{I_n^{-(2\alpha - 1)} e^{(1-\alpha)y_1}} = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y}}
+	\mathcal{I}_n^{(2)} = \bigO{I_n^{-(2\alpha-1)} x_1 e^{\alpha y}}
 \]
 and hence for $p_1 \in B_n^{(3)}$
 \[
-	\mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right) = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y}}
+	\mu\left(\mathcal{T}(p,p_1)\right) = \bigO{I_n^{-2\alpha} x_1 e^{\alpha y}}
 	= \bigO{I_n^{-(2\alpha - 1)} e^{\alpha y}}.
 \]
 
-\subsubsection*{Integration over $p_1$}
+\subsubsection*{Integration $\mu(\mathcal{T}(p,p_1))$ with respect to $p_1$}
 
 
 
@@ -1146,26 +1149,26 @@ which yields $x_1 = I_n\left(e^{(y_1 - y)/2} - 1\right)$. The lower red boundary
 
 We continue in the same way for $B_n^{(3)}$
 \[
-	B_n^{(3)} = \left\{(x_1, y_1) \, : \, y \le y_1 \le R_n, \,\,
+	B_n^{(3)} = \left\{(x_1, y_1) \, : \, y \le y_1 \le R, \,\,
 	I_n\left(1 - e^{(y - y_1)/2}\right) \le x_1 \le I_n\left(e^{(y_1 - y)/2} - 1\right) \wedge e^{(y + y_1)/2} \wedge I_n \right\}.
 \]
 
-We these characterizations of the areas we now integrate $\mu(\mathcal{T}(p,p^\prime))(p,p_1)$ over $B_n$, splitting the computations over the three different areas.
+We these characterizations of the areas we now integrate $\mu(\mathcal{T}(p,p_1))$ over $B_n$, splitting the computations over the three different areas.
 
-\paragraph{$\bm{p_1 \in B_n^{(1)}}:$}
+\paragraph{Integration over $\bm{B_n^{(1)}}:$}
 
 We use that $I_n\left(1 - e^{(y_1-y)/2}\right) \wedge e^{(y + y_1)/2} \le I_n\left(1 - e^{(y_1-y)/2}\right)$ so that
 \begin{align*}
-	&\hspace{-30pt}\int_{B_n^{(1)}} \mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right) 
+	&\hspace{-30pt}\int_{B_n^{(1)}} \mu\left(\mathcal{T}(p,p_1)\right) 
 		f(x_1,y_1)	\dd x_1 \dd y_1 \\
-	&\le  \int_0^y \int_0^{I_n(1-e^{(y_1-y)/2})} \mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right) 
+	&\le  \int_0^y \int_0^{I_n(1-e^{(y_1-y)/2})} \mu\left(\mathcal{T}(p,p_1)\right) 
 		f(x_1,y_1) \dd x_1 \dd y_1\\
 	&= \bigO{ I_n^{-2\alpha} \int_0^y \int_0^{e^{(y+y_1)/2}}  x_1 \dd x_1 \dd y_1 }\\
 	&= \bigO{I_n^{-(2\alpha-1)} \int_0^y \left(1 - e^{(y_1-y)/2}\right)^2 \dd y_1} \\
 	&= \bigO{I_n^{-(2\alpha - 1)} y} = \bigO{y n^{-(2\alpha - 1)}}.
 \end{align*} 
 
-\paragraph{$\bm{p_1 \in B_n^{(2)}}:$}
+\paragraph{Integration over $\bm{B_n^{(2)}}:$}
 
 We will show that
 \begin{equation}\label{eq:mu_triangle_diff_2}
@@ -1173,7 +1176,7 @@ We will show that
 \end{equation}
 which together with \eqref{eq:mu_triangle_diff} yields
 \begin{align*}
-	\int_{B_n^{(2)}} \mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right) 
+	\int_{B_n^{(2)}} \mu\left(\mathcal{T}(p,p_1)\right) 
 		f(x_1,y_1)	\dd x_1 \dd y_1
 	&= \bigO{\mu(B_n^{(2)}) I_n^{-(2\alpha - 1)} e^{\alpha y}}\\
 	&= \bigO{I_n^{-2\alpha} e^{2y}}.
@@ -1208,7 +1211,7 @@ For the second integral note that $e^{(y + y_1)/2} - I_n(e^{(y_1-y)/2}-1) \le e^
 \end{align*}
 so that \eqref{eq:mu_triangle_diff_2} follows.
 
-\paragraph{$\bm{p_1 \in B_n^{(3)}}:$}
+\paragraph{Integration over $\bm{B_n^{(3)}}:$}
 
 For this case we show that 
 \begin{equation}\label{eq:mu_triangle_diff_3}
@@ -1216,7 +1219,7 @@ For this case we show that
 \end{equation} 
 so that
 \begin{align*}
-	\int_{B_n^{(3)}} \mu\left(\mathcal{T}(p,p^\prime)(p,p_1)\right) 
+	\int_{B_n^{(3)}} \mu\left(\mathcal{T}(p,p_1)\right) 
 		f(x_1,y_1)	\dd x_1 \dd y_1
 	&= \bigO{\mu(B_n^{(2)}) I_n^{-(2\alpha - 1)} e^{\alpha y}}\\
 	&= \bigO{I_n^{-(2\alpha-1)} e^{y}}.
@@ -1228,7 +1231,7 @@ Here the integral is split into three parts:
 		f(x_1,y_1) \dd x_1 \dd y_1\\
 	&\hspace{10pt}+ \int_{h^\ast(y)}^{h(y)} \int_{I_n(1-e^{(y-y_1)/2})}^{e^{(y+y_1)/2}}
 		f(x_1,y_1) \dd x_1 \dd y_1\\
-	&\hspace{10pt}+ \int_{h(y)}^{R_n} \int_{I_n(1-e^{(y-y_1)/2})}^{I_n}
+	&\hspace{10pt}+ \int_{h(y)}^{R} \int_{I_n(1-e^{(y-y_1)/2})}^{I_n}
 		f(x_1,y_1) \dd x_1 \dd y_1.
 \end{align*}
 

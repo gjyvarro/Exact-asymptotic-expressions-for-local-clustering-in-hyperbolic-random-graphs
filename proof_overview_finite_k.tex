@@ -50,7 +50,7 @@ Similar to the infinite graph, for a point $p \in \Rcal$ we define the ball $\Ba
 \subsection{The Poissonized KPKVB model $\GPo$}
 
 
-Imagine that we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ in the hyperbolic plane $\Haa$ chosen according to the $(\alpha, R)$-quasi uniform distribution. In the standard KPKVB random graph $G(n;\alpha,\nu)$ we take $u_1,\dots, u_n$ as our vertex set and add edges between points at hyperbolic distance at most $R = 2\log(n/\nu)$. In the {\em Poissonized} KPKVB random graph $\GPo := \GPo(n;\alpha,\nu)$, we instead take $N\isd \Po(n)$, a Poisson random variable 
+Imagine that we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ in the hyperbolic plane $\Haa$ chosen according to the $(\alpha, R)$-quasi uniform distribution. In the standard KPKVB random graph $G(n;\alpha,\nu)$ we take $u_1,\dots, u_n$ as our vertex set and add edges between points at hyperbolic distance at most $R = 2\log(n/\nu)$. In the \emph{Poissonized} KPKVB random graph $\GPo := \GPo(n;\alpha,\nu)$, we instead take $N\isd \Po(n)$, a Poisson random variable 
 with mean $n$, independent of our i.i.d.~sequence of points and let the vertex set be $u_1,\dots, u_N$ and add edges 
 according to the same rule as before. Equivalently, we could say that the vertex set consists of the points of a Poisson point process with intensity function $n g$, where $g$ denotes the probability density of the $(\alpha,R)$-quasi uniform distribution. That is,
 \begin{equation}\label{eq:def_quasi_uniform_density}
@@ -82,7 +82,7 @@ In the remainder of this paper we will write $\BallHyp{p}$ to denote the image u
 $\Psi^{-1}(p)$ for $p \in \Rcal$, i.e. 
 \[
 	\BallHyp{p} := 
-	%\left\{p^\prime := \Psi(u) \, : \, u \in \Dcal_{R_n} \text{ and } d_\H(\Psi^{-1}(p),u) \le R_n\right\}.
+	%\left\{p^\prime := \Psi(u) \, : \, u \in \Dcal_{R} \text{ and } d_\H(\Psi^{-1}(p),u) \le R\right\}.
 	\Psi\left[ \left\{ u \in \Haa : 
 	d_\H(\Psi^{-1}(p),u), d_\H(O,u) \le R \right\}\right] \subset \Rcal.
 \]
@@ -132,6 +132,9 @@ On the coupling space of Lemma~\ref{lem:coupling_hyperbolic_poisson} the followi
 \end{enumerate}
 \end{lemma}
 
+\begin{remark}[Notion convention for points]
+We will often be working with the finite box graph $\GPo$ or the infinite graph $\Ginf$, whose nodes are points in $\R \times \R_+$. For any point $p \in \R \times \R_+$ we will always use $p = (x,y)$. When considering different points $p,p^\prime \in \R \times \R_+$, we will use primed coordinates to refer to $p^\prime$, i.e. $p^\prime = (x^\prime ,y^\prime)$, and similar with subscripts, i.e. $p_i = (x_i,y_i)$.
+\end{remark}
 
 \subsection{The Campbell-Mecke formula}
 

@@ -50,12 +50,12 @@ We use the hypergeometric representation of the incomplete Beta function,
 \[
 	B^-(x, a, b) = \frac{x^a}{2a}F(a, 1-b,a+1,x),
 \]
-where $F$ denote the hypergeometric function [REF]. In particular we have that
+where $F$ denote the hypergeometric function~\cite{temme2011special} (or see~\cite[Section 8.17 (ii)]{dlmf2019digital}). In particular we have that
 \[
 	B^-(1-z; 2\alpha, 3-4\alpha ) = \frac{(1-z)^{2\alpha}}{2\alpha} F(2\alpha,4\alpha-2,2\alpha+1,1-z).
 \]
 
-The behavior of $F(a,b,c,1-z)$ as $z \to 0$ depend on the real part of the sum of $c - a - b$ and whether $c = a + b$ [REF]. Since in our case $a,b,c$ will be real it only depends on the sum of $c - a - b$. For $c - a - b > 0$ we have
+The behavior of $F(a,b,c,1-z)$ as $z \to 0$ depend on the real part of the sum of $c - a - b$ and whether $c = a + b$~\cite{andrews2000special} (or see~\cite[Section 15.4(ii)]{dlmf2019digital}). Since in our case $a,b,c$ will be real it only depends on the sum of $c - a - b$. For $c - a - b > 0$ we have
 \begin{equation}\label{eq:F_cab_less_than_zero}
 	\lim_{z \to 0} F(a,b,c,1-z) = \frac{\Gamma(c)\Gamma(c-a-b)}{\Gamma(c-a)\Gamma(c-b)},
 \end{equation}

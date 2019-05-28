@@ -1,37 +1,36 @@
 \section{Equivalence for local clustering in $\GPo$ and $\Gbox$}\label{sec:coupling_H_P_n}
 
-In this section we establish the equivalence between $c^\ast(k; G_n)$ and $c^\ast(k; \Gbox)$ as expressed in Proposition~\ref{prop:couling_c_H_P}, using the coupling procedure explained in Section~\ref{ssec:coupling_H_P}. 
+In this section we establish the equivalence between $c^\ast(k; G_n)$ and $c^\ast(k; \Gbox)$ as expressed in Proposition~\ref{prop:couling_c_H_P}, using the coupling procedure explained in Section~\ref{ssec:coupling_H_P}. As in the previous section we write $|\cdot|_n$ for the norm $|\cdot|_{\pi e^{R/2}}$.
 
-Recall that $\mathcal{P}$ denotes a Poisson process on $\mathbb{R} \times \mathbb{R}_+$, with intensity $f(x,y)$, $I_n = \frac{\pi}{2}e^{R_n/2}$, $\mathcal{R} = (-I_n, I_n] \times (0,R_n]$ and $\mathcal{V}_n = \mathcal{P}\cap \mathcal{R}$. In addition we define for any interval $I \subseteq \mathbb{R}_+$, $\Rcal(I) := (-I_n,I_n] \times I$ and denote by $\BallPon{p}$ the \emph{ball}
-\[
-	\BallPon{p} = \left\{p^\prime \in \mathcal{V}_n : |x - x^\prime |_{\pi e^{R_n/2}} < e^{\frac{y+y^\prime}{2}}\right\}.
-\]
-Note that when $p \in \mathcal{V}_n$ then $\BallPon{p}$ denotes its neighbourhood in the graph $\Gbox$. 
-%Note that the above definition implies that for all $y\in [0,R_n]$ we have 
-%\begin{equation} \label{eq:upper_ballPo_inclusion}
-%\Rcal([R_n-y - 2\ln (\pi/2), R_n]) \subseteq \BallPon{(0,y)}
-%\end{equation}
-%- this is a fact which we are going to use several times in our analysis. \PvdH{@All: Maybe we should either add figure to illustrate this or we could refer to a previous figure.}
+%Recall that $\mathcal{P}$ denotes a Poisson process on $\mathbb{R} \times \mathbb{R}_+$, with intensity $f(x,y)$, $I_n = \frac{\pi}{2}e^{R/2}$, $\mathcal{R} = (-I_n, I_n] \times (0,R]$ and $\mathcal{V}_n = \mathcal{P}\cap \mathcal{R}$. In addition we define for any interval $I \subseteq \mathbb{R}_+$, $\Rcal(I) := (-I_n,I_n] \times I$ and denote by $\BallPon{p}$ the \emph{ball}
+%\[
+%	\BallPon{p} = \left\{p^\prime \in \mathcal{V}_n : |x - x^\prime |_{\pi e^{R/2}} < e^{\frac{y+y^\prime}{2}}\right\}.
+%\]
+%Note that when $p \in \mathcal{V}_n$ then $\BallPon{p}$ denotes its neighbourhood in the graph $\Gbox$. 
+%
+%For any Borel-measurable subset $S \subseteq \mathbb{R} \times \mathbb{R}_+$, we let 
+%\[
+%	\mu (S) = \int_S f(x,y) \, dx \, dy = \frac{\nu \alpha}{\pi}\int_S e^{-\alpha y}dy.
+%\]
+%Thus, the number of points of $\Pcal_{\alpha, \nu}$ inside $S$ is distributed as $\Po ({\mu_{\alpha, \nu,} (S)})$.
+%
+%Finally, we recall 
 
-For any Borel-measurable subset $S \subseteq \mathbb{R} \times \mathbb{R}_+$, we let 
+Recall the map $\Psi$ from~\eqref{eq:def_Psi}
 \[
-	\mu (S) = \int_S f(x,y) \, dx \, dy = \frac{\nu \alpha}{\pi}\int_S e^{-\alpha y}dy.
-\]
-Thus, the number of points of $\Pcal_{\alpha, \nu}$ inside $S$ is distributed as $\Po ({\mu_{\alpha, \nu,} (S)})$.
-
-Finally, we recall the map $\Psi$ from~\eqref{eq:def_Psi}
-\[
-	\Psi(r,\theta) = \left(\theta \frac{e^{R_n/2}}{2}, R_n - r\right),
+	\Psi(r,\theta) = \left(\theta \frac{e^{R/2}}{2}, R - r\right),
 \] 
-and remind the reader that $\BallHyp{p}$ denotes the image under $\Psi$ of the ball of hyperbolic radius $R_n$ around the point $\Psi^{-1}(p)$ and that under the coupling between the hyperbolic random graph and the finite box model, described in Section~\ref{ssec:coupling_H_P}, two points $p$ and $p^\prime$ are connected if and only if
+and that $\BallHyp{p}$ denotes the image under $\Psi$ of the ball of hyperbolic radius $R$ around the point $\Psi^{-1}(p)$. Under the coupling between the hyperbolic random graph and the finite box model, described in Section~\ref{ssec:coupling_H_P}, two points $p = (x,y)$ and $p^\prime = (x^\prime, y^\prime)$ are connected if and only if
 \[
-	|x-x^\prime|_{\pi e^{r_n/2}} \le \Phi(R_n - y, R_n - y^\prime),
+	|x-x^\prime|_n \le \Phi(y, y^\prime)
+	= \frac{1}{2}e^{R/2} \arccos\left( \frac{\cosh(R-y) \cosh(R-y^\prime) - \cosh R}{\sinh(R-y) \sinh(R-y^\prime)} \right),
 \]
-where the function $\Phi$ can be approximated, for $y + y^\prime < R_n$, using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} by  
+see~\eqref{eq:def_Omega_hyperbolic}. We will often use the result from Lemma~\ref{lem:asymptotics_Omega_hyperbolic} to approximate the function $\Phi$, for $y + y^\prime < R$, by  
 \[
-	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R_n} \leq \Phi(R_n - y, R_n - y^\prime) 
-		\leq  e^{\frac{1}{2}(y+y^\prime)} + K e^{\frac{3}{2}(y+y^\prime) - R_n}.
+	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R} \leq \Phi(R - y, R - y^\prime) 
+		\leq  e^{\frac{1}{2}(y+y^\prime)} + K e^{\frac{3}{2}(y+y^\prime) - R},
 \]
+where $K$ is a constant determined by the lemma.
 
 %To prove Proposition~\ref{prop:couling_c_H_P} we calculate the error in two steps. First we show in Section~\ref{ssec:coupling_HP_ast_P} that
 %\[
@@ -45,81 +44,83 @@ where the function $\Phi$ can be approximated, for $y + y^\prime < R_n$, using L
 
 \subsection{Some results on the hyperbolic geometric graph}
 
-We start with some basic results for the hyperbolic random geometric graph. Observe that~\eqref{eq:asymp2} from Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies the following. 
+We start with some basic results for the hyperbolic random geometric graph. Recall that $\BallPo{p} = \{p^\prime \in \R \times \R_+ \, : \, |x - x^\prime| \le e^{(y +y^\prime)/2}\}$ and observe that~\eqref{eq:asymp2} from Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies the following. 
 \begin{corollary}\label{cor:balls_inclusion}
+For sufficiently large $n$ and $p \in \Rcal$,
 \begin{equation*}
- \BallPo{p} \cap \Rcal ([K,R_n]) \subseteq \BallHyp{p} \cap \Rcal ([K,R_n]). 
+ \BallPo{p} \cap \Rcal ([K,R]) \subseteq \BallHyp{p} \cap \Rcal ([K,R]),
 \end{equation*}
+where $K$ is the constant from Lemma~\ref{lem:asymptotics_Omega_hyperbolic}.
 \end{corollary}
 
 
 Furthermore, Lemma~\ref{lem:asymptotics_Omega_hyperbolic} enables us to determine the measure of a ball around a given point $p=(0,y)$ - this is will be fairly useful in our subsequent analysis. 
 
-Let $p \in \Rcal$. Then we can see that the curve $x^\prime = e^{\frac{1}{2} (y + y^\prime)}$ with $x^\prime \geq 0$ meets the right boundary of $\Rcal_N$, that is, the line $x^\prime = \frac{\pi}{2} e^{R_n/2}$ at $y^\prime = R_n - y + 2\ln \frac{\pi}{2}$. Hence, any point $p^{\prime} \in \Rcal ([R_n - y + 2\ln \frac{\pi}{2}, R_n])$ is included in $\BallPo{p}$. In other words,
+Let $p \in \Rcal$. Then we can see that the curve $x^\prime = e^{\frac{1}{2} (y + y^\prime)}$ with $x^\prime \geq 0$ meets the right boundary of $\Rcal$, that is, the line $x^\prime = \frac{\pi}{2} e^{R/2}$ at $y^\prime = R - y + 2\ln \frac{\pi}{2}$. Hence, any point $p^{\prime} \in \Rcal ([R - y + 2\ln \frac{\pi}{2}, R])$ is included in $\BallPo{p}$. In other words,
 \begin{equation*} \label{eq:P_ball_inclusion_lower}
-\BallPo{p} \cap \Rcal ([R_n - y +2\ln \frac{\pi}{2},R_n]) = \Rcal ([R_n - y + 2\ln \frac{\pi}{2},R_n]).
+\BallPo{p} \cap \Rcal ([R - y +2\ln \frac{\pi}{2},R]) = \Rcal ([R - y + 2\ln \frac{\pi}{2},R]).
 \end{equation*}
 This together with the fact that for any $u^\prime = (r^\prime, \theta^\prime)$,
 \[
-	r^\prime < y = R_n -r \Rightarrow d_\H(\Psi^{-1}(p),u^\prime) \le R_n
+	r^\prime < y = R -r \Rightarrow d_\H(\Psi^{-1}(p),u^\prime) \le R
 \]
 implies that 
 \begin{equation}\label{eq:symm_diff_upper_P} 
-(\BallHyp{p} \bigtriangleup \BallPo{p})  \cap \Rcal ([R_n - y + 2 \ln \frac{\pi}{2},R_n]) = \emptyset,
+(\BallHyp{p} \bigtriangleup \BallPo{p})  \cap \Rcal ([R - y + 2 \ln \frac{\pi}{2},R]) = \emptyset,
 \end{equation}
-where $A \bigtriangleup B$ denotes the symmetric difference. We can now compute the expected number of points in $\BallHyp{p} \bigtriangleup \BallPo{p}$, i.e. those that belong are a neighbor of $p$ in only one of the two models.
+where $A \bigtriangleup B$ denotes the symmetric difference of the sets $A$ and $B$. We can now compute the expected number of points in $\BallHyp{p} \bigtriangleup \BallPo{p}$, i.e. those that belong are a neighbor of $p$ in only one of the two models.
 
 \begin{lemma}\label{lem:sym_diff_measure_H_P}
-Let $0 \le y_n <R_n$ be such that $R_n - y_n \to \infty$ and write $p_n = (x_n, y_n)$. Then we have, as $n \to \infty$,
+Let $0 \le y_n <R$ be such that $R - y_n \to \infty$ and write $p_n = (x_n, y_n)$. Then we have, as $n \to \infty$,
 \[
 	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} ) 
 	= \Theta (1) \cdot \begin{cases} 
-		e^{(1/2-\alpha)R_n + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
-		(R_n-y_n) e^{3y/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-		e^{3y_n/2 - R_n}, &  \mbox{if } \alpha > 3/2 
+		e^{(1/2-\alpha)R + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
+		(R-y_n) e^{3y/2 - R}, & \mbox{if }\alpha = 3/2\\
+		e^{3y_n/2 - R}, &  \mbox{if } \alpha > 3/2 
 	\end{cases}.
 \]
 \end{lemma}
 
 \begin{proof}
-Let $r_n := R_n - y$. Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for such a $p_n$, if a point $p$ belongs to $\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([0,r_n])$ then 
+Let $r_n := R - y$. Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for such a $p_n$, if a point $p$ belongs to $\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([0,r_n])$ then 
 \[
-	|x_n - x| = \Theta(1) \cdot e^{\frac{3}{2} (y_n + y) - R_n}.
+	|x_n - x| = \Theta(1) \cdot e^{\frac{3}{2} (y_n + y) - R}.
 \]
 Now, if $p \in [r_n, r_n + 2 \ln \frac{\pi}{2})]$ and also $p \in \BallHyp{p_n} \bigtriangleup \BallPo{p_n}$, then 
 \[
-	|x_n-x| =\frac{\pi}{2} e^{R_n/2} - e^{\frac{1}{2} (y_n + y)}.
+	|x_n-x|_n =\frac{\pi}{2} e^{R/2} - e^{\frac{1}{2} (y_n + y)}.
 \]
-Finally,~\eqref{eq:symm_diff_upper_P} implies that no point in $\Rcal ([r_n+2\ln \frac{\pi}{2},R_n])$ belongs to $\BallHyp{p_n} \bigtriangleup \BallPo{p_n}$. We first compute the expected number of points in $p \in \BallHyp{p_n} \bigtriangleup \BallPo{p_n}$ that have $R_n - y \le r_n$. The result depends on the value of $\alpha$, yielding the following three cases
+Finally,~\eqref{eq:symm_diff_upper_P} implies that no point in $\Rcal ([r_n+2\ln \frac{\pi}{2},R])$ belongs to $\BallHyp{p_n} \bigtriangleup \BallPo{p_n}$. We first compute the expected number of points in $p \in \BallHyp{p_n} \bigtriangleup \BallPo{p_n}$ that have $R - y \le r_n$. The result depends on the value of $\alpha$, yielding the following three cases
 \begin{align*}
 	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([0,r_n])) 
-	&= \Theta(1) \cdot e^{3y_n/2 - R_n}\int_0^{r_n} e^{(3/2-\alpha) y} \, dy \\
-	&= \Theta(1)\cdot \begin{cases} e^{(1/2-\alpha)R_n + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
-		(R_n - y_n) e^{3y_n/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-		e^{3y_n/2 - R_n}, &  \mbox{if } \alpha > 3/2
+	&= \Theta(1) \cdot e^{3y_n/2 - R}\int_0^{r_n} e^{(3/2-\alpha) y} \, dy \\
+	&= \Theta(1)\cdot \begin{cases} e^{(1/2-\alpha)R + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
+		(R - y_n) e^{3y_n/2 - R}, & \mbox{if }\alpha = 3/2\\
+		e^{3y_n/2 - R}, &  \mbox{if } \alpha > 3/2
 	\end{cases}.
 \end{align*}
 Next we compute the number of remaining points in $\BallHyp{p_n} \bigtriangleup \BallPo{p_n}$, 
 \begin{align*}
-	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([r_n, R_n])) 
+	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([r_n, R])) 
 	&= \frac{\nu\alpha}{\pi} \int_{r_n}^{r_n + 2 \ln \frac{\pi}{2}} 
-		\left(\frac{\pi}{2} e^{R_n/2} - e^{\frac{1}{2} (y_n + y)}\right)e^{-\alpha y} \, dy \\
-	&= O(1) \cdot e^{R_n/2} \int_{r_n}^{r_n + 2 \ln \frac{\pi}{2}} e^{-\alpha y} \, dy 
-		= O(1) \cdot e^{R_n/2} e^{-\alpha r_n} \\
-	&=O(1) \cdot e^{(1/2 - \alpha) R_n + \alpha y_n}.
+		\left(\frac{\pi}{2} e^{R/2} - e^{\frac{1}{2} (y_n + y)}\right)e^{-\alpha y} \, dy \\
+	&= O(1) \cdot e^{R/2} \int_{r_n}^{r_n + 2 \ln \frac{\pi}{2}} e^{-\alpha y} \, dy 
+		= O(1) \cdot e^{R/2} e^{-\alpha r_n} \\
+	&=O(1) \cdot e^{(1/2 - \alpha) R + \alpha y_n}.
 \end{align*}
 Now note that for any $\alpha > 3/2$, we have 
 \[
-	\left( (1/2 - \alpha) R_n + \alpha y_n\right) - \left(3y_n/2 - R_n \right)
-	= (3/2 -\alpha) (R_n- y_n) \to -\infty,
+	\left( (1/2 - \alpha) R + \alpha y_n\right) - \left(3y_n/2 - R \right)
+	= (3/2 -\alpha) (R- y_n) \to -\infty,
 \]
 by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. From these observations, we deduce that 
 \[
 	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} ) 
 	= \Theta (1) \cdot \begin{cases} 
-		e^{(1/2-\alpha)R_n + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
-		r_n e^{3y_n/2 - R_n}, & \mbox{if }\alpha = 3/2\\
-		e^{3y_n/2 - R_n}, &  \mbox{if } \alpha > 3/2 
+		e^{(1/2-\alpha)R + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
+		r_n e^{3y_n/2 - R}, & \mbox{if }\alpha = 3/2\\
+		e^{3y_n/2 - R}, &  \mbox{if } \alpha > 3/2 
 	\end{cases}.
 \]
 \end{proof}
@@ -152,7 +153,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 %\begin{tikzpicture}[scale=0.85]
 %	%Define the coordinates 
 %	%p = (\u,\v), p_1 = (\uu, \vv)
-%	%Box \Rcal has width 2\r and height \t (\r = \pi/2 e^{R_n/2})
+%	%Box \Rcal has width 2\r and height \t (\r = \pi/2 e^{R/2})
 %	\pgfmathsetmacro{\u}{0}
 %	\pgfmathsetmacro{\v}{0.5}
 %	\pgfmathsetmacro{\uu}{1}
@@ -237,7 +238,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 %\begin{tikzpicture}[scale=0.85]
 %	%Define the coordinates 
 %	%p = (\u,\v), p_1 = (\uu, \vv)
-%	%Box \Rcal has width 2\r and height \t (\r = \pi/2 e^{R_n/2})
+%	%Box \Rcal has width 2\r and height \t (\r = \pi/2 e^{R/2})
 %	\pgfmathsetmacro{\u}{0}
 %	\pgfmathsetmacro{\v}{0.5}
 %	\pgfmathsetmacro{\uu}{1}
@@ -324,7 +325,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 %\begin{tikzpicture}[scale=0.85]
 %	%Define the coordinates 
 %	%p = (\u,\v), p_1 = (\uu, \vv) and p_2 = (\uuu, \vvv)
-%	%Box \Rcal has width 2\r and height \t (\r = \pi/2 e^{R_n/2})
+%	%Box \Rcal has width 2\r and height \t (\r = \pi/2 e^{R/2})
 %	\pgfmathsetmacro{\u}{0}
 %	\pgfmathsetmacro{\v}{0.5}
 %	\pgfmathsetmacro{\uu}{1}
@@ -423,11 +424,11 @@ Let $\alpha > 1/2$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be a sequence such that $k_n 
 \end{equation}
 and
 \begin{equation} \label{eq:n_k_Po}
-	\Exp{N_{\text{box}}(k_n)} = \bigT{1} n k_n^{-(2\alpha + 1)}.
+	\Exp{N_{\mathrm{box}}(k_n)} = \bigT{1} n k_n^{-(2\alpha + 1)}.
 \end{equation}
 Moreover,
 \begin{equation}\label{eq:equivalence_N_HP_P}
-	\lim_{n \to \infty} \frac{\Exp{N_{\Po}(k_n)}}{\Exp{N_{\text{box}}(k_n)}} = 1.
+	\lim_{n \to \infty} \frac{\Exp{N_{\Po}(k_n)}}{\Exp{N_{\mathrm{box}}(k_n)}} = 1.
 \end{equation}
 \end{lemma}
 
@@ -439,7 +440,7 @@ By the Campbell-Mecke formula
 Then by Lemma~\ref{lem:concentration_argument_rho_approximation} 
 \begin{align*}
 	\Exp{N_{\Po}(k_n)} &= (1 + \smallO{1})\int_{\Rcal} \rho(y,k_n) f(x,y) \dd x \dd y\\
-	&= (1 + \smallO{1}) n \int_{0}^{R_n} \rho(y,k_n) f(x,y) \dd x \dd y = \bigT{1}n k_n^{-(2\alpha + 1)}.
+	&= (1 + \smallO{1}) n \int_{0}^{R} \rho(y,k_n) f(x,y) \dd x \dd y = \bigT{1}n k_n^{-(2\alpha + 1)}.
 \end{align*}
 Similarly,
 \[
@@ -456,7 +457,7 @@ Recall that Proposition~\ref{prop:couling_c_H_P} states
 Next recall the definition of $\Kcal_{C}(k_n)$
 \[
 	\Kcal_C(k_n) = \left\{y \in \R_+ : \frac{k_n - C \sqrt{k_n \log(k_n)}}{\xi} \vee 0 \le e^{\frac{y}{2}}
-	\le \frac{k_n + C \sqrt{k_n \log(k_n)}}{\xi} \wedge e^{R_n/2} \right\},
+	\le \frac{k_n + C \sqrt{k_n \log(k_n)}}{\xi} \wedge e^{R/2} \right\},
 \]
 and~\eqref{eq:def_tilde_c_box}
 \[
@@ -489,7 +490,7 @@ and hence it is enough to prove that
 The following lemma will be frequently used in the proof of Proposition~\ref{prop:couling_c_H_P}.
 
 \begin{lemma} \label{lem:gamma_approx}
-Let $t, r \in \mathbb{R}$ be fixed and let $\hat{\rho}(y,k)$ be any of the three probability functions $\rho_{\Po}(y,k), \rho_{\text{box}}(y,k)$ or $\rho(y,k)$. Then for any sequence $k_n$ of positive integers with $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$ and $C > 0$ large enough,
+Let $t, r \in \mathbb{R}$ be fixed and let $\hat{\rho}(y,k)$ be any of the three probability functions $\rho_{\Po}(y,k), \rho_{\text{box}}(y,k)$ or $\rho(y,k)$. Then for any sequence $k_n$ of non-negative integers with $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$ and $C > 0$ large enough,
 \[
 	\int_{\Kcal_{C}} e^{t y} \hat{\rho}_n(y,k_n-r) e^{-\alpha y} \dd y = \bigO{1} k_n^{-2\alpha - 1 + 2t}
 \]
@@ -506,9 +507,9 @@ Note that on $\Kcal_{C}(k_n)$ we have that $e^{ty} = \bigT{k_n^{2t}}$. Hence, by
 
 \begin{proof}[Proof of Proposition~\ref{prop:couling_c_H_P}] 
 
-To keep notations concise we abbreviate $\Exp{N_{\Po}(k_n)}$ and $\Exp{N_{\infty}(k_n)}$ by $\expH$ and $\expP$, respectively. We will also suppress the subscripts $n$ in most expression regarding the graphs $\GPo$ and $\Gbox$. Finally we will write 
+To keep notation concise we abbreviate $\Exp{N_{\Po}(k_n)}$ and $\Exp{\Nbox(k_n)}$ by $\expH$ and $\expP$, respectively. We will also suppress the subscript $n$ in most expressions regarding the graphs $\GPo$ and $\Gbox$. Finally we will write 
 \[
-	T_{\Po}(p) = \sum_{(p_1, p_2) \in \Pcal \setminus p}^{\ne} T_{\Po}(p,p_1,p_2),
+	T_{\Po}(p) = \sum_{(p_1, p_2) \in \Pcal \setminus \{p\}}^{\ne} T_{\Po}(p,p_1,p_2),
 \] 
 with
 \[
@@ -519,11 +520,11 @@ to denote the triangle count function for $p$ in $\GPo$. Then we have
 	&\Exp{\left|  c^\ast(k_n; \GPo) - \widetilde{c}_{\text{box}}(k_n)\right|}= 
 	\binom{k_n}{2}^{-1}\Exp{\left|\sum_{p \in \Pcal} 
     	\frac{\ind{\mathrm{deg}_{\Po}(p) = k_n}}{\expH} T_{\Po}(p)
-        - \frac{\ind{\mathrm{deg}_{\infty}(p) = k_n}}{\expP}  \widetilde{T}_{\text{box}}(p)\right|} \\
+        - \frac{\ind{\mathrm{deg}_{\mathrm{box}}(p) = k_n}}{\expP}  \widetilde{T}_{\mathrm{box}}(p)\right|} \\
     &\le\binom{k_n}{2}^{-1} \expH^{-1} \Exp{\left|\sum_{p \in \Pcal} \ind{\mathrm{deg}_{\Po}(y) = k_n} T_{\Po}(p) 
-    	- \ind{\mathrm{deg}_{\infty}(p) = k_n} \widetilde{T}_{\text{box}}(p)\right|} \\
+    	- \ind{\mathrm{deg}_{\mathrm{box}}(p) = k_n} \widetilde{T}_{\text{box}}(p)\right|} \\
     &\hspace{10pt}+ \binom{k_n}{2}^{-1} \left|\frac{1}{\expH} - \frac{1}{\expP}\right|\Exp{
-        	\sum_{p \in \Pcal} \ind{\mathrm{deg}_{\infty}(p) = k_n} \widetilde{T}_{\text{box}}(p) }
+        	\sum_{p \in \Pcal} \ind{\mathrm{deg}_{\mathrm{box}}(p) = k_n} \widetilde{T}_{\text{box}}(p) }
 \end{align*}
 The last term can be rewritten as
 \begin{align*}
@@ -535,62 +536,63 @@ where we used Proposition~\ref{prop:convergence_average_clustering_P_n} (See Sec
 \]
 and therefore we are left to analyze the other term. By the Campbell-Mecke formula we have that
 \begin{align*}
-	    &\Exp{\left|\sum_{p \in \Pcal} \ind{\mathrm{deg}_{n}(y) = k_n} T_{\Po}(p) 
-	        	- \ind{\mathrm{deg}_{\infty}(p) = k_n} \widetilde{T}_{\text{box}}(p)\right|} \\
+	    &\Exp{\left|\sum_{p \in \Pcal} \ind{\mathrm{deg}_{\Po}(p) = k_n} T_{\Po}(p) 
+	        	- \ind{\mathrm{deg}_{\mathrm{box}}(p) = k_n} \widetilde{T}_{\text{box}}(p)\right|} \\
 	    &= \int_{\Rcal} 
-	        \Exp{\left|\ind{\mathrm{deg}_{n}(y) = k_n} T_{\Po}(y)
-	        - \ind{\mathrm{deg}_{\infty}(y) = k_n} \widetilde{T}_{\text{box}}(p)\right|} 
+	        \Exp{\left|\ind{\mathrm{deg}_{\Po}(y) = k_n} T_{\Po}(y)
+	        - \ind{\mathrm{deg}_{\mathrm{box}}(y) = k_n} \widetilde{T}_{\text{box}}(y)\right|} 
 	        	f(x,y) \dd y \dd x.
 \end{align*}
 Since 
 \begin{align*}
-	\Exp{\frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} T_{\Po}(y)}
+	\Exp{\frac{\ind{\mathrm{deg}_{\Po}(y) = k_n}}{\expH} T_{\Po}(y)}
 	&\le \binom{k_n}{2} \rho_{\Po}(y,k_n)\expH^{-1} \\
 	&= \binom{k_n}{2} \rho_{\Po}(y,k_n)\bigT{\expP^{-1}}\\
 	&= \bigT{n^{-1} k_n^{2\alpha + 3}}\rho_{\Po}(y,k_n)
 \end{align*}
 and similar for the other term, it follows that
 \begin{align*}
-	&\hspace{-60pt}\Exp{ \left| \frac{\ind{\mathrm{deg}_{n}(y) = k_n}}{\expH} T_{\Po}(y)
-		- \frac{\ind{\mathrm{deg}_{\infty}(y) = k_n}}{\expH}  \widetilde{T}_{\text{box}}(p)\right|} \\
-	&\le \bigT{n^{-1} k_n^{2\alpha + 3}}\left(\rho_{\Po}(k,n) + \rho_{\text{box}}(y,k_n)\right).
+	&\hspace{-60pt}\Exp{ \left| \frac{\ind{\mathrm{deg}_{\Po}(y) = k_n}}{\expH} T_{\Po}(y)
+		- \frac{\ind{\mathrm{deg}_{\mathrm{box}}(y) = k_n}}{\expH}  \widetilde{T}_{\text{box}}(y)\right|} \\
+	&\le \bigT{n^{-1} k_n^{2\alpha + 3}}\left(\rho_{\Po}(y,k_n) + \rho_{\text{box}}(y,k_n)\right).
 \end{align*}
 Therefore, by a concentration of heights argument (c.f. first statement of Lemma~\ref{lem:concentration_argument_rho_approximation}), it is enough to consider the integral
 \begin{equation} \label{eq:expectation_total}
-	n \int_{\Kcal_{C}(k_n)} \Exp{\left|\ind{\mathrm{deg}_{n}(y) = k_n} T_{\Po}(y)
-		- \ind{\mathrm{deg}_{\infty}(y) = k_n} P(y)\right|} e^{-\alpha y} \dd y,
+	n \int_{\Kcal_{C}(k_n)} \Exp{\left|\ind{\mathrm{deg}_{\Po}(y) = k_n} T_{\Po}(y)
+		- \ind{\mathrm{deg}_{\mathrm{box}}(y) = k_n} \widetilde{T}_{\mathrm{box}}(y)\right|} e^{-\alpha y} \dd y,
 \end{equation}
-where we also used that $f(x,y)$ is simply a constant multiple of the function $e^{-\alpha y}$. Since $\expH
-= \bigT{n k_n^{-(2\alpha + 1)}}$ we have to show that
+where we also used that $f(x,y)$ is simply a constant multiple of the function $e^{-\alpha y}$. Since $\binom{k_n}{2}\expH
+= \bigT{n k_n^{-(2\alpha - 1)}}$ we have to show that
 \[
 	\lim_{n \to \infty} k_n^{2\alpha - 1} s(k_n)^{-1} \int_{\Kcal_{C}(k_n)} 
-		\Exp{\left|\ind{\mathrm{deg}_{n}(y) = k_n} T_{\Po}(y)
-			- \ind{\mathrm{deg}_{\infty}(y) = k_n} P(y)\right|} e^{-\alpha y} \dd y = 0.
+		\Exp{\left|\ind{\mathrm{deg}_{\Po}(y) = k_n} T_{\Po}(y)
+			- \ind{\mathrm{deg}_{\infty}(y) = k_n} \widetilde{T}_{\mathrm{box}}(y)\right|} e^{-\alpha y} \dd y = 0.
 \] 
-Since for $\alpha > 3/4$, $s_{3/4}(k_n) = \log(k_n)^{-1} s_\alpha(k_n) = \smallO{s_\alpha(k_n)}$ it suffices to prove the following two cases:
+
+For $\alpha > 3/4$, $s_{3/4}(k_n) = \log(k_n)^{-1} s_\alpha(k_n) = \smallO{s_\alpha(k_n)}$ and thus it suffices to prove the following two cases:
 \begin{enumerate}
 \item if $1/2 < \alpha \leq 3/4$, then
 \[
 	\lim_{n\to \infty} k_n^{6\alpha - 3} \, \int_{\Kcal_{C}(k_n)} 
-		\Exp{\left|\ind{\mathrm{deg}_{n}(y) = k_n} T_{\Po}(y)
-		- \ind{\mathrm{deg}_{\infty}(y) = k_n} P(y)\right|} e^{-\alpha y} \dd y = 0,
+		\Exp{\left|\ind{\mathrm{deg}_{\Po}(y) = k_n} T_{\Po}(y)
+		- \ind{\mathrm{deg}_{\mathrm{box}}(y) = k_n} \widetilde{T}_{\mathrm{box}}(y)\right|} e^{-\alpha y} \dd y = 0,
 \]
 \item if $3/4 < \alpha$, then
 \[ 
 	\lim_{n\to \infty} k_n^{2\alpha} \, \int_{\Kcal_{C}(k_n)} 
-		\Exp{\left|\ind{\mathrm{deg}_{n}(y) = k_n} T_{\Po}(y)
-		- \ind{\mathrm{deg}_{\infty}(y) = k_n} P(y)\right|} e^{-\alpha y} \dd y = 0.
+		\Exp{\left|\ind{\mathrm{deg}_{\Po}(y) = k_n} T_{\Po}(y)
+		- \ind{\mathrm{deg}_{\mathrm{box}}(y) = k_n} \widetilde{T}_{\mathrm{box}}(y)\right|} e^{-\alpha y} \dd y = 0.
 \]
 \end{enumerate}
-We shall proceed by expanding the integrand and analyzing the individual terms. With a slight abuse of notation we shall write $y$ instead of $(0,y)$ in expression such as $\BallHyp{y}$. In addition we write $D_{\Po}(y,k_n;\Pcal)$ for the indicator which is equal to 1 if and only if $\BallHyp{y}$ contains $k_n$ points from $\Pcal \setminus \{(0,y)\}$. We define $D_{\text{box}}(y,k_n;\Pcal)$ analogously for the ball $\BallPon{y}$. It is important to note that for any $p^\prime \in \Rcal$ it holds that $p^\prime \in \BallPon{y} \iff p^\prime \in \BallPo{y}$.
+We shall proceed by expanding the integrand and analyzing the individual terms. With a slight abuse of notation we shall write $y$ instead of $(0,y)$ in an expression such as $\BallHyp{y}$. In addition we write $D_{\Po}(y,k_n;\Pcal)$ for the indicator which is equal to 1 if and only if $\BallHyp{y}$ contains $k_n$ points from $\Pcal \setminus \{(0,y)\}$. We define $D_{\text{box}}(y,k_n;\Pcal)$ analogously for the ball $\BallPon{y}$. It is important to note that for any $p^\prime \in \Rcal$ it holds that $p^\prime \in \BallPon{y} \iff p^\prime \in \BallPo{y}$.
 
 
 
 
 We need to split the integrand over several terms and then analyze each of these separately. Applying the Campbel-Mecke formula yields
 \begin{align*} 
- &\hspace{-30pt}\Exp{ \left| \ind{\mathrm{deg}_{n}(y) = k_n} P_{\Po}(y)
-        - \ind{\mathrm{deg}_{\infty}(y) = k_n}  P(y)
+ &\hspace{-30pt}\Exp{ \left| \ind{\mathrm{deg}_{\Po}(y) = k_n} P_{\Po}(y)
+        - \ind{\mathrm{deg}_{\infty}(y) = k_n}  \widetilde{T}_{\mathrm{box}}(y)
         \right|}\leq \\
  & {\mathbb E} \left[ \sum_{(p_1,p_2) \in \Pcal \setminus \{(0,y)\}}^{\not =} 
   \left| D_{\Po}(y,k_n-2; \Pcal \setminus \{p_1,p_2 \}) T_{\Po}(y,p_1,p_2) \right. \right.\\
@@ -599,20 +601,22 @@ We need to split the integrand over several terms and then analyze each of these
    \right| \vphantom{\sum_{p_1,p_2 \in \Pcal \setminus \{(0,y)\}}^{\not =}}\right],
 \end{align*}
 where the sum ranges over all distinct pairs of points in $\Pcal \setminus \{ (0,y)\}$. In what follows, we will set $\BallSym{p'} = \BallHyp{p'} \bigtriangleup (\BallPo{p'} \cap \Rcal)$ and $\BallInter{p'} =\BallHyp{p'} \cap \BallPon{p'}$ and observe that $\BallInter{y} = \BallHyp{y} \cap \BallPo{y}$. We will now bound the sum that is inside the expectation.
-We will split these summands classes of all combinations of $p_1, p_2\in \Pcal \setminus \{(0,y)\}$ for which only one of the two terms of this difference is non-zero. Clearly, for this we need that either $p_1 \in \BallInter{y}$ and $p_2 \in \BallSym{p_1}$ or $p_1 \in \BallSym{y}$ and $p_2 \in \BallInter{p_1}$. We will consider the following four classes:
+We will split the sum into different parts, depending on combinations of $p_1, p_2\in \Pcal \setminus \{(0,y)\}$ for which only one of the two terms of the difference is non-zero. Clearly, for this we need that either $p_1 \in \BallInter{y}$ and $p_2 \in \BallSym{p_1}$ or $p_1 \in \BallSym{y}$ and $p_2 \in \BallInter{p_1}$. We will consider the following four cases:
 \begin{enumerate}
 \item$p_1 \in \BallInter{y}$ and $p_2 \in \BallSym{p_1}$
 \begin{enumerate}
-\item $y_1,y_2 < (1-\eps ) R_n \wedge (R_n-y)$
-\item $y_1 \ge (1-\eps ) R_n \wedge (R_n-y)$
+\item $y_1,y_2 < (1-\eps ) R \wedge (R-y)$
+\item $y_1 \ge (1-\eps ) R \wedge (R-y)$
 \end{enumerate}
 \item$p_1 \in \BallHyp{y} \setminus \BallPo{y}$ with $y_1 < K$ and $p_2 \in \BallInter{y}$.
-\item $p_1 \in \BallSym{y}$ with $y_1 \ge K$ and $p_2 \in \BallInter{y}$.
+\item $p_1 \in \BallSym{y}$ with $y_1 \ge K$ and $p_2 \in \BallInter{y}$,
 \end{enumerate}
-Observe that when $y_1 < (1-\eps ) R_n \wedge (R_n-y)$ and $y_2 \ge (1-\eps ) R_n \wedge (R_n-y)$ it follow from Corollary~\ref{cor:balls_inclusion} that $p_2 \in \BallInter{p_1}$ and thus we do not have to consider this case when $p_1 \in \BallInter{y}$ and $p_2 \in \BallSym{p_1}$. Similarly, when $y_1 \ge K$ $p_1 \in \BallSym{y}$ Corollary~\ref{cor:balls_inclusion} implies that $p_1 \in \BallHyp{y} \setminus \BallPo{y}$ which explains the setting of case 2.
+where $K$ in the last two cases is the constant from Lemma~\ref{lem:asymptotics_Omega_hyperbolic}.
+
+Observe that when $y_1 < (1-\eps ) R \wedge (R-y)$ and $y_2 \ge (1-\eps ) R \wedge (R-y)$ it follows from Corollary~\ref{cor:balls_inclusion} that $p_2 \in \BallInter{p_1}$ and thus we do not have to consider this case when $p_1 \in \BallInter{y}$ and $p_2 \in \BallSym{p_1}$. Similarly, when $y_1 \ge K$ and $p_1 \in \BallSym{y}$ Corollary~\ref{cor:balls_inclusion} implies that $p_1 \in \BallHyp{y} \setminus \BallPo{y}$ which explains the setting of case 2.
 
 %\begin{enumerate} 
-%\item both $p_1$ and $p_2$ have $y_1,y_2 < (1-\eps ) R_n \wedge (R_n-y)$ and 
+%\item both $p_1$ and $p_2$ have $y_1,y_2 < (1-\eps ) R \wedge (R-y)$ and 
 %\begin{enumerate}
 %\item $p_1$ is in $\BallInter{y}$ but $p_2 \in \BallHyp{p_1} \setminus \BallPo{p_1}$ 
 %and $\BallHyp{y}$ contains exactly $k_n-2$ or $k_n-1$ other points (depending on whether 
@@ -621,41 +625,41 @@ Observe that when $y_1 < (1-\eps ) R_n \wedge (R_n-y)$ and $y_2 \ge (1-\eps ) R_
 %and $\BallPo{y}$ contains exactly $k_n-2$ or $k_n-1$ other points (depending on whether 
 %$p_2 \in \BallPo{y}$ or not).
 %\end{enumerate}
-%\item the above cases but with $y_1 \geq (1-\eps) R_n \wedge (R_n -y)$. 
+%\item the above cases but with $y_1 \geq (1-\eps) R \wedge (R -y)$. 
 %\item $y_1 \geq K$ and $p_1 \in \BallHyp{y} \setminus 
 %\BallPon{y}$ and $p_2 \in \BallInter{y}$ - here we use 
 %Corollary~\ref{cor:balls_inclusion} which implies that if $p_1 \in \BallSym{y}$ and $y_1 \geq K$, then in fact $p_1 \in \BallHyp{y} \setminus \BallPo{y}$. 
 %\item $y_1 < K$ and $p_1 \in \BallSym{y}$ and $p_2 \in \BallInter{y}$. 
 %%\item $p_1$ and $p_2$ are such that $\Delta_\H ((0,y),p_1,p_2)=\Delta_\Pcal ((0,y),p_1,p_2)=1$. 
 %\end{enumerate}
-We can now bound sum by the following expression:
+We can now bound the sum by the following expression:
 \begin{align} 
 	&\sum_{(p_1,p_2) \in \Pcal \setminus \{(0,y)\}}^{\not =} 
 	  \left| D_{\Po}(y,k_n-2; \Pcal \setminus \{p_1,p_2 \}) T_{\Po} (y,p_1,p_2) \right. \notag \\
 	& \hspace{5cm} \left. - D_{\text{box}} (y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \widetilde{T}_{\text{box}} (y,p_1,p_2)
 	   \right|  \notag \\
-	&\le \hspace{-15pt} \sum_{p_1,p_2\in \Pcal \setminus \{(0,y)\} \atop  y_1, y_2 < (1-\eps)R_n \wedge (R_n-y)} 
+	&\le \hspace{-15pt} \sum_{p_1,p_2\in \Pcal \setminus \{(0,y)\} \atop  y_1, y_2 < (1-\eps)R \wedge (R-y)}^{\ne}
 		\hspace{-10pt} \ind{p_1 \in \BallInter{y}} \cdot \ind{p_2 \in \BallSym{p_1}} 
 		\, D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_1}\\
-	&\le \hspace{-15pt} \sum_{p_1,p_2\in \Pcal \setminus \{(0,y)\} \atop  y_1, y_2 < (1-\eps)R_n \wedge (R_n-y)} 
+	&\hspace{10pt}+ \hspace{-15pt} \sum_{p_1,p_2\in \Pcal \setminus \{(0,y)\} \atop  y_1, y_2 < (1-\eps)R \wedge (R-y)}^{\ne} 
 		\hspace{-10pt} \ind{p_1 \in \BallInter{y}} \cdot \ind{p_2 \in \BallSym{p_1}} 
 		\, D_{\text{box}} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_2}\\
 	&\hspace{10pt}+  \hspace{-15pt} \sum_{p_1,p_2 \ \in \Pcal \setminus \{(0,y) \} 
-		\atop y_1 \geq (1-\eps) R_n \wedge (R_n-y)} \hspace{-10pt}
+		\atop y_1 \geq (1-\eps) R \wedge (R-y)}^{\ne} \hspace{-10pt}
 		\ind{p_1 \in \BallInter{y}} \cdot \ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}} 
 		\, D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_3} \\
 	&\hspace{10pt}+ \hspace{-15pt} \sum_{p_1,p_2 \ \in \Pcal \setminus \{(0,y) \} 
-		\atop y_1 \geq (1-\eps) R_n \wedge (R_n-y)} \hspace{-10pt}
+		\atop y_1 \geq (1-\eps) R \wedge (R-y)}^{\ne} \hspace{-10pt}
 		\ind{p_1 \in \BallInter{y}} \cdot \ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}} 
 		\, D_{\text{box}} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_4} \\
 	&\hspace{10pt}+ \hspace{-10pt} \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} 
-		\atop y(p_1) \geq K} \hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
+		\atop y(p_1) \geq K}^{\ne} \hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
 		\, D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_5}\\
 	&\hspace{10pt}+ \hspace{-10pt} \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} 
-			\atop y(p_1) \geq K} \hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
+			\atop y(p_1) \geq K}^{\ne} \hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
 			\, D_{\text{box}} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_5b}\\
-	&\hspace{10pt}+ \hspace{-10pt} \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop \ y(p_1) < K}
-		\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} \label{eq:sum_6}
+	&\hspace{10pt}+ \hspace{-10pt} \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop \ y(p_1) < K}^{\ne}
+		\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}. \label{eq:sum_6}
 %& +  \sum_{p_1,p_2 \in \Pcal \setminus \{(0,y)\}}^{\not =} \ind{p_1,p_2 \in \BallHyp{(0,y)}\cup \BallPo{(0,y)}} \cdot 
 %D_{\Po}(y,k_n-2; \Pcal \setminus \{ p_1,p_2\})  \cdot 
 %\left| \expH^{-1} - \expP^{-1} \right|.  \label{eq:sum_7}
@@ -672,16 +676,16 @@ We are going to consider several sub-cases and, thereby, split the domain $\dom{
 Let $\omega =\omega (n) \to \infty$ as $n\to \infty$ be a slowly growing function and set $y_\omega := y +\omega$. 
 We let 
 \begin{align*}
-	\dom{1} &= \{(p_1,p_2) \in \dom{} \ : \ y \leq y_1 \leq R_n/2, \, y_\omega \leq y_2 \leq y_1 \},\\
-	\dom{2} &= \{(p_1,p_2) \in \dom{} \ : \ y_1 \leq R_n/2, \, y_2 \leq y_\omega \} \text{ and }\\
-	\dom{3} &=  \{(p_1,p_2) \in \dom{} \ : R_n/2 < y_1 \leq R_n -y, \, y_2 \leq y_1 \}.
+	\dom{1} &= \{(p_1,p_2) \in \dom{} \cap \Pcal \ : \ y \leq y_1 \leq R/2, \, y_\omega \leq y_2 \leq y_1 \},\\
+	\dom{2} &= \{(p_1,p_2) \in \dom{} \cap \Pcal \ : \ y_1 \leq R/2, \, y_2 \leq y_\omega \} \text{ and }\\
+	\dom{3} &=  \{(p_1,p_2) \in \dom{} \cap \Pcal \ : R/2 < y_1 \leq R -y, \, y_2 \leq y_1 \}.
 \end{align*} 
 Note that $\dom{} \subseteq \dom{1} \cup \dom{2}\cup \dom{3}$.
 Hence, we can write 
 \begin{equation} \label{eq:1sum-rewriting}
 \begin{split} 
 	&\Exp{\sum_{p_1, p_2\in \Pcal \setminus \{(0,y)\} 
-	\atop y_1, y_2 \leq (1-\eps) R_n\wedge (R_n-y)} \hspace{-10pt} \ind{p_1 \in \BallHyp{y}} 
+	\atop y_1, y_2 \leq (1-\eps) R\wedge (R-y)} \hspace{-10pt} \ind{p_1 \in \BallHyp{y}} 
 	\ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}} 
 	\, D_{\Po} (y,k_n-2;\Pcal \setminus \{p_1,p_2\})} \\ 
 	&\le \sum_{i=1}^3 \Exp{\sum_{(p_1, p_2)\in \dom{i}} \ind{p_1 \in \BallHyp{y}} 
@@ -733,27 +737,27 @@ For the first term~\eqref{eq:term1}, we note that
 and hence $\mathcal{I}_n^{(1)}(y)$ becomes
 \begin{equation} \label{eq:1sum-expansion} 
 \begin{split}
-	\rho_{\Po}(y,k_n-2) \int_{-I_n}^{I_n} \int_y^{R_n/2}\int_{-I_n}^{I_n} \int_{y_\omega}^{y_1}
+	\rho_{\Po}(y,k_n-2) \int_{-I_n}^{I_n} \int_y^{R/2}\int_{-I_n}^{I_n} \int_{y_\omega}^{y_1}
   	\ind{p_1 \in \BallInter{y}} \, \ind{p_2 \in \BallHyp{y}} 
   	e^{-\alpha (y_1 + y_2)} \dd y_2 \dd x_2 \dd y_1 \dd x_1.
 \end{split}
 \end{equation}
 
-Next, Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for $y'\leq R_n -y$, we have that if $(x',y') \in \BallHyp{y}$, then $|x'| < (1+ K) e^{y/2 + y'/2}$, where $K >0$ is as in Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. Using these observations, we obtain: 
+Next, Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for $y'\leq R -y$, we have that if $(x',y') \in \BallHyp{y}$, then $|x'| < (1+ K) e^{y/2 + y'/2}$, where $K >0$ is as in Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. Using these observations, we obtain: 
 \begin{align*}
 	&\hspace{-30pt} \Exp{\sum_{p_1, p_2\in \dom{1}} \ind{p_1 \in \BallInter{(0,y)}} \cdot \ind{p_2 \in \BallHyp{y}} \cdot 
 	D_{\Po} (y,k_n-2;\Pcal \setminus \{p_1, p_2\})} \\
 	&= \rho_{\Po}(y,k_n-2)
-	e^{y}\int_y^{R_n/2} e^{y_1/2}\int_{y_\omega}^{y_1} e^{y_2/2} e^{-\alpha y_2} \cdot e^{-\alpha y_1} dy_2 dy_1.
+	e^{y}\int_y^{R/2} e^{y_1/2}\int_{y_\omega}^{y_1} e^{y_2/2} e^{-\alpha y_2} \cdot e^{-\alpha y_1} dy_2 dy_1.
 \end{align*}
 
 Now, the double integral becomes
 \begin{equation}
 \begin{split}
-& \int_y^{R_n/2} e^{y_1/2}\int_{y_\omega}^{y_1} e^{y_2/2} e^{-\alpha y_2} \cdot e^{-\alpha y_1} dy_2 dy_1 = \\
-&  O(1) \cdot  \int_y^{R_n/2} e^{y_1/2 - \alpha y_1} \cdot 
+& \int_y^{R/2} e^{y_1/2}\int_{y_\omega}^{y_1} e^{y_2/2} e^{-\alpha y_2} \cdot e^{-\alpha y_1} dy_2 dy_1 = \\
+&  O(1) \cdot  \int_y^{R/2} e^{y_1/2 - \alpha y_1} \cdot 
 e^{(1/2 - \alpha) y_\omega} dy_1 \\
-& =O(1) \cdot e^{(1/2 - \alpha) y_\omega} \cdot \int_y^{R_n/2} e^{y_1/2 - \alpha y_1} d y_1 \\
+& =O(1) \cdot e^{(1/2 - \alpha) y_\omega} \cdot \int_y^{R/2} e^{y_1/2 - \alpha y_1} d y_1 \\
 & =O(1) \cdot e^{(1/2 - \alpha) y_\omega + (1/2 - \alpha) y} \\ 
 & \ll e^{(1 - 2\alpha) y},
 \end{split}
@@ -767,7 +771,7 @@ D_{\Po} (y,k_n-2;\Pcal \setminus \{p_1, p_2\})}\\
 & \ll \rho_{\Po}(y,k_n-2) e^{(1-2\alpha)y}.
 \end{split}
 \end{equation}
-We now integrate this with respect to $y$ and determine its contribution to~\eqref{eq:expectation_total} is 
+We now integrate this with respect to $y$ and determine its contribution to~\eqref{eq:expectation_total};
 \begin{align*} 
 	& \int_{\Kcal_{C}(k_n)} \rho_{\Po}(y,k_n-2) e^{(1-2\alpha)y} e^{-\alpha y} \dd y \dd x \\
 	&= \bigO{k_n^{-6\alpha + 1}}
@@ -787,46 +791,46 @@ while for $\alpha \ge 3/4$
 
 We will now bound the term in~\eqref{eq:term2}. Using similar observations as for the previous term we get that $\mathcal{I}_n^{(2)}(y)$ equals
 \[
-	 \rho_{\Po}(y,k_n-2) \int_{-I_n}^{I_n} \int_0^{R_n/2} \hspace{-2pt} \int_{-I_n}^{I_n} \int_0^{y_\omega}
+	 \rho_{\Po}(y,k_n-2) \int_{-I_n}^{I_n} \int_0^{R/2} \hspace{-2pt} \int_{-I_n}^{I_n} \int_0^{y_\omega}
 	 \ind{p_1 \in \BallHyp{y}} \, \ind{p_2 \in \BallSym{(0,y)}} e^{-\alpha(y_1 + y_2)} \dd y_2 
 	 \dd x_2 \dd y_1 \dd x_1.
 \]
 
 Now, Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for 
-$y_2 \leq R_n -y_1$, we have that if 
+$y_2 \leq R -y_1$, we have that if 
 $(x_2,y_2) \in \BallSym{(x_1,y_1)}$, then $x_2$ lies in an interval of length 
-$Ke^{3 y/2 + 3y'/2 - R_n}$, where $K >0$ is again the constant in Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. 
-%For $y> R_n - y$, we will simply take $|x'| < I_n$. 
+$Ke^{3 y/2 + 3y'/2 - R}$, where $K >0$ is again the constant in Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. 
+%For $y> R - y$, we will simply take $|x'| < I_n$. 
 Using these observations we obtain: 
 \begin{equation} \label{eq:term2_intermediate}
-	\mathcal{I}_n^{(2)}(y) = \rho_{\Po}(y,k_n-2) e^{y/2}\int_0^{R_n/2} e^{y_1/2 + 3y_1/2}
-	\int_0^{y_\omega} e^{3y_2/2 - R_n} e^{-\alpha y_2} \cdot e^{-\alpha y_1} \dd y_2 \dd y_1. 
+	\mathcal{I}_n^{(2)}(y) = \rho_{\Po}(y,k_n-2) e^{y/2}\int_0^{R/2} e^{y_1/2 + 3y_1/2}
+	\int_0^{y_\omega} e^{3y_2/2 - R} e^{-\alpha y_2} \cdot e^{-\alpha y_1} \dd y_2 \dd y_1. 
 \end{equation} 
-Now the latter integral is
+The integrals satisfy
 \begin{align*}
-	&\hspace{-30pt} e^{-R_n}  \left(\int_0^{R_n/2} e^{(2-\alpha )y_1} \dd y_1\right) 
-		\left( \int_0^{y} e^{(3/2 - \alpha) y_2} \dd y_2 \right)\\
-	&= \bigO{1} e^{-R_n} \left(\begin{cases}
-		e^{(1-\alpha/2)R_n} &\mbox{if } \frac{1}{2} < \alpha < 2\\
-		R_n &\mbox{if } \alpha \ge 2
+	&\hspace{-30pt} e^{-R}  \left(\int_0^{R/2} e^{(2-\alpha )y_1} \dd y_1\right) 
+		\left( \int_0^{y_\omega} e^{(3/2 - \alpha) y_2} \dd y_2 \right)\\
+	&= \bigO{1} e^{-R} \left(\begin{cases}
+		e^{(1-\alpha/2)R} &\mbox{if } \frac{1}{2} < \alpha < 2\\
+		R &\mbox{if } \alpha \ge 2
 	\end{cases}\right)
 	\left(\begin{cases}
-		e^{(3/2 - \alpha)y} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{2}\\
+		e^{(3/2 - \alpha)y_\omega} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{2}\\
 		y &\mbox{if } \alpha \ge \frac{3}{2}
 	\end{cases}\right)\\
 	&= \bigO{1} \begin{cases}
-		e^{-\frac{\alpha}{2}R_n} e^{(3/2 - \alpha)y} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{2}\\
-		y e^{\frac{\alpha}{2} R_n} &\mbox{if } \frac{3}{2} \le \alpha < 2\\
-		y R_n e^{-R_n} &\mbox{if } \alpha \ge 2.
-	\end{cases} 
+		e^{-\frac{\alpha}{2}R} e^{(3/2 - \alpha)y} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{2}\\
+		(y +\omega(n)) e^{-\frac{\alpha}{2} R} &\mbox{if } \frac{3}{2} \le \alpha < 2\\
+		(y + \omega(n)) R e^{-R} &\mbox{if } \alpha \ge 2
+	\end{cases}.
 \end{align*}
-Since $y \le R_n = \bigO{\log(n)}$ we conclude that on $\Kcal_{C}(k_n)$
+Since $y_\omega := y + \omega(n) \le R = \bigO{\log(n)}$ we conclude that on $\Kcal_{C}(k_n)$
 \[
 	\mathcal{I}_n^{(2)}(y) = \bigO{1} \rho_{\Po}(y,k_n-2) \begin{cases}
 				n^{-\alpha} k_n^{3 - 2\alpha} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{2}\\
 				n^{-\alpha} \log(n) &\mbox{if } \frac{3}{2} \le \alpha < 2\\
-				n^{-2} \log(n)^{2} &\mbox{if } \alpha \ge 2,
-		\end{cases}	
+				n^{-2} \log(n)^{2} &\mbox{if } \alpha \ge 2
+		\end{cases},
 \]
 and hence
 \begin{align*}
@@ -834,13 +838,13 @@ and hence
 	&= \bigO{1} k_n^{-(2\alpha + 1)}\begin{cases}
 				n^{-\alpha} k_n^{3 - 2\alpha} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{2}\\
 				n^{-\alpha} \log(n) &\mbox{if } \frac{3}{2} \le \alpha < 2\\
-				n^{-2} \log(n)^{2} &\mbox{if } \alpha \ge 2,
-		\end{cases}	\\
+				n^{-2} \log(n)^{2} &\mbox{if } \alpha \ge 2
+		\end{cases},	\\
 	&= \bigO{1} \begin{cases}
 				n^{-\alpha} k_n^{2 - 4\alpha} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{2}\\
 				n^{-\alpha} \log(n)k_n^{-(2\alpha + 1)} &\mbox{if } \frac{3}{2} \le \alpha < 2\\
-				n^{-2} \log(n)^{2} k_n^{-(2\alpha + 1)} &\mbox{if } \alpha \ge 2.
-		\end{cases}
+				n^{-2} \log(n)^{2} k_n^{-(2\alpha + 1)} &\mbox{if } \alpha \ge 2
+		\end{cases}.
 \end{align*}
 
 Now for $1/2 < \alpha < 3/4$ it holds that $4\alpha^2 - \alpha + 1 > 0$. Hence since $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$, we have
@@ -859,7 +863,7 @@ For $\alpha \ge 3/4$ we have that both $n^{-\alpha} \log(n) k_n^{-1}$ and $n^{-2
 \]
 
 We will now consider the term in~\eqref{eq:term3}. 
-Recall that $\dom{3}$ consists of all pairs $(p_1, p_2 ) \in \dom{}$ such that $R_n/2 < y_1 \leq (1-\eps)R_n \wedge (R_n-y)$ and $y_2 \leq y_\omega$ with the property that 
+Recall that $\dom{3}$ consists of all pairs $(p_1, p_2 ) \in \dom{}$ such that $R/2 < y_1 \leq (1-\eps)R \wedge (R-y)$ and $y_1 \leq y_\omega$ with the property that 
 $p_1 \in \BallHyp{y}$ and $p_2 \in \BallSym{p_1} \cap \BallHyp{y}$.    
 So, in particular, $p_2 \in (\BallHyp{p_1} \cup \BallPo{p_1}) \cap \BallHyp{y}$.
 
@@ -867,12 +871,12 @@ We will consider this intersection more closely. We use Lemma~\ref{lem:asymptoti
 $\BallHyp{p_1}$ and $\BallPo{p_1}$.
 For $K > 0$, we define, for any point $p_1=(x_1,y_1) \in \R \times \R_+$,
 \begin{equation}\label{eq:def_fatball}
-	\FatBallHyp{p_1} : = \{ (x',y') \ : \  y' < R_n - y_1, \ | x_1 - x'| < (1+K) e^{\frac{1}{2} (y_1 + y')}  \}.
+	\FatBallHyp{p_1} : = \{ (x',y') \ : \  y' < R - y_1, \ | x_1 - x'| < (1+K) e^{\frac{1}{2} (y_1 + y')}  \}.
 \end{equation}
 %Note that $\Delta (r(p),r') = \frac12 e^{R/2} \theta_R (p)$.
 It is an implication of Lemma~\ref{lem:asymptotics_Omega_hyperbolic}  that 
 \begin{equation*} %\label{eq:ball_inclusion} 
-(\BallHyp{p_1} \cup \BallPo{p_1}) \cap \Rcal([0, R_n - y_1]) \subseteq \FatBallHyp{p_1}
+(\BallHyp{p_1} \cup \BallPo{p_1}) \cap \Rcal([0, R - y_1]) \subseteq \FatBallHyp{p_1}
 \end{equation*}
 Therefore, any point $p_2 = (x_2,y_2) \in \BallSym{p_1} \cap \BallHyp{y}$ with 
 $y_2 \leq R-y_1$ must belong to $\FatBallHyp{p_1} \cap \FatBallHyp{y}$.
@@ -880,10 +884,10 @@ $y_2 \leq R-y_1$ must belong to $\FatBallHyp{p_1} \cap \FatBallHyp{y}$.
 We will use this in order to derive a lower bound on $y_2$ as a function of $x_1, y_1$. 
 Let us suppose without loss of generality that $x_1 < 0$. 
 The left boundary of $\FatBallHyp{(0,y)}$ is given by the equation 
-$x^\prime = (1+K)e^{\frac{1}{2} (y + y^\prime)}$ whereas the right boundary of $\FatBallHyp{p_1}$ is given by the curve having equation $x^\prime = x_1 + (1+ K)e^{\frac{1}{2} (y_1 + y^\prime)}.$
+$x^\prime = (1-K)e^{\frac{1}{2} (y + y^\prime)}$ whereas the right boundary of $\FatBallHyp{p_1}$ is given by the curve having equation $x^\prime = x_1 + (1+ K)e^{\frac{1}{2} (y_1 + y^\prime)}.$
 The equation that determines the intersection point $(\hat{x},\hat{y})$ of these curves  is
 \[
-	x_1 + (1+K)e^{(y_1 + \hat{y})/2}= (1+K) e^{(y + \hat{y})/2}.
+	x_1 + (1+K)e^{(y_1 + \hat{y})/2}= (1-K) e^{(y + \hat{y})/2}.
 \]
 We can solve the above for $\hat{y}$  
 \begin{equation*} 
@@ -891,15 +895,15 @@ We can solve the above for $\hat{y}$
 |x_1| &=(1+K) e^{\hat{y}/2} \left( e^{y_1/2} + e^{y/2} \right).
 \end{split}
 \end{equation*}
-But $y_1 > R_n/2$ and since $y \in \Kcal_{C}(k_n)$, it follows that $y \le \bigO{1}(1+\eps) R_n /(2\alpha +1)$. So if $\eps$ is small enough depending on $\alpha$, we have 
+But $y_1 > R/2$ and since $y \in \Kcal_{C}(k_n)$, it follows that for sufficiently large $n$, $y \le (1+\eps) R /(2\alpha +1)$. So if $\eps$ is small enough depending on $\alpha$, we have 
 $$ |x_1| =(1+K) e^{\hat{y}/2} \left( e^{y_1/2} + e^{y/2} \right) = (1+K+o(1))e^{\hat{y}/2 + y_1/2}. $$
-Let $c_K$ denote the multiplicative term $1+ K+o(1)$, which appears in the above.
+Let $c_K^2$ denote the multiplicative term $1+ K+o(1)$, which appears in the above.
 The above yields
 \begin{equation} \label{eq:to_use_I1}
 \hat{y}= \left(2 \log(|x_1|e^{-y_1/2}) - \log c_K \right) \vee 0 := \hat{y}(x_1,y_1). 
 \end{equation}
 In particular, note that $\hat{y} = 0$ if and only if $|x_1| \leq c_K e^{y_1/2}$.  
-Moreover, since $p_1 \in \BallHyp{y}$ and $x_1 \leq R_n - y$, we also have that 
+Moreover, since $p_1 \in \BallHyp{y}$ and $x_1 \leq R - y$, we also have that 
 $|x_1| \leq e^{(y+y_1)/2} (1+o(1))$. This upper bound on $|x_1|$ together with~\eqref{eq:to_use_I1}, imply that for $n$ sufficiently large, we have $\hat{y} \leq y$. This observation will be used below, where 
 we integrate over $y_2$, thus ensuring that the integrals are non-zero. 
 
@@ -915,25 +919,23 @@ which implies
 \end{equation}
 If we integrate this over $x_2, y_2$ we get 
 \begin{align*}
-\int_{-I_n}^{I_n} \int_{0}^{y_\omega}  \ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}}  
+\int_{-I_n}^{I_n} \int_{0}^{y_1}  \ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}}  
 e^{-\alpha y_2} dy_2 dx_2
 &  \leq 
-\int_{-I_n}^{I_n} \int_{0}^{y_\omega}  \ind{y_2 \geq \hat{y}(x_1,y_1), p_2 \in \FatBallHyp{y}}  
+\int_{-I_n}^{I_n} \int_{0}^{y_1}  \ind{y_2 \geq \hat{y}(x_1,y_1), p_2 \in \FatBallHyp{y}}  
 e^{-\alpha y_2} dy_2 dx_2 \\
-&\leq (1+K) \cdot e^{y/2} \int_{\hat{y}(x_1,y_1)}^{y_\omega} e^{y_2/2 - \alpha y_2} dy_2 \\
+&\leq (1+K) \cdot e^{y/2} \int_{\hat{y}(x_1,y_1)}^{y_1} e^{y_2/2 - \alpha y_2} dy_2 \\
 &=O(1) \cdot e^{y/2 + (1/2 -\alpha) \hat{y}(x_1,y_1)}.
 \end{align*}
 Note also that 
 \[
 	\Exp{D_{\Po} (y,k_n-2;\Pcal \setminus \{p_1, p_2\})} = \rho_{\Po}(y,k_n-2),
 \]
-uniformly over all $(p_1, p_2) \in \dom{3}$. 
-
-So the Campbell-Mecke formula yields that $\mathcal{I}_n^{(3)}(y)$ equals: 
+uniformly over all $(p_1, p_2) \in \dom{3}$. Hence the Campbell-Mecke formula yields that $\mathcal{I}_n^{(3)}(y)$ equals: 
 \begin{align*}
- 	&O(1) \rho_{\Po}(y,k_n-2) \, e^{y/2} \int_{-I_n}^{I_n} \int_{R_n/2}^{(R_n - y) \wedge (1-\eps)R_n}  
+ 	&O(1) \rho_{\Po}(y,k_n-2) \, e^{y/2} \int_{-I_n}^{I_n} \int_{R/2}^{(R - y) \wedge (1-\eps)R}  
 		\ind{p_1 \in \BallHyp{y}} e^{(1/2 -\alpha) \hat{y}(x_1,y_1) - \alpha y_1} dy_1dx_1 \\
-	&= O(1) \rho_{\Po}(y,k_n-2) \, e^{y/2} \int_{-I_n}^{I_n} \int_{R_n/2}^{(R_n - y) \wedge (1-\eps)R_n}  
+	&= O(1) \rho_{\Po}(y,k_n-2) \, e^{y/2} \int_{-I_n}^{I_n} \int_{R/2}^{(R - y) \wedge (1-\eps)R}  
 		\ind{p_1 \in \FatBallHyp{y}} e^{(1/2 -\alpha) \hat{y}(x_1,y_1) - \alpha y_1} dy_1dx_1.
 \end{align*}
 Due to the symmetry of $\FatBallHyp{y}$, the integration over $x_1$ is: 
@@ -965,8 +967,8 @@ We conclude that
 \]
 Now, we integrate this with respect to $y_1$ and get 
 \[
-	e^{y(3/2 -\alpha)} \int_{R_n/2}^{R_n-y} e^{(1/2-\alpha)y_1} dy_1 =  O(1) \cdot e^{y(3/2 -\alpha)} 
-	e^{(1/2 -\alpha) R_n/2} = O(1) \cdot n^{1/2 -\alpha} \cdot e^{y(3/2 - \alpha)},
+	e^{y(3/2 -\alpha)} \int_{R/2}^{R-y} e^{(1/2-\alpha)y_1} dy_1 =  O(1) \cdot e^{y(3/2 -\alpha)} 
+	e^{(1/2 -\alpha) R/2} = O(1) \cdot n^{1/2 -\alpha} \cdot e^{y(3/2 - \alpha)},
 \]
 from which we deduce
 \begin{equation} \label{eq:term3_intermediate}
@@ -1000,15 +1002,15 @@ and we get for $\alpha \ge 3/4$
 
 \paragraph{The sums~\eqref{eq:sum_3} and~\eqref{eq:sum_4}}
 Again, we will only consider~\eqref{eq:sum_3} since the analysis for the other term is similar. Recall that in this case, we consider pairs $(p_1,p_2)$, with $p_1 = (x_1,y_1)$ satisfying 
-$y_1 \geq (R_n - y) \wedge (1-\eps)R_n$, and $p_1 \in \BallHyp{y}$, $p_2 \in \BallSym{p_1} \cap \BallHyp{y}$. 
-We split this into three sub-domains:  i) $y_2 \geq R_n - y$; ii) $R_n -y_1 \leq y_2 \leq R_n -y$ and iii) $y_2 < R_n - y_1$. Similar to the analysis above we define
+$y_1 \geq (R - y) \wedge (1-\eps)R$, and $p_1 \in \BallHyp{y}$, $p_2 \in \BallSym{p_1} \cap \BallHyp{y}$. 
+We split this into three sub-domains:  i) $y_2 \geq R - y$; ii) $R -y_1 \leq y_2 \leq R -y$ and iii) $y_2 < R - y_1$. Similar to the analysis above we define
 \begin{align*}
-	\dom{1} &:= \{(p_1, p_2) \ : \  p_1,p_2 \ \in \Pcal \setminus \{(0,y) \}, \ y_1 \geq (1-\eps) R_n \wedge (R_n-y), 
-		\ R_n -y \leq y_2 \leq R_n \}\\
-	\dom{2} &:= \{(p_1, p_2) \ : \  p_1,p_2 \ \in \Pcal \setminus \{(0,y) \}, \ y_1 \geq (1-\eps) R_n \wedge (R_n-y), 
-		\ R_n -y_1 \leq y_2 \leq R_n - y \}\\
-	\dom{3} &:= \{(p_1, p_2) \ : \  p_1,p_2 \ \in \Pcal \setminus \{(0,y) \}, \ y_1 \geq (1-\eps) R_n \wedge (R_n-y), 
-		\ y_2 \leq R_n - y_1 \}
+	\dom{1} &:= \{(p_1, p_2) \ : \  p_1,p_2 \ \in \Pcal \setminus \{(0,y) \}, \ y_1 \geq (1-\eps) R \wedge (R-y), 
+		\ R -y \leq y_2 \leq R \}\\
+	\dom{2} &:= \{(p_1, p_2) \ : \  p_1,p_2 \ \in \Pcal \setminus \{(0,y) \}, \ y_1 \geq (1-\eps) R \wedge (R-y), 
+		\ R -y_1 \leq y_2 \leq R - y \}\\
+	\dom{3} &:= \{(p_1, p_2) \ : \  p_1,p_2 \ \in \Pcal \setminus \{(0,y) \}, \ y_1 \geq (1-\eps) R \wedge (R-y), 
+		\ y_2 \leq R - y_1 \}
 \end{align*}
 and write, for $i = 1,2,3$,
 \[
@@ -1018,17 +1020,17 @@ and write, for $i = 1,2,3$,
 \]
 
 
-In the first case, note that for $y \in \Kcal_{C}(k_n)$ we have, for small enough $\varepsilon$, $2y \le \bigO{1} 2(1+\eps)
-\frac{R_n}{2\alpha +1} = \smallO{R_n}$. Thus $y_1 + y_2 \geq 2(R_n - y) = \Omega(R_n)$ and thus $p_2 \in \BallHyp{p_1}$ for large enough $n$. Furthermore, 
-$y_2 > R_n - y_1 + 2\ln (\pi/2)$, which implies that $p_2 \in \BallPo{p_1}$ too. 
+In the first case, note that for $y \in \Kcal_{C}(k_n)$ we have, for small enough $\varepsilon$ and sufficiently large $n$, $2y \le 2(1+\eps)
+\frac{R}{2\alpha +1} = \smallO{R}$. Thus $y_1 + y_2 \geq 2(R - y) = \Omega(R)$ and thus $p_2 \in \BallHyp{p_1}$ for large enough $n$. Furthermore, 
+$y_2 > R - y_1 + 2\ln (\pi/2)$, which implies that $p_2 \in \BallPo{p_1}$ too. 
 Hence, the contribution from these pairs is zero.   
 
 The Campbell-Mecke formula yields that: 
 \begin{equation*}
 \begin{split} 
 \mathcal{I}_n^{(1)}(y) 
-&=O(1) \int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} \ind{p_1 \in \BallHyp{y}} \times\\
-& \hspace{15pt}\int_{-I_n}^{I_n} \int_{R_n - y}^{R_n} 
+&=O(1) \int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} \ind{p_1 \in \BallHyp{y}} \times\\
+& \hspace{15pt}\int_{-I_n}^{I_n} \int_{R - y}^{R} 
 \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}}
   \rho_{\Po}(y,k_n-2) \cdot
 e^{-\alpha( y_2 + y_1)} \dd y_2 \dd x_2 \dd y_1 \dd x_1.
@@ -1037,38 +1039,38 @@ e^{-\alpha( y_2 + y_1)} \dd y_2 \dd x_2 \dd y_1 \dd x_1.
 
 We proceed to bound the integral: 
 \begin{align*}
-	&\int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} \hspace{-5pt} \ind{p_1 \in \BallHyp{y}}
-		\int_{-I_n}^{I_n} \int_{R_n - y}^{R_n } \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}} 
+	&\int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} \hspace{-5pt} \ind{p_1 \in \BallHyp{y}}
+		\int_{-I_n}^{I_n} \int_{R - y}^{R } \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}} 
 		e^{-\alpha(y_1 + y_2)} \dd y_2 \dd x_2 \dd y_1 \dd x_1 \\
-	&\leq \int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} 
-		\int_{-I_n}^{I_n} \int_{R_n - y}^{R_n}  e^{-\alpha(y_1 + y_2)} \dd y_2 \dd x_2 \dd y_1 \dd x_1\\
-	&= \left( \int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} e^{- \alpha y_1} \dd y_1 \dd x_1 \right) 
-	\left(\int_{-I_n}^{I_n} \int_{R_n - y}^{R_n}  e^{-\alpha y_2} \dd y_2 \dd x_2 \right).
+	&\leq \int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} 
+		\int_{-I_n}^{I_n} \int_{R - y}^{R}  e^{-\alpha(y_1 + y_2)} \dd y_2 \dd x_2 \dd y_1 \dd x_1\\
+	&= \left( \int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} e^{- \alpha y_1} \dd y_1 \dd x_1 \right) 
+	\left(\int_{-I_n}^{I_n} \int_{R - y}^{R}  e^{-\alpha y_2} \dd y_2 \dd x_2 \right).
 \end{align*}
 We evaluate
-$$  \int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} 
-e^{- \alpha y_1} dy_1 dx_1= O(1) \cdot n \cdot e^{-\alpha R_n + ((\eps R_n) \vee y))\alpha}
-=O(1) \cdot n \cdot e^{-\alpha R_n + \alpha y + \alpha \eps R_n }
+$$  \int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} 
+e^{- \alpha y_1} dy_1 dx_1= O(1) \cdot n \cdot e^{-\alpha R + ((\eps R) \vee y))\alpha}
+=O(1) \cdot n \cdot e^{-\alpha R + \alpha y + \alpha \eps R }
 $$
 and 
-$$\int_{-I_n}^{I_n} \int_{R_n - y}^{R_n}  e^{-\alpha y_2} dy_2 dx_2 
-=O(1) \cdot n \cdot e^{-\alpha R_n +\alpha y}.
+$$\int_{-I_n}^{I_n} \int_{R - y}^{R}  e^{-\alpha y_2} dy_2 dx_2 
+=O(1) \cdot n \cdot e^{-\alpha R +\alpha y}.
 $$
-Also, $n \cdot e^{-\alpha R_n} = O(1) \cdot e^{(1/2 -\alpha) R_n}$, whereby we deduce that 
+Also, $n \cdot e^{-\alpha R} = O(1) \cdot e^{(1/2 -\alpha) R}$, whereby we deduce that 
 \begin{equation*}
 \begin{split}
 &\hspace{-30pt}\int_{\dom{1}} \ind{p_1 \in \BallHyp{y}} \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}} 
  e^{-\alpha(y_1 + y_2)} dy_2 dx_2 dy_1 dx_1 \\
-&=O(1) \cdot e^{(1-2\alpha)R_n + 2\alpha y + \alpha \eps R_n} =O(1) \cdot n^{2(1-2\alpha) + 2\alpha \eps} \cdot e^{2\alpha y}.
+&=O(1) \cdot e^{(1-2\alpha)R + 2\alpha y + \alpha \eps R} =O(1) \cdot n^{2(1-2\alpha) + 2\alpha \eps} \cdot e^{2\alpha y}.
 \end{split}.
 \end{equation*}
 
 With these computations we obtain
 \begin{align*} 
 	\int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(1)}(y) e^{-\alpha y} \dd x \dd y
-	&= O(1) n^{(2(1-2\alpha) + 2\alpha \eps}
+	&= O(1) n^{2(1-2\alpha) + 2\alpha \eps}
 		\int_{\Kcal_{C}(k_n)} e^{2\alpha y} \rho_{\Po}(y,k_n-2) e^{-\alpha y} \dd y \dd x \\ 
-	&=O(1) n^{(2(1-2\alpha) + 2\alpha \eps} \, k_n^{2\alpha - 1}.
+	&=O(1) n^{2(1-2\alpha) + 2\alpha \eps} \, k_n^{2\alpha - 1}.
 \end{align*}
 Thus, for $1/2 < \alpha < 3/4$, we have 
 \begin{equation*}
@@ -1080,10 +1082,10 @@ provided that $\eps = \eps (\alpha)>0$ is small enough, and hence for such $\eps
 	\lim_{n \to \infty} k_n^{6\alpha - 3} \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(1)}(y) e^{-\alpha y} \dd x \dd y = 0.
 \]
 
-When $\alpha > 3/4$ we have $2(1-2\alpha) < 1/2(4\alpha - 1)$ and we get
+When $\alpha \ge 3/4$ we have $2(1-2\alpha) < 1/2(4\alpha - 1)$ and we get
 \begin{equation*} 
 k_n^{2\alpha} \, n^{2(1-2\alpha) + 2\alpha \eps} \cdot k_n^{2\alpha -1}
-\le  k_n^{4\alpha - 1} \, n^{2(1-2\alpha} n^{2\alpha \eps} = o(1),
+\le  k_n^{4\alpha - 1} \, n^{2(1-2\alpha)} n^{2\alpha \eps} = o(1),
 \end{equation*}
 provided that $\eps$ is small enough, depending on $\alpha$, so that
 \[
@@ -1096,37 +1098,37 @@ We now consider the second sub-domain $\dom{2}$. The Campbell-Mecke formula yiel
 	\mathcal{I}_n^{(2)}(y) 
 	&= \Exp { \sum_{(p_1,p_2)  \in \dom{2}} \ind{p_1 \in \BallHyp{y}} \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}}
 		D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1\})} \\
-	&= O(1) \rho_{\Po}(y,k_n-2) \cdot \int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} 
+	&= O(1) \rho_{\Po}(y,k_n-2) \cdot \int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} 
 		\ind{p_1 \in \BallHyp{y}} \times \\
-	&\hspace{15pt} \int_{-I_n}^{I_n} \int_{R_n - y_1}^{R_n-y} \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}}
+	&\hspace{15pt} \int_{-I_n}^{I_n} \int_{R - y_1}^{R-y} \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}}
 		e^{-\alpha(y_1 + y_2)} \dd y_2 \dd x_2 \dd y_1 \dd x_1.
 \end{align*}
 
 We bound the integral as follows: 
 \begin{align*}
-	&\int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} \hspace{-5pt} \ind{p_1 \in \BallHyp{y}}
-		\int_{-I_n}^{I_n} \int_{R_n - y_1}^{R_n - y} \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}}
+	&\int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} \hspace{-5pt} \ind{p_1 \in \BallHyp{y}}
+		\int_{-I_n}^{I_n} \int_{R - y_1}^{R - y} \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}}
 		e^{-\alpha(y_1 + y_2)} \dd y_2 \dd x_2 \dd y_1 \dd x_1 \\
-	&\leq \int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} \ind{p_1 \in \BallHyp{y}}
-		\int_{-I_n}^{I_n} \int_{R_n - y_1}^{R_n - y} 
+	&\leq \int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} \ind{p_1 \in \BallHyp{y}}
+		\int_{-I_n}^{I_n} \int_{R - y_1}^{R - y} 
 		\ind{p_2 \in  \BallHyp{y}} e^{-\alpha(y_1 + y_2)} \dd y_2 \dd x_2 \dd y_1 \dd x_1.
 \end{align*}
-Now,
+Now, by Lemma~\ref{lem:asymptotics_Omega_hyperbolic},
 \begin{align*}
-&\int_{-I_n}^{I_n} \int_{R_n - y_1}^{R_n - y} \ind{p_2 \in  \BallHyp{y}} \cdot  
-e^{-\alpha y_2} dy_2 dx_2 = O(1) \cdot e^{y/2} \int_{R_n - y_1}^{R_n - y} e^{(1/2 - \alpha) y_2} dy_2 \\
-&= O(1) \cdot e^{y/2 + (1/2 - \alpha) (R_n - y_1)}.
+&\int_{-I_n}^{I_n} \int_{R - y_1}^{R - y} \ind{p_2 \in  \BallHyp{y}} \cdot  
+e^{-\alpha y_2} dy_2 dx_2 = O(1) \cdot e^{y/2} \int_{R - y_1}^{R - y} e^{(1/2 - \alpha) y_2} dy_2 \\
+&= O(1) \cdot e^{y/2 + (1/2 - \alpha) (R - y_1)}.
 \end{align*}
 We then integrate with respect to $y_1$:
 \begin{align*}
 	O(1) \cdot e^{y/2} \cdot 
-	&\int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} \ind{p_1 \in \BallHyp{y}} 
-		e^{(1/2 - \alpha) (R_n - y_1)} e^{-\alpha y_1} dy_1 dx_1 \\
-	&\le O(1) \cdot e^{y/2 + (1/2 -\alpha) R_n} \cdot \int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} 
+	&\int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} \ind{p_1 \in \BallHyp{y}} 
+		e^{(1/2 - \alpha) (R - y_1)} e^{-\alpha y_1} dy_1 dx_1 \\
+	&\le O(1) \cdot e^{y/2 + (1/2 -\alpha) R} \cdot \int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} 
 		e^{(\alpha -1/2) y_1} e^{-\alpha y_1} dy_1dx_1 \\
-	&=O(1) \cdot e^{y/2 + (1 -\alpha) R_n -((1-\eps) R_n \wedge (R_n-y))/2} \\
-	&=O(1) \cdot e^{y/2 + (1/2 -\alpha) R_n + ((\eps R_n) \vee y)/2}\\
-	&=O(1) \cdot e^{y + (1/2 -\alpha) R_n + \eps R_n}
+	&=O(1) \cdot e^{y/2 + (1 -\alpha) R -((1-\eps) R \wedge (R-y))/2} \\
+	&=O(1) \cdot e^{y/2 + (1/2 -\alpha) R + ((\eps R) \vee y)/2}\\
+	&=O(1) \cdot e^{y + (1/2 -\alpha) R + \eps R}
 		= O(1) \cdot n^{1- 2\alpha+ \eps} \cdot e^{y}. 
 \end{align*}
 
@@ -1159,7 +1161,7 @@ provided that $\eps$ is small enough, so that
 \]
 
 For the third sub-domain $\dom{3}$ we shall use~\eqref{eq:symdiff_loc} which states that if 
-$p_2=(x_2,y_2) \in \BallSym{p_1}\cap \BallHyp{y}$ and $y_2\leq R_n - y_1$, then 
+$p_2=(x_2,y_2) \in \BallSym{p_1}\cap \BallHyp{y}$ and $y_2\leq R - y_1$, then 
 $y_2 \geq \hat{y}(x_1,y_1)$, where $\hat{y}(x_1,y_1) = \left(2 \log(|x_1|e^{-y_1/2}) - \log c_K \right) \vee 0$ (cf.~\eqref{eq:to_use_I}). Moreover, $p_2 \in \FatBallHyp{p_1}$.
 
 
@@ -1168,30 +1170,30 @@ Again, we will use the Campbell-Mecke formula:
 	\mathcal{I}_n^{(3)}(y) &= \Exp { \sum_{(p_1,p_2)  \in \dom{3}} 
 		\ind{p_1 \in \BallHyp{y}} \cdot \ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}}
 		\cdot D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1, p_2\})} \\
-	&= O(1) \rho_{\Po}(y,k_n-2) \int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} \ind{p_1 \in \BallHyp{y}}
+	&= O(1) \rho_{\Po}(y,k_n-2) \int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} \ind{p_1 \in \BallHyp{y}}
 		\times\\
-	&\hspace{25pt} \int_{-I_n}^{I_n} \int_{0}^{R_n-y_1} 
+	&\hspace{25pt} \int_{-I_n}^{I_n} \int_{0}^{R-y_1} 
 		\ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}} 
 		e^{-\alpha(y_1 + y_2)} dy_2 dx_2 dy_1 dx_1 \\
 \end{align*}
 
 The inner integral with respect to $p_2 := (x_2,y_2)$ is 
 \begin{align*}
-	&\hspace{-30pt} \int_{-I_n}^{I_n} \int_{0}^{R_n - y_1}  \ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}}  
+	&\hspace{-30pt} \int_{-I_n}^{I_n} \int_{0}^{R - y_1}  \ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}}  
 		e^{-\alpha y_2} dy_2 dx_2\\
-	&\leq \int_{-I_n}^{I_n} \int_{0}^{R_n-y_1}  \ind{y_2 \geq c(x_1,y_1), p_2 \in \FatBallHyp{(0,y)}}  
+	&\leq \int_{-I_n}^{I_n} \int_{0}^{R-y_1}  \ind{y_2 \geq \hat{y}(x_1,y_1), p_2 \in \FatBallHyp{(0,y)}}  
 		e^{-\alpha y_2} dy_2 dx_2 \\
-	&= O(1) e^{y/2} \int_{c(x_1,y_1)}^{R_n - y_1} e^{y_2/2 - \alpha y_2} dy_2 \\
+	&= O(1) e^{y/2} \int_{\hat{y}(x_1,y_1)}^{R - y_1} e^{y_2/2 - \alpha y_2} dy_2 \\
 	&= O(1) e^{y/2 + (1/2 -\alpha) \hat{y}(x_1,y_1)}.
 \end{align*}
 
 Thus, we get
 \begin{align*}
-	&\int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} \ind{p_1 \in \BallHyp{y}}
-		\int_{-I_n}^{I_n} \int_{0}^{R_n-y_1} 
+	&\int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} \ind{p_1 \in \BallHyp{y}}
+		\int_{-I_n}^{I_n} \int_{0}^{R-y_1} 
 		\ind{p_2 \in \BallSym{p_1} \cap \BallHyp{y}} \times \\ 
 	& \hspace{2cm}  e^{-\alpha(y_1 + y_2)} dy_2 dx_2 dy_1 dx_1 \\
-	&\leq O(1) \int_{-I_n}^{I_n} \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} 
+	&\leq O(1) \int_{-I_n}^{I_n} \int_{(1-\eps) R \wedge (R-y)}^{R} 
 		e^{y/2 + (1/2 -\alpha) \hat{y}(x_1,y_1)} e^{-\alpha y_1} dy_1 dx_1. 
 \end{align*}
 Due to symmetry, to bound the integral it is enough to integrate this with respect to $x_1$ from 0 to $I_n$.
@@ -1206,11 +1208,11 @@ The first integral becomes:
  		O(1)\cdot \int_{c_K e^{y_1/2}}^{I_n} x_1^{1 -2\alpha} 
 		e^{-\frac{y_1}{2} (1-2\alpha)} dx_1 \\
 	&= \begin{cases}
-		O(R_n) \cdot e^{-y_1/2 + \alpha y_1} \cdot e^{\frac{R_n}{2} 2(1-\alpha)} & \ \mbox{if $\alpha \leq 1$}\\
+		O(R) \cdot e^{-y_1/2 + \alpha y_1} \cdot e^{\frac{R}{2} 2(1-\alpha)} & \ \mbox{if $\alpha \leq 1$}\\
 		O(1) \cdot e^{-y_1/2 + \alpha y_1 + 2(1-\alpha)y_1/2} & \ \mbox{if $\alpha > 1$}
 		\end{cases}\\
 	&=\begin{cases}
-		O(R_n) \cdot e^{(\alpha -1/2) y_1} \cdot n^{2(1-\alpha)} & \ \mbox{if $\alpha \leq 1$}\\
+		O(R) \cdot e^{(\alpha -1/2) y_1} \cdot n^{2(1-\alpha)} & \ \mbox{if $\alpha \leq 1$}\\
 		O(1) \cdot e^{y_1/2} &\ \mbox{if $\alpha > 1$}
 	\end{cases}.  
 \end{align*}
@@ -1220,40 +1222,40 @@ The second integral trivially gives:
 \]
 Putting these two together we conclude that 
 \[
-	e^{y/2} \cdot \int_0^{I_n} e^{c(x_1,y_1) (1/2 -\alpha)} dx_1
+	e^{y/2} \cdot \int_0^{I_n} e^{\hat{y}(x_1,y_1) (1/2 -\alpha)} dx_1
 	= O(1) \cdot e^{y_1/2 +y(3/2-\alpha)}.
 \]
 
 Now, we integrate these with respect to $y_1$:
 \begin{align*}
-	&n^{2(1-\alpha)} \cdot \int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} e^{(\alpha -1/2)y_1 - \alpha y_1} dy_1 
-		=O(1) \cdot n^{2(1-\alpha)} \cdot e^{-R_n/2 + \eps R_n/2  + y/2}  \\
+	&n^{2(1-\alpha)} \cdot \int_{(1-\eps) R \wedge (R-y)}^{R} e^{(\alpha -1/2)y_1 - \alpha y_1} dy_1 
+		=O(1) \cdot n^{2(1-\alpha)} \cdot e^{-R/2 + \eps R/2  + y/2}  \\
 	&= O(1) \cdot n^{1-2\alpha + \eps} \cdot e^{y/2}.
 \end{align*}
 %Also,
 %\begin{equation}
 %\begin{split}
-%&\int_{(1-\eps) R_n \wedge (R_n-y)}^{R_n} e^{(1/2 - \alpha) y_1} dy_1 
-%= O(1) \cdot e^{(1/2-\alpha) R_n + y(\alpha -1/2) + \eps R_n (\alpha -1/2)} \\
+%&\int_{(1-\eps) R \wedge (R-y)}^{R} e^{(1/2 - \alpha) y_1} dy_1 
+%= O(1) \cdot e^{(1/2-\alpha) R + y(\alpha -1/2) + \eps R (\alpha -1/2)} \\
 %&= O(1) \cdot n^{1-2\alpha +\eps(2\alpha -1)} \cdot e^{y(\alpha -1/2)}. 
 %\end{split}
 %\end{equation}
 Therefore, we conclude that
 \[
-	\mathcal{I}_n^{(3)}(y) = \bigO{R_n} n^{1-2\alpha +\eps(2\alpha -1)} \, e^{y/2} \rho_{\Po}(y,k_n-2)
+	\mathcal{I}_n^{(3)}(y) = \bigO{R} n^{1-2\alpha +\eps(2\alpha -1)} \, e^{y/2} \rho_{\Po}(y,k_n-2)
 \]
 and hence, using again Lemma~\ref{lem:gamma_approx},
 \begin{align*}
 	\int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(3)}(y) e^{-\alpha y} \dd x \dd y
-	&= \bigO{R_n} n^{1-2\alpha +\eps(2\alpha -1)} \int_{\Kcal_{C}(k_n)} e^{y/2} 
+	&= \bigO{R} n^{1-2\alpha +\eps(2\alpha -1)} \int_{\Kcal_{C}(k_n)} e^{y/2} 
 		\rho_{\Po}(y,k_n-2) e^{-\alpha y} \dd x \dd y\\
-	&= \bigO{R_n} n^{1-2\alpha +\eps(2\alpha -1)} k_n^{-2\alpha + 1}.
+	&= \bigO{R} n^{1-2\alpha +\eps(2\alpha -1)} k_n^{-2\alpha + 1}.
 \end{align*}
 
 It follows that for $\eps = \eps(\alpha)$ small enough
 \[
-	k_n^{6\alpha - 3} R_n n^{1-2\alpha +\eps(2\alpha -1)} k_n^{-2\alpha + 1}
-	= R_n n^{\eps(2\alpha -1)} \left(\frac{k_n^2}{n}\right)^{2\alpha - 1} = \smallO{1}
+	k_n^{6\alpha - 3} R n^{1-2\alpha +\eps(2\alpha -1)} k_n^{-2\alpha + 1}
+	= R n^{\eps(2\alpha -1)} \left(\frac{k_n^2}{n}\right)^{2\alpha - 1} = \smallO{1}
 \]
 and hence for $\alpha > 1/2$,
 \[
@@ -1266,48 +1268,48 @@ Since $2\alpha - 1 \ge 1/2$ when $\alpha \ge 3/4$ it immediately follows that
 
 \paragraph{The sums~\eqref{eq:sum_5} and~\eqref{eq:sum_5b}}
 
-Again, the analysis for both terms are similar and we shall analyze~\eqref{eq:sum_5}. Let us set $p=(0,y)$. Recall that $\BallSym{y}\cap \Rcal([R_n - y + 2 \log\left(\frac{\pi}{2}\right),R_n]) = \emptyset$. Thus, the summand in~\eqref{eq:sum_5} is equal to 0, when $y_1 > R_n - y + 2 \log (\pi/2)$. 
+Again, the analysis for both terms are similar and we shall analyze~\eqref{eq:sum_5}. Let us set $p=(0,y)$. Recall that $\BallSym{y}\cap \Rcal([R - y + 2 \log\left(\frac{\pi}{2}\right),R]) = \emptyset$. Thus, the summand in~\eqref{eq:sum_5} is equal to 0, when $y_1 > R - y + 2 \log (\pi/2)$. 
 
 Recall the definition of the extended ball $\FatBallHyp{p}$ around $p$~\eqref{eq:def_fatball} that contains both $\BallHyp{p}$ and $\BallPo{p}$ 
 \[
-	\FatBallHyp{p} : = \{ p^\prime : y^\prime < R_n - y, \ |x^\prime| < (1+K) e^{\frac{1}{2} (y + y^\prime)}  \},
+	\FatBallHyp{y} : = \{ p^\prime : y^\prime < R - y, \ |x^\prime| < (1+K) e^{\frac{1}{2} (y + y^\prime)}  \},
 \]
 and that we have $\Exp{D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\})} = \rho_{\Po}(y,k_n-2)$.
 
 Further, observe that,
 \begin{equation*} %\label{eq:ball_inclusion} 
-\BallHyp{p} \cap \Rcal ([0,R-y)) \subseteq \FatBallHyp{p}
+\BallHyp{y} \cap \Rcal ([0,R-y)) \subseteq \FatBallHyp{y}
 \end{equation*}
 and 
 \begin{equation*} %\label{eq:ball_inclusion_lower}
-\BallHyp{p} \cap \Rcal ([R-y,R_n]) = \Rcal ([r(p),R_n]).
+\BallHyp{y} \cap \Rcal ([R-y,R]) = \Rcal ([R-y,R]).
 \end{equation*}
 We thus conclude that 
 \begin{equation} \label{eq:ball_inclusions}
-\BallHyp{p} \subseteq \FatBallHyp{p} \cup \Rcal([r(p),R_n]).
+\BallHyp{y} \subseteq \FatBallHyp{y} \cup \Rcal([R-y,R]).
 \end{equation}
 Hence, if we set 
 \[
-h_y(p_1, \Pcal) := \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} \cdot    
-\left( \mu \left( \FatBallHyp{p_1} \cap \FatBallHyp{p} \right)
-+ \mu \left( \Rcal([R_n-y,R_n]) \right) \right),
+h_y(p_1) := \ind{p_1 \in \BallHyp{p}\setminus \BallPo{y}} \cdot    
+\left( \mu \left( \FatBallHyp{p_1} \cap \FatBallHyp{y} \right)
++ \mu \left( \Rcal([R-y,R]) \right) \right),
 \]
 then 
 \begin{align*}
-&\ind{p_1\in \BallHyp{p}\setminus \BallPo{p}} \cdot \Exp{ \left(\sum_{p_2 \in \Pcal \setminus 
-\{p,p_1\}} \ind{p_2 \in \BallHyp{p} \cap \BallPo{p_1}}\right) \cdot 
+&\ind{p_1\in \BallHyp{p}\setminus \BallPo{y}} \cdot \Exp{ \left(\sum_{p_2 \in \Pcal \setminus 
+\{p,p_1\}} \ind{p_2 \in \BallHyp{y} \cap \BallPo{p_1}}\right) \cdot 
 D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1, p_2\})
 } \\
 &=O(1)\cdot
-\ind{p_1\in \BallHyp{p}\setminus \BallPo{p}} \cdot \mu (\BallHyp{p}\cap \BallHyp{p_1}) \rho_{\Po}(y,k_n-2) \\
-& \leq O(1) \cdot  h_y (p_1, \Pcal) \rho_{\Po}(y,k_n-2) . 
+\ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \cdot \mu (\BallHyp{y}\cap \BallHyp{p_1}) \rho_{\Po}(y,k_n-2) \\
+& \leq O(1) \cdot  h_y (p_1) \rho_{\Po}(y,k_n-2) . 
 \end{align*}
 To calculate the expectation of the above function we need to approximate the 
-intersection of the two balls $\FatBallHyp{p}$ and $\FatBallHyp{p_1}$, 
+intersection of the two balls $\FatBallHyp{y}$ and $\FatBallHyp{p_1}$, 
 where $p_1= (x_1,y_1)$. 
 Let us assume without loss of generality that $x_1 > 0$. 
-The right boundary of $\FatBallHyp{p}$ is given by the equation 
-$x = x(y_1) = (1+K)e^{\frac{1}{2} (y + y_1)}$ whereas the left boundary of $\FatBallHyp{p_1}$ is given by the curve $x = x(y_1)= x_1 - (1+ K)e^{\frac{1}{2} (y + y_1)}.$ 
+The right boundary of $\FatBallHyp{y}$ is given by the equation 
+$x = x(y^\prime) = (1+K)e^{\frac{1}{2} (y + y^\prime)}$ whereas the left boundary of $\FatBallHyp{p_1}$ is given by the curve $x = x(y^\prime)= x_1 - (1+ K)e^{\frac{1}{2} (y_1 + y^\prime)}.$ 
 
 The equation that determines the intersecting point of the two curves is
 \[
@@ -1321,16 +1323,16 @@ x_1 &=(1+K) e^{\hat{y}/2} \left( e^{y/2} + e^{y_1/2} \right).
 \end{split}
 \end{equation*}
 But since $p_1=(x_1,y_1)  \in \BallSym{p}$, we also have $x_1 > e^{\frac{y + y_1}{2}}$. Therefore, 
-\begin{equation*}
+\begin{equation}\label{eq:bounds_fat_ball_points}
 \begin{split}
  e^{\hat{y}/2}& > \frac{1}{1+K}~\frac{e^{\frac{y + y_1}{2}}}{ e^{y/2}+ e^{y_1/2}} \geq 
-\frac{1}{2(1+K)}~\frac{e^{\frac{y_1 + y}{2}}}{ e^{(y \wedge y_1) /2}} 
-> \frac{1}{2(1 + K)} ~ e^{(y \vee y_1)/2}. 
+\frac{1}{2(1+K)}~\frac{e^{\frac{y_1 + y}{2}}}{ e^{(y \vee y_1) /2}} 
+> \frac{1}{2(1 + K)} ~ e^{(y \wedge y_1)/2}. 
  \end{split}
-\end{equation*}
+\end{equation}
 The above yields
 \begin{equation} \label{eq:to_use_I}
-\hat{y} > (y \vee y_1) - 2\log(2(1+K)) := \hat{y}(y_1, y). 
+\hat{y} > (y \wedge y_1) - 2\log(2(1+K)) := \hat{y}(y_1, y). 
 \end{equation}
 which, in turn, implies the following 
 \begin{equation}\label{eq:intersex_approx}
@@ -1338,22 +1340,22 @@ which, in turn, implies the following
 \end{equation}
 We thus conclude that 
 \[ 
-	\BallHyp{p_1} \cap \BallHyp{p} \subseteq \left(\FatBallHyp{p} \cap \Rcal([\hat{y}(y_1,y), R_n])\right)
-	\, \cup \, \Rcal ([R_n - y,R_n]),
+	\BallHyp{p_1} \cap \BallHyp{p} \subseteq \left(\FatBallHyp{p} \cap \Rcal([\hat{y}(y_1,y), R])\right)
+	\, \cup \, \Rcal ([R - y,R]),
 \]
 which in turn implies that
 \[
 	\mu \left( \FatBallHyp{p_1} \cap \BallHyp{p} \right) \leq 
-	\mu\left( \FatBallHyp{p} \cap  \Rcal([\hat{y}(y_1,y), R_n]\right) + 
-	\mu (\Rcal ([R_n - y, R_n]) ).
+	\mu\left( \FatBallHyp{p} \cap  \Rcal([\hat{y}(y_1,y), R]\right) + 
+	\mu (\Rcal ([R - y, R]) ).
 \]
 Therefore, 
 \begin{align*} 
 	h_y(p_1, \Pcal) &\leq \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} 
-    	\mu  \left( \FatBallHyp{p} \cap  \Rcal([\hat{y}(y_1,y), R_n])\right)
+    	\mu  \left( \FatBallHyp{p} \cap  \Rcal([\hat{y}(y_1,y), R])\right)
         \\
 	&\hspace{10pt}+ \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}}
-    	\mu  \left( \Rcal ([R_n - y, R_n]) \right).
+    	\mu  \left( \Rcal ([R - y, R]) \right).
 \end{align*}
 
 
@@ -1368,79 +1370,79 @@ Now, the Campbell-Mecke formula gives
 	&=\frac{\nu \alpha}{\pi} \int_{\Rcal} \Exp{h_y(p_1, \Pcal \setminus \{p_1\})}
 		e^{-\alpha y_1} \dd x_1 \dd y_1\\
 	&\le \frac{\nu \alpha}{\pi} \int_{\Rcal} \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}} 
-	    	\mu  \left( \FatBallHyp{p} \cap  \Rcal([\hat{y}(y_1,y), R_n])\right)
+	    	\mu  \left( \FatBallHyp{p} \cap  \Rcal([\hat{y}(y_1,y), R])\right)
 	    	e^{-\alpha y_1} \dd x_1 \dd y_1 \numberthis \label{eq:h_upper_bound_1}\\
 	&\hspace{10pt}+ \frac{\nu \alpha}{\pi} \int_{\Rcal} \ind{p_1 \in \BallHyp{p}\setminus \BallPo{p}}
-	    	\mu  \left( \Rcal ([R_n - y, R_n]) \right) e^{-\alpha y_1} \dd x_1 \dd y_1.
+	    	\mu  \left( \Rcal ([R - y, R]) \right) e^{-\alpha y_1} \dd x_1 \dd y_1.
 	    	\numberthis \label{eq:h_upper_bound_2}
 \end{align*}
 
-Recall that $(\BallSym{(0,y)})\cap \Rcal([R_n - y + 2 \log\left(\frac{\pi}{2}\right),R_n]) = \emptyset$. 
+Recall that $(\BallSym{(0,y)})\cap \Rcal([R - y + 2 \log\left(\frac{\pi}{2}\right),R]) = \emptyset$. 
 We will first calculate the measures $\mu$ appearing in~\eqref{eq:h_upper_bound_1} and~\eqref{eq:h_upper_bound_2}. The first one is:
 \begin{align*}
-	\mu\left( \FatBallHyp{y} \cap  \Rcal([c(y_1,y), R_n])\right) 
-	&\leq (1+ K) \frac{\nu \alpha}{\pi} \cdot e^{y/2}  \int_{c(y_1,y)}^{R_n} e^{-(\alpha - \frac{1}{2}) y'} \, dy' \\
-	&=  \bigO{e^{\frac{y}{2} - (\alpha-\frac{1}{2}) (y \vee y_1)}}.
+	\mu\left( \FatBallHyp{y} \cap  \Rcal([c(y_1,y), R])\right) 
+	&\leq (1+ K) \frac{\nu \alpha}{\pi} \cdot e^{y/2}  \int_{\hat{y}(y_1,y)}^{R} e^{-(\alpha - \frac{1}{2}) y'} \, dy' \\
+	&=  \bigO{e^{\frac{y}{2} - (\alpha-\frac{1}{2}) (y \wedge y_1)}}.
 \end{align*}
 
 The second term is: 
 \begin{align*}
-	\mu \left( \Rcal([R_n - y,R_n]) \right) 
-    &= \frac{\nu \alpha}{\pi} \int_{R_n - y}^{R_n} \pi e^{\frac{R_n}{2}} e^{-\alpha y'} \, dy' 
-    	= \bigO{e^{\frac{R_n}{2}} e^{-\alpha (R_n-y)}} = \bigO{e^{\alpha y - (\alpha - \frac{1}{2})R_n}}. 
+	\mu \left( \Rcal([R - y,R]) \right) 
+    &= \frac{\nu \alpha}{\pi} \int_{R - y}^{R} \pi e^{\frac{R}{2}} e^{-\alpha y'} \, dy' 
+    	= \bigO{e^{\frac{R}{2}} e^{-\alpha (R-y)}} = \bigO{e^{\alpha y - (\alpha - \frac{1}{2})R}}. 
 \end{align*}
 
 Using these, we get
 \begin{align} 
-	&\int_{\Rcal ([0, R_n - y_n + 2 \ln \frac{\pi}{2}])} \Exp{h_y(p_1, \Pcal \setminus \{p_1\})} 
+	&\int_{\Rcal ([0, R - y_n + 2 \ln \frac{\pi}{2}])} \Exp{h_y(p_1, \Pcal \setminus \{p_1\})} 
     e^{-\alpha y_1} \, dx_1 \, dy_1 \notag \\
-	&= \bigO{1} \int_{\Rcal ([0, R_n - y+ 2 \ln \frac{\pi}{2}])} \ind{p_1 \in \BallSym{p}} 
-		e^{\frac{y}{2} - (\alpha - \frac{1}{2}) (y \vee y_1) - \alpha y_1} \, dx_1 \, dy_1
+	&= \bigO{1} \int_{\Rcal ([0, R - y+ 2 \ln \frac{\pi}{2}])} \ind{p_1 \in \BallSym{p}} 
+		e^{\frac{y}{2} - (\alpha - \frac{1}{2}) (y \wedge y_1) - \alpha y_1} \, dx_1 \, dy_1
 		\label{eq:Mecke_sum_1}\\ 
-	&\hspace{10pt}+ \bigO{1} \int_{\Rcal ([0, R_n - y + 2 \ln \frac{\pi}{2}])} 
+	&\hspace{10pt}+ \bigO{1} \int_{\Rcal ([0, R - y + 2 \ln \frac{\pi}{2}])} 
     	\ind{p_1 \in \BallHyp{(0,y)}} 
-    	e^{\alpha y - (\alpha - \frac{1}{2})R_n - \alpha y_1} \, dx_1 \, dy_1.\label{eq:Mecke_sum_2}
+    	e^{\alpha y - (\alpha - \frac{1}{2})R - \alpha y_1} \, dx_1 \, dy_1.\label{eq:Mecke_sum_2}
 \end{align}
 Now, Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that 
-for any $y \in [0, R_n - y_n + 2 \ln \frac{\pi}{2}]$, we have 
+for any $y_1 \in [0, R - y + 2 \ln \frac{\pi}{2}]$, we have 
 \[ 
-	\int_{-I_n}^{I_n} \ind{p_1 \in \BallSym{y}} \, dx_1 \leq 2 K e^{\frac{3}{2} (y_1 + y) - R_n}.
+	\int_{-I_n}^{I_n} \ind{p_1 \in \BallSym{y}} \, dx_1 \leq 2 K e^{\frac{3}{2} (y_1 + y) - R}.
 \]
 
 Therefore, \eqref{eq:Mecke_sum_1} is 
 \begin{align*}
-	&\hspace{-20pt}O(1) \cdot e^{2 y - R_n} \int_{0}^{R_n - y + 2 \ln \frac{\pi}{2}} 
-    	e^{\frac{3y_1}{2} - (\alpha - \frac{1}{2})(y_1 \vee y) - \alpha y_1} \, dy_1 \\
- 	&=  O(1) \cdot e^{2 y - R_n} \left( \int_{0}^{y} e^{\frac{3y_1}{2} - (2\alpha - \frac{1}{2})y_1} \, dy_1 
- 		+ e^{-(\alpha-\frac{1}{2}) y}\int_{y}^{R_n - y + 2 \ln \frac{\pi}{2}} e^{(\frac{3}{2} - \alpha) y_1} \, dy_1 \right)\\
+	&\hspace{-20pt}O(1) \cdot e^{2 y - R} \int_{0}^{R - y + 2 \ln \frac{\pi}{2}} 
+    	e^{\frac{3y_1}{2} - (\alpha - \frac{1}{2})(y_1 \wedge y) - \alpha y_1} \, dy_1 \\
+ 	&=  O(1) \cdot e^{2 y - R} \left( \int_{0}^{y} e^{\frac{3y_1}{2} - (2\alpha - \frac{1}{2})y_1} \, dy_1 
+ 		+ e^{-(\alpha-\frac{1}{2}) y}\int_{y}^{R - y + 2 \ln \frac{\pi}{2}} e^{(\frac{3}{2} - \alpha) y_1} \, dy_1 \right)\\
   	&= O(1) \left( 
 	\begin{cases}
-	e^{(4-2\alpha) y - R_n}, & \mbox{if $\alpha < 2$} \\
-	R_n \cdot e^{2y - R_n}, & \mbox{if $\alpha \geq 2$}
+	e^{(4-2\alpha) y - R}, & \mbox{if $\alpha < 1$} \\
+	R \cdot e^{2y - R}, & \mbox{if $\alpha \geq 1$}
 	\end{cases}
 	+
 	\begin{cases}
-	e^{-(\alpha - \frac{1}{2})R_n +y}, & \mbox{if $\alpha < 3/2$} \\
-	R_n \cdot  e^{2(2-\alpha)y - R_n}, & \mbox{if $\alpha \geq 3/2$}
+	e^{-(\alpha - \frac{1}{2})R +y}, & \mbox{if $\alpha < 3/2$} \\
+	R \cdot  e^{2(2-\alpha)y - R}, & \mbox{if $\alpha \geq 3/2$}
 	\end{cases}\right).
 \end{align*}
 
 Similarly, for~\eqref{eq:Mecke_sum_2} we have
 \begin{align*}
-	&\hspace{-30pt}\int_{\Rcal ([0, R_n - y + 2 \ln \frac{\pi}{2}])} \ind{p_1 \in \BallSym{(0,y)}} e^{\alpha y - (\alpha - \frac{1}{2})R_n - \alpha y_1} \, dx_1 \, dy_1\\
-	&= e^{\frac{3y}{2} - R_n + \alpha y - (\alpha - \frac{1}{2})R_n} 
-    	\cdot \int_{0}^{R_n - y + 2 \ln \frac{\pi}{2}} e^{\frac{3y_1}{2}-\alpha y_1} \, dy_1\\
+	&\hspace{-30pt}\int_{\Rcal ([0, R - y + 2 \ln \frac{\pi}{2}])} \ind{p_1 \in \BallSym{(0,y)}} e^{\alpha y - (\alpha - \frac{1}{2})R - \alpha y_1} \, dx_1 \, dy_1\\
+	&= e^{\frac{3y}{2} - R + \alpha y - (\alpha - \frac{1}{2})R} 
+    	\cdot \int_{0}^{R - y + 2 \ln \frac{\pi}{2}} e^{\frac{3y_1}{2}-\alpha y_1} \, dy_1\\
 	&= O(1)\cdot 
 	\begin{cases} 
-	e^{\frac{3y}{2} - R_n + \alpha y - (\alpha - \frac{1}{2})R_n + (\frac{3}{2} - \alpha)(R_n-y)} 
+	e^{\frac{3y}{2} - R + \alpha y - (\alpha - \frac{1}{2})R + (\frac{3}{2} - \alpha)(R-y)} 
 	, & \mbox{if $\alpha < 3/2$} \\ 
-	R_n \cdot e^{(\frac{3}{2} +\alpha)y -  (\alpha + \frac{1}{2})R_n}, & \mbox{if 
+	R \cdot e^{(\frac{3}{2} +\alpha)y -  (\alpha + \frac{1}{2})R}, & \mbox{if 
 	$\alpha \geq 3/2$}
 	\end{cases}	\\
 	&= O(1) \cdot 
 	\begin{cases}
-	  e^{-(2\alpha-1) R_n + 2 \alpha y}, & \mbox{if $\alpha < 3/2$} \\
-	  R_n \cdot e^{(\frac{3}{2} +\alpha)y -  (\alpha + \frac{1}{2})R_n}, & \mbox{if 
+	  e^{-(2\alpha-1) R + 2 \alpha y}, & \mbox{if $\alpha < 3/2$} \\
+	  R \cdot e^{(\frac{3}{2} +\alpha)y -  (\alpha + \frac{1}{2})R}, & \mbox{if 
 	$\alpha \geq 3/2$}
 	\end{cases}.
 \end{align*}
@@ -1448,24 +1450,24 @@ Similarly, for~\eqref{eq:Mecke_sum_2} we have
 We thus conclude, using $2(2 - \alpha)y \le y$ for $\alpha > 3/2$, that 
 \begin{equation} \label{eq:upper_bound_faulty_edges} 
 \Exp{\left( \sum_{p_1 \in \Pcal \setminus\{p\}} 
-		h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \le \bigO{1} \cdot 
+		h_y (p_1)\right)} \le \bigO{1} \cdot 
 \left( \mathcal{I}_n^{(1)}(y) + \mathcal{I}_n^{(2)}(y) + \mathcal{I}_n^{(3)}(y) \right),
 \end{equation}
 where 
 \begin{align*}
  \mathcal{I}_n^{(1)}(y) &= \begin{cases}
-	e^{(4-2\alpha) y - R_n}, & \mbox{if $\alpha < 2$} \\
-	R_n \cdot e^{2y - R_n}, & \mbox{if $\alpha \geq 2$}
+	e^{(4-2\alpha) y - R}, & \mbox{if $\alpha < 1$} \\
+	R \cdot e^{2y - R}, & \mbox{if $\alpha \geq 1$}
 	\end{cases},  \\
 	\mathcal{I}_n^{(2)}(y) &= 
 	\begin{cases}
-	e^{-(\alpha - \frac{1}{2})R_n +y}, & \mbox{if $\alpha < 3/2$} \\
-	R_n \cdot  e^{y - R_n}, & \mbox{if $\alpha \geq 3/2$}
+	e^{-(\alpha - \frac{1}{2})R +y}, & \mbox{if $\alpha < 3/2$} \\
+	R \cdot  e^{y - R}, & \mbox{if $\alpha \geq 3/2$}
 	\end{cases}\\
 	\mathcal{I}_n^{(3)}(y) &= 
 \begin{cases}
-	  e^{-(2\alpha-1) R_n + 2 \alpha y}, & \mbox{if $\alpha < 3/2$} \\
-	  R_n \cdot e^{(\frac{3}{2} +\alpha)y -  (\alpha + \frac{1}{2})R_n}, & \mbox{if 
+	  e^{-(2\alpha-1) R + 2 \alpha y}, & \mbox{if $\alpha < 3/2$} \\
+	  R \cdot e^{(\frac{3}{2} +\alpha)y -  (\alpha + \frac{1}{2})R}, & \mbox{if 
 	$\alpha \geq 3/2$}
 	\end{cases}.
 \end{align*}
@@ -1473,7 +1475,7 @@ where
 We proceed to calculate:
 \begin{align*}
 &\int_{\Kcal_{C}(k_n)} \Exp{\left( \sum_{p_1 \in \Pcal} h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \cdot 
- \rho_{\Po}(y,k_n-2) e^{-\alpha y} \dd y \dd x.
+ \rho_{\Po}(y,k_n-2) e^{-\alpha y} \dd y.
 \end{align*}
 %Firstly, note that as $\expH = \Theta (1) \cdot n \cdot k_n^{-(2\alpha +1)}$, we have 
 %$$ {k_n\choose 2}^{-1}\cdot \expH^{-1} = O(1) \cdot \frac{k_n^{2\alpha-1}}{n}.$$
@@ -1485,21 +1487,21 @@ We proceed to calculate:
 %with
 For this we define
 \[
-	M_i = \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(i)}(y) \rho_{\Po}(y,k_n-1) e^{-\alpha y} \dd y \dd x
+	M_i = \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(i)}(y) \rho_{\Po}(y,k_n-1) e^{-\alpha y} \dd y
 \]
 so that
 \begin{align*}
-\int_{\Kcal_{C}(k_n)} \Exp{\left( \sum_{p_1 \in \Pcal \setminus \{(0,y)\}} h_y (p_1, \Pcal \setminus \{ p_1 \})\right)} \rho_{\Po}(y,k_n-1) e^{-\alpha y} \dd y \dd x 
+\int_{\Kcal_{C}(k_n)} \Exp{\left( \sum_{p_1 \in \Pcal \setminus \{(0,y)\}} h_y (p_1)\right)} \rho_{\Po}(y,k_n-1) e^{-\alpha y} \dd y
 &= \bigO{M_1 + M_2 + M_3}.
 \end{align*}
 
-Computing each of the integral separately we obtain, using Lemma~\ref{lem:gamma_approx} and the fact that $n = \nu e^{R_n/2}$,
+Computing each of the integral separately we obtain, using Lemma~\ref{lem:gamma_approx} and the fact that $n = \nu e^{R/2}$,
 \begin{align*} 
-M_1:= \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(1)}(y) \rho_{\Po}(y,k_n-1) e^{-\alpha y} \dd y \dd x
+M_1:= \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(1)}(y) \rho_{\Po}(y,k_n-1) e^{-\alpha y} \dd y
 &= O(1) \cdot 
 \begin{cases} 
-	\frac{k_n^{7-6\alpha}}{n^2}, & \mbox{if $\alpha <2$} \\
-	R_n \frac{k_n^{3-2\alpha}}{n^2}, & \mbox{if $\alpha \geq 2$}
+	\frac{k_n^{7-6\alpha}}{n^2}, & \mbox{if $\alpha <1$} \\
+	R \frac{k_n^{3-2\alpha}}{n^2}, & \mbox{if $\alpha \geq 1$}
 \end{cases}. 
 \end{align*}
 \begin{align*} 
@@ -1507,7 +1509,7 @@ M_2:= \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(2)}(y) \rho_{\Po}(y,k_n-1) e^{-\alph
 &= O(1) \cdot 
 \begin{cases}
 \frac{k_n^{1-2\alpha}}{n^{2\alpha-1}}, & \mbox{if $\alpha < 3/2$} \\
-R_n   \frac{k_n^{1-2\alpha}}{n^{2}}, & \mbox{if $\alpha \geq 3/2$}
+R   \frac{k_n^{1-2\alpha}}{n^{2}}, & \mbox{if $\alpha \geq 3/2$}
 \end{cases}
 \end{align*}
 and finally 
@@ -1516,12 +1518,12 @@ M_3:= \int_{\Kcal_{C}(k_n)} \mathcal{I}_n^{(3)}(y) \rho_{\Po}(y,k_n-1) e^{-\alph
 &= O(1) \cdot 
 \begin{cases} 
 \frac{k_n^{2\alpha - 1}}{n^{4\alpha -2}}, & \mbox{if $\alpha <3/2$} \\ 
-R_n \cdot \frac{k_n^2}{n^{2\alpha+1}}, &\mbox{if $\alpha \geq 3/2$}
+R \cdot \frac{k_n^2}{n^{2\alpha+1}}, &\mbox{if $\alpha \geq 3/2$}
 \end{cases}  .
 \end{align*}
 
-Now, we will consider the two cases according to the value of $\alpha$. First we note that $R_n = \bigO{\log(n)}$ and since
-$k_n = O(n^{\frac{1}{2\alpha +1}})$ and $\alpha > 1/2$ we have that $R_n k_n^2 n^{-1} = \smallO{1}$.
+Now, we will consider the two cases according to the value of $\alpha$. First we note that $R = \bigO{\log(n)}$ and since
+$k_n = O(n^{\frac{1}{2\alpha +1}})$ and $\alpha > 1/2$ we have that $R k_n^2 n^{-1} = \smallO{1}$.
 Assume first that $1/2 < \alpha < 3/4$. In this case, we want to show that 
 \begin{equation} \label{eq:int3_to_prove_I}
 \lim_{n \to \infty} k_n^{6\alpha -3} (M_1 + M_2 + M_3) = 0. 
@@ -1554,20 +1556,22 @@ For $\alpha \ge 3/4$, we would like to show that
 \begin{equation} \label{eq:int3_to_prove_II}
 \lim_{n \to \infty} k_n^{2\alpha} \cdot (M_1 + M_2 + M_3) = 0. 
 \end{equation}
-Firstly, we note that $M_i$ as above if $3/4 < \alpha < 3/2$. Therefore, since for this range $2 \alpha <6\alpha - 3$ the result follows from the above analysis. Next, if we consider $3/2 \leq \alpha <2$, it is only $M_2$ and $M_3$ that change values. In particular, for any $\alpha \geq 3/2$ we have 
+Firstly, we note that each $M_i$ is as above if $3/4 < \alpha < 1$. Therefore, since for this range $2 \alpha <6\alpha - 3$ the result follows from the above analysis. Next we consider the case $1 \le \alpha < 3/2$. Here, only the value of $M_1$ changes and we compute that
 \[
-	\frac{k_n}{n}  M_2 =O(1) R_n \frac{k_n}{n^2} = o(1).
+	k_n^{6\alpha - 3} M_1 = \bigO{1} \log(n) n^{-2} k_n^{4\alpha} \le \bigO{\log(n)} \left(\frac{k_n^2}{n}\right)^2 = \smallO{1},
+\]
+so that~\eqref{eq:int3_to_prove_II} holds for $3/4 < \alpha < 1$.
+
+Proceeding with the case $\alpha \ge 3/2$, it is only $M_2$ and $M_3$ that change values. In particular, for any $\alpha \geq 3/2$ we have 
+\[
+	\frac{k_n}{n}  M_2 =O(1) R \frac{k_n}{n^2} = o(1).
 \]
 Also,
 \[
-	k_n^{2\alpha }  M_3 = O(1) R_n \frac{k_n^{2\alpha + 2}}{n^{2\alpha + 1}}
-	= R_n \smallO{\frac{n^{\alpha + 1}}{n^{2\alpha +1}}} = o(1),
+	k_n^{2\alpha }  M_3 = O(1) R \frac{k_n^{2\alpha + 2}}{n^{2\alpha + 1}}
+	= R \smallO{\frac{n^{\alpha + 1}}{n^{2\alpha +1}}} = o(1),
 \]
-since $k_n = o(n^{1/2})$. Now if $\alpha \geq 2$, then $M_1$ changes value and we have 
-\[
-	k_n^{2\alpha} M_1 =O(1) R_n \frac{k_n^3}{n^2} = o(1),
-\] 
-which finished the proof for~\eqref{eq:sum_5}.
+since $k_n = o(n^{1/2})$ and hence~\eqref{eq:int3_to_prove_II} holds. This finished the proof for~\eqref{eq:sum_5}.
 
 
 
@@ -1579,40 +1583,40 @@ which finished the proof for~\eqref{eq:sum_5}.
 %\end{equation*}
 Using the Campbell-Mecke formula, we write 
 \begin{align*}
-	&\hspace{-30pt}\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\}, \ y_1 < K}
+	&\hspace{-30pt}\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\}, \ y_1 < K}^{\ne}
 		\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}}\\
-	&\leq \int_{-I_n}^{I_n} \int_0^K \int_{-I_n}^{I_n} \int_0^{R_n} 
+	&\leq  \int_0^K \int_{-I_n}^{I_n}  \int_0^{R} \int_{-I_n}^{I_n}
 		\ind{p_1 \in \BallSym{y}} 
- 		\ind{p_2 \in \BallHyp{y}\cap \BallPo{y}} e^{-\alpha y_2} e^{-\alpha y_1} \dd x_2 \dd y_2 \dd x_1 \dd y_1 \\
+ 		\ind{p_2 \in \BallHyp{y}\cap \BallPo{y}} e^{-\alpha y_2} e^{-\alpha y_1} \dd x_2 \dd y_2 \dd x_1 \dd y_1  \\
  	&\leq  \mu (\BallHyp{y})\cdot \int_{-I_n}^{I_n} \int_0^K \ind{p_1 \in \BallSym{y}} 
 		e^{-\alpha y_1}  dx_1 dy_1.
 \end{align*}
-Recall that by Lemma~\ref{lem:average_degree_hyperbolic}, $\Mu{\BallHyp{y}} =O(1) e^{y/2}$. We bound the integral using Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. In particular,~\eqref{eq:asymp1} implies that if $(x_1,y_1) \in \BallSym{(0,y)}$, then because $y_1 < K$
+Recall that by Lemma~\ref{lem:average_degree_hyperbolic}, $\Mu{\BallHyp{y}} =O(1) e^{y/2}$. We bound the integral using Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. In particular,~\eqref{eq:asymp1} implies that if $p_1 = (x_1,y_1) \in \BallSym{y}$, then because $y_1 < K$
 \[
-	|x_1 - e^{(y+y_1)/2} |\leq e^{(y+y_1)/2} \cdot K e^{y+y_1- R_n} = O(1) 
-	e^{(y+y_1)/2} \cdot e^{y- R_n}.
+	|x_1 - e^{(y+y_1)/2} |\leq e^{(y+y_1)/2} \cdot K e^{y+y_1- R} = O(1) 
+	e^{(y+y_1)/2} \cdot e^{y- R}.
 \]
 Therefore, 
 \[
 	\int_{-I_n}^{I_n} \int_0^K \ind{(x_1,y_1) \in \BallSym{(0,y)}} 
-	e^{-\alpha y_1}  dx_1 dy_1 = O(1) \cdot e^{y-R_n} 
+	e^{-\alpha y_1}  dx_1 dy_1 = O(1) \cdot e^{y-R} 
 	\cdot \int_0^K e^{(y+y_1)/2} 
-	e^{-\alpha y_1}   dy_1 = O(1)\cdot e^{3y/2 - R_n}, 
+	e^{-\alpha y_1}   dy_1 = O(1)\cdot e^{3y/2 - R}, 
 \]
 and hence
 \begin{align*}
-	\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}
+	\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}^{\ne}
 	\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}} 
-	= O(1) \cdot e^{2y - R_n}.
+	= O(1) \cdot e^{2y - R}.
 \end{align*}
 Now, we integrate this over $y$ to obtain that
 \begin{align*}
-	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}
+	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}^{\ne}
 		\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}} e^{-\alpha y} \dd y\\
-	&= O(1) e^{-R_n} \int_{\Kcal_{C}(k_n)} e^{2y -\alpha y} \dd y
+	&= O(1) e^{-R} \int_{\Kcal_{C}(k_n)} e^{2y -\alpha y} \dd y
 		= O(1) n^{-2}
 			\begin{cases}
-			k_n^{4-2\alpha)}, & \mbox{if $\alpha < 2$} \\
+			k_n^{4-2\alpha}, & \mbox{if $\alpha < 2$} \\
 			\log k_n, & \mbox{if $\alpha =2$} \\
 			1, & \mbox{if $\alpha >2$}
 			\end{cases}.
@@ -1632,12 +1636,12 @@ which completes the proof for~\eqref{eq:sum_6} and thus the proof of Proposition
 
 \subsection{Coupling $G_n$ to $\GPo$}\label{ssec:coupling_H_HP}
 
-Now that we have established the equivalence of the clustering function between the Poissonized KPKVB graph $\GPo$ and the finite box graph $\Gbox$ the final step is to relate the clustering function in $\GPo$ to the KPKVB graph $G_n$. As mentioned in Section~\ref{ssec:KPKVB_to_GPo_infinite_k}, this is done by moving from $c(k_n; G_n)$ to the adjusted clustering function $c^\ast(k_n; G_n)$ (Lemma~\ref{lem:clustering_ast_H}) and then to $c^\ast(k_n; \GPo)$ (Proposition~\ref{prop:clustering_ast_H_Pois}). We start with as technical lemma on the difference between vertices with degree $k_n$ in both models. Then we give the proof of Proposition~\ref{prop:clustering_ast_H_Pois} and after that we prove  Lemma~\ref{lem:clustering_ast_H}.
+Now that we have established the equivalence of the clustering function between the Poissonized KPKVB graph $\GPo$ and the finite box graph $\Gbox$ the final step is to relate the clustering function in $\GPo$ to the KPKVB graph $G_n$. As mentioned in Section~\ref{ssec:KPKVB_to_GPo_infinite_k}, this is done by moving from $c(k_n; G_n)$ to the adjusted clustering function $c^\ast(k_n; G_n)$ (Lemma~\ref{lem:clustering_ast_H}) and then to $c^\ast(k_n; \GPo)$ (Proposition~\ref{prop:clustering_ast_H_Pois}). We start with a technical lemma on the difference between the number of vertices with degree $k_n$ in both models. Then we give the proof of Proposition~\ref{prop:clustering_ast_H_Pois} and after that we prove  Lemma~\ref{lem:clustering_ast_H}.
 
-Let $N_n(k_n)$ and $N_\Po(k_n)$ denote, respectively, the number of vertices with degree $k_n$ in $G_n$ and $G_\Po$. We will first show that $\left|N_{n}(k_n)-N_{\Po}(k_n)\right|$ is small. Recall that we consider the standard coupling between the binomial and Poisson process to couple $G_n$ and $G_\Po$. That is, we take a sequence of i.i.d. random elements $u_1, u_2, \dots$ uniformly on the hyperbolic disk of radius $R_n$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the KPKVB graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} \Po(n)$ points ($N$ is a Poisson random variable with expectation $n$, independent of $u_1, u_2, \dots$). Under this coupling $N_n(k) = \sum_{j=1}^n \ind{\mathrm{deg}_n(u_j)=k}$ denotes the (random) number of degree $k$ vertices in the KPKVB graph $G_n$ model with $n$ vertices and $N_{\Po}(k)=\sum_{j=1}^{N} \ind{\mathrm{deg}_{\Po}(u_j)=k}$ denotes the (random) number of degree $k$ vertices in the poissonized KPKVB graph $\GPo$.
+Let $N_n(k_n)$ and $N_\Po(k_n)$ denote, respectively, the number of vertices with degree $k_n$ in $G_n$ and $G_\Po$. We will first show that $\left|N_{n}(k_n)-N_{\Po}(k_n)\right|$ is small. Recall that we consider the standard coupling between the binomial and Poisson process to couple $G_n$ and $G_\Po$. That is, we take a sequence of i.i.d. random elements $u_1, u_2, \dots$ uniformly on the hyperbolic disk of radius $R$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the KPKVB graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} \Po(n)$ points ($N$ is a Poisson random variable with expectation $n$, independent of $u_1, u_2, \dots$). Under this coupling $N_n(k) = \sum_{j=1}^n \ind{\mathrm{deg}_n(u_j)=k}$ denotes the (random) number of degree $k$ vertices in the KPKVB graph $G_n$ model with $n$ vertices and $N_{\Po}(k)=\sum_{j=1}^{N} \ind{\mathrm{deg}_{\Po}(u_j)=k}$ denotes the (random) number of degree $k$ vertices in the poissonized KPKVB graph $\GPo$.
 
 \begin{lemma}\label{lem:diff_Nk_hyperbolic_binomial_poisson}
-Let $(k_n)_{n \ge 1}$ be sequence of natural numbers with $0 \leq k_n \leq n-1$ and $k_n = o(n^{\frac{1}{2\alpha+1}})$. Then
+Let $(k_n)_{n \ge 1}$ be sequence of natural numbers with $k_n = o(n^{\frac{1}{2\alpha+1}})$. Then, on the coupling space described above,
 \[
 	\Exp{\left|N_{n}(k_n)-N_{\Po}(k_n)\right|} = \smallO{\Exp{N_{\Po}(k_n)}} = \smallO{n k^{-(2\alpha+1)}},
 \]
@@ -1662,25 +1666,25 @@ and in particular,
 \begin{proof}
 The second claim follows immediately from the first and the fact that $\Exp{N_\Po(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$, see Lemma~\ref{lem:N_k_HP_P}.
 
-To prove the first statement let $u = (r,\theta) \in \H$. Slightly abusing notation we write $B_\H(u)$ for those $u^\prime$ such that $d_\H(u,u^\prime) \le R$ and $\mu_{\H}(y)$ for the measure of $B_\H(u)$ with respect to the $(\alpha, R)$-quasi uniform measure $g(r,\theta)$ defined in~\eqref{eq:def_quasi_uniform_density}. Note that if $u^\prime$ is sampled according to $g$, then $\mu_{\H}(u)/n$ denotes the probability that $u^\prime \in B_\H(u)$. In particular, if $G_n = G(n; \alpha, \nu)$ is a KPKVB graph and $u \in \mathcal{V}_n$, then the degree distribution of $u$, conditioned on its coordinates, is Binomial on $n-1$ trials with success probability $\mu_{\H}(u)/n$. Let us define for any $n \ge 1$, $\deg_n(u) = \mathrm{Bin}(n-1, \mu_{\H}(u)/n)$ then if $U$ is sampled according to the  $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}, $\Prob{\deg_n(U) = k_n}$ denotes the degree distribution in $G_n$ and $\Exp{N(k_n)} = n \Prob{\deg_n(U) = k_n}$. 
+To prove the first statement let $u = (r,\theta) \in \H$. Slightly abusing notation we write $B_\H(u)$ for those $u^\prime$ such that $d_\H(u,u^\prime) \le R$ and $\mu_{\H}(y)$ for the measure of $B_\H(u)$ with respect to the $(\alpha, R)$-quasi uniform measure $g(r,\theta)$ defined in~\eqref{eq:def_quasi_uniform_density}. Note that if $u^\prime$ is sampled according to $g$, then $\mu_{\H}(u)/n$ denotes the probability that $u^\prime \in B_\H(u)$. In particular, if $G_n = G(n; \alpha, \nu)$ is a KPKVB graph and $u \in \mathcal{V}_n$, then the degree distribution of $u$, conditioned on its coordinates, is Binomial on $n-1$ trials with success probability $\mu_{\H}(u)/n$. Let us define for any $n \ge 1$, $\deg_n(u) = \mathrm{Bin}(n-1, \mu_{\H}(u)/n)$ then if $U$ is sampled according to the  $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}, $\Prob{\deg_n(U) = k_n}$ denotes the degree distribution in $G_n$ and $\Exp{N_n(k_n)} = n \Prob{\deg_n(U) = k_n}$. 
 
 Recall that we couple the KPKVB graph $G_n$ with the Poisson version $\GPo$ by considering an infinite supply of i.i.d. points $u_1, u_2, \dots$ sampled on $\H$ according to the $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}, take $N \stackrel{d}{=} \Po(n)$, independently of $u_1, u_2, \dots$, and set $\mathcal{V}_n =\{u_1, \dots, u_n\}$ and $\VPo = \{u_1, \dots, u_N\}$. Observe that $\Exp{N_\Po(k_n)} = \Exp{N \Prob{\deg_{N-1}(U) = k_n}}$, where $U$ is sampled from the $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}. It is important to note that under this coupling the only difference between $G_n$ and $\GPo$ is in the number of vertices.
 
-Denote by $\mathcal{V}_n(k_n)$ and $\VPo(k_n)$ then set of points $u_i$ with degree $k_n$ in, respectively, $G_n$ and $\GPo$. Then the result follows if we can show that
+Denote by $\mathcal{V}_n(k_n)$ and $\VPo(k_n)$ the set of points $u_i$ with degree $k_n$ in $G_n$ and $\GPo$, respectively. Then the result follows if we can show that
 \[
 	\CExp{\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}}{N} 
 	= \smallO{n}\CProb{\deg_{N-1}(U) = k_n}{N}
 \]
-We first use the Chernoff concentration result for a Poisson random variable~\eqref{eq:def_chernoff_bound_poisson}, which implies that for any $C>0$ we have $N \in [n-C\sqrt{n\log n},n+C\sqrt{n \log n}]$ with probability $1-n^{-C^2/2}$. Since we can select $C > 0$ arbitrarily large it follows that we only need to prove the result conditional on the event $|N-n|\le C\sqrt{n \log(n)}$. Note that if $N = n$ then 
+We first use a Chernoff based large deviation result for a Poisson random variable~\eqref{eq:def_chernoff_bound_poisson}, which implies that for any $C>0$ we have $N \in [n-C\sqrt{n\log n},n+C\sqrt{n \log n}]$ with probability $1-n^{-C^2/2}$. Since we can select $C > 0$ arbitrarily large it follows that we only need to prove the result conditional on the event $|N-n|\le C\sqrt{n \log(n)}$. Note that if $N = n$ then 
 \[
 	\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)} = 0.
 \]
 Hence if we denote by $A_n^-$ the event that $n - C\sqrt{n \log(n)} \le N < n$ and by $A_n^+$ the event that $n < N \le n + C\sqrt{n \log(n)}$, we need to show that
 \[
-	\CExp{\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}}{A_n^-} 
-		= \smallO{n}\CProb{\deg_N(U) = k_n}{A_n^-}
+	\CExp{\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}}{A_n^+} 
+		= \smallO{n}\CProb{\deg_N(U) = k_n}{A_n^+}
 \]
-and likewise with $A_n^-$ replaced by $A_n^+$.
+and likewise with $A_n^+$ replaced by $A_n^-$.
 
 We first consider the case where $n < N \le n + C\sqrt{n \log(n)}$, i.e. the case where we have more vertices in $\GPo$ than in $G_n$. The proof for the other case is similar and we omit it. Let $W = \{u_{n+1}, \dots, u_N\}$ be the set of vertices in $\GPo$ that are not in $G_n$. To ease notation we let $\mathbb{E}_n$ and $\mathbb{P}_n$ denote the conditional expectation and probability on the event $A_n^+$. First we note that
 \begin{align*}
@@ -1692,7 +1696,7 @@ We first consider the case where $n < N \le n + C\sqrt{n \log(n)}$, i.e. the cas
 \end{align*}
 Hence we are left to consider the sum over all vertices in $\mathcal{V}_n$.
 
-Let $u_i \in \mathcal{V}_n(k_n)$. Then since $N > n$ we have that $u_i \in \VPo$ and hence $u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)$ if and only if $|B_\H(u_i) \cap W| \ge 1$ and either $u_i \in \mathcal{V}_n(k_n)$ or $u_i \in \VPo(k_n)$.
+Let $u_i \in \mathcal{V}_n(k_n)$. Then since $N > n$ we have that $u_i \in \VPo(k_n)$ and hence $u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)$ if and only if $|B_\H(u_i) \cap W| \ge 1$ and either $u_i \in \mathcal{V}_n(k_n)$ or $u_i \in \VPo(k_n)$.
 From this it follows that
 \[
 	\sum_{i = 1}^n \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}
@@ -1736,14 +1740,14 @@ The other term follows using almost identical arguments and is omitted. To prove
 	&= n(N-n) \Probn{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n, Q_n(U_1), U_2 \in B_\H(U_1)}\\
 	&= n(N-n) 
 		\Expn{\ind{Q_n(U_1)}
-			\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n, U_2 \in B_\H(U_1)}{A_n^+, U_1}}\\
+			\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n, U_2 \in B_\H(U_1)}{U_1}}\\
 	&= n(N-n)
-		\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n}{A_m^+, U_1} \frac{\mu_{\H}(U_1)}{n}},
+		\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n}{U_1} \frac{\mu_{\H}(U_1)}{n}},
 \end{align*}
 where the last step follows since, conditional on $U_1$, the events $\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n$ and $U_2\in B_\H(U_1)$ are independent and $\CProb{U_2\in B_\H(U_1)}{U_1} = \mu_\H(U_1)/n$. In addition, on the event $Q_n(U_1)$ we have that $\mu_\H(U_1) \le k_n + C \sqrt{k_n \log(k_n)}$ and thus the second statement of Lemma~\ref{lem:concentration_height_binomial} implies that
 \begin{align*}
-	&\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n}{A_n^+, U_1}}\\
-	&= (1+\smallO{1})\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(N-1, \frac{\mu_\H(U_1)}{n}\right) = k_n}{A_n^+, U_1}}\\
+	&\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n}{U_1}}\\
+	&= (1+\smallO{1})\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(N-1, \frac{\mu_\H(U_1)}{n}\right) = k_n}{U_1}}\\
 	&\le \bigO{1}\Probn{\mathrm{Bin}\left(N-1, \frac{\mu_\H(U_1)}{n}\right) = k_n}\\
 	&= \bigO{1}\Probn{\deg_N(U_1) = k_n}.
 \end{align*}
@@ -1763,7 +1767,7 @@ With this result we can now prove Proposition~\ref{prop:clustering_ast_H_Pois}, 
 \]
 
 \begin{proof}[Proof of Proposition~\ref{prop:clustering_ast_H_Pois}]
-First we note that Proposition~\ref{prop:couling_c_H_P}, Proposition~\ref{prop:concentration_local_clustering_P_n}, Proposition~\ref{prop:convergence_average_clustering_P_n} together imply that
+First we note that Proposition~\ref{prop:couling_c_H_P}, \ref{prop:concentration_local_clustering_P_n} and~\ref{prop:convergence_average_clustering_P_n} together imply that
 \[
 	\Exp{c^\ast(k_n; \GPo)} = (1+\smallO{1})s(k_n)
 \]

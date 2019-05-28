@@ -253,21 +253,36 @@ Hence, Proposition~\ref{prop:asymp} directly follows from Proposition~\ref{prop:
 
 \subsection{A more general concentration of heights argument}\label{ssec:general_concentration_lemma}
 
-Note that since all three corollaries follow from Lemma~\ref{lem:concentration_argument}, Proposition~\ref{prop:concentration_argument_all} follows if we can prove that the conclusions from this lemma hold when we replace $\rho(y,k_n)$ with either $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$. For this the following, slightly more general version of Lemma~\ref{lem:concentration_argument} will be important.
-
-Although powerful, the current versions of the concentration of heights arguments are only valid for the function $\rho(y,k_n) := \Prob{\Po\left(\Mu{\BallPo{y}}\right) = k_n}$, which uses the neighbourhoods in the infinite model $\Ginf$. Since we will also be working in the Poissonized KPKVB model $\GPo$ and the finite box model $\Gbox$, we would like to use concentration of heights arguments when the integrand contains either the function $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$. To establish these result we first prove a more general version of Lemma~\ref{lem:concentration_argument}.
+Although powerful, the current versions of the concentration of heights arguments are only valid for the function $\rho(y,k_n) := \Prob{\Po\left(\Mu{\BallPo{y}}\right) = k_n}$, which uses the neighbourhoods in the infinite model $\Ginf$. 
+Since we will also be working in the Poissonized KPKVB model $\GPo$ and the finite box model $\Gbox$, we would like to use concentration of heights arguments for the degree distribution function in these models. To be more precise, let us define
+\[
+	\rho_{\Po}(y,k) = \Prob{\Po(\mu(\BallHyp{y})) = k}
+\] 
+and
+\[
+	\rho_{\mathrm{box}}(y,k) = \Prob{\Po(\mu(\BallPon{y})) = k}
+\] 
+Then we want when Lemma~\ref{lem:concentration_argument} to remain true if we replace $\rho(y,k_n)$ with either the function $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$. To establish these result we first prove a more general version of Lemma~\ref{lem:concentration_argument}.
 
 \begin{lemma}\label{lem:concentration_argument_rho_approximation}
 Let $\alpha > \frac{1}{2}, \nu > 0$ and $k_n \to \infty$ such that $k_n = \smallO{n}$, $\ell_n = (1 + \epsilon_n)k_n$, with $\epsilon_n \to 0$ and define
 \[
 	\lambda_n^\pm = (\ell_n \pm C \sqrt{\ell_n \log(\ell_n)}) \wedge \xi, \quad \text{and} \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi}\right).
 \] 
-In addition, let $\hat{\rho}_n(y,k) = \Prob{\Po(\hat{\mu}_n(y)) = k}$, with $\hat{\mu}_n(y) = (1 + \phi_n(y))\mu(y)$ and 
-where $\phi_n(y)$ is a differentiable function satisfying:
-\begin{enumerate}[\upshape i)]
-\item For some $0 < \varepsilon < 1$, $\displaystyle \lim_{n \to \infty} \sup_{0 \le y \le (1 - \varepsilon)R} |\phi_n(y)| = 0$,
-\item $\displaystyle \lim_{n \to \infty}  \sup_{y \in \Kcal_{C}(\ell_n)} |\phi_n^\prime(y)| = 0.$
-\end{enumerate}
+In addition, let $\hat{\rho}_n(y,k) = \Prob{\Po(\hat{\mu}_n(y)) = k}$, where $\hat{\mu}_n(y)$ is a differentiable function that satisfies for some $0 < \varepsilon < 1$
+\begin{align*}
+	&\mathrm{i)} \, \lim_{n \to \infty} \sup_{0 \le y \le (1 - \varepsilon)R} \frac{\hat{\mu}_n(y)}{\mu(\BallPo{y})} = 1
+	\quad \text{and}
+	&&\mathrm{ii)} \, \lim_{n \to \infty}  \sup_{0 \le y \le (1 - \varepsilon)R} \frac{\hat{\mu}_n^\prime(y)}{\mu(\BallPo{y})} = \frac{1}{2}.
+\end{align*}
+%
+%
+% with $\hat{\mu}_n(y) = (1 + \phi_n(y))\mu(y)$ and 
+%where $\phi_n(y)$ is a differentiable function satisfying:
+%\begin{enumerate}[\upshape i)]
+%\item For some $0 < \varepsilon < 1$, $\displaystyle \lim_{n \to \infty} \sup_{0 \le y \le (1 - \varepsilon)R} |\phi_n(y)| = 0$,
+%\item $\displaystyle \lim_{n \to \infty}  \sup_{y \in \Kcal_{C}(\ell_n)} |\phi_n^\prime(y)| = 0.$
+%\end{enumerate}
 Then the following holds:
 \begin{enumerate}
 \item For any continuous function $h : \R_+ \rightarrow  \R$, such that $h(y) = \bigO{e^{\beta y}}$ as $y \to \infty$ for some $\beta < \alpha$, 
@@ -287,16 +302,57 @@ as $n \to \infty$.
 
 \begin{proof} \hfill
 
+For simplicity we write $\mu(y) := \mu\left(\BallPo{y}\right) = \xi e^{y/2}$ throughout the proof. Observe that $\mu^\prime(y) = \mu(y)/2$ and $\mu^{-1}(y z) = \mu^{-1(y)} + \mu^{-1}(z)$.
+
+
+
+%We note that the statement will follow from Lemma~\ref{lem:concentration_argument} if we can show that
+%\[
+%	\int_0^R \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+%	= \left(1 + o(1)\right) \int_0^R \rho(z,k_n) e^{-\alpha z} \dd z.
+%\] 
+%or equivalently,
+%\[
+%	\int_0^R \rho(z,k_n) e^{-\alpha z} \dd z
+%	= \left(1 + o(1)\right)\int_0^R \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y.
+%\]
+%
+%We will do this in two steps.
+%
+%Therefore, what is left is to show that
+%\[
+%	\int_0^{(1-\varepsilon^\prime)R} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+%	= \left(1 + o(1)\right) \int_0^{(1-\varepsilon^\prime)R} \rho(z,k_n) e^{-\alpha z} \dd z.
+%\] 
+%or equivalently,
+%\[
+%	\int_0^{(1-\varepsilon^\prime)R} \rho(z,k_n) e^{-\alpha z} \dd z
+%	= \left(1 + o(1)\right)\int_0^{(1-\varepsilon^\prime)R} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y.
+%\]
+%
+%Using the change of variable $z = \mu^{-1}(\hat{\mu}_n(y))$ and writing $\hat{a}_n^\pm = \hat{\mu}_n^{-1}(\mu(a_n^\pm))$ and $\hat{R}_{\varepsilon^\prime} := \hat{\mu}_n^{-1}(\mu((1-\varepsilon^\prime)R))$, we get
+%\begin{align*}
+%	\int_{a_n^+}^{(1-\varepsilon^\prime)R} \rho(z,k_n) e^{-\alpha z} \dd z 
+%	&= \int_{a_n^+}^{(1-\varepsilon^\prime)R} \Prob{\Po(\mu(z)) = k_n} e^{-\alpha z} \dd z\\
+%	&= \int_{\hat{a}_n^+}^{\hat{R}_{\varepsilon^\prime}} \Prob{\Po(\hat{\mu}_n(y)) = k_n} e^{-\alpha \mu^{-1}(\hat{\mu}_n(y))} 
+%		\frac{\hat{\mu}_n^\prime(y)}{\mu^\prime(\mu^{-1}(\hat{\mu}_n(y)))} \dd y,
+%\end{align*}
+%where the fraction in the last line follows from the chain rule and the fact that $(\mu^{-1})^\prime(t) = (\mu^\prime(\mu^{-1}(t)))^{-1}$.
+
+
+
+
 \paragraph{Proof of statement 1.}
-Let $0 < \varepsilon < 1$ be such that condition ii) holds and take $\varepsilon^\prime = \min\{\varepsilon,1/3\} < 1/2$. We first show that the integration over $(1-\varepsilon^\prime)R \le y \le R$ is negligible.
+
+Let $0 < \varepsilon < 1$ be such that conditions i) and ii) hold, take $\varepsilon^\prime = \min\{\varepsilon/3,1/3\} < 1/2$ and let $\delta > 0$ be such that $\hat{\mu}_n(\delta) \ge \xi$. We first show that we can restrict to integration over $(\delta, (1-\varepsilon^\prime)R)$ that the integration over $(1-\varepsilon^\prime)R \le y \le R$ is negligible.
  
 Since $h(y) = \bigO{e^{\beta y}}$ we have
 \begin{align*}
 	\int_{(1-\varepsilon^\prime)R}^{R} h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
 	&= \bigO{1} \hat{\rho}_n((1-\varepsilon^\prime)R,k_n) e^{-(\alpha-\beta)(1-\varepsilon^\prime)R} \\
-	&= \bigO{\hat{\rho}_n((1-\varepsilon^\prime)R,k_n) n^{-2(\beta-\alpha)(1-\varepsilon^\prime)}}.
+	&= \bigO{\hat{\rho}_n((1-\varepsilon^\prime)R,k_n) n^{-2(\alpha-\beta)(1-\varepsilon^\prime)}}.
 \end{align*}
-By assumption on $\hat{\mu}_n(y)$ we have that $\hat{\mu}_n((1-\varepsilon^\prime)R) = \bigT{\mu((1-\varepsilon^\prime)R} = \bigT{n^{2(1-\varepsilon^\prime)}}$. Since $k_n = \smallO{n}$, by our choice of $\varepsilon^\prime$, $\hat{\mu}_n((1-\varepsilon^\prime)R)/k_n = \omega\left(n^{1 - 2\varepsilon^\prime}\right) \to \infty$ as $n \to \infty$. We can now use Stirling's approximation to bound $\hat{\rho}_n((1-\varepsilon^\prime)R,k_n)$ as
+By construction $\varepsilon^\prime < \varepsilon$, and hence by condition i) we have that $\hat{\mu}_n((1-\varepsilon^\prime)R) = \bigT{\mu((1-\varepsilon^\prime)R} = \bigT{n^{2(1-\varepsilon^\prime)}}$. Therefore, since $k_n = \smallO{n}$, it follows that $\hat{\mu}_n((1-\varepsilon^\prime)R)/k_n = \omega\left(n^{1 - 2\varepsilon^\prime}\right) \to \infty$ as $n \to \infty$. We can now use Stirling's approximation to bound $\hat{\rho}_n((1-\varepsilon^\prime)R,k_n)$ as
 \begin{align*}
 	\hat{\rho}_n((1-\varepsilon^\prime)R,k_n) &= \Prob{\Po(\hat{\mu}_n((1-\varepsilon^\prime)R)) = k_n} \\
 	&= \frac{\hat{\mu}_n((1-\varepsilon^\prime)R)^{k_n}}{k_n!} e^{-\hat{\mu}_n((1-\varepsilon^\prime)R)}\\
@@ -308,123 +364,86 @@ where the last line follows since $1 - x + \log(x) \le -x/2$ for large enough $x
 \[
 	\int_{(1-\varepsilon^\prime)R}^{R} h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
 	= \bigO{k_n^{-1/2} n^{-2(\beta-\alpha)(1-\varepsilon^\prime)} e^{-n^{2(1-\varepsilon^\prime)}}}
-	= \bigO{k_n^{(1+C^2)/2}}.
+	= \bigO{k_n^{-(1+C^2)/2}}.
 \]
 
-We are left to show that for sufficiently large $C > 0$,
+In a similar fashion we get that
+\begin{align*}
+	\int_0^\delta h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	&= \bigO{1} \hat{\rho}_n(\delta, k_n) \\
+	&= \bigO{1} k_n^{-1/2} e^{-k_n(\log(k_n)-\hat{\mu}_n(\delta))} = \bigO{k_n^{-(1+C^2)/2}}.
+\end{align*}
+
+
+
+We are thus left to show that for sufficiently large $C > 0$,
 \begin{equation}\label{eq:concentration_argument_an_-}
-	 \int_0^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = \bigO{k_n^{-(1+C^2)/2}},
+	 \int_\delta^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = \bigO{k_n^{-(1+C^2)/2}},
 \end{equation}
 and
 \begin{equation}\label{eq:concentration_argument_an_+}
 	\int_{a_n^+}^{(1-\varepsilon^\prime)R} \hat{\rho}_n(y,k_n) e^{(\beta-\alpha) y} \dd y = \bigO{k_n^{-(1+C^2)/2}}.
 \end{equation}
-%\TM{ Why can we change the upper limit of the integral? PLease elaborate (in the paper) }
+To prove this we first establish a result that will also help with proving statement 2. 
 
-For simplicity we write $\mu(y) := \mu\left(\BallPo{y}\right)$. Now fix some $0 < \delta < 1$ and let $n$ be large enough such that 
-\[
-\sup_{0 < y \le (1-\varepsilon^\prime)R} |\phi_n(y)| < \delta, \quad
-\lambda_n^+(1 - \delta) > k_n \quad \text{and} \quad
-\lambda_n^-(1 + \delta) < k_n.
-\]
-
-Next, recall that the function $\lambda \mapsto \Prob{\Po(\lambda) = k}$ is monotonic increasing on $[0,k]$ and monotonic decreasing on $[k, \infty)$. Then since for $n$ large enough we have 
-\[
-	\hat{\mu}_n(y) = \mu(y)(1 + \phi_n(y)) \ge \mu(y)(1 - \delta) \ge \mu(a_n^+)(1 - \delta)
-	= (\ell_n + C \kappa_n)(1 - \delta) > k_n,
-\]
-it follows that 
-\[
-	\hat{\rho}_n(y,k_n) = \Prob{\Po(\hat{\mu}_n(y)) = k_n} \le \Prob{\Po(\mu(y)(1-\delta)) = k_n},
-\]
-for all $a_n^+ \le y \le (1-\varepsilon^\prime)R$. By making the change of variables $z = \mu^{-1}(\mu(y)(1-\delta)) = y + 2 \log(1-\delta)$ we then get
+Let $(a, b) \subseteq (\delta,(1-\varepsilon^\prime)R)$ and consider the change of variable $z = \mu^{-1}(\hat{\mu}_n(y))$. Then, writing $\hat{a} = \hat{\mu}_n^{-1}(\mu(a))$ and similar for $\hat{b}$, we get
 \begin{align*}
-	\int_{a_n^+}^{(1-\varepsilon^\prime)R} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y
-	&\le \int_{a_n^+}^{(1-\varepsilon^\prime)R} \Prob{\Po(\mu(y)(1-\delta)) = k_n} 
-		e^{(\beta-\alpha) y} \dd y\\
-	&= (1-\delta)^{\beta - \alpha} \int_{a_n^+ + 2\log(1-\delta)}^{(1-\varepsilon^\prime)R + 2\log(1-\delta)} 
-		\Prob{\Po(\mu(z)) = k_n} e^{(\beta - \alpha)z} \dd z\\
-	&= \bigO{1} \int_{a_n^+}^{\infty} \rho(z,k_n) e^{(\beta - \alpha)z} \dd z\\
-	&= \bigO{k_n^{-(1+C^2)/2}},
-\end{align*}
-where the last line is due to Lemma~\ref{lem:concentration_argument}. This proves~\eqref{eq:concentration_argument_an_+}.
-
-%implies that for large enough $C$,
-%\[
-%	\lim_{n \to \infty} k_n^s \int_{a_n^+}^{\infty} \rho(z,k_n) e^{(\beta - \alpha)z} \dd z = 0,
-%\]
-%we have proven~\eqref{eq:concentration_argument_an_+}.
-
-The proof of~\eqref{eq:concentration_argument_an_-} follows the same line of reasoning. This time we use that for $0 \le y \le a_n^-$,
-\[
-	\hat{\mu}_n(y) \le \mu(y)(1 + \delta) \ge \mu(a_n^-)(1 + \delta)
-		= (\ell_n - C \kappa_n)(1 + \delta) < k_n,
-\]
-so that 
-\[
-	\hat{\rho}_n(y,k_n) = \Prob{\Po(\hat{\mu}_n(y)) = k_n} \le \Prob{\Po(\mu(y)(1+\delta)) = k_n}.
-\]
-Making a similar change of variables $z = y + 2 \log(1+\delta)$ we then get
-\begin{align*}
-	\int_0^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y
-	&= \int_0^{a_n^-}\Prob{\Po(\mu(y)(1-\delta)) = k_n} 
-		e^{(\beta-\alpha) y} \dd y\\
-	&\le (1+\delta)^{\beta - \alpha} \int_0^{a_n^- + 2\log(1+\delta)} 
-		\rho(z,k_n) e^{(\beta - \alpha)z} \dd z,
-\end{align*}
-and hence~\eqref{eq:concentration_argument_an_-} follows by another application of Lemma~\ref{lem:concentration_argument}. 
-
-\paragraph{Proof of statement 2.}
-
-The proof of the second statement follows the same line of reasoning as above. First, by the mean value theorem for definite integrals 
-\[
-	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) h(y) e^{-\alpha y} \dd y
-	= h(c_n) \int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z,
-\]
-for some $c_n \in (a_n^-, a_n^+)$. Since, $c_n \sim 2 \log(k_n/\xi)$, by assumption on $h$, $h(c_n)\sim h(2\log(k_n/\xi))$. Therefore it is enough to show that
-\[
-	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
-	= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z.
-\] 
-or equivalently,
-\[
-	\int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z
-	= \left(1 + o(1)\right)\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y.
-\] 
-
-Using the change of variable $z = \mu^{-1}(\hat{\mu}_n(y))$ and writing $\hat{a}_n^\pm = \hat{\mu}_n^{-1}(\mu(a_n^\pm))$, we get
-\begin{align*}
-	\int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z 
-	&= \int_{a_n^-}^{a_n^+} \Prob{\Po(\mu(z)) = k_n} e^{-\alpha z} \dd z\\
-	&= \int_{\hat{a}_n^-}^{\hat{a}_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} e^{-\alpha \mu^{-1}(\hat{\mu}_n(y))} 
+	\int_{a}^{b} \rho(z,k_n) e^{-\alpha z} \dd z 
+	&= \int_{a}^{b} \Prob{\Po(\mu(z)) = k_n} e^{-\alpha z} \dd z\\
+	&= \int_{\hat{a}}^{\hat{b}} \Prob{\Po(\hat{\mu}_n(y)) = k_n} e^{-\alpha \mu^{-1}(\hat{\mu}_n(y))} 
 		\frac{\hat{\mu}_n^\prime(y)}{\mu^\prime(\mu^{-1}(\hat{\mu}_n(y)))} \dd y,
 \end{align*}
 where the fraction in the last line follows from the chain rule and the fact that $(\mu^{-1})^\prime(t) = (\mu^\prime(\mu^{-1}(t)))^{-1}$.
 
-Now recall that $\hat{\mu}_n(y) = \mu(y)(1 + \phi_n(y))$, with $\phi_n(y)$ satisfying conditions i) and ii). It then follows $\hat{\mu}_n^\prime(y) = (1 + \smallO{1})\mu^\prime(y)$ as $n \to \infty$, uniformly on $(a_n^-, a_n^+)$. Next we note that $\mu^\prime(y) = \mu(y)/2$ from which it follows that uniformly on $[a_n^-, a_n^+]$,
+Now recall that $\hat{\mu}_n(y)$ satisfies conditions i) and ii). Since $\mu^\prime(y) = \mu(y)/2$ it follows that, uniformly on $(a,b)$,
 \[
 	\frac{\hat{\mu}_n^\prime(y)}{\mu^\prime(\mu^{-1}(\hat{\mu}_n(y)))}
 	= \frac{2\hat{\mu}_n^\prime(y)}{\hat{\mu}_n(y)}
-	= \frac{(1 + \smallO{1})2\mu^\prime(y)}{(1 + \smallO{1})\mu(y)}
-	= (1+\smallO{1})
+	= \frac{(1 + \smallO{1})2\hat{\mu}_n^\prime(y)}{(1 + \smallO{1})\mu(y)}
+	= (1+\smallO{1}).
 \]
-Therefore,
+Moreover, we have
+\[
+	e^{-\alpha \mu^{-1}(\hat{\mu}_n(y))} = e^{-\alpha (y + \mu^{-1}(1+\smallO{1}))} = (1+\smallO{1})e^{-\alpha y},
+\]
+uniformly on $(a,b)$. These results then imply
+\begin{equation}\label{eq:equivalence_integral_rho_change_variables}
+	\int_{a}^{b} \rho(z,k_n) e^{-\alpha z} \dd z 
+	= (1+\smallO{1}) \int_{\hat{a}}^{\hat{b}} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y.
+\end{equation}
+
+Now, using~\eqref{eq:equivalence_integral_rho_change_variables} with $a = \mu^{-1}(\hat{\mu}_n(\delta))$ and $b = \mu^{-1}(\hat{\mu}_n(a_n^-)$ we get
 \begin{align*}
-	\int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z
-	&= (1 + \smallO{1})\int_{\hat{a}_n^-}^{\hat{a}_n^+} \Prob{\Po(\hat{\mu}_n(y)) = k_n} e^{-\alpha y} \dd y\\
-	&= (1 + \smallO{1}) \int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y\\
-	&= (1 + \smallO{1}) \int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	\int_a^b \rho(y,k_n) e^{(\beta-\alpha) y} \dd y
+	&= (1+\smallO{1}) \int_{\delta}^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y.
 \end{align*}
-which finishes the proof.
+Since $\mu^{-1}(\hat{\mu}_n(a_n^-) = (1+\smallO{1})a_n^-$ and $b \ge 0$ the left hand side is
+\[
+	\bigO{1} \int_0^{a_n^-} \rho(y,k_n) e^{(\beta-\alpha) y} \dd y,
+\]
+and hence~\eqref{eq:concentration_argument_an_-} follows from Lemma~\ref{lem:concentration_argument}. The proof of~\eqref{eq:concentration_argument_an_+} follows in a similar way.
+
+\paragraph{Proof of statement 2.}
+
+The proof of the second statement follows the same line of reasoning as above, using~\eqref{eq:equivalence_integral_rho_change_variables}. First, the mean value theorem for definite integrals implies that
+\[
+	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) h(y) e^{-\alpha y} \dd y
+	= h(c_n) \int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y,
+\]
+for some $c_n \in (a_n^-, a_n^+)$. Since, $c_n \sim 2 \log(k_n/\xi)$, by assumption on $h$, $h(c_n)\sim h(2\log(k_n/\xi))$. 
+Therefore it is enough to show that
+\[
+	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	= \left(1 + o(1)\right) \int_{a_n^-}^{a_n^+} \rho(z,k_n) e^{-\alpha z} \dd z.
+\] 
+This however follows immediately from~\eqref{eq:equivalence_integral_rho_change_variables} by picking $a = \mu^{-1}(\hat{\mu}_n(a_n^-))$ and $b = \mu^{-1}(\hat{\mu}_n(a_n^+))$.
 \end{proof}
 
-To apply this lemma to $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$ we need to show that both these functions are of the form $\rho(y,k_n)(1 + \phi_n(y))$, where $\phi_n(y)$ satisfies the conditions i) and ii) in Lemma~\ref{lem:concentration_argument_rho_approximation}. We will do this in the next two sections and establish that the results from Corollaries~\ref{cor:concentration_of_heights_asymptotics}, \ref{cor:concentration_heights_bounds_n}
+To apply this lemma to $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$ we need to show that both these functions satisfies the conditions i) and ii) in Lemma~\ref{lem:concentration_argument_rho_approximation}. We will do this in the next two sections and establish that the results from Corollaries~\ref{cor:concentration_of_heights_asymptotics}, \ref{cor:concentration_heights_bounds_n}
 and~\ref{cor:concentration_heights_asymptotics_n} hold when we replace $\rho(y,k_n)$ with either $\rho_{\text{box}}(y,k_n)$
 or $\rho_{\Po}(y,k_n)$. 
 
-\begin{remark}[Generalized concentration of heights arguments]
-Since the results from Corollaries~\ref{cor:concentration_of_heights_asymptotics}, \ref{cor:concentration_heights_bounds_n} and~\ref{cor:concentration_heights_asymptotics_n} hold for any of the three functions $\rho(y,k_n)$, $\rho_{\text{box}}(y,k_n)$ and $\rho_{\Po}(y,k_n)$, we will will refer only to one of these three when using a concentration of heights argument of for any of the three models $\GPo$, $\Gbox$ and $\Ginf$. 
-\end{remark}
+
 
 \subsection{Concentration of heights for the finite box model}\label{ssec:average_degree_P_n}
 
@@ -487,13 +506,8 @@ When $y \le 2 \log(\pi/2)$ we have
 \end{proof}
 
 
-Let us now define
-\[
-	\rho_{\mathrm{box}}(y,k) = \Prob{\Po(\mu(\BallPon{y})) = k}.
-\]
-The following is then immediate.
 
-\PvdH{Check if we need to define this earlier.}
+From the definition of $\phi_n(y)$ in Lemma~\ref{lem:average_degree_P_n} it is immediate that $\rho_{\mathrm{box}}(y,k)$ satisfies the conditions for $\hat{\rho}_n(y,k)$ in Lemma~\ref{lem:concentration_argument_rho_approximation}. We thus have the following corollary.
 
 \begin{corollary}\label{cor:concentration_of_heights_Gbox}
 The statements in Corollaries~\ref{cor:concentration_of_heights_asymptotics}, \ref{cor:concentration_heights_bounds_n}
@@ -867,3 +881,6 @@ The statement in Corollaries~\ref{cor:concentration_of_heights_asymptotics}, \re
 and~\ref{cor:concentration_heights_asymptotics_n} hold when we replace $\rho(y,k_n)$ with $\rho_{\Po}(y,k_n)$.
 \end{corollary}
 
+\begin{remark}[Generalized concentration of heights arguments]
+Since the results from Corollaries~\ref{cor:concentration_of_heights_asymptotics}, \ref{cor:concentration_heights_bounds_n} and~\ref{cor:concentration_heights_asymptotics_n} hold for any of the three functions $\rho(y,k_n)$, $\rho_{\text{box}}(y,k_n)$ and $\rho_{\Po}(y,k_n)$, we will will refer only to one of these three when using a concentration of heights argument of for any of the three models $\GPo$, $\Gbox$ and $\Ginf$. 
+\end{remark}
