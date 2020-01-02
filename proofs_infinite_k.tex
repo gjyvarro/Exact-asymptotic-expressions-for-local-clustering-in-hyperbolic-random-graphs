@@ -25,18 +25,18 @@ Notice that the only difference between $c(k;G)$ and $c^\ast(k;G)$ is that we re
 
 Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theorem~\ref{thm:mainktoinfty} based on the different propositions described below, plus the sections in which theses propositions are proved. Observe that the order in which the intermediate results are proved is reversed with respect to the natural order of reasoning. This does not create any circular logic, since each intermediate result is independent of the others. We choose this order because results proved in the later stages are helpful to deal with error terms coming up in proofs at earlier stages and hence help streamline those proofs. Below briefly describe each of the intermediate steps leading up to the proof of Theorem~\ref{thm:mainktoinfty}. We start with an observation on the dependence between the degree of a point $p = (x,y)$ and its height $y$.
 
-\subsection{Restricting the height for vertices with degree $k_n$}
-
-In the proof of Proposition~\ref{prop:asymp} we used a result that allowed us to restrict integration over $y$ to the interval $[a^-(k), a^+(k)]$, with
-\[
-	a^\pm(k) = 2\log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
-\]
-The reason for this was that the integrand included the function $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$, where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$ and Poisson random variables are well concentrated around their mean, i.e. around heights $y$ for which $\mu(y) \approx k$. Since $\mu(y) = \mu(\BallPo{y}) = \xi e^{y/2}$, this implies that integration with respect to $\rho(y,k)$ is concentrated around $y \approx 2\log(k/\xi)$. In the remainder of this paper we will often encounter integrands involving the function $\Prob{\Po(\mu_n(y)) = k_n} := \hat{\rho}_n(y,k_n)$, for some $\mu_n(y)$ which is asymptoticly equivalent to $\mu(y)$. In these cases we also want to be able to restrict our integration around those heights $y$ for which $y \approx 2\log(k_n/\xi)$. Such results are established in Section~\ref{sec:concentration_argument}. Moreover, we prove that if $\mu_n$ corresponds to either $\Mu{\BallHyp{y}}$ or $\Mu{\BallPon{y}}$, then for a certain classs of functions $h$
-\[
-	\int_0^\infty h(y) \hat{\rho}_n(y,k_n) \alpha e^{-\alpha y} \dd y 
-	= (1+\smallO{1}) \int_0^\infty h(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
-\]
-i.e. we may replace $\hat{\rho}_n(y,k_n)$ in the integrand with $\rho(y,k_n)$.
+%\subsection{Restricting the height for vertices with degree $k_n$}
+%
+%In the proof of Proposition~\ref{prop:asymp} we used a result that allowed us to restrict integration over $y$ to the interval $[a^-(k), a^+(k)]$, with
+%\[
+%	a^\pm(k) = 2\log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
+%\]
+%The reason for this was that the integrand included the function $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$, where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$ and Poisson random variables are well concentrated around their mean, i.e. around heights $y$ for which $\mu(y) \approx k$. Since $\mu(y) = \mu(\BallPo{y}) = \xi e^{y/2}$, this implies that integration with respect to $\rho(y,k)$ is concentrated around $y \approx 2\log(k/\xi)$. In the remainder of this paper we will often encounter integrands involving the function $\Prob{\Po(\mu_n(y)) = k_n} := \hat{\rho}_n(y,k_n)$, for some $\mu_n(y)$ which is asymptoticly equivalent to $\mu(y)$. In these cases we also want to be able to restrict our integration around those heights $y$ for which $y \approx 2\log(k_n/\xi)$. Such results are established in Section~\ref{sec:concentration_argument}. Moreover, we prove that if $\mu_n$ corresponds to either $\Mu{\BallHyp{y}}$ or $\Mu{\BallPon{y}}$, then for a certain classs of functions $h$
+%\[
+%	\int_0^\infty h(y) \hat{\rho}_n(y,k_n) \alpha e^{-\alpha y} \dd y 
+%	= (1+\smallO{1}) \int_0^\infty h(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
+%\]
+%i.e. we may replace $\hat{\rho}_n(y,k_n)$ in the integrand with $\rho(y,k_n)$.
 
 \begin{figure}[!t]
 \centering
@@ -327,8 +327,8 @@ As $n \to \infty$,
 
 Recall that for the finite box model the left and right boundaries of $\Rcal_n$ where identified, so that graph $\Gbox$ contains some additional edge with respect to the induced subgraph of $\Ginf$ on $\Rcal_n$. The proof of Proposition~\ref{prop:convergence_average_clustering_P_n} therefore relies on analyzing the number of triangles coming from these additional edges and showing that their contribution to the clustering function are of negligible order, see Section~\ref{sec:clustering_Pn_to_P}. 
 
-\begin{remark}[Notations different graphs]
-We will use the subscripts $n$, $\Po$, $\text{box}$ and $\infty$ to identify properties of, respectively, the KPKVB mode $G_n$, the Poisson version $\GPo$, the finite box model $\Gbox$ and the infinite model $\Ginf$. For example $N_{\Po}(k)$ denotes number of nodes with degree $k$ in $\GPo$ and $\rho_{\text{box}}(y,k) = \Prob{\Po(\mu(\BallPo{y})) = k}$, i.e. the degree distribution in $\Gbox$ for a point $p = (x,y)$.
+\begin{remark}[Notations for different graphs]
+We will use the subscripts $n$, $\Po$, $\text{box}$ and $\infty$ to identify properties of, respectively, the KPKVB mode $G_n$, the Poisson version $\GPo$, the finite box model $\Gbox$ and the infinite model $\Ginf$. For example $N_{\Po}(k)$ denotes number of nodes with degree $k$ in $\GPo$ and $\rho_{\text{box}}(y,k) = \Prob{\Po(\mu(\BallPon{y})) = k}$, i.e. the degree distribution in $\Gbox$ for a point $p = (x,y)$.
 \end{remark}
 
 \subsection{Proof of the main results}\label{ssec:proof_main_result_diverging_k}

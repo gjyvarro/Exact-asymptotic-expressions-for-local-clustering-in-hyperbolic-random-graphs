@@ -415,10 +415,7 @@ by our assumption on $y_n$. For $\alpha = 3/2$, these two quantities are equal. 
 \subsection{Equivalence clustering $\GPo$ and $\Gbox$}\label{ssec:coupling_HP_ast_P}
 
 
-Here we prove Proposition~\ref{prop:couling_c_H_P}. We first establish a few results regarding the number of nodes of degree $k_n$ in both the Poissonized KPKVB graph $\GPo$ and the finite box model $\Gbox$.
-
-\begin{lemma}\label{lem:N_k_HP_P}
-Let $\alpha > 1/2$, $\nu > 0$ and $(k_n)_{n\ge 1}$ be a sequence such that $k_n = \bigO{n^{1/(2\alpha + 1)}}$. Then
+Here we prove Proposition~\ref{prop:couling_c_H_P}. We first note that Lemma~\ref{lem:average_degree_P_n} and Lemma~\ref{lem:average_degree_G_box} imply the following
 \begin{equation} \label{eq:n_k_Hyp}
 	\Exp{N_{\Po}(k_n)} = \bigT{1} n k_n^{-(2\alpha + 1)},
 \end{equation}
@@ -430,24 +427,6 @@ Moreover,
 \begin{equation}\label{eq:equivalence_N_HP_P}
 	\lim_{n \to \infty} \frac{\Exp{N_{\Po}(k_n)}}{\Exp{N_{\mathrm{box}}(k_n)}} = 1.
 \end{equation}
-\end{lemma}
-
-\begin{proof}
-By the Campbell-Mecke formula
-\[
-	\Exp{N_{\Po}(k_n)} = \int_{\Rcal} \rho_{\Po}(y,k_n) f(x,y) \dd x \dd y. 
-\]
-Then by Lemma~\ref{lem:concentration_argument_rho_approximation} 
-\begin{align*}
-	\Exp{N_{\Po}(k_n)} &= (1 + \smallO{1})\int_{\Rcal} \rho(y,k_n) f(x,y) \dd x \dd y\\
-	&= (1 + \smallO{1}) n \int_{0}^{R} \rho(y,k_n) f(x,y) \dd x \dd y = \bigT{1}n k_n^{-(2\alpha + 1)}.
-\end{align*}
-Similarly,
-\[
-	\Exp{N_{\text{box}}(k_n)} = (1 + \smallO{1})\int_{\Rcal} \rho(y,k_n) f(x,y) \dd x \dd y
-\]
-From which the results follow.
-\end{proof}
 
 Recall that Proposition~\ref{prop:couling_c_H_P} states
 \[
@@ -497,7 +476,7 @@ Let $t, r \in \mathbb{R}$ be fixed and let $\hat{\rho}(y,k)$ be any of the three
 as $n \to \infty$.
 \end{lemma}
 \begin{proof}
-Note that on $\Kcal_{C}(k_n)$ we have that $e^{ty} = \bigT{k_n^{2t}}$. Hence, by the second statement of Lemma~\ref{lem:concentration_argument_rho_approximation}
+Note that on $\Kcal_{C}(k_n)$ we have that $e^{ty} = \bigT{k_n^{2t}}$. Hence, by Lemma~\ref{lem:degree_integral}
 \begin{align*}
 	\int_{\Kcal_{C}} e^{t y} \hat{\rho}_n(y,k_n-r) e^{-\alpha y} \dd y
 	&= \bigT{k_n^{2t}} \int_{\Kcal_{C}} \hat{\rho}_n(y,k_n-r) e^{-\alpha y} \dd y\\
@@ -1636,135 +1615,133 @@ which completes the proof for~\eqref{eq:sum_6} and thus the proof of Proposition
 
 \subsection{Coupling $G_n$ to $\GPo$}\label{ssec:coupling_H_HP}
 
-Now that we have established the equivalence of the clustering function between the Poissonized KPKVB graph $\GPo$ and the finite box graph $\Gbox$ the final step is to relate the clustering function in $\GPo$ to the KPKVB graph $G_n$. As mentioned in Section~\ref{ssec:KPKVB_to_GPo_infinite_k}, this is done by moving from $c(k_n; G_n)$ to the adjusted clustering function $c^\ast(k_n; G_n)$ (Lemma~\ref{lem:clustering_ast_H}) and then to $c^\ast(k_n; \GPo)$ (Proposition~\ref{prop:clustering_ast_H_Pois}). We start with a technical lemma on the difference between the number of vertices with degree $k_n$ in both models. Then we give the proof of Proposition~\ref{prop:clustering_ast_H_Pois} and after that we prove  Lemma~\ref{lem:clustering_ast_H}.
-
-Let $N_n(k_n)$ and $N_\Po(k_n)$ denote, respectively, the number of vertices with degree $k_n$ in $G_n$ and $G_\Po$. We will first show that $\left|N_{n}(k_n)-N_{\Po}(k_n)\right|$ is small. Recall that we consider the standard coupling between the binomial and Poisson process to couple $G_n$ and $G_\Po$. That is, we take a sequence of i.i.d. random elements $u_1, u_2, \dots$ uniformly on the hyperbolic disk of radius $R$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the KPKVB graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} \Po(n)$ points ($N$ is a Poisson random variable with expectation $n$, independent of $u_1, u_2, \dots$). Under this coupling $N_n(k) = \sum_{j=1}^n \ind{\mathrm{deg}_n(u_j)=k}$ denotes the (random) number of degree $k$ vertices in the KPKVB graph $G_n$ model with $n$ vertices and $N_{\Po}(k)=\sum_{j=1}^{N} \ind{\mathrm{deg}_{\Po}(u_j)=k}$ denotes the (random) number of degree $k$ vertices in the poissonized KPKVB graph $\GPo$.
-
-\begin{lemma}\label{lem:diff_Nk_hyperbolic_binomial_poisson}
-Let $(k_n)_{n \ge 1}$ be sequence of natural numbers with $k_n = o(n^{\frac{1}{2\alpha+1}})$. Then, on the coupling space described above,
-\[
-	\Exp{\left|N_{n}(k_n)-N_{\Po}(k_n)\right|} = \smallO{\Exp{N_{\Po}(k_n)}} = \smallO{n k^{-(2\alpha+1)}},
-\]
-and in particular,
-\[
-	\Exp{N_{n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}.
-\]
-\end{lemma}
-
-%\TM{ I thought it might be a good idea to show somewhere in the paper that the result of Gugelmann et al.~that
-%$N_k = (1+o(1)) p_k n$ a.a.s., extends for all 
-%$k \ll n^{1/(2\alpha+1)}$ -- where $p_k$ the expression in terms on $\Gamma^+, \xi$ etc. 
-%Gugelmann et al.~had show it only until some small power of $n$.
-%Adding this just means we have to 
-%compute the leading constants for the expectation $\Ee N_k$, and bound the variance, in addition to what we do here.
-%Somehow I had expected we would include that. In fact Markus had prepared a short write up of the variance part of the argument. 
-%Should not be too hard to add the rest, no? \\
-%We already have the degree sequence for the infinite model somewhere in the paper.
-%}
-%\PvdH{Will happen but I honestly had no time to put it in.}
-
-\begin{proof}
-The second claim follows immediately from the first and the fact that $\Exp{N_\Po(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$, see Lemma~\ref{lem:N_k_HP_P}.
-
-To prove the first statement let $u = (r,\theta) \in \H$. Slightly abusing notation we write $B_\H(u)$ for those $u^\prime$ such that $d_\H(u,u^\prime) \le R$ and $\mu_{\H}(y)$ for the measure of $B_\H(u)$ with respect to the $(\alpha, R)$-quasi uniform measure $g(r,\theta)$ defined in~\eqref{eq:def_quasi_uniform_density}. Note that if $u^\prime$ is sampled according to $g$, then $\mu_{\H}(u)/n$ denotes the probability that $u^\prime \in B_\H(u)$. In particular, if $G_n = G(n; \alpha, \nu)$ is a KPKVB graph and $u \in \mathcal{V}_n$, then the degree distribution of $u$, conditioned on its coordinates, is Binomial on $n-1$ trials with success probability $\mu_{\H}(u)/n$. Let us define for any $n \ge 1$, $\deg_n(u) = \mathrm{Bin}(n-1, \mu_{\H}(u)/n)$ then if $U$ is sampled according to the  $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}, $\Prob{\deg_n(U) = k_n}$ denotes the degree distribution in $G_n$ and $\Exp{N_n(k_n)} = n \Prob{\deg_n(U) = k_n}$. 
-
-Recall that we couple the KPKVB graph $G_n$ with the Poisson version $\GPo$ by considering an infinite supply of i.i.d. points $u_1, u_2, \dots$ sampled on $\H$ according to the $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}, take $N \stackrel{d}{=} \Po(n)$, independently of $u_1, u_2, \dots$, and set $\mathcal{V}_n =\{u_1, \dots, u_n\}$ and $\VPo = \{u_1, \dots, u_N\}$. Observe that $\Exp{N_\Po(k_n)} = \Exp{N \Prob{\deg_{N-1}(U) = k_n}}$, where $U$ is sampled from the $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}. It is important to note that under this coupling the only difference between $G_n$ and $\GPo$ is in the number of vertices.
-
-Denote by $\mathcal{V}_n(k_n)$ and $\VPo(k_n)$ the set of points $u_i$ with degree $k_n$ in $G_n$ and $\GPo$, respectively. Then the result follows if we can show that
-\[
-	\CExp{\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}}{N} 
-	= \smallO{n}\CProb{\deg_{N-1}(U) = k_n}{N}
-\]
-We first use a Chernoff based large deviation result for a Poisson random variable~\eqref{eq:def_chernoff_bound_poisson}, which implies that for any $C>0$ we have $N \in [n-C\sqrt{n\log n},n+C\sqrt{n \log n}]$ with probability $1-n^{-C^2/2}$. Since we can select $C > 0$ arbitrarily large it follows that we only need to prove the result conditional on the event $|N-n|\le C\sqrt{n \log(n)}$. Note that if $N = n$ then 
-\[
-	\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)} = 0.
-\]
-Hence if we denote by $A_n^-$ the event that $n - C\sqrt{n \log(n)} \le N < n$ and by $A_n^+$ the event that $n < N \le n + C\sqrt{n \log(n)}$, we need to show that
-\[
-	\CExp{\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}}{A_n^+} 
-		= \smallO{n}\CProb{\deg_N(U) = k_n}{A_n^+}
-\]
-and likewise with $A_n^+$ replaced by $A_n^-$.
-
-We first consider the case where $n < N \le n + C\sqrt{n \log(n)}$, i.e. the case where we have more vertices in $\GPo$ than in $G_n$. The proof for the other case is similar and we omit it. Let $W = \{u_{n+1}, \dots, u_N\}$ be the set of vertices in $\GPo$ that are not in $G_n$. To ease notation we let $\mathbb{E}_n$ and $\mathbb{P}_n$ denote the conditional expectation and probability on the event $A_n^+$. First we note that
-\begin{align*}
-	\Expn{\sum_{i = n+1}^N \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}}
-	&= \Expn{\sum_{i = n+1}^N \ind{\deg_{Po}(u_i) = k_n}} \\
-	&= \frac{(N-n)}{n}\ind{A_n^+} n \Probn{\deg_N(U) = k_n} \\
-	&\le C \sqrt{\frac{\log(n)}{n}} n \Probn{\deg_N(U) = k_n} \\
-	&= \smallO{n} n \Probn{\deg_N(U) = k_n}. 
-\end{align*}
-Hence we are left to consider the sum over all vertices in $\mathcal{V}_n$.
-
-Let $u_i \in \mathcal{V}_n(k_n)$. Then since $N > n$ we have that $u_i \in \VPo(k_n)$ and hence $u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)$ if and only if $|B_\H(u_i) \cap W| \ge 1$ and either $u_i \in \mathcal{V}_n(k_n)$ or $u_i \in \VPo(k_n)$.
-From this it follows that
-\[
-	\sum_{i = 1}^n \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}
-	= \sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)\ind{|B_\H(u_i) \cap W| \ge 1}
-\]
-We will bound this sum further. For any $u \in \H$ let $Q_n(u)$ denote the event that $|\mu_\H(u) - k_n| \le C \sqrt{k_n \log(k_n)}$ and denote by $Q_n(u)^c$ its complement. Then, 
-\begin{align*}
-	&\sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)\ind{|B_\H(u_i) \cap W| \ge 1}\\
-	&\le \sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)
-		\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}\\
-	&\hspace{10pt}+ \sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)\ind{Q_n(u_i)^c}.
-\end{align*}
-The second sum splits into two parts. The expectation of the first part yields
-\begin{align*}
-	\Expn{\sum_{i = 1}^n \ind{\deg_n(u_i) = k_n} \ind{Q_n(u_i)^c}}
-	&= n \, \Prob{\mathrm{Bin}\left(n-1, \frac{\mu_\H(U)}{n}\right) = k_n, Q_n(U)^c}\\
-	&= \bigO{n k_n^{-\frac{C^2}{3}}} = \smallO{n k_n^{-(2\alpha + 1)}},
-\end{align*}
-where we used Lemma~\ref{lem:concentration_height_binomial}, for any $C^2/3 > 2\alpha + 1$.
-Similarly, Lemma~\ref{lem:concentration_height_binomial} implies that the expectation of the second part is
-\begin{align*}
-	\Expn{\sum_{i = 1}^n \ind{\deg_\Po(u_i) = k_n} \ind{Q_n(u_i)^c}}
-	&= n \, \Prob{\mathrm{Bin}\left(N-1, \frac{\mu_\H(U)}{n}\right) = k_n, Q_n(U)^c}\\
-	&= \bigO{n k_n^{-\frac{C^2}{3}}} = \smallO{n k_n^{-(2\alpha + 1)}}.
-\end{align*}
-
-Hence it remains to show that 
-\[
-	\Expn{\sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)
-			\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}} = \smallO{n k_n^{-(2\alpha + 1)}}.
-\] 
-We will show that
-\[
-	\Expn{\sum_{i = 1}^n \ind{\deg_n(u_i) = k_n}
-				\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}} = \smallO{n k_n^{-(2\alpha + 1)}}.
-\]
-The other term follows using almost identical arguments and is omitted. To prove the above result we note that since $N > n$ we have $\ind{|B_\H(u_i) \cap W| \ge 1} \le \sum_{j = n + 1}^N \ind{u_j \in B_\H(u_i)}$. Thus
-\begin{align*}
-	&\hspace{-20pt}\Expn{\sum_{i = 1}^n \ind{\deg_n(u_i) = k_n}\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}}\\
-	&\le\sum_{i = 1}^n \sum_{j = n+1}^N \Expn{\ind{\deg_n(u_i) = k_n}\ind{Q_n(u_i)}\ind{u_j \in B_\H(u_i)}}\\
-	&= n(N-n) \Probn{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n, Q_n(U_1), U_2 \in B_\H(U_1)}\\
-	&= n(N-n) 
-		\Expn{\ind{Q_n(U_1)}
-			\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n, U_2 \in B_\H(U_1)}{U_1}}\\
-	&= n(N-n)
-		\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n}{U_1} \frac{\mu_{\H}(U_1)}{n}},
-\end{align*}
-where the last step follows since, conditional on $U_1$, the events $\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n$ and $U_2\in B_\H(U_1)$ are independent and $\CProb{U_2\in B_\H(U_1)}{U_1} = \mu_\H(U_1)/n$. In addition, on the event $Q_n(U_1)$ we have that $\mu_\H(U_1) \le k_n + C \sqrt{k_n \log(k_n)}$ and thus the second statement of Lemma~\ref{lem:concentration_height_binomial} implies that
-\begin{align*}
-	&\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n}{U_1}}\\
-	&= (1+\smallO{1})\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(N-1, \frac{\mu_\H(U_1)}{n}\right) = k_n}{U_1}}\\
-	&\le \bigO{1}\Probn{\mathrm{Bin}\left(N-1, \frac{\mu_\H(U_1)}{n}\right) = k_n}\\
-	&= \bigO{1}\Probn{\deg_N(U_1) = k_n}.
-\end{align*}
-Hence, we obtain
-\begin{align*}
-	&\hspace{-20pt}\Expn{\sum_{i = 1}^n \ind{\deg_n(u_i) = k_n}\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}}\\
-	&\le (N-n)\left(k_n + C \sqrt{k_n \log(k_n)}\right) \Probn{\deg_N(U_1) = k_n}\\
-	&= (1+\smallO{1}) \sqrt{n \log(n)} k_n \Probn{\deg_N(U_1) = k_n}\\
-	&= \smallO{n \Probn{\deg_N(U_1) = k_n}} = \smallO{\Expn{N_\Po(k_n)}},
-\end{align*}
-where we again used that $\sqrt{n \log(n)} k_n = \smallO{n}$.
-\end{proof}
-
-With this result we can now prove Proposition~\ref{prop:clustering_ast_H_Pois}, which states
+Now that we have established the equivalence of the clustering function between the Poissonized KPKVB graph $\GPo$ and the finite box graph $\Gbox$ the final step is to relate the clustering function in $\GPo$ to the KPKVB graph $G_n$. As mentioned in Section~\ref{ssec:KPKVB_to_GPo_infinite_k}, this is done by moving from $c(k_n; G_n)$ to the adjusted clustering function $c^\ast(k_n; G_n)$ (Lemma~\ref{lem:clustering_ast_H}) and then to $c^\ast(k_n; \GPo)$ (Proposition~\ref{prop:clustering_ast_H_Pois}). For this we will use the coupling result (Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}) from Section~\ref{ssec:coupling_Gn_GPo}. We first give the proof of Proposition~\ref{prop:clustering_ast_H_Pois} and after that we prove Lemma~\ref{lem:clustering_ast_H}. Recall that Proposition~\ref{prop:clustering_ast_H_Pois} states
 \[
 	\lim_{n \to \infty} s(k_n)\Exp{\left|c^\ast(k_n; G_n) - c^\ast(k_n; \GPo)\right|} = 0.
 \]
+
+%Let $N_n(k_n)$ and $N_\Po(k_n)$ denote, respectively, the number of vertices with degree $k_n$ in $G_n$ and $G_\Po$. We will first show that $\left|N_{n}(k_n)-N_{\Po}(k_n)\right|$ is small. Recall that we consider the standard coupling between the binomial and Poisson process to couple $G_n$ and $G_\Po$. That is, we take a sequence of i.i.d. random elements $u_1, u_2, \dots$ uniformly on the hyperbolic disk of radius $R$, i.e. according to the distribution \eqref{eq:def_hyperbolic_point_distribution}. Then the KPKVB graph consists of the first $n$ points and the poissonized version of the first $N \stackrel{d}{=} \Po(n)$ points ($N$ is a Poisson random variable with expectation $n$, independent of $u_1, u_2, \dots$). Under this coupling $N_n(k) = \sum_{j=1}^n \ind{\mathrm{deg}_n(u_j)=k}$ denotes the (random) number of degree $k$ vertices in the KPKVB graph $G_n$ model with $n$ vertices and $N_{\Po}(k)=\sum_{j=1}^{N} \ind{\mathrm{deg}_{\Po}(u_j)=k}$ denotes the (random) number of degree $k$ vertices in the poissonized KPKVB graph $\GPo$.
+
+%\begin{lemma}\label{lem:diff_Nk_hyperbolic_binomial_poisson}
+%Let $(k_n)_{n \ge 1}$ be sequence of natural numbers with $k_n = o(n^{\frac{1}{2\alpha+1}})$. Then, on the coupling space described above,
+%\[
+%	\Exp{\left|N_{n}(k_n)-N_{\Po}(k_n)\right|} = \smallO{\Exp{N_{\Po}(k_n)}} = \smallO{n k^{-(2\alpha+1)}},
+%\]
+%and in particular,
+%\[
+%	\Exp{N_{n}(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}.
+%\]
+%\end{lemma}
+%
+%%\TM{ I thought it might be a good idea to show somewhere in the paper that the result of Gugelmann et al.~that
+%%$N_k = (1+o(1)) p_k n$ a.a.s., extends for all 
+%%$k \ll n^{1/(2\alpha+1)}$ -- where $p_k$ the expression in terms on $\Gamma^+, \xi$ etc. 
+%%Gugelmann et al.~had show it only until some small power of $n$.
+%%Adding this just means we have to 
+%%compute the leading constants for the expectation $\Ee N_k$, and bound the variance, in addition to what we do here.
+%%Somehow I had expected we would include that. In fact Markus had prepared a short write up of the variance part of the argument. 
+%%Should not be too hard to add the rest, no? \\
+%%We already have the degree sequence for the infinite model somewhere in the paper.
+%%}
+%%\PvdH{Will happen but I honestly had no time to put it in.}
+%
+%\begin{proof}
+%The second claim follows immediately from the first and the fact that $\Exp{N_\Po(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$, see Lemma~\ref{lem:N_k_HP_P}.
+%
+%To prove the first statement let $u = (r,\theta) \in \H$. Slightly abusing notation we write $B_\H(u)$ for those $u^\prime$ such that $d_\H(u,u^\prime) \le R$ and $\mu_{\H}(y)$ for the measure of $B_\H(u)$ with respect to the $(\alpha, R)$-quasi uniform measure $g(r,\theta)$ defined in~\eqref{eq:def_quasi_uniform_density}. Note that if $u^\prime$ is sampled according to $g$, then $\mu_{\H}(u)/n$ denotes the probability that $u^\prime \in B_\H(u)$. In particular, if $G_n = G(n; \alpha, \nu)$ is a KPKVB graph and $u \in \mathcal{V}_n$, then the degree distribution of $u$, conditioned on its coordinates, is Binomial on $n-1$ trials with success probability $\mu_{\H}(u)/n$. Let us define for any $n \ge 1$, $\deg_n(u) = \mathrm{Bin}(n-1, \mu_{\H}(u)/n)$ then if $U$ is sampled according to the  $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}, $\Prob{\deg_n(U) = k_n}$ denotes the degree distribution in $G_n$ and $\Exp{N_n(k_n)} = n \Prob{\deg_n(U) = k_n}$. 
+%
+%Recall that we couple the KPKVB graph $G_n$ with the Poisson version $\GPo$ by considering an infinite supply of i.i.d. points $u_1, u_2, \dots$ sampled on $\H$ according to the $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}, take $N \stackrel{d}{=} \Po(n)$, independently of $u_1, u_2, \dots$, and set $\mathcal{V}_n =\{u_1, \dots, u_n\}$ and $\VPo = \{u_1, \dots, u_N\}$. Observe that $\Exp{N_\Po(k_n)} = \Exp{N \Prob{\deg_{N-1}(U) = k_n}}$, where $U$ is sampled from the $(\alpha, R)$-quasi uniform distribution~\eqref{eq:def_hyperbolic_point_distribution}. It is important to note that under this coupling the only difference between $G_n$ and $\GPo$ is in the number of vertices.
+%
+%Denote by $\mathcal{V}_n(k_n)$ and $\VPo(k_n)$ the set of points $u_i$ with degree $k_n$ in $G_n$ and $\GPo$, respectively. Then the result follows if we can show that
+%\[
+%	\CExp{\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}}{N} 
+%	= \smallO{n}\CProb{\deg_{N-1}(U) = k_n}{N}
+%\]
+%We first use a Chernoff based large deviation result for a Poisson random variable~\eqref{eq:def_chernoff_bound_poisson}, which implies that for any $C>0$ we have $N \in [n-C\sqrt{n\log n},n+C\sqrt{n \log n}]$ with probability $1-n^{-C^2/2}$. Since we can select $C > 0$ arbitrarily large it follows that we only need to prove the result conditional on the event $|N-n|\le C\sqrt{n \log(n)}$. Note that if $N = n$ then 
+%\[
+%	\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)} = 0.
+%\]
+%Hence if we denote by $A_n^-$ the event that $n - C\sqrt{n \log(n)} \le N < n$ and by $A_n^+$ the event that $n < N \le n + C\sqrt{n \log(n)}$, we need to show that
+%\[
+%	\CExp{\sum_{i = 1}^{n \wedge N} \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}}{A_n^+} 
+%		= \smallO{n}\CProb{\deg_N(U) = k_n}{A_n^+}
+%\]
+%and likewise with $A_n^+$ replaced by $A_n^-$.
+%
+%We first consider the case where $n < N \le n + C\sqrt{n \log(n)}$, i.e. the case where we have more vertices in $\GPo$ than in $G_n$. The proof for the other case is similar and we omit it. Let $W = \{u_{n+1}, \dots, u_N\}$ be the set of vertices in $\GPo$ that are not in $G_n$. To ease notation we let $\mathbb{E}_n$ and $\mathbb{P}_n$ denote the conditional expectation and probability on the event $A_n^+$. First we note that
+%\begin{align*}
+%	\Expn{\sum_{i = n+1}^N \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}}
+%	&= \Expn{\sum_{i = n+1}^N \ind{\deg_{Po}(u_i) = k_n}} \\
+%	&= \frac{(N-n)}{n}\ind{A_n^+} n \Probn{\deg_N(U) = k_n} \\
+%	&\le C \sqrt{\frac{\log(n)}{n}} n \Probn{\deg_N(U) = k_n} \\
+%	&= \smallO{n} n \Probn{\deg_N(U) = k_n}. 
+%\end{align*}
+%Hence we are left to consider the sum over all vertices in $\mathcal{V}_n$.
+%
+%Let $u_i \in \mathcal{V}_n(k_n)$. Then since $N > n$ we have that $u_i \in \VPo(k_n)$ and hence $u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)$ if and only if $|B_\H(u_i) \cap W| \ge 1$ and either $u_i \in \mathcal{V}_n(k_n)$ or $u_i \in \VPo(k_n)$.
+%From this it follows that
+%\[
+%	\sum_{i = 1}^n \ind{u_i \in \mathcal{V}_n(k_n) \Delta \VPo(k_n)}
+%	= \sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)\ind{|B_\H(u_i) \cap W| \ge 1}
+%\]
+%We will bound this sum further. For any $u \in \H$ let $Q_n(u)$ denote the event that $|\mu_\H(u) - k_n| \le C \sqrt{k_n \log(k_n)}$ and denote by $Q_n(u)^c$ its complement. Then, 
+%\begin{align*}
+%	&\sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)\ind{|B_\H(u_i) \cap W| \ge 1}\\
+%	&\le \sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)
+%		\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}\\
+%	&\hspace{10pt}+ \sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)\ind{Q_n(u_i)^c}.
+%\end{align*}
+%The second sum splits into two parts. The expectation of the first part yields
+%\begin{align*}
+%	\Expn{\sum_{i = 1}^n \ind{\deg_n(u_i) = k_n} \ind{Q_n(u_i)^c}}
+%	&= n \, \Prob{\mathrm{Bin}\left(n-1, \frac{\mu_\H(U)}{n}\right) = k_n, Q_n(U)^c}\\
+%	&= \bigO{n k_n^{-\frac{C^2}{3}}} = \smallO{n k_n^{-(2\alpha + 1)}},
+%\end{align*}
+%where we used Lemma~\ref{lem:concentration_height_binomial}, for any $C^2/3 > 2\alpha + 1$.
+%Similarly, Lemma~\ref{lem:concentration_height_binomial} implies that the expectation of the second part is
+%\begin{align*}
+%	\Expn{\sum_{i = 1}^n \ind{\deg_\Po(u_i) = k_n} \ind{Q_n(u_i)^c}}
+%	&= n \, \Prob{\mathrm{Bin}\left(N-1, \frac{\mu_\H(U)}{n}\right) = k_n, Q_n(U)^c}\\
+%	&= \bigO{n k_n^{-\frac{C^2}{3}}} = \smallO{n k_n^{-(2\alpha + 1)}}.
+%\end{align*}
+%
+%Hence it remains to show that 
+%\[
+%	\Expn{\sum_{i = 1}^n \left(\ind{\deg_n(u_i) = k_n} + \ind{\deg_\Po(u_i) = k_n} \right)
+%			\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}} = \smallO{n k_n^{-(2\alpha + 1)}}.
+%\] 
+%We will show that
+%\[
+%	\Expn{\sum_{i = 1}^n \ind{\deg_n(u_i) = k_n}
+%				\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}} = \smallO{n k_n^{-(2\alpha + 1)}}.
+%\]
+%The other term follows using almost identical arguments and is omitted. To prove the above result we note that since $N > n$ we have $\ind{|B_\H(u_i) \cap W| \ge 1} \le \sum_{j = n + 1}^N \ind{u_j \in B_\H(u_i)}$. Thus
+%\begin{align*}
+%	&\hspace{-20pt}\Expn{\sum_{i = 1}^n \ind{\deg_n(u_i) = k_n}\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}}\\
+%	&\le\sum_{i = 1}^n \sum_{j = n+1}^N \Expn{\ind{\deg_n(u_i) = k_n}\ind{Q_n(u_i)}\ind{u_j \in B_\H(u_i)}}\\
+%	&= n(N-n) \Probn{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n, Q_n(U_1), U_2 \in B_\H(U_1)}\\
+%	&= n(N-n) 
+%		\Expn{\ind{Q_n(U_1)}
+%			\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n, U_2 \in B_\H(U_1)}{U_1}}\\
+%	&= n(N-n)
+%		\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n}{U_1} \frac{\mu_{\H}(U_1)}{n}},
+%\end{align*}
+%where the last step follows since, conditional on $U_1$, the events $\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n$ and $U_2\in B_\H(U_1)$ are independent and $\CProb{U_2\in B_\H(U_1)}{U_1} = \mu_\H(U_1)/n$. In addition, on the event $Q_n(U_1)$ we have that $\mu_\H(U_1) \le k_n + C \sqrt{k_n \log(k_n)}$ and thus the second statement of Lemma~\ref{lem:concentration_height_binomial} implies that
+%\begin{align*}
+%	&\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(n-2, \frac{\mu_\H(U_1)}{n}\right) = k_n}{U_1}}\\
+%	&= (1+\smallO{1})\Expn{\ind{Q_n(U_1)}\CProb{\mathrm{Bin}\left(N-1, \frac{\mu_\H(U_1)}{n}\right) = k_n}{U_1}}\\
+%	&\le \bigO{1}\Probn{\mathrm{Bin}\left(N-1, \frac{\mu_\H(U_1)}{n}\right) = k_n}\\
+%	&= \bigO{1}\Probn{\deg_N(U_1) = k_n}.
+%\end{align*}
+%Hence, we obtain
+%\begin{align*}
+%	&\hspace{-20pt}\Expn{\sum_{i = 1}^n \ind{\deg_n(u_i) = k_n}\ind{|B_\H(u_i) \cap W| \ge 1}\ind{Q_n(u_i)}}\\
+%	&\le (N-n)\left(k_n + C \sqrt{k_n \log(k_n)}\right) \Probn{\deg_N(U_1) = k_n}\\
+%	&= (1+\smallO{1}) \sqrt{n \log(n)} k_n \Probn{\deg_N(U_1) = k_n}\\
+%	&= \smallO{n \Probn{\deg_N(U_1) = k_n}} = \smallO{\Expn{N_\Po(k_n)}},
+%\end{align*}
+%where we again used that $\sqrt{n \log(n)} k_n = \smallO{n}$.
+%\end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:clustering_ast_H_Pois}]
 First we note that Proposition~\ref{prop:couling_c_H_P}, \ref{prop:concentration_local_clustering_P_n} and~\ref{prop:convergence_average_clustering_P_n} together imply that
@@ -1776,9 +1753,9 @@ Therefore it suffices to show that
 	\Exp{\left|c^\ast(k_n; G_n) - c^\ast(k_n; \GPo)\right|} = \smallO{\Exp{c^\ast(k_n; \GPo)}}.
 \]
 For this we observe that we are looking at the modified clustering coefficient, where we divide by the expected number of degree $k_n$ vertices. As the expected numbers of degree $k_n$ vertices in $\GPo$ and $G_n$ are asymptotically equivalent (see Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}), it is therefore sufficient to consider the sum of the clustering coefficients of all vertices of degree $k_n$.
-Given again the standard coupling between the binomial and Poisson process (as used in the proof of Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}), we again denote by $\mathcal{V}_n(k_n)$ the set of degree $k_n$ vertices in $G_n$ and by $\VPo(k_n)$ the set of degree $k_n$ vertices in $\GPo$. If a vertex is contained in both sets, it must have the same degree in both the Poisson and KPKVB graph, and given the nature of the coupling, the neighbourhoods are therefore the same and hence also their clustering coefficients agree.
+Given again the standard coupling between the binomial and Poisson process (as used in the proof of Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}), we again denote by $V_n(k_n)$ the set of degree $k_n$ vertices in $G_n$ and by $\VPo(k_n)$ the set of degree $k_n$ vertices in $\GPo$. If a vertex is contained in both sets, it must have the same degree in both the Poisson and KPKVB graph, and given the nature of the coupling, the neighbourhoods are therefore the same and hence also their clustering coefficients agree.
 
-The difference of the sum of the clustering coefficients therefore comes from all the clustering coefficients of the symmetric difference $\mathcal{V}_n(k_n) \Delta \VPo(k_n)$. By Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson} the expected number vertices in this set is $\Exp{\left|N_{n}(k_n) - N_{\Po}(k_n)\right|} = \smallO{\Exp{N_{\Po}(k_n)}}$. Therefore we have that
+The difference of the sum of the clustering coefficients therefore comes from all the clustering coefficients of the symmetric difference $V_n(k_n) \Delta \VPo(k_n)$. By Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson} the expected number vertices in this set is $\Exp{\left|N_{n}(k_n) - N_{\Po}(k_n)\right|} = \smallO{\Exp{N_{\Po}(k_n)}}$. Therefore we have that
 \begin{align*}
 	\Exp{\left|c^\ast(k_n; G_n) - c^\ast(k_n; \GPo)\right|}
 	&\le \frac{\Exp{\left|N_{n}(k_n)-N_{\Po}(k_n)\right|}}{(1+\smallO{1})\Exp{N_{\Po}(k_n)}} \Exp{c^\ast(k_n; \GPo)}

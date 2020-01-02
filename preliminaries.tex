@@ -1,0 +1,226 @@
+
+\section{Preliminaries\label{sec:proof_outline}}
+
+In this section we recall some definitions and tools that we will need in our proofs.
+
+\subsection{The infinite limit model $\Ginf$\label{ssec:infinite_model}}
+
+We start by recalling the definition of the infinite limit model from~\cite{fountoulakis2018law}.
+Let $\mathcal{P}=\mathcal{P}_{\alpha,\nu}$ be a Poisson point process on $\eR^2$ with intensity function $f=f_{\alpha,\nu}$ given by
+
+\begin{equation}\label{eq:def_intensity_function_f}
+	f(x,y) = \frac{\alpha \nu}{\pi} e^{-\alpha y} \cdot \1_{\{y>0\}}.
+\end{equation} 
+
+The \emph{infinite limit model} $\Ginf = \Ginf(\alpha,\nu)$ has vertex set $\mathcal{P}$ and edge set such that
+\[
+	pp' \in E(\Ginf) \iff |x - x'| \leq e^{\frac{y + y'}{2}},
+\]
+for $p=(x,y),p'=(x',y')\in\Pcal$.
+
+For any point $p \in \R \times (0,\infty)$, we write $\BallPo{p}$ to denote the \emph{ball} around $p$, i.e.
+
+\begin{equation}\label{eq:def_ball_P}
+	\BallPo{p} = \{p^\prime \in \eR\times(0,\infty) : |x - x^\prime| \leq e^{\frac{y + y^\prime}{2}}\}.
+\end{equation}
+
+With this notation we then have that $\BallPo{p} \cap \Pcal$ denotes the set of neighbours of a vertex $p \in \Ginf$.
+We will denote the intensity measure of the Poisson process $\mathcal{P}$ by $\mu = \mu_{\alpha, \nu}$, i.e. for every 
+Borel-measurable subset $S \subseteq \eR^2$ we have $\mu(S) = \int_S f(x,y) \dd x \dd y$.
+
+
+\subsection{The finite box model $\Gbox$\label{ssec:finite_model}}
+
+
+For the definition of the finite graph, recall that in the definition of the KPKVB model we set $R = 2\log(n/\nu)$.
+We consider the box $\Rcal = (-\frac{\pi}{2}e^{R/2}, \frac{\pi}{2}e^{R/2}] \times (0, R]$ in $\eR^2$. 
+Then the \emph{finite box model} $\Gbox := \Gbox(n;\alpha, \nu)$ has vertex set $\Vbox := \mathcal{P} \cap \Rcal$ and edge set such that
+\[
+	pp' \in E(\Gbox(n;\alpha, \nu)) \iff |x - x'|_{\pi e^{R/2}} \leq e^{\frac{y + y'}{2}},
+\]
+where $|x|_{r} = \min( |x|, r - |x|)$ for $-r\leq x\leq r$. Using $|.|_{\pi e^{R/2}}$ instead of $|.|$ results in the left and right boundaries of the box $\Rcal$ getting identified, which in particular makes the model invariant under horizontal shifts and reflections in vertical lines. The graph $\Gbox$ can thus be seen as a subgraph of $\Ginf$ induced on $\Vbox$, with some additional edges caused by the identification of the boundaries.
+
+Similar to the infinite graph, for a point $p \in \Rcal$ we define the ball $\BallPon{p}$ as
+\begin{equation}\label{eq:def_ball_P_n}
+	\BallPon{p} = 
+	\left\{p' \in \Rcal : |x - x'|_{\pi e^{R/2}} \leq e^{\frac{y + y'}{2}}\right\}.
+\end{equation}
+
+
+\subsection{The Poissonized KPKVB model $\GPo$}
+
+
+Imagine that we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ in the hyperbolic plane $\Haa$ chosen according to the $(\alpha, R)$-quasi uniform distribution. In the standard KPKVB random graph $G(n;\alpha,\nu)$ we take $u_1,\dots, u_n$ as our vertex set and add edges between points at hyperbolic distance at most $R = 2\log(n/\nu)$. In the \emph{Poissonized} KPKVB random graph $\GPo := \GPo(n;\alpha,\nu)$, we instead take $N\isd \Po(n)$, a Poisson random variable 
+with mean $n$, independent of our i.i.d.~sequence of points and let the vertex set be $u_1,\dots, u_N$ and add edges 
+according to the same rule as before. Equivalently, we could say that the vertex set consists of the points of a Poisson point process with intensity function $n g$, where $g$ denotes the probability density of the $(\alpha,R)$-quasi uniform distribution. That is,
+\begin{equation}\label{eq:def_quasi_uniform_density}
+	g(r,\theta) = \frac{\alpha\sinh(\alpha r)}{2\pi(\cosh(\alpha R) - 1)} \cdot 1_{\{0\leq r\leq R, -\pi<\theta\leq \pi\}}.
+\end{equation}
+
+Working with the Poissonized model has the advantage that when we take two disjoint regions $A, B$ then the number of points in $A$ and the number of points  in $B$ are independent Poisson-distributed random variables. As we will see, and as is to be expected, switching to the Poissonized model does not significantly alter the limiting behaviour of the clustering coefficient and function.
+
+
+\subsection{Coupling $\GPo$ and $\Gbox$\label{ssec:coupling_H_P}}
+
+
+The following lemmas from \cite{fountoulakis2018law} establish a useful coupling between the Poissonized KPKVB random graph
+and the finite box model and relate the edge  sets of the two graphs. 
+
+\begin{lemma}[{\cite[Lemma 27]{fountoulakis2018law}}]\label{lem:coupling_hyperbolic_poisson}
+Let $\VPo$ denote the vertex set of $\GPo(n;\alpha, \nu)$ and $\Vbox$ the vertex set of $\Gbox(n;\alpha, \nu)$. 
+Define the map $\Psi : [0,R] \times (-\pi, \pi] \to \Rcal$ by
+\begin{equation}\label{eq:def_Psi}
+	\Psi(r,\theta) = \left(\theta \frac{e^{R/2}}{2}, R - r\right).
+\end{equation}
+Then there exists a coupling such that, a.a.s., $\Vbox = \Psi[\VPo]$. %Moreover, if $\Ccal_n$ is the event that ${\cal V}_n = \Psi\left(\mathcal{V}_{\HP,n}\right)$ then
+%\begin{equation}\label{eq:convergence_miscoupling_hyperbolic_poisson}
+%	\Prob{\Ccal_n^c} = \bigO{n^{-(2\alpha - 1)}}. 
+%\end{equation}
+\end{lemma}
+
+In the remainder of this paper we will write $\BallHyp{p}$ to denote the image under $\Psi$ of the ball of hyperbolic radius $R$ around the point 
+$\Psi^{-1}(p)$ for $p \in \Rcal$, i.e. 
+\[
+	\BallHyp{p} := 
+	%\left\{p^\prime := \Psi(u) \, : \, u \in \Dcal_{R} \text{ and } d_\H(\Psi^{-1}(p),u) \le R\right\}.
+	\Psi\left[ \left\{ u \in \Haa : 
+	d_\H(\Psi^{-1}(p),u), d_\H(O,u) \le R \right\}\right] \subset \Rcal.
+\]
+
+Under the map $\Psi$, a point $p = (x,y) \in \Rcal$ corresponds to $u := \Psi^{-1}(p) = (2 e^{-R/2} x, R - y)$. 
+
+By the hyperbolic rule of cosines, for two points $p = (x,y) = \Psi( (r,\theta) ), p' = (x',y') = \Psi( (r',\theta') ) \in \Rcal$ we have that $p' \in \BallHyp{p}$ iff.~either $r+r'\leq R$ or $r+r'>R$ and
+\[
+	\cosh r \cosh r' - \sinh r \sinh r'\cos\left( |\theta-\theta'|_{2\pi} \right) \le \cosh(R),
+\]
+This can be rephrased as $p'\in \BallHyp{p}$ iff.~either $y+y'\geq R$ or $y+y'<R$ and 
+
+
+\begin{equation}\label{eq:def_Omega_hyperbolic}
+	|x-x'|_{\pi e^{R/2}} \leq \Phi(y,y^\prime) := \frac{1}{2}e^{R/2} \arccos\left( \frac{\cosh(R-y) \cosh(R-y^\prime) - \cosh R}{\sinh(R-y) \sinh(R-y^\prime)} \right).
+\end{equation}
+
+The following lemma provides useful bounds on the function $\Phi(r,r^\prime)$. Note that in~\cite{fountoulakis2018law} the function $\Phi$ is written in terms of where $r := R - y, r^\prime := R - y^\prime$. 
+
+\begin{lemma}[{\cite[Lemma 28]{fountoulakis2018law}}]\label{lem:asymptotics_Omega_hyperbolic}
+There exists a constant $K>0$ such that, for every $\varepsilon > 0$ and for $R$ sufficiently large, the following holds.
+For every $r,r^\prime \in [\varepsilon R,R]$ with $y + y^\prime < R$ we have that 
+\begin{equation}\label{eq:asymp1}
+	e^{\frac{1}{2}(y+y^\prime)} - K e^{\frac{3}{2}(y+y^\prime) - R} \leq \Phi(y, y^\prime) 
+	\leq  e^{\frac{1}{2}(y+y^\prime)} + K e^{\frac{3}{2}(y+y^\prime) - R},
+\end{equation}
+Moreover:
+\begin{equation}\label{eq:asymp2} 
+\Phi(y,y^\prime) \geq e^{\frac12(y+y^\prime)} \quad \text{if \quad $y, y^\prime > K$.} 
+\end{equation}
+\end{lemma}
+
+A key consequence of Lemma~\ref{lem:asymptotics_Omega_hyperbolic} is that the coupling from Lemma~\ref{lem:coupling_hyperbolic_poisson} preserves edges between points whose heights are not too large.  
+
+\begin{lemma}[{\cite[Lemma 30]{fountoulakis2018law}}]\label{lem:coupling_edges}
+On the coupling space of Lemma~\ref{lem:coupling_hyperbolic_poisson} the following holds a.a.s.:
+\begin{enumerate}
+\item for any two points $p, p' \in \Vbox$ with $y, y'\le R/2$, we have 
+\[
+	pp' \in E(\Gbox) \Rightarrow \Psi^{-1}(p)\Psi^{-1}(p') \in E(\GPo),
+\]
+\item for any two points $p, p' \in \Vbox$ with $y, y' \le R/4$, we have that 
+\[
+	pp' \in E(\Gbox) \iff \Psi^{-1}(p)\Psi^{-1}(p') \in E(\GPo).
+\]
+
+\end{enumerate}
+\end{lemma}
+
+\begin{remark}[Notion convention for points]
+We will often be working with the finite box graph $\GPo$ or the infinite graph $\Ginf$, whose nodes are points in $\R \times \R_+$. For any point $p \in \R \times \R_+$ we will always use $p = (x,y)$. When considering different points $p,p^\prime \in \R \times \R_+$, we will use primed coordinates to refer to $p^\prime$, i.e. $p^\prime = (x^\prime ,y^\prime)$, and similar with subscripts, i.e. $p_i = (x_i,y_i)$.
+\end{remark}
+
+\subsection{The Campbell-Mecke formula}
+
+A very useful tool for analyzing subgraph counts, and their generalizations, in the 
+setting of the Poissonized random geometric graphs, and in particular the Poissonized KPKVB model and the box model is the \emph{Campbell-Mecke formula}. We use a specific incarnation, which follows from the Palm theory of Poisson point processes on metric spaces, see~\cite{last2017lectures}. For this consider a Poisson point process $\Pcal$ on some metric space $\mathcal{M}$ with density $\mu$ and let $\mathcal{N}$ denote the set of all possible point configurations in $\mathcal{M}$, equipped with the sigma algebra of the process $\Pcal$. Then, for any natural number $k$ and measurable function $h : \R^k \times \mathcal{N} \to \R$,
+\begin{equation}\label{eq:def_campbell_mecke}
+	\Exp{\sum_{p_1, \dots, p_k \in \Pcal}^{\ne} h(p_1, \dots, p_k, \Pcal)}
+	= \int_{\mathcal{M}} \dots \int_{\mathcal{M}} \Exp{h(x_1,\dots, x_k, \Pcal} \dd \mu(x_1) \dots \dd \mu(x_k),
+\end{equation}
+where the sum is over all distinct point $p_1, \dots, p_k \in \Pcal$. 
+
+\subsection{Concentration of heights}
+
+When analyzing degrees and clustering in the Poissonized KPKVB and related models we often encounter expressions of the form
+\begin{equation}\label{eq:example_poisson_integral}
+	\int_{0}^R \Prob{\Po(\hat{\mu}(y)) = k_n} h(y) e^{-\alpha y} \dd y,
+\end{equation}
+where $h(y)$ is some function and $\hat{\mu}(y)$ is $\Mu{\BallHyp{y}}$, $\Mu{\BallPon{y}}$ or $\Mu{\BallPo{y}}$. We will often have to either bound the behavior of such integrals as $k_n \to \infty$ or establish their asymptotic behavior. For this we will utilize that Poisson random variables are well concentrated around their mean. 
+
+In particular, if $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$, we have the following Chernoff bound (c.f. \cite[Lemma 1.2]{penrose2003random})
+\begin{equation}\label{eq:def_chernoff_bound_poisson}
+	\Prob{\left|\mathrm{Po}(\lambda) - \lambda\right| \ge x} \le 2e^{-\frac{x^2}{2(\lambda + x)}}.
+\end{equation}
+In particular, if $\lambda = \lambda_n \to \infty$, then for any $C>0$,
+\begin{equation}\label{eq:def_chernoff_bound_poisson_C}
+	\Prob{\left|\mathrm{Po}(\lambda_n) - \lambda_n\right| \ge C \sqrt{\lambda_n\log(\lambda_n)}} \le \bigO{\lambda_n^{-\frac{C^2}{2}}}.
+\end{equation}
+
+For our application these Chernoff bounds imply that if $y$ is such that $\hat{\mu}(y)$ is far from $k_n$ then $\Prob{\Po(\hat{\mu}(y)) = k_n}$ becomes very small. To be more specific, we define for any $k \ge 0$ and $C > 0$,
+\begin{equation}\label{eq:def_y_k_C}
+	y_{k,C}^\pm = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi}\right),
+\end{equation}
+where we set $y_{k,C}^- = 0$ if $k - C \sqrt{k \log(k)} < \xi$. For convenience we write $\Kcal_C(k_n) := [y_{k_n,C}^-, y_{k_n,C}^+]$. Then we can show that for all $y$ outside $\Kcal_C(k_n)$
+\begin{equation}\label{eq:chernoff_bound_degrees}
+	\Prob{\Po(\hat{\mu}(y)) = k_n} \le \bigO{k_n^{-\frac{C^2}{2}}}.
+\end{equation}
+Since we can select $C$ to be as big as we want we can make this error as small as needed. This implies that then the main contribution to the integral~\eqref{eq:example_poisson_integral} comes from those `'heights" $y$ that are in the interval $\Kcal_C(k_n)$. In other words, the main contribution is concentrated around the heights $y$ for which $\mu(y) = k_n$. We thus refer to this as the concentration of heights result. More precisely, we prove the following.
+
+\begin{proposition}[Concentration of heights]\label{prop:concentration_height_general}
+Let $\alpha > \frac{1}{2}$, $\nu > 0$, $(k_n)_{n \ge 1}$ be any positive sequence such that $k_n \to \infty$ and $k_n = \smallO{n}$. Furthermore, let $\hat{\mu}(y)$ denoting either $\Mu{\BallHyp{y}}$, $\Mu{\BallPon{y}}$ or $\Mu{\BallPo{y}}$. Then for any continuous function $h : \R_+ \rightarrow  \R$, such that $h(y) = \bigO{e^{\beta y}}$ as $y \to \infty$ for some $\beta < \alpha$, it holds that
+\begin{equation}\label{eq:error_bound_int_rho_not_K}
+	\int_0^\infty \hspace{-3pt} h(y) \Prob{\Po(\hat{\mu}(y)) = k_n} \alpha e^{-\alpha y} \dd y
+	\sim \int_{\Kcal_C(k_n)} \hspace{-8pt} h(y) \Prob{\Po(\hat{\mu}(y)) = k_n} \alpha e^{-\alpha y} \dd y,
+\end{equation}
+as $n \to \infty$.
+\end{proposition}
+
+
+The key implication of Proposition~\ref{prop:concentration_height_general} is that if the function $h(y)$ does not increase too fast, then we can restrict integration to the interval $\Kcal_C(y)$. The full details associated with these concentration of heights and the proof of Proposition~\ref{prop:concentration_height_general} can be found in the Section~\ref{sec:concentration_argument} of the Appendix.
+
+%To see this result in action consider the finite box model $\Gbox$. Then 
+%\[
+%	\Exp{\Nbox(k)} = \Exp{\sum_{p \in \Pcal} \ind{\Dbox(p) = k}}
+%	= \int_\Rcal \Prob{\Dbox(p) = k} f(x,y) \dd x \dd y.
+%\]
+ 
+%
+%
+%We use the incarnation below, which can be found in the monograph~\cite{penrose2003random}, as Theorem 1.6.
+%
+%\PvdH{I found it extremely hard to see the implications of this theorem. I therefore strongly recommend using more explicit version, for instance as in the previous version of the paper, or explicitly state the consequences of this result which will be used here.}
+%
+%\begin{theorem}[\cite{penrose2003random}]\label{thm:palm}
+%Let $\Qcal$ be a Poisson process on $\eR^d$ with intensity function $g$, and suppose that $\lambda := \int g < \infty$.
+%Suppose that $h(\Ycal, \Xcal)$ is a bounded measurable function, defined on pairs $(\Ycal,\Xcal)$ with $\Ycal \subseteq \Xcal \subseteq \eR^d$
+%and $\Xcal$ finite, such that $h(\Ycal,\Xcal) = 0$ whenever $|\Ycal| \neq j$ (for some $j \in \eN$).
+%Then
+%\[ \Ee \sum_{\Ycal \subseteq \Qcal} h( \Ycal, \Qcal) = \frac{\lambda^j}{j!} \cdot \Ee h(\{Y_1,\dots, Y_j\}, \{Y_1,\dots, Y_j\} \cup \Qcal ), \]
+%\noindent
+%where the $Y_i$ are i.i.d.~random variables that are independent of $\Pcal$ and have common probability density function
+%$g/\lambda$.
+%\end{theorem}
+
+% Let $\mathcal{Q}$ be a point process on a metric space $S$ with density $\rho$. 
+% Let $\mathcal{N} = \mathcal{N} (\mathcal{S})$ be the set of all countable point configurations in $\mathcal{S}$
+% equipped with the $\sigma$-algebra of the point process (that is, for any open subset 
+% $A\subseteq S$ and any non-negative integer $m$ define a basic measurable subset of 
+% $\mathcal{N}$ which consists of all configurations which have exactly $m$ points in $A$). 
+% Now, let $h : S^{k} \times \mathcal{N} \rightarrow \eR$ be a measurable function. 
+% The Palm theory of Poisson point processes on metric spaces~\cite{bk:LastPenrose} yields: 
+% 
+% \begin{equation} \label{eq:Mecke}
+% \E \left( \sum_{p_1, \ldots, p_k \in {\mathcal Q}, \atop \text{distinct}} h(p_1,\ldots, p_k, \mathcal{Q})  \right) =
+% \int_S \cdots \int_S \E (h(x_1,\ldots, x_k, \mathcal{Q})) d\rho (x_1) \cdots d \rho (x_k),
+% \end{equation} 
+% 
+% where the sum ranges over all those $k$-tuples of points which contain no repetitions. 
+% Note that in the RHS, the points $x_1, \dots, x_k$ are not part of $\Qcal$.
+

@@ -132,494 +132,589 @@ Let $k_n \to \infty$. Then, as $n \to \infty$,
 \]
 \end{corollary}
 
-\subsection{Joint neighbourhoods and degrees in $\Gbox$}
+\subsection{Joint degrees in $\Gbox$}
 
-To prove Proposition~\ref{prop:concentration_tilde_T_P_n} we need to understand the joint degree distribution in $\Gbox$. This subsequently requires us to analyse the joint neighbourhoods in $\Gbox$ of two points $p, p^\prime \in \Rcal$. We start with a general result for near independent Poisson random variables.
+%\begin{lemma}\label{lem:near_independence_poisson}
+%Let $k_n \to \infty$ and $X_1 = \Po(\lambda_1(n))$, $X_2 = \Po(\lambda_2(n))$ and $Y = \Po(\lambda_3(n))$, be three Poisson random variables where $\lambda_3(n) = \bigO{k_n^{1-\varepsilon}}$, for some $0 < \varepsilon < 1$ and for some $C > 0$,
+%\[
+%	k_n - C\sqrt{k_n \log(k_n)} \le \lambda_i(n) + \lambda_3(n) \le k_n + C\sqrt{k_n \log(k_n)},
+%\] 
+%for $i = 1,2$.Then, as $n \to \infty$
+%\[
+%	\Prob{X_1 + Y = k_n, X_2 + Y = k_n} = (1+\smallO{1}) \Prob{X_1 + Y = k_n}\Prob{X_2 + Y = k_n}.
+%\]
+%\end{lemma}
 
-\begin{lemma}\label{lem:near_independence_poisson}
-Let $k_n \to \infty$ and $X_1 = \Po(\lambda_1(n))$, $X_2 = \Po(\lambda_2(n))$ and $Y = \Po(\lambda_3(n))$, be three Poisson random variables where $\lambda_3(n) = \bigO{k_n^{1-\varepsilon}}$, for some $0 < \varepsilon < 1$ and for some $C > 0$,
-\[
-	k_n - C\sqrt{k_n \log(k_n)} \le \lambda_i(n) + \lambda_3(n) \le k_n + C\sqrt{k_n \log(k_n)},
-\] 
-for $i = 1,2$.Then, as $n \to \infty$
-\[
-	\Prob{X_1 + Y = k_n, X_2 + Y = k_n} = (1+\smallO{1}) \Prob{X_1 + Y = k_n}\Prob{X_2 + Y = k_n}.
-\]
-\end{lemma}
+%\begin{proof}
+%First we write
+%\begin{align*}
+%	\Prob{X_1 + Y = k_n, X_2 + Y = k_n} 
+%	&= \sum_{t = 0}^\infty \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t}.
+%\end{align*}
+%Now fix a $C_1 > 0$ and define the set
+%\[
+%	A_n := \left\{t \in \R_+ \, : \, \lambda_3(n) - C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)} \le t 
+%	\le \lambda_3(n) + C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)} \right\}.
+%\]
+%Then by a Chernoff bound (c.f. \eqref{eq:def_chernoff_bound_poisson})
+%\begin{align*}
+%	&\hspace{-20pt}\sum_{t \in \R_+ \setminus A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t}\\
+%	&\le \Prob{Y > \lambda_3(n) + C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)}} 
+%		+ \Prob{Y < \lambda_3(n) - C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)}}\\
+%	&= \Prob{\left|\Po(\lambda_3(n)) - \lambda_3(n)\right| > C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)}} 
+%		\le 2 k_n^{-\frac{C_1}{4}}.
+%\end{align*}
+%and hence
+%\[
+%	\Prob{X_1 + Y = k_n, X_2 + Y = k_n} 
+%	= \sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t} + \bigO{k_n^{-(1+C_1^2)/2}}.
+%\]
+%Next, for $i=1,2$ we have by assumption on $\lambda_i(n) + \lambda_3(n)$ that
+%\begin{align*}
+%	\Prob{X_i + Y = k_n} &\ge \frac{\left(k_n + C\sqrt{k_n \log(k_n)}\right)^{k_n}}{k_n!} 
+%		e^{-\left(k_n + C\sqrt{k_n \log(k_n)}\right)}\\
+%	&\ge e^{-1} k_n^{-1/2} \left(1 + C\sqrt{\frac{\log(k_n)}{k_n}}\right)^{k_n} e^{-C\sqrt{k_n \log(k_n)}}\\
+%	&\ge e^{-1} k_n^{-1/2} e^{k_n \log\left(1 + C\sqrt{\frac{\log(k_n)}{k_n}}\right) -C\sqrt{k_n \log(k_n)}}\\
+%	&\ge e^{-1} k_n^{-1/2} e^{ -\frac{C^2}{2} \log(k_n)} = e^{-1} k_n^{-\frac{1+C^2}{2}}.
+%\end{align*}
+%where we also used that $\log(1+x) \ge x - x^2/2$, for $0\le x \le 1$ and $k_n! \ge e \sqrt{k_n} k_n^{k_n} e^{-k_n}$. Hence, by taking $C_1 > 4(1 + C^2)$ we get that $k_n^{-\frac{C_1}{4}} = \smallO{\Prob{X_1 + Y = k_n}\Prob{X_1 + Y = k_n}}$. It remains to show that 
+%\begin{align*}
+%	&\hspace{-20pt}\sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t}\\
+%	&= (1 + \smallO{1}) \Prob{X_1 + Y = k_n} \Prob{X_2 + Y = k_n}.
+%\end{align*}
+%
+%For this take any $s \in A_n$ so that $|t-s| \le 2 C_1 \sqrt{k_n^{1-\varepsilon}\log(k_n)}$ and note that there exists a $\delta_n$ satisfying $|\delta_n| \le 2C \sqrt{k_n \log(k_n)}$, for $n$ large enough, such that $k_n - t = \lambda_1(n) + \delta_n$. It then follows that, uniformly in $t,s$ and $\delta_n$, as $n \to \infty$
+%\begin{align*}
+%	\frac{\Prob{X_2 = k_n - t}}{\Prob{X_2 = k_n - s}}
+%	&= \frac{\Prob{X_2 = k_n - t}}{\Prob{X_2 = k_n - t - (s - t)}}\\
+%	&= \frac{(k_n - t - (s-t))!}{(k_n - t)!} \lambda_1(n)^{s - t} \\
+%	&\sim (k_n - t - (s-t))^{-(s-t)} \lambda_1(n)^{s-t} \\
+%	&= \left(\lambda_1(n) + \delta_n - (s-t)\right)^{-(s-t)}\lambda_1(n)^{s-t}\\
+%	&= \left(1 + \frac{\delta_n -(s-t)}{\lambda_1(n)}\right)^{s-t}\\
+%	&\sim e^{\frac{(s-t)\delta_n}{\lambda_1(n)}} e^{-\frac{(s-t)^2}{\lambda_1(n)}} \sim 1,
+%\end{align*}
+%where the last line follows since both $\frac{(s-t)\delta_n}{\lambda_1(n)} \to 0$ and $\frac{(s-t)^2}{\lambda_1(n)} \to 0$ as $n \to \infty$. In particular,
+%\[
+%	\Prob{X_2 = k_n - t} = (1+\smallO{1}) \Prob{X_2 = k_n - s},
+%\] 
+%uniformly for all $t, s \in A_n$ and therefore, since
+%\[
+%	1 = \sum_{s = 0}^\infty \Prob{Y = s} = (1+\smallO{1}) \sum_{s \in A_n} \Prob{Y = s},
+%\]
+%we conclude that
+%\begin{align*}
+%	&\hspace{-20pt}\sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t}\\
+%	&= (1+\smallO{1}) \sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t} \sum_{s \in A_n} \Prob{Y = s}\\
+%	&= (1 + \smallO{1}) \sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{Y = t} 
+%		\sum_{s \in A_n} \Prob{X_2 = k_n - s} \Prob{Y = s}\\
+%	&= (1 + \smallO{1}) \Prob{X_1 + Y = k_n} \Prob{X_2 + Y = k_n},
+%\end{align*}
+%from which the result follows.
+%\end{proof}
 
-\begin{proof}
-First we write
-\begin{align*}
-	\Prob{X_1 + Y = k_n, X_2 + Y = k_n} 
-	&= \sum_{t = 0}^\infty \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t}.
-\end{align*}
-Now fix a $C_1 > 0$ and define the set
-\[
-	A_n := \left\{t \in \R_+ \, : \, \lambda_3(n) - C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)} \le t 
-	\le \lambda_3(n) + C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)} \right\}.
-\]
-Then by a Chernoff bound (c.f. \eqref{eq:def_chernoff_bound_poisson})
-\begin{align*}
-	&\hspace{-20pt}\sum_{t \in \R_+ \setminus A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t}\\
-	&\le \Prob{Y > \lambda_3(n) + C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)}} 
-		+ \Prob{Y < \lambda_3(n) - C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)}}\\
-	&= \Prob{\left|\Po(\lambda_3(n)) - \lambda_3(n)\right| > C_1\sqrt{k_n^{1-\varepsilon}\log(k_n)}} 
-		\le 2 k_n^{-\frac{C_1}{4}}.
-\end{align*}
-and hence
-\[
-	\Prob{X_1 + Y = k_n, X_2 + Y = k_n} 
-	= \sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t} + \bigO{k_n^{-(1+C_1^2)/2}}.
-\]
-Next, for $i=1,2$ we have by assumption on $\lambda_i(n) + \lambda_3(n)$ that
-\begin{align*}
-	\Prob{X_i + Y = k_n} &\ge \frac{\left(k_n + C\sqrt{k_n \log(k_n)}\right)^{k_n}}{k_n!} 
-		e^{-\left(k_n + C\sqrt{k_n \log(k_n)}\right)}\\
-	&\ge e^{-1} k_n^{-1/2} \left(1 + C\sqrt{\frac{\log(k_n)}{k_n}}\right)^{k_n} e^{-C\sqrt{k_n \log(k_n)}}\\
-	&\ge e^{-1} k_n^{-1/2} e^{k_n \log\left(1 + C\sqrt{\frac{\log(k_n)}{k_n}}\right) -C\sqrt{k_n \log(k_n)}}\\
-	&\ge e^{-1} k_n^{-1/2} e^{ -\frac{C^2}{2} \log(k_n)} = e^{-1} k_n^{-\frac{1+C^2}{2}}.
-\end{align*}
-where we also used that $\log(1+x) \ge x - x^2/2$, for $0\le x \le 1$ and $k_n! \ge e \sqrt{k_n} k_n^{k_n} e^{-k_n}$. Hence, by taking $C_1 > 4(1 + C^2)$ we get that $k_n^{-\frac{C_1}{4}} = \smallO{\Prob{X_1 + Y = k_n}\Prob{X_1 + Y = k_n}}$. It remains to show that 
-\begin{align*}
-	&\hspace{-20pt}\sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t}\\
-	&= (1 + \smallO{1}) \Prob{X_1 + Y = k_n} \Prob{X_2 + Y = k_n}.
-\end{align*}
-
-For this take any $s \in A_n$ so that $|t-s| \le 2 C_1 \sqrt{k_n^{1-\varepsilon}\log(k_n)}$ and note that there exists a $\delta_n$ satisfying $|\delta_n| \le 2C \sqrt{k_n \log(k_n)}$, for $n$ large enough, such that $k_n - t = \lambda_1(n) + \delta_n$. It then follows that, uniformly in $t,s$ and $\delta_n$, as $n \to \infty$
-\begin{align*}
-	\frac{\Prob{X_2 = k_n - t}}{\Prob{X_2 = k_n - s}}
-	&= \frac{\Prob{X_2 = k_n - t}}{\Prob{X_2 = k_n - t - (s - t)}}\\
-	&= \frac{(k_n - t - (s-t))!}{(k_n - t)!} \lambda_1(n)^{s - t} \\
-	&\sim (k_n - t - (s-t))^{-(s-t)} \lambda_1(n)^{s-t} \\
-	&= \left(\lambda_1(n) + \delta_n - (s-t)\right)^{-(s-t)}\lambda_1(n)^{s-t}\\
-	&= \left(1 + \frac{\delta_n -(s-t)}{\lambda_1(n)}\right)^{s-t}\\
-	&\sim e^{\frac{(s-t)\delta_n}{\lambda_1(n)}} e^{-\frac{(s-t)^2}{\lambda_1(n)}} \sim 1,
-\end{align*}
-where the last line follows since both $\frac{(s-t)\delta_n}{\lambda_1(n)} \to 0$ and $\frac{(s-t)^2}{\lambda_1(n)} \to 0$ as $n \to \infty$. In particular,
-\[
-	\Prob{X_2 = k_n - t} = (1+\smallO{1}) \Prob{X_2 = k_n - s},
-\] 
-uniformly for all $t, s \in A_n$ and therefore, since
-\[
-	1 = \sum_{s = 0}^\infty \Prob{Y = s} = (1+\smallO{1}) \sum_{s \in A_n} \Prob{Y = s},
-\]
-we conclude that
-\begin{align*}
-	&\hspace{-20pt}\sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t}\\
-	&= (1+\smallO{1}) \sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{X_2 = k_n - t}\Prob{Y = t} \sum_{s \in A_n} \Prob{Y = s}\\
-	&= (1 + \smallO{1}) \sum_{t \in A_n} \Prob{X_1 = k_n - t}\Prob{Y = t} 
-		\sum_{s \in A_n} \Prob{X_2 = k_n - s} \Prob{Y = s}\\
-	&= (1 + \smallO{1}) \Prob{X_1 + Y = k_n} \Prob{X_2 + Y = k_n},
-\end{align*}
-from which the result follows.
-\end{proof}
-
-To see how this lemma can be applied to analyze the joint degree distribution in $\Gbox$, fix two points $p,p^\prime \in \Rcal$ and denote by 
-\begin{equation}\label{eq:def_joint_degree_distribution}
+To prove Proposition~\ref{prop:concentration_tilde_T_P_n} will use results from Section~\ref{ssec:joint_degrees_GPo} regarding the joint degree distribution in $\Gbox$. For any two points $p,p^\prime \in \Rcal$ we will denote by 
+\begin{equation}\label{eq:def_joint_degree_distribution_2}
 	\rho_{\text{box}}(p,p^\prime,k,k^\prime) 
 	:= \Prob{\Po\left(\Mu{\BallPon{p}}\right) = k, \Po\left(\Mu{\BallPon{p^\prime}}\right) = k^\prime}.
 \end{equation}
-the joint degree distribution. Then if we define,
-\begin{align*}
-	X_1(p,p^\prime) &:= \Po\left(\Mu{\BallPon{p}\setminus \BallPon{p^\prime}}\right),\\
-	X_2(p,p^\prime) &:= \Po\left(\Mu{\BallPon{p^\prime}\setminus \BallPon{p}}\right),\\
-	Y(p,p^\prime) &:= \Po\left(\Mu{\BallPon{p} \cap \BallPon{p^\prime}}\right)
-\end{align*}
-it follows that
-\[
-	\rho_{\text{box}}(p,p^\prime,k_n,k_n) = \Prob{X_1(p,p^\prime) + Y(p,p^\prime) = k_n, X_2(p,p^\prime) + Y(p,p^\prime) = k_n}.
-\]
-Now, if $y,y^\prime \in \Kcal_{C}(k_n)$ the three Poisson random variables defined above satisfy the condition of Lemma~\ref{lem:near_independence_poisson} regarding the sum $\lambda_i(n) + \lambda_3(n)$. Therefore, if in addition $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon}}$, for some $0 < \varepsilon < 1$, we have that 
-\[
-	\rho_{\text{box}}(p,p^\prime,k_n,k_n) = (1+\smallO{1})\rho_{\text{box}}(p,k_n)\rho_{\text{box}}(p^\prime,k_n). 
-\]
+the joint degree distribution.
 
-To make this more precise, we define, for any $0 < \varepsilon < 1$, the following set
-\begin{equation}\label{eq:def_joint_degree_set_E_growing_k}
-	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \Rcal \times \Rcal
-		\, : \, y,y^\prime \in \Kcal_{C}(k_n) \text{ and } |x - x^\prime|_n > k_n^{1 + \varepsilon} \right\}, 
-\end{equation}
-where $|x|_n = \min\{|x|, \pi e^{R/2} - |x|\}$ denotes the norm on the finite box $\Rcal$ where the left and right boundaries are identified. We will show (see Corollary~\ref{cor:expected_common_neighbours_Ecal_set}) that for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ it holds that $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon}}$ and hence the joint degree distribution factorizes on this set. We will use this set later in Section~\ref{ssec:concentration_tilde_T} to prove Proposition~\ref{prop:concentration_tilde_T_P_n}. The main idea behind the above result is that if $p$ and $p^\prime$ are sufficiently separated in the $x$-direction, then the overlap of their neighbourhoods $\BallPon{p} \cap \BallPon{p^\prime}$ is of smaller order than $\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}$. We shall therefore proceed with analyzing the joint neighbourhoods in $\Gbox$.
+%hen if we define,
+%\begin{align*}
+%	X_1(p,p^\prime) &:= \Po\left(\Mu{\BallPon{p}\setminus \BallPon{p^\prime}}\right),\\
+%	X_2(p,p^\prime) &:= \Po\left(\Mu{\BallPon{p^\prime}\setminus \BallPon{p}}\right),\\
+%	Y(p,p^\prime) &:= \Po\left(\Mu{\BallPon{p} \cap \BallPon{p^\prime}}\right)
+%\end{align*}
+%it follows that
+%\[
+%	\rho_{\text{box}}(p,p^\prime,k_n,k_n) = \Prob{X_1(p,p^\prime) + Y(p,p^\prime) = k_n, X_2(p,p^\prime) + Y(p,p^\prime) = k_n}.
+%\]
+%Now, if $y,y^\prime \in \Kcal_{C}(k_n)$ the three Poisson random variables defined above satisfy the condition of Lemma~\ref{lem:near_independence_poisson} regarding the sum $\lambda_i(n) + \lambda_3(n)$. Therefore, if in addition $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon}}$, for some $0 < \varepsilon < 1$, we have that 
+%\[
+%	\rho_{\text{box}}(p,p^\prime,k_n,k_n) = (1+\smallO{1})\rho_{\text{box}}(p,k_n)\rho_{\text{box}}(p^\prime,k_n). 
+%\]
+%
+%To make this more precise, we define, for any $0 < \varepsilon < 1$, the following set
+%\begin{equation}\label{eq:def_joint_degree_set_E_growing_k}
+%	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \Rcal \times \Rcal
+%		\, : \, y,y^\prime \in \Kcal_{C}(k_n) \text{ and } |x - x^\prime|_n > k_n^{1 + \varepsilon} \right\}, 
+%\end{equation}
+%where $|x|_n = \min\{|x|, \pi e^{R/2} - |x|\}$ denotes the norm on the finite box $\Rcal$ where the left and right boundaries are identified. We will show (see Corollary~\ref{cor:expected_common_neighbours_Ecal_set}) that for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ it holds that $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon}}$ and hence the joint degree distribution factorizes on this set. We will use this set later in Section~\ref{ssec:concentration_tilde_T} to prove Proposition~\ref{prop:concentration_tilde_T_P_n}. The main idea behind the above result is that if $p$ and $p^\prime$ are sufficiently separated in the $x$-direction, then the overlap of their neighbourhoods $\BallPon{p} \cap \BallPon{p^\prime}$ is of smaller order than $\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}$. We shall therefore proceed with analyzing the joint neighbourhoods in $\Gbox$.
 %
 %
 %The following result shows that for any two points in the set
 %
 %The two main results, which will be the crucial technical ingredients for the proof of Proposition~\ref{prop:concentration_tilde_T_P_n}, are Lemma~\ref{lem:joint_degree_factorization} and Lemma~\ref{lem:joint_degree_distribution_shift}.
 
-\subsubsection*{Common neighbourhoods}
-
-Let $p, p^\prime \in \Rcal$ and denote by
-%Then we denote by $\Ncal_{\text{box}}(p\Delta p^\prime)$ the number of disjoint neighbours of $p$ and $p^\prime$ in $\Gbox$, i.e. those points that belong to either $\BallPon{p}$ or $\BallPon{p^\prime}$ but not to their intersection. In addition we denote by 
-$\Ncal_{\text{box}}(p,p^\prime)$ the number of common neighbours of $p$ and $p^\prime$. We shall establish an upper bound on the expected number of joint neighbours when $p$ and $p^\prime$ are sufficiently separated. Observe that $\Exp{\Ncal_{\text{box}}(p,p^\prime)} = \Mu{\BallPon{p} \cap \BallPon{p^\prime}}$. 
-
-%as well as an asymptotic expression for the expected number points in the joint neighbourhood. For this we will distinguish between the cases where the distance between the $x$-coordinates of $p$ and $p^\prime$ is small or large. Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n}-\ref{fig:representation_disjoint_neighbourhoods_P_n_3} show the different situations that occur.
+%\subsubsection*{Common neighbourhoods}
 %
-%\begin{figure}[p]
-%\centering
-%\begin{tikzpicture}
-%	
-%	%The box \Rcal
-%	\draw[line width=1pt] (-6,0) -- (6,0) -- (6,4) -- (-6,4) -- (-6,0);
+%Let $p, p^\prime \in \Rcal$ and denote by
+%%Then we denote by $\Ncal_{\text{box}}(p\Delta p^\prime)$ the number of disjoint neighbours of $p$ and $p^\prime$ in $\Gbox$, i.e. those points that belong to either $\BallPon{p}$ or $\BallPon{p^\prime}$ but not to their intersection. In addition we denote by 
+%$\Ncal_{\text{box}}(p,p^\prime)$ the number of common neighbours of $p$ and $p^\prime$. We shall establish an upper bound on the expected number of joint neighbours when $p$ and $p^\prime$ are sufficiently separated. Observe that $\Exp{\Ncal_{\text{box}}(p,p^\prime)} = \Mu{\BallPon{p} \cap \BallPon{p^\prime}}$. 
 %
-%    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (0,1) {};
-%    \draw node at (-0.2,0.7) {$p$};
-%    
-%    \draw node[fill,blue, circle, inner sep=0pt, minimum size=5pt] at (1,0.5) {};
-%    \draw node at (0.8,0.2) {\color{blue}$p^\prime$};
-%	
-%	\draw[domain=1.6487:6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(\x)-1});
-%    \draw[domain=-1.6487:-6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(-\x)-1});
-%    \draw[domain=2.2840:6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x-1)-0.5});
-%    \draw[domain=-0.2840:-6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(1-\x)-0.5});
-%    
-%    \draw[dashed,thick,black,line width=1pt] (-6,2.5835) -- (6,2.5835);
-%    
-%    \draw node at (-7,2.5835) {$h(y)$};
-%    \draw node at (-7,3.3918) {\color{blue}$h_1(p^\prime)$};
-%    \draw node at (7,2.7189) {\color{blue}$h_2(p^\prime)$};
-%    
-%    \draw node at (-4,3.5) {\color{blue}$x_1 = x^\prime - e^{\frac{y^\prime + y_1}{2}}$};
-%    \draw node at (4.5,3) {\color{blue}$x_1 = x^\prime + e^{\frac{y^\prime + y_1}{2}}$};
-%    \draw node at (-4.5,1) {$x_1 = x - e^{\frac{y + y_1}{2}}$};
-%    \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
-%
-%\end{tikzpicture}
-%\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x-x^\prime| \le e^{\frac{y + y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbours_P_n} and Lemma~\ref{lem:common_neighbours_Pcal_n}.}
-%\label{fig:representation_disjoint_neighbourhoods_P_n}
-%\end{figure}~
-%\begin{figure}[p]
-%\centering
-%\begin{tikzpicture}
-%	
-%	%The box \Rcal
-%	\draw[line width=1pt] (-6,0) -- (6,0) -- (6,4) -- (-6,4) -- (-6,0);
-%
-%    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (0,1) {};
-%    \draw node at (-0.2,0.7) {$p$};
-%    
-%    \draw node[fill,blue, circle, inner sep=0pt, minimum size=5pt] at (2.5,0.5) {};
-%    \draw node at (2.3,0.2) {\color{blue}$p^\prime$};
-%	
-%	\draw[domain=1.6487:6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(\x)-1});
-%    \draw[domain=-1.6487:-6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(-\x)-1});
-%    \draw[domain=3.7840:6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x-2.5)-0.5});
-%    \draw[domain=1.2160:-6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(2.5-\x)-0.5});
-%    \draw[domain=0:-6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x+9.5)-0.5});
-%    
-%    \draw[dashed,black,line width=1pt] (-6,2.0055) -- (6,2.0055);
-%    
+%%as well as an asymptotic expression for the expected number points in the joint neighbourhood. For this we will distinguish between the cases where the distance between the $x$-coordinates of $p$ and $p^\prime$ is small or large. Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n}-\ref{fig:representation_disjoint_neighbourhoods_P_n_3} show the different situations that occur.
+%%
+%%\begin{figure}[p]
+%%\centering
+%%\begin{tikzpicture}
+%%	
+%%	%The box \Rcal
+%%	\draw[line width=1pt] (-6,0) -- (6,0) -- (6,4) -- (-6,4) -- (-6,0);
+%%
+%%    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (0,1) {};
+%%    \draw node at (-0.2,0.7) {$p$};
+%%    
+%%    \draw node[fill,blue, circle, inner sep=0pt, minimum size=5pt] at (1,0.5) {};
+%%    \draw node at (0.8,0.2) {\color{blue}$p^\prime$};
+%%	
+%%	\draw[domain=1.6487:6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(\x)-1});
+%%    \draw[domain=-1.6487:-6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(-\x)-1});
+%%    \draw[domain=2.2840:6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x-1)-0.5});
+%%    \draw[domain=-0.2840:-6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(1-\x)-0.5});
+%%    
+%%    \draw[dashed,thick,black,line width=1pt] (-6,2.5835) -- (6,2.5835);
+%%    
 %%    \draw node at (-7,2.5835) {$h(y)$};
-%    \draw node at (-7,3.7801) {\color{blue}$h_1(p^\prime)$};
-%    \draw node at (7,2.0055) {\color{blue}$h_2(p^\prime)$};
+%%    \draw node at (-7,3.3918) {\color{blue}$h_1(p^\prime)$};
+%%    \draw node at (7,2.7189) {\color{blue}$h_2(p^\prime)$};
+%%    
+%%    \draw node at (-4,3.5) {\color{blue}$x_1 = x^\prime - e^{\frac{y^\prime + y_1}{2}}$};
+%%    \draw node at (4.5,3) {\color{blue}$x_1 = x^\prime + e^{\frac{y^\prime + y_1}{2}}$};
+%%    \draw node at (-4.5,1) {$x_1 = x - e^{\frac{y + y_1}{2}}$};
+%%    \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
+%%
+%%\end{tikzpicture}
+%%\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x-x^\prime| \le e^{\frac{y + y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbours_P_n} and Lemma~\ref{lem:common_neighbours_Pcal_n}.}
+%%\label{fig:representation_disjoint_neighbourhoods_P_n}
+%%\end{figure}~
+%%\begin{figure}[p]
+%%\centering
+%%\begin{tikzpicture}
+%%	
+%%	%The box \Rcal
+%%	\draw[line width=1pt] (-6,0) -- (6,0) -- (6,4) -- (-6,4) -- (-6,0);
+%%
+%%    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (0,1) {};
+%%    \draw node at (-0.2,0.7) {$p$};
+%%    
+%%    \draw node[fill,blue, circle, inner sep=0pt, minimum size=5pt] at (2.5,0.5) {};
+%%    \draw node at (2.3,0.2) {\color{blue}$p^\prime$};
+%%	
+%%	\draw[domain=1.6487:6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(\x)-1});
+%%    \draw[domain=-1.6487:-6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(-\x)-1});
+%%    \draw[domain=3.7840:6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x-2.5)-0.5});
+%%    \draw[domain=1.2160:-6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(2.5-\x)-0.5});
+%%    \draw[domain=0:-6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x+9.5)-0.5});
+%%    
+%%    \draw[dashed,black,line width=1pt] (-6,2.0055) -- (6,2.0055);
+%%    
+%%%    \draw node at (-7,2.5835) {$h(y)$};
+%%    \draw node at (-7,3.7801) {\color{blue}$h_1(p^\prime)$};
+%%    \draw node at (7,2.0055) {\color{blue}$h_2(p^\prime)$};
+%%    
+%%%    \draw[dotted,thick,black] (4.5208,2.0174) -- (4.5208,0);
+%%%    \draw[dotted,thick,black] (4.5208,2.0174) -- (6,2.0174);
+%%    
+%%%    \draw node at (4.5208,-0.5) {$w_x(p,p^\prime)$};
+%%%    \draw node at (7,2.0174) {$w_y(p,p^\prime)$};
+%%    
+%%    \draw node at (0,3.5) {\color{blue}$x_1 = x^\prime + e^{\frac{y^\prime + y_1}{2}}$};
+%%    \draw node at (-2,1.6) {\color{blue}$x_1 = x^\prime - e^{\frac{y^\prime + y_1}{2}}$};
+%%    \draw node at (-4.5,1) {$x_1 = x - e^{\frac{y + y_1}{2}}$};
+%%    \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
+%%
+%%\end{tikzpicture}
+%%\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ when $e^{\frac{y + y^\prime}{2}} < |x - x^\prime| \le e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbours_P_n} and Lemma~\ref{lem:common_neighbours_Pcal_n}.}
+%%\label{fig:representation_disjoint_neighbourhoods_P_n_2}
+%%\end{figure}~
+%
+%\begin{figure}[!ht]
+%\centering
+%\begin{tikzpicture}
+%	
+%
+%	\pgfmathsetmacro{\u}{0} %0
+%	\pgfmathsetmacro{\v}{1} %1
+%	\pgfmathsetmacro{\uu}{4.5} %1.4
+%	\pgfmathsetmacro{\vv}{0.5} %0.8
+%	\pgfmathsetmacro{\r}{6}
+%	\pgfmathsetmacro{\t}{4}
+%	
+%	%The box \Rcal
+%	\draw[line width=1pt] (-\r,0) -- (\r,0) -- (\r,\t) -- (-\r,\t) -- (-\r,0);
+%	
+%    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (\u,\v) {};
+%    \draw node at (-0.2,1.3) {$p$};
 %    
+%    \draw node[fill,blue, circle, inner sep=0pt, minimum size=5pt] at (\uu,\vv) {};
+%    \draw node at (4.3,0.2) {\color{blue}$p^\prime$};
+%	
+%	\draw[domain=1.6487:6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(\x)-1});
+%    \draw[domain=-1.6487:-6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(-\x)-1});
+%    \draw[domain=5.7840:6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x-4.5)-0.5});
+%    \draw[domain=3.2160:-5,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(4.5-\x)-0.5});
+%    \draw[domain=2:-6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x+7.5)-0.5});
+%    
+%    
+%    
+%    \draw [decorate,decoration={brace},line width=1pt] (3.2160,-0.1) -- (1.6487,-0.1);
+%    \draw node at (2.5,-0.45) {$d(p,p^\prime)$};
+%    
+%%    \draw [dotted,line width=1pt] (2.5298,0.8563) -- (2.5298,1.7);
+%%    \draw node at (2.5298,2) {$\hat{x}(p,p^\prime)$};
+%    
+%    %Define intersection left black and shifted blue curve
+%    \pgfmathsetmacro{\vast}{2*ln((2*\r - \uu)/(exp(\v/2) + exp(\vv/2)))}
+%    \pgfmathsetmacro{\uast}{(\uu - 2*\r)/(1+exp((\vv-\v)/2))}
+%    %Define intersection right black and left blue curve
+%    \pgfmathsetmacro{\vvast}{2*ln((\uu)/(exp(\v/2) + exp(\vv/2)))}
+%    \pgfmathsetmacro{\uuast}{(\u*exp(\vv/2) + \uu*exp(\v/2))/(exp(\v/2) + exp(\vv/2))}
+%    \pgfmathsetmacro{\h}{2*ln(\r)-\v}
 %%    \draw[dotted,thick,black] (4.5208,2.0174) -- (4.5208,0);
 %%    \draw[dotted,thick,black] (4.5208,2.0174) -- (6,2.0174);
 %    
 %%    \draw node at (4.5208,-0.5) {$w_x(p,p^\prime)$};
 %%    \draw node at (7,2.0174) {$w_y(p,p^\prime)$};
 %    
-%    \draw node at (0,3.5) {\color{blue}$x_1 = x^\prime + e^{\frac{y^\prime + y_1}{2}}$};
-%    \draw node at (-2,1.6) {\color{blue}$x_1 = x^\prime - e^{\frac{y^\prime + y_1}{2}}$};
-%    \draw node at (-4.5,1) {$x_1 = x - e^{\frac{y + y_1}{2}}$};
-%    \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
+%    \draw node at (\r+0.5,\h) {$h(y)$};
+%    
+%    \draw node at (2.3,3.6) {\color{blue}$x_1 = x^\prime + e^{\frac{y^\prime + y_1}{2}}$};
+%    \draw node at (-1,2) {\color{blue}$x_1 = x^\prime - e^{\frac{y^\prime + y_1}{2}}$};
+%    \draw node at (-4.5,2.9) {$x_1 = x - e^{\frac{y + y_1}{2}}$};
+%    \draw node at (4.5,2.9) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
+%	
+%	
+%	\draw[dashed,black,line width=1pt] (-\r,\vast) -- (\uast,\vast);
+%	\draw node at (-\r-1,\vast) {\color{black}$\hat{y}_{\text{left}}(p,p^\prime)$};
+%	\draw[dashed,line width=1pt] (\uast,\vast) -- (\uast,0);
+%	\draw node at (\uast,-0.5) {$\hat{x}_{\text{left}}(p,p^\prime)$};
 %
+%	\draw[dashed,black,line width=1pt] (-\r,\vvast) -- (\r,\vvast);
+%	\draw node at (\r+1,\vvast) {\color{black}$\hat{y}_{\text{right}}(p,p^\prime)$};
+%	\draw[dashed,line width=1pt] (\uuast,\vvast) -- (\uuast,\vvast+1);
+%	\draw node at (\uuast,\vvast+1.2) {$\hat{x}_{\text{right}}(p,p^\prime)$};
+%	
+%	
 %\end{tikzpicture}
-%\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ when $e^{\frac{y + y^\prime}{2}} < |x - x^\prime| \le e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma~\ref{lem:disjoint_neighbours_P_n} and Lemma~\ref{lem:common_neighbours_Pcal_n}.}
-%\label{fig:representation_disjoint_neighbourhoods_P_n_2}
-%\end{figure}~
+%\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma \ref{lem:common_neighbours_Pcal_n}. Note that although here $p^\prime \notin \BallPon{p}$, this is not true in general. This situation was merely chosen to improve readability of the figure.}
+%\label{fig:representation_disjoint_neighbourhoods_P_n_3}
+%\end{figure}
+%
+%
+%We start by analyzing the shape of joint neighbourhood. Due to symmetry and the fact that we have identified the left and right boundaries of the box $\Rcal$, we can, without loss of generality, assume that $p = (0,y)$ and $p^\prime = (x^\prime,y^\prime)$ with $x^\prime > 0$. To understand the computation it is helpful to have a picture. Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3} shows such an example. There are several different quantities that are important. The first are the heights where the left and right boundaries of the ball $\BallPon{p}$ hit the boundaries of the box $\Rcal$. Since $x = 0$ these heights are the same and we denote their common value by $h(y)$. We also need to know the coordinates $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ of the intersection of the right boundary of the neighbourhood of $p$ with the left boundary of the neighbourhood of $p^\prime$ and those for the intersection of the left boundary of the neighbourhood of $p$ with the right boundary of the neighbourhood of $p^\prime$, which we denote by $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$. Finally we will denote by $d(p,p^\prime)$ the distance between the lower right boundary of $\BallPon{p}$ and the lower left of $\BallPon{p^\prime}$, which is positive only when the bottom parts of both neighbourhoods do not intersect, as is the case in Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3}. The condition $d(p,p^\prime) > 0$ is exactly the right notion for $p$ and $p^\prime$ being sufficiently separated.
+%
+%Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$ correspond to, respectively, $\hat{y}(p,p^\prime)$ and $\hat{x}(p,p^\prime)$ considered in Section~\ref{ssec:missing_triangles}. The derivation of $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ is done in a similar manner and we omit the details here. The full expressions of all these functions are given below for further reference.
+%
+%\begin{align}
+%	h(y) &= R - y + 2\log\left(\frac{\pi}{2}\right) \label{eq:def_height_y_P_n}\\
+%	h_1(p^\prime) &= 2\log\left(x^\prime + \frac{\pi}{2}e^{\frac{R}{2}}\right) - y^\prime \label{eq:def_height_left_P_n} \\
+%	h_2(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{\frac{R}{2}} - x^\prime\right) - y^\prime 
+%		\label{eq:def_height_right_P_n} \\
+%%	\iota_x(p,p^\prime) &= \frac{(x^\prime-x)e^{\frac{y}{2}}}{e^{\frac{y}{2}} - e^{\frac{y^\prime}{2}}}
+%%		\label{eq:def_x_intersection_close_boundaries}\\
+%%	\iota_y(p,p^\prime) &= 2\log\left(\frac{x^\prime - x}{e^{\frac{y}{2}} - e^{\frac{y^\prime}{2}}}\right)
+%%		\label{eq:def_y_intersection_close_boundaries}\\
+%	\hat{y}_{\text{right}}(p,p^\prime) &= 2\log\left(\frac{x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)\\
+%	\hat{x}_{\text{right}}(p,p^\prime) &= \frac{x^\prime}{1 + 	
+%		e^{\frac{y^\prime - y}{2}}},\\
+%	\hat{y}_{\text{left}}(p,p^\prime) &= 2 \log\left(\frac{\pi e^{R/2} - x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right),\\
+%	\hat{x}_{\text{left}}(p,p^\prime) &= \frac{x^\prime - \pi e^{R/2}}{1 + e^{\frac{y^\prime - y}{2}}}, \\
+%	d(p,p^\prime) &= |x - x^\prime|_n - \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right).
+%	\label{eq:def_d_p_p_prime}
+%\end{align}
+%
+%The following result shows that if $d(p,p^\prime) > 0$, then the expected number of common neighbours is $\smallO{\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}}$.
+%
+%\begin{lemma}\label{lem:common_neighbours_Pcal_n}
+%Let $p, p^\prime \in \Rcal$. Then, whenever $|x - x^\prime|_n > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)$,
+%\[
+%	\Exp{\Ncal_{\text{box}}(p,p^\prime)} \le \Mu{\BallPon{p}}
+%	\left(\left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)}  
+%	+ \frac{\nu}{\xi} e^{-(\alpha - \frac{1}{2})(R-y)}\right).
+%\]
+%\end{lemma}
+%
+%\begin{proof}
+%Again, without loss of generality we assume that $p = p_0 = (0,y)$ and $p^\prime = (x^\prime, y^\prime)$ with $0 \le x^\prime \le \frac{\pi}{2} e^{R/2}$. Note that since $0 < x^\prime \le \frac{\pi}{2} e^{R/2}$,$ \hat{y}_{\mathrm{right}}(p,p^\prime) \le \hat{y}_{\mathrm{left}}(p,p^\prime)$. We write $\hat{y}$ for $\hat{y}_{\mathrm{right}}(p,p^\prime)$ and observe that below $\hat{y}$ the balls $\BallPon{p}$ and $\BallPon{p^\prime}$ are disjoint. Therefore, if we define
+%\begin{align*}
+%	A &:= \left\{p_1 = (x_1,y_1) \in \Rcal \cap \BallPon{p} \, : \, y_1 \ge \hat{y} \right\},
+%\end{align*}
+%then
+%\[
+%	\Exp{\Ncal_{\text{box}}(p,p^\prime)} \le \Mu{A}.
+%\]
+%We proceed with computing the right hand side
+%\begin{align*}
+%	\Mu{A} &= \int_{\hat{y}}^{h(y)} 
+%		\int_{- e^{\frac{y + y_1}{2}}}^{e^{\frac{y^\prime+y_1}{2}}} 
+%		f(x_1,y_1) \dd x_1 \dd y_1
+%		+ \int_{h(y)}^{R} \int_{-\frac{\pi}{2}e^{R/2}}^{\frac{\pi}{2} e^{R/2}} 
+%		\hspace{-10pt}  f(x_1,y_1) \dd x_1 \dd y_1 \\
+%	&= \frac{2\alpha \nu}{\pi}e^{\frac{y}{2}}
+%		\int_{\hat{y}}^{h(y)} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1 
+%		+ \alpha \nu e^{R/2} \int_{h(y)}^R e^{-\alpha y_1} \dd y_1\\
+%	&\le \xi\left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right) e^{-(\alpha-\frac{1}{2})\hat{y}}
+%		+ \nu e^{R/2} e^{-\alpha h(y)} \\
+%	&= \Mu{\BallPon{p}}\left(
+%		e^{-(\alpha-\frac{1}{2})\hat{y}} + \frac{\nu}{\xi} e^{-(\alpha - \frac{1}{2})(R-y)}\right).
+%\end{align*}
+%%Consider the following two areas
+%%\begin{align*}
+%%	A_1 &:= \left\{p_1 = (x_1,y_1) \in \Rcal \, : \, y_1 \ge \hat{y}_{\text{left}}(p_0,p^\prime), \, 
+%%		-\frac{\pi}{2} e^{R/2} \vee - e^{\frac{y + y_1}{2}} \le x_1 \le x^\prime + e^{\frac{y^\prime + y_2}{2}} - \pi e^{R/2} \right\}\\
+%%	A_2 &:= \left\{p_1 = (x_1,y_1) \in \Rcal \, : \, y_1 \ge \hat{y}_{\text{right}}(p_0,p^\prime), \,
+%%			x^\prime - e^{\frac{y^\prime + y_1}{2}} \le x_1 \le \frac{\pi}{2} e^{R/2} \wedge e^{\frac{y + y_2}{2}} \right\}.
+%%\end{align*}
+%%That is $A_1$ and $A_2$ describe all points $p_1 \in \BallPon{p_0} \cap \BallPon{p}$ with $y_1 \ge \hat{y}_{\text{left}}(p_0,p^\prime)$ and $y_1 \ge \hat{y}_{\text{right}}(p_0,p^\prime)$, respectively. It now follows that
+%%\[
+%%	\Exp{\Ncal_{\text{box}}(p,p^\prime)} \le \Mu{A_1} + \Mu{A_2},
+%%\]
+%%and we will proceed by computing the measures of both sets. 
+%%
+%%For $A_1$ we have (see also Figure~\ref{fig:comparing_triangles_diff_intersections})
+%%\begin{align*}
+%%	\Mu{A_1} &= \int_{\hat{y}_{\text{left}}(p_0,p^\prime)}^{h(y)} 
+%%		\int_{- e^{\frac{y + y_1}{2}}}^{x^\prime + e^{\frac{y^\prime+y_1}{2}} - \pi e^{R/2}} \hspace{-10pt} 
+%%		f(x_1,y_1) \dd x_1 \dd y_1
+%%		+ \int_{h(y)}^{R} \int_{-\frac{\pi}{2}e^{R/2}}^{x^\prime + e^{\frac{y^\prime+y_1}{2}} - \pi e^{R/2}} 
+%%		\hspace{-10pt}  f(x_1,y_1) \dd x_1 \dd y_1.
+%%\end{align*}
+%%For the first integral we get
+%%\begin{align*}
+%%	&\int_{\hat{y}_{\text{left}}(p_0,p^\prime)}^{h(y)} 
+%%		\int_{- e^{\frac{y + y_1}{2}}}^{x^\prime + e^{\frac{y^\prime+y_1}{2}} - \pi e^{R/2}} \hspace{-10pt} 
+%%		f(x_1,y_1) \dd x_1 \dd y_1\\
+%%	&= \frac{\alpha \nu}{\pi}\left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right) 	
+%%		\int_{\hat{y}_{\text{left}}(p_0,p^\prime)}^{h(y)} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1
+%%		- \frac{\alpha \nu}{\pi}\left(\pi e^{R/2} - x^\prime \right) 
+%%		\int_{\hat{y}_{\text{left}}(p_0,p^\prime)}^{h(y)} e^{-\alpha y_1} \dd y_1\\
+%%	&= \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
+%%		\left(e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{left}}(p_0,p^\prime)}
+%%		- e^{-(\alpha - \frac{1}{2})h(y)}\right)
+%%		- \frac{\nu}{\pi} \left(\pi e^{R/2} - x^\prime\right)
+%%		\left(e^{-\alpha\hat{y}_{\text{left}}(p_0,p^\prime)}
+%%		- e^{-\alpha h(y)}\right).
+%%%	&= \frac{2\alpha \nu}{\pi(2\alpha - 1)}\left(e^{\frac{y}{2}} + e^{\frac{y}{2}}\right)
+%%%		\left(\left(\frac{\pi e^{R/2} - x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)}
+%%%		- \left(\frac{\pi}{2}\right)^{-(2\alpha - 1)} e^{-(2\alpha - 1)(R-y)}\right)\\
+%%%	&\hspace{10pt}- \frac{\nu}{\pi} \left(\pi e^{R/2} - x^\prime\right)
+%%%		\left(\left(\frac{\pi e^{R/2} - x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-2\alpha}
+%%%			- \left(\frac{\pi}{2}\right)^{-2\alpha} e^{-2\alpha(R-y)}\right)
+%%\end{align*}
+%%Similarly, the second integral equals
+%%\begin{align*}
+%%	&\hspace{-20pt}\int_{h(y)}^{R} \int_{-\frac{\pi}{2}e^{R/2}}^{x^\prime + e^{\frac{y^\prime+y_1}{2}} - \pi e^{R/2}} 
+%%		\hspace{-10pt}  f(x_1,y_1) \dd x_1 \dd y_1\\
+%%	&= \xi e^{\frac{y^\prime}{2}}\left(e^{-(\alpha - \frac{1}{2})h(y)} - e^{-(\alpha - \frac{1}{2})R}\right)
+%%		- \frac{\nu}{\pi}\left(\pi e^{R/2} - x^\prime\right)
+%%		\left(e^{-\alpha h(y)}- e^{-\alpha R}\right).
+%%\end{align*}
+%%Adding these expressions yields
+%%\begin{align*}
+%%	\Mu{A_1} &= \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
+%%		e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{left}}(p_0,p^\prime)}
+%%		- \xi e^{\frac{y}{2}} e^{-(\alpha - \frac{1}{2})h(y)}
+%%		- \xi e^{\frac{y^\prime}{2}} e^{-(\alpha-\frac{1}{2})R} \\
+%%	&\hspace{10pt}- \frac{\nu}{\pi} \left(\pi e^{R/2} - x^\prime\right)
+%%		e^{-\alpha\hat{y}_{\text{left}}(p_0,p^\prime)}
+%%		+ \nu e^{R/2}e^{-\alpha h(y)} + \frac{\nu}{\pi}\left(\pi e^{R/2} - x^\prime\right) e^{-\alpha R}\\
+%%	&\le \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
+%%		e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{left}}(p_0,p^\prime)}
+%%		+ \nu e^{R/2}e^{-\alpha h(y)} + \nu e^{-(\alpha - \frac{1}{2}) R}.
+%%\end{align*}
+%%
+%%We now proceed with $A_2$. Here we have
+%%\begin{align*}
+%%	\Mu{A_2} &= \int_{\hat{y}_{\text{right}}(p_0,p^\prime)}^{h(y)} 
+%%		\int_{x^\prime - e^{\frac{y^\prime + y_1}{2}}}^{e^{\frac{y+y_1}{2}}} \hspace{-2pt} 
+%%		f(x_1,y_1) \dd x_1 \dd y_1
+%%		+ \int_{h(y)}^{R} \int_{x^\prime - e^{\frac{y^\prime + y_1}{2}}}^{\frac{\pi}{2}e^{R/2}} 
+%%		\hspace{-2pt}  f(x_1,y_1) \dd x_1 \dd y_1.
+%%\end{align*}
+%%Computing each integral separately we get
+%%\begin{align*}
+%%	&\hspace{-20pt}\int_{\hat{y}_{\text{right}}(p_0,p^\prime)}^{h(y)} 
+%%		\int_{x^\prime - e^{\frac{y^\prime + y_1}{2}}}^{e^{\frac{y+y_1}{2}}} \hspace{-2pt} 
+%%		f(x_1,y_1) \dd x_1 \dd y_1\\
+%%	&= \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
+%%		\left(e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p_0,p^\prime)} 
+%%		- e^{-(\alpha - \frac{1}{2})h(y)}\right) 
+%%		- \frac{\nu}{\pi} x^\prime \left(e^{\alpha \hat{y}_{\text{right}}(p_0,p^\prime)}
+%%		 - e^{-\alpha h(y)}\right), 
+%%\end{align*}
+%%and
+%%\begin{align*}
+%%	&\hspace{-20pt}\int_{h(y)}^{R} \int_{x^\prime - e^{\frac{y^\prime + y_1}{2}}}^{\frac{\pi}{2}e^{R/2}} 
+%%		\hspace{-2pt}  f(x_1,y_1) \dd x_1 \dd y_1\\
+%%	&= \xi e^{\frac{y^\prime}{2}}\left(e^{-(\alpha - \frac{1}{2})h(y)} - e^{-(\alpha - \frac{1}{2})R}\right)
+%%		+ \frac{\nu}{\pi}\left(\frac{\pi}{2}e^{R/2} - x^\prime\right)\left(e^{-\alpha h(y)} - e^{-\alpha R}\right).
+%%\end{align*}
+%%Combining these results we get
+%%\begin{align*}
+%%	\Mu{A_2} &= \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
+%%		e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p_0,p^\prime)} 
+%%		- \xi e^{\frac{y}{2}}e^{-(\alpha - \frac{1}{2})h(y)} 
+%%		- \xi e^{\frac{y^\prime}{2}}e^{-(\alpha - \frac{1}{2})R} \\
+%%	&\hspace{10pt}- \frac{\nu}{\pi} x^\prime e^{-\alpha \hat{y}_{\text{right}}(p_0,p^\prime)}
+%%		+ \frac{\nu}{2} e^{R/2} e^{-\alpha h(y)} - \frac{\nu}{\pi}\left(\frac{\pi}{2}e^{R/2} - x^\prime\right)
+%%		e^{-\alpha R}\\
+%%	&\le \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
+%%		e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p_0,p^\prime)} + \frac{\nu}{2} e^{R/2} e^{-\alpha h(y)}.
+%%\end{align*}
+%%
+%%Finally, by adding the results for $\Mu{A_1}$ and $\Mu{A_2}$ and using that $\xi e^{\frac{y}{2}} = \Mu{\BallPon{p_0}}$ and 
+%%$\xi e^{\frac{y^\prime}{2}} = \Mu{\BallPon{p^\prime}}$, we get
+%%\begin{align*}
+%%	\Exp{\Ncal_{\text{box}}(p,p^\prime)} 
+%%	&\le \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}} \right)
+%%		\left(e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{left}}(p,p^\prime)}
+%%		+ e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p,p^\prime)} \right) \\
+%%	&\hspace{10pt}+ \frac{3\nu}{2}e^{R/2} e^{-\alpha h(y)}
+%%		+ \nu e^{-(\alpha -\frac{1}{2}) R}.
+%%\end{align*}
+%%To finish the argument we recall that $\hat{y}_{\text{left}}(p,p^\prime) \ge \hat{y}_{\text{right}}(p,p^\prime)$ for all $0 \le x^\prime \le \frac{\pi}{2}e^{R/2}$ and that $h(y) = R - y + 2\log(\pi/\nu)$. Hence
+%%\begin{align*}
+%%	&\Exp{\Ncal_{\text{box}}(p,p^\prime)} \\
+%%	&\le \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}} \right) 
+%%		\left(2e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p,p^\prime)} +    
+%%		\frac{3 \nu^{2\alpha + 1}e^{-(\alpha - \frac{1}{2})R} e^{\alpha y}}{2 \pi^{2\alpha}\left(
+%%		e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)}
+%%		+ \frac{\nu e^{-(\alpha - \frac{1}{2})R}}{\xi(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}})}
+%%		\right)
+%%\end{align*}
+%The result follows by plugging in 
+%\[
+%	\hat{y} := \hat{y}_{\text{right}}(p,p^\prime) = 2 \log\left(\frac{x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right),
+%\]
+%and noting that $x^\prime$ is the same as $|x - x^\prime|$, by our generalization step.
+%
+%\end{proof} 
 
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}
-	
+%We also prove a similar result for the Poissonized KPKVB model $\GPo$.
+%
+%\begin{lemma}\label{lem:common_neighbours_KPKVB}
+%Let $0 < \varepsilon < 1$, $p, p^\prime \in \Rcal$ with $y,y^\prime \le (1-\varepsilon)R$ and denote by $\Ncal_{\Po}(p,p^\prime)$ the number of joint neighbours of $p, p^\prime$ in $\GPo$. Then, whenever $|x - x^\prime|_n > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)\left(1 + \frac{\pi^2 K}{4}\right)$,
+%\[
+%	\Exp{\Ncal_{\Po}(p,p^\prime)} \le \Mu{\BallHyp{p}}
+%	\left(e^{(2\alpha - 1)\lambda} \left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)}  
+%	+ \frac{\nu}{\xi} e^{-(\alpha - \frac{1}{2})(R-y)}\right),
+%\]
+%where
+%\[
+%	\lambda = \log\left(1 + \frac{\pi^2 K}{4}\right),
+%\]
+%with $K$ the constant from Lemma~\ref{lem:asymptotics_Omega_hyperbolic}.
+%\end{lemma}
+%
+%\begin{proof}
+%We will proceed in a similar fashion as for Lemma~\ref{lem:common_neighbours_Pcal_n}. That is we will bound the expected number of common neighbours by the number of neighbors of $p$ whose $y$-coordinate is above the intersection of the right boundary of $\BallHyp{p}$ and the left boundary of $\BallHyp{p^\prime}$. Denote by $\hat{y}$ the height of this intersection point. Then
+%\begin{align*}
+%	\Exp{\Ncal_{\Po}(p,p^\prime)} &\le \frac{2\alpha \nu}{\pi} \int_{\hat{y}}^{R-y} \Phi(y,y_1) e^{-\alpha y_1} \dd y_1
+%		+ \alpha \nu e^{R/2} \int_{R-y}^{R} e^{-\alpha y_1} \dd y_1.
+%\end{align*} 
+%The second integral is bounded by $\frac{\nu}{\xi} \Mu{\BallPon{y}} e^{-(\alpha - \frac{1}{2})(R-y)}$. We bound the first integral using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} as
+%\begin{align*}
+%	\frac{2\alpha \nu}{\pi} \int_{\hat{y}}^{R-y} \Phi(y,y_1) e^{-\alpha y_1} \dd y_1
+%	&\le \frac{2\alpha \nu}{\pi} \int_{\hat{y}}^{R-y} \left(e^{\frac{y+y_1}{2}} + K e^{\frac{3}{2}(y + y_1)-R}\right) 
+%		e^{-\alpha y_1} \dd y_1 \\
+%	&\le \frac{2\alpha \nu}{\pi} (1+K)e^{\frac{y}{2}} \int_{\hat{y}}^{R-y} e^{-(\alpha - \frac{1}{2}) y_1} \dd y_1\\
+%	&\le (1 + K)\Mu{\BallPon{p}}  e^{-(\alpha - \frac{1}{2})\hat{y}},
+%\end{align*}
+%where we used that $\frac{3y_1}{2} \le R - y + \frac{y_1}{2}$ for all $y_1 \le R-y$ for the second line. 
+%
+%It remains to compute $\hat{y}$, for which we will establish the following bound
+%\begin{equation}\label{eq:joint_neighbors_KPKVB_intersection}
+%	\hat{y} \ge 2 \log\left(\frac{x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right) - 2\lambda.
+%\end{equation}
+%
+%To show~\eqref{eq:joint_neighbors_KPKVB_intersection} we note that for any point $y_1 \ge \hat{y}$, the corresponding $x$-coordinate of the left boundary of $\BallHyp{p^\prime}$ must be to the left of that of the ball $\BallHyp{p}$, i.e.
+%$x^\prime - \Phi(y^\prime, y_1) \le \Phi(y,y_1)$. Therefore it is enough to show that for all 
+%\[
+%	y_1 \le 2 \log\left(\frac{x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right) - 2\lambda
+%\]
+%it holds that $\Phi(y,y_1) \le x^\prime - \Phi(y^\prime, y_1)$, with $\lambda$ as defined in the statement of the lemma. Note that by assumption on $|x - x^\prime|$ the above upper bound is non-negative. Using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} it suffices to prove that for all such $y_1$,
+%\[
+%	e^{\frac{y + y_1}{2}} + K e^{\frac{3}{2}(y + y_1) - R} \le x^\prime - e^{\frac{y^\prime + y_1}{2}}
+%	- K e^{\frac{3}{2}(y^\prime + y_1) - R},
+%\]
+%which is equivalent to
+%\[
+%	\left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right) e^{\frac{y_1}{2}} 
+%	+ K e^{-R} \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)^3 e^{\frac{3 y_1}{2}} \le x^\prime.
+%\]
+%Plugging the upper bound for $y_1$ into the left hand side and using that $(e^{y/2} + e^{y^\prime/2})^3 \ge e^{3y/2} + e^{3y^\prime/2}$, we obtain
+%\begin{align*}
+%	\left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right) e^{\frac{y_1}{2}} 
+%		+ K e^{-R} \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)^3 e^{\frac{3 y_1}{2}}
+%	&\le x^\prime e^{-\lambda} + K e^{-R} (x^\prime)^3 e^{-3\lambda}
+%		\le x^\prime \left(e^{-\lambda} + \frac{\pi^2 K}{4} e^{-3\lambda}\right)\\
+%	&\le x^\prime e^{-\lambda} \left(1 + \frac{\pi^2 K}{4}\right) = x^\prime,
+%\end{align*} 
+%where we also used that $x^\prime \le \frac{\pi}{2} e^{-R/2}$.
+%\end{proof}
 
-	\pgfmathsetmacro{\u}{0} %0
-	\pgfmathsetmacro{\v}{1} %1
-	\pgfmathsetmacro{\uu}{4.5} %1.4
-	\pgfmathsetmacro{\vv}{0.5} %0.8
-	\pgfmathsetmacro{\r}{6}
-	\pgfmathsetmacro{\t}{4}
-	
-	%The box \Rcal
-	\draw[line width=1pt] (-\r,0) -- (\r,0) -- (\r,\t) -- (-\r,\t) -- (-\r,0);
-	
-    \draw node[fill, circle, inner sep=0pt, minimum size=5pt] at (\u,\v) {};
-    \draw node at (-0.2,1.3) {$p$};
-    
-    \draw node[fill,blue, circle, inner sep=0pt, minimum size=5pt] at (\uu,\vv) {};
-    \draw node at (4.3,0.2) {\color{blue}$p^\prime$};
-	
-	\draw[domain=1.6487:6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(\x)-1});
-    \draw[domain=-1.6487:-6,smooth,variable=\x,black,line width=1pt] plot (\x, {2*ln(-\x)-1});
-    \draw[domain=5.7840:6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x-4.5)-0.5});
-    \draw[domain=3.2160:-5,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(4.5-\x)-0.5});
-    \draw[domain=2:-6,smooth,variable=\x,blue,line width=1pt] plot (\x, {2*ln(\x+7.5)-0.5});
-    
-    
-    
-    \draw [decorate,decoration={brace},line width=1pt] (3.2160,-0.1) -- (1.6487,-0.1);
-    \draw node at (2.5,-0.45) {$d(p,p^\prime)$};
-    
-%    \draw [dotted,line width=1pt] (2.5298,0.8563) -- (2.5298,1.7);
-%    \draw node at (2.5298,2) {$\hat{x}(p,p^\prime)$};
-    
-    %Define intersection left black and shifted blue curve
-    \pgfmathsetmacro{\vast}{2*ln((2*\r - \uu)/(exp(\v/2) + exp(\vv/2)))}
-    \pgfmathsetmacro{\uast}{(\uu - 2*\r)/(1+exp((\vv-\v)/2))}
-    %Define intersection right black and left blue curve
-    \pgfmathsetmacro{\vvast}{2*ln((\uu)/(exp(\v/2) + exp(\vv/2)))}
-    \pgfmathsetmacro{\uuast}{(\u*exp(\vv/2) + \uu*exp(\v/2))/(exp(\v/2) + exp(\vv/2))}
-    \pgfmathsetmacro{\h}{2*ln(\r)-\v}
-%    \draw[dotted,thick,black] (4.5208,2.0174) -- (4.5208,0);
-%    \draw[dotted,thick,black] (4.5208,2.0174) -- (6,2.0174);
-    
-%    \draw node at (4.5208,-0.5) {$w_x(p,p^\prime)$};
-%    \draw node at (7,2.0174) {$w_y(p,p^\prime)$};
-    
-    \draw node at (\r+0.5,\h) {$h(y)$};
-    
-    \draw node at (2.3,3.6) {\color{blue}$x_1 = x^\prime + e^{\frac{y^\prime + y_1}{2}}$};
-    \draw node at (-1,2) {\color{blue}$x_1 = x^\prime - e^{\frac{y^\prime + y_1}{2}}$};
-    \draw node at (-4.5,2.9) {$x_1 = x - e^{\frac{y + y_1}{2}}$};
-    \draw node at (4.5,2.9) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
-	
-	
-	\draw[dashed,black,line width=1pt] (-\r,\vast) -- (\uast,\vast);
-	\draw node at (-\r-1,\vast) {\color{black}$\hat{y}_{\text{left}}(p,p^\prime)$};
-	\draw[dashed,line width=1pt] (\uast,\vast) -- (\uast,0);
-	\draw node at (\uast,-0.5) {$\hat{x}_{\text{left}}(p,p^\prime)$};
-
-	\draw[dashed,black,line width=1pt] (-\r,\vvast) -- (\r,\vvast);
-	\draw node at (\r+1,\vvast) {\color{black}$\hat{y}_{\text{right}}(p,p^\prime)$};
-	\draw[dashed,line width=1pt] (\uuast,\vvast) -- (\uuast,\vvast+1);
-	\draw node at (\uuast,\vvast+1.2) {$\hat{x}_{\text{right}}(p,p^\prime)$};
-	
-	
-\end{tikzpicture}
-\caption{Schematic representation of the neighbourhoods of $p$ and $p^\prime$ in $\Gbox$ when $|x - x^\prime| > e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}$ used for the proof of Lemma \ref{lem:common_neighbours_Pcal_n}. Note that although here $p^\prime \notin \BallPon{p}$, this is not true in general. This situation was merely chosen to improve readability of the figure.}
-\label{fig:representation_disjoint_neighbourhoods_P_n_3}
-\end{figure}
-
-
-We start by analyzing the shape of joint neighbourhood. Due to symmetry and the fact that we have identified the left and right boundaries of the box $\Rcal$, we can, without loss of generality, assume that $p = (0,y)$ and $p^\prime = (x^\prime,y^\prime)$ with $x^\prime > 0$. To understand the computation it is helpful to have a picture. Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3} shows such an example. There are several different quantities that are important. The first are the heights where the left and right boundaries of the ball $\BallPon{p}$ hit the boundaries of the box $\Rcal$. Since $x = 0$ these heights are the same and we denote their common value by $h(y)$. We also need to know the coordinates $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ of the intersection of the right boundary of the neighbourhood of $p$ with the left boundary of the neighbourhood of $p^\prime$ and those for the intersection of the left boundary of the neighbourhood of $p$ with the right boundary of the neighbourhood of $p^\prime$, which we denote by $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$. Finally we will denote by $d(p,p^\prime)$ the distance between the lower right boundary of $\BallPon{p}$ and the lower left of $\BallPon{p^\prime}$, which is positive only when the bottom parts of both neighbourhoods do not intersect, as is the case in Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3}. The condition $d(p,p^\prime) > 0$ is exactly the right notion for $p$ and $p^\prime$ being sufficiently separated.
-
-Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$ correspond to, respectively, $\hat{y}(p,p^\prime)$ and $\hat{x}(p,p^\prime)$ considered in Section~\ref{ssec:missing_triangles}. The derivation of $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ is done in a similar manner and we omit the details here. The full expressions of all these functions are given below for further reference.
-
-\begin{align}
-	h(y) &= R - y + 2\log\left(\frac{\pi}{2}\right) \label{eq:def_height_y_P_n}\\
-	h_1(p^\prime) &= 2\log\left(x^\prime + \frac{\pi}{2}e^{\frac{R}{2}}\right) - y^\prime \label{eq:def_height_left_P_n} \\
-	h_2(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{\frac{R}{2}} - x^\prime\right) - y^\prime 
-		\label{eq:def_height_right_P_n} \\
-%	\iota_x(p,p^\prime) &= \frac{(x^\prime-x)e^{\frac{y}{2}}}{e^{\frac{y}{2}} - e^{\frac{y^\prime}{2}}}
-%		\label{eq:def_x_intersection_close_boundaries}\\
-%	\iota_y(p,p^\prime) &= 2\log\left(\frac{x^\prime - x}{e^{\frac{y}{2}} - e^{\frac{y^\prime}{2}}}\right)
-%		\label{eq:def_y_intersection_close_boundaries}\\
-	\hat{y}_{\text{right}}(p,p^\prime) &= 2\log\left(\frac{x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)\\
-	\hat{x}_{\text{right}}(p,p^\prime) &= \frac{x^\prime}{1 + 	
-		e^{\frac{y^\prime - y}{2}}},\\
-	\hat{y}_{\text{left}}(p,p^\prime) &= 2 \log\left(\frac{\pi e^{R/2} - x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right),\\
-	\hat{x}_{\text{left}}(p,p^\prime) &= \frac{x^\prime - \pi e^{R/2}}{1 + e^{\frac{y^\prime - y}{2}}}, \\
-	d(p,p^\prime) &= |x - x^\prime|_n - \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right).
-	\label{eq:def_d_p_p_prime}
-\end{align}
-
-The following result shows that if $d(p,p^\prime) > 0$, then the expected number of common neighbours is $\smallO{\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}}$.
-
-\begin{lemma}\label{lem:common_neighbours_Pcal_n}
-Let $p, p^\prime \in \Rcal$. Then, whenever $|x - x^\prime|_n > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)$,
-\[
-	\Exp{\Ncal_{\text{box}}(p,p^\prime)} \le \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}\right)\phi_n(p,p^\prime),
-\]
-where
-\[
-	\phi_n(p,p^\prime) = 2\left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)} 
-	+ \frac{3 \nu^{2\alpha + 1}e^{-(\alpha - \frac{1}{2})R} e^{\alpha y}}{2 \pi^{2\alpha}\left(
-	e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)}
-	+ \frac{\nu e^{-(\alpha - \frac{1}{2})R}}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}. 
-\]
-\end{lemma}
-
-\begin{proof}
-Again, without loss of generality we assume that $p = p_0 = (0,y)$ and $p^\prime = (x^\prime, y^\prime)$ with $0 \le x^\prime \le \frac{\pi}{2} e^{R/2}$. Consider the following two areas
-\begin{align*}
-	A_1 &:= \left\{p_1 = (x_1,y_1) \in \Rcal \, : \, y_1 \ge \hat{y}_{\text{left}}(p_0,p^\prime), \, 
-		-\frac{\pi}{2} e^{R/2} \vee - e^{\frac{y + y_1}{2}} \le x_1 \le x^\prime + e^{\frac{y^\prime + y_2}{2}} - \pi e^{R/2} \right\}\\
-	A_2 &:= \left\{p_1 = (x_1,y_1) \in \Rcal \, : \, y_1 \ge \hat{y}_{\text{right}}(p_0,p^\prime), \,
-			x^\prime - e^{\frac{y^\prime + y_1}{2}} \le x_1 \le \frac{\pi}{2} e^{R/2} \wedge e^{\frac{y + y_2}{2}} \right\}.
-\end{align*}
-That is $A_1$ and $A_2$ describe all points $p_1 \in \BallPon{p_0} \cap \BallPon{p}$ with $y_1 \ge \hat{y}_{\text{left}}(p_0,p^\prime)$ and $y_1 \ge \hat{y}_{\text{right}}(p_0,p^\prime)$, respectively. It now follows that
-\[
-	\Exp{\Ncal_{\text{box}}(p,p^\prime)} \le \Mu{A_1} + \Mu{A_2},
-\]
-and we will proceed by computing the measures of both sets. 
-
-For $A_1$ we have (see also Figure~\ref{fig:comparing_triangles_diff_intersections})
-\begin{align*}
-	\Mu{A_1} &= \int_{\hat{y}_{\text{left}}(p_0,p^\prime)}^{h(y)} 
-		\int_{- e^{\frac{y + y_1}{2}}}^{x^\prime + e^{\frac{y^\prime+y_1}{2}} - \pi e^{R/2}} \hspace{-10pt} 
-		f(x_1,y_1) \dd x_1 \dd y_1
-		+ \int_{h(y)}^{R} \int_{-\frac{\pi}{2}e^{R/2}}^{x^\prime + e^{\frac{y^\prime+y_1}{2}} - \pi e^{R/2}} 
-		\hspace{-10pt}  f(x_1,y_1) \dd x_1 \dd y_1.
-\end{align*}
-For the first integral we get
-\begin{align*}
-	&\int_{\hat{y}_{\text{left}}(p_0,p^\prime)}^{h(y)} 
-		\int_{- e^{\frac{y + y_1}{2}}}^{x^\prime + e^{\frac{y^\prime+y_1}{2}} - \pi e^{R/2}} \hspace{-10pt} 
-		f(x_1,y_1) \dd x_1 \dd y_1\\
-	&= \frac{\alpha \nu}{\pi}\left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right) 	
-		\int_{\hat{y}_{\text{left}}(p_0,p^\prime)}^{h(y)} e^{-(\alpha - \frac{1}{2})y_1} \dd y_1
-		- \frac{\alpha \nu}{\pi}\left(\pi e^{R/2} - x^\prime \right) 
-		\int_{\hat{y}_{\text{left}}(p_0,p^\prime)}^{h(y)} e^{-\alpha y_1} \dd y_1\\
-	&= \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
-		\left(e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{left}}(p_0,p^\prime)}
-		- e^{-(\alpha - \frac{1}{2})h(y)}\right)
-		- \frac{\nu}{\pi} \left(\pi e^{R/2} - x^\prime\right)
-		\left(e^{-\alpha\hat{y}_{\text{left}}(p_0,p^\prime)}
-		- e^{-\alpha h(y)}\right).
-%	&= \frac{2\alpha \nu}{\pi(2\alpha - 1)}\left(e^{\frac{y}{2}} + e^{\frac{y}{2}}\right)
-%		\left(\left(\frac{\pi e^{R/2} - x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)}
-%		- \left(\frac{\pi}{2}\right)^{-(2\alpha - 1)} e^{-(2\alpha - 1)(R-y)}\right)\\
-%	&\hspace{10pt}- \frac{\nu}{\pi} \left(\pi e^{R/2} - x^\prime\right)
-%		\left(\left(\frac{\pi e^{R/2} - x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-2\alpha}
-%			- \left(\frac{\pi}{2}\right)^{-2\alpha} e^{-2\alpha(R-y)}\right)
-\end{align*}
-Similarly, the second integral equals
-\begin{align*}
-	&\hspace{-20pt}\int_{h(y)}^{R} \int_{-\frac{\pi}{2}e^{R/2}}^{x^\prime + e^{\frac{y^\prime+y_1}{2}} - \pi e^{R/2}} 
-		\hspace{-10pt}  f(x_1,y_1) \dd x_1 \dd y_1\\
-	&= \xi e^{\frac{y^\prime}{2}}\left(e^{-(\alpha - \frac{1}{2})h(y)} - e^{-(\alpha - \frac{1}{2})R}\right)
-		- \frac{\nu}{\pi}\left(\pi e^{R/2} - x^\prime\right)
-		\left(e^{-\alpha h(y)}- e^{-\alpha R}\right).
-\end{align*}
-Adding these expressions yields
-\begin{align*}
-	\Mu{A_1} &= \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
-		e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{left}}(p_0,p^\prime)}
-		- \xi e^{\frac{y}{2}} e^{-(\alpha - \frac{1}{2})h(y)}
-		- \xi e^{\frac{y^\prime}{2}} e^{-(\alpha-\frac{1}{2})R} \\
-	&\hspace{10pt}- \frac{\nu}{\pi} \left(\pi e^{R/2} - x^\prime\right)
-		e^{-\alpha\hat{y}_{\text{left}}(p_0,p^\prime)}
-		+ \nu e^{R/2}e^{-\alpha h(y)} + \frac{\nu}{\pi}\left(\pi e^{R/2} - x^\prime\right) e^{-\alpha R}\\
-	&\le \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
-		e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{left}}(p_0,p^\prime)}
-		+ \nu e^{R/2}e^{-\alpha h(y)} + \nu e^{-(\alpha - \frac{1}{2}) R}.
-\end{align*}
-
-We now proceed with $A_2$. Here we have
-\begin{align*}
-	\Mu{A_2} &= \int_{\hat{y}_{\text{right}}(p_0,p^\prime)}^{h(y)} 
-		\int_{x^\prime - e^{\frac{y^\prime + y_1}{2}}}^{e^{\frac{y+y_1}{2}}} \hspace{-2pt} 
-		f(x_1,y_1) \dd x_1 \dd y_1
-		+ \int_{h(y)}^{R} \int_{x^\prime - e^{\frac{y^\prime + y_1}{2}}}^{\frac{\pi}{2}e^{R/2}} 
-		\hspace{-2pt}  f(x_1,y_1) \dd x_1 \dd y_1.
-\end{align*}
-Computing each integral separately we get
-\begin{align*}
-	&\hspace{-20pt}\int_{\hat{y}_{\text{right}}(p_0,p^\prime)}^{h(y)} 
-		\int_{x^\prime - e^{\frac{y^\prime + y_1}{2}}}^{e^{\frac{y+y_1}{2}}} \hspace{-2pt} 
-		f(x_1,y_1) \dd x_1 \dd y_1\\
-	&= \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
-		\left(e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p_0,p^\prime)} 
-		- e^{-(\alpha - \frac{1}{2})h(y)}\right) 
-		- \frac{\nu}{\pi} x^\prime \left(e^{\alpha \hat{y}_{\text{right}}(p_0,p^\prime)}
-		 - e^{-\alpha h(y)}\right), 
-\end{align*}
-and
-\begin{align*}
-	&\hspace{-20pt}\int_{h(y)}^{R} \int_{x^\prime - e^{\frac{y^\prime + y_1}{2}}}^{\frac{\pi}{2}e^{R/2}} 
-		\hspace{-2pt}  f(x_1,y_1) \dd x_1 \dd y_1\\
-	&= \xi e^{\frac{y^\prime}{2}}\left(e^{-(\alpha - \frac{1}{2})h(y)} - e^{-(\alpha - \frac{1}{2})R}\right)
-		+ \frac{\nu}{\pi}\left(\frac{\pi}{2}e^{R/2} - x^\prime\right)\left(e^{-\alpha h(y)} - e^{-\alpha R}\right).
-\end{align*}
-Combining these results we get
-\begin{align*}
-	\Mu{A_2} &= \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
-		e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p_0,p^\prime)} 
-		- \xi e^{\frac{y}{2}}e^{-(\alpha - \frac{1}{2})h(y)} 
-		- \xi e^{\frac{y^\prime}{2}}e^{-(\alpha - \frac{1}{2})R} \\
-	&\hspace{10pt}- \frac{\nu}{\pi} x^\prime e^{-\alpha \hat{y}_{\text{right}}(p_0,p^\prime)}
-		+ \frac{\nu}{2} e^{R/2} e^{-\alpha h(y)} - \frac{\nu}{\pi}\left(\frac{\pi}{2}e^{R/2} - x^\prime\right)
-		e^{-\alpha R}\\
-	&\le \xi \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)
-		e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p_0,p^\prime)} + \frac{\nu}{2} e^{R/2} e^{-\alpha h(y)}.
-\end{align*}
-
-Finally, by adding the results for $\Mu{A_1}$ and $\Mu{A_2}$ and using that $\xi e^{\frac{y}{2}} = \Mu{\BallPon{p_0}}$ and 
-$\xi e^{\frac{y^\prime}{2}} = \Mu{\BallPon{p^\prime}}$, we get
-\begin{align*}
-	\Exp{\Ncal_{\text{box}}(p,p^\prime)} 
-	&\le \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}} \right)
-		\left(e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{left}}(p,p^\prime)}
-		+ e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p,p^\prime)} \right) \\
-	&\hspace{10pt}+ \frac{3\nu}{2}e^{R/2} e^{-\alpha h(y)}
-		+ \nu e^{-(\alpha -\frac{1}{2}) R}.
-\end{align*}
-To finish the argument we recall that $\hat{y}_{\text{left}}(p,p^\prime) \ge \hat{y}_{\text{right}}(p,p^\prime)$ for all $0 \le x^\prime \le \frac{\pi}{2}e^{R/2}$ and that $h(y) = R - y + 2\log(\pi/\nu)$. Hence
-\begin{align*}
-	&\Exp{\Ncal_{\text{box}}(p,p^\prime)} \\
-	&\le \left(\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}} \right) 
-		\left(2e^{-(\alpha - \frac{1}{2})\hat{y}_{\text{right}}(p,p^\prime)} +    
-		\frac{3 \nu^{2\alpha + 1}e^{-(\alpha - \frac{1}{2})R} e^{\alpha y}}{2 \pi^{2\alpha}\left(
-		e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)}
-		+ \frac{\nu e^{-(\alpha - \frac{1}{2})R}}{\xi(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}})}
-		\right)
-\end{align*}
-and the result follows by plugging in 
-\[
-	\hat{y}_{\text{right}}(p,p^\prime) = 2 \log\left(\frac{x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right),
-\]
-and noting that $x^\prime$ is the same as $|x - x^\prime|$, by our generalization step.
-
-\end{proof} 
-
-\subsubsection*{Degrees}
-
-We now return to the joint degree distribution of nodes in $\Gbox$. Recall the definition of $\mathcal{E}_\varepsilon(k_n)$
+Recall the definition of $\mathcal{E}_\varepsilon(k_n)$
+from Section~\ref{ssec:joint_degrees_GPo},
 \[
 	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \Rcal \times \Rcal
-			\, : \, y,y^\prime \in \Kcal_{C}(k_n) \text{ and } |x - x^\prime|_n > k_n^{1 + \varepsilon} \right\}. 
-\]
-The following result, which follows from Lemma~\ref{lem:common_neighbours_Pcal_n}, shows that on this set, the expected number of common neighbours is $\smallO{k_n}$.
-
-\begin{lemma}\label{cor:expected_common_neighbours_Ecal_set}
-Fix $0 < \varepsilon < 1$ and let $\varepsilon^\prime = \min\{\varepsilon(2\alpha - 1),\varepsilon\}$. Then for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, as $n \to \infty$,
-\[
-	\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon^\prime}}.
-\] 
-\end{lemma}
-
-\begin{proof}
-Since for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ we have $\Mu{\BallPon{p}}, \Mu{\BallPon{p^\prime}} = \bigT{k_n}$, Lemma~\ref{lem:common_neighbours_Pcal_n} implies that
-\[
-	\Mu{\BallPon{p} \cap \BallPon{p^\prime}} \le \bigO{k_n} \phi_n(p,p^\prime),
+			\, : \, y,y^\prime \in [y_{k_n,C}^-, y_{k_N,C}^+] \text{ and } |x - x^\prime|_n > k_n^{1 + \varepsilon} \right\},
 \]
 where
 \[
-	\phi_n(p,p^\prime) = 2\left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)} 
-		+ \frac{3 \nu^{2\alpha + 1}e^{-(\alpha - \frac{1}{2})R} e^{\alpha y}}{2 \pi^{2\alpha}\left(
-		e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)}
-		+ \frac{\nu e^{-(\alpha - \frac{1}{2})R}}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}. 
+	y_{k,C}^\pm = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi}\right),
 \]
-We thus need to show that $\phi_n(p,p^\prime) = \bigO{k_n^{-\varepsilon}}$. For $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, it holds that $e^{y/2}, e^{y^\prime/2} = \bigT{k_n}$ and $|x - x^\prime| > k_n^{1+\varepsilon}$ and hence
-\begin{align*}
-	 2\left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)}
-	 =	\bigO{k_n^{-\varepsilon(2\alpha - 1)}}.
-\end{align*}
-For the second term in $\phi_n(p,p^\prime)$ we use that $e^{\alpha y^\ast} = \bigT{k_n^{2\alpha}}$ and $e^{R} = \bigT{n^2}$ to obtain
-\[
-	\frac{3 \nu^{2\alpha + 1}e^{-(\alpha - \frac{1}{2})R} e^{\alpha y}}{2 \pi^{2\alpha}\left(
-			e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)}
-	= \bigO{1} n^{-(2\alpha - 1)} k_n^{2\alpha - 1} = \bigO{n^{-(\alpha - \frac{1}{2})}}.
-\]
-Finally, the third term satisfies $\bigO{n^{-(2\alpha - 1)}k_n^{-1}}$, and we conclude that
-\[
-	\phi_n(p,p^\prime) = \bigO{k_n^{-\varepsilon(2\alpha - 1)} + n^{-(\alpha - \frac{1}{2})}
-	+ n^{-(2\alpha - 1)}k_n^{-1}} = \bigO{k_n^{-\varepsilon^\prime}},
-\]
-where we used that $\varepsilon^\prime = \min\{\varepsilon(2\alpha - 1),\varepsilon\}$. 
-\end{proof}
+as defined in~\eqref{eq:def_y_k_C}. Furthermore, we recall that by Lemma~\ref{lem:probdegFact} the joint degree distribution of two point $p, p^\prime \in \mathcal{E}_{\varepsilon}(k_N)$ factorizes, i.e. on the set $\mathcal{E}_\varepsilon(k_n)$ the joint degree distribution in $\Gbox$ is asymptotically equivalent to the product of the degree distributions. We shall now prove a slightly stronger result (Lemma~\ref{lem:joint_degree_factorization}) which also takes care of bounded shifts in the joint degree distribution $\rho_{\text{box}}(p,p^\prime,k_n - t,k_n - t^\prime)$, for some uniformly bounded $t, t^\prime \in \mathbb{Z}$. For this we first need the following simple result for Poisson distributions.
 
-As a corollary we get that on the set $\mathcal{E}_\varepsilon(k_n)$ the joint degree distribution in $\Gbox$ is asymptotically equivalent to the product of the degree distributions. We shall however prove a slightly stronger result (Lemma~\ref{lem:joint_degree_factorization}) which also takes care of bounded shifts in the joint degree distribution $\rho_{\text{box}}(p,p^\prime,k_n - t,k_n - t^\prime)$, for some uniformly bounded $t, t^\prime \in \mathbb{Z}$. For this we first need the following simple result for Poisson distributions.
+%The following result, which follows from Lemma~\ref{lem:common_neighbours_Pcal_n}, shows that on this set, the expected number of common neighbours is $\smallO{k_n}$.
+
+%\begin{lemma}\label{cor:expected_common_neighbours_Ecal_set}
+%Fix $0 < \varepsilon < 1$ and let $\varepsilon^\prime = \min\{\varepsilon(2\alpha - 1),\varepsilon\}$. Then for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, as $n \to \infty$,
+%\[
+%	\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon^\prime}}.
+%\] 
+%\end{lemma}
+%
+%\begin{proof}
+%Since for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ we have $\Mu{\BallPon{p}}, \Mu{\BallPon{p^\prime}} = \bigT{k_n}$, Lemma~\ref{lem:common_neighbours_Pcal_n} implies that
+%\[
+%	\Mu{\BallPon{p} \cap \BallPon{p^\prime}} \le \bigO{k_n} \phi_n(p,p^\prime),
+%\]
+%where
+%\[
+%	\phi_n(p,p^\prime) = 2\left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)} 
+%		+ \frac{3 \nu^{2\alpha + 1}e^{-(\alpha - \frac{1}{2})R} e^{\alpha y}}{2 \pi^{2\alpha}\left(
+%		e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)}
+%		+ \frac{\nu e^{-(\alpha - \frac{1}{2})R}}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}. 
+%\]
+%We thus need to show that $\phi_n(p,p^\prime) = \bigO{k_n^{-\varepsilon}}$. For $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, it holds that $e^{y/2}, e^{y^\prime/2} = \bigT{k_n}$ and $|x - x^\prime| > k_n^{1+\varepsilon}$ and hence
+%\begin{align*}
+%	 2\left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)}
+%	 =	\bigO{k_n^{-\varepsilon(2\alpha - 1)}}.
+%\end{align*}
+%For the second term in $\phi_n(p,p^\prime)$ we use that $e^{\alpha y^\ast} = \bigT{k_n^{2\alpha}}$ and $e^{R} = \bigT{n^2}$ to obtain
+%\[
+%	\frac{3 \nu^{2\alpha + 1}e^{-(\alpha - \frac{1}{2})R} e^{\alpha y}}{2 \pi^{2\alpha}\left(
+%			e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)}
+%	= \bigO{1} n^{-(2\alpha - 1)} k_n^{2\alpha - 1} = \bigO{n^{-(\alpha - \frac{1}{2})}}.
+%\]
+%Finally, the third term satisfies $\bigO{n^{-(2\alpha - 1)}k_n^{-1}}$, and we conclude that
+%\[
+%	\phi_n(p,p^\prime) = \bigO{k_n^{-\varepsilon(2\alpha - 1)} + n^{-(\alpha - \frac{1}{2})}
+%	+ n^{-(2\alpha - 1)}k_n^{-1}} = \bigO{k_n^{-\varepsilon^\prime}},
+%\]
+%where we used that $\varepsilon^\prime = \min\{\varepsilon(2\alpha - 1),\varepsilon\}$. 
+%\end{proof}
+%
+%It is clear that using Lemma~\ref{lem:common_neighbours_KPKVB} instead of Lemma~\ref{lem:common_neighbours_Pcal_n}, the above proof applies to the Poissonized KPKVB model, yielding the following result.
+%
+%\begin{lemma}\label{cor:expected_common_neighbours_KPKVB}
+%Fix $0 < \varepsilon < 1$ and let $\varepsilon^\prime = \min\{\varepsilon(2\alpha - 1),\varepsilon\}$. Then for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, as $n \to \infty$,
+%\[
+%	\Mu{\BallHyp{p} \cap \BallHyp{p^\prime}} = \bigO{k_n^{1-\varepsilon^\prime}}.
+%\] 
+%\end{lemma}
+
+
 
 \begin{lemma}\label{lem:finite_shifts_poisson}
 Let $k_n \to \infty$ be a sequence of non-negative integers and $X = \Po(\lambda_n)$ be a Poisson random variable with mean $\lambda_n$ satisfying
@@ -686,7 +781,7 @@ so that
 \begin{align*}
 	\rho_{\text{box}}(p,p^\prime,k_n-t_n,k_n-t_n^\prime) &= \Prob{X_1(p,p^\prime) + Y(p,p^\prime) = k_n-t_n, X_2(p,p^\prime) + Y(p,p^\prime) = k_n - t_n^\prime}.
 \end{align*}
-Since by Lemma~\ref{cor:expected_common_neighbours_Ecal_set} $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon^\prime}}$, it follows from Lemma~\ref{lem:near_independence_poisson} that
+Since by Lemma~\ref{cor:expected_common_neighbours_Ecal_set} $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon^\prime}}$, it follows from Lemma~\ref{lem:probdegFact} that
 \[
 	\rho_{\text{box}}(p,p^\prime,k_n-t_n,k_n-t_n^\prime) = (1+\smallO{1})\rho_{\text{box}}(p,k_n-t_n)\rho_{\text{box}}(p^\prime,k_n-t_n^\prime).
 \]

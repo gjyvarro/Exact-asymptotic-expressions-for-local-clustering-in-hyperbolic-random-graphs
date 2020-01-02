@@ -249,25 +249,19 @@ and
 Then we want when Lemma~\ref{lem:concentration_argument} to remain true if we replace $\rho(y,k_n)$ with either the function $\rho_{\Po}(y,k_n)$ or $\rho_{\text{box}}(y,k_n)$. To establish these result we first prove a more general version of Lemma~\ref{lem:concentration_argument}.
 
 \begin{lemma}\label{lem:concentration_argument_rho_approximation}
-Let $\alpha > \frac{1}{2}, \nu > 0$ and $k_n \to \infty$ such that $k_n = \smallO{n}$, $\ell_n = (1 + \epsilon_n)k_n$, with $\epsilon_n \to 0$ and define
+Let $\alpha > \frac{1}{2}, \nu > 0$ and $0 < \varepsilon < 1$. Furthermore, let $k_n \to \infty$ such that $k_n = \bigO{n^{1-\varepsilon}}$, $\ell_n = (1 + \epsilon_n)k_n$, with $\epsilon_n \to 0$ and define
 \[
-	\lambda_n^\pm = (\ell_n \pm C \sqrt{\ell_n \log(\ell_n)}) \wedge \xi, \quad \text{and} \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi}\right).
+	\lambda_n^\pm = (\ell_n \pm C \sqrt{\ell_n \log(\ell_n)}) \wedge \xi, \quad \text{and} \quad a_n^\pm = 2 \log\left(\frac{\lambda_n^\pm}{\xi}\right),
 \] 
-In addition, let $\hat{\rho}_n(y,k) = \Prob{\Po(\hat{\mu}_n(y)) = k}$, where $\hat{\mu}_n(y)$ is a differentiable function that satisfies for some $0 < \varepsilon < 1$
+for some $C > 0$. Finally, let $\hat{\rho}_n(y,k) = \Prob{\Po(\hat{\mu}_n(y)) = k}$, where $\hat{\mu}_n(y)$ is a differentiable function that satisfies for some $0 < \varepsilon^\prime < 1$
 \begin{align*}
-	&\mathrm{i)} \, \lim_{n \to \infty} \sup_{0 \le y \le (1 - \varepsilon)R} \frac{\hat{\mu}_n(y)}{\mu(\BallPo{y})} = 1
+	&\mathrm{i)} \, \lim_{n \to \infty} \sup_{0 \le y \le (1 - \varepsilon^\prime)R} 
+		\left|\frac{\hat{\mu}_n(y)}{\mu(\BallPo{y})} - 1\right| = 0
 	\quad \text{and}
-	&&\mathrm{ii)} \, \lim_{n \to \infty}  \sup_{0 \le y \le (1 - \varepsilon)R} \frac{\hat{\mu}_n^\prime(y)}{\mu(\BallPo{y})} = \frac{1}{2}.
+	&&\mathrm{ii)} \, \lim_{n \to \infty}  \sup_{0 \le y \le (1 - \varepsilon^\prime)R} 	
+		\left|\frac{\hat{\mu}_n^\prime(y)}{\mu(\BallPo{y})} - \frac{1}{2}\right| = 0.
 \end{align*}
-%
-%
-% with $\hat{\mu}_n(y) = (1 + \phi_n(y))\mu(y)$ and 
-%where $\phi_n(y)$ is a differentiable function satisfying:
-%\begin{enumerate}[\upshape i)]
-%\item For some $0 < \varepsilon < 1$, $\displaystyle \lim_{n \to \infty} \sup_{0 \le y \le (1 - \varepsilon)R} |\phi_n(y)| = 0$,
-%\item $\displaystyle \lim_{n \to \infty}  \sup_{y \in \Kcal_{C}(\ell_n)} |\phi_n^\prime(y)| = 0.$
-%\end{enumerate}
-Then the following holds:
+Then the following holds for $C > 0$ large enough:
 \begin{enumerate}
 \item For any continuous function $h : \R_+ \rightarrow  \R$, such that $h(y) = \bigO{e^{\beta y}}$ as $y \to \infty$ for some $\beta < \alpha$, 
 \begin{equation}\label{eq:error_bound_int_rho_approx_not_K}
@@ -286,79 +280,42 @@ as $n \to \infty$.
 
 \begin{proof} \hfill
 
-For simplicity we write $\mu(y) := \mu\left(\BallPo{y}\right) = \xi e^{y/2}$ throughout the proof. Observe that $\mu^\prime(y) = \mu(y)/2$ and $\mu^{-1}(y z) = \mu^{-1(y)} + \mu^{-1}(z)$.
-
-
-
-%We note that the statement will follow from Lemma~\ref{lem:concentration_argument} if we can show that
-%\[
-%	\int_0^R \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
-%	= \left(1 + o(1)\right) \int_0^R \rho(z,k_n) e^{-\alpha z} \dd z.
-%\] 
-%or equivalently,
-%\[
-%	\int_0^R \rho(z,k_n) e^{-\alpha z} \dd z
-%	= \left(1 + o(1)\right)\int_0^R \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y.
-%\]
-%
-%We will do this in two steps.
-%
-%Therefore, what is left is to show that
-%\[
-%	\int_0^{(1-\varepsilon^\prime)R} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
-%	= \left(1 + o(1)\right) \int_0^{(1-\varepsilon^\prime)R} \rho(z,k_n) e^{-\alpha z} \dd z.
-%\] 
-%or equivalently,
-%\[
-%	\int_0^{(1-\varepsilon^\prime)R} \rho(z,k_n) e^{-\alpha z} \dd z
-%	= \left(1 + o(1)\right)\int_0^{(1-\varepsilon^\prime)R} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y.
-%\]
-%
-%Using the change of variable $z = \mu^{-1}(\hat{\mu}_n(y))$ and writing $\hat{a}_n^\pm = \hat{\mu}_n^{-1}(\mu(a_n^\pm))$ and $\hat{R}_{\varepsilon^\prime} := \hat{\mu}_n^{-1}(\mu((1-\varepsilon^\prime)R))$, we get
-%\begin{align*}
-%	\int_{a_n^+}^{(1-\varepsilon^\prime)R} \rho(z,k_n) e^{-\alpha z} \dd z 
-%	&= \int_{a_n^+}^{(1-\varepsilon^\prime)R} \Prob{\Po(\mu(z)) = k_n} e^{-\alpha z} \dd z\\
-%	&= \int_{\hat{a}_n^+}^{\hat{R}_{\varepsilon^\prime}} \Prob{\Po(\hat{\mu}_n(y)) = k_n} e^{-\alpha \mu^{-1}(\hat{\mu}_n(y))} 
-%		\frac{\hat{\mu}_n^\prime(y)}{\mu^\prime(\mu^{-1}(\hat{\mu}_n(y)))} \dd y,
-%\end{align*}
-%where the fraction in the last line follows from the chain rule and the fact that $(\mu^{-1})^\prime(t) = (\mu^\prime(\mu^{-1}(t)))^{-1}$.
-
-
+For simplicity we write $\mu(y) := \mu\left(\BallPo{y}\right) = \xi e^{y/2}$ throughout the proof. Observe that $\mu^\prime(y) = \mu(y)/2$ and $\mu^{-1}(y z) = \mu^{-1}(y) + \mu^{-1}(z)$.
 
 
 \paragraph{Proof of statement 1.}
 
-Let $0 < \varepsilon < 1$ be such that conditions i) and ii) hold, take $\varepsilon^\prime = \min\{\varepsilon/3,1/3\} < 1/2$ and let $\delta > 0$ be such that $\hat{\mu}_n(\delta) \ge \xi$. We first show that we can restrict to integration over $(\delta, (1-\varepsilon^\prime)R)$ that the integration over $(1-\varepsilon^\prime)R \le y \le R$ is negligible.
- 
-Since $h(y) = \bigO{e^{\beta y}}$ we have
+Let $0 < \varepsilon < 1$ be such that conditions i) and ii) hold, 
+Take any $0 < \delta < \min\{\varepsilon, \varepsilon^\prime/3,1/3\} < 1/2$ and let $Q > 0$ be such that $\hat{\mu}_n(Q) \ge \xi$. We first show that we can restrict to integration over $(Q, (1-\delta)R)$, starting with showing that the integration over $(1-\delta)R \le y \le R$ is negligible.
+
+By construction $\delta < \varepsilon^\prime$, and hence by condition i) we have that $\hat{\mu}_n((1-\delta)R) = \bigT{\mu((1-\delta)R} = \bigT{n^{(1-\delta)}}$. Therefore, since $\delta<\varepsilon$ and $k_n = \bigO{n^{1-\varepsilon}}$, it follows that $\hat{\mu}_n((1-\delta)R)/k_n = \omega\left(n^{\varepsilon - \delta}\right)$ as $n \to \infty$. In particular $\hat{\mu}((1-\delta)R) = \omega{k_n}$ and hence $\hat{\rho}_n(y,k_n) \le \hat{\rho}((1-\delta)R,k_n)$ for all $y \ge (1-\delta)R$. It now follow that
 \begin{align*}
-	\int_{(1-\varepsilon^\prime)R}^{R} h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
-	&= \bigO{1} \hat{\rho}_n((1-\varepsilon^\prime)R,k_n) e^{-(\alpha-\beta)(1-\varepsilon^\prime)R} \\
-	&= \bigO{\hat{\rho}_n((1-\varepsilon^\prime)R,k_n) n^{-2(\alpha-\beta)(1-\varepsilon^\prime)}}.
+	\int_{(1-\delta)R}^{R} h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	&= \bigO{1} \hat{\rho}_n((1-\delta)R,k_n) e^{-(\alpha-\beta)(1-\delta)R} \\
+	&= \bigO{\hat{\rho}_n((1-\delta)R,k_n) n^{-2(\alpha-\beta)(1-\delta)}},
 \end{align*}
-By construction $\varepsilon^\prime < \varepsilon$, and hence by condition i) we have that $\hat{\mu}_n((1-\varepsilon^\prime)R) = \bigT{\mu((1-\varepsilon^\prime)R} = \bigT{n^{2(1-\varepsilon^\prime)}}$. Therefore, since $k_n = \smallO{n}$, it follows that $\hat{\mu}_n((1-\varepsilon^\prime)R)/k_n = \omega\left(n^{1 - 2\varepsilon^\prime}\right) \to \infty$ as $n \to \infty$. We can now use Stirling's approximation to bound $\hat{\rho}_n((1-\varepsilon^\prime)R,k_n)$ as
+where we used that that $h(y) = \bigO{e^{\beta y}}$.
+Using Stirling's approximation to bound $\hat{\rho}_n((1-\delta)R,k_n)$ we get
 \begin{align*}
-	\hat{\rho}_n((1-\varepsilon^\prime)R,k_n) &= \Prob{\Po(\hat{\mu}_n((1-\varepsilon^\prime)R)) = k_n} \\
-	&= \frac{\hat{\mu}_n((1-\varepsilon^\prime)R)^{k_n}}{k_n!} e^{-\hat{\mu}_n((1-\varepsilon^\prime)R)}\\
-	&= \bigO{1} k_n^{-1/2} \left(\frac{\hat{\mu}_n((1-\varepsilon^\prime)R)}{k_n}\right)^{k_n} e^{k_n - \hat{\mu}_n((1-\varepsilon^\prime)R)}\\
-	&= \bigO{1} k_n^{-1/2} e^{k_n\left(1 - \frac{\hat{\mu}_n((1-\varepsilon^\prime)R)}{k_n}\right)+ \log\left(\frac{\hat{\mu}_n((1-\varepsilon^\prime)R)}{k_n}\right)}\\
-	&\le \bigO{1} k_n^{-1/2} e^{-\hat{\mu}_n((1-\varepsilon^\prime)R)/2},
+	\hat{\rho}_n((1-\delta)R,k_n) &= \Prob{\Po(\hat{\mu}_n((1-\delta)R)) = k_n} \\
+	&= \frac{\hat{\mu}_n((1-\delta)R)^{k_n}}{k_n!} e^{-\hat{\mu}_n((1-\delta)R)}\\
+	&= \bigO{1} k_n^{-1/2} \left(\frac{\hat{\mu}_n((1-\delta)R)}{k_n}\right)^{k_n} e^{k_n - \hat{\mu}_n((1-\delta)R)}\\
+	&= \bigO{1} k_n^{-1/2} e^{k_n\left(1 - \frac{\hat{\mu}_n((1-\delta)R)}{k_n}+ \log\left(\frac{\hat{\mu}_n((1-\delta)R)}{k_n}\right)\right)}\\
+	&\le \bigO{1} k_n^{-1/2} e^{-\hat{\mu}_n((1-\delta)R)/2},
 \end{align*}
-where the last line follows since $1 - x + \log(x) \le -x/2$ for large enough $x$. We conclude that
+where the last line follows since $1 - x + \log(x) \le -x/2$ for large enough $x$ and $\hat{\mu}_n((1-\delta)R)/k_n \to \infty$. We thus conclude that for any $C > 0$
 \[
-	\int_{(1-\varepsilon^\prime)R}^{R} h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
-	= \bigO{k_n^{-1/2} n^{-2(\beta-\alpha)(1-\varepsilon^\prime)} e^{-n^{2(1-\varepsilon^\prime)}}}
+	\int_{(1-\delta)R}^{R} h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	= \bigO{k_n^{-1/2} n^{-2(\beta-\alpha)(1-\delta)} e^{-n^{(1-\delta)}}}
 	= \bigO{k_n^{-(1+C^2)/2}}.
 \]
 
-In a similar fashion we get that
+For the range $(0,Q)$ we have, for any $C > 0$,
 \begin{align*}
-	\int_0^\delta h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
-	&= \bigO{1} \hat{\rho}_n(\delta, k_n) \\
-	&= \bigO{1} k_n^{-1/2} e^{-k_n(\log(k_n)-\hat{\mu}_n(\delta))} = \bigO{k_n^{-(1+C^2)/2}}.
+	\int_0^Q h(y) \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
+	&= \bigO{1} \hat{\rho}_n(Q, k_n) \\
+	&= \bigO{1} k_n^{-1/2} e^{-k_n(\log(k_n)-\hat{\mu}_n(Q))} = \bigO{k_n^{-(1+C^2)/2}}.
 \end{align*}
-
-
 
 We are thus left to show that for sufficiently large $C > 0$,
 \begin{equation}\label{eq:concentration_argument_an_-}
@@ -370,7 +327,7 @@ and
 \end{equation}
 To prove this we first establish a result that will also help with proving statement 2. 
 
-Let $(a, b) \subseteq (\delta,(1-\varepsilon^\prime)R)$ and consider the change of variable $z = \mu^{-1}(\hat{\mu}_n(y))$. Then, writing $\hat{a} = \hat{\mu}_n^{-1}(\mu(a))$ and similar for $\hat{b}$, we get
+Let $(a, b) \subseteq (Q,(1-\delta)R)$ and consider the change of variable $z = \mu^{-1}(\hat{\mu}_n(y))$. Then, writing $\hat{a} = \hat{\mu}_n^{-1}(\mu(a))$ and similar for $\hat{b}$, we get
 \begin{align*}
 	\int_{a}^{b} \rho(z,k_n) e^{-\alpha z} \dd z 
 	&= \int_{a}^{b} \Prob{\Po(\mu(z)) = k_n} e^{-\alpha z} \dd z\\
@@ -396,10 +353,10 @@ uniformly on $(a,b)$. These results then imply
 	= (1+\smallO{1}) \int_{\hat{a}}^{\hat{b}} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y.
 \end{equation}
 
-Now, using~\eqref{eq:equivalence_integral_rho_change_variables} with $a = \mu^{-1}(\hat{\mu}_n(\delta))$ and $b = \mu^{-1}(\hat{\mu}_n(a_n^-)$ we get
+Now, using~\eqref{eq:equivalence_integral_rho_change_variables} with $a = \mu^{-1}(\hat{\mu}_n(Q))$ and $b = \mu^{-1}(\hat{\mu}_n(a_n^-)$ we get
 \begin{align*}
 	\int_a^b \rho(y,k_n) e^{(\beta-\alpha) y} \dd y
-	&= (1+\smallO{1}) \int_{\delta}^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y.
+	&= (1+\smallO{1}) \int_{Q}^{a_n^-} \hat{\rho}_n(y,k_n) e^{(\beta - \alpha)y} \dd y.
 \end{align*}
 Since $\mu^{-1}(\hat{\mu}_n(a_n^-) = (1+\smallO{1})a_n^-$ and $b \ge 0$ the left hand side is
 \[
@@ -414,7 +371,7 @@ The proof of the second statement follows the same line of reasoning as above, u
 	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) h(y) e^{-\alpha y} \dd y
 	= h(c_n) \int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y,
 \]
-for some $c_n \in (a_n^-, a_n^+)$. Since, $c_n \sim 2 \log(k_n/\xi)$, by assumption on $h$, $h(c_n)\sim h(2\log(k_n/\xi))$. 
+for some $c_n \in (a_n^-, a_n^+)$. Since $c_n \sim 2 \log(k_n/\xi)$, $h(c_n)\sim h(2\log(k_n/\xi))$ by assumption on $h$. 
 Therefore it is enough to show that
 \[
 	\int_{a_n^-}^{a_n^+} \hat{\rho}_n(y,k_n) e^{-\alpha y} \dd y
@@ -633,17 +590,16 @@ A direct consequence of Lemma~\ref{lem:average_degree_hyperbolic} is that $\Mu{\
 \]
 where we used that $\frac{\partial}{\partial y}\Mu{\BallPo{y}} = \frac{1}{2}\Mu{\BallPo{y}}$. Again, Lemma~\ref{lem:average_degree_hyperbolic} implies that 
 \[
-	\lim_{n \to \infty} \sup_{0 \le y \le (1-\varepsilon)R} \frac{1}{2} \frac{\Mu{\BallHyp{y}}}{\Mu{\BallPo{y}}}
-	= \frac{1}{2}.
+	\lim_{n \to \infty} \sup_{0 \le y \le (1-\varepsilon)R} \left|\frac{1}{2} \frac{\Mu{\BallHyp{y}}}{\Mu{\BallPo{y}}}
+	- \frac{1}{2}\right| = 0.
 \]
 The following lemma shows that the same holds for the first term from which we conclude that $\phi_n(y)$ satisfies condition ii) in Lemma~\ref{lem:concentration_argument_rho_approximation}.
 
 \begin{lemma}
 For any $0 < \varepsilon < 1$,
 \[
-	\lim_{n \to \infty} \sup_{0 \le y \le (1-\varepsilon)R} \Mu{\BallPo{y}}^{-1}
-	\frac{\partial}{\partial y} \mu\left(\BallHyp{y}\right) 
-	= \frac{1}{2}.
+	\lim_{n \to \infty} \sup_{0 \le y \le (1-\varepsilon)R} \left|\Mu{\BallPo{y}}^{-1}
+	\frac{\partial}{\partial y} \mu\left(\BallHyp{y}\right) - \frac{1}{2}\right| = 0.
 \]
 \end{lemma}
 
@@ -677,8 +633,8 @@ Taking the derivative of the last expression gives
 \end{align*}
 Since, $\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \Mu{\BallPo{y}}^{-1} \Mu{\BallHyp{y} \cap \Rcal ([R - y, R])} = 0$, we are left to show that
 \begin{equation}\label{eq:derivative_mu_hyp_ball_main}
-	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \Mu{\BallPo{y}}^{-1} \frac{2\alpha \nu}{\pi} \frac{\partial}{\partial y} \int_0^{R - y} \Phi(r,r^\prime) e^{-\alpha y^\prime} \dd y^\prime
-	= \frac{1}{2}.
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \left|\Mu{\BallPo{y}}^{-1} \frac{2\alpha \nu}{\pi} \frac{\partial}{\partial y} \int_0^{R - y} \Phi(y,y^\prime) e^{-\alpha y^\prime} \dd y^\prime
+	- \frac{1}{2}\right| = 0.
 \end{equation}
 
 We start with some preliminary computations. For convenience we define
@@ -687,7 +643,7 @@ We start with some preliminary computations. For convenience we define
 \]
 so that
 \[
-	\Phi(R -y, R - y^\prime) = \frac{1}{2}e^{R/2} \arccos\left(1 - \Xi(y,y^\prime)\right).
+	\Phi(y, y^\prime) = \frac{1}{2}e^{R/2} \arccos\left(1 - \Xi(y,y^\prime)\right).
 \]
 Next, following the same calculation as in the proof of~\cite[Lemma 28]{fountoulakis2018law}, we write
 \begin{align*}
@@ -707,7 +663,7 @@ We make two important observations. First, $\Xi(y,y^\prime)$ is an increasing fu
 \begin{equation}\label{eq:derivative_hyp_ball_Xi_bounds}
 	2 e^{-(R - y - y^\prime)}h_1(y) h_2(y) \le \Xi(y,y^\prime) \le 2 e^{-(R - y - y^\prime)}.
 \end{equation}
-In particular, there exists a $0 < \delta < 1$ such that $1 \le \Xi(y,y^\prime) \le 2$ for all $0 < y < R$ and $(1-\delta)(R-y) < y^\prime < R$.
+In particular, since $R-y$ is an increrasing function of $n$ uniformly on $0 < y < (1-\varepsilon)R$, there exists a $0 < \delta < 1$ such that $1/2 \le \Xi(y,y^\prime) < 2$ for all $y + y^\prime < R$ and $(1-\delta)(R-y) < y^\prime < R$ and $n$ large enough.
 
 Next, taking the derivative of $\Xi(y,y^\prime)$ yields,
 \begin{align*}
@@ -725,7 +681,7 @@ with
 \]
 Therefore, by the chain rule,
 \begin{align*}
-	\frac{\partial}{\partial y} \Phi(R -y, R - y^\prime)
+	\frac{\partial}{\partial y} \Phi(y, y^\prime)
 	&= \frac{1}{2}e^{R/2} \frac{1}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}} 
 		\frac{\partial}{\partial y} \Xi(y,y^\prime)\\
 	&=  \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}\left(1 + 
@@ -733,35 +689,36 @@ Therefore, by the chain rule,
 \end{align*}
 Applying the Leibniz's rule we then get
 \begin{align*}
-	&\hspace{-30pt}\frac{\partial}{\partial y} \int_0^{R - y} \Phi(y,y^\prime) \alpha e^{-\alpha y^\prime} \dd y^\prime\\
-	&= - \alpha\Phi(y,R - y)e^{-\alpha(R-y)} + \int_0^{R - y} \frac{\partial}{\partial y}  \Phi(y,y^\prime) 
-		\alpha e^{-\alpha y^\prime} \dd y^\prime\\
-	&= -\frac{\pi}{2}e^{-(\alpha-\frac{1}{2})R + \alpha y} + \int_0^{R- y} \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
-		\left(1 + \varphi_n(y,y^\prime)\right) \alpha e^{-\alpha y^\prime} \dd y^\prime\\
-	&= -\frac{\pi}{2}e^{-(\alpha-\frac{1}{2})R + \alpha y}  + \int_0^{(1-\delta)(R- y)} \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}
+	&\hspace{-30pt}\frac{\partial}{\partial y} \int_0^{R - y} \Phi(y,y^\prime) e^{-\alpha y^\prime} \dd y^\prime\\
+	&= - \Phi(y,R - y)e^{-\alpha(R-y)} + \int_0^{R - y} \frac{\partial}{\partial y}  \Phi(y,y^\prime) 
+		 e^{-\alpha y^\prime} \dd y^\prime\\
+	&= -\frac{1}{2}e^{-(\alpha-\frac{1}{2})R + \alpha y} + \int_0^{R- y} \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
+		\left(1 + \varphi_n(y,y^\prime)\right) e^{-\alpha y^\prime} \dd y^\prime\\
+	&= -\frac{1}{2}e^{-(\alpha-\frac{1}{2})R + \alpha y}  + \int_0^{(1-\delta)(R- y)} \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}
 		{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
-		\left(1 + \varphi_n(y,y^\prime)\right) \alpha e^{-\alpha y^\prime} \dd y^\prime\\
+		\left(1 + \varphi_n(y,y^\prime)\right) e^{-\alpha y^\prime} \dd y^\prime\\
 	&\hspace{10pt}+ \int_{(1-\delta)(R- y)}^{R - y} \frac{ \frac{1}{2}e^{R/2} \Xi(y,y^\prime)}
 			{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
-			\left(1 + \varphi_n(y,y^\prime)\right) \alpha e^{-\alpha y^\prime} \dd y^\prime\\
+			\left(1 + \varphi_n(y,y^\prime)\right) e^{-\alpha y^\prime} \dd y^\prime\\
 	&:= -I_1(y) + I_2(y) + I_3(y),
 \end{align*}
-with $\delta$ such that $1 \le \Xi(y,y^\prime) \le 2$ for all $0 < y < R$ and $(1-\delta)(R-y) < y^\prime < R$.
+with $0 \le \delta < 1$ such that $0 < \Xi(y,y^\prime) < 2$ for all $0 < y < R$ and $(1-\delta)(R-y) < y^\prime < R$.
 
 We proceed by showing that
 \begin{equation}\label{eq:derivative_hyp_ball_error_1}
-	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \Mu{\BallPo{y}}^{-1} I_t(y) = 0, \quad \text{for } t = 1,3
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \left|\frac{I_t(y)}{\Mu{\BallPo{y}}}\right| 
+	= 0, \quad \text{for } t = 1,3
 \end{equation}
 while
 \begin{equation}\label{eq:derivative_hyp_ball_main_part}
-	\lim_{n \to \infty} \sup_{0 \le y \le (1-\varepsilon)R} \Mu{\BallPo{y}}^{-1} \frac{2\nu \alpha}{\pi} I_2(y) = \frac{1}{2}.
+	\lim_{n \to \infty} \sup_{0 \le y \le (1-\varepsilon)R} \left|\frac{2\nu \alpha}{\pi \Mu{\BallPo{y}}} I_2(y) - \frac{1}{2}\right| = 0.
 \end{equation}
 This then implies~\eqref{eq:derivative_mu_hyp_ball_main} and finishes the proof.
 
-Let us first consider $I_1(y)$. Since 
+For $I_1(y)$ we have 
 \[
 	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \Mu{\BallPo{y}}^{-1} I_1(y) 
-	\le \lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \frac{\pi}{2\xi} e^{-(\alpha - \frac{1}{2})(R - y)} = 0.
+	\le \lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \frac{1}{2\xi} e^{-(\alpha - \frac{1}{2})(R - y)} = 0.
 \]
 
 For $I_3(y)$ we first use that $y^\prime < R - y$ to bound $\varphi(y,y^\prime)$ as follows,
@@ -770,85 +727,105 @@ For $I_3(y)$ we first use that $y^\prime < R - y$ to bound $\varphi(y,y^\prime)$
 \]
 This then yields that
 \[
-	I_3(y) \le \frac{\alpha}{2}\left(1 + \frac{e^{-2y}}{1 - e^{-2y}}\right)e^{R/2}
+	I_3(y) \le \frac{1}{2}\left(1 + \frac{e^{-2y}}{1 - e^{-2y}}\right)e^{R/2}
 	\int_{(1-\delta)(R- y)}^{R - y} \frac{ \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
 	e^{-\alpha y^\prime} \dd y^\prime.
 \]
-Since for all $1 \le x < 2$,
+To bound the integral we recall that $0 < \Xi(y,y^\prime) \le 2e^{-(R-y-y^\prime)} < 2$ and for all $1/2 \le x < 2$,
 \[
-	\frac{1}{\sqrt{1- (1-x)^2}} \le \frac{2}{\sqrt{2(2-x)}},
-\]
-and $1 \le \Xi(y,y^\prime) \le 2$, for all $(1-\delta)(R -y) \le y\prime < R-y$ and $y < R$, it follows that
+	\frac{1}{\sqrt{1- (1-x)^2}} \le \frac{2}{\sqrt{2-x}},
+\]a
+where the right hand side is a monotonic increasing function.
+Therefore
 \begin{align*}
-	&\hspace{-30pt}\int_{(1-\delta)(R- y)}^{R - y} \frac{ \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
-		e^{-\alpha y^\prime} \dd y^\prime \\
-	&\le 2 \int_{(1-\delta)(R- y)}^{R - y} \frac{\Xi(y,y^\prime)}{\sqrt{2(2-\Xi(y,y^\prime))}} e^{-\alpha y^\prime} 
+	\int_{(1-\delta)(R- y)}^{R - y} \frac{ \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
+		e^{-\alpha y^\prime} \dd y^\prime
+	&\le 2 \int_{(1-\delta)(R- y)}^{R - y} \frac{\Xi(y,y^\prime)}{\sqrt{(2-\Xi(y,y^\prime))}} e^{-\alpha y^\prime} 
 		\dd y^\prime \\
-	&\le 2 e^{-\alpha(R - y)} \int_{(1-\delta)(R- y)}^{R - y} 
-		\frac{e^{-(R - y - y^\prime)}}{\sqrt{1 - e^{-(R - y - y^\prime)}}} e^{\alpha (R - y - y^\prime)} \dd y^\prime.
+	&\le \sqrt{2} e^{-\alpha(R - y)} \int_{(1-\delta)(R- y)}^{R - y} 
+		\frac{e^{-(R - y - y^\prime)}}{\sqrt{1 - e^{-(R - y - y^\prime)}}} e^{\alpha (R - y - y^\prime)} \dd y^\prime,
 \end{align*}
 Making the change of variables $z = e^{-(R - y - y^\prime)}$ ($\dd y^\prime = z^{-1} \dd z$) we get that
 \begin{align*}
-	2 e^{-\alpha(R - y)} \int_{(1-\delta)(R- y)}^{R - y} 
-			\frac{e^{-(R - y - y^\prime)}}{\sqrt{1 - e^{-(R - y - y^\prime)}}} e^{\alpha (R - y - y^\prime)} \dd y^\prime
-	&= 2 e^{-\alpha(R - y)} \int_{e^{-\delta (R - y)}}^{1} \frac{z^{-\alpha}}{\sqrt{1 - z}} \dd z\\
-	&\le 2 e^{-\alpha(R - y)} \sqrt{1 - e^{-\delta (R - y)}}\\
-	&\le 2 e^{-\alpha (R -y)}.
+	&\hspace{-20pt}\sqrt{2} e^{-\alpha(R - y)} \int_{(1-\delta)(R- y)}^{R - y} 
+			\frac{e^{-(R - y - y^\prime)}}{\sqrt{1 - e^{-(R - y - y^\prime)}}} e^{\alpha (R - y - y^\prime)} \dd y^\prime\\
+	&= \sqrt{2} e^{-\alpha(R - y)} \int_{e^{-\delta (R - y)}}^{1} \frac{z^{-\alpha}}{\sqrt{1 - z}} \dd z
+		\le \sqrt{2} e^{-\alpha(R - y)} \sqrt{1 - e^{-\delta (R - y)}}
+		\le \sqrt{2} e^{-\alpha (R -y)}.
 \end{align*}
 We therefore conclude that
 \[
-	I_3(y) \le \alpha \left(1 + \frac{e^{-2y}}{1 - e^{-2y}}\right)e^{-(\alpha -\frac{1}{2})R + \alpha y}.
+	I_3(y) \le \frac{1}{\sqrt{2}} \left(1 + \frac{e^{-2y}}{1 - e^{-2y}}\right)e^{-(\alpha -\frac{1}{2})R + \alpha y}.
 \]
-which implies
-\[
-	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \Mu{\BallPo{y}}^{-1} I_3(y) 
-	\le \lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \alpha \left(1 + \frac{e^{-2y}}{1 - e^{-2y}}\right) e^{-(\alpha - \frac{1}{2})(R - y)} = 0.
-\]
+which implies~\eqref{eq:derivative_hyp_ball_error_1} for $t=3$.
 
-Finally, to show~\eqref{eq:derivative_hyp_ball_main_part} we define 
+Finally, to show~\eqref{eq:derivative_hyp_ball_main_part} we first write
 \begin{align*}
-	\varphi^-_n &:= \sup_{0 < y \le (1-\varepsilon)R} \, \inf_{0 \le y^\prime \le (1 - \delta)(R-y)} 
-		\varphi_n(y,y^\prime)\\
-	\varphi^+_n &:= \sup_{0 < y \le (1-\varepsilon)R} \, \sup_{0 \le y^\prime \le (1 - \delta)(R-y)} \varphi_n(y,y^\prime)
+	\left|\frac{2\alpha \nu}{\pi \Mu{\BallPo{y}}} I_2(y) - \frac{1}{2}\right|
+	&\le \left|\frac{2\alpha \nu}{\pi \Mu{\BallPo{y}}}  \int_0^{(1-\delta)(R- y)} \frac{\Phi(y,y^\prime)}{2} 
+		e^{-\alpha y^\prime} \dd y^\prime - \frac{1}{2}\right| \\
+	&\hspace{10pt}+ \frac{2\alpha \nu}{\pi \Mu{\BallPo{y}}}\left|\int_0^{(1-\delta)(R- y)} 
+		\frac{\Phi(y,y^\prime)}{2} e^{-\alpha y^\prime} \dd y^\prime - I_2(y)\right|.
 \end{align*}
-and note that since for $0 \le y^\prime \le (1-\delta)(R-y)$,
+By Lemma~\ref{lem:hyperbolic_ball_lower_part},
 \[
-	\frac{e^{-(R + y)}}{1 - e^{-(R+y)}} - \frac{e^{-(R- y)}}{1 - e^{-(R-y)}} - \frac{2e^{-2(R-y)}}{1 - e^{-2(R-y)}}
-	\le \varphi_n(y,y^\prime) \le \frac{e^{-\delta(R-y)}}{1 - e^{-\delta(R-y)}}.
-\] 
-we get $\lim_{n \to \infty} \varphi^\pm_n = 0$. Next, recall that $\Phi(y,y^\prime) = \frac{1}{2}e^{R/2}\Xi(y,y^\prime)$. Then, since $\Xi(y,y^\prime) < 2$ for all $y^\prime < (1-\delta)(R-y)$ and $y < R$, there exists a $K > 0$ such that (see Lemma~\ref{lem:arccos_approx}),
-\[
-	\frac{1}{2}\Phi(y,y^\prime)\left(1 - \frac{(1+\sqrt{2})\Xi(y,y^\prime)}{1 + \Xi(y,y^\prime)}\right)
-	\le \frac{\frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}} 
-	\le \frac{1}{2}\Phi(y,y^\prime)\left(1 + \frac{(1+K)\Xi(y,y^\prime)}{1 - \Xi(y,y^\prime)}\right)
-\]
-for all $y^\prime < (1-\delta)(R - y)$ and $y < R$. Using that $e^{-(r-y)} \le e^{-(R - y - y^\prime)} \le e^{-\delta(R- y)}$, for $0 < y^\prime < (1-\delta)(R-y)$, we get
-\[
-	1 - \frac{(1+\sqrt{2})\Xi(y,y^\prime)}{1 + \Xi(y,y^\prime)} \ge 1 - 2(1+\sqrt{2})e^{-(R-y)}
-\]
-and
-\[
-	1 + \frac{(1+K)\Xi(y,y^\prime)}{1 - \Xi(y,y^\prime)} 
-	\le 1 + \frac{2(1 + K)e^{-\delta(R - y)}}{1-e^{-\delta(R-y)}}.
-\]
-
-We thus have the following upper and lower bound for $I_2(y)$
-\begin{align*}
-	I_2(y) \le \frac{1}{2} \left(1 + \phi_n^+\right)
-	\left(1 + \frac{2(1 + K)e^{-\delta(R - y)}}{1-e^{-\delta(R-y)}}\right)
-	\int_{0}^{(1-\delta)(R-y)} \Phi(y,y^\prime) \alpha e^{-\alpha y^\prime} \dd y^\prime,
-\end{align*}
-and
-\[
-	I_2(y) \ge \frac{1}{2} \left(1 + \phi_n^-\right)\left(1 - 2(1+\sqrt{2})e^{-(R-y)}\right)
-	\int_{0}^{(1-\delta)(R-y)} \Phi(y,y^\prime) \alpha e^{-\alpha y^\prime} \dd y^\prime.
-\]
-From this~\eqref{eq:derivative_hyp_ball_main_part} follows since, $\lim_{n \to \infty} \varphi_n^\pm = 0$ and by Lemma~\ref{lem:hyperbolic_ball_lower_part},
-\[
-	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \Mu{\BallPo{y}}^{-1} \frac{2\nu \alpha}{\pi} 
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \left|\frac{2\nu \alpha}{\pi \Mu{\BallPo{y}}} 
 	\int_{0}^{(1-\delta)(R-y)} \Phi(y,y^\prime) \alpha e^{-\alpha y^\prime} \dd y^\prime
-	= 1.
+	- 1\right| = 0,
 \] 
+and thus it suffices to show that the $\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R}$ of the second term goes to zero.
+
+Recalling the definition of $I_2(y)$ we have
+\begin{align*}
+	&\hspace{-30pt}\left|\int_0^{(1-\delta)(R- y)} \frac{\Phi(y,y^\prime)}{2} e^{-\alpha y^\prime} \dd y^\prime 
+		- I_2(y)\right|\\
+	&\le \int_0^{(1-\delta)(R- y)} \left|\frac{\Phi(y,y^\prime)}{2}- \frac{\frac{1}{2}e^{R/2} \Xi(y,y^\prime)}
+		{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}(1+\varphi_n(y,y^\prime)\right|e^{-\alpha y^\prime} \dd y^\prime.
+		\numberthis \label{eq:derivative_hyp_ball_final_error}
+\end{align*}
+We will oroceed to bound the term inside the integral. For this we first note that for $0 \le y^\prime \le (1-\delta)(R-y)$,
+\[
+	\varphi_n(y,y^\prime) \le \frac{e^{-\delta(R-y)}}{1 - e^{-\delta(R-y)}}.
+\]
+and recall that $\Xi(y,y^\prime) \le 2 e^{-(R-y-y^\prime)}$. Moreover, since $x/\sqrt{1-(1-x)^2} = x/\sqrt{2x-x^2}$ is an increasing function and $e^{-(R - y - y^\prime)} \le e^{-\delta(R- y)}$ for $0 < y^\prime < (1-\delta)(R-y)$,
+\[
+	\frac{\frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}
+	\le e^{R/2} \frac{e^{-\delta(R-y)}}{\sqrt{2e^{-\delta(R-y)} - e^{-2\delta(R-y)}}}.
+\]
+Next, recall that $\Phi(y,y^\prime) = \frac{1}{2}e^{R/2}\arccos(1-\Xi(y,y^\prime))$. Then, since $\Xi(y,y^\prime) < 1$ for all $y^\prime < (1-\delta)(R-y)$, $y < R$ and $n$ large enough, we have (see Lemma~\ref{lem:arccos_approx}),
+\[
+	\left|\frac{1}{2}\Phi(y,y^\prime) - \frac{\frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}}\right| \le \frac{1}{2}\Phi(y,y^\prime) \Xi(y,y^\prime).
+\]
+for all $y^\prime < (1-\delta)(R - y)$ and $y < R$. Togehter these facts imply that for $n$ large enough
+\begin{align*}
+	&\hspace{-30pt}\left|\frac{\Phi(y,y)}{2} - \frac{\frac{1}{2}e^{R/2} \Xi(y,y^\prime)}{\sqrt{1 - \left(1 - 	
+		\Xi(y,y^\prime)\right)^2}}(1+\varphi_n(y,y^\prime))\right|\\
+	&\le \frac{\Phi(y,y^\prime)\Xi(y,y^\prime)}{2} 
+		+ \frac{\frac{1}{2}e^{R/2} \Xi(y,y^\prime) \varphi_n(y,y^\prime)}
+		{\sqrt{1 - \left(1 - \Xi(y,y^\prime)\right)^2}} \\
+	&\le e^{-\delta(R-y)} \Phi(y,y^\prime) + \frac{e^{-\delta(R-y)}}{1-e^{-\delta(R-y)}}
+		\frac{e^{R/2} e^{-\delta(R-y)}}{\sqrt{2e^{-\delta(R-y)} - e^{-2\delta(R-y)}}}\\
+	&\le e^{-\delta(R-y)} \Phi(y,y^\prime) + \frac{e^{\frac{R}{2}}e^{-\frac{3}{2}\delta(R-y)}}
+		{\left(1 - e^{-\delta(R-y)}\right)^{3/2}}
+\end{align*}
+
+Plugging this into~\eqref{eq:derivative_hyp_ball_final_error} yields
+\begin{align*}
+	&\hspace{-30pt}\left|\int_0^{(1-\delta)(R- y)} \frac{\Phi(y,y^\prime)}{2} e^{-\alpha y^\prime} \dd y^\prime 
+			- I_2(y)\right|\\
+	&\le \int_0^{(1-\delta)(R- y)} \left(e^{-\delta(R-y)} \Phi(y,y^\prime) + 
+		\frac{e^{\frac{R}{2}}e^{-\frac{3}{2}\delta(R-y)}}{\left(1 - e^{-\delta(R-y)}\right)^{3/2}}\right)
+		e^{-\alpha y^\prime} \dd y^\prime \\
+	&\le e^{-\delta(R-y)} \Mu{\BallPo{y}} + e^{\frac{y}{2}} \frac{e^{-(\alpha - \frac{1}{2} - (\alpha - \frac{3}{2})\delta)(R-y)}}
+		{\alpha \left(1 - e^{-\delta(R-y)}\right)^{3/2}}
+\end{align*}
+To finish the argument we note that $R-y > 0$ for all $0 < y \le (1-\varepsilon)R$ and observe that $\delta < 1$ implies that $(\alpha - \frac{1}{2} - (\alpha - \frac{3}{2})\delta > 1$. Since $\Mu{\BallPo{y}} = \bigT{e^{\frac{y}{2}}}$ it the
+then follows that
+\[
+	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \frac{2\alpha \nu}{\pi \Mu{\BallPo{y}}}
+	\left|\int_0^{(1-\delta)(R- y)} \frac{\Phi(y,y^\prime)}{2} e^{-\alpha y^\prime} \dd y^\prime - I_2(y)\right| = 0,
+\]
+which completes the proof.
 \end{proof}
 
 We now conclude that similar to Corollary~\ref{cor:concentration_of_heights_Gbox}, the concentration of heights results also hold for $\rho_{\Po}(y,k_n)$.

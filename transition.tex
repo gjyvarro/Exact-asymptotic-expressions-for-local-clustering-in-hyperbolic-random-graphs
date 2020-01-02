@@ -59,13 +59,14 @@ where
 \[
 	T_{\infty}(y,p_1,p_2) = \ind{p_1 \in \BallPo{y}}\ind{p_2 \in \BallPo{y}}\ind{p_2 \in \BallPo{p_1}}.
 \]
-Here we slightly abuse notation and write $\BallPo{y}$ for $\BallPo{(0,y)}$. We will adopt this notational convention throughout the remainder of this section, to keep notation concise. We further write $\Nbox(k)$ to denote the number of vertices with degree $k$ in $\Gbox$.
+Here we slightly abuse notation and write $\BallPo{y}$ for $\BallPo{(0,y)}$. We will adopt this notational convention throughout the remainder of this section, to keep notation concise. We also recall that $\Nbox(k)$ denotes the number of vertices with degree $k$ in $\Gbox$.
 
-We will first relate $\gamma(k_n)$ and $\Exp{c^\ast(k_n; \Gbox)}$ using $T_\infty(y)$ and $T_{\text{box}}(y)$. Recall the definition of $\Kcal_{C}(k_n)$
-\[
-	\Kcal_C(k_n) = \left\{y \in \R_+ : \frac{k_n - C \sqrt{k_n \log(k_n)}}{\xi} \le e^{\frac{y}{2}}
-	\le \frac{k_n + C \sqrt{k_n \log(k_n)}}{\xi} \right\},	
-\]
+We will first relate $\gamma(k_n)$ to an integral expression involving $T_\infty(y)$ and $\Exp{c^\ast(k_n;\Gbox)}$ to one involving $\Exp{T_{\text{box}}(y)}$. Recall the definition of $y_{k,C}^\pm$ from~\eqref{eq:def_y_k_C} and the interval $\Kcal_{C}(k_n) = [y_{k_n,C}^-, y_{k_n,C}^+]$. Note that for any $y \in \Kcal_C(k_n)$ it holds that as
+\begin{equation}\label{eq:def_K_C_set}
+	\frac{k_n - C \sqrt{k_n \log(k_n)}}{\xi} \le e^{\frac{y}{2}}
+	\le \frac{k_n + C \sqrt{k_n \log(k_n)}}{\xi}	
+\end{equation}
+and thus $k_n - C \sqrt{k_n \log(k_n)} \le \mu(y) \le k_n + C \sqrt{k_n \log(k_n)}$.
 
 \begin{lemma}
 Let $\gamma(k_n)$ be defined as in~\eqref{eq:gammakint}. Then as $n \to \infty$
@@ -76,7 +77,7 @@ Let $\gamma(k_n)$ be defined as in~\eqref{eq:gammakint}. Then as $n \to \infty$
 Moreover,
 \begin{equation}\label{eq:alt_c_ast_kn}
 	\Exp{c^\ast(k_n;\Gbox)} = (1 + \smallO{1}) \frac{1}{k_n^2 p_{k_n}} \int_{\Kcal_{C}(k_n)} \Exp{T_{\text{box}}(y)}
-		\rho(y,k_n) \alpha e^{-\alpha y} \dd y
+		\rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y
 \end{equation}
 as $n \to \infty$,
 \end{lemma}
@@ -94,12 +95,19 @@ where $u_1$ and $u_2$ are independent and distributed according to the probabili
 \end{align*}
 It then follows that,
 \begin{align*}
-	\gamma(k_n) &= \frac{1}{p_{k_n}} \cdot \int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y \\
-	&= \frac{1}{p_{k_n}} \int_0^\infty \Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} \rho(y,k) 
-		\alpha e^{-\alpha y_0} \dd y_0\\
-	&= (1+ \smallO{1}) \frac{1}{k_n^2 p_{k_n}} \int_0^\infty \Exp{T_\infty(y)} \rho(y,k) \alpha e^{-\alpha y} \dd y_0,
+	\gamma(k_n) &= \frac{1}{p_{k_n}} \cdot \int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
+	= \frac{1}{p_{k_n}} \int_0^\infty \Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} \rho(y,k) 
+		\alpha e^{-\alpha y} \dd y.
 \end{align*}
-where the last line is due to a concentration of heights argument.
+
+Because $\Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} = \bigO{1}$, uniformly in $y \in \R_+$ and $\mu(y) = (1+\smallO{1}) k_n$ uniformly for $y \in \Kcal_C(k_n)$, by the concentration of heights (Proposition~\ref{prop:concentration_height_general})
+\begin{align*}
+	&\hspace{-30pt} \frac{1}{p_{k_n}} 
+		\int_0^\infty \Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} \rho(y,k) \alpha e^{-\alpha y} \dd y \\
+	&= (1+\smallO{1}) \frac{1}{p_{k_n}} 
+		\int_{\Kcal_C(k_n)} \Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} \rho(y,k) \alpha e^{-\alpha y} \dd y \\
+	&= (1+ \smallO{1}) \frac{1}{k_n^2 p_{k_n}} \int_{\Kcal_C(k_n)} \Exp{T_\infty(y)} \rho(y,k) \alpha e^{-\alpha y} \dd y.
+\end{align*}
 
 For~\eqref{eq:alt_c_ast_kn} we recall that
 \[
@@ -117,9 +125,11 @@ By the Campbell-Mecje formula
 	&= \frac{1}{\Exp{\Nbox(k_n)}} \int_{\Rcal} \CExp{c_{\text{box}}(p)}{\Dbox(p) = k_n}\rho_{\text{box}}(p,k_n) 
 		f(x,y) \dd x \dd y\\
 	&= (1+\smallO{1})\frac{n}{\Exp{\Nbox(k_n)}} \int_{\Kcal_C(k_n)} \CExp{c_{\text{box}}(y)}{\Dbox(y) = k_n}
-		\rho(y,k_n) \alpha e^{-\alpha y} \dd y,
+		\rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y,
 \end{align*}
-where the last line follows from a concentration of heights argument, for which we used that $\CExp{c_{\text{box}}(y)}{\Dbox(y) = k_n} \le 1$. To analyze the conditional expectation we observe that, similar to the analysis of $\gamma(k_n)$, conditioned on there being $k_n$ points in $\BallPon{y}$, each point $u_i = (x_i,y_i)$ is independently distributed according to the probability density $\Mu{\BallPon{y}}^{-1} \ind{u_i \in \BallPon{y}} f(x_i,y_i)$. Therefore,
+where the last line follows from the concentration of heights, for which we used the upper bound $\CExp{c_{\text{box}}(y)}{\Dbox(y) = k_n} \le 1$.
+
+To analyze the conditional expectation we observe that, similar to the analysis of $\gamma(k_n)$, conditioned on there being $k_n$ points in $\BallPon{y}$, each point $u_i = (x_i,y_i)$ is independently distributed according to the probability density $\Mu{\BallPon{y}}^{-1} \ind{u_i \in \BallPon{y}} f(x_i,y_i)$. Therefore,
 \begin{align*}
 	\CExp{c_{\text{box}}(y)}{\Dbox(y) = k_n}
 	&= \binom{k_n}{2}^{-1} \Exp{\sum_{1 \le i < j \le k_n} \ind{u_i \in \BallPon{u_j}}} \\
@@ -130,70 +140,28 @@ where the last line follows from a concentration of heights argument, for which 
 \end{align*}
 and thus, by applying a concentration of heights argument on $\Mu{\BallPon{y}}^{-2}$,
 \[
-	\Exp{c^\ast(k_n; \Gbox)} = (1 + \smallO{1}) \frac{n \Mu{\BallPon{2\log(k_n/\xi)}}^{-2}}{\Exp{\Nbox(k_n)}} \int_{\Kcal_C(k_n)} \Exp{T_{\text{box}}(y)} \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
+	\Exp{c^\ast(k_n; \Gbox)} = (1 + \smallO{1}) \frac{n \Mu{\BallPon{2\log(k_n/\xi)}}^{-2}}{\Exp{\Nbox(k_n)}} \int_{\Kcal_C(k_n)} \Exp{T_{\text{box}}(y)} \rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y.
 \]
 To finish the argument, we first note that $\Mu{\BallPon{2\log(k_n/\xi)}}^{-2} = (1+\smallO{1})k_n^2$, while
 \[
-	\Exp{N_{\text{box}}(k_n)} = \int_{\Rcal} \rho_{\text{box}}(y,k_n) f(x,y) \dd x \dd y,
+	\Exp{N_{\text{box}}(k_n)} = (1+\smallO{1}) n p_{k_n}
 \]
-so that by a concentration of heights argument,
-\[
-	\Exp{N_{\text{box}}(k_n)} = (1+o(1)) n \int_{0}^\infty \rho(y,k_n) \alpha e^{-\alpha y} \dd y 
-	= (1+\smallO{1}) n p_{k_n}.
-\]
-We therefore conclude that
+by Lemma~\ref{lem:average_degree_G_box}. We therefore conclude that
 \[
 	\Exp{c^\ast(k_n; \Gbox)} = (1 + \smallO{1}) \frac{1}{k_n^2 p_{k_n}} \int_{\Kcal_C(k_n)} 
-		\Exp{T_{\text{box}}(y)} \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
+		\Exp{T_{\text{box}}(y)} \rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y.
 \]
-
-
-%Next recall the definition of $\Kcal_{C}(k_n)$, see~\eqref{eq:def_K_C_set}, and note that for all $y_0 \in \Kcal_{C}(k_n)$, $\mu(y) = (1+\smallO{1})k_n$. Then Lemma~\ref{lem:concentration_argument} implies that, as $n \to \infty$,
-%\begin{align*}
-%	&\hspace{-30pt} \int_0^\infty \Exp{T_\infty(y_0)} \left(\frac{\mu(y)^2}{2}\right)^{-1} \rho(y_0,k) 
-%		\alpha e^{-\alpha y_0} \dd y_0\\
-%	&= (1+ \smallO{1}) \binom{k_n}{2}^{-1} \int_0^\infty \Exp{T_\infty(y_0)} \rho(y_0,k) \alpha e^{-\alpha y_0} \dd y_0,
-%\end{align*}
-%which finishes the proof.
 \end{proof}
 
+As a result of this lemma we only need to compare the difference in triangles between both models for height in the interval $\Kcal_C(k_n)$. This will significantly help the analysis.
 
-%
-%
-%For the finite box model we have, by the Campbell-Mecke formula,
-%\begin{align*}
-%	\Exp{c^\ast(k_n, \Gbox)}
-%	&= \frac{1}{\binom{k_n}{2}\Exp{\Nbox(k_n)}} \int_{\Rcal} \Exp{T_{\text{box}}(p) \ind{\text{deg}(p) = k_n}} f(x,y) 
-%		\dd x \dd y\\
-%	&= \frac{n}{\binom{k_n}{2}N_{\Gbox}(k_n)} \int_0^{R} \CExp{T_{\text{box}}(y_0)}{\text{deg}(y_0) = k_n} 
-%		\rho_{\text{box}}(y,k_n) \alpha e^{-\alpha y_0} \dd y_0,
-%\end{align*}
-%where the last line follows since the Poisson point process is invariant in $x$ and by slightly abusing notation $T_{\text{box}}(y_0) = T_{\text{box}}(0,y_0)$. Next we note that 
-%\[
-%	\Exp{N_{\text{box}}(k_n)} = \int_{\Rcal} \rho_{\text{box}}(y,k_n) f(x,y) \dd x \dd y,
-%\]
-%so that by a concentration of heights argument, see Corollary~\ref{cor:concentration_heights_asymptotics_n},
-%\[
-%	\Exp{N_{\text{box}}(k_n)} = (1+o(1)) \alpha n \int_{0}^\infty \rho(y,k_n) e^{-\alpha y} \dd y 
-%	= (1+\smallO{1}) n p_{k_n}.
-%\]
-%Since $\Exp{T_{\text{box}}(y_0)\ind{\text{deg}(y_0) = k_n}} \le \binom{k_n}{2}$, and Another concentration of heights argument yields
-%\[
-%	\int_0^{R} \Exp{T_{\text{box}}(y_0)} \rho_{\text{box}}(y_0,k_n) \alpha e^{-\alpha y_0} \dd y_0
-%	= (1 + \smallO{1}) \int_{\Kcal_{C}(k_n)} \Exp{T_{\text{box}}(y_0)} \rho(y_0,k_n) \alpha e^{-\alpha y_0} \dd y_0
-%\]
-%and hence
-%\begin{equation}\label{eq:approx_c_ast_Gbox}
-%	c^\ast(k_n, \Gbox)  = (1 + \smallO{1})\frac{1}{p_{k_n}} \int_{\Kcal_{C}(k_n)} \binom{k_n}{2}^{-1} \Exp{T_{\text{box}}(y_0)} \rho(y_0,k_n) \alpha e^{-\alpha y_0} \dd y_0.
+%Comparing~\eqref{eq:alt_gamma_kn} and~\eqref{eq:alt_c_ast_kn}, we conclude that to prove Proposition~\ref{prop:convergence_average_clustering_P_n} it is enough to show that
+%\begin{equation}\label{eq:triangle_diff_main_term}
+%	 \left|\int_{\Kcal_{C}(k_n)} \Exp{T_{\text{box}}(y) - T_\infty(y)}
+%	\rho(y,k) \alpha e^{-\alpha y} \, d y \right|
+%	= \smallO{s(k_n)p_{k_n}k_n^2},
 %\end{equation}
-
-Comparing~\eqref{eq:alt_gamma_kn} and~\eqref{eq:alt_c_ast_kn}, we conclude that to prove Proposition~\ref{prop:convergence_average_clustering_P_n} it is enough to show that
-\begin{equation}\label{eq:triangle_diff_main_term}
-	 \left|\int_{\Kcal_{C}(k_n)} \Exp{T_{\text{box}}(y) - T_\infty(y)}
-	\rho(y,k) \alpha e^{-\alpha y} \, d y \right|
-	= \smallO{s(k_n)p_{k_n}k_n^2},
-\end{equation}
-which means we have to compute the expected difference in triangles between both models.
+%which means we have to compute the expected difference in triangles between both models.
 
 
 %it follows that
@@ -243,9 +211,7 @@ Let $p_0 = (0,y)$ with $y \in \Kcal_{C}(k_n)$. Then as $n \to \infty$,
 %\]
 \end{lemma}
 
-The proof of the lemma is not difficult but cumbersome, since it involves computing many different integrals. We postpone this proof till the end of this section and proceed with the main goal, proving Proposition~\ref{prop:convergence_average_clustering_P_n}. 
-
-First we state a small lemma about the scaling of $s(k_n)$ that will be very useful.  
+The proof of the lemma is not difficult but cumbersome, since it involves computing many different integrals. We postpone this proof till the end of this section and proceed with the main goal, proving Proposition~\ref{prop:convergence_average_clustering_P_n}. First we state a small lemma about the scaling of $s(k_n)$ that will be very useful.  
 
 \begin{lemma}\label{lem:scaling_s_alpha}
 Let $s(k_n)$ be as defined in \eqref{eq:def_scaling_function}. Then for any $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$, as $n \to \infty$,
@@ -270,18 +236,32 @@ that $4\alpha^2 > 2$ and hence,
 \]
 \end{proof}
 
-We now proceed with proving the main result of this section.
+The first key implication of Lemma~\ref{lem:clustering_error_T_term} is that the triangle count in the finite box model is equivalent to $k_n^2 P(y)$, where $P(y)$ is defined in [??].
 
-\begin{proof}[Proof of Proposition~\ref{prop:convergence_average_clustering_P_n}]
-Let us write $\Rcal^\prime := (\R \times \R_+) \setminus \Rcal$ and let $p_0 = (0,y)$ denote the typical point. Next we recall that it is enough to show~\eqref{eq:triangle_diff_main_term}, so that in particular we have that $y \in \Kcal_{C}(k_n)$.
+\begin{lemma}\label{lem:appox_triangle_count_box}
+Let $p_0 = (0,y)$. Then uniformly for $y \in \Kcal_C(k_n)$,
+\[
+	\Exp{T_{\mathrm{box}}(p_0)} = (1+\smallO{1})k_n^2 P(y) + \smallO{s(k_n) k_n^2},
+\]
+as $n \to \infty$.
+\end{lemma}
 
-Now
+\begin{proof}
+Recall that $\Exp{T_\infty(y)} = \mu(y)^2 P(y) = (1+\smallO{1})k_n^2 P(y)$ on $\Kcal_C(k_n)$. We will show that
+\[
+	\Exp{\left|\Exp{T_{\mathrm{box}}(p_0)} - T_\infty(y)\right|} = \smallO{s(k_n) k_n^2},
+\]
+which implies the result.
+
+Define $\Rcal^\prime := (\R \times \R_+) \setminus \Rcal$. Then we can write
 \begin{align*}
-	\left|T_{\text{box}}(p_0) - T_{\infty}(p_0)\right| 
-	&= \left|T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right| 
-		+ \sum_{p_1, p_2 \in \Pcal \cap \Rcal^\prime}^{\ne} T_{\infty}(p_0,p_1,p_2),
+	\left|T_{\mathrm{box}}(p_0) - T_\infty(y)\right|
+	&\le \left|T_{\mathrm{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right| 
+		+ \left|\widetilde{T}_{\text{box}}(p_0) - T_\infty(y)\right|\\
+	&= \left|T_{\mathrm{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right| 
+		+ \sum_{p_1, p_2 \in \Pcal \cap \Rcal^\prime}^{\ne} T_{\infty}(p_0,p_1,p_2).
 \end{align*}
-so that by the Campbell-Mecke formula
+Then by the Campbell-Mecke formula
 \begin{align*}
 	\left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right|
 	&\le \Exp{\left|T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right|}\\
@@ -303,30 +283,106 @@ Thus we conclude, using Lemma~\ref{lem:clustering_error_T_term}, that,
 \begin{equation}\label{eq:triangle_count_diff_scaling}
 	\left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right| = \bigO{y n^{-(2\alpha - 1)} + n^{-(4\alpha-2)} e^{y}}.
 \end{equation}
+
 Therefore, on $\Kcal_C(k_n)$, 
 \begin{align*}
-	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \rho(y_0,k_n) \left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right| 
-		e^{-\alpha y_0} \dd y_0\\
-	&= \bigO{1} \left(\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)} \right) 
-		\int_{0}^\infty \rho(y_0,k_n) e^{-\alpha y_0} \dd y_0\\
-	&= \bigO{1} \left(\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)} \right) p_{k_n} = \smallO{s(k_n) p_{k_n} k_n^2},
+	\left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right| 
+	&= \bigO{\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)}} \\
+	&= \bigO{\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)}} = \smallO{s(k_n) k_n^2},
 \end{align*}
-%\TM{ Typo : $e^{-\alpha}$ }
-where the last part follows from Lemma~\ref{lem:scaling_s_alpha} and the fact that $s(k_n)^2 = \smallO{s(k_n)}$. This establishes~\eqref{eq:triangle_diff_main_term} and hence finishes the proof.
-%
-% \TM{ Also justify penultimate step! }\PvdH{What do you mean?}
-%To finish the argument we observe that
-%\begin{align*}
-%	\int_{a_n^-}^{a_n^+} \rho(y,k_n) P(y) e^{-\alpha} \dd y
-%	&= \bigT{1} \Exp{N_{\infty}(k_n)} \gamma(k_n) = \bigT{ s(k_n) k_n^{-(2\alpha + 1)}}.
-%\end{align*}
+where the last part follows from Lemma~\ref{lem:scaling_s_alpha} and the fact that $s(k_n)^2 = \smallO{s(k_n)}$.
 \end{proof}
 
-From the proof of Proposition~\ref{prop:convergence_average_clustering_P_n} we obtain the following useful corollary, which will be used in Section~\ref{sec:concentration_c_P_n}. Recall that
+We can now prove the main result of this section.
+
+\begin{proof}[Proof of Proposition~\ref{prop:convergence_average_clustering_P_n}]
+First, by Lemma~\ref{lem:appox_triangle_count_box} and~\eqref{eq:alt_c_ast_kn} we have
+\begin{align*}
+	\Exp{c^\ast(k_n;\Gbox)} &= (1 + \smallO{1}) \frac{1}{p_{k_n}} \int_{\Kcal_{C}(k_n)} P(y)
+		\rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y \\
+	&\hspace{10pt}+ \smallO{s(k_n)}	\frac{1}{p_{k_n}} \int_{\Kcal_{C}(k_n)} P(y)
+			\rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y.
+\end{align*}
+By Lemma~\ref{lem:degree_integral} the integral in the second term is $(1+\smallO{1}) p_{k_n}$ and thus the second term is $\smallO{s(k_n)} = \smallO{\gamma(k_n)}$. Hence it remain to prove that the first term is $(1+\smallO{1}) \gamma(y)$. Using~\eqref{eq:alt_gamma_kn} it is enough to show that
 \[
-	\rho_{\mathrm{box}}(y,k_n) = \Prob{\Po(\mu(\BallPon{y})) = k_n},
+	\int_{\Kcal_{C}(k_n)} P(y) \rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y
+	= (1+\smallO{1}) \int_{\Kcal_{C}(k_n)} P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
 \]
-denote the degree distribution of a point $p_0 = (0,y)$ in $\Gbox$.
+Now recall the substitution of variables from the proof of Lemma~\ref{lem:degree_integral}: $z(y) = 2 \log(\mu_{\mathrm{box}}(y)/\xi)$. We will apply this change of variables to the right hand side in the above equation. This yields
+\begin{align*}
+	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} P(y) \rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y\\
+	&= (1+\smallO{1}) \int_{\Kcal_C(k_n)} P(z(y) - 2\log(1+\smallO{1})) \rho(z(y),k_n) 
+		z^\prime(y) \alpha e^{-\alpha z(y)} \dd y\\
+	&= (1+\smallO{1}) \int_{\Kcal_C(k_n)} P(z - 2\log(1+\smallO{1})) \rho(z,k_n) \alpha e^{-\alpha z} \dd z.
+\end{align*}
+Next we recall that by Proposition~\ref{prop:asymptotics_P}
+\[
+	P(y) \sim \begin{cases}
+		e^{-\frac{y}{2}(4\alpha - 2)} c_\alpha \xi^{4\alpha - 2} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{4}\\
+		\frac{y}{2} e^{-\frac{y}{2}} &\mbox{if } \alpha = \frac{3}{4}\\
+		e^{-\frac{y}{2}} \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} &\mbox{if } \alpha > \frac{3}{4}.
+	\end{cases}
+\]
+In particular, this implies that $P(z - 2\log(1+\smallO{1})) = (1+\smallO{1})P(z)$, uniformly on $\Kcal_C(k_n)$. We therefore conclude that
+\[
+	\int_{\Kcal_{C}(k_n)} P(y) \rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y
+		= (1+\smallO{1}) \int_{\Kcal_{C}(k_n)} P(z) \rho(z,k_n) \alpha e^{-\alpha z} \dd z,
+\]
+which finishes the proof.
+%
+%
+%
+%
+%Let us write $\Rcal^\prime := (\R \times \R_+) \setminus \Rcal$ and let $p_0 = (0,y)$ denote the typical point. Next we recall that it is enough to show~\eqref{eq:triangle_diff_main_term}, so that in particular we have that $y \in \Kcal_{C}(k_n)$.
+%
+%Now
+%\begin{align*}
+%	\left|T_{\text{box}}(p_0) - T_{\infty}(p_0)\right| 
+%	&= \left|T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right| 
+%		+ \sum_{p_1, p_2 \in \Pcal \cap \Rcal^\prime}^{\ne} T_{\infty}(p_0,p_1,p_2),
+%\end{align*}
+%so that by the Campbell-Mecke formula
+%\begin{align*}
+%	\left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right|
+%	&\le \Exp{\left|T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right|}\\
+%	&\hspace{10pt}+ \int_{\Rcal^\prime}\int_{\Rcal^\prime} T_{\infty}(p_0,p_1,p_2) f(x_1,y_1) f(x_2,y_2)
+%		\dd x_2 \dd y_2 \dd x_1 \dd y_1. 
+%\end{align*}
+%
+%%\TM{ in the 1st integral we could have restricted to the ball of $p$, and possibly saved a lot. Does that not help? }\PvdH{the first integral is taken care of by another Lemma so it does not matter I think.}
+%The first part is taken care of by Lemma~\ref{lem:clustering_error_T_term}. For the other integral we have
+%\begin{align*}
+%	&\hspace{-30pt}\iint_{\Rcal^\prime} T_{\infty}(p_0,p_1,p_2) f(x_1,y_1) f(x_2,y_2)
+%		\dd x_2 \dd y_2 \dd x_1 \dd y_1\\
+%	&\le \left(\int_{\Rcal^\prime} \ind{p_1 \in \BallPo{p_0}} f(x_1,y_1) \dd x_1 \dd y_1\right)^2
+%		= \bigO{\left(e^{y/2} \int_{R}^\infty e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\right)^2}\\
+%	&= \bigO{e^{y} e^{-(2\alpha-1)R}} = \bigO{e^y n^{-(4\alpha - 2)}}.
+%\end{align*}
+%%\TM{ Typo : $f_{\mu, \nu}$? Also give more details how line 3 follows. }
+%Thus we conclude, using Lemma~\ref{lem:clustering_error_T_term}, that,
+%\begin{equation}\label{eq:triangle_count_diff_scaling}
+%	\left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right| = \bigO{y n^{-(2\alpha - 1)} + n^{-(4\alpha-2)} e^{y}}.
+%\end{equation}
+%Therefore, on $\Kcal_C(k_n)$, 
+%\begin{align*}
+%	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \rho(y_0,k_n) \left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right| 
+%		e^{-\alpha y_0} \dd y_0\\
+%	&= \bigO{1} \left(\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)} \right) 
+%		\int_{0}^\infty \rho(y_0,k_n) e^{-\alpha y_0} \dd y_0\\
+%	&= \bigO{1} \left(\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)} \right) p_{k_n} = \smallO{s(k_n) p_{k_n} k_n^2},
+%\end{align*}
+%%\TM{ Typo : $e^{-\alpha}$ }
+%where the last part follows from Lemma~\ref{lem:scaling_s_alpha} and the fact that $s(k_n)^2 = \smallO{s(k_n)}$. This establishes~\eqref{eq:triangle_diff_main_term} and hence finishes the proof.
+%%
+%% \TM{ Also justify penultimate step! }\PvdH{What do you mean?}
+%%To finish the argument we observe that
+%%\begin{align*}
+%%	\int_{a_n^-}^{a_n^+} \rho(y,k_n) P(y) e^{-\alpha} \dd y
+%%	&= \bigT{1} \Exp{N_{\infty}(k_n)} \gamma(k_n) = \bigT{ s(k_n) k_n^{-(2\alpha + 1)}}.
+%%\end{align*}
+\end{proof}
+
+From the proof of Proposition~\ref{prop:convergence_average_clustering_P_n} we immediately obtain the following useful corollary, which will be used in Section~\ref{sec:concentration_c_P_n}. 
 
 \begin{corollary}\label{cor:adjusted_triangle_counting_P_n}
 Let $p_0 = (0,y)$. Then, as $n \to \infty$,
@@ -341,39 +397,39 @@ In particular,
 \]
 \end{corollary}
 
-\begin{proof}
-We first write
-\[
-	\Exp{\left|\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)\right|} 
-	\le \Exp{\left|T_{\text{box}}(y) - \widetilde{T}_{\text{box}}(y) \right|}
-	+\Exp{\left|T_{\text{box}}(y) - T_{\infty}(y)\right|}.
-\]
-Therefore, Lemma~\ref{lem:clustering_error_T_term} and equation~\eqref{eq:triangle_count_diff_scaling} imply that, uniformly for $y \in \Kcal_C(k_n)$,
-\[
-	\Exp{\left|\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)\right|} = \bigO{\log(k_n)n^{-(2\alpha - 1)}
-	+ k_n^2 n^{-(4\alpha - 2)}}	= \smallO{s(k_n) k_n^2},
-\]
-where the last part is due to Lemma~\ref{lem:scaling_s_alpha}.
-Next, since $\Exp{T_\infty(y)} = \Mu{\BallPo{y}}^2 P(y)$, we get
-\[
-	\Exp{\widetilde{T}_{\text{box}}(y)} = \Exp{T_{\infty}(y)} + \Exp{\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)} 
-	= k_n^2 P(y) + \smallO{s(k_n)k_n^2},
-\]
-uniformly on $\Kcal_{C}(k_n)$. Therefore, we can apply a concentration of height argument to replace $\rho_{\text{box}}(y,k_n)$ with $\rho(y,k_n)$ and thus obtain
-\begin{align*}
-	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(y)} 
-		f(x,y) \dd x \dd y\\
-	&= n k_n^2 \int_{\Kcal_{C}(k_n)} \rho(y,k_n) \left(P(y) + \smallO{s(k_n)}\right)
-		\alpha e^{-\alpha y} \dd y\\
-	&= (1+\smallO{1}) n k_n^2 \int_{\Kcal_{C}(k_n)} P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y\\
-	&= (1+\smallO{1}) n k_n^2 \int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
-\end{align*}
-where we used that on $\Kcal_{C}(k_n)$, $P(y) = \bigT{s(k_n)}$. This proves the first statement. The second statement follows by observing that
-\[
-	\int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y = p_{k_n} \gamma(k_n)
-	= \bigT{k_n^{-(2\alpha + 1)} s(k_n)}.
-\]
-\end{proof}
+%\begin{proof}
+%We first write
+%\[
+%	\Exp{\left|\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)\right|} 
+%	\le \Exp{\left|T_{\text{box}}(y) - \widetilde{T}_{\text{box}}(y) \right|}
+%	+\Exp{\left|T_{\text{box}}(y) - T_{\infty}(y)\right|}.
+%\]
+%Therefore, Lemma~\ref{lem:clustering_error_T_term} and equation~\eqref{eq:triangle_count_diff_scaling} imply that, uniformly for $y \in \Kcal_C(k_n)$,
+%\[
+%	\Exp{\left|\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)\right|} = \bigO{\log(k_n)n^{-(2\alpha - 1)}
+%	+ k_n^2 n^{-(4\alpha - 2)}}	= \smallO{s(k_n) k_n^2},
+%\]
+%where the last part is due to Lemma~\ref{lem:scaling_s_alpha}.
+%Next, since $\Exp{T_\infty(y)} = \Mu{\BallPo{y}}^2 P(y)$, we get
+%\[
+%	\Exp{\widetilde{T}_{\text{box}}(y)} = \Exp{T_{\infty}(y)} + \Exp{\widetilde{T}_{\text{box}}(y) - T_{\infty}(y)} 
+%	= k_n^2 P(y) + \smallO{s(k_n)k_n^2},
+%\]
+%uniformly on $\Kcal_{C}(k_n)$. Therefore, we can apply a concentration of height argument to replace $\rho_{\text{box}}(y,k_n)$ with $\rho(y,k_n)$ and thus obtain
+%\begin{align*}
+%	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(y)} 
+%		f(x,y) \dd x \dd y\\
+%	&= n k_n^2 \int_{\Kcal_{C}(k_n)} \rho(y,k_n) \left(P(y) + \smallO{s(k_n)}\right)
+%		\alpha e^{-\alpha y} \dd y\\
+%	&= (1+\smallO{1}) n k_n^2 \int_{\Kcal_{C}(k_n)} P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y\\
+%	&= (1+\smallO{1}) n k_n^2 \int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
+%\end{align*}
+%where we used that on $\Kcal_{C}(k_n)$, $P(y) = \bigT{s(k_n)}$. This proves the first statement. The second statement follows by observing that
+%\[
+%	\int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y = p_{k_n} \gamma(k_n)
+%	= \bigT{k_n^{-(2\alpha + 1)} s(k_n)}.
+%\]
+%\end{proof}
 
 %Define
 %\begin{equation}\label{eq:def_tilde_triangle_indicator}

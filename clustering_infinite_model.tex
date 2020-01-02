@@ -4,13 +4,7 @@
 \section{Clustering and the degree of the typical point in $\Ginf$\label{sec:Ginf}\label{sec:asymptotics_average_clustering_ast_P}}
 
 
-As mentioned earlier, we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of $\GPo$ with certain quantities associated with $\Ginf$. We will be considering the Poisson process $\Pcal$ to which we add one additional point $(0,y)$ on the $y$-axis. In some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and independent of $\Pcal$.
-We refer to $(0,y)$ as ``the typical point''.
-
-To provide some intuition for this definition and name, note that we can alternatively view $\Pcal$ as follows. 
-We take a constant intensity Poisson process on $\eR$ corresponding to the $x$-coordinates, and to each point
-we attach a random ``mark'', corresponding to the $y$-coordinate, where the marks are i.i.d.~exponentially distributed with parameter $\alpha$.
-
+Similar to the proof for the degrees we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of $\GPo$ with certain quantities associated with $\Ginf$. Recall that a \emph{typical point} is a point $p_0 = (0,y)$, where in some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and independent of $\Pcal$.
 
 Since $c(G)$ is defined as an average over all vertices of the graph, it is not immediately obvious how to meaningfully define a corresponding notion for infinite graphs, and similarly for the clustering function, the degree sequence, etc.
 We can however without any issues speak of the (expected) clustering coefficient of the typical point, or the expected clustering coefficient given that it has degree $k$, or the distribution of the degree of the typical point. (All considered in the graph obtained from $\Ginf$ by adding the typical point to its vertex set.)
@@ -29,45 +23,7 @@ Integrating the intensity function of $\Pcal$ over $\BallPo{p}$ gives, using $\a
 \end{align*}
 
 
-\subsection{The degree of the typical point\label{ssec:degrees_infinite_model}}
 
-Before considering clustering we briefly investigate the distribution of the degree of the typical point. 
-For $p = (x,y) \in \eR\times[0,\infty)$ we define
-\begin{equation}\label{eq:def_degree_inf_model}
-	\rho(p,k) := \Prob{\Po(\Mu{p}) = k},
-\end{equation}
-where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$. We will often write $\rho(y,k)$ instead of $\rho(p,k)$.
-
-Let the random variable $D$ denote the degree of the typical point. Since the typical point has a height that is independent of the Poisson process and exponential($\alpha$)-distributed, for $k \in \N_0$:
-\begin{equation}\label{eq:def_pk}
-	p_k :=  \Prob{D = k} = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy.
-\end{equation}
-
-Using the transformation of variables $z = \xi e^{\frac{y}{2}}$ (so $dy = \frac{2}{z}dz$), we compute
-\begin{align*}
-	p_k
-    &= \frac{1}{k!} \int_0^\infty \left(\xi e^{\frac{y}{2}}\right)^k 
-    	e^{-\xi e^{\frac{y}{2}}} \alpha e^{-\alpha y} \, dy
-    	= \frac{\alpha \xi^{2\alpha}}{k!} \int_0^\infty 
-    	\left(\xi e^{\frac{y}{2}}\right)^{k - 2\alpha} e^{-\xi e^{\frac{y}{2}}}
-        \, dy\\
-    &= \frac{2\alpha \xi^{2\alpha}}{k!} \int_{\xi}^{\infty} 
-    	z^{k -2\alpha-1} e^{-z} \, dz
-    	= \frac{2\alpha \xi^{2\alpha}\Gamma^+(k - 2\alpha, \xi)}{k!},
-\end{align*}
-where we recall that $\Gamma$ denotes the Gamma-function and $\Gamma^{+}$ the upper incomplete Gamma-function.
-Note that, unsurprisingly, this is identical to the expression Gugelmann et al.~\cite{gugelmann2012random} gave for the limiting degree distribution of $G(n;\alpha,\nu)$. Using Stirling's approximation to the gamma function, we find that 
-
-\begin{equation}\label{eq:degree_distribution_P_asymptotics}
-	p_k \sim 2\alpha\xi^{2\alpha} k^{-(2\alpha + 1)}
-	\quad \text{as } k \to \infty.
-\end{equation}
-
-By a similar computation we have the following result, which will be useful later on. For any $\beta > 0$, as $k \to \infty$
-\begin{equation}\label{eq:general_integral_rho_y_k}
-	\int_0^\infty e^{\beta y} \rho(y, k) \alpha e^{-\alpha y} \, dy
-    \sim 2\alpha \xi^{2(\beta + \alpha)} k^{-2(\beta + \alpha)-1}.
-\end{equation}
 
 
 \subsection{The expected clustering coefficient and function of the typical point}
@@ -1340,71 +1296,72 @@ We conclude that as $y \to \infty$
 which finishes the proof.
 \end{proof}
 
-With the asymptotic behavior of $P(y)$ we are almost ready to prove Proposition~\ref{prop:asymp}. First we will prove a result that will allow us to limit the values of $y$, when performing the integration. For this, fix some $C > 0$ and define
+With the asymptotic behavior of $P(y)$ we are almost ready to prove Proposition~\ref{prop:asymp}. First we will prove a result that will allow us to limit the values of $y$, when performing the integration. For this, recall that for any $C > 0$ we defined
 \[
-	a^\pm(k) = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
+	y_{k,C}^\pm = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
 \] 
+Since $P(y) \le 1$ by the concentration of heights results (Proposition~\ref{prop:concentration_height_general}) we have that
 We will show that, as $k \to \infty$,
 \begin{equation}\label{eq:asymptotics_average_clustering_concentration}
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-	= (1+\smallO{1}) \int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y.
+	= (1+\smallO{1}) \int_{y_{k,C}^-}^{y_{k,C}^+} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y.
 \end{equation}
 
-To establish~\eqref{eq:asymptotics_average_clustering_concentration} recall that $\mu(y) = \xi e^{\frac{y}{2}}$ and consider $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$ as a function of $y$. Then, since $\mu^\prime(y) = \mu(y)/2$, we get that
-\[
-	\frac{\partial \rho(y,k)}{\partial y} = \frac{1}{2}\left(k - \mu(y)\right)\rho(y,k),
-\]
-which implies that $\rho(y,k)$ attains its maximum at $\mu(y) = k$. Moreover we see that the derivative is strictly positive when $\mu(y) < k$ and strictly negative when $\mu(y) > k$. Since $\mu(a^-(k)) < k$ and $\mu(a^+(k)) > k$, we conclude that $\rho(y,k)$, as a function of $y$, is strictly increasing on $[0,a^-(k)]$ and strictly decreasing on $[a^+(k),\infty)$. Hence, using that $P(y) \le 1$,
-\begin{align*}
-	&\hspace{-20pt}\int_{\R_+ \setminus [a^-(k), a^+(k)]} P(y) \rho(y,k) 
-		\alpha e^{-\alpha y} \dd y\\
-    &\le \int_0^{a^-(k)} \rho(y,k) \alpha e^{-\alpha y} \dd y 
-    	+ \int_{a^+(k)}^{\infty}\rho(y,k) \alpha e^{-\alpha y}x \dd y \\
-   	&\le \rho(a^-(k),k)\int_0^{a^-(k)} e^{-\alpha y} \, \dd y
-   		+ \rho(a^+(k),k) \int_{a^+(k)}^{\infty} e^{-\alpha y} \, \dd y\\
-   	&= \bigO{1}\left(\rho(a^-(k),k) + \rho(a^+(k),k)\right),
-\end{align*}
-as $k \to \infty$. Next we show that
-\[
-	\rho(a^\pm(k),k) = \bigO{k^{-(1+C^2)/2}}.
-\]
-Since the arguments are almost completely identical, we give the prove for $a^+(k)$.
-
-Using Stirling's formula $k! \sim \sqrt{2\pi} k^{k + 1/2} e^{-k}$ as $k \to \infty$ we write
-\begin{align*}
-	\rho(a^+(k),k) &= \frac{\mu(a^+(k))^{k}}{k!} e^{-\mu(a^+(k))} \\
-	&\sim (2\pi)^{-1/2} k^{-1/2} \left(\frac{\mu(a^+(k))}{k}\right)^{k} e^{-(\mu(a^+(k) - k)}\\
-	&= (2\pi)^{-1/2} k^{-1/2} 
-		e^{-k\left(\frac{\mu(a^+(k))}{k} - 1 - \log\left(\frac{\mu(a^+(k))}{k}\right)\right)}.
-\end{align*}
-Since, for sufficiently large $k$,
-\[
-	\frac{\mu(a^+(k))}{k} = 1 + C \sqrt{\frac{\log(k)}{k}}
-\]
-and $x - \log(1 + x) \sim x^2/2$ as $x \to 0$, we get 
-\begin{align*}
-	\rho(a^+(k),k) 
-	&\sim \sqrt{2\pi} k^{-1/2} 
-		e^{-k \left(C \sqrt{\frac{\log(k)}{k}} - \log\left(1 + C \sqrt{\frac{\log(k)}{k}}\right)\right)}\\
-	&\sim (2\pi)^{-1/2} k^{-1/2} e^{-\frac{k \left(C \sqrt{\frac{\log(k)}{k}}\right)^2}{2}} \\
-	&= \bigO{k^{-(1+C^2)/2}}.
-\end{align*}
-
-Since $C > 0$ can be chosen arbitrarily large we conclude that
-\[
-	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-	= (1+\smallO{1}) \int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
-\]
-as $k \to \infty$. Note that this implies that if $P(y) = h(y)(1 + \smallO{1})$, uniformly in $y$, as $y \to \infty$, then 
+Note that this implies that if $P(y) = h(y)(1 + \smallO{1})$, uniformly in $y$, as $y \to \infty$, then 
 \begin{equation}\label{eq:asymptotics_average_clustering_error_term}
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
 	\sim \int_0^\infty h(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
 \end{equation}
 as $y \to \infty$.
 
+%To establish~\eqref{eq:asymptotics_average_clustering_concentration} recall that $\mu(y) = \xi e^{\frac{y}{2}}$ and consider $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$ as a function of $y$. Then, since $\mu^\prime(y) = \mu(y)/2$, we get that
+%\[
+%	\frac{\partial \rho(y,k)}{\partial y} = \frac{1}{2}\left(k - \mu(y)\right)\rho(y,k),
+%\]
+%which implies that $\rho(y,k)$ attains its maximum at $\mu(y) = k$. Moreover we see that the derivative is strictly positive when $\mu(y) < k$ and strictly negative when $\mu(y) > k$. Since $\mu(a^-(k)) < k$ and $\mu(a^+(k)) > k$, we conclude that $\rho(y,k)$, as a function of $y$, is strictly increasing on $[0,a^-(k)]$ and strictly decreasing on $[a^+(k),\infty)$. Hence, using that $P(y) \le 1$,
+%\begin{align*}
+%	&\hspace{-20pt}\int_{\R_+ \setminus [a^-(k), a^+(k)]} P(y) \rho(y,k) 
+%		\alpha e^{-\alpha y} \dd y\\
+%    &\le \int_0^{a^-(k)} \rho(y,k) \alpha e^{-\alpha y} \dd y 
+%    	+ \int_{a^+(k)}^{\infty}\rho(y,k) \alpha e^{-\alpha y}x \dd y \\
+%   	&\le \rho(a^-(k),k)\int_0^{a^-(k)} e^{-\alpha y} \, \dd y
+%   		+ \rho(a^+(k),k) \int_{a^+(k)}^{\infty} e^{-\alpha y} \, \dd y\\
+%   	&= \bigO{1}\left(\rho(a^-(k),k) + \rho(a^+(k),k)\right),
+%\end{align*}
+%as $k \to \infty$. Next we show that
+%\[
+%	\rho(a^\pm(k),k) = \bigO{k^{-(1+C^2)/2}}.
+%\]
+%Since the arguments are almost completely identical, we give the prove for $a^+(k)$.
+%
+%Using Stirling's formula $k! \sim \sqrt{2\pi} k^{k + 1/2} e^{-k}$ as $k \to \infty$ we write
+%\begin{align*}
+%	\rho(a^+(k),k) &= \frac{\mu(a^+(k))^{k}}{k!} e^{-\mu(a^+(k))} \\
+%	&\sim (2\pi)^{-1/2} k^{-1/2} \left(\frac{\mu(a^+(k))}{k}\right)^{k} e^{-(\mu(a^+(k) - k)}\\
+%	&= (2\pi)^{-1/2} k^{-1/2} 
+%		e^{-k\left(\frac{\mu(a^+(k))}{k} - 1 - \log\left(\frac{\mu(a^+(k))}{k}\right)\right)}.
+%\end{align*}
+%Since, for sufficiently large $k$,
+%\[
+%	\frac{\mu(a^+(k))}{k} = 1 + C \sqrt{\frac{\log(k)}{k}}
+%\]
+%and $x - \log(1 + x) \sim x^2/2$ as $x \to 0$, we get 
+%\begin{align*}
+%	\rho(a^+(k),k) 
+%	&\sim \sqrt{2\pi} k^{-1/2} 
+%		e^{-k \left(C \sqrt{\frac{\log(k)}{k}} - \log\left(1 + C \sqrt{\frac{\log(k)}{k}}\right)\right)}\\
+%	&\sim (2\pi)^{-1/2} k^{-1/2} e^{-\frac{k \left(C \sqrt{\frac{\log(k)}{k}}\right)^2}{2}} \\
+%	&= \bigO{k^{-(1+C^2)/2}}.
+%\end{align*}
+%
+%Since $C > 0$ can be chosen arbitrarily large we conclude that
+%\[
+%	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
+%	= (1+\smallO{1}) \int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
+%\]
+%as $k \to \infty$. 
 
 We now proceed with the proof of Proposition~\ref{prop:asymp}, which is split over the different cases for $\alpha$. 
-
 
 \paragraph{Proof when \bm{$1/2 < \alpha < 3/4$}}
 By Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term}  it follows that as $k \to \infty$,

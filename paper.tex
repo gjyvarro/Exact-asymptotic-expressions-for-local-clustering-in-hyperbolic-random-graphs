@@ -1,4 +1,4 @@
- \documentclass[a4paper,10pt]{article}
+\documentclass[a4paper,10pt]{article}
 % * <m.f.schepers@rug.nl> 2018-10-12T08:13:57.409Z:
 %
 % ^.
@@ -158,7 +158,7 @@
 \newcommand{\Rcal}[0]{\ensuremath{{\mathcal R}}}	%	Image of the hyperbolic disc under \Psi
 \newcommand{\Pcal}[0]{\ensuremath{{\mathcal P}}}	%	Point process
 \newcommand{\Po}[0]{\ensuremath{{\mathrm{Po}}}}		%	Poisson random variable
-\newcommand{\PPP}{\ensuremath{\Pcal_{\alpha, \nu}}}	%	Poisson Point Process
+\newcommand{\PPP}{\ensuremath{\Pcal}}	%	Poisson Point Process
 
 \newcommand{\T}{\ensuremath{T}}						%	Symbol for triangles
 
@@ -183,6 +183,12 @@
 \newcommand{\Nsymdiff}{N_{\H \bigtriangleup \Pcal}(k_n)}
 \renewcommand{\deg}{\mathrm{deg}}
 
+\newcommand{\strip}{\mathcal{S}_{k_n}}
+\newcommand{\stripkn}{\mathcal{S}_{k_n}}
+\newcommand{\stripk}{\mathcal{S}_{k}}
+\newcommand{\stripknc}{\mathcal{S}_{k_n,C}}
+\newcommand{\stripkc}{\mathcal{S}_{k,C}}
+
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}	%	Use to insert equation number 
 																		%	inside * environment
 
@@ -193,9 +199,9 @@
 \newcommand{\Li}{\operatorname{Li}}
 
 \newcommand{\Nbox}{\ensuremath{N_{\text{box}}}}
-\newcommand{\Dbox}{\ensuremath{\text{deg}_{\text{box}}}}
-\newcommand{\Vbox}{\ensuremath{\mathcal{V}_{\text{box}}}}
-\newcommand{\VPo}{\ensuremath{\mathcal{V}_{\Po}}}
+\newcommand{\Dbox}{\ensuremath{D_{\Gbox}}}
+\newcommand{\Vbox}{\ensuremath{V_{\text{box}}}}
+\newcommand{\VPo}{\ensuremath{V_{\Po}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -216,6 +222,7 @@
 \newcommand{\isd}{\stackrel{\text{d}}{=}}
 \newcommand{\Xcal}{\ensuremath{{\mathcal X}}}
 \newcommand{\Ycal}{\ensuremath{{\mathcal Y}}}
+\newcommand{\Fcal}{\ensuremath{\mathcal{F}}}
 \newcommand{\Qcal}{\ensuremath{{\mathcal Q}}}
 \newenvironment{proofof}[1]{\vspace{1ex}\noindent{\bf Proof of #1:}}{\hspace*{\fill}$\blacksquare$\vspace{1ex}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -279,7 +286,7 @@
 \begin{abstract}
 In this paper we consider the clustering coefficient, and clustering function in a random graph model proposed by Krioukov et al.~in 2010. In this model, nodes are chosen randomly inside a disk in the hyperbolic plane and two nodes are connected if they are at most a certain hyperbolic distance from each other. It has been previously shown that this model has various properties associated with complex networks, including a power-law degree distribution, ``short distances'' and a non-vanishing clustering coefficient. The model is specified using three parameters: the number of nodes $n$, which we think of as going to infinity, and $\alpha, \nu > 0$, which we think of as constant. Roughly speaking, the parameter $\alpha$ controls the power law exponent of the degree sequence and $\nu$ the average degree.
 
-Here we show that the clustering coefficient tends in probability to a constant $\gamma$ that we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. This improves over earlier work by Gugelmann et al., who proved that the clustering coefficient remains bounded away from zero with high probability, but left open the issue of convergence to a limiting constant. Similarly, we are able to show that $c(k)$, the average clustering coefficient over all vertices of degree exactly $k$, tends in probability to a limit $\gamma(k)$ which we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. We are able to extend this last result also to sequences $(k_n)_n$ where $k_n$ grows as a function of $n$. Our results show that $\gamma(k)$ scales differently, as $k$ grows, for different ranges of $\alpha$. More precisely, there exists constants $Q_{\alpha,\nu}$ depending on $\alpha$ and $\nu$, such that as $k \to \infty$, $\gamma(k) \sim Q_{\alpha,\nu} k^{2 - 4\alpha}$ if $\frac{1}{2} < \alpha < \frac{3}{4}$, $\gamma(k) \sim Q_{\alpha,\nu} \log(k) k^{-1} $ if $\alpha=\frac{3}{4}$ and $\gamma = Q_{\alpha,\nu} k^{-1}$ when $\alpha > \frac{3}{4}$. These results contradict a prediction of Krioukov et al., which stated that the limiting values $\gamma(k)$ should always scale with $k^{-1}$ as we let $k$ grow. 
+Here we show that the clustering coefficient tends in probability to a constant $\gamma$ that we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. This improves earlier work by Gugelmann et al., who proved that the clustering coefficient remains bounded away from zero with high probability, but left open the issue of convergence to a limiting constant. Similarly, we are able to show that $c(k)$, the average clustering coefficient over all vertices of degree exactly $k$, tends in probability to a limit $\gamma(k)$ which we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. We are able to extend this last result also to sequences $(k_n)_n$ where $k_n$ grows as a function of $n$. Our results show that $\gamma(k)$ scales differently, as $k$ grows, for different ranges of $\alpha$. More precisely, there exists constants $Q_{\alpha,\nu}$ depending on $\alpha$ and $\nu$, such that as $k \to \infty$, $\gamma(k) \sim Q_{\alpha,\nu} k^{2 - 4\alpha}$ if $\frac{1}{2} < \alpha < \frac{3}{4}$, $\gamma(k) \sim Q_{\alpha,\nu} \log(k) k^{-1} $ if $\alpha=\frac{3}{4}$ and $\gamma = Q_{\alpha,\nu} k^{-1}$ when $\alpha > \frac{3}{4}$. These results contradict a prediction of Krioukov et al., which stated that the limiting values $\gamma(k)$ should always scale with $k^{-1}$ as we let $k$ grow. 
 \end{abstract}
 
 \newpage
@@ -290,15 +297,15 @@ Here we show that the clustering coefficient tends in probability to a constant 
 
 \input{introduction}
 
-\input{proof_overview_finite_k}
+\input{preliminaries}
+
+\input{hyperbolic_degrees}
 
 \input{clustering_infinite_model}
 
 \input{proofs_finite_k}
 
 \input{proofs_infinite_k}
-
-\input{concentration_argument}
 
 \input{transition}
 

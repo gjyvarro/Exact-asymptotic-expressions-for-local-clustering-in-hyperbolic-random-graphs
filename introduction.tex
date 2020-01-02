@@ -1,11 +1,10 @@
 \section{Introduction and main results}
 
-
-
 In this paper, we will consider clustering in a model of random graphs that involves points taken randomly in the hyperbolic plane. This model was introduced by Krioukov, Papadopoulos, Kitsak, Vahdat and Bogu\~{n}\'a~\cite{krioukov2010hyperbolic} in 
 2010 - we abbreviate it as \emph{the KPKVB model}. We should however note that the model also goes by several other names in the literature, including {\em hyperbolic random geometric graphs} and {\em random hyperbolic graphs}. Krioukov et al.~suggested this model as a suitable model for complex networks. It exhibits the three main characteristics usually associated with complex networks: a power-law degree distribution, a non-vanishing clustering coefficient and short graph distances.
 
-We start with the definition of the KPKVB model. As mentioned, its nodes are situated in the hyperbolic plane $\Haa$, which is a surface with constant Gaussian curvature $-1$. This surface has several convenient representations (i.e.~coordinate maps), such as the Poincar\'e halfplane model, the Poincar\'e disk model and the Klein disk model. A gentle introduction to Gaussian curvature, hyperbolic geometry and these representations of the hyperbolic plane can be found in~\cite{stillwell2012geometry}. Throughout this paper we will be working with a representation of the hyperbolic plane using {\em hyperbolic polar coordinates}, sometimes called the {\em native representation}. That is, a point $u \in \Haa$ is represented as $(r,\theta)$, where $r$ is the hyperbolic distance between $u$ and the origin $O$ and $\theta$ as the angle between the line segment $Ou$ and the positive $x$-axis. 
+\subsection{KPKVB model}
+We start with the definition of the model. As mentioned, its nodes are situated in the hyperbolic plane $\Haa$, which is a surface with constant Gaussian curvature $-1$. This surface has several convenient representations (i.e.~coordinate maps), such as the Poincar\'e halfplane model, the Poincar\'e disk model and the Klein disk model. A gentle introduction to Gaussian curvature, hyperbolic geometry and these representations of the hyperbolic plane can be found in~\cite{stillwell2012geometry}. Throughout this paper we will be working with a representation of the hyperbolic plane using {\em hyperbolic polar coordinates}, sometimes called the {\em native representation}. That is, a point $u \in \Haa$ is represented as $(r,\theta)$, where $r$ is the hyperbolic distance between $u$ and the origin $O$ and $\theta$ as the angle between the line segment $Ou$ and the positive $x$-axis. 
 Here, when mentioning ``the origin'' and the angle between the line segment and the positive $x$-axis, we think of $\Haa$ embedded as the Poincar\'e disk in the ordinary euclidean plane.
 
 The KPKVB model has three parameters: the number of vertices $n$, which we think of as going to infinity, and $\alpha > \frac{1}{2}$, $\nu > 0$ which we think of as fixed. Given $n, \alpha, \nu$ we define $R = 2\log(n/\nu)$. Then the hyperbolic random graph $G(n;\alpha, \nu)$ is defined as follows:
@@ -136,10 +135,37 @@ For a sequence $(X_n)_n$ of random variables, we write $X_n \xrightarrow[n\to\in
 
 \subsection{Main results}\label{ssec:main_results}
 
+Here we summarize our main results regarding the degrees and clustering in the KPKVB model.
+
+\subsubsection{Degrees}
+
+The first rigorous result on the degree distribution in the KPKVB model was given in~\cite{gugelmann2012random}, where they analyzed the fraction of nodes with degree $k$. Although their results allowed $k = k_n$ to scale with $n$ as $k_n = n^\delta$, it did not cover the full range $1 \le k_n \le n-1$. Our main result for the degrees gives this full characterization of the degree distribution.
+
+\begin{theorem}\label{thm:degrees_hyperbolic}
+Let $\alpha >\frac{1}{2}$, denote by $N_n(k)$ the number of vertices with degree $k$ in the KPKVB model $G(n;\alpha,\nu)$ and consider a sequence of integers $k_n$ with $0 \leq k_n \leq n-1$.
+\begin{enumerate}
+\item If $k_n =\smallO{n^{\frac{1}{2\alpha+1}}}$ as $n\rightarrow \infty$, then a.a.s.
+\[
+	N_n(k_n) =(1+o(1)) n p_{k_n},
+\]
+where
+\[
+	p_{k_n} = \int_0^\infty \Pee(Po(\xi e^{\frac{y}{2}})=k_n)\alpha e^{-\alpha y}dy,
+\]
+and $p_{k_n}=\frac{2\alpha \xi^{2\alpha}\Gamma^+(k_n-2\alpha,\xi)}{k_n!}=(1+o(1)) 2\alpha \xi^{2\alpha} k_n^{-(2\alpha+1)}$ as $k_n \rightarrow \infty$.
+\item If $k_n = (1+o(1))c n^{\frac{1}{2\alpha+1}}$ for some fixed $c >0$, then
+\[
+	N_n(k_n) \xrightarrow[n\rightarrow\infty]{d} \operatorname{Po}(2\alpha \xi^{2\alpha} c^{-(2\alpha+1)}).
+\]
+\item If $k_n \gg n^{\frac{1}{2\alpha+1}}$, then a.a.s. $N_n(k_n) = 0$.
+\end{enumerate}
+\end{theorem}
+
+The first result of Theorem~\ref{thm:degrees_hyperbolic} states that the fraction of nodes of degree $k_n$ converges to $p_{k_n}$. Not surprisingly, the limit distribution is the same as found in~\cite{gugelmann2012random}. However, their this result was proved only for $k_n \le n^{\delta^\prime}$, where $\delta^\prime < \min\left\{\frac{2\alpha-1}{4\alpha(2\alpha +1)}, \frac{2(2\alpha -1)}{5(2\alpha + 1)}\right\} < \frac{1}{2\alpha + 1}$. Therefore, our result extends theirs by showing that this converges holds all the way till $n^{\frac{1}{2\alpha + 1}}$ . Moreover, we establish what happens at the boundary, where $k_n$ scales as $n^{\frac{1}{2\alpha + 1}}$ and show that this scaling is indeed the bound for the distribution since $N_n(k_n) = 0$ a.a.s. when $k_n$ grows faster than $n^{\frac{1}{2\alpha + 1}}$.
 
 \subsubsection{The clustering coefficient}
 
-Our first result is the following.
+Our first result on the clustering shows the convergence of the local clustering coefficient in the KPKVB model and establishes the limit exactly.
 
 \begin{theorem}\label{thm:clustering_coefficient_hyperbolic}\label{thm:maincc}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ be fixed. Writing $G_n := G(n;\alpha,\nu)$, we have
@@ -206,6 +232,9 @@ Writing $G_n := G(n;\alpha,\nu)$, we have
 
 \[
 	c(k;G_n) \xrightarrow[n\to\infty]{\Pee} \gamma(k),
+\]
+\[
+	\lim_{n \to \infty} \Exp{\left|\frac{c(k;G_n)}{\gamma(k)} - 1\right|} = 0.
 \]
 where $\gamma(k)$ is defined for $\alpha \ne 1$ as 
 \begin{align*}
@@ -279,7 +308,7 @@ We remark that simultaneously and independently Stegehuis, van der Hofstad and v
 
 \subsection{Observations}
 
-There are a few other observation to be made regarding our results.
+There are a few other observation to be made regarding our results on clustering.
 
 \paragraph{Uniform convergence.}
 
