@@ -7,23 +7,13 @@
 Similar to the proof for the degrees we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of $\GPo$ with certain quantities associated with $\Ginf$. Recall that a \emph{typical point} is a point $p_0 = (0,y)$, where in some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and independent of $\Pcal$.
 
 Since $c(G)$ is defined as an average over all vertices of the graph, it is not immediately obvious how to meaningfully define a corresponding notion for infinite graphs, and similarly for the clustering function, the degree sequence, etc.
-We can however without any issues speak of the (expected) clustering coefficient of the typical point, or the expected clustering coefficient given that it has degree $k$, or the distribution of the degree of the typical point. (All considered in the graph obtained from $\Ginf$ by adding the typical point to its vertex set.)
+We can however without any issues speak of the (expected) clustering coefficient of the typical point or the expected clustering coefficient given that it has degree $k$. (All considered in the graph obtained from $\Ginf$ by adding the typical point to its vertex set.)
 
-If $p = (x,y) \in \eR\times[0,\infty)$ is a point, not necessarily part of the Poisson process, then we will write
+If $p = (x,y) \in \eR\times[0,\infty)$ is a point, not necessarily part of the Poisson process, then we write
 \[ 
 	\mu(y) = \mu(p) := \mu(\BallPo{p}).
 \]
-Integrating the intensity function of $\Pcal$ over $\BallPo{p}$ gives, using $\alpha>\frac{1}{2}$,
-\begin{align*}
-	\mu(y) &= \int_{\BallPo{p}} f(x',y') \, dx' \,d y'  
- 		= \int_0^\infty \int_{-e^{(y+y')/2}}^{e^{(y+y')/2}} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dx' \, dy' \\
-	&= \int_0^\infty 2 e^{(y+y')/2} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dy' 
- 		= \frac{2\alpha \nu e^{y/2}}{\pi} \int_0^\infty e^{(\frac12-\alpha)y'} \, dy' \\
-	&= \frac{2\alpha \nu e^{y/2}}{\pi(\alpha-\frac12)} = \xi e^{y/2}.
-\end{align*}
-
-
-
+Recall that $\mu(y) = \frac{2\alpha \nu e^{y/2}}{\pi(\alpha-\frac12)} = \xi e^{y/2}$. When $p = (0,y)$ we also write $\BallPo{y} = \BallPo{p}$.
 
 
 \subsection{The expected clustering coefficient and function of the typical point}
@@ -36,13 +26,13 @@ Let the random variable $C$ denote the clustering coefficient of the typical poi
 (Where we take the expectation over both the Poisson point process $\Pcal$ and $y \isd \text{exp}(\alpha)$, independently of the Poisson process $\Pcal$.) We shall show shortly that these take on the values stated in Theorem~\ref{thm:maincc} and~\ref{thm:mainkfixed}.
 
 
-For any fixed value $y_0>0$, the set of points inside $\BallPo{(0,y_0)}$ is a Poisson process with intensity $f \cdot 1_{\BallPo{(0,y_0)}}$. As $\mu(\BallPo{(0,y_0)}) = \mu(y_0) = \xi e^{y_0/2} < \infty$, this can be described alternatively by first picking $N \isd \Po( \mu(y_0) )$ and then taking $N$ i.i.d.~points in $\BallPo{(0,y_0)}$ according to the probability density $f \cdot 1_{\BallPo{(0,y_0)}} / \mu(y_0)$. (That is, the intensity function of the Poisson point process, but set to zero outside of $\BallPo{(0,y_0)}$ and re-normalized in such a way that it integrates to one.) Hence, if we condition on the event that $y$ takes on some fixed value $y_0$ and that there are exactly $k$ points of $\Pcal$ inside $\BallPo{(0,y_0)}$, then those $k$ points behave like $k$ i.i.d.~points in $\BallPo{(0,y_0)}$ chosen according to the mentioned re-normalized probability density function. This shows that, for every $k\geq 2$:
+For any fixed value $y_0>0$, the set of points inside $\BallPo{y_0}$ is a Poisson process with intensity $f \cdot 1_{\BallPo{y_0}}$. As $\mu(\BallPo{y_0}) = \mu(y_0) = \xi e^{y_0/2} < \infty$, this can be described alternatively by first picking $N \isd \Po( \mu(y_0) )$ and then taking $N$ i.i.d.~points in $\BallPo{y_0}$ according to the probability density $f \cdot 1_{\BallPo{y_0}} / \mu(y_0)$. (That is, the intensity function of the Poisson point process, but set to zero outside of $\BallPo{y_0}$ and re-normalized in such a way that it integrates to one.) Hence, if we condition on the event that $y$ takes on some fixed value $y_0$ and that there are exactly $k$ points of $\Pcal$ inside $\BallPo{y_0}$, then those $k$ points behave like $k$ i.i.d.~points in $\BallPo{y_0}$ chosen according to the mentioned re-normalized probability density function. This shows that, for every $k\geq 2$:
 \[
 	\CExp{C}{D=k, y=y_0} 
 	= \frac{1}{{k\choose 2}} \Ee\left( \sum_{1\leq i < j \leq k} \1_{\{u_i\in \BallPo{u_j}\}} \right)
 	= \Exp{\1_{\{u_1\in\BallPo{u_2}\}}},
 \]
-where $u_1,\dots, u_n$ are i.i.d.~points in $\BallPo{(0,y_0)}$ with the above mentioned density.
+where $u_1,\dots, u_n$ are i.i.d.~points in $\BallPo{y_0}$ with the above mentioned density.
 Note that this does not depend on the value of $k$. For notational convenience, we will write 
 \[ 
 	P(y_0) := \Exp{\1_{\{u_1\in\BallPo{u_2}\}}},
@@ -56,9 +46,9 @@ We now observe that
 where $g_k$ denotes the density of $y$ {\em conditional on} $D=k$. That is,
 \[
 	g_k(y_0)  = \frac{\rho(y_0, k) \alpha e^{-\alpha y_0} }{\int_0^\infty \rho(t, k) \alpha e^{-\alpha t} \, d t}
-	= \frac{1}{p_k} \cdot \rho(y_0, k) \alpha e^{-\alpha y_0}.
+	= \frac{1}{p_k} \cdot \rho(y_0, k) \alpha e^{-\alpha y_0},
 \]
-Hence, 
+where we recall that $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$ denotes the probability that a Poisson random variable with mean $\mu(y)$ is $k$. Hence, 
 \begin{equation}\label{eq:gammakint}
 \gamma(k) 
 = \frac{1}{p_k} \cdot \int_0^\infty P(y_0) \rho(y_0,k) \alpha e^{-\alpha y_0} \, d y_0. 
@@ -104,7 +94,7 @@ A key step is to derive the following explicit expression for $P(y)$.
 We will prove this lemma in a sequence of steps.
 
 Recall that $P(y_0)$ is the probability that $u_1 = (x_1,y_1), u_2 = (x_2,y_2)$ are neighbours in $\Ginf$, where
-$u_1, u_2$ are i.i.d.~with probability density $f \cdot \1_{\BallPo{(0,y_0)}} / \mu(y_0)$.
+$u_1, u_2$ are i.i.d.~with probability density $f \cdot \1_{\BallPo{y_0}} / \mu(y_0)$.
 In particular
 \begin{align*}
 	\Prob{y_i > t} &= \frac{\nu\alpha}{\pi \mu(y_0)} \int_t^\infty \int_{-e^{(y+y_0)/2}}^{e^{(y+y_0)/2}} e^{-\alpha y}
@@ -115,14 +105,14 @@ In particular
 \end{align*}
 using that $\mu(y_0) = \xi e^{y_0/2} = \left(\frac{2\alpha\nu}{\pi(\alpha-\frac12)}\right) e^{y_0/2}$.
 Thus, $y_1, y_2$ are exponentially distributed with parameter $\alpha-\frac12$.
-Now note that, for each $t>0$, the probability density $f \cdot 1_{\BallPo{(0,y_0)}} / \mu(y_0)$
+Now note that, for each $t>0$, the probability density $f \cdot 1_{\BallPo{y_0}} / \mu(y_0)$
 is constant on $[-e^{(t+y_0)/2}, e^{(t+y_0)/2}] \times \{t\}$ and it is 
 vanishes on $(-\infty, -e^{(t+y_0)/2}) \times \{t\} \cup (e^{(t+y_0)/2},\infty)\times\{t\}$.
 
 Hence, given the height $y_i$ of $u_i$, the $x$-coordinate of $u_i$ is uniform in $[-e^{\frac{1}{2}(y+y_i)},e^{\frac{1}{2}(y+y_i)}]$. 
-With this in mind we define $P(y_0,y_1,y_2)$ to be the probability that $(0,y_0), (x_1,y_1), (x_2,y_2)$ 
+With this in mind we define $P(y_0,y_1,y_2)$ to be the probability that $y_0, (x_1,y_1), (x_2,y_2)$ 
 satisfy \\ $|x_1-x_2| \leq e^{(y_1+y_2)/2}$, where $x_1$ and $x_2$ are independent uniform random variables in the intervals
-$[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$, respectively. We have that
+$[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$, respectively. We then have that
 \begin{equation}\label{eq:delta_P}
  P(y_0) = (\alpha-1/2)^2 \int_0^\infty \int_0^\infty P(y_0, y_1, y_2) e^{-(\alpha-1/2)(y_1+y_2)} 
  \dd y_2 \dd y_1.
@@ -937,9 +927,9 @@ which equals the expression in Theorem~\ref{thm:local_clustering_hyperbolic}. %%
 
 Although we've already established that $\gamma, \gamma(k)$ can be obtained at $\alpha=1$ by
 taking the $\alpha\to 1$ limit of the expression obtained for $\alpha=1$, it is still helpful
-to derive an alternative, more explicit expression.
-This is what we will do in the current section.
-We will prove 
+to derive an alternative, more explicit expression. This is what we will do in the current section.
+
+Recall that $\Gamma^\ast(q,z) = \Gamma^+(q+1,z) + \Gamma^+(q,z)$. We will prove the following.
 
 \begin{proposition}\label{prop:gammaais1}
 If $\alpha=1$ then 
@@ -954,14 +944,8 @@ and
  	&\hspace{10pt}+ \frac{\eta^k}{2k!}\int_0^1 (1-4z+3z^2)\ln(1-z)z^{1-k}e^{-\eta/z}\dd z\\ 
  	&\hspace{10pt}+ \frac{\eta^k}{k!}\int_0^1 z^{3-k} \Li_2(z) e^{-\eta/z} \dd z,
  \end{align*}
- with $\eta = 4\nu/\pi$ and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm 
- function.
- %\footnote{Note that the integrals in the expression for $\gamma$ for $\alpha = 1$ exists: for the first 
- %one note that $1-4z+3z^2=(1-z)(1-3z)$, so the integrand can be bounded by $C(1-z)\log(1-z)$ on $[0,1)$ for some constant $C$, which 
- %can be continued continuously to the compact interval $[0,1]$ by noting that the limit for $z \rightarrow 1$ is zero, so the 
- %integrand is bounded on a bounded domain and hence, this integral is finite; for the second integral note 
- %that $\Li_2(z)$ is bounded by $\Li_2(1)$ on $[0,1]$, which is a series with well-known finite limit, so again the integrand 
- %is bounded on a bounded domain and hence the second integral is also finite.}.
+with $\eta = 4\nu/\pi$ and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm 
+function.
 \end{proposition}
 
 
@@ -980,7 +964,6 @@ e^{-y}  +
 
 
 \begin{proof}
-\TM{\RD{Warning!} this has not been properly proofread by me, or anyone else.}
 We want to compute the limit $\lim_{\alpha \rightarrow 1} P_\alpha(y_0(z_0))$. For $\alpha \neq 1$, we label the terms as follows:
 %\begin{align*}
 %&P_\alpha(y_0(z_0)) \\
@@ -1150,7 +1133,7 @@ Plugging this into ~\eqref{eq:gammaint} and~\eqref{eq:gammakint} yields the expr
 
 \subsection{The proof of Proposition~\ref{prop:asymp}\label{ssec:asymptotics_local_clustering_P}}
 
-Instead of extracting the scaling of $\gamma(k)$ from its explicit expression, it turns out to be more convenient to derive it directly. Recall that
+Instead of extracting the scaling of $\gamma(k)$ from its explicit expression, it turns out to be more convenient to derive it using $P(y)$. Recall that
 \[
 	\gamma(k) = \frac{\int_0^\infty \rho(y,k) P(y) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}.
 \]
@@ -1189,7 +1172,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $c_\alpha$ as defined in Proposition~\
 \begin{proof}
 We shall deal with each of the three cases for $\alpha$ separately.
 
-\paragraph{Proof for \bm{$1/2 < \alpha < 3/4$}}
+\paragraph{\bm{$1/2 < \alpha < 3/4$}}
 By Lemma~\ref{lem:Paneq1} we get that
 \begin{align*}
 	e^{(4\alpha - 2)\frac{y}{2}}P(y) &= \frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha (\alpha - 1)^2} 
@@ -1199,15 +1182,20 @@ By Lemma~\ref{lem:Paneq1} we get that
 		+ \frac{\alpha-\frac{1}{2}}{\alpha-1} e^{(4\alpha-3)\frac{y}{2}}
 		- \frac{(\alpha - \frac{1}{2})^2}{4(\alpha-1)^2} e^{4(\alpha-1)\frac{y}{2}}.
 \end{align*}
-Because for any $b < 1$, $B^-(1-z: a,b)$ converges to $B(a,b) < \infty$ as $z \to 0$, we get that as $y \to \infty$, the first line is asymptotically equivalent to
+Now consider again variable $z = e^{-y/2}$ and not that $z \to 0$ as $y \to \infty$. Because for any $b < 1$, $B^-(1-z: a,b)$ converges to $B(a,b) < \infty$ as $z \to 0$, we get that as $y \to \infty$, the first line is asymptotically equivalent to
 \[
 	\frac{3 \alpha - 1}{2^{4 \alpha+1} \alpha (\alpha - 1)^2} 
 			+ \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2(\alpha - 1) \alpha}
 			- \frac{B(2\alpha, 3-4\alpha)}{4(\alpha - 1)} = c_\alpha \xi^{-(4\alpha - 2)},
 \]
-with $c_\alpha$ as defined in Proposition~\eqref{prop:asymp}. The proof now follows since for $1/2 < \alpha < 3/4$, the remaining three terms go to zero as $y \to \infty$.
+with $c_\alpha$ as defined in Proposition~\eqref{prop:asymp}. The proof now follows since for $1/2 < \alpha < 3/4$, the remaining three terms go to zero as $y \to \infty$. For the first of these terms this is true since 
+\[
+	e^{(4\alpha - 2)\frac{y}{2}}\left((1 - e^{-\frac{y}{2}})^{2\alpha} - 1\right) = \bigO{e^{(4\alpha - 2)\frac{y}{2}}e^{-\frac{y}{2}}}
+	= \bigO{e^{(4\alpha - 3) \frac{y}{2}}} = \smallO{1}
+\]
+as $y \to \infty$ and $1/2 < \alpha < 3/4$.
 
-\paragraph{Proof for \bm{$\alpha = 3/4$}}
+\paragraph{\bm{$\alpha = 3/4$}}
 
 Similar to the previous case we use Lemma~\ref{lem:Paneq1} to obtain (evaluating the expressions for $\alpha = 3/4$)
 \begin{align*}
@@ -1245,17 +1233,17 @@ We therefore conclude that
 \]
 as $y \to \infty$.
 
-\paragraph{Proof for \bm{$\alpha > 3/4$}}
-We first deal with the case $\alpha = 1$. Here it follows from Proposition~\ref{prop:gammaais1} that
+\paragraph{\bm{$\alpha > 3/4$}}
+We first deal with the case $\alpha = 1$. Here it follows from Lemma~\ref{lem:Pais1} that
 \begin{align*}
 	e^{y/2}P(y) &= \frac{9}{4} + \frac{e^{y/2}\log(1-e^{-y/2})}{4} \\
 	&\hspace{10pt}-\log(1-e^{-y/2}) + e^{-y/2}\left(\frac{3}{4}\log(1-e^{-y/2}) - \frac{7 + \pi^2}{8} + 	
 		\frac{1}{2}\mathrm{Li}_2(e^{-y})\right) \\
-	&= 2 + \left(\frac{e^{y/2}\log(1-e^{-y/2})}{4} + 1\right)\\
+	&= 2 + \frac{1}{4}\left(e^{y/2}\log(1-e^{-y/2}) + 1\right)\\
 	&\hspace{10pt}-\log(1-e^{-y/2}) + e^{-y/2}\left(\frac{3}{4}\log(1-e^{-y/2}) - \frac{7 + \pi^2}{8} + 	
 		\frac{1}{2}\mathrm{Li}_2(e^{-y})\right)
 \end{align*}
-The last two terms are $\smallO{1}$ as $y \to \infty$, while $2 = (\alpha - 1/2)/(\alpha - 3/4)$ for $\alpha = 1$.
+The last three terms are $\smallO{1}$ as $y \to \infty$, while $2 = (\alpha - 1/2)/(\alpha - 3/4)$ for $\alpha = 1$.
 
 Now we will deal with the case $\alpha > 3/4$ and $\alpha \not = 1$. For simplicity we write
 \[
@@ -1296,74 +1284,27 @@ We conclude that as $y \to \infty$
 which finishes the proof.
 \end{proof}
 
-With the asymptotic behavior of $P(y)$ we are almost ready to prove Proposition~\ref{prop:asymp}. First we will prove a result that will allow us to limit the values of $y$, when performing the integration. For this, recall that for any $C > 0$ we defined
+With the asymptotic behavior of $P(y)$ we are ready to prove Proposition~\ref{prop:asymp}. Recall that for any $C > 0$ we defined
 \[
 	y_{k,C}^\pm = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
 \] 
-Since $P(y) \le 1$ by the concentration of heights results (Proposition~\ref{prop:concentration_height_general}) we have that
-We will show that, as $k \to \infty$,
+and $\Kcal_C(k) = [y_{k,C}^-, y_{k,C}^+]$. Since $P(y) \le 1$ by the concentration of heights results (Proposition~\ref{prop:concentration_height_general}) we have that, as $k \to \infty$,
 \begin{equation}\label{eq:asymptotics_average_clustering_concentration}
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
 	= (1+\smallO{1}) \int_{y_{k,C}^-}^{y_{k,C}^+} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y.
 \end{equation}
 
-Note that this implies that if $P(y) = h(y)(1 + \smallO{1})$, uniformly in $y$, as $y \to \infty$, then 
+Note that this implies that if $P(y) = h(y)(1 + \smallO{1})$ as $y \to \infty$, then 
 \begin{equation}\label{eq:asymptotics_average_clustering_error_term}
 	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
 	\sim \int_0^\infty h(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
 \end{equation}
 as $y \to \infty$.
 
-%To establish~\eqref{eq:asymptotics_average_clustering_concentration} recall that $\mu(y) = \xi e^{\frac{y}{2}}$ and consider $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$ as a function of $y$. Then, since $\mu^\prime(y) = \mu(y)/2$, we get that
-%\[
-%	\frac{\partial \rho(y,k)}{\partial y} = \frac{1}{2}\left(k - \mu(y)\right)\rho(y,k),
-%\]
-%which implies that $\rho(y,k)$ attains its maximum at $\mu(y) = k$. Moreover we see that the derivative is strictly positive when $\mu(y) < k$ and strictly negative when $\mu(y) > k$. Since $\mu(a^-(k)) < k$ and $\mu(a^+(k)) > k$, we conclude that $\rho(y,k)$, as a function of $y$, is strictly increasing on $[0,a^-(k)]$ and strictly decreasing on $[a^+(k),\infty)$. Hence, using that $P(y) \le 1$,
-%\begin{align*}
-%	&\hspace{-20pt}\int_{\R_+ \setminus [a^-(k), a^+(k)]} P(y) \rho(y,k) 
-%		\alpha e^{-\alpha y} \dd y\\
-%    &\le \int_0^{a^-(k)} \rho(y,k) \alpha e^{-\alpha y} \dd y 
-%    	+ \int_{a^+(k)}^{\infty}\rho(y,k) \alpha e^{-\alpha y}x \dd y \\
-%   	&\le \rho(a^-(k),k)\int_0^{a^-(k)} e^{-\alpha y} \, \dd y
-%   		+ \rho(a^+(k),k) \int_{a^+(k)}^{\infty} e^{-\alpha y} \, \dd y\\
-%   	&= \bigO{1}\left(\rho(a^-(k),k) + \rho(a^+(k),k)\right),
-%\end{align*}
-%as $k \to \infty$. Next we show that
-%\[
-%	\rho(a^\pm(k),k) = \bigO{k^{-(1+C^2)/2}}.
-%\]
-%Since the arguments are almost completely identical, we give the prove for $a^+(k)$.
-%
-%Using Stirling's formula $k! \sim \sqrt{2\pi} k^{k + 1/2} e^{-k}$ as $k \to \infty$ we write
-%\begin{align*}
-%	\rho(a^+(k),k) &= \frac{\mu(a^+(k))^{k}}{k!} e^{-\mu(a^+(k))} \\
-%	&\sim (2\pi)^{-1/2} k^{-1/2} \left(\frac{\mu(a^+(k))}{k}\right)^{k} e^{-(\mu(a^+(k) - k)}\\
-%	&= (2\pi)^{-1/2} k^{-1/2} 
-%		e^{-k\left(\frac{\mu(a^+(k))}{k} - 1 - \log\left(\frac{\mu(a^+(k))}{k}\right)\right)}.
-%\end{align*}
-%Since, for sufficiently large $k$,
-%\[
-%	\frac{\mu(a^+(k))}{k} = 1 + C \sqrt{\frac{\log(k)}{k}}
-%\]
-%and $x - \log(1 + x) \sim x^2/2$ as $x \to 0$, we get 
-%\begin{align*}
-%	\rho(a^+(k),k) 
-%	&\sim \sqrt{2\pi} k^{-1/2} 
-%		e^{-k \left(C \sqrt{\frac{\log(k)}{k}} - \log\left(1 + C \sqrt{\frac{\log(k)}{k}}\right)\right)}\\
-%	&\sim (2\pi)^{-1/2} k^{-1/2} e^{-\frac{k \left(C \sqrt{\frac{\log(k)}{k}}\right)^2}{2}} \\
-%	&= \bigO{k^{-(1+C^2)/2}}.
-%\end{align*}
-%
-%Since $C > 0$ can be chosen arbitrarily large we conclude that
-%\[
-%	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-%	= (1+\smallO{1}) \int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y,
-%\]
-%as $k \to \infty$. 
+\begin{proof}[Proof of Proposition~\ref{prop:asymp}]
+We split the proof over the different cases for $\alpha$.
 
-We now proceed with the proof of Proposition~\ref{prop:asymp}, which is split over the different cases for $\alpha$. 
-
-\paragraph{Proof when \bm{$1/2 < \alpha < 3/4$}}
+\paragraph{\bm{$1/2 < \alpha < 3/4$}}
 By Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term}  it follows that as $k \to \infty$,
 \begin{align*}
 	\gamma(k) \sim c_\alpha \xi^{-(4\alpha - 2)} \frac{\int_0^{\infty} e^{-(4\alpha - 2)y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y}
@@ -1372,7 +1313,7 @@ By Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_cluste
 \end{align*}
 where the last line is due to~\eqref{eq:general_clustering_integral_scaling} with $\beta = 2\alpha - 1$.
 
-\paragraph{Proof when \bm{$\alpha = 3/4$}}
+\paragraph{\bm{$\alpha = 3/4$}}
 Similar to the previous case Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term} imply that as $k \to \infty$
 \[
 	\gamma(k) = \frac{\int_0^{\infty} P(y) \rho(y,k) \alpha  e^{-\alpha y} \dd y}
@@ -1380,45 +1321,47 @@ Similar to the previous case Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:
 	\sim  \frac{\int_0^{\infty} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y}
 		{\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y}.
 \]
-However, the final step does not follow immediately from~\eqref{eq:general_clustering_integral_scaling} because of the additional logarithmic term. To prove the result we first show that
-\begin{equation}\label{eq:average_clustering_proof_34_main}
-	\int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-	\sim \int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y.
-\end{equation}
-For this we establish an upper bound for the left hand side
+However, the final step does not follow immediately from~\eqref{eq:general_clustering_integral_scaling} because of the additional logarithmic term. 
+%To prove the result we first show that
+%\begin{equation}\label{eq:average_clustering_proof_34_main}
+%	\int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
+%	\sim \int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y.
+%\end{equation}
+To deal with this we observe the following upper and lower bound
 \begin{align*}
-	\int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
-	&\le \frac{a^+(k)}{2} \int_{a^-(k)}^{a^+(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
+	\int_{\Kcal_C(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
+	&\le \frac{y_{k,C}^+}{2} \int_{\Kcal_C(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
 \end{align*}
 and similarly, a lower bound
 \begin{align*}
-	\int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
-	&\ge \frac{a^-(k)}{2} \int_{a^-(k)}^{a^+(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
+	\int_{\Kcal_C(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
+	&\ge \frac{y_{k,C}^-}{2} \int_{\Kcal_C(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
 \end{align*}
 Now observe that as $k \to \infty$,
 \[
-	\frac{a^\pm(k)}{2} = \log\left(\frac{k \pm \sqrt{k\log(k)}}{\xi_{\alpha, \nu}}\right) \sim \log(k)
+	\frac{y_{k,C}^\pm}{2} = \log\left(\frac{k \pm \sqrt{k\log(k)}}{\xi}\right) \sim \log(k)
 \]
-and therefore it follows that
+It follows that
 \[
-	\limsup_{k \to \infty} \frac{\int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	{\log(k) \int_{a^-(k)}^{a^+(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y} \le 1.
+	\limsup_{k \to \infty} \frac{\int_{\Kcal_C(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	{\log(k) \int_{\Kcal_C(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y} \le 1.
 \]
 and
 \[
-	\liminf_{k \to \infty} \frac{\int_{a^-(k)}^{a^+(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	{\log(k) \int_{a^-(k)}^{a^+(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y} \ge 1.
+	\liminf_{k \to \infty} \frac{\int_{\Kcal_C(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}
+	{\log(k) \int_{\Kcal_C(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y} \ge 1,
 \]
-This proves~\eqref{eq:average_clustering_proof_34_main}.
+which imply
+\begin{equation}\label{eq:average_clustering_proof_34_main}
+	\int_{\Kcal_C(k)} \frac{y}{2} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y
+	\sim \log(k) \int_{\Kcal_C(k)} e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y,
+\end{equation}
+as $k \to \infty$.
 
-Next we note that by~\eqref{eq:general_clustering_integral_scaling} with $\beta = 1/2$ we have
+Since~\eqref{eq:general_clustering_integral_scaling} with $\beta = 1/2$ implies
 \[
 	\frac{\int_0^\infty e^{-y/2} \rho(y,k) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}
-	\sim \xi k^{-1}.
-\]
-Therefore, since by~\eqref{eq:asymptotics_average_clustering_concentration},
-\[
-	\int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y \sim \int_{a^-(k)}^{a^+(k)} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
+	\sim \xi k^{-1},
 \]
 it follows from~\eqref{eq:average_clustering_proof_34_main} that as $k \to \infty$,
 \begin{align*}
@@ -1430,7 +1373,7 @@ it follows from~\eqref{eq:average_clustering_proof_34_main} that as $k \to \inft
 \end{align*}
 when $\alpha = 3/4$.
 
-\paragraph{Proof when \bm{$\alpha > 3/4$}}
+\paragraph{\bm{$\alpha > 3/4$}}
 
 Again, by Proposition~\ref{prop:asymptotics_P}, equation~\eqref{eq:asymptotics_average_clustering_error_term} and~\eqref{eq:general_clustering_integral_scaling} with $\beta = 1/2$, it follows that as $k \to \infty$,
 %by Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term} it is enough to show that
@@ -1438,137 +1381,4 @@ Again, by Proposition~\ref{prop:asymptotics_P}, equation~\eqref{eq:asymptotics_a
 	\gamma(k) \sim \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} \, \frac{\int_0^{\infty} e^{-y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y} {\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y} 
 	\sim \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} \, \xi k^{-1} = \frac{8\alpha \nu}{\pi(4\alpha - 3)}.
 \]
-
-% %\begin{lemma}\label{lem:expectation_clustering_P}
-% %Let $\alpha > \frac{1}{2}$, $\nu > 0$. Then
-% %\[
-% %	\Exp{c_{\Pcal}^\ast(k)} = \frac{\int_0^{\infty} P(y) \, 
-% %	\rho_{y}(k) e^{-\alpha y} \, dy}{\int_0^{\infty} \rho_{y}(k) 
-% %	e^{-\alpha y} \, dy}.
-% %\]
-% %\end{lemma}
-% %
-% %\begin{proof}
-% %By the Palm-Mecke formula, we have
-% %\begin{align*}
-% %	\Exp{c_{\Pcal}^\ast(k)} &= \frac{1}{\Exp{N_\Pcal(k)}}
-% %		\int_0^{\infty} \int_{-\infty}^{\infty} \Exp{\frac{\ind{D_{\Pcal}(p) = k}}{\binom{k}{2}} \sum_{(p_1, p_2) \in \Pcal} T(p,p_1,p_2)} f_{\alpha,\nu}(x,y) \, dx \, dy\\
-% %	&= \frac{1}{\Exp{N_\Pcal(k)}} \int_0^{\infty} \int_{-\infty}^{\infty} \binom{k}{2}^{-1}
-% %		P(p,k)\CProb{D_\Pcal(p) = k}{p} f_{\alpha,\nu}(x,y) \, dx \, dy.
-% %\end{align*}
-% %Conditioned on the Poisson process $\Pcal$ having $k$ points in $B(p)$, the points are independent random variables $Z_{1}, \dots, Z_{k}$ with probability  distribution $\eta_{p} = \frac{\mu|_{B(p)}}{\mu(B(p))}$. Therefore we have
-% %\[
-% %	P(p,k) = \binom{k}{2} T_\Pcal(p),
-% %\]
-% %and hence, since the entire expression inside the integral does not depend on $x$,
-% %\begin{align*}
-% %	\Exp{c_{\Gamma, n}^\ast(k)} 
-% %	&= \frac{1}{\Exp{N_\Pcal(k)}} \int_0^{\infty} P(y) \rho_{\mu, y}(k) e^{-\alpha y} \, dy.
-% %\end{align*}
-% %Finally, we note that
-% %\begin{align*}
-% %	\Exp{N_\Pcal(k)} &= \Exp{\sum_{p \in \Pcal} \ind{D_\Pcal(p) = k}}
-% %	= \int_0^{\infty}\int_{-\infty}^\infty \rho_{\mu, p}(k) f_{\alpha,\nu}(x,y) \, dx \, dy
-% %	= \int_0^{\infty} \rho_{\mu, y}(k) e^{-\alpha y} \, dy
-% %\end{align*}
-% %which completes the proof.
-% %\end{proof}
-% 
-% Recall that
-% \[
-% 	c_\infty(k) = \frac{\int_0^\infty \rho(y,k) P(y) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}.
-% \]
-% The asymptotic behavior for the denominator follows from~\eqref{eq:degree_distribution_P_asymptotics}. Hence, the main term to consider is the numerator
-% \[
-% 	\int_0^{\infty} P(y) \, \rho(y,k) \alpha e^{-\alpha y} \, dy,
-% \]
-% and in particular the function $P(y)$. The following result establishes the asymptotic behavior of the latter.
-% 
-% \begin{proposition}[Asymptotic behavior of $P(y)$]\label{prop:asymptotics_Delta_y_P}
-% Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $C_\alpha$ as defined in \eqref{eq:def_C_alpha}. Then there are three, eventually decreasing, functions $\varphi_i : \R_+ \mapsto \R$, $i = 1,2,3$, satisfying
-% \[
-% 	\lim_{y \to \infty} \varphi_i(y) = 0, 
-% \]
-% such that 
-% \begin{enumerate}
-% \item for $\frac{1}{2} < \alpha < \frac{3}{4}$,
-% \[
-% 	P(y) = e^{-\frac{y}{2}(4\alpha - 2)} C_\alpha (1 + \varphi_1(y)),
-% \]
-% \item for $\alpha = \frac{3}{4}$,
-% \[
-% 	P(y) = \log\left(\frac{y}{2}\right)e^{-\frac{y}{2}}(1 + \varphi_2(y)),
-% \]
-% \item and for $\alpha > \frac{3}{4}$,
-% \[
-% 	P(y) = e^{-\frac{y}{2}} \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} (1 + \varphi_3(y)).
-% \]
-% \end{enumerate}
-% \end{proposition}
-% 
-% The proof of this proposition is involved and technical. 
-% We therefore postpone it till Section \ref{ssec:asymptotics_Delta_y_P} \TM{ It is not in section 4.3!!!! IN fact I cannot find it in sec 4 alltogether. Please fix. We do need this worked out explicitly in the paper. } and first use it to prove Theorem \ref{thm:asymptotics_average_clustering_P}. 
-% 
-% 
-% \begin{proof}[Proof of Theorem \ref{thm:asymptotics_average_clustering_P}]
-% 
-% We only give the proof for the case $\frac{1}{2} < \alpha < \frac{3}{4}$. \TM{ not sure I am happy with this "other cases are similar" approach. Especially in a 100 page paper. The devil is in the details! } The proofs for the other two cases are similar. Let $\varphi_1(y)$ be defined as in Proposition \ref{prop:asymptotics_Delta_y_P} and define
-% \[
-% 	\epsilon_1(k) = \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y
-% \]
-% Then we have that
-% \[
-% 	\int_0^{\infty} P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-% 	= C_\alpha \int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y + \epsilon_1(k).
-% \]
-% 
-% Using \eqref{eq:general_integral_rho_y_k} with $\beta = 2\alpha - 1$ yields,
-% \begin{equation}\label{eq:asymptotics_clustering_integral}
-% 	\int_0^{\infty} e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y 
-% 	\sim 2\alpha \xi^{6\alpha - 2} k^{-(6\alpha - 1)},
-% \end{equation}
-% as $k \to \infty$. Therefore, by applying the asymptotic scaling for the denominator~\eqref{eq:degree_distribution_P_asymptotics} we get
-% \begin{align*}
-% 	c_\infty(k) &= \frac{\int_0^{\infty} P(y) \rho(y,k) \alpha  e^{-\alpha y} \dd y}
-% 		{\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y} \\
-% 	&\sim C_\alpha 2\alpha \xi^{4\alpha - 2} \frac{k^{-(6\alpha - 1)}}{k^{-(2\alpha - 1)}}
-% 	+ \frac{\epsilon_1(k)}{2\alpha \xi^{2\alpha} k^{-(2\alpha - 1)}}\\
-% 	&= C_\alpha 2\alpha \xi^{4\alpha - 2} k^{-4\alpha + 2} 
-%     + \frac{1}{2\alpha}\xi^{-2\alpha} k^{2\alpha - 1}\epsilon_1(k).
-% \end{align*}
-% Hence, to prove the result it is enough to show that
-% \[
-% 	\lim_{k \to \infty} k^{6\alpha - 3}\epsilon_1(k) = 0.
-% \]
-% For this we fix $0 < \varphi < 1$, define $a(k) = 2\log((1-\varphi)k)$ \TM{ should there not be a $k/\xi$ inside $\log$ here? (see below) } and split the integral into two pieces
-% \begin{align*}
-% 	\epsilon_1(k) &= \int_0^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y\\
-% 	&= \int_0^{a(k)} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y\\
-% 	&\hspace{10pt}+ \int_{a(k)}^{\infty} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
-%     	\rho(y,k) \alpha e^{-\alpha y} \dd y.
-% \end{align*} 
-% For the first integral we use that $\rho(y,k)$ is increasing on $[0,a(k)]$ \TM{ I think that is only true if we change the def as above, in accordance with $a^{\pm}$ earlier. } and
-% \[
-% 	k^{6\alpha - 3}\rho(a(k),k) = O\left(\frac{k^{6\alpha - 3 + (1-\varphi)k}}{k!} e^{-(1-\varphi)k}\right) = o(1),
-% \]
-% \TM{ again, it seems off. I think we need to take $\xi$ into account here. }
-% to obtain
-% \begin{align*}
-% 	&\hspace{-30pt}\lim_{k \to \infty} k^{6\alpha - 3} \int_0^{a_n} \varphi_1(y) e^{-(4\alpha - 2)\frac{y}{2}} 
-%     	\rho(y,k) \alpha e^{-\alpha y} \dd y\\
-% 	&\le \lim_{n \to \infty} \left(\max_{0 \le y \le a(k)} \varphi_1(y)\right) k^{6\alpha - 1} 
-%     	\rho(a(k), k) \int_0^\infty \alpha e^{-\alpha y} \dd y = 0.
-% \end{align*}
-% For the second integral we first note that due to \eqref{eq:asymptotics_clustering_integral}
-% \[
-% 	\int_0^\infty e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y = \bigT{k^{-(6\alpha - 1)}}.
-% \] 
-% Therefore, using that $\varphi_1(y)$ is eventually decreasing and $\lim_{k \to \infty} \varphi_1(a(k)) = 0$, we obtain
-% \begin{align*}
-% 	&\hspace{-30pt}\lim_{k \to \infty} k^{6\alpha - 3} \int_{a(k)}^{\infty} \varphi_1(y) 
-%     	e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y\\
-% 	&\le \lim_{k \to \infty} \varphi_1(a(k)) k^{6\alpha - 3} \int_0^\infty 
-%     	e^{-(4\alpha - 2)\frac{y}{2}} \rho(y,k) \alpha e^{-\alpha y} \dd y = 0,
-% \end{align*}
-% which finishes the proof. \TM{ PLease elaborate on last line. What is used here? }
-% \end{proof}
+\end{proof}
