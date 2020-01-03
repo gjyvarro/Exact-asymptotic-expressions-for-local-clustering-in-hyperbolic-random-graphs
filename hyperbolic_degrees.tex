@@ -1,9 +1,11 @@
 
 \section{Degrees in the KPKVK model: proof of Theorem~\ref{thm:degrees_hyperbolic}}
 
+Since the new contribution of Theorem~\ref{thm:degrees_hyperbolic} concerns the cases where the degree $k_n \to \infty$, we will assume that this holds throughout this section.
+
 \subsection{Proof overview}
 
-As mentioned earlier, we plan to make use of the Campbell-Mecke formula for comparing the degree distribution in $\GPo$ with that of a \emph{typical point} in $\Ginf$. For this we will be considering the Poisson process $\Pcal$ to which we add one additional point $(0,y)$ on the $y$-axis. In some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and independent of $\Pcal$.
+We start by using the Campbell-Mecke formula to compare the degree distribution in $\GPo$ with that of a \emph{typical point} in $\Ginf$. For this we will be considering the Poisson process $\Pcal$ to which we add one additional point $(0,y)$ on the $y$-axis. In some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and independent of $\Pcal$.
 We refer to $(0,y)$ as ``the typical point''.
 
 To provide some intuition for this definition and name, note that we can alternatively view $\Pcal$ as follows. 
@@ -14,13 +16,13 @@ We first compute the degree distribution of the typical point in $\Ginf$ and sho
 \[
 	p_k = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy.
 \]
-We then relate this to the Poissonized KPKVB model $\GPo$ by showing in Section~\ref{ssec:expected_degrees_GPo} that for any $1 \le k_n \le n -1$ with $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$, $\Exp{N_{\Po}(k_n)} = (1+\smallO{1}) n p_{k_n}$ and more generally,
-\[
+We then relate this to the Poissonized KPKVB model $\GPo$. More precisely, let $N_{\Po}(k)$ denote the set of degree $k$ vertices in $\GPo$. We then show in Section~\ref{ssec:expected_degrees_GPo} that for any $1 \ll k_n \le n -1$ with $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$, $\Exp{N_{\Po}(k_n)} = (1+\smallO{1}) n p_{k_n}$ and more generally,
+\begin{equation}\label{eq:def_factorial_moments_GPo}
 	\Exp{\binom{N_{\Po}(k_n)}{r}} = (1+\smallO{1}) \frac{\Exp{N_{\Po}(k_n)}^r}{r!},
-\]
+\end{equation}
 for any integer $r \ge 1$ in Section~\ref{ssec:factorial_moments_GPo}. The latter result requires us to analyze the joint degree distribution in $\GPo$, which we do in Section~\ref{ssec:joint_degrees_GPo}. The above result in particular implies concentration of $N_{\Po}(k_n)$ from which the result on the degree distribution in $\GPo$ follows for $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. When $k_n = (1+\smallO{1}) c n^{\frac{1}{2\alpha + 1}}$ we use the above result to show that the fraction of degree $k_n$ nodes in $\GPo$ converges to a Poisson distribution. 
 
-To extend these results to $G_n$ we couple the construction of the KPKVB model to that of the Poissonized version $\GPo$ in Section~\ref{ssec:coupling_Gn_GPo} to show that a.a.s, $N_n(k_n) = (1+\smallO{1}) N_{\Po}(k_n)$. With these results we then proof Theorem~\ref{thm:degrees_hyperbolic} in Section~\ref{ssec:proof_thm_degrees}.
+To extend these results to $G_n$ we couple the construction of the KPKVB model to that of the Poissonized version $\GPo$ in Section~\ref{ssec:coupling_Gn_GPo} to show that a.a.s, $N_n(k_n) = (1+\smallO{1}) N_{\Po}(k_n)$. With these results we then prove Theorem~\ref{thm:degrees_hyperbolic} in Section~\ref{ssec:proof_thm_degrees}.
 
 We will also establish all the above mention results for the finite box model $\Gbox$, since the proofs only require small alterations and we will need these results later on when analyzing the clustering coefficient and function.
 
@@ -34,11 +36,9 @@ If $p = (x,y) \in \eR\times[0,\infty)$ is a point, not necessarily part of the P
 \]
 Integrating the intensity function of $\Pcal$ over $\BallPo{p}$ gives, using $\alpha>\frac{1}{2}$,
 \begin{align*}
-	\mu(y) &= \int_{\BallPo{p}} f(x',y') \, dx' \,d y'  
- 		= \int_0^\infty \int_{-e^{(y+y')/2}}^{e^{(y+y')/2}} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dx' \, dy' \\
-	&= \int_0^\infty 2 e^{(y+y')/2} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dy' 
- 		= \frac{2\alpha \nu e^{y/2}}{\pi} \int_0^\infty e^{(\frac12-\alpha)y'} \, dy' \\
-	&= \frac{2\alpha \nu e^{y/2}}{\pi(\alpha-\frac12)} = \xi e^{y/2}.
+	\mu(y) &= \int_0^\infty \int_{-e^{(y+y')/2}}^{e^{(y+y')/2}} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dx' \, dy' 
+		= \frac{2\alpha \nu e^{y/2}}{\pi} \int_0^\infty e^{(\frac12-\alpha)y'} \, dy' 
+		= \frac{2\alpha \nu e^{y/2}}{\pi(\alpha-\frac12)} = \xi e^{y/2}.
 \end{align*} 
 
 For $p = (x,y) \in \eR\times[0,\infty)$ we define
@@ -64,7 +64,7 @@ Using the transformation of variables $z = \xi e^{\frac{y}{2}}$ (so $dy = \frac{
     	z^{k -2\alpha-1} e^{-z} \, dz
     	= \frac{2\alpha \xi^{2\alpha}\Gamma^+(k - 2\alpha, \xi)}{k!},
 \end{align*}
-where we recall that $\Gamma$ denotes the Gamma-function and $\Gamma^{+}$ the upper incomplete Gamma-function.
+where we recall that $\Gamma^{+}$ denotes the upper incomplete Gamma-function.
 Note that, unsurprisingly, this is identical to the expression Gugelmann et al.~\cite{gugelmann2012random} gave for the limiting degree distribution of $G(n;\alpha,\nu)$. Using Stirling's approximation to the gamma function, we find that 
 
 \begin{equation}\label{eq:degree_distribution_P_asymptotics}
@@ -84,10 +84,8 @@ We proceed with the expected degrees in the finite box and Poissonized KPKVB mod
 \[
 	\mu_{\Po}(y) := \Mu{\BallHyp{y}} \quad \text{and} \quad \mu_{\mathrm{box}}(y) := \Mu{\BallPon{y}}.
 \]
-Observe that
 
-
-Our first results relate these measures to the measure $\mu(y)$ on the infinite model $\Ginf$.
+Our first results relate these measures to the measure $\mu(y)$, of the ball $\BallPo{y}$ in the infinite model $\Ginf$.
 
 \begin{lemma}[Expected degree given height in $\GPo$]\label{lem:average_degree_P_n}
 Let $\alpha > \frac{1}{2}$, $\varepsilon >0$ and $0 \leq y \leq (1-\epsilon)R$. Then as $n \to \infty$, uniformly in $y$,
@@ -126,11 +124,11 @@ As $y \leq (1-\epsilon)R =(1-\epsilon)2\ln \frac{n}{\nu}$ and $\alpha > \frac{1}
 \]
 where the convergence is uniform in $y$, $0\leq y\leq (1-\epsilon)R$, as the last upper bound does not depend on $y$.
 
-For the first integral $I_1$, we first recall from Lemma~\ref{lem:asymptotics_Omega_hyperbolic} that there is a positive constant $K$ such that for any $\varepsilon >0$, for all $y_1, y_2 \in [0,(1-\varepsilon)R]$, $y_1+y_2 <R$, we have (for $\Phi(y_1,y_2)$ from Equation~\ref{eq:def_Omega_hyperbolic})
+For the first integral $I_1$, we first recall from Lemma~\ref{lem:asymptotics_Omega_hyperbolic} that there is a positive constant $K$ such that for any $\varepsilon >0$, for all $y_1, y_2 \in [0,(1-\varepsilon)R]$, $y_1+y_2 <R$, we have
 \[
 	e^{\frac{1}{2}(y_1+y_2)} - Ke^{\frac{3}{2}(y_1+y_2)-R} \leq \Phi(y_1,y_2) \leq e^{\frac{1}{2}(y_1+y_2)} + Ke^{\frac{3}{2}(y_1+y_2)-R}.
 \]
-Thus we define a main and error term of $I_1$ as
+We thus define the main and error term of $I_1$ as
 \begin{align*}
 I_{1,main} &=\int_0^{R-y} 2e^{\frac{y+y_1}{2}}\frac{\alpha\nu}{\pi}e^{-\alpha y_1}dy_1, \\
 I_{1,error} &= \int_0^{R-y} 2Ke^{\frac{3}{2}(y+y_1)-R} \frac{\alpha\nu}{\pi} e^{-\alpha y_1} dy_1.
@@ -179,8 +177,8 @@ Therefore, if $y \le 2 \log(\pi/2)$ this intersection occurs above the height $R
 We will first consider the case where $y \le 2 \log(\pi/2)$. Here we have
 \begin{align*}
 	\mu(\BallPon{p})
-	&= \int_0^{R} \int_{-\frac{\pi}{2}e^{\frac{R}{2}}}^{\frac{\pi}{2}e^{\frac{R}{2}}} 
-		\ind{|x^\prime| \le e^{\frac{y+y^\prime}{2}}} f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dy^\prime\\
+	&= \int_0^{R} \int_{-e^{\frac{y+y^\prime}{2}}}^{e^{\frac{y+y^\prime}{2}}} 
+		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dy^\prime\\
 	&= \frac{2 \alpha \nu}{\pi} e^{\frac{y}{2}} \int_0^{R} e^{-(\alpha - \frac{1}{2})y^\prime} \, dy^\prime\\
 	&= \mu(y)\left(1 - e^{-(\alpha - \frac{1}{2})R}\right),
 \end{align*}
@@ -210,7 +208,7 @@ Since $R - y \ge \varepsilon R$ we have that $|\phi_n(y)|$ is uniformly bounded 
 $\bigO{e^{-(\alpha - \frac{1}{2})\varepsilon R}}$, which is $\smallO{1}$ for $\alpha > \frac{1}{2}$. 
 \end{proof}
 
-We can now use a concentration of heights argument to show that the integration of the Poisson probabilities $\Prob{\Po(\mu_{\Po}(y)) = k_n}$ over $0 \le y \le (1-\varepsilon) R$ is asymptotically equivalent to $p_{k_n}$. And the same holds if we instead consider $\mu_{\mathrm{box}}(y)$.
+We can now use a concentration of heights argument to show that the integration of the Poisson probabilities $\Prob{\Po(\mu_{\Po}(y)) = k_n}$ over $0 \le y \le (1-\varepsilon) R$ is asymptotically equivalent to $p_{k_n}$. And the same holds if we instead consider $\mu_{\mathrm{box}}(y)$. The proof contains some technical elements that are contained in the Appendix to not hinder the flow of the argument. 
 
 \begin{lemma}\label{lem:degree_integral}
 Let $0 < \varepsilon < 1$. Then for all $0 \le k_n \le n - 1$, as $n \to \infty$,
@@ -228,33 +226,33 @@ Moreover, the same holds if we replace $\Mu{\BallHyp{y}}$ with $\Mu{\BallPon{y}}
 \begin{proof}
 We will show that
 \[
-	\int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{Po,n}(y)) = k_n} \alpha e^{-\alpha y} \dd y
-	= (1+o(1))\int_0^\infty \Pee(Po(\xi e^{\frac{z}{2}})=k_n) \alpha e^{-\alpha z} \dd z.
+	\int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{\Po}(y)) = k_n} \alpha e^{-\alpha y} \dd y
+	= (1+o(1))\int_0^\infty \Pee(\Po(\xi e^{\frac{z}{2}})=k_n) \alpha e^{-\alpha z} \dd z.
 \]
 This implies the result because the last integral equals $(1+o(1))2\alpha \xi^{2\alpha} k_n^{-(2\alpha+1)} = (1+o(1))p_{k_n}$.
 
-Define the function $z(y)=2\ln\frac{\mu_{Po,n}(y)}{\xi}$ (note that $z(y)$ is well-defined as $\mu_{Po,n}(y)\geq 0$ and that $z(y)$ is bijective because $\mu_{Po,n}(y)$ is strictly monotone increasing and continuous, see Lemma~3.3. in \cite{gugelmann2012random}). By rearranging, we have that
+Define the function $z(y)=2\ln\frac{\mu_{\Po}(y)}{\xi}$ (note that $z(y)$ is well-defined as $\mu_{Po,n}(y)\geq 0$ and that $z(y)$ is bijective because $\mu_{\Po}(y)$ is strictly monotone increasing and continuous, see Lemma~3.3. in \cite{gugelmann2012random}). By rearranging, we have that
 \begin{align*}
-\mu_{Po,n}(y) = \xi e^{\frac{z(y)}{2}}.
+\mu_{\Po}(y) = \xi e^{\frac{z(y)}{2}}.
 \end{align*}
-From Lemma~\ref{lem:average_degree_P_n}, it follows that uniformly for all $0\leq y\leq (1-\varepsilon)R$, $\xi e^{\frac{y}{2}} = (1+o(1))\mu_{Po,n}(y) = (1+o(1))\xi e^{\frac{z(y)}{2}}$, and hence that
+From Lemma~\ref{lem:average_degree_P_n}, it follows that uniformly for all $0\leq y\leq (1-\varepsilon)R$, $\xi e^{\frac{y}{2}} = (1+o(1))\mu_{\Po}(y) = (1+o(1))\xi e^{\frac{z(y)}{2}}$, and hence that
 \begin{align*}
 e^{-\alpha y} = (1+o(1))e^{-\alpha z(y)}.
 \end{align*}
 Next we need a similar result regarding the derivative of $\mu_{\Po}(y)$, i.e.
 \[
-	\mu_{Po}^\prime(y) = (1+o(1))\frac{1}{2}\mu(y) = (1+o(1))\frac{1}{2}\mu_{Po}(y)
+	\mu_{\Po}^\prime(y) = (1+o(1))\frac{1}{2}\mu(y) = (1+o(1))\frac{1}{2}\mu_{\Po}(y)
 	= (1+\smallO{1}) \mu^\prime(y),
 \]
 uniformly for $0 \leq  y \leq (1-\varepsilon)R$. This result is given by Lemma~\ref{lem:derivative_mu_Po} in the Appendix. The lemma is placed there since the proof is a straightforward though cumbersome use of function analysis and we do not want to break the flow of the argument.
 
 We now have that
 \[
-	z^\prime(y) = \frac{2\mu_{Po}^\prime(y)}{\mu_{Po,n}(y)} = 1+o(1).
+	z^\prime(y) = \frac{2\mu_{\Po}^\prime(y)}{\mu_{\Po}(y)} = 1+o(1).
 \]
 which implies that
 \begin{align*}
-	\int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{Po}(y))=k_n} \alpha e^{-\alpha y}dy 
+	\int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{\Po}(y))=k_n} \alpha e^{-\alpha y}dy 
 	= (1+o(1)) \int_0^{(1-\varepsilon)R} \Prob{\Po(\xi e^{\frac{z(y)}{2}})=k_n}\alpha e^{-\alpha z(y)} z^\prime(y) dy.
 \end{align*}
 We now apply integration by substitution to the integral, i.e. use the new variable $z=z(y)$, to obtain 
@@ -267,17 +265,17 @@ We now apply integration by substitution to the integral, i.e. use the new varia
 Note that since the function $y \mapsto 2\ln \frac{y}{\xi}$ is monotone increasing it follows that for large enough $n$, 
 $\Kcal_C(k_n)\subset [z(0),z((1-\epsilon)R)]$. Therefore, by a concentration of heights argument (Proposition~\ref{prop:concentration_height_general}) it follows that
 \begin{align*}
-	\int_{z(0)}^{z((1-\varepsilon)R)} \Prob{\Po(\xi e^{\frac{z}{2}})=k_n}\alpha e^{-\alpha z} dz 
+	\int_{z(0)}^{z((1-\varepsilon)R)} \Prob{\Po(\mu(z))=k_n}\alpha e^{-\alpha z} dz 
 	&= (1+o(1))\int_0^\infty \Pee(Po(\mu(z))=k_n)\alpha e^{-\alpha z}dz.
 \end{align*}
 and hence
 \[
-	\int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{Po}(y))=k_n} \alpha e^{-\alpha y}dy
+	\int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{\Po}(y))=k_n} \alpha e^{-\alpha y}dy
 	= (1+o(1))\int_0^\infty \Pee(Po(\mu(z))=k_n)\alpha e^{-\alpha z}dz,
 \]
-which finishes the proof for $\mu_{Po}(y)$.
+which finishes the proof for $\mu_{\Po}(y)$.
 
-The proof for $\mu_{\mathrm{box}}(y)$ follows similar arguments. First, we define $z(y) = 2 \log (\mu_{\mathrm{box}}(y)/\xi)$ and use Lemma~\ref{lem:average_degree_G_box} instead of Lemma~\ref{lem:average_degree_P_n} to establish that $e^{-\alpha y} = (1+\smallO{1})e^{-\alpha z(y)}$. For the derivative $z^\prime(y)$ we recall from the proof of Lemma~\ref{lem:average_degree_G_box} that $\mu_{\mathrm{box}}(y) = (1 + \phi_n(y)) \mu(y)$ with $\phi_n(y)$ given by~\eqref{eq:def_average_degree_Gbox_phi}. The derivative of $\phi_n(y)$ can be uniformly bounded by $\smallO{1}$ for $0 \le y \le (1-\varepsilon)R$. Hence we get $\mu_{\mathrm{box}}^\prime(y) = (1+\smallO{1}) \mu^\prime(y)$ and thus $z^\prime(y) = 1 + \smallO{1}$ uniformly for $0 \le y \le (1-\varepsilon)R$. We can now apply the same change of variables to arrive at the required statement.
+The proof for $\mu_{\mathrm{box}}(y)$ follows similar arguments. First, we define $z(y) = 2 \log (\mu_{\mathrm{box}}(y)/\xi)$ and use Lemma~\ref{lem:average_degree_G_box} instead of Lemma~\ref{lem:average_degree_P_n} to establish that $e^{-\alpha y} = (1+\smallO{1})e^{-\alpha z(y)}$. For the derivative $z^\prime(y)$ we recall from the proof of Lemma~\ref{lem:average_degree_G_box} that $\mu_{\mathrm{box}}(y) = (1 + \phi_n(y)) \mu(y)$ with $\phi_n(y)$ given by~\eqref{eq:def_average_degree_Gbox_phi}. The derivative of $\phi_n(y)$ can be uniformly bounded by $\smallO{1}$ for $0 \le y \le (1-\varepsilon)R$. Hence we get $\mu_{\mathrm{box}}^\prime(y) = (1+\smallO{1}) \mu^\prime(y)$ and thus $z^\prime(y) = 1 + \smallO{1}$ uniformly for $0 \le y \le (1-\varepsilon)R$. We can now apply the same change of variables and a concentration of heights argument to arrive at the required statement.
 
 \end{proof}
 
@@ -331,7 +329,7 @@ which is $\smallO{1}$ since by our choice $2\alpha(1-\varepsilon) > 1$. Thus the
 
 \subsection{Joint degrees in $\Gbox$ and $\GPo$}\label{ssec:joint_degrees_GPo}
 
-To prove the factorization of higher moments of $N_{\Po}(k_n)$ and $\Nbox(k_n)$ we first have to understand the joint degree distribution in $\GPo$ $\Gbox$, respectively. This subsequently requires us to analyze the joint neighbourhoods of two points $p, p^\prime$ in these models. To explaining the proof strategy we will use the finite box model, since the formulas there are slightly easier. The results for the Poissonized KPKVB model $\GPo$ follow the same idea.
+To prove the factorization of higher moments of $N_{\Po}(k_n)$ and $\Nbox(k_n)$ as in~\eqref{eq:def_factorial_moments_GPo}, we first have to understand the joint degree distribution in $\GPo$ and $\Gbox$, respectively. This subsequently requires us to analyze the joint neighbourhoods of two points $p, p^\prime$ in these models. To explaining the proof strategy we will use the finite box model, since the formulas there are slightly easier. The results for the Poissonized KPKVB model $\GPo$ follow the same idea.
 
 %We start with a general result for near independent Poisson random variables.
 %
@@ -353,7 +351,7 @@ For $r\in \N$ and $p_1, \dots, p_r \in \Rcal$, we write $\Gbox\cup \{p_1,\dots,p
 \begin{equation}\label{eq:def_joint_degree_distribution}
 \varphi_{\mathrm{box}}(V, k ; p_1,\dots,p_s) = \Prob{\text{every }p\in V\text{ has degree }k\text{ in }\Gbox \cup \{p_1,\dots,p_s\}}.
 \end{equation}
-In particular, for two points $p, p^\prime \in \Rcal$ and $V = \{p,p^\prime\}$, $\varphi_{\mathrm{box}}(V, k ;p,p^\prime)$ is the joint degree distribution of $p, p^\prime $ in $\Gbox$. We will use similar notation for the Poissonize KPKVB model. That is, $\GPo \cup \{p_1,\dots,p_r\}$ denotes the Poissonized KPKVB model obtained by adding $p_1,\dots,p_r$ to the vertex set of the graph and adding all corresponding edges and $\varphi_{\Po}(V, k ; p_1,\dots,p_s)$ the corresponding joint degree function.
+In particular, for two points $p, p^\prime \in \Rcal$ and $V = \{p,p^\prime\}$, $\varphi_{\mathrm{box}}(V, k ;p,p^\prime)$ is the joint degree distribution of $p, p^\prime $ in $\Gbox$. We will use similar notation for the Poissonized KPKVB model. That is, $\GPo \cup \{p_1,\dots,p_r\}$ denotes the Poissonized KPKVB model obtained by adding $p_1,\dots,p_r$ to the vertex set of the graph and adding all corresponding edges and $\varphi_{\Po}(V, k ; p_1,\dots,p_s)$ the corresponding joint degree function.
 
 If we define,
 \begin{align*}
@@ -364,13 +362,13 @@ If we define,
 then each of these are independent Poisson random variables, while
 \[
 	\varphi_{\mathrm{box}}(\{p,p^\prime\}, k ;p,p^\prime) 
-	= \Prob{X_1(p,p^\prime) + Y(p,p^\prime) = k_n, X_2(p,p^\prime) + Y(p,p^\prime) = k_n}.
+	= \Prob{X_1(p,p^\prime) + Y(p,p^\prime) = k, X_2(p,p^\prime) + Y(p,p^\prime) = k_n}.
 \]
-Recall the definition of $y_{k_n,C}^\pm$ from equation~\eqref{eq:def_y_k_C}. We will show (see Lemma~\ref{cor:expected_common_neighbours_Ecal_set}) that for any two points $p, p^\prime$ whose $y$-coordinate is in $[y_{k_n, C}^-, y_{k_n,C}^+]$ and whose $x$-coordinates are sufficiently separated, it holds that $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon}}$. Since the mean of $X_1$ and $X_2$ for such two points is $k_n$, the contribution of the Poisson random variable $Y(p,p^\prime)$ to theirs degrees becomes negligible as $k_n \to \infty$ and hence the joint degree distribution will factorizes on this set. The main idea is that if $p$ and $p^\prime$ are sufficiently separated in the $x$-direction, then the overlap of their neighbourhoods $\BallPon{p} \cap \BallPon{p^\prime}$ is of smaller order than $\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}$. We now proceed with analyzing theses joint neighbourhoods.
+Recall the definition of $y_{k_n,C}^\pm$ from equation~\eqref{eq:def_y_k_C}. We will show (see Lemma~\ref{cor:expected_common_neighbours_Ecal_set}) that for any two points $p, p^\prime$ whose $y$-coordinate is in $\Kcal_C(k_n)$ and whose $x$-coordinates are sufficiently separated, it holds that $\Mu{\BallPon{p} \cap \BallPon{p^\prime}} = \bigO{k_n^{1-\varepsilon}}$. Since the mean of $X_1$ and $X_2$ for such two points is $k_n$, the contribution of the Poisson random variable $Y(p,p^\prime)$ to their degrees becomes negligible as $k_n \to \infty$ and hence the joint degree distribution will factorizes on this set. The main idea is that if $p$ and $p^\prime$ are sufficiently separated in the $x$-direction, then the overlap of their neighbourhoods $\BallPon{p} \cap \BallPon{p^\prime}$ is of smaller order than $\Mu{\BallPon{p}} + \Mu{\BallPon{p^\prime}}$. We now proceed with analyzing theses joint neighbourhoods.
 
 Let $p, p^\prime \in \Rcal$ and denote by $\Ncal_{\text{box}}(p,p^\prime)$ the number of common neighbours of $p$ and $p^\prime$ in $\Gbox \cup \{p,p^\prime\}$. We shall establish an upper bound on the expected number of joint neighbours when $p$ and $p^\prime$ are sufficiently separated. Observe that $\Exp{\Ncal_{\text{box}}(p,p^\prime)} = \Mu{\BallPon{p} \cap \BallPon{p^\prime}}$. 
 
-\begin{figure}[!ht]
+\begin{figure}[!t]
 \centering
 \begin{tikzpicture}
 	
@@ -443,15 +441,38 @@ Let $p, p^\prime \in \Rcal$ and denote by $\Ncal_{\text{box}}(p,p^\prime)$ the n
 \end{figure}
 
 
-We start by analyzing the shape of joint neighbourhood. Due to symmetry and the fact that we have identified the left and right boundaries of the box $\Rcal$, we can, without loss of generality, assume that $p = (0,y)$ and $p^\prime = (x^\prime,y^\prime)$ with $x^\prime > 0$. To understand the computation it is helpful to have a picture. Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3} shows such an example. There are several different quantities that are important. The first are the heights where the left and right boundaries of the ball $\BallPon{p}$ hit the boundaries of the box $\Rcal$. Since $x = 0$ these heights are the same and we denote their common value by $h(y)$. We also need to know the coordinates $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ of the intersection of the right boundary of the neighbourhood of $p$ with the left boundary of the neighbourhood of $p^\prime$ and those for the intersection of the left boundary of the neighbourhood of $p$ with the right boundary of the neighbourhood of $p^\prime$, which we denote by $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$. Finally we will denote by $d(p,p^\prime)$ the distance between the lower right boundary of $\BallPon{p}$ and the lower left of $\BallPon{p^\prime}$, which is positive only when the bottom parts of both neighbourhoods do not intersect, as is the case in Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3}. The condition $d(p,p^\prime) > 0$ is exactly the right notion for $p$ and $p^\prime$ being sufficiently separated.
+We start by analyzing the shape of the joint neighbourhood. Due to symmetry and the fact that we have identified the left and right boundaries of the box $\Rcal$, we can, without loss of generality, assume that $p = (0,y)$ and $p^\prime = (x^\prime,y^\prime)$ with $x^\prime > 0$. To understand the computation it is helpful to have a picture. Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3} shows such an example. There are several different quantities that are important. The first are the heights where the left and right boundaries of the ball $\BallPon{p}$ hit the boundaries of the box $\Rcal$. Since $x = 0$ these heights are the same and we denote their common value by $h(y)$. We also need to know the coordinates $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ of the intersection of the right boundary of the neighbourhood of $p$ with the left boundary of the neighbourhood of $p^\prime$ and those for the intersection of the left boundary of the neighbourhood of $p$ with the right boundary of the neighbourhood of $p^\prime$, which we denote by $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$. Finally we will denote by $d(p,p^\prime)$ the distance between the lower right boundary of $\BallPon{p}$ and the lower left of $\BallPon{p^\prime}$, which is positive only when the bottom parts of both neighbourhoods do not intersect, as is the case in Figure~\ref{fig:representation_disjoint_neighbourhoods_P_n_3}. The condition $d(p,p^\prime) > 0$ is exactly the right notion for $p$ and $p^\prime$ being sufficiently separated.
 
-Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$ correspond to, respectively, $\hat{y}(p,p^\prime)$ and $\hat{x}(p,p^\prime)$ considered in Section~\ref{ssec:missing_triangles}. The derivation of $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ is done in a similar manner and we omit the details here. The full expressions of all these functions are given below for further reference.
+We start by deriving expressions for these important coordinates. For this we introduce some notation. For any $p = (x,y) \in \Rcal$ we will define the left and right boundary functions as, respectively,
+\begin{align}
+	b_p^-(z) &= \begin{cases}
+		2 \log\left(x-z\right) - y &\mbox{if }  -\frac{\pi}{2} e^{R/2} \le z \le x - e^{y/2}  \\
+		2\log\left(\pi e^{R/2} + x - z\right) - y 
+			&\mbox{if } x - e^{(y + R)/2} + \pi e^{R/2} \le z \le \frac{\pi}{2} e^{R/2}\\
+		0 &\mbox{otherwise}
+	\end{cases}\\
+	b_p^+(z) &= \begin{cases}
+		2 \log\left(z-x\right) - y &\mbox{if } x + e^{y/2} \le z \le \frac{\pi}{2} e^{R/2} \\
+		2\log\left(\pi e^{R/2} + z - x\right) - y 
+			&\mbox{if } -\frac{\pi}{2} e^{R/2} \le z \le x + e^{(y + R)/2} - \pi e^{R/2}\\
+		0 &\mbox{otherwise}
+	\end{cases}
+\end{align}
+Note that these functions describe the boundaries of the ball $\BallPon{p}$. In particular, $p^\prime = (x^\prime, y^\prime) \in \BallPon{p}$ if and only if $y^\prime \ge \min\left\{b_p^-(x^\prime), b_p^+(x^\prime)\right\}$.
+
+We shall derive the expressions for the point $(\hat{x}_{\text{left}}(p,p^\prime), \hat{y}_{\text{left}}(p,p^\prime))$. The $x$-coordinate $\hat{x}_{\text{left}}(p,p^\prime)$ is the solution to the equation $b_{p}^+(z) = b_{p^\prime}^-(z)$ for $-\frac{\pi}{2} e^{R/2} \le z \le + e^{y/2}$. This equation becomes
+\[
+	2\log\left(\pi e^{R/2} + z - x^\prime\right) - y^\prime = 2 \log\left(x^\prime-z\right) - y^\prime,
+\]
+whose solution is $\frac{x^\prime - \pi e^{R/2}}{1 + e^{(y^\prime - y)/2}}$. Plugging this into either the left or right hand side of the above equation yields the $y$-coordinate $\hat{y}_{\text{left}}(p,p^\prime) = 2 \log\left(\frac{\pi e^{R/2} - x^\prime}{e^{y/2} + e^{y^\prime/2}}\right)$. The expressions for $\hat{x}_{\text{right}}(p,p^\prime$ and $\hat{y}_{\text{right}}(p,p^\prime)$ are derived in a similar way. The expression for $d(p,p^\prime)$ follows as the difference $b_{p^\prime}^-(x^\prime - e^{y^\prime/2}) - b_p^+(e^{y/2})$.
+
+The full expressions of all coordinates are given below for further reference.
 
 \begin{align}
 	h(y) &= R - y + 2\log\left(\frac{\pi}{2}\right) \label{eq:def_height_y_P_n}\\
-	h_1(p^\prime) &= 2\log\left(x^\prime + \frac{\pi}{2}e^{\frac{R}{2}}\right) - y^\prime \label{eq:def_height_left_P_n} \\
-	h_2(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{\frac{R}{2}} - x^\prime\right) - y^\prime 
-		\label{eq:def_height_right_P_n} \\
+%	h_1(p^\prime) &= 2\log\left(x^\prime + \frac{\pi}{2}e^{\frac{R}{2}}\right) - y^\prime \label{eq:def_height_left_P_n} \\
+%	h_2(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{\frac{R}{2}} - x^\prime\right) - y^\prime 
+%		\label{eq:def_height_right_P_n} \\
 %	\iota_x(p,p^\prime) &= \frac{(x^\prime-x)e^{\frac{y}{2}}}{e^{\frac{y}{2}} - e^{\frac{y^\prime}{2}}}
 %		\label{eq:def_x_intersection_close_boundaries}\\
 %	\iota_y(p,p^\prime) &= 2\log\left(\frac{x^\prime - x}{e^{\frac{y}{2}} - e^{\frac{y^\prime}{2}}}\right)
@@ -477,7 +498,7 @@ Let $p, p^\prime \in \Rcal$. Then, whenever $|x - x^\prime|_n > \left(e^{\frac{y
 \end{lemma}
 
 \begin{proof}
-Again, without loss of generality we assume that $p = p_0 = (0,y)$ and $p^\prime = (x^\prime, y^\prime)$ with $0 \le x^\prime \le \frac{\pi}{2} e^{R/2}$. Note that since $0 < x^\prime \le \frac{\pi}{2} e^{R/2}$,$ \hat{y}_{\mathrm{right}}(p,p^\prime) \le \hat{y}_{\mathrm{left}}(p,p^\prime)$. We write $\hat{y}$ for $\hat{y}_{\mathrm{right}}(p,p^\prime)$ and observe that below $\hat{y}$ the balls $\BallPon{p}$ and $\BallPon{p^\prime}$ are disjoint. Therefore, if we define $A := \left\{p_1 = (x_1,y_1) \in \Rcal \cap \BallPon{p} \, : \, y_1 \ge \hat{y} \right\}$. Then
+Again, without loss of generality we assume that $p = p_0 = (0,y)$ and $p^\prime = (x^\prime, y^\prime)$ with $0 \le x^\prime \le \frac{\pi}{2} e^{R/2}$. Note that since $0 < x^\prime \le \frac{\pi}{2} e^{R/2}$, $ \hat{y}_{\mathrm{right}}(p,p^\prime) \le \hat{y}_{\mathrm{left}}(p,p^\prime)$. We write $\hat{y}$ for $\hat{y}_{\mathrm{right}}(p,p^\prime)$ and observe that below $\hat{y}$ the balls $\BallPon{p}$ and $\BallPon{p^\prime}$ are disjoint. Therefore, if we define $A := \left\{p_1 = (x_1,y_1) \in \Rcal \cap \BallPon{p} \, : \, y_1 \ge \hat{y} \right\}$. Then
 \[
 	\Exp{\Ncal_{\text{box}}(p,p^\prime)} \le \Mu{A}.
 \]
@@ -507,7 +528,7 @@ and noting that $x^\prime$ is the same as $|x - x^\prime|$, by our generalizatio
 We can also prove a similar result for the Poissonized KPKVB model $\GPo$, denoting by $\Ncal_{\Po}(p,p^\prime)$ the number of joint neighbours in $\GPo \cup \{p,p^\prime\}$.
 
 \begin{lemma}\label{lem:common_neighbours_KPKVB}
-Let $0 < \varepsilon < 1$, $p, p^\prime \in \Rcal$ with $y,y^\prime \le (1-\varepsilon)R$ and denote by $\Ncal_{\Po}(p,p^\prime)$ the number of joint neighbours of $p, p^\prime$ in $\GPo$. Then, whenever $|x - x^\prime|_n > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)\left(1 + \frac{\pi^2 K}{4}\right)$,
+Let $0 < \varepsilon < 1$, $p, p^\prime \in \Rcal$ with $y,y^\prime \le (1-\varepsilon)R$, denote by $\Ncal_{\Po}(p,p^\prime)$ the number of joint neighbours of $p, p^\prime$ in $\GPo$ and let $K$ be the constant from Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. Then, whenever $|x - x^\prime|_n > \left(e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)\left(1 + \frac{\pi^2 K}{4}\right)$,
 \[
 	\Exp{\Ncal_{\Po}(p,p^\prime)} \le \Mu{\BallHyp{p}}
 	\left(e^{(2\alpha - 1)\lambda} \left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)}  
@@ -515,13 +536,12 @@ Let $0 < \varepsilon < 1$, $p, p^\prime \in \Rcal$ with $y,y^\prime \le (1-\vare
 \]
 where
 \[
-	\lambda = \log\left(1 + \frac{\pi^2 K}{4}\right),
+	\lambda = \log\left(1 + \frac{\pi^2 K}{4}\right).
 \]
-with $K$ the constant from Lemma~\ref{lem:asymptotics_Omega_hyperbolic}.
 \end{lemma}
 
 \begin{proof}
-We will proceed in a similar fashion as for Lemma~\ref{lem:common_neighbours_Pcal_n}. That is we will bound the expected number of common neighbours by the number of neighbors of $p$ whose $y$-coordinate is above the intersection of the right boundary of $\BallHyp{p}$ and the left boundary of $\BallHyp{p^\prime}$. Denote by $\hat{y}$ the height of this intersection point. Then
+We will proceed in a similar fashion as for Lemma~\ref{lem:common_neighbours_Pcal_n}. That is, we will bound the expected number of common neighbours by the number of neighbors of $p$ whose $y$-coordinate is above the intersection of the right boundary of $\BallHyp{p}$ and the left boundary of $\BallHyp{p^\prime}$. Denote by $\hat{y}$ the height of this intersection point. Then
 \begin{align*}
 	\Exp{\Ncal_{\Po}(p,p^\prime)} &\le \frac{2\alpha \nu}{\pi} \int_{\hat{y}}^{R-y} \Phi(y,y_1) e^{-\alpha y_1} \dd y_1
 		+ \alpha \nu e^{R/2} \int_{R-y}^{R} e^{-\alpha y_1} \dd y_1.
@@ -546,7 +566,7 @@ $x^\prime - \Phi(y^\prime, y_1) \le \Phi(y,y_1)$. Therefore it is enough to show
 \[
 	y_1 \le 2 \log\left(\frac{x^\prime}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right) - 2\lambda
 \]
-it holds that $\Phi(y,y_1) \le x^\prime - \Phi(y^\prime, y_1)$, with $\lambda$ as defined in the statement of the lemma. Note that by assumption on $|x - x^\prime|$ the above upper bound is non-negative. Using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} it suffices to prove that for all such $y_1$,
+it holds that $\Phi(y,y_1) \le x^\prime - \Phi(y^\prime, y_1)$, with $\lambda$ as defined in the statement of the lemma. Note that by assumption on $x^\prime := |x - x^\prime|_n$ (since we can take $x = 0$) the above upper bound is non-negative. Using Lemma~\ref{lem:asymptotics_Omega_hyperbolic} it suffices to prove that for all such $y_1$,
 \[
 	e^{\frac{y + y_1}{2}} + K e^{\frac{3}{2}(y + y_1) - R} \le x^\prime - e^{\frac{y^\prime + y_1}{2}}
 	- K e^{\frac{3}{2}(y^\prime + y_1) - R},
@@ -567,7 +587,11 @@ Plugging the upper bound for $y_1$ into the left hand side and using that $(e^{y
 where we also used that $x^\prime \le \frac{\pi}{2} e^{-R/2}$.
 \end{proof}
 
-Recall the definition of the stripe $\stripknc = \Rcal \cap (\R_+ \times [y_{k_n,C}^-, y_{k_n,C}^+])$ from~\eqref{eq:def_stripe} and define, for any $0 < \varepsilon < 1$, the following set
+Let us now define the \emph{stripe}
+\begin{equation}\label{eq:def_stripe}
+	\stripknc = \Rcal \cap (\R_+ \times \Kcal_C(k_n)).
+\end{equation} 
+and in addition define, for any $0 < \varepsilon < 1$, the following set
 \begin{equation}\label{eq:def_joint_degree_set_E_growing_k}
 	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \stripknc
 		\, : \,  |x - x^\prime|_n > k_n^{1 + \varepsilon} \right\}, 
@@ -588,14 +612,14 @@ Since for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ we have $\Mu{\Ball
 \]
 where
 \[
-	\phi_n(p,p^\prime) = 2\left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)} 
+	\phi_n(p,p^\prime) = 2\left(\frac{|x - x^\prime|_n}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)} 
 		+ \frac{3 \nu^{2\alpha + 1}e^{-(\alpha - \frac{1}{2})R} e^{\alpha y}}{2 \pi^{2\alpha}\left(
 		e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}\right)}
 		+ \frac{\nu e^{-(\alpha - \frac{1}{2})R}}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}. 
 \]
-We thus need to show that $\phi_n(p,p^\prime) = \bigO{k_n^{-\varepsilon}}$. For $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, it holds that $e^{y/2}, e^{y^\prime/2} = \bigT{k_n}$ and $|x - x^\prime| > k_n^{1+\varepsilon}$ and hence
+We thus need to show that $\phi_n(p,p^\prime) = \bigO{k_n^{-\varepsilon^\prime}}$. For $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, it holds that $e^{y/2}, e^{y^\prime/2} = \bigT{k_n}$ and $|x - x^\prime|_n > k_n^{1+\varepsilon}$ and hence
 \begin{align*}
-	 2\left(\frac{|x - x^\prime|}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)}
+	 2\left(\frac{|x - x^\prime|_n}{e^{\frac{y}{2}} + e^{\frac{y^\prime}{2}}}\right)^{-(2\alpha - 1)}
 	 =	\bigO{k_n^{-\varepsilon(2\alpha - 1)}}.
 \end{align*}
 For the second term in $\phi_n(p,p^\prime)$ we use that $e^{\alpha y^\ast} = \bigT{k_n^{2\alpha}}$ and $e^{R} = \bigT{n^2}$ to obtain
@@ -621,11 +645,7 @@ Fix $0 < \varepsilon < 1$ and let $\varepsilon^\prime = \min\{\varepsilon(2\alph
 \] 
 \end{lemma}
 
-Let us now define the \emph{stripe}
-\begin{equation}\label{eq:def_stripe}
-	\stripknc = \Rcal \cap (\R_+ \times \Kcal_C(k_n)).
-\end{equation} 
-Consider a fixed number of points $p_1, \dots, p_r$. Then, if their $x$-coordinates are sufficient far apart and their $y$ coordinates lie with in the strip $\stripknc$, their degrees are asymptotically independent.
+Recall the definition of the stripe $\stripknc = \Rcal \cap (\R_+ \times [y_{k_n,C}^-, y_{k_n,C}^+])$ from~\eqref{eq:def_stripe}. Consider a fixed number of points $p_1, \dots, p_r$. Then, if their $x$-coordinates are sufficient far apart and their $y$ coordinates lie within the stripe $\stripknc$, their degrees are asymptotically independent.
 
 \begin{lemma}[Asymptotic factorization of degree probabilities]\label{lem:probdegFact}
 Let $C, C^\prime>0$ and $r,s$ be positive integers with $r+1\leq s$. Fix $0<\varepsilon<1$. Then, it holds uniformly for all $(v_1,\dots,v_s) \in \left(\stripknc\right)^{s} = \stripknc \times \dots \times \stripknc$, satisfying $|x_{v_i}-x_{v_{r+1}}|\geq k_n^{1+\varepsilon}$ for all  $1\leq i \leq r$,  that
@@ -654,7 +674,7 @@ and the claim of the lemma is that
 	\end{aligned}
 \end{equation}
 
-To prove~\eqref{eq:probdegfact_main} let $\varepsilon'=\min(\varepsilon,\varepsilon(2\alpha-1))\in (0,1)$. Since for $1\leq i \leq r$, it is given that $|x_{p_i}-x_{p_{r+1}}|\geq k_n^{1+\varepsilon}$, it then follows from Lemma~\ref{lem:common_neighbours_KPKVB} that $\E[Y_j] = \bigO{k_n^{1-\varepsilon'}}$. To prove the result for $\Gbox$ we use Lemma~\ref{lem:common_neighbours_Pcal_n}. The rest of the proof is independent of which of the two models we consider and only uses that $\E[Y_j] = \bigO{k_n^{1-\varepsilon'}}$.
+To prove~\eqref{eq:probdegfact_main} let $\varepsilon'=\min(\varepsilon,\varepsilon(2\alpha-1))\in (0,1)$. Since for $1\leq i \leq r$, it is given that $|x_{p_i}-x_{p_{r+1}}|\geq k_n^{1+\varepsilon}$, then in the case where $H = \GPo \cup\{p_1,\dots,p_s\}$ it follows from Lemma~\ref{lem:common_neighbours_KPKVB} that $\E[Y_j] = \bigO{k_n^{1-\varepsilon'}}$. When $H=\Gbox \cup \{p_1,\dots,p_s\}$ we get the same result using Lemma~\ref{lem:common_neighbours_Pcal_n}. The rest of the proof is independent of which of the two models we consider and only uses that $\E[Y_j] = \bigO{k_n^{1-\varepsilon'}}$.
 
 As $Y_{r+1} \leq Y_1+\dots+Y_r$, we also have $\mu:=\Exp{Y_{r+1}} = \bigO{k_n^{1-\varepsilon'}}$. In particular, there is $c_0>0$ such that $c_0\sqrt{k_n^{1-\varepsilon'}\ln k_n^{1-\varepsilon'}}\geq c_1\sqrt{\mu\ln\mu}$ (where $c_1=\sqrt{\frac{2C}{1-\varepsilon'}}$, which is well-defined because $1-\varepsilon'>0$). Now define
 \begin{align*}
@@ -663,8 +683,8 @@ A_n=[\mu-c_0\sqrt{k_n^{1-\varepsilon'}\ln k_n^{1-\varepsilon'}},\mu+c_0\sqrt{k_n
 By equation~\eqref{eq:def_chernoff_bound_poisson_C}, we have
 \begin{align*}
 	\Prob{Y_{r+1} \not \in A_n} 
-	= \Prob{|Y_{r+1}-\mu|\geq c_0\sqrt{k_n^{1-\varepsilon'}\ln k_n^{1-\varepsilon'}}}
-	\le \Prob{|Y_{r+1}-\mu|\geq c_1\sqrt{\mu\ln\mu}}
+	&= \Prob{|Y_{r+1}-\mu|\geq c_0\sqrt{k_n^{1-\varepsilon'}\ln k_n^{1-\varepsilon'}}}\\
+	&\le \Prob{|Y_{r+1}-\mu|\geq c_1\sqrt{\mu\ln\mu}}
 	=\bigO{k_n^{-\frac{(1-\varepsilon')c_1^2}{2}}}.
 \end{align*}
 As by definition $c_1$ satisfies $\frac{(1-\varepsilon')c_1^2}{2}=C$, this implies that for the event $S_n = \{Y_{r+1}\in A_n\}$,
@@ -679,7 +699,7 @@ Beginning with the left-hand side of the claim of the lemma, the law of total pr
 	&=\sum_{y_{r+1}\in A_n} \Prob{X_1+Y_1=\dots=X_{r+1}+y_{r+1}=k_n|Y_{r+1}=y_{r+1}} 
 		\Prob{Y_{r+1}=y_{r+1}}+\bigO{k_n^{-C}}.
 \end{align*}
-As $X_{r+1}$ is independent of $X_1, \dots, X_r, Y_1, \dots, Y_r$ by the properties of a Poisson process (as $X_{r+1}$ counts the number of points in a set which is disjoint to what $X_1,\dots,X_r, Y_1, \dots, Y_r$ are counting), it follows that
+As $X_{r+1}$ is independent of $X_1, \dots, X_r, Y_1, \dots, Y_r$ by the properties of a Poisson process (as $X_{r+1}$ counts the number of points in a set which is disjoint of $X_1,\dots,X_r, Y_1, \dots, Y_r$), it follows that
 \begin{align*}%\label{eq:afterindep}
 	&\Prob{X_1+Y_1=\dots=X_{r+1}+Y_{r+1}=k_n} \\
 	&=\sum_{y_{r+1} \in A_n} \Prob{X_1+Y_1=\dots=X_{r}+Y_r=k_n|Y_{r+1}=y_{r+1}}
@@ -703,6 +723,7 @@ We will now use that $\frac{(a+b)!}{a!} = (1+o(1))(a+b)^b$ for $b^2=o(a)$, appli
 \end{align*}
 Since $1+\frac{b}{a}\leq e^{\frac{b}{a}}$, it holds that $(1+\frac{b}{a})^a \leq e^b$. Furthermore, as $\ln(1+x)\geq x-\frac{x^2}{2}$ (for $x\in (-1,1)$), we have that $(1+\frac{b}{a})^a =e^{a\ln(1+\frac{b}{a})}\geq e^{a(\frac{b}{a}-\frac{b^2}{2a})} =e^{b-\frac{b^2}{2a}}=(1+o(1))e^{b}$ because $b^2=o(a)$. Finally, $b^2=o(a)$ also implies that $(1+\frac{b}{a})^\frac{1}{2}=1+o(1)$. This finishes the proof of the auxiliary fact and we can continue with
 \begin{align*}
+	\frac{\Prob{X_{r+1}=k_n-y_{r+1}}}{\Prob{X_{r+1}=k_n-s}}
 	&=(1+o(1)) (k_n-y_{r+1}+(y_{r+1}-s))^{y_{r+1}-s} \lambda^{s-y_{r+1}} \\
 	&=(1+o(1)) (\lambda+\delta_n+(y_{r+1}-s))^{y_{r+1}-s} \lambda^{s-y_{r+1}} \\
 	&=(1+o(1))\left(1+\frac{\delta_n+(y_{r+1}-s)}{\lambda}\right)^{y_{r+1}-s} \\
@@ -757,8 +778,7 @@ which establishes~\eqref{eq:probdegfact_main} and thus the claim of the lemma.
 Now that we have analyzed the joint neighbourhoods and degree distributions in both the Poissonized KPKVB and finite box model, we can show convergence of the factorial moments of the number of nodes of degree $k$ in both models.
 
 \begin{lemma}[Factorial moments]\label{lem:factmoment}
-Recall that $N_{Po}(k)$ denotes the number of degree $k$ vertices in $\GPo$. % and $k_n \rightarrow \infty$ as 
-For any positive integer $r$, it holds that
+Recall that $N_{Po}(k)$ denotes the number of degree $k$ vertices in $\GPo$. Then, for any positive integer $r$ and $k_n \rightarrow \infty$, it holds that
 \[
 	\Exp{{N_{Po}(k_n) \choose r}} =(1+o(1)) \frac{(\Exp{ N_{Po}(k_n)})^r}{r!}.
 \]
@@ -770,9 +790,9 @@ The proof of this result requires the following technical lemma which states tha
 	\label{lem:asympind}
 	Let $\varphi$ be either $\varphi_{\mathrm{box}}$ or $\varphi_{\Po}$. Then we have that
 	\begin{align*}
-	&\int_\Rcal \cdots \int_\Rcal \varphi(\{p_1,\dots,p_r \};p_1,\dots,p_r) 
+	&\int_\Rcal \cdots \int_\Rcal \varphi(\{p_1,\dots,p_r \}, k_n ;p_1,\dots,p_r) 
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_r,y_r)\dd x_r \dd y_r \\
-	&= (1+o(1))\left(\int_\Rcal  \varphi(\{p_1\};p_1) f(x,y) \dd x \dd y\right)^r .
+	&= (1+o(1))\left(\int_\Rcal  \varphi(\{p_1\}, k_n ;p_1) f(x,y) \dd x \dd y\right)^r .
 	\end{align*}
 \end{lemma}
 
@@ -787,38 +807,38 @@ For $(p_1,\dots,p_r) \in (\Rcal \times \cdots \times\Rcal) \backslash (\stripknc
 
 Next we note that by the concentration of heights (Proposition~\ref{prop:concentration_height_general}) it follows that
 \begin{align*}
-	\int_{\stripknc} \varphi(\{p_1\};p_1) f(x,y) \dd x \dd y 
-	&= (1+\smallO{1}) \int_\Rcal  \varphi(\{p_1\};p_1) f(x,y) \dd x \dd y
+	\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x,y) \dd x \dd y 
+	&= (1+\smallO{1}) \int_\Rcal  \varphi(\{p_1\}, k_n ;p_1) f(x,y) \dd x \dd y\\
 	&= (1+\smallO{1}) 2\alpha \xi^{2\alpha} n k_n^{-(2\alpha + 1)} \numberthis \label{eq:integration_average_degree_stripe}
 \end{align*}
 Since for $C>r(2\alpha+1)$ it holds that $n^r k_n^{-C} = \smallO{\left(n k_n^{-(2\alpha + 1)}\right)^r}$ it now suffices to show that
 \begin{align*}
-	&\int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r \};p_1,\dots,p_r) 
+	&\int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r \}, k_n ;p_1,\dots,p_r) 
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_r,y_r)\dd x_r \dd y_r \\
-	&= (1+o(1))\left(\int_{\stripknc}  \varphi(\{p_1\};p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r.
+	&= (1+o(1))\left(\int_{\stripknc}  \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r.
 \end{align*}
 
 We will prove this using induction. More precisely, for every fixed positive integer $s$, we will show by induction on $r$, $1\leq r\leq s$, that for all $p_{r+1},\dots,p_s \in \stripknc$, it holds that
 \begin{align*}
-	&\int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)
+	&\int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_r,y_r)\dd x_r \dd y_r\\
-	&= (1+o(1))\left(\int_{\stripknc} \varphi(\{p_1\};p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r .
+	&= (1+o(1))\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r .
 \end{align*}
-Note that for $r=s$ this the claim of the lemma. Throughout the proof $H$ is either $\GPo \cup\{p_1,\dots,p_s\}$ or $\Gbox \cup \{p_1,\dots,p_s\}$, depending on whether $\varphi$ is, respectively, $\varphi_{\Po}$ or $\varphi_{\mathrm{box}}$.
+Note that for $r=s$ this is the claim of the lemma. Throughout the proof $H$ is either $\GPo \cup\{p_1,\dots,p_s\}$ or $\Gbox \cup \{p_1,\dots,p_s\}$, depending on whether $\varphi$ is, respectively, $\varphi_{\Po}$ or $\varphi_{\mathrm{box}}$.
 
 For $r=1$, we only need to show that uniformly for $p_1 \in \stripknc$,
 \begin{align*}
-\varphi(\{p_1\};p_1,\dots,p_s) = (1+o(1))\varphi(\{p_1\};p_1).
+\varphi(\{p_1\}, k_n ;p_1,\dots,p_s) = (1+o(1))\varphi(\{p_1\}, k_n ;p_1).
 \end{align*}
-To see this, note that as $p_1\in \stripknc$, the expected degree of $p_1$ in $\GPo$ is $\Theta(k_n)$. Assume that $p_1$ is adjacent to $s'<s$ many vertices among $v_2,\dots,p_s$. Then, as $s'<s$ is bounded and $k_n \rightarrow \infty$ as $n\rightarrow \infty$,  we have that
+To see this, note that as $p_1\in \stripknc$, the expected degree of $p_1$ in $\GPo$ is $\Theta(k_n)$. Assume that $p_1$ is adjacent to $s'<s$ many vertices among $p_2,\dots,p_s$. Then, as $s'<s$ is bounded and $k_n \rightarrow \infty$ as $n\rightarrow \infty$,  we have that
 \begin{align*}
 \Pee(D_{\GPo}(p_1)=k_n-s') = (1+o(1))\Pee(D_{\GPo}(p_1)=k_n).
 \end{align*}
 So, we have the base case of the induction,
 \begin{align*}
-\varphi(\{p_1\};p_1,\dots,p_s)&=\Pee(D_H(p_1)=k_n)
+\varphi(\{p_1\}, k_n ;p_1,\dots,p_s)&=\Pee(D_H(p_1)=k_n)
 = \Pee(D_{\GPo}(p_1)=k_n-s')\\
-&= (1+o(1))\Pee(D_{\GPo}(p_1)=k_n)=(1+o(1))\varphi(\{p_1\};p_1).
+&= (1+o(1))\Pee(D_{\GPo}(p_1)=k_n)=(1+o(1))\varphi(\{p_1\}, k_n ;p_1).
 \end{align*}
 Assuming the claim holds for integer $r <s$, we will show that it holds for $r+1$.
 
@@ -828,37 +848,40 @@ $$\Fcal_\epsilon(k_n)=\{(p_1,\dots,p_{r+1}) \in \left(\stripknc\right)^{r+1}: \f
 
 We will split the integration into this region and its complement $\Fcal_\epsilon(k_n)^c = \left(\stripknc\right)^{r+1} \backslash \Fcal_\epsilon(k_n)$.
 
-Firstly, we derive an upper bound for the complement $\Fcal_\epsilon(k_n)^c$.	Note that $$\varphi(\{p_1,\dots,p_{r+1}\};p_1,\dots,p_s) \leq \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)$$
+Firstly, we derive an upper bound for the complement $\Fcal_\epsilon(k_n)^c$. Note that 
+\[
+	\varphi(\{p_1,\dots,p_{r+1}\}, k_n ;p_1,\dots,p_s) \leq \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s),
+\]
 and so,
 \begin{align*}
-	&\int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_{r+1}\};p_1,\dots,p_s)
+	&\int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_{r+1}\}, k_n ;p_1,\dots,p_s)
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
-	&\leq \int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)
+	&\leq \int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}.
 \end{align*}
 
 For $(p_1,\dots,p_{r+1})\in \Fcal_\epsilon(k_n)^c$, we have that $(p_1,\dots,p_r) \in \left(\stripknc\right)^r$ and $p_{r+1}=(x_{r+1},y_{r+1})$ satisfies $y_{k_n,c}^-\leq y_{r+1}\leq y_{k_n,c}^+$ and $x_{r+1}$ falls into an interval $I_n$ of length $2k_n^{1+\epsilon}$.
-As the integrand $\varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)$ is constant in $x_{r+1}$, we can upper bound the corresponding integration  w.r.t. $\mu_n(dp_{r+1})$ resp. $dy_{r+1}$ as follows,
+As the integrand $\varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)$ is constant in $x_{r+1}$, we can upper bound the corresponding integration as follows,
 \begin{align*}
-	&\int_{\{(x_{r+1},y_{r+1})\in\stripknc: x_{r+1}\in I_n\}} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s) 
+	&\int_{\{(x_{r+1},y_{r+1})\in\stripknc: x_{r+1}\in I_n\}} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s) 
 		f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1} \\
-	&= \int_{y_{k_n,c}^-}^{y_{k_n,c}^+} \int_{I_n} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)\frac{\alpha \nu}{\pi} e^{-\alpha y_{r+1}} dx_{r+1}dy_{r+1} \\
-	&\leq 2k_n^{1+\epsilon} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)\int_{y_{k_n,c}^-}^{y_{k_n,c}^+}  \frac{\alpha \nu}{\pi} e^{-\alpha y_{r+1}} dy_{r+1}.
+	&= \int_{y_{k_n,c}^-}^{y_{k_n,c}^+} \int_{I_n} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)\frac{\alpha \nu}{\pi} e^{-\alpha y_{r+1}} dx_{r+1}dy_{r+1} \\
+	&\leq 2k_n^{1+\epsilon} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)\int_{y_{k_n,c}^-}^{y_{k_n,c}^+}  \frac{\alpha \nu}{\pi} e^{-\alpha y_{r+1}} dy_{r+1}.
 \end{align*}
 Furthermore, we have that
 \begin{align*}
-\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} e^{-\alpha y_1}dy_1 \leq \int_{y_{k_n,c}^-}^\infty e^{-\alpha y_1}dy_1 = \bigO{e^{-\alpha y_{k_n,c}^-}} = \bigO{\left( \frac{k_n-c\sqrt{k_n\ln k_n}}{\xi}\right)^{-2\alpha}} = \bigO{k_n^{-2\alpha}}.
+\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} e^{-\alpha y_{r+1}}dy_{r+1} \leq \int_{y_{k_n,c}^-}^\infty e^{-\alpha y_{r+1}}dy_{r+1} = \bigO{e^{-\alpha y_{k_n,c}^-}} = \bigO{\left( \frac{k_n-c\sqrt{k_n\ln k_n}}{\xi}\right)^{-2\alpha}} = \bigO{k_n^{-2\alpha}}.
 \end{align*}
 We have thus established that
 \begin{align*}
-	&\int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)
+	&\int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
 	&\leq \bigO{k_n^{1+\epsilon} k_n^{-2\alpha}}\int_{\stripknc} \cdots \int_{\stripknc} 
-		\varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s) f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}.
+		\varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s) f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}.
 \end{align*}
-By applying the induction hypothesis to the $r$-fold integral, we obtain the upper bound
+The $r$-fold integral can the bounded from above using the induction hypothesis as
 \begin{align}\label{eq:indhyp}
-&=\bigO{k_n^{1+\epsilon-2\alpha}}\left(\int_{\stripknc} \varphi(\{p_1\};p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r .
+	\bigO{k_n^{1+\epsilon-2\alpha}}\left(\int_{\stripknc} \varphi(\{p_1\};p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r .
 \end{align}
 Finally, we use that $k_n^{1+\epsilon-2\alpha} = \smallO{\int_{\stripknc} \varphi(\{p_1\};p_1)\mu_n(dp_1)}$. To see this, we will firstly show that $k_n^{1+\epsilon-2\alpha} = \smallO{nk_n^{-(2\alpha+1)}}$ and then apply~\eqref{eq:integration_average_degree_stripe}, which says that
 \begin{align*}
@@ -870,20 +893,23 @@ By our choice of $\epsilon$, we have that $\frac{1}{2}+\epsilon<\alpha$, which i
 \end{align*}
 Having shown that $k_n^{1+\epsilon-2\alpha} = \smallO{\int_{\stripknc} \varphi(\{p_1\};p_1)\mu_n(dp_1)}$, we therefore conclude from~\eqref{eq:indhyp} that
 \begin{align*}
-	&\int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)
+	&\int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
-	&=\smallO{\int_{\stripknc} \varphi(\{p_1\};p_1)\mu_n(dp_1)}\left(\int_{\stripknc} \varphi(\{p_1\};p_1) 
-		f(x_1,y_1) \dd x_1 \dd y_1\right)^r  \\
-	&=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\};p_1)f(x_1,y_1) \dd x_1 \dd y_1\right)^{r+1}}.
+	&=\smallO{\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)\mu_n(dp_1)}
+		\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r  \\
+	&=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)f(x_1,y_1) \dd x_1 \dd y_1\right)^{r+1}}.
 \end{align*}
 
-For the integration over $\Fcal_\epsilon(k_n)$, recall that by Lemma~\ref{lem:probdegFact}, $$\varphi(\{p_1,\dots,p_{r+1}\};p_1,\dots,p_s)=(1+o(1))\varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)\varphi(\{p_{r+1}\};p_1,\dots,p_s)+\bigO{k_n^{-C}}.$$% =(1+o(1)) \varphi(p_1,\dots,p_r)\varphi(y_{r+1}).$$
-
+For the integration over $\Fcal_\epsilon(k_n)$, recall that by Lemma~\ref{lem:probdegFact}, \[
+	\varphi(\{p_1,\dots,p_{r+1}\}, k_n ;p_1,\dots,p_s)
+	=(1+o(1))\varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
+	\varphi(\{p_{r+1}\}, k_n ;p_1,\dots,p_s)+\bigO{k_n^{-C}}.
+\]
 This implies that
 \begin{align*}
-	&\int \int_{\Fcal_\epsilon(k_n)} \varphi(\{p_1,\dots,p_{r+1}\};p_1,\dots,p_s) 
+	&\int \int_{\Fcal_\epsilon(k_n)} \varphi(\{p_1,\dots,p_{r+1}\}, k_n ;p_1,\dots,p_s) 
 		 f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
-	&=(1+o(1))\int \int_{\Fcal_\epsilon(k_n)} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s) 
+	&=(1+o(1))\int \int_{\Fcal_\epsilon(k_n)} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s) 
 		\varphi(\{p_{r+1}\};p_1,\dots,p_s) f(x_1,y_1) \dd x_1 \dd y_1 \cdots \\
 	&\hspace{10pt} \times f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
 	&\hspace{10pt}+\bigO{k_n^{-C}}\int \int_{\Fcal_\epsilon(k_n)} 
@@ -891,11 +917,11 @@ This implies that
 \end{align*}
 To finish the induction step we have to show that
 \begin{align*}
-M=(1+o(1)) \left(\int_{\stripknc} \varphi(\{p_1\};p_1)\mu_n(dp_1)\right)^{r+1}
+M=(1+o(1)) \left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)\mu_n(dp_1)\right)^{r+1}
 \end{align*}
 and
 \begin{align*}
-E=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\};p_1)\mu_n(dp_1)\right)^{r+1}}.
+E=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)\mu_n(dp_1)\right)^{r+1}}.
 \end{align*}
 
 For $M$, note that we can factorize to integration over $p_1,\dots,p_r$ and over $p_{r+1}$.
@@ -906,20 +932,20 @@ Furthermore, we note that the condition $(p_1,\dots,p_{r+1})\in \Fcal_\epsilon(k
 \]
 As $k_n^{1+\epsilon} = \bigO{n^{\frac{1+\epsilon}{2\alpha+1}}} = o(n)$ for $\epsilon<1$ and $\alpha>\frac{1}{2}$, this shows that the length of the integration range in $x_{r+1}$ satisfies $L_n=(1+o(1))\frac{\pi n}{\nu}$. Thus, we have that
 \begin{align*}
-	M &= (1+o(1))\int_{I_n}\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} \varphi(\{p_{r+1}\};p_1,\dots,p_s)
+	M &= (1+o(1))\int_{I_n}\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} \varphi(\{p_{r+1}\}, k_n ;p_1,\dots,p_s)
 		\frac{\alpha\nu}{\pi} e^{-\alpha y_{r+1}}dy_{r+1}dx_{r+1}\\
 	&\hspace{15pt} \times \int_{\stripknc} \cdots \int_{\stripknc} 
-		\varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}\\
-	&=(1+o(1))n\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} \varphi(\{p_{r+1}\};p_1,\dots,p_s)\alpha e^{-\alpha y_{r+1}}dy_{r+1}\\
+		\varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}\\
+	&=(1+o(1))n\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} \varphi(\{p_{r+1}\}, k_n ;p_1,\dots,p_s)\alpha e^{-\alpha y_{r+1}}dy_{r+1}\\
 	&\hspace{15pt} \times \int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}\\
-	&=(1+o(1))\int_{\stripknc} \varphi(\{p_{r+1}\};p_1,\dots,p_s)\mu_n(dp_1)\\
-	&\hspace{15pt} \times\int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)
+	&=(1+o(1))\int_{\stripknc} \varphi(\{p_{r+1}\}, k_n ;p_1,\dots,p_s)\mu_n(dp_1)\\
+	&\hspace{15pt} \times\int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}.
 \end{align*}
 By applying the base case of the induction to the first factor and the induction hypothesis to the second one, we have derived that
 \begin{align*}
-M&=(1+o(1))\left(\int_{\stripknc} \varphi(\{p_1\};p_1) f(x_1,y_1) \dd x_1 \dd y_1 \right)^{r+1}.
+M&=(1+o(1))\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1 \right)^{r+1}.
 \end{align*}
 Finally, for $E$ we observe that
 \begin{align*}
@@ -929,39 +955,43 @@ Finally, for $E$ we observe that
 \end{align*}
 Recall that again by~\eqref{eq:integration_average_degree_stripe},
 \begin{align*}
-\int_{\stripknc} \varphi(\{p_1\};p_1) f(x_1,y_1) \dd x_1 \dd y_1 = \bigT{n k_n^{-(2\alpha+1)}},
+\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1 = \bigT{n k_n^{-(2\alpha+1)}},
 \end{align*}
 which implies that
 \begin{align*}
-\left(\int_{\stripknc} \varphi(\{p_1\};p_1)f(x_1,y_1) \dd x_1 \dd y_1\right)^{r+1} 
+\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)f(x_1,y_1) \dd x_1 \dd y_1\right)^{r+1} 
 = \bigT{n^{r+1}k_n^{-r(2\alpha+1)}}.
 \end{align*}
 For $C>r(2\alpha+1)$, we can conclude that indeed
 \begin{align*}
-E = \bigO{n^{r+1}k_n^{-C}}=\smallO{n^{r+1}k_n^{-r(2\alpha+1)}}=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\};p_1)\mu_n(dp_1)\right)^{r+1}}.
+E = \bigO{n^{r+1}k_n^{-C}}=\smallO{n^{r+1}k_n^{-r(2\alpha+1)}}=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)\mu_n(dp_1)\right)^{r+1}}.
 \end{align*}
 \end{proof}
 
 We now proof the result for the factorial moments.
 
 \begin{proof}[Proof of Lemma~\ref{lem:factmoment}]
+We give the proof for the Poissonized KPKVB model. The proof for the finite box model $\Gbox$ follows using similar arguments.
+
 First of all, we observe that
 \begin{align*}
-{N_{\Po}(k_n) \choose r} = \frac{1}{r!} \sum_{v_1,\dots,v_r\in V(\GPo)}^{\not = } \1_{\{D_{\GPo}(v_1)=\dots=D_{\GPo}(v_r)=k_n\}}.
+{N_{\Po}(k_n) \choose r} = \frac{1}{r!} \sum_{p_1,\dots,p_r\in V(\GPo)}^{\not = } \1_{\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}}.
 \end{align*}
 This can be seen by induction on $r$. For $r=1$, the claim is clear. Assuming it holds for $r\geq 1$, by the induction hypothesis,
 \begin{align*}
 &{N_{\Po}(k_n) \choose r+1} = {N_{\Po}(k_n) \choose r} \frac{N_{\Po}(k_n)-r}{r+1} \\
-&= \frac{1}{(r+1)!}\sum_{v_1,\dots,v_r\in V(\GPo)}^{\not = } \1_{\{D_{\GPo}(v_1)=\dots=D_{\GPo}(v_r)=k_n\}} (N_{\Po}(k_n)-r).
+&= \frac{1}{(r+1)!}\sum_{p_1,\dots,p_r\in V(\GPo)}^{\not = } \1_{\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}} (N_{\Po}(k_n)-r).
 \end{align*}
 Now, we can write
-$$N_{\Po}(k_n) = \sum_{\stackrel{v_{r+1} \in V(\GPo),}{v_{r+1} \not \in\{ v_1,\dots,v_r\}} } \1_{\{D_{\GPo}(v_{r+1})=k_n\}}+\sum_{v_{r+1} \in \{v_1,\dots,v_r\}}\1_{\{D_{\GPo}(v_{r+1})=k_n\}}.$$
+\[
+	N_{\Po}(k_n) = \sum_{\stackrel{p_{r+1} \in V(\GPo),}{p_{r+1} \not \in\{ p_1,\dots,p_r\}} } \1_{\{D_{\GPo}(p_{r+1})=k_n\}}+\sum_{p_{r+1} \in \{p_1,\dots,p_r\}}\1_{\{D_{\GPo}(p_{r+1})=k_n\}}.
+\]
 The first sum leads to the right-hand side of the claim for $r+1$, whereas the second sum will cancel with the $-r$.
 
 By the Campbell-Mecke formula 
 \begin{align*}
-	&\Exp{ {N_{\Po}(k_n) \choose r}}=\frac{1}{r!} \E\left[ \sum_{v_1,\dots,v_r\in V(\GPo)}^{\not = }  
-		\1_{\{D_{\GPo}(v_1)=\dots=D_{\GPo}(v_r)=k_n\}}\right] \\
+	&\Exp{ {N_{\Po}(k_n) \choose r}}=\frac{1}{r!} \E\left[ \sum_{p_1,\dots,p_r\in V(\GPo)}^{\not = }  
+		\1_{\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}}\right] \\
 	&=\frac{1}{r!} \int_\Rcal \cdots \int_\Rcal \varphi_{\Po}(\{p_1,\dots,p_r\},p_1,\dots,p_r)
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r},
 \end{align*}
@@ -969,20 +999,20 @@ where we integrate over $r$ additional points which we can think of as being add
 
 With $r=1$, it follows that
 \[
-	\Exp{N_{\Po}(k_n)} = \int_\Rcal \Pee(v_1 \text{ has degree }k_n\text{ in }G(\VPo\cup \{v_1\})) \mu_n(dv_1),
+	\Exp{N_{\Po}(k_n)} = \int_\Rcal \phi_{\Po}(\{p_1\}, k_n ; p_1) f(x_1,y_1) \dd x_1 \dd y_1,
 \]
 which yields that the right-hand side of the claim of the lemma can be rewritten as
 \[
-	\frac{1}{r!}(\Exp{N_{\Po}(k_n)})^r = \frac{1}{r!}\left(\int_\Rcal \Pee(v_1 \text{ has degree }k_n\text{ in }G(\VPo\cup \{v_1\})) \mu_n(dv_1)\right)^r.
+	\frac{1}{r!}(\Exp{N_{\Po}(k_n)})^r = \frac{1}{r!}\left(\int_\Rcal \phi_{\Po}(\{p_1\}, k_n; p_1) f(x_1,y_1) \dd x_1 \dd y_1,\right)^r.
 \]
 
 Using Lemma~\ref{lem:asympind}, we conclude that
 \begin{align*}
 	&\hspace{-20pt}\Exp{ { N_{\Po}(k_n) \choose r}} \\
 	&= \frac{1}{r!} \int_\Rcal \cdots \int_\Rcal 
-		\varphi_{\Po}(\{p_1,\dots,p_r\},p_1,\dots,p_r) 
+		\varphi_{\Po}(\{p_1,\dots,p_r\}, k_n; p_1,\dots,p_r) 
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r} \\
-	&= (1+o(1))\frac{1}{r!}\left(\int_\Rcal \varphi_{\Po}(\{p_1\},p_1) f(x_1,y_1) \dd x_1 \dd y_1 \right)^r \\
+	&= (1+o(1))\frac{1}{r!}\left(\int_\Rcal \varphi_{\Po}(\{p_1\}, k_n;p_1) f(x_1,y_1) \dd x_1 \dd y_1 \right)^r \\
 	&= (1+o(1))\frac{1}{r!}(\Exp{N_{\Po}(k_n)})^r.
 \end{align*}
 \end{proof}
@@ -992,7 +1022,7 @@ Using Lemma~\ref{lem:asympind}, we conclude that
 In the previous sections we have established results for the degrees and the factorial moments of the degree $k_n$ nodes in the Poissonized KPKVB and finite box model. Our intended result, however, was for the degree distribution in the original KPKVB model. In order to extend the result for the Poissonized KPKVB model to the original model we will use a coupling argument to show that the expected difference between the number of degree $k_n$ nodes is negligible.
 
 \begin{lemma}\label{lem:diff_Nk_hyperbolic_binomial_poisson}
-As $n \rightarrow \infty$, it holds that
+As $n \rightarrow \infty$, it holds that for $0 \le k_n \le n - 1$,
 \[
 \Exp{\left|N_{n}(k_n)-N_{Po}(k_n)\right|} = \smallO{\Exp{N_{Po}(k_n)}}.
 \]
@@ -1158,9 +1188,12 @@ which finishes the proof for the case where $N > n$.
 
 \subsection{Proof of Theorem~\ref{thm:degrees_hyperbolic}}\label{ssec:proof_thm_degrees}
 
-We now have all necessary ingredient to proof the main result on the degrees, Theorem~\ref{thm:degree_hyperbolic}.
+We now have all necessary ingredient to proof the main result on the degrees, Theorem~\ref{thm:degrees_hyperbolic}.
 
-\begin{proof}[Proof of Theorem~\ref{thm:degrees_hyperbolic}] \hfill\\
+\begin{proof}[Proof of Theorem~\ref{thm:degrees_hyperbolic}] 
+
+Recall that we shall only give the proof for the case where $k_n \to \infty$, since result (i) for fixed $k = \bigO{1}$ follows from~\cite{gugelmann2012random}.
+
 \begin{enumerate}[\upshape (i)]
 \item  First we recall that the statements regarding $p_k$ and its asymptotic behavior follow from Equation~\ref{eq:def_pk} and Equation~\ref{eq:degree_distribution_P_asymptotics}.
 
@@ -1190,14 +1223,15 @@ which implies $\Exp{N_{Po}(k_n)} \rightarrow \zeta$ (as $\zeta$ is a positive co
 
 Finally, since $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$, by Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}, $\Exp{| N_n(k_n) - N_{Po}(k_n)|} = o(\Exp{N_{Po}(k_n)}) = o(\zeta)$, from which it follows that $\Prob{|N_n(k_n)-N_{Po}(k_n)|\geq 1} \leq \Exp{ |N_n(k_n)-N_{Po}(k_n)|} = o(\zeta)$. Hence, it also holds that $N_n(k_n) \xrightarrow{d} Po(\zeta)$.
 
-\item We will show that in this case $\E[N_n(k_n)] = o(1)$. This then implies, by Markov's inequality,
+\item We will show that in this case $\Exp{N_n(k_n)} = o(1)$. This then implies, by Markov's inequality,
 \[
-	\Prob{N_n(k_n)>0}\leq \E[N_n(k_n)] = o(1).
+	\Prob{N_n(k_n)>0}\leq \Exp{N_n(k_n)} = o(1).
 \]
 
-First we observe that as the poissonized KPKVB model $\GPo$ has the same intensity measure as the original KPKVB model with a fixed number $n$ of points, the expected degree of a vertex of the KPKVB model with radial coordinate $r=R-y$ is given by $\mu_{\Po,n}(y)$ and hence,
+First we observe that as the poissonized KPKVB model $\GPo$ has the same intensity measure as the original KPKVB model with a fixed number $n$ of points, the expected degree of a vertex of the KPKVB model with radial coordinate $r=R-y$ is given by $\mu_{\Po}(y)$ and hence,
 \[
-	\Exp{N_n(k_n)} = n \int_0^R \Prob{\mathrm{Bin}(n-1,\mu_{\Po,n}(y)/n) = k_n} \frac{\alpha \sinh(\alpha (R-y))}{\cosh(\alpha R)-1} dy.
+	\Exp{N_n(k_n)} = n \int_0^R \Prob{\mathrm{Bin}(n-1,\mu_{\Po}(y)/n) = k_n} 
+	\frac{\alpha \sinh(\alpha (R-y))}{\cosh(\alpha R)-1} dy.
 \]
 Fix $0 < \varepsilon < \frac{4\alpha - 1}{4\alpha + 2} \wedge \frac{2\alpha - 1}{2\alpha}$. We first show that we only need to consider integration up to $y \le (1-\varepsilon)R$. By our choice of $\varepsilon$, $2\alpha(1-\varepsilon) > 1$, so that
 \[
@@ -1206,13 +1240,13 @@ Fix $0 < \varepsilon < \frac{4\alpha - 1}{4\alpha + 2} \wedge \frac{2\alpha - 1}
 \]
 This implies
 \[
-	n \int_{(1-\varepsilon)R}^R \Prob{\mathrm{Bin}(n-1,\mu_{\Po,n}(y)/n) = k_n}
+	n \int_{(1-\varepsilon)R}^R \Prob{\mathrm{Bin}(n-1,\mu_{\Po}(y)/n) = k_n}
 	\frac{\alpha \sinh(\alpha (R-y))}{\cosh(\alpha R)-1} dy
 	\le n \frac{\cosh(\alpha \epsilon R)}{\cosh(\alpha R)-1} = \smallO{1},
 \]
 and thus it is enough to show that
 \[
-	n \int_0^{(1-\varepsilon)R} \Prob{\mathrm{Bin}(n-1,\mu_{\Po,n}(y)) = k_n}
+	n \int_0^{(1-\varepsilon)R} \Prob{\mathrm{Bin}(n-1,\mu_{\Po}(y)) = k_n}
 	\frac{\alpha \sinh(\alpha (R-y))}{\cosh(\alpha R)-1} dy = \smallO{1}.
 \]
 Note that for all $0 \le y \le (1-\varepsilon)R$ we have
@@ -1221,10 +1255,10 @@ Note that for all $0 \le y \le (1-\varepsilon)R$ we have
 \]
 Hence, by bounding the Binomial probability (see Lemma~\ref{lem:binomial_poisson_bound})
 \begin{align*}
-	&\hspace{-20pt} n \int_0^{(1-\varepsilon)R} \Prob{\mathrm{Bin}(n-1,\mu_{\Po,n}(y)) = k_n}
+	&\hspace{-20pt} n \int_0^{(1-\varepsilon)R} \Prob{\mathrm{Bin}(n-1,\mu_{\Po}(y)) = k_n}
 		\frac{\alpha \sinh(\alpha (R-y))}{\cosh(\alpha R)-1} dy\\
 	&\le (1+\smallO{1}) \frac{e}{\sqrt{2\pi}} \sqrt{\frac{n}{n-k_n}}
-		n \int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{Po,n}(y)) = k_n} \alpha e^{-\alpha y} dy \\
+		n \int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{Po}(y)) = k_n} \alpha e^{-\alpha y} dy \\
 	&\le (1+\smallO{1}) \frac{e}{\sqrt{2\pi}} \sqrt{\frac{n}{n-k_n}} n p_{k_n}
 	= \bigO{\sqrt{\frac{n}{n-k_n}} n k_n^{-(2\alpha + 1)}}.
 \end{align*}
