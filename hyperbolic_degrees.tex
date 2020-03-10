@@ -233,7 +233,7 @@ The proof for $\mu_{\mathrm{box}}(y)$ follows similar arguments. First, we defin
 The main result of this section now follows almost immediately.
 
 \begin{lemma}[First moment of number of degree $k$ vertices]\label{lem:expnnkn}
-Let $N_{Po}(k)$ and $\Nbox(k)$ denote the number of vertices with degree $k$ vertices in the poissonized KPKVB model $\GPo$ and the finite box model $\Gbox$, respectively. Consider a sequence of integers $k_n\rightarrow\infty$ with $0 \leq k_n \leq n-1$.	If $k_n = O\left(n^{\frac{1}{2\alpha+1}}\right)$, then as $n \to \infty$,
+Let $N_{Po}(k)$ and $\Nbox(k)$ denote the number of vertices with degree $k$ vertices in the Poissonized KPKVB model $\GPo$ and the finite box model $\Gbox$, respectively. Consider a sequence of integers $k_n\rightarrow\infty$ with $0 \leq k_n \leq n-1$.	If $k_n = O\left(n^{\frac{1}{2\alpha+1}}\right)$, then as $n \to \infty$,
 \[
 	\Exp{N_{Po}(k_n)} =(1+o(1)) n \pmf(k_n) \quad \text{and} \quad \Exp{\Nbox(k_n)} =(1+o(1)) n \pmf(k_n).
 \]
@@ -1184,7 +1184,7 @@ Finally, since $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$, by Lemma~\ref{lem:diff_Nk
 	\Prob{N_n(k_n)>0}\leq \Exp{N_n(k_n)} = o(1).
 \]
 
-First we observe that as the poissonized KPKVB model $\GPo$ has the same intensity measure as the original KPKVB model with a fixed number $n$ of points, the expected degree of a vertex of the KPKVB model with radial coordinate $r=R-y$ is given by $\mu_{\Po}(y)$ and hence,
+First we observe that as the Poissonized KPKVB model $\GPo$ has the same intensity measure as the original KPKVB model with a fixed number $n$ of points, the expected degree of a vertex of the KPKVB model with radial coordinate $r=R-y$ is given by $\mu_{\Po}(y)$ and hence,
 \[
 	\Exp{N_n(k_n)} = n \int_0^R \Prob{\mathrm{Bin}(n-1,\mu_{\Po}(y)/n) = k_n} 
 	\frac{\alpha \sinh(\alpha (R-y))}{\cosh(\alpha R)-1} dy.

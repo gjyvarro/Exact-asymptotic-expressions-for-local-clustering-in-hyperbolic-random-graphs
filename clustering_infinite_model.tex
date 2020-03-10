@@ -4,7 +4,7 @@
 \section{Clustering and the degree of the typical point in $\Ginf$\label{sec:Ginf}\label{sec:asymptotics_average_clustering_ast_P}}
 
 
-As alluded to earlier, we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of the (poissonized) KPKVB random graph 
+As alluded to earlier, we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of the (Poissonized) KPKVB random graph 
 with certain quantities associated with $\Ginf$.
 We will be considering the Poisson process $\Pcal$ to which we add one additional point $(0,y)$ on the $y$-axis.
 In some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and
@@ -463,7 +463,7 @@ which finishes the proof.
 
 The previous lemma covers the case when $y_0<y_1<y_2$. We now leverage it to take care of the other cases as well. 
 
-\begin{proof}[Proof of Lemma~\ref{lem:triangle_prob_y_coordinates}]
+\begin{proofof}{Lemma~\ref{lem:triangle_prob_y_coordinates}}
 Let $y_i >0$ and $z_i = e^{-y_i/2}$, $i=0,1,2$. Lemma~\ref{lem:ordered} gives the expression for $P(y_0(z_0),y_1(z_1),y_2(z_2))$ in the case $y_0<y_1<y_2$, or equivalently $z_0>z_1>z_2$, i.e. the first two lines in the claim of Lemma~\ref{lem:triangle_prob_y_coordinates}. To analyze the other cases we shall express $P(y_1,y_0,y_2)$ and $P(y_1,y_2,y_0)$ in terms of $P(y_0,y_1,y_2)$ and $z_i$. For this we note that we can view $P(y_0,y_1,y_2)$ as a 2-fold integral of the indicator function
 \[ 
 	h(x_0, x_1, x_2) := \ind{ |x_0 - x_1| < e^{(y_0+y_1)/2}, |x_0 - x_2| < e^{(y_0+y_2)/2}, |x_1-x_2| < e^{(y_1+y_2)/2}}, 
@@ -482,7 +482,7 @@ Finally we note that $h(x_0,0,x_2) = h(x_2,0,x_0)$ from which we conclude that
 \end{equation}
 
 To complete the proof for the other cases we note that since $P(y_0,y_1,y_2)$ is symmetric in $y_1$ and $y_2$, we can assume, without loss of generality, that $y_1 < y_2$. Then, there are two more orderings of $y_0, y_1, y_2$, namely $y_1< y_0< y_2$ and $y_1<y_2<y_0$, which can be summarized as $y_1 < \min (y_0,y_2)$, or equivalently $z_1 > \max(z_0,z_2)$. For $y_1 < y_0 < y_2$ and $y_1 < y_2<y_0$ we can apply Lemma~\ref{lem:ordered} to obtain $P(y_1,y_0,y_2) = P(y_1,y_2,y_0)$ which happen to agree due to the symmetry in the last two arguments of the expression found in Lemma~\ref{lem:ordered}. The expression for $P(y_0,y_1,y_2)$ then follows from~\eqref{eq:symmetry_relation_triangle_prob}.
-\end{proof}
+\end{proofof}
 
 %
 
@@ -1037,7 +1037,7 @@ If $\alpha = 1$, then
 e^{-y}  + 
 \frac{1}{2}e^{-y}\Li_2(e^{-y})
 	\end{align*}
-	where $\Li_2(z)=\int_0^z \frac{\ln(1-t)}{t}dt$ is the dipolylogarithm function.
+	where $\Li_2(z)=\int_0^z \frac{\ln(1-t)}{t}dt$ is the dilogarithm function.
 \end{lemma}
 
 

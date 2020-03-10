@@ -846,7 +846,7 @@ On the other hand, the expected number of points in $\mathcal{E}_\varepsilon(k_n
 Throughout this proof we set $i = |\{p^\prime, p_1, p_2, p_1^\prime, p_2^\prime\} \cap \BallPon{p}|$, $j = |\{p^\prime\} \cap \BallPon{p}|$ and define $i^\prime, j^\prime$ in a similar way by interchanging the primed and non-primed variables. In addition, we write $\widetilde{D}_{\text{box}}(p,p^\prime,k,\ell)$ to denote the indicator that $|\BallPon{p} \cap (\Pcal \setminus \{p, p^\prime, p_1, p_2, p_1^\prime, p_2^\prime\})| = k$ and $|\BallPon{p^\prime} \cap (\Pcal \setminus \{p, p^\prime, p_1, p_2, p_1^\prime, p_2^\prime\})| = \ell$. Note that this also depend on $\{p_1, p_2, p_1^\prime, p_2^\prime\}$ but we suppressed this to keep notation concise. Similarly we write $D_{\text{box}}(p,p^\prime,k,\ell)$ to denote the indicator that $|\BallPon{p} \cap (\Pcal \setminus \{p, p^\prime\})| = k$ and $|\BallPon{p^\prime} \cap (\Pcal \setminus \{p, p^\prime\})| = \ell$, which now only depends on $p$ and $p^\prime$. Then, by the Campbell-Mecke formula
 \begin{align*}
 	&\Exp{\ind{\Dbox(p) = k_n, \Dbox(p^\prime) = k_n} J_b(p,p^\prime)}\\
-	&= \Exp{{\sum_{p_1, p_2, p_1^\prime, p_2^\prime \in \Pcal_n 
+	&= \Exp{\sum_{{p_1, p_2, p_1^\prime, p_2^\prime \in \Pcal_n 
 		\atop |\{p_1, p_2\} \cap \{p_1^\prime, p_2^\prime\}| = b,} \atop \text{distinct}}
 			\hspace{-7pt} \widetilde{D}_{\text{box}}(p,p^\prime, k_n-i,k_n- i^\prime) \,
 			\widetilde{T}_{\text{box}}(p,p_1,p_2) \widetilde{T}_{\text{box}}(p^\prime, p_1^\prime, p_2^\prime)}
