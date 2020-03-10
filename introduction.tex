@@ -4,7 +4,7 @@ In this paper, we will consider clustering in a model of random graphs that invo
 2010 - we abbreviate it as \emph{the KPKVB model}. We should however note that the model also goes by several other names in the literature, including {\em hyperbolic random geometric graphs} and {\em random hyperbolic graphs}. Krioukov et al.~suggested this model as a suitable model for complex networks. It exhibits the three main characteristics usually associated with complex networks: a power-law degree distribution, a non-vanishing clustering coefficient and short graph distances.
 
 \subsection{KPKVB model}
-We start with the definition of the model. As mentioned, its nodes are situated in the hyperbolic plane $\Haa$, which is a surface with constant Gaussian curvature $-1$. This surface has several convenient representations (i.e.~coordinate maps), such as the Poincar\'e halfplane model, the Poincar\'e disk model and the Klein disk model. A gentle introduction to Gaussian curvature, hyperbolic geometry and these representations of the hyperbolic plane can be found in~\cite{stillwell2012geometry}. Throughout this paper we will be working with a representation of the hyperbolic plane using {\em hyperbolic polar coordinates}, sometimes called the {\em native representation}. That is, a point $u \in \Haa$ is represented as $(r,\theta)$, where $r$ is the hyperbolic distance between $u$ and the origin $O$ and $\theta$ as the angle between the line segment $Ou$ and the positive $x$-axis. 
+We start with the definition of the model. As mentioned, its nodes are situated in the hyperbolic plane $\Haa$, which is a surface with constant Gaussian curvature $-1$. This surface has several convenient representations (i.e.~coordinate maps), such as the Poincar\'e half-plane model, the Poincar\'e disk model and the Klein disk model. A gentle introduction to Gaussian curvature, hyperbolic geometry and these representations of the hyperbolic plane can be found in~\cite{stillwell2012geometry}. Throughout this paper we will be working with a representation of the hyperbolic plane using {\em hyperbolic polar coordinates}, sometimes called the {\em native representation}. That is, a point $u \in \Haa$ is represented as $(r,\theta)$, where $r$ is the hyperbolic distance between $u$ and the origin $O$ and $\theta$ as the angle between the line segment $Ou$ and the positive $x$-axis. 
 Here, when mentioning ``the origin'' and the angle between the line segment and the positive $x$-axis, we think of $\Haa$ embedded as the Poincar\'e disk in the ordinary euclidean plane.
 
 The KPKVB model has three parameters: the number of vertices $n$, which we think of as going to infinity, and $\alpha > \frac{1}{2}$, $\nu > 0$ which we think of as fixed. Given $n, \alpha, \nu$ we define $R = 2\log(n/\nu)$. Then the hyperbolic random graph $G(n;\alpha, \nu)$ is defined as follows:
@@ -54,7 +54,7 @@ the diameter.
 Earlier work of the first and third authors with Bode~\cite{bode2015largest} and of the first and third authors~\cite{fountoulakis2018law} has established the ``threshold for a giant component'': if $\alpha < 1$ then there is a unique component of size linear in $n$ no matter how small $\nu$ (i.e. the average degree); if $\alpha > 1$ all components are sublinear no matter the value of $\nu$; and if $\alpha=1$ then there is a critical value $\nu_{\text{c}}$ such that for $\nu < \nu_{\text{c}}$ all components are sublinear and for $\nu > \nu_{\text{c}}$ there is a unique linearly sized component (all of these statements holding a.a.s.). Whether or not there is a giant component if $\alpha=1$ and $\nu=\nu_{\text{c}}$ remains an open problem. In~\cite{kiwi2015bound} and~\cite{kiwi2017second}, Kiwi and Mitsche considered the size of the second largest component and showed that for $\alpha \in (1/2, 1)$, a.a.s., the second largest component has polylogarithmic order with exponent $1/(\alpha -1/2)$.
 
 
-In another paper of the first and third authors with Bode~\cite{bode2016probability} it was shown that $\alpha=1/2$ is the threshold for connectivity: for $\alpha < 1/2$ the graph is a.a.s.~connected, for $\alpha>1/2$ the graph is a.a.s.~disconnected and when $\alpha=1/2$ the probability of being connected tends to a continuous, nondecreasing function of $\nu$ which is identically one for $\nu \geq \pi$ and strictly less than one for $\nu < \pi$. Friedrich and Krohmer~\cite{blasius2018cliques} studied the size of the largest clique as well as the number of cliques of a given size. Bogu\~{n}a et al.~\cite{boguna2010sustaining} and Bl\"asius et al.~\cite{blasius2018efficient} considered fitting the KPKVB model to data using maximum likelihood estimation. Kiwi and Mitsche~\cite{kiwi2018spectral} studied the spectral gap and related properties, and Bl\"asius et al.\cite{blasius2016hyperbolic} considered the tree-width and related parameters of the KPKVB model. Recently Owada and Yogeshwaran~\cite{owada2018sub} considered subgraph counts, and in particular established a central limit theorem for the number of copies of a fixed tree $T$ in $G(n;\alpha,\nu)$, subject to some restrictions on the parameter $\alpha$.
+In another paper of the first and third authors with Bode~\cite{bode2016probability} it was shown that $\alpha=1/2$ is the threshold for connectivity: for $\alpha < 1/2$ the graph is a.a.s.~connected, for $\alpha>1/2$ the graph is a.a.s.~disconnected and when $\alpha=1/2$ the probability of being connected tends to a continuous, non-decreasing function of $\nu$ which is identically one for $\nu \geq \pi$ and strictly less than one for $\nu < \pi$. Friedrich and Krohmer~\cite{blasius2018cliques} studied the size of the largest clique as well as the number of cliques of a given size. Bogu\~{n}a et al.~\cite{boguna2010sustaining} and Bl\"asius et al.~\cite{blasius2018efficient} considered fitting the KPKVB model to data using maximum likelihood estimation. Kiwi and Mitsche~\cite{kiwi2018spectral} studied the spectral gap and related properties, and Bl\"asius et al.\cite{blasius2016hyperbolic} considered the tree-width and related parameters of the KPKVB model. Recently Owada and Yogeshwaran~\cite{owada2018sub} considered subgraph counts, and in particular established a central limit theorem for the number of copies of a fixed tree $T$ in $G(n;\alpha,\nu)$, subject to some restrictions on the parameter $\alpha$.
 
 \subsubsection*{Clustering}
 
@@ -91,7 +91,7 @@ convenience.  This way $c(k; G(n;\alpha,\nu) )$ is a plain vanilla random variab
 A general expression of the clustering function for KPKVB random graphs is given in~\cite[Equation (59)]{krioukov2010hyperbolic}. 
 The authors conjecture that as $k$ tends to infinity, the clustering function decays as $k^{-1}$. 
 They based this prediction on observations (Figure 8 in \cite{krioukov2010hyperbolic}) in experiments on the infrastructure of the Internet obtained in~\cite{claffy2009internet}. Despite these interesting observations and the attention the KPKVB model has generated since then, the behaviour of the clustering function in KPKVB random graphs had not been completely determined. In particular it has not been established whether it converges as $n\to\infty$ to some suitable limit function, nor how $c(k;G(n; \alpha,\nu))$ scales with $k$. Theorems~\ref{thm:mainkfixed},~\ref{thm:mainktoinfty} and Proposition~\ref{prop:asymp} below settle these questions. Theorem~\ref{thm:mainkfixed} shows that for each fixed $k$, the value $c(k;G(n;\alpha,\nu))$ converges in probability to a constant $\gamma(k)$ that we again give explicitly as a closed form expression involving $\alpha,\nu$ and several classical special functions. Theorem~\ref{thm:mainktoinfty} extends this result to growing sequences satisfying $k \ll n^{1/(2\alpha+1)}$. Proposition~\ref{prop:asymp} clarifies the asymptotic behavior of the limiting function $\gamma(k)$, as $k\to\infty$. This depends on the parameter $\alpha$, and $\gamma(k)$ only scales with $k^{-1}$ when $\alpha > 3/4$, which corresponds to the exponent of the degree distribution exceeding $5/2$. 
-So in particular our findings disprove the abovementioned conjecture of Krioukov et al.~\cite{krioukov2010hyperbolic}.
+So in particular our findings disprove the above-mentioned conjecture of Krioukov et al.~\cite{krioukov2010hyperbolic}.
 
 
 \subsubsection*{Notation}
@@ -169,14 +169,14 @@ and for $\alpha = 1$ as the $\alpha\to 1$ limit of the above expression.
 \end{theorem}
 
 \noindent
-A plot of $\gamma$ can be found in Figure~\ref{fig:gamma}.
+A plot of $\gamma$ can be found in Figure~\ref{fig:gamma}. The figure also shows the results of computer simulations that appear to be in agreement with our findings.
 
 
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.6]{figures/cn10000nu0512rep100a05to5Squares.pdf}
     \caption{Plot of $\gamma$ for $\alpha$ varying from $0.5$ to $5$ on the horizontal axis and 
-    for $\nu=\frac{1}{2}$ (blue), $\nu=1$ (purple), $\nu=2$ (green); simulations (squares in corresponding colour) with $n=10000$ and $100$ repetitions.\label{fig:gamma}}
+    for $\nu=\frac{1}{2}$ (blue), $\nu=1$ (purple), $\nu=2$ (green). Simulations (squares in corresponding colour) with $n=10000$ and $100$ repetitions.\label{fig:gamma}}
 \end{figure}
 
 In the above expression for $\gamma$, a factor $\alpha-1$ occurs in the denominator of each term, but we will see that this
@@ -208,14 +208,14 @@ and for $\alpha = 1$ as the $\alpha\to1$ limit of the above expression.
 \end{theorem}
 
 \noindent
-A plot of $\gamma(k)$ can be found in Figure~\ref{fig:gammak}. %
+A plot of $\gamma(k)$,  together with the results of computer experiments, can be found in Figure~\ref{fig:gammak}. %
 %
 %
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.6]{figures/ckn10000a08nu0512rep100k2to25Squares.pdf}
     \caption{Plot $\gamma(k)$ for $k$ varying from 2 to 25 on the horizontal axis, for $\alpha=0.8$ and $\nu=\frac{1}{2}$ 
-    (blue), $\nu=1$ (purple), $\nu=2$ (green); simulations (squares in corresponding colour) with $n=10000$ and $100$ repetitions.\label{fig:gammak}}
+    (blue), $\nu=1$ (purple), $\nu=2$ (green). Simulations (squares in corresponding colour) with $n=10000$ and $100$ repetitions.\label{fig:gammak}}
 \end{figure}%
 %
 Again, we remark that the above expression for $\gamma(k)$ appears to have a singularity at $\alpha=1$, but this will turn out to be a removable singularity. 

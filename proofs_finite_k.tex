@@ -10,7 +10,7 @@ assuming Theorem~\ref{thm:mainkfixed}.
 \subsection{Clustering function for fixed $k$, proving Theorem~\ref{thm:mainkfixed}}
 
 We will now show that the clustering function of the KPKVB model $c(k;G_n) \xrightarrow{\Pee} \gamma(k)$ for a fixed $k$. 
-The key ideas are that the coupling of the poissonized KPKVB model with the box model is guaranteed to be exact 
+The key ideas are that the coupling of the Poissonized KPKVB model with the box model is guaranteed to be exact 
 (in the sense that it also preserves edges) for all vertices up to height $R/4$; and that when computing 
 the expected value clustering function $c(k;G)$ in the subgraph of the box model induced by all vertices up to height $R/4$
 using the Campbell-Mecke formula we obtain integrals that are very similar to the expressions we found earlier for $\gamma(k)$.
@@ -94,7 +94,7 @@ the vertices of $G_-$ are $u_1,\dots, u_{(1-\eps)n}$, the vertices of $G_+$ are 
 the vertices of $\GPo$ are $u_1,\dots, u_N$ with $N\isd \Po(n)$ independently of
 $u_1, u_2, \dots$.
 
-As $N\isd\Po(n)$, by Chebyschev's inequality, we have that $|N-n| < \eps n$ a.a.s.
+As $N\isd\Po(n)$, by Chebychev's inequality, we have that $|N-n| < \eps n$ a.a.s.
 So in particular, under our coupling we have $G_- \subseteq G_n, \GPo \subseteq G_+$ a.a.s. 
 We now point out that, by the results of Gugelmann et al.~on the average degree (\cite{gugelmann2012random}, Theorem 2.3), 
 we have 
@@ -125,7 +125,7 @@ In particular $N_{G_n}(k) = \Omega(n)$ a.a.s. Combining this with lemmas~\ref{le
 
 \begin{corollary}\label{cor:pok} 
 %Under the standard coupling of $G_n$ and $\GPo$, we have
-For every kixed $k\geq 2$, we have
+For every fixed $k\geq 2$, we have
 
 $$ c(k; G_n)-c(k; \GPo) \xrightarrow[n\to\infty]{\Pee} 0, $$
 
@@ -342,7 +342,7 @@ convergence theorem to obtain that
 (Applying~\eqref{eq:gammakint} for the last equality.)
 
 Next, we turn attention to $X(X-1) = \sum_{u\neq v \in N_{\GboxH}(k)} c(v)c(u)$.
-Another application of Cambell-Mecke shows that 
+Another application of Campbell-Mecke shows that 
 
 $$
 \Ee X(X-1) 
@@ -395,7 +395,7 @@ $$ \begin{array}{rcl}
 \noindent
 Combining this with~\eqref{eq:EXn}, it follows that 
 $\Var X = \Ee X(X-1) + \Ee X - \left(\Ee X\right)^2 = o\left( \left(\Ee X\right)^2 \right)$.
- By Chebyschev's inequality, we therefore have 
+ By Chebychev's inequality, we therefore have 
  
  $$ X = n \cdot \gamma(k) \cdot \pmf(k) + o(n) \text{ a.a.s. } $$
  
@@ -455,7 +455,7 @@ c(G_n) \leq \sum_{k=2}^K c(k;G_n) \cdot (N_{G_n}(k)/n) + \sum_{k>K} (N_{G_n}(k)/
 \end{equation}
 
 \noindent
-where the convergence in probability can be justified using Slutksy's theorem together 
+where the convergence in probability can be justified using Slutsky's theorem together 
 with the fact that $\sum_{k=0}^\infty \pmf(k) = 1$ (one convenient way to convince oneself that this is true, is to note that 
 $D$, the degree of the typical point, is a.s.~finite). In more detail, 
 
