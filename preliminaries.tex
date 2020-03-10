@@ -32,13 +32,14 @@ Borel-measurable subset $S \subseteq \eR^2$ we have $\mu(S) = \int_S f(x,y) \dd 
 \subsection{The finite box model $\Gbox$\label{ssec:finite_model}}
 
 
-For the definition of the finite graph, recall that in the definition of the KPKVB model we set $R = 2\log(n/\nu)$.
+Recall that in the definition of the KPKVB model we set $R = 2\log(n/\nu)$.
 We consider the box $\Rcal = (-\frac{\pi}{2}e^{R/2}, \frac{\pi}{2}e^{R/2}] \times (0, R]$ in $\eR^2$. 
-Then the \emph{finite box model} $\Gbox := \Gbox(n;\alpha, \nu)$ has vertex set $\Vbox := \mathcal{P} \cap \Rcal$ and edge set such that
+Then the \emph{finite box model} $\Gbox = \Gbox(n;\alpha, \nu)$ has vertex set $\Vbox := \mathcal{P} \cap \Rcal$ and edge set such that
 \[
-	pp' \in E(\Gbox(n;\alpha, \nu)) \iff |x - x'|_{\pi e^{R/2}} \leq e^{\frac{y + y'}{2}},
+	pp' \in E(\Gbox) \iff |x - x'|_{\pi e^{R/2}} \leq e^{\frac{y + y'}{2}},
 \]
-where $|x|_{r} = \min( |x|, r - |x|)$ for $-r\leq x\leq r$. Using $|.|_{\pi e^{R/2}}$ instead of $|.|$ results in the left and right boundaries of the box $\Rcal$ getting identified, which in particular makes the model invariant under horizontal shifts and reflections in vertical lines. The graph $\Gbox$ can thus be seen as a subgraph of $\Ginf$ induced on $\Vbox$, with some additional edges caused by the identification of the boundaries.
+where $|x|_{r} = \min( |x|, r - |x|)$ for $-r\leq x\leq r$. Using $|.|_{\pi e^{R/2}}$ instead of $|.|$ results in the left and right boundaries of the box $\Rcal$ getting identified, which in particular makes the model invariant under horizontal shifts and reflections in vertical lines. 
+The graph $\Gbox$ can thus be seen as a subgraph of $\Ginf$ induced on $\Vbox$, with some additional edges caused by the identification of the boundaries.
 
 Similar to the infinite graph, for a point $p \in \Rcal$ we define the ball $\BallPon{p}$ as
 \begin{equation}\label{eq:def_ball_P_n}
@@ -132,19 +133,31 @@ On the coupling space of Lemma~\ref{lem:coupling_hyperbolic_poisson} the followi
 \end{enumerate}
 \end{lemma}
 
-\begin{remark}[Notion convention for points]
-We will often be working with the finite box graph $\GPo$ or the infinite graph $\Ginf$, whose nodes are points in $\R \times \R_+$. For any point $p \in \R \times \R_+$ we will always use $p = (x,y)$. When considering different points $p,p^\prime \in \R \times \R_+$, we will use primed coordinates to refer to $p^\prime$, i.e. $p^\prime = (x^\prime ,y^\prime)$, and similar with subscripts, i.e. $p_i = (x_i,y_i)$.
+\begin{remark}[Notational convention for points]
+We will often be working with the finite box graph $\GPo$ or the infinite graph $\Ginf$, whose nodes are points 
+in $\R \times \R_+$. For any point $p \in \R \times \R_+$ we will always use $p = (x,y)$. 
+When considering different points $p,p^\prime \in \R \times \R_+$, we will use primed coordinates to refer 
+to $p^\prime$, i.e. $p^\prime = (x^\prime ,y^\prime)$, and similar with subscripts, i.e. $p_i = (x_i,y_i)$.
 \end{remark}
 
 \subsection{The Campbell-Mecke formula}
 
-A very useful tool for analyzing subgraph counts, and their generalizations, in the 
-setting of the Poissonized random geometric graphs, and in particular the Poissonized KPKVB model and the box model is the \emph{Campbell-Mecke formula}. We use a specific incarnation, which follows from the Palm theory of Poisson point processes on metric spaces, see~\cite{last2017lectures}. For this consider a Poisson point process $\Pcal$ on some metric space $\mathcal{M}$ with density $\mu$ and let $\mathcal{N}$ denote the set of all possible point configurations in $\mathcal{M}$, equipped with the sigma algebra of the process $\Pcal$. Then, for any natural number $k$ and measurable function $h : \R^k \times \mathcal{N} \to \R$,
+A useful tool for analyzing subgraph counts, and their generalizations, in the 
+setting of Poissonized random geometric graphs, and in particular the Poissonized KPKVB model and the box 
+model is the \emph{Campbell-Mecke formula}. 
+We use a specific incarnation, which follows from the Palm theory of Poisson point processes on metric 
+spaces, see~\cite{last2017lectures}. For this consider a Poisson point process $\Pcal$ on some metric 
+space $\mathcal{M}$ with density $\mu$ and let $\mathcal{N}$ denote the set of all possible point configurations 
+in $\mathcal{M}$, equipped with the sigma algebra of the process $\Pcal$. 
+Then, for any natural number $k$ and measurable function $h : \R^k \times \mathcal{N} \to \R$,
+
 \begin{equation}\label{eq:def_campbell_mecke}
-	\Exp{\sum_{p_1, \dots, p_k \in \Pcal}^{\ne} h(p_1, \dots, p_k, \Pcal)}
-	= \int_{\mathcal{M}} \dots \int_{\mathcal{M}} \Exp{h(x_1,\dots, x_k, \Pcal} \dd \mu(x_1) \dots \dd \mu(x_k),
+\begin{array}{c}
+\displaystyle	\Exp{\sum_{p_1, \dots, p_k \in \Pcal, \atop \text{distinct}} h(p_1, \dots, p_k, \Pcal)} \\
+= \\
+\displaystyle \int_{\mathcal{M}} \dots \int_{\mathcal{M}} \Exp{h(x_1,\dots, x_k, \Pcal\cup\{x_1,\dots,x_k\})} \mu(dx_1)\dots\mu(dx_k).
+\end{array}
 \end{equation}
-where the sum is over all distinct point $p_1, \dots, p_k \in \Pcal$. 
 
 \subsection{Concentration of heights}
 
@@ -167,7 +180,7 @@ For our application these Chernoff bounds imply that if $y$ is such that $\hat{\
 \begin{equation}\label{eq:def_y_k_C}
 	y_{k,C}^\pm = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi}\right),
 \end{equation}
-where we set $y_{k,C}^- = 0$ if $k - C \sqrt{k \log(k)} < \xi$. For convenience we write $\Kcal_C(k_n) := [y_{k_n,C}^-, y_{k_n,C}^+]$. Then we can show that for all $y$ outside $\Kcal_C(k_n)$
+where we set $y_{k,C}^- = 0$ if $k - C \sqrt{k \log(k)} < \xi$ and likewise if $k + C \sqrt{k \log(k)} < \xi$ we set $y_{k,C}^+=0$, but  note that as we consider $k\rightarrow\infty$, we can assume that this case does not occur. For convenience we write $\Kcal_C(k_n) := [y_{k_n,C}^-, y_{k_n,C}^+]$. Then we can show that for all $y$ outside $\Kcal_C(k_n)$
 \begin{equation}\label{eq:chernoff_bound_degrees}
 	\Prob{\Po(\hat{\mu}(y)) = k_n} \le \bigO{k_n^{-\frac{C^2}{2}}}.
 \end{equation}

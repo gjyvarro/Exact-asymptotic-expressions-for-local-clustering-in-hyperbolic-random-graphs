@@ -1,82 +1,35 @@
 
-\section{Degrees in the KPKVK model: proof of Theorem~\ref{thm:degrees_hyperbolic}}
+\section{Degrees when $k\to\infty$: proof of Theorem~\ref{thm:degrees_hyperbolic}\label{sec:degrees}}
 
-Since the new contribution of Theorem~\ref{thm:degrees_hyperbolic} concerns the cases where the degree $k_n \to \infty$, we will assume that this holds throughout this section.
+Since the new contribution of Theorem~\ref{thm:degrees_hyperbolic} concerns the cases where the degree $k_n \to \infty$, we 
+will assume that this holds throughout this section.
 
 \subsection{Proof overview}
 
-We start by using the Campbell-Mecke formula to compare the degree distribution in $\GPo$ with that of a \emph{typical point} in $\Ginf$. For this we will be considering the Poisson process $\Pcal$ to which we add one additional point $(0,y)$ on the $y$-axis. In some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and independent of $\Pcal$.
-We refer to $(0,y)$ as ``the typical point''.
-
-To provide some intuition for this definition and name, note that we can alternatively view $\Pcal$ as follows. 
-We take a constant intensity Poisson process on $\eR$ corresponding to the $x$-coordinates, and to each point
-we attach a random ``mark'', corresponding to the $y$-coordinate, where the marks are i.i.d.~exponentially distributed with parameter $\alpha$. By translation invariance of Poisson point process, each point will behave as $(0,y)$ with $y$ exponentially distributed with parameter $\alpha$, the typical point of the process.
-
-We first compute the degree distribution of the typical point in $\Ginf$ and show that this equals 
+We start by using the Campbell-Mecke formula to compare the degree distribution in $\GPo$ with that of the typical point in $\Ginf$. 
+As we've already seen this equals 
 \[
-	p_k = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy.
+	\pmf(k) = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy.
 \]
-We then relate this to the Poissonized KPKVB model $\GPo$. More precisely, let $N_{\Po}(k)$ denote the set of degree $k$ vertices in $\GPo$. We then show in Section~\ref{ssec:expected_degrees_GPo} that for any $1 \ll k_n \le n -1$ with $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$, $\Exp{N_{\Po}(k_n)} = (1+\smallO{1}) n p_{k_n}$ and more generally,
+We will relate this to the Poissonized KPKVB model $\GPo$. 
+More precisely, let $N_{\Po}(k)$ denote the set of degree $k$ vertices in $\GPo$. 
+We then show in Section~\ref{ssec:expected_degrees_GPo} that for any $1 \ll k_n \le n -1$ with 
+$k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$, $\Exp{N_{\Po}(k_n)} = (1+\smallO{1}) n \pmf(k_n)$ and more generally,
+
 \begin{equation}\label{eq:def_factorial_moments_GPo}
 	\Exp{\binom{N_{\Po}(k_n)}{r}} = (1+\smallO{1}) \frac{\Exp{N_{\Po}(k_n)}^r}{r!},
 \end{equation}
-for any integer $r \ge 1$ in Section~\ref{ssec:factorial_moments_GPo}. The latter result requires us to analyze the joint degree distribution in $\GPo$, which we do in Section~\ref{ssec:joint_degrees_GPo}. The above result in particular implies concentration of $N_{\Po}(k_n)$ from which the result on the degree distribution in $\GPo$ follows for $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. When $k_n = (1+\smallO{1}) c n^{\frac{1}{2\alpha + 1}}$ we use the above result to show that the fraction of degree $k_n$ nodes in $\GPo$ converges to a Poisson distribution. 
+
+\noindent
+for any integer $r \ge 1$ in Section~\ref{ssec:factorial_moments_GPo}. 
+The latter result requires us to analyze the joint degree distribution in $\GPo$, which we do in Section~\ref{ssec:joint_degrees_GPo}. 
+The above result in particular implies concentration of $N_{\Po}(k_n)$ from which the result on the degree distribution in $\GPo$ follows for $k_n = \smallO{n^{\frac{1}{2\alpha + 1}}}$. When $k_n = (1+\smallO{1}) c n^{\frac{1}{2\alpha + 1}}$ we use the above result to show that the fraction of degree $k_n$ nodes in $\GPo$ converges to a Poisson distribution. 
 
 To extend these results to $G_n$ we couple the construction of the KPKVB model to that of the Poissonized version $\GPo$ in Section~\ref{ssec:coupling_Gn_GPo} to show that a.a.s, $N_n(k_n) = (1+\smallO{1}) N_{\Po}(k_n)$. With these results we then prove Theorem~\ref{thm:degrees_hyperbolic} in Section~\ref{ssec:proof_thm_degrees}.
 
-We will also establish all the above mention results for the finite box model $\Gbox$, since the proofs only require small alterations and we will need these results later on when analyzing the clustering coefficient and function.
+We will also establish all the above mentioned results for the finite box model $\Gbox$, since the proofs only require small 
+alterations and we will need these results later on when analyzing the clustering coefficient and function.
 
-\subsection{The degree of the typical point in $\Ginf$}\label{ssec:degrees_infinite_model}
-
-We start with investigating the distribution of the degree of the typical point. (Considered in the graph obtained from $\Ginf$ by adding the typical point to its vertex set.)
-
-If $p = (x,y) \in \eR\times[0,\infty)$ is a point, not necessarily part of the Poisson process, then we will write
-\[ 
-	\mu(y) = \mu(p) := \mu(\BallPo{p}).
-\]
-Integrating the intensity function of $\Pcal$ over $\BallPo{p}$ gives, using $\alpha>\frac{1}{2}$,
-\begin{align*}
-	\mu(y) &= \int_0^\infty \int_{-e^{(y+y')/2}}^{e^{(y+y')/2}} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dx' \, dy' 
-		= \frac{2\alpha \nu e^{y/2}}{\pi} \int_0^\infty e^{(\frac12-\alpha)y'} \, dy' 
-		= \frac{2\alpha \nu e^{y/2}}{\pi(\alpha-\frac12)} = \xi e^{y/2}.
-\end{align*} 
-
-For $p = (x,y) \in \eR\times[0,\infty)$ we define
-\begin{equation}\label{eq:def_degree_inf_model}
-	\rho(p,k) := \Prob{\Po(\Mu{p}) = k},
-\end{equation}
-where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$. When $p = (0,y)$ we often write $\rho(y,k)$ instead of $\rho(p,k)$.
-
-Let the random variable $D$ denote the degree of the typical point. Since the typical point has a height that is independent of the Poisson process and exponential($\alpha$)-distributed, for $k \in \N_0$:
-\begin{equation}\label{eq:def_pk}
-	p_k :=  \Prob{D = k} = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy.
-\end{equation}
-
-Using the transformation of variables $z = \xi e^{\frac{y}{2}}$ (so $dy = \frac{2}{z}dz$), we compute
-\begin{align*}
-	p_k
-    &= \frac{1}{k!} \int_0^\infty \left(\xi e^{\frac{y}{2}}\right)^k 
-    	e^{-\xi e^{\frac{y}{2}}} \alpha e^{-\alpha y} \, dy
-    	= \frac{\alpha \xi^{2\alpha}}{k!} \int_0^\infty 
-    	\left(\xi e^{\frac{y}{2}}\right)^{k - 2\alpha} e^{-\xi e^{\frac{y}{2}}}
-        \, dy\\
-    &= \frac{2\alpha \xi^{2\alpha}}{k!} \int_{\xi}^{\infty} 
-    	z^{k -2\alpha-1} e^{-z} \, dz
-    	= \frac{2\alpha \xi^{2\alpha}\Gamma^+(k - 2\alpha, \xi)}{k!},
-\end{align*}
-where we recall that $\Gamma^{+}$ denotes the upper incomplete Gamma-function.
-Note that, unsurprisingly, this is identical to the expression Gugelmann et al.~\cite{gugelmann2012random} gave for the limiting degree distribution of $G(n;\alpha,\nu)$. Using Stirling's approximation to the gamma function, we find that 
-
-\begin{equation}\label{eq:degree_distribution_P_asymptotics}
-	p_k \sim 2\alpha\xi^{2\alpha} k^{-(2\alpha + 1)}
-	\quad \text{as } k \to \infty.
-\end{equation}
-
-By a similar computation we have the following result, which will be useful later on. For any $\beta > 0$, as $k \to \infty$
-\begin{equation}\label{eq:general_integral_rho_y_k}
-	\int_0^\infty e^{\beta y} \rho(y, k) \alpha e^{-\alpha y} \, dy
-    \sim 2\alpha \xi^{2(\beta + \alpha)} k^{-2(\beta + \alpha)-1}.
-\end{equation}
 
 \subsection{Expected degrees in $\Gbox$ and $\GPo$}\label{ssec:expected_degrees_GPo}
 
@@ -208,18 +161,16 @@ Since $R - y \ge \varepsilon R$ we have that $|\phi_n(y)|$ is uniformly bounded 
 $\bigO{e^{-(\alpha - \frac{1}{2})\varepsilon R}}$, which is $\smallO{1}$ for $\alpha > \frac{1}{2}$. 
 \end{proof}
 
-We can now use a concentration of heights argument to show that the integration of the Poisson probabilities $\Prob{\Po(\mu_{\Po}(y)) = k_n}$ over $0 \le y \le (1-\varepsilon) R$ is asymptotically equivalent to $p_{k_n}$. And the same holds if we instead consider $\mu_{\mathrm{box}}(y)$. The proof contains some technical elements that are contained in the Appendix to not hinder the flow of the argument. 
+We can now use a concentration of heights argument to show that the integration of the Poisson probabilities $\Prob{\Po(\mu_{\Po}(y)) = k_n}$ over $0 \le y \le (1-\varepsilon) R$ is asymptotically equivalent to $\pmf(k_n)$. And the same holds if we instead consider $\mu_{\mathrm{box}}(y)$. The proof contains some technical elements that are contained in the Appendix to not hinder the flow of the argument. 
 
 \begin{lemma}\label{lem:degree_integral}
 Let $0 < \varepsilon < 1$. Then for all $0 \le k_n \le n - 1$, as $n \to \infty$,
+
 \begin{equation}\label{eq:degree_integral_BallHyp}
 	\int_0^{(1-\varepsilon)R} \Prob{\Po(\Mu{\BallHyp{y}} = k_n} \alpha e^{-\alpha y} \dd y
-	= (1+\smallO{1}) p_{k_n},
+	= (1+\smallO{1}) \pmf(k_n).
 \end{equation}
-where
-\begin{equation}\label{eq:def_average_degree_Gbox_phi}
-	p_{k_n} = \int_0^\infty \Pee(Po(\xi e^{\frac{y}{2}})=k_n)\alpha e^{-\alpha y}dy.
-\end{equation}
+
 Moreover, the same holds if we replace $\Mu{\BallHyp{y}}$ with $\Mu{\BallPon{y}}$ in~\eqref{eq:degree_integral_BallHyp}.
 \end{lemma}
 
@@ -229,7 +180,7 @@ We will show that
 	\int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{\Po}(y)) = k_n} \alpha e^{-\alpha y} \dd y
 	= (1+o(1))\int_0^\infty \Pee(\Po(\xi e^{\frac{z}{2}})=k_n) \alpha e^{-\alpha z} \dd z.
 \]
-This implies the result because the last integral equals $(1+o(1))2\alpha \xi^{2\alpha} k_n^{-(2\alpha+1)} = (1+o(1))p_{k_n}$.
+This implies the result because the last integral equals $(1+o(1))2\alpha \xi^{2\alpha} k_n^{-(2\alpha+1)} = (1+o(1))\pmf(k_n)$.
 
 Define the function $z(y)=2\ln\frac{\mu_{\Po}(y)}{\xi}$ (note that $z(y)$ is well-defined as $\mu_{Po,n}(y)\geq 0$ and that $z(y)$ is bijective because $\mu_{\Po}(y)$ is strictly monotone increasing and continuous, see Lemma~3.3. in \cite{gugelmann2012random}). By rearranging, we have that
 \begin{align*}
@@ -284,11 +235,11 @@ The main result of this section now follows almost immediately.
 \begin{lemma}[First moment of number of degree $k$ vertices]\label{lem:expnnkn}
 Let $N_{Po}(k)$ and $\Nbox(k)$ denote the number of vertices with degree $k$ vertices in the poissonized KPKVB model $\GPo$ and the finite box model $\Gbox$, respectively. Consider a sequence of integers $k_n\rightarrow\infty$ with $0 \leq k_n \leq n-1$.	If $k_n = O\left(n^{\frac{1}{2\alpha+1}}\right)$, then as $n \to \infty$,
 \[
-	\Exp{N_{Po}(k_n)} =(1+o(1)) n p_{k_n} \quad \text{and} \quad \Exp{\Nbox(k_n)} =(1+o(1)) n p_{k_n}.
+	\Exp{N_{Po}(k_n)} =(1+o(1)) n \pmf(k_n) \quad \text{and} \quad \Exp{\Nbox(k_n)} =(1+o(1)) n \pmf(k_n).
 \]
 Moreover, if $k_n \gg n^{\frac{1}{2\alpha + 1}}$ then
 \[
-	\Exp{N_{\Po}(k_n)} = \smallO{1} \quad \text{and} \quad \Exp{\Nbox(k_n)} = \smallO{1}
+	\Exp{N_{\Po}(k_n)} = \smallO{1} \quad \text{and} \quad \Exp{\Nbox(k_n)} = \smallO{1}.
 \]
 \end{lemma}
 
@@ -318,7 +269,7 @@ $k_n = \bigO{n^{\frac{1}{2\alpha+1}}} = \smallO{n^{\frac{2\alpha(1-\varepsilon)}
 When $k_n \gg n^{\frac{1}{2\alpha + 1}}$, Lemma~\ref{lem:degree_integral} implies that
 \[
 	n \int_0^{(1-\varepsilon)R} \Pee(Po(\mu_{Po}(y))=k_n) \alpha e^{-\alpha y}dy
-	= (1+\smallO{1}) n p_{k_n} = \bigO{n k^{-(2\alpha + 1}} = \smallO{1}.
+	= (1+\smallO{1}) n \pmf(k_n)= \bigO{n k^{-(2\alpha + 1}} = \smallO{1}.
 \]
 On the other hand,
 \[
@@ -648,6 +599,7 @@ Fix $0 < \varepsilon < 1$ and let $\varepsilon^\prime = \min\{\varepsilon(2\alph
 Recall the definition of the stripe $\stripknc = \Rcal \cap (\R_+ \times [y_{k_n,C}^-, y_{k_n,C}^+])$ from~\eqref{eq:def_stripe}. Consider a fixed number of points $p_1, \dots, p_r$. Then, if their $x$-coordinates are sufficient far apart and their $y$ coordinates lie within the stripe $\stripknc$, their degrees are asymptotically independent.
 
 \begin{lemma}[Asymptotic factorization of degree probabilities]\label{lem:probdegFact}
+Let $(k_n)$ be a sequence of integers with $0\leq k_n \leq n-1$, $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$ and $k_n \rightarrow \infty$.
 Let $C, C^\prime>0$ and $r,s$ be positive integers with $r+1\leq s$. Fix $0<\varepsilon<1$. Then, it holds uniformly for all $(v_1,\dots,v_s) \in \left(\stripknc\right)^{s} = \stripknc \times \dots \times \stripknc$, satisfying $|x_{v_i}-x_{v_{r+1}}|\geq k_n^{1+\varepsilon}$ for all  $1\leq i \leq r$,  that
 \[
 	\varphi(\{v_1,\dots,v_{r+1}\};v_1,\dots,v_s)
@@ -716,7 +668,7 @@ To see this, observe that for all $y_{r+1},s\in A_n$, we have that $|y_{r+1}-s|\
 	&= \frac{\Prob{X_{r+1}=k_n-y_{r+1}}}{\Prob{X_{r+1}=k_n-y_{r+1}+(y_{r+1}-s)}}\\
 	&=\frac{(k_n-y_{r+1}+(y_{r+1}-s))!}{(k_n-y_{r+1})!}\lambda^{s-y_{r+1}}
 \end{align*}
-We will now use that $\frac{(a+b)!}{a!} = (1+o(1))(a+b)^b$ for $b^2=o(a)$, applied to $a=k_n-y_{r+1}$ and $b=y_{r+1}-s$. To see this auxiliary fact, note that by Stirling's approximation to the factorial, it follows that
+We will now use that $\frac{(a+b)!}{a!} = (1+o(1))(a+b)^b$ for $b^2=o(a)$, applied to $a=k_n-y_{r+1}$ and $b=y_{r+1}-s$. To see this auxiliary fact, note that by Stirling's approximation to the factorial (see e.g.~\cite{Dutkay2013},~\cite{Nanjundiah1959}), it follows that
 \begin{align*}
 	\frac{(a+b)!}{a!}=(1+o(1))\frac{(a+b)^{a+b+\frac{1}{2}}e^{-a-b}}{a^{a+\frac{1}{2}}e^{-a}}
 	=(1+o(1))\left(1+\frac{b}{a}\right)^{a+\frac{1}{2}}(a+b)^b e^{-b}.
@@ -778,7 +730,7 @@ which establishes~\eqref{eq:probdegfact_main} and thus the claim of the lemma.
 Now that we have analyzed the joint neighbourhoods and degree distributions in both the Poissonized KPKVB and finite box model, we can show convergence of the factorial moments of the number of nodes of degree $k$ in both models.
 
 \begin{lemma}[Factorial moments]\label{lem:factmoment}
-Recall that $N_{Po}(k)$ denotes the number of degree $k$ vertices in $\GPo$. Then, for any positive integer $r$ and $k_n \rightarrow \infty$, it holds that
+Recall that $N_{Po}(k)$ denotes the number of degree $k$ vertices in $\GPo$. Let $(k_n)$ be a sequence of integers with $0\leq k_n \leq n-1$, $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$ and $k_n \rightarrow \infty$. Then, for any positive integer $r$, it holds that
 \[
 	\Exp{{N_{Po}(k_n) \choose r}} =(1+o(1)) \frac{(\Exp{ N_{Po}(k_n)})^r}{r!}.
 \]
@@ -788,6 +740,8 @@ The proof of this result requires the following technical lemma which states tha
 
 \begin{lemma}[Factorization of degrees]
 	\label{lem:asympind}
+	Let $(k_n)$ be a sequence of integers with $0\leq k_n \leq n-1$, $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$ and $k_n \rightarrow \infty$.
+	
 	Let $\varphi$ be either $\varphi_{\mathrm{box}}$ or $\varphi_{\Po}$. Then we have that
 	\begin{align*}
 	&\int_\Rcal \cdots \int_\Rcal \varphi(\{p_1,\dots,p_r \}, k_n ;p_1,\dots,p_r) 
@@ -975,12 +929,12 @@ We give the proof for the Poissonized KPKVB model. The proof for the finite box 
 
 First of all, we observe that
 \begin{align*}
-{N_{\Po}(k_n) \choose r} = \frac{1}{r!} \sum_{p_1,\dots,p_r\in V(\GPo)}^{\not = } \1_{\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}}.
+{N_{\Po}(k_n) \choose r} = \frac{1}{r!} \sum_{p_1,\dots,p_r\in V(\GPo), \atop \text{distinct}} \1_{\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}}.
 \end{align*}
 This can be seen by induction on $r$. For $r=1$, the claim is clear. Assuming it holds for $r\geq 1$, by the induction hypothesis,
 \begin{align*}
 &{N_{\Po}(k_n) \choose r+1} = {N_{\Po}(k_n) \choose r} \frac{N_{\Po}(k_n)-r}{r+1} \\
-&= \frac{1}{(r+1)!}\sum_{p_1,\dots,p_r\in V(\GPo)}^{\not = } \1_{\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}} (N_{\Po}(k_n)-r).
+&= \frac{1}{(r+1)!}\sum_{p_1,\dots,p_r\in V(\GPo), \atop \text{distinct}} \1_{\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}} (N_{\Po}(k_n)-r).
 \end{align*}
 Now, we can write
 \[
@@ -990,16 +944,16 @@ The first sum leads to the right-hand side of the claim for $r+1$, whereas the s
 
 By the Campbell-Mecke formula 
 \begin{align*}
-	&\Exp{ {N_{\Po}(k_n) \choose r}}=\frac{1}{r!} \E\left[ \sum_{p_1,\dots,p_r\in V(\GPo)}^{\not = }  
+	&\Exp{ {N_{\Po}(k_n) \choose r}}=\frac{1}{r!} \E\left[ \sum_{p_1,\dots,p_r\in V(\GPo), \atop \text{distinct}}  
 		\1_{\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}}\right] \\
 	&=\frac{1}{r!} \int_\Rcal \cdots \int_\Rcal \varphi_{\Po}(\{p_1,\dots,p_r\},p_1,\dots,p_r)
 		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r},
 \end{align*}
-where we integrate over $r$ additional points which we can think of as being added independently and with the same distribution as the vertices of the poissonized KPKVB model $\GPo$ in the upper half-plane coordinates.
+where we integrate over $r$ additional points which we can think of as being added independently and with the same distribution as the vertices of the Poissonized KPKVB model $\GPo$ in the upper half-plane coordinates.
 
 With $r=1$, it follows that
 \[
-	\Exp{N_{\Po}(k_n)} = \int_\Rcal \phi_{\Po}(\{p_1\}, k_n ; p_1) f(x_1,y_1) \dd x_1 \dd y_1,
+	\Exp{N_{\Po}(k_n)} = \int_\Rcal \varphi_{\Po}(\{p_1\}, k_n ; p_1) f(x_1,y_1) \dd x_1 \dd y_1,
 \]
 which yields that the right-hand side of the claim of the lemma can be rewritten as
 \[
@@ -1083,41 +1037,41 @@ Recall that, for any $0 < \varepsilon < 1$
 	&= \int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{Po,n}(y)) = k_n+ t} \alpha e^{-\alpha y} dy \\
 	&\hspace{10pt}+ \int_{(1-\varepsilon)R}^R \Prob{\Po(\mu_{Po,n}(y)) = k_n+ t} \alpha e^{-\alpha y} dy
 \end{align*}
-By Lemma~\ref{lem:degree_integral} the first part is $(1+o(1)) p_{k_n + t}$ while the second part is $O(n^{-2\alpha(1-\varepsilon)})$ and hence
+By Lemma~\ref{lem:degree_integral} the first part is $(1+o(1)) \pmf(k_n + t)$ while the second part is $O(n^{-2\alpha(1-\varepsilon)})$ and hence
 \[
-	\Prob{D_{\Po} = k_n + t} \le \bigO{1}\left(p_{k_n + t} + n^{-2\alpha(1-\varepsilon)}\right).
+	\Prob{D_{\Po} = k_n + t} \le \bigO{1}\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right).
 \]
 In addition we have that $\Prob{Z(n,t) = t} \le \bigO{1} \frac{\Exp{Z(n,t)}}{t}$. We thus obtain
 \begin{align*}
 	\sum_{t = 1}^{N-n} \Prob{Z(n,t) = t}\Prob{D_{\Po} = k_n + t}
-	&\le \bigO{1} \sum_{t = 1}^{N-n} \frac{\Exp{Z(n,t)}}{t}\left(p_{k_n + t} + n^{-2\alpha(1-\varepsilon)}\right)\\
-	&= \bigO{1} \sum_{t = 1}^{N-n} \frac{(N-m)(k_n + t)}{N}\left(p_{k_n + t} + n^{-2\alpha(1-\varepsilon)}\right)\\
+	&\le \bigO{1} \sum_{t = 1}^{N-n} \frac{\Exp{Z(n,t)}}{t}\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right)\\
+	&= \bigO{1} \sum_{t = 1}^{N-n} \frac{(N-m)(k_n + t)}{N}\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right)\\
 	&= \bigO{\sqrt{\frac{\log n}{n}}} \sum_{t = 1}^{N-n} \frac{k_n}{t}
-		\left(p_{k_n + t} + n^{-2\alpha(1-\varepsilon)}\right)\\
+		\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right)\\
 	&\hspace{10pt}+ \bigO{\sqrt{\frac{\log n}{n}}} \sum_{t = 1}^{N-n}
-		\left(p_{k_n + t} + n^{-2\alpha(1-\varepsilon)}\right),
+		\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right),
 \end{align*}
 where we used that $\frac{N-n}{N} = \bigO{\sqrt{\frac{\log n}{n}}}$.
 
-We will show that both summations are $\smallO{p_{k_n}}$. For the first summation we recall that $\frac{k_n (\log n)^{3/2}}{\sqrt{n}} = \smallO{1}$ for $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$, while for $\varepsilon > 0$ small enough $n^{-2\alpha(1-\varepsilon)} = \smallO{k_n^{-(2\alpha + 1)}} = \smallO{p_{k_n}}$. Hence, since $p_{k_n + t} \le p_{k_n}$,
+We will show that both summations are $\smallO{\pmf(k_n)}$. For the first summation we recall that $\frac{k_n (\log n)^{3/2}}{\sqrt{n}} = \smallO{1}$ for $k_n = \bigO{n^{\frac{1}{2\alpha + 1}}}$, while for $\varepsilon > 0$ small enough $n^{-2\alpha(1-\varepsilon)} = \smallO{k_n^{-(2\alpha + 1)}} = \smallO{\pmf(k_n)}$. Hence, since $\pmf(k_n + t)\le \pmf(k_n)$,
 \begin{align*}
 	\bigO{\sqrt{\frac{\log n}{n}}} \sum_{t = 1}^{N-n} \frac{k_n}{t}
-		\left(p_{k_n + t} + n^{-2\alpha(1-\varepsilon)}\right)
-	&\le \bigO{ k_n \sqrt{\frac{\log n}{n}} p_{k_n}} \sum_{t = 1}^{N - m} \frac{1}{t}\\
-	&= \bigO{\frac{k_n (\log n)^{3/2}}{\sqrt{n}}} p_{k_n} = \smallO{p_{k_n}}.
+		\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right)
+	&\le \bigO{ k_n \sqrt{\frac{\log n}{n}} \pmf(k_n)} \sum_{t = 1}^{N - m} \frac{1}{t}\\
+	&= \bigO{\frac{k_n (\log n)^{3/2}}{\sqrt{n}}} \pmf(k_n) = \smallO{\pmf(k_n)}.
 \end{align*}
 
 For the other summation we use that
 \[
-	\sum_{t = 1}^{N-n} p_{k_n + t} \le \sum_{t = 1}^\infty p_{k_n + t}
-	\le \bigO{k_n^{-2\alpha}} = \bigO{k_n p_{k_n}},
+	\sum_{t = 1}^{N-n} \pmf(k_n + t) \le \sum_{t = 1}^\infty \pmf(k_n + t)
+	\le \bigO{k_n^{-2\alpha}} = \bigO{k_n \pmf(k_n)},
 \]
-together with the fact that for $\varepsilon$ small enough, $\log(n) n^{-2\alpha(1-\varepsilon)} = \smallO{k_n^{-(2\alpha + 1)}} = \smallO{p_{k_n}}$. This implies that
+together with the fact that for $\varepsilon$ small enough, $\log(n) n^{-2\alpha(1-\varepsilon)} = \smallO{k_n^{-(2\alpha + 1)}} = \smallO{\pmf(k_n)}$. This implies that
 \begin{align*}
 	\bigO{\sqrt{\frac{\log n}{n}}} \sum_{t = 1}^{N-n}
-		\left(p_{k_n + t} + n^{-2\alpha(1-\varepsilon)}\right)
-	&\le \bigO{\sqrt{\frac{\log n}{n}} k_n p_{k_n}} + \bigO{(N-n)\sqrt{\frac{\log n}{n}} n^{-2\alpha(1-\varepsilon)}}\\
-	&\le \smallO{p_{k_n}} + \bigO{(\log n) n^{-2\alpha(1-\varepsilon)}} = \smallO{p_{k_n}}.
+		\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right)
+	&\le \bigO{\sqrt{\frac{\log n}{n}} k_n \pmf(k_n)} + \bigO{(N-n)\sqrt{\frac{\log n}{n}} n^{-2\alpha(1-\varepsilon)}}\\
+	&\le \smallO{\pmf(k_n)} + \bigO{(\log n) n^{-2\alpha(1-\varepsilon)}} = \smallO{\pmf(k_n)}.
 \end{align*}
 
 It now follows that
@@ -1188,40 +1142,40 @@ which finishes the proof for the case where $N > n$.
 
 \subsection{Proof of Theorem~\ref{thm:degrees_hyperbolic}}\label{ssec:proof_thm_degrees}
 
-We now have all necessary ingredient to proof the main result on the degrees, Theorem~\ref{thm:degrees_hyperbolic}.
+We now have all necessary ingredients to prove the main result on the degrees, Theorem~\ref{thm:degrees_hyperbolic}.
 
 \begin{proof}[Proof of Theorem~\ref{thm:degrees_hyperbolic}] 
 
 Recall that we shall only give the proof for the case where $k_n \to \infty$, since result (i) for fixed $k = \bigO{1}$ follows from~\cite{gugelmann2012random}.
 
 \begin{enumerate}[\upshape (i)]
-\item  First we recall that the statements regarding $p_k$ and its asymptotic behavior follow from Equation~\ref{eq:def_pk} and Equation~\ref{eq:degree_distribution_P_asymptotics}.
+\item  First we recall that the statements regarding $\pmf(k)$ and its asymptotic behavior follow from Equation~\ref{eq:def_pk} and Equation~\ref{eq:degree_distribution_P_asymptotics}.
 
 By Lemma~\ref{lem:expnnkn},
 \[
-\Exp{{ N_{Po}(k_n) }}=(1+o(1))n p_{k_n}.
+\Exp{{ N_{Po}(k_n) }}=(1+o(1))n \pmf(k_n).
 \]
-Using Lemma~\ref{lem:factmoment} with $r=2$ we have that $\Exp{{N_{Po}(k_n) \choose 2}} = (1+o(1))\frac{(\Exp{ N_{Po}(k_n)})^2}{2}$, which implies $\Exp{N_{Po}(k_n)^2} = 2\Exp{{N_{Po}(k_n) \choose 2}} +\Exp{N_{Po}(k_n)} = (1+o(1))(\Exp{ N_{Po}(k_n)})^2 +o((\Exp{N_{Po}(k_n)})^2)$ (because $\Exp{N_{Po}(k_n)} = (1+o(1)) np_{k_n} \rightarrow \infty$). Hence, by Chebychev for any $\epsilon >0$,
+Using Lemma~\ref{lem:factmoment} with $r=2$ we have that $\Exp{{N_{Po}(k_n) \choose 2}} = (1+o(1))\frac{(\Exp{ N_{Po}(k_n)})^2}{2}$, which implies $\Exp{N_{Po}(k_n)^2} = 2\Exp{{N_{Po}(k_n) \choose 2}} +\Exp{N_{Po}(k_n)} = (1+o(1))(\Exp{ N_{Po}(k_n)})^2 +o((\Exp{N_{Po}(k_n)})^2)$ (because $\Exp{N_{Po}(k_n)} = (1+o(1)) n\pmf(k_n) \rightarrow \infty$). Hence, by Chebychev for any $\epsilon >0$,
 \[
 	\Prob{|N_{Po}(k_n)-\Exp{N_{Po}(k_n)}|\geq \epsilon \Exp{N_{Po}(k_n)}}
 	\leq \frac{Var(N_{Po}(k_n))}{\epsilon^2 (\Exp{ N_{Po}(k_n)})^2} = o(1).
 \]
 As $N_n(k_n)=N_{Po}(k_n)+N_n(k_n)-N_{Po}(k_n) = N_{Po}(k_n)\pm |N_n(k_n)-N_{Po}(k_n)|$ (where the sign depends on whether $N_n(k_n)>N_{Po}(k_n)$ or not), due to Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}, we have that
 \[
-	\Exp{N_n(k_n)} = \Exp{N_{Po}(k_n)} \pm \Exp{ |N_n(k_n)-N_{Po}(k_n)|} = (1+o(1))\Exp{N_{Po}(k_n)} = (1+o(1))n p_{k_n}.
+	\Exp{N_n(k_n)} = \Exp{N_{Po}(k_n)} \pm \Exp{ |N_n(k_n)-N_{Po}(k_n)|} = (1+o(1))\Exp{N_{Po}(k_n)} = (1+o(1))n \pmf(k_n).
 \]
 
 \item Let $\zeta = 2\alpha \xi^{2\alpha}c^{-(2\alpha+1)} \in \R$.
-The proof consists of showing that $\Exp{{N_{Po}(k_n) \choose r} } \rightarrow \frac{\zeta^r}{r!}$ for every positive integer $r$ and then applying \cite[Theorem 8.3.1]{alon2016probabilistic}.
+The proof consists of showing that $\Exp{{N_{Po}(k_n) \choose r} } \rightarrow \frac{\zeta^r}{r!}$ for every positive integer $r$.% and then applying \cite[Theorem 8.3.1]{alon2016probabilistic}.
 
 If $k_n=(1+o(1))c n^{\frac{1}{2\alpha+1}}$, then by Lemma~\ref{lem:expnnkn},
 \begin{align*}
 	\Exp{N_{Po}(k_n)} &= (1+o(1))2\alpha \xi^{2\alpha} n (1+o(1))^{-(2\alpha+1)} c^{-(2\alpha+1)}n^{-1} \\
 	&= (1+o(1))2\alpha \xi^{2\alpha} c^{-(2\alpha+1)}=(1+o(1))\zeta,
 \end{align*}
-which implies $\Exp{N_{Po}(k_n)} \rightarrow \zeta$ (as $\zeta$ is a positive constant). From Lemma~\ref{lem:factmoment}, it then follows that $\Exp{{N_{Po}(k_n) \choose r}} =(1+o(1))\frac{(\Exp{ N_{Po}(k_n)})^r}{r!}\rightarrow \frac{\zeta^r}{r!}$. Thus, it follows from \cite[Theorem 8.3.1]{alon2016probabilistic} that $N_{Po}(k_n) \xrightarrow{d} Po(\zeta)$.
+which implies $\Exp{N_{Po}(k_n)} \rightarrow \zeta$ (as $\zeta$ is a positive constant). From Lemma~\ref{lem:factmoment}, it then follows that $\Exp{{N_{Po}(k_n) \choose r}} =(1+o(1))\frac{(\Exp{ N_{Po}(k_n)})^r}{r!}\rightarrow \frac{\zeta^r}{r!}$. Thus, it follows from \cite[Theorem 8.3.1]{alon2016probabilistic} that $N_{Po}(k_n) \xrightarrow{d} Po(\zeta)$ for the Poissonized version.
 
-Finally, since $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$, by Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}, $\Exp{| N_n(k_n) - N_{Po}(k_n)|} = o(\Exp{N_{Po}(k_n)}) = o(\zeta)$, from which it follows that $\Prob{|N_n(k_n)-N_{Po}(k_n)|\geq 1} \leq \Exp{ |N_n(k_n)-N_{Po}(k_n)|} = o(\zeta)$. Hence, it also holds that $N_n(k_n) \xrightarrow{d} Po(\zeta)$.
+Finally, since $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$, by Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}, $\Exp{| N_n(k_n) - N_{Po}(k_n)|} = o(\Exp{N_{Po}(k_n)}) = o(\zeta)$, from which it follows that $\Prob{|N_n(k_n)-N_{Po}(k_n)|\geq 1} \leq \Exp{ |N_n(k_n)-N_{Po}(k_n)|} = o(\zeta)$. Hence, it also holds in the original KPKVB model that $N_n(k_n) \xrightarrow{d} Po(\zeta)$.
 
 \item We will show that in this case $\Exp{N_n(k_n)} = o(1)$. This then implies, by Markov's inequality,
 \[
@@ -1259,7 +1213,7 @@ Hence, by bounding the Binomial probability (see Lemma~\ref{lem:binomial_poisson
 		\frac{\alpha \sinh(\alpha (R-y))}{\cosh(\alpha R)-1} dy\\
 	&\le (1+\smallO{1}) \frac{e}{\sqrt{2\pi}} \sqrt{\frac{n}{n-k_n}}
 		n \int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{Po}(y)) = k_n} \alpha e^{-\alpha y} dy \\
-	&\le (1+\smallO{1}) \frac{e}{\sqrt{2\pi}} \sqrt{\frac{n}{n-k_n}} n p_{k_n}
+	&\le (1+\smallO{1}) \frac{e}{\sqrt{2\pi}} \sqrt{\frac{n}{n-k_n}} n \pmf(k_n)
 	= \bigO{\sqrt{\frac{n}{n-k_n}} n k_n^{-(2\alpha + 1)}}.
 \end{align*}
 We shall now consider two cases: $n^{\frac{1}{2\alpha + 1}} \ll k_n < n^{1-\varepsilon}$ and $n^{1-\varepsilon} \le k_n \le n - 1$.

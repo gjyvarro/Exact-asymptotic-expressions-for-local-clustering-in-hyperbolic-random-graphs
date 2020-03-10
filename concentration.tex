@@ -11,14 +11,14 @@ Recall that $\Nbox(k_n)$ denotes the number of vertices in $\Gbox$ with degree $
 \]
 where
 \[
-	 T_{\text{box}}(k_n) = \sum_{p \in \Pcal} \ind{\Dbox(p) = k_n} \sum_({p_1, p_2) \in \Pcal \setminus \{p\}}^{\ne} 
+	 T_{\text{box}}(k_n) = \sum_{p \in \Pcal} \ind{\Dbox(p) = k_n} \sum_{(p_1, p_2) \in \Pcal \setminus \{p\}, \atop \text{distinct}} 
 	 \ind{p_1 \in \BallPon{p}}\ind{p_2 \in \BallPon{p}}\ind{p_2 \in \BallPon{p_1}}
 \]
 In particular, the variance of $c^\ast(k_n ; \Gbox)$ is determined by the variance of $T_{\text{box}}(k_n)$.
 
 Next, recall the adjusted triangle count function
 \[
-	\widetilde{T}_{\text{box}}(p_0) = \sum_{(p_1, p_2) \in \Pcal \setminus \{p_0\}}^{\ne} 
+	\widetilde{T}_{\text{box}}(p_0) = \sum_{(p_1, p_2) \in \Pcal \setminus \{p_0\}, \atop \text{distinct}}
 		\widetilde{T}_{\text{box}}(p_0,p_1,p_2).
 \]
 where
@@ -94,10 +94,10 @@ where the last line is due to Corollary~\ref{cor:adjusted_triangle_counting_P_n}
 	\Exp{\widetilde{T}_{\text{box}}(k_n,C)} = \bigT{n k_n^{-(2\alpha - 1)}s(k_n)}. 
 \end{equation}
 
-Since $\Exp{N_{\text{box}}(k_n)} = (1+\smallO{1}n p_{k_n}$ it follows that
+Since $\Exp{N_{\text{box}}(k_n)} = (1+\smallO{1}n \pmf(k_n)$ it follows that
 \[
 	\widetilde{c}_{\text{box}}(k_n) = \frac{\Exp{\widetilde{T}_{\text{box}}(k_n,C)}}{\binom{k_n}{2}\Exp{N_{\text{box}}(k_n)}}
-	= (1+\smallO{1}) \frac{\int_0^\infty P(y) \alpha e^{-\alpha y} \dd y}{p_{k_n}}
+	= (1+\smallO{1}) \frac{\int_0^\infty P(y) \alpha e^{-\alpha y} \dd y}{\pmf(k_n)}
 	= (1 + \smallO{1}) \gamma(k_n).
 \]
 On the other hand, Proposition~\ref{prop:convergence_average_clustering_P_n} implies that $\Exp{c^\ast(k_n; \Gbox)} = (1+\smallO{1})\gamma(k_n)$ and thus we conclude that
@@ -800,7 +800,7 @@ Then we have
 \[
 	\widetilde{T}_{\text{box}}(k_n,C)^2 = \hspace{-5pt} \sum_{p, p^\prime \in \Pcal_n \cap \Kcal_C(k_n)}
 		\hspace{-3pt} \ind{\Dbox(p), \, \Dbox(p^\prime) = k_n} 
-		\sum_{(p_1, p_2), (p_1^\prime, p_2^\prime) \in \Pcal_n}^{\ne} \hspace{-3pt}
+		\sum_{(p_1, p_2), (p_1^\prime, p_2^\prime) \in \Pcal_n, \atop \text{distinct}} \hspace{-3pt}
 		\widetilde{T}_{\Pcal}(p,p_1,p_2) \widetilde{T}_{\Pcal}(p^\prime, p_1^\prime, p_2^\prime),
 \]
 This expression can be written as the sum of several terms, depending on how $\{p, p_1, p_2\}$ and $\{p^\prime, p_1^\prime, p_2^\prime\}$ intersect. To this end we define, for $a \in \{0,1\}$ and $b \in \{0,1,2\}$,
@@ -811,7 +811,7 @@ This expression can be written as the sum of several terms, depending on how $\{
 where
 \[
 	J_b(p,p^\prime) = \hspace{-10pt} \sum_{p_1, p_2, p_1^\prime, p_2^\prime \in \Pcal_n 
-		\atop |\{p_1, p_2\} \cap \{p_1^\prime, p_2^\prime\}| = b}^{\ne}
+		\atop |\{p_1, p_2\} \cap \{p_1^\prime, p_2^\prime\}| = b, \atop \text{distinct}}
 		\hspace{-5pt} T_{\Pcal,n}(p,p_1,p_2) T_{\Pcal,n}(p^\prime, p_1^\prime, p_2^\prime),
 \]
 with the sum taken over all two distinct pairs $(p_1, p_2)$ and $(p_1^\prime, p_2^\prime)$. Then we have
@@ -847,7 +847,7 @@ Throughout this proof we set $i = |\{p^\prime, p_1, p_2, p_1^\prime, p_2^\prime\
 \begin{align*}
 	&\Exp{\ind{\Dbox(p) = k_n, \Dbox(p^\prime) = k_n} J_b(p,p^\prime)}\\
 	&= \Exp{\sum_{p_1, p_2, p_1^\prime, p_2^\prime \in \Pcal_n 
-		\atop |\{p_1, p_2\} \cap \{p_1^\prime, p_2^\prime\}| = b}^{\ne}
+		\atop |\{p_1, p_2\} \cap \{p_1^\prime, p_2^\prime\}| = b, \atop \text{distinct}}
 			\hspace{-7pt} \widetilde{D}_{\text{box}}(p,p^\prime, k_n-i,k_n- i^\prime) \,
 			\widetilde{T}_{\text{box}}(p,p_1,p_2) \widetilde{T}_{\text{box}}(p^\prime, p_1^\prime, p_2^\prime)}
 \end{align*}
@@ -869,12 +869,12 @@ For $J_0$ we have, using Lemma~\ref{lem:joint_degree_factorization}
 \begin{align*}
 	&\Exp{\ind{\Dbox(p) = k_n, \Dbox(p^\prime) = k_n} J_0(p,p^\prime)}\\
 	&= \Exp{\sum_{p_1, p_2, p_1^\prime, p_2^\prime \in \Pcal \setminus \{p,p^\prime\} 
-		\atop |\{p_1, p_2\} \cap \{p_1^\prime, p_2^\prime\}| = 0}^{\ne}
+		\atop |\{p_1, p_2\} \cap \{p_1^\prime, p_2^\prime\}| = 0, \atop \text{distinct}}
 		\hspace{-7pt} \widetilde{D}_{\text{box}}(p,p^\prime, k_n-i,k_n- i^\prime) \,
 		\widetilde{T}_{\text{box}}(p,p_1,p_2) \widetilde{T}_{\text{box}}(p^\prime, p_1^\prime, p_2^\prime)}\\
-	&= \Exp{D_{\text{box}}(p,p^\prime, k_n-j-2,k_n- j^\prime-2) \, \sum_{p_1,p_2 \in \Pcal \setminus p}^{\ne} 
+	&= \Exp{D_{\text{box}}(p,p^\prime, k_n-j-2,k_n- j^\prime-2) \, \sum_{p_1,p_2 \in \Pcal \setminus p, \atop \text{distinct}}
 		\widetilde{T}_{\text{box}}(p,p_1,p_2)
-		\sum_{p_1^\prime,p_2^\prime \in \Pcal \setminus p^\prime}^{\ne} 
+		\sum_{p_1^\prime,p_2^\prime \in \Pcal \setminus p^\prime, \atop \text{distinct}} 
 			\widetilde{T}_{\text{box}}(p^\prime,p_1^\prime,p_2^\prime)}\\
 	&= (1+\smallO{1})\rho_{\text{box}}(p,p^\prime,k_n,k_n) \CExp{\widetilde{T}_{\text{box}}(p)}{\Dbox(p) = k_n}
 		\CExp{\widetilde{T}_{\text{box}}(p^\prime)}{\Dbox(p^\prime) = k_n},
@@ -971,7 +971,7 @@ for $\varepsilon$ small enough.
 
 For $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$ we assume without loss of generality that $p_1^\prime = p_1 = (x_1,y_1)$, i.e.
 \[
-	J_{0,1} = \sum_{(p_1, p_2) \in \Pcal \setminus \{p\}}^{\ne} \widetilde{T}_{\text{box}}(p,p_1,p_2) 
+	J_{0,1} = \sum_{(p_1, p_2) \in \Pcal \setminus \{p\},\atop \text{distinct}} \widetilde{T}_{\text{box}}(p,p_1,p_2) 
 	\sum_{p_2^\prime \in \Pcal \setminus \{p^\prime, p_1\}} \widetilde{T}_{\text{box}}(p^\prime,p_1,p_2^\prime). 
 \] 
 Now let $Z_{0,1}$ denote the part of $J_{0,1}$ where $y_1 \le 4\log(k_n)$ and $y_2, y_2^\prime \le \varepsilon \log(k_n)$. 

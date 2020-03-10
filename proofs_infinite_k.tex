@@ -1,5 +1,5 @@
 
-\section{Overview of the proof strategy for $k \to \infty$}
+\section{Clustering when $k\to\infty$ : overview of the proof strategy}
 
 The proof of Theorem~\ref{thm:mainktoinfty} follows the same strategy as outlined in Section~\ref{sec:proof_outline} and executed in Section~\ref{sec:proofs_fixed_k}. However, the fact that $k = k_n \to \infty$ as $n \to \infty$, introduces significant technical challenges, especially for $k_n$ close the the maximum scale $n^{\frac{1}{2\alpha + 1}}$. For example, the coupling between $\GPo$ and $\Gbox$ we use becomes less exact so that we can no longer use Lemma~\ref{lem:coupling_edges} to conclude that triangle counts in $\GPo$ and $\Gbox$ are asymptotically equivalent. Moreover, since we are ultimately interested in recovering the scaling of $c(k_n;G_n)$, which Theorem~\ref{thm:mainktoinfty} claims is $\gamma(k_n)$, we need to show that each step in the strategy outlined in Section~\ref{sec:proof_outline} only introduces error terms that are of smaller order, i.e. that are $\smallO{\gamma(k_n)}$. This will turn out to require a great deal of care in bounding all error terms we encounter.
 
@@ -19,9 +19,9 @@ Throughout the remainder of this paper, unless stated otherwise, $\{k_n\}_{n \ge
 
 We start with introducing a slightly modified version of the local clustering function, which will be convenient for computations later,
 \begin{equation}\label{eq:def_local_clustering_ast_general}
-	c^\ast(k;G) = \frac{1}{\Exp{N_k}} \sum_{v \in V(G) \atop \text{deg}(v)=k} c(v).
+	c^\ast(k;G) = \frac{1}{\Exp{N(k)}} \sum_{v \in V(G) \atop \text{deg}(v)=k} c(v).
 \end{equation}
-Notice that the only difference between $c(k;G)$ and $c^\ast(k;G)$ is that we replace $N_k$ by its expectation $\Exp{N_k}$. The advantage is that now, the only randomness is in the formation of triangles. In addition, note that since $\Exp{N_k} > 0$ a case distinction for $N_k$ is no longer needed for $c^\ast(k;G)$. It is however still relevant since we are eventually interested in $c(k;G)$. Following the notational convention, throughout the remainder of this paper we write $c^\ast(k; \GPo)$ and $c^\ast(k; \Gbox)$ to denote the modified local clustering function in $\GPo$ and $G_{\mathcal{P},n}(\alpha,\nu)$, respectively.
+Notice that the only difference between $c(k;G)$ and $c^\ast(k;G)$ is that we replace $N(k)$ by its expectation $\Exp{N(k)}$. The advantage is that now, the only randomness is in the formation of triangles. In addition, note that since $\Exp{N(k)} > 0$ a case distinction for $N(k)$ is no longer needed for $c^\ast(k;G)$. It is however still relevant since we are eventually interested in $c(k;G)$. Following the notational convention, throughout the remainder of this paper we write $c^\ast(k; \GPo)$ and $c^\ast(k; \Gbox)$ to denote the modified local clustering function in $\GPo$ and $G_{\mathcal{P},n}(\alpha,\nu)$, respectively.
 
 Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theorem~\ref{thm:mainktoinfty} based on the different propositions described below, plus the sections in which theses propositions are proved. Observe that the order in which the intermediate results are proved is reversed with respect to the natural order of reasoning. This does not create any circular logic, since each intermediate result is independent of the others. We choose this order because results proved in the later stages are helpful to deal with error terms coming up in proofs at earlier stages and hence help streamline those proofs. Below briefly describe each of the intermediate steps leading up to the proof of Theorem~\ref{thm:mainktoinfty}. We start with an observation on the dependence between the degree of a point $p = (x,y)$ and its height $y$.
 
@@ -274,7 +274,7 @@ As $n \to \infty$,
 \]
 \end{lemma}
 
-We then establish that the modified local clustering function for KPKVB graphs $G_n$ behaves similarly to that in the $\GPo$. The proof, found in Section~\ref{ssec:coupling_H_HP}, is based on a standard coupling between a Binomial Point Process and Poisson Point Process.
+We then establish that the modified local clustering function for KPKVB graphs $G_n$ behaves similarly to that in $\GPo$. The proof, found in Section~\ref{ssec:coupling_H_HP}, is based on a standard coupling between a Binomial Point Process and Poisson Point Process.
 
 \begin{proposition}\label{prop:clustering_ast_H_Pois}
 As $n \to \infty$,

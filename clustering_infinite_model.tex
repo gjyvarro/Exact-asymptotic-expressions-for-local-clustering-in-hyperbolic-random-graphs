@@ -1,22 +1,100 @@
 
 
 
-\section{Clustering of the typical point in $\Ginf$\label{sec:Ginf}\label{sec:asymptotics_average_clustering_ast_P}}
+\section{Clustering and the degree of the typical point in $\Ginf$\label{sec:Ginf}\label{sec:asymptotics_average_clustering_ast_P}}
 
 
-Similar to the proof for the degrees we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of $\GPo$ with certain quantities associated with $\Ginf$. Recall that a \emph{typical point} is a point $p_0 = (0,y)$, where in some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and independent of $\Pcal$.
+As alluded to earlier, we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of the (poissonized) KPKVB random graph 
+with certain quantities associated with $\Ginf$.
+We will be considering the Poisson process $\Pcal$ to which we add one additional point $(0,y)$ on the $y$-axis.
+In some computations the height $y$ will be fixed, but eventually we shall take it exponentially distributed with parameter $\alpha$, and
+independent of $\Pcal$.
+We refer to $(0,y)$ as ``the typical point''.
 
-Since $c(G)$ is defined as an average over all vertices of the graph, it is not immediately obvious how to meaningfully define a corresponding notion for infinite graphs, and similarly for the clustering function, the degree sequence, etc.
-We can however without any issues speak of the (expected) clustering coefficient of the typical point or the expected clustering coefficient given that it has degree $k$. (All considered in the graph obtained from $\Ginf$ by adding the typical point to its vertex set.)
-
-If $p = (x,y) \in \eR\times[0,\infty)$ is a point, not necessarily part of the Poisson process, then we write
-\[ 
-	\mu(y) = \mu(p) := \mu(\BallPo{p}).
-\]
-Recall that $\mu(y) = \frac{2\alpha \nu e^{y/2}}{\pi(\alpha-\frac12)} = \xi e^{y/2}$. When $p = (0,y)$ we also write $\BallPo{y} = \BallPo{p}$.
+To provide some intu\"{\i}tion for this definition and name, note that we can alternatively view $\Pcal$ as follows. 
+We take a constant intensity Poisson process on $\eR$ corresponding to the $x$-coordinates, and to each point
+we attach a random ``mark'', corresponding to the $y$-coordinate, where the marks are i.i.d.~exponentially distributed with parameter $\alpha$.
 
 
-\subsection{The expected clustering coefficient and function of the typical point}
+Since $c(G)$ is defined as an average over all vertices of the graph, it is not immediately obvious how to meaningfully define 
+a corresponding notion for infinite graphs, and similarly for the clustering function, the degree sequence, etc.
+We can however without any issues speak of the (expected) clustering coefficient of the typical point, or the expected clustering
+coefficient given that it has degree k, or the distribution of the degree of the typical point.
+(All considered in the graph obtained from $\Ginf$ by adding the typical point to its vertex set.)
+
+If $p = (x,y) \in \eR\times[0,\infty)$ is a point, not necessarily part of the Poisson process, then we will write
+
+$$ \mu(y) = \mu(p) := \mu(\BallPo{p}). $$
+
+Integrating the intensity function of $\Pcal$ over $\BallPo{p}$ gives
+
+$$ \begin{array}{rcl} 
+\mu(y) & = & \int_{\BallPo{p}} f(x',y') \, dx' \,d y'  
+ = \int_0^\infty \int_{-e^{(y+y')/2}}^{e^{(y+y')/2}} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dx' \, dy' \\
+& = & \int_0^\infty 2 e^{(y+y')/2} \frac{\alpha \nu}{\pi} e^{-\alpha y'} \, dy' 
+ = \frac{2\alpha \nu e^{y/2}}{\pi} \int_0^\infty e^{(\frac12-\alpha)y'} \, dy' \\
+& = & \frac{2\alpha \nu e^{y/2}}{\pi(\alpha-\frac12)} = \xi e^{y/2}.
+\end{array} $$
+
+
+
+
+
+\subsection{The degree of the typical point\label{ssec:degrees_infinite_model}}
+
+
+
+
+
+Before considering clustering we briefly investigate the distribution of the degree of 
+the typical point. 
+For $p = (x,y) \in \eR\times[0,\infty)$ we define
+\begin{equation}
+	\rho(p,k) := \Prob{\Po(\mu(y)) = k},
+\end{equation}
+
+where $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$. 
+We will often write $\rho(y,k)$ instead of $\rho(p,k)$.
+
+Let the random variable $D$ denote the degree of the typical point.
+Since the typical point has a height that is independent of the Poisson process and exponential($\alpha$)-distributed:
+
+$$ \pmf(k) := \Pee( D=k ) = \int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \, dy. $$
+
+\noindent
+(Note that here we {\em define} $\pi(k)$ as the probability that the degree of the typical point equals $k$.)
+Using the transformation of variables $z = \xi e^{\frac{y}{2}}$ (so $dy = \frac{2}{z}dz$), we compute
+\begin{align*}
+	\pmf(k)
+    &= \frac{1}{k!} \int_0^\infty \left(\xi e^{\frac{y}{2}}\right)^k 
+    	e^{-\xi e^{\frac{y}{2}}} \alpha e^{-\alpha y} \, dy\\
+    &= \frac{\alpha \xi^{2\alpha}}{k!} \int_0^\infty 
+    	\left(\xi e^{\frac{y}{2}}\right)^{k - 2\alpha} e^{-\xi e^{\frac{y}{2}}}
+        \, dy\\
+    &= \frac{2\alpha \xi^{2\alpha}}{k!} \int_{\xi}^{\infty} 
+    	z^{k -2\alpha-1} e^{-z} \, dz\\
+    &= \frac{2\alpha \xi^{2\alpha}\Gamma^+(k - 2\alpha, \xi)}{k!},
+\end{align*}
+where we recall that $\Gamma$ denotes the gamma-function and $\Gamma^{+}$ the upper incomplete gamma-function.
+Note that, unsurprisingly, this is identical to the expression Gugelmann et al.~\cite{gugelmann2012random} gave for the limiting 
+degree distribution of $G(n;\alpha,\nu)$.
+Using Stirling's approximation to the gamma function, we find that 
+
+\begin{equation}\label{eq:degree_distribution_P_asymptotics}
+	\pmf(k) \sim 2\alpha\xi^{2\alpha} k^{-(2\alpha + 1)}
+	\quad \text{as } k \to \infty.
+\end{equation}
+
+By a similar computation we have the following result, which will be useful later on. For any $\beta > 0$, as $k \to \infty$
+
+\begin{equation}\label{eq:general_integral_rho_y_k}
+	\int_0^\infty e^{\beta y} \rho(y, k) \alpha e^{-\alpha y} \, dy
+    \sim 2\alpha \xi^{2(\beta + \alpha)} k^{-2(\beta + \alpha)-1}.
+\end{equation}
+
+
+
+\subsection{The expected clustering coefficient of the typical point\label{sec:42}}
 
 
 Let the random variable $C$ denote the clustering coefficient of the typical point $(0,y)$, in the graph obtained from $\Ginf$ by adding $(0,y)$. We now {\em define}
@@ -46,12 +124,12 @@ We now observe that
 where $g_k$ denotes the density of $y$ {\em conditional on} $D=k$. That is,
 \[
 	g_k(y_0)  = \frac{\rho(y_0, k) \alpha e^{-\alpha y_0} }{\int_0^\infty \rho(t, k) \alpha e^{-\alpha t} \, d t}
-	= \frac{1}{p_k} \cdot \rho(y_0, k) \alpha e^{-\alpha y_0},
+	= \frac{1}{\pmf(k)} \cdot \rho(y_0, k) \alpha e^{-\alpha y_0},
 \]
 where we recall that $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$ denotes the probability that a Poisson random variable with mean $\mu(y)$ is $k$. Hence, 
 \begin{equation}\label{eq:gammakint}
 \gamma(k) 
-= \frac{1}{p_k} \cdot \int_0^\infty P(y_0) \rho(y_0,k) \alpha e^{-\alpha y_0} \, d y_0. 
+= \frac{1}{\pmf(k)} \cdot \int_0^\infty P(y_0) \rho(y_0,k) \alpha e^{-\alpha y_0} \, d y_0. 
 \end{equation}
 This also gives
 \begin{equation}\label{eq:gammaint}
@@ -729,7 +807,7 @@ and
 Then, recalling~\eqref{eq:gammaint} and~\eqref{eq:gammakint}, we have
 \[   
 	\gamma = J - I^{(1)} - I^{(2)} \quad \text{and} \quad
-	\gamma(k) = \frac{I^{(k)}}{p_k}.
+	\gamma(k) = \frac{I^{(k)}}{\pmf(k)}.
 \]
 
 We will thus compute $J$ and $I^{(k)}$. It will be helpful to change coordinates to $z := e^{-y/2}$. This yields 
@@ -906,7 +984,7 @@ which is the expression in Theorem~\ref{thm:clustering_coefficient_hyperbolic}.
 
 Similarly, we get
 \begin{align*}
-	\gamma(k) &= \frac{I^{(k)}}{p_k} \\
+	\gamma(k) &= \frac{I^{(k)}}{\pmf(k)} \\
 	&=\frac{1}{8\alpha (\alpha-1)\Gamma^+(k-2\alpha,\xi)} \left( -\Gamma^+(k - 2 \alpha, \xi) 
 		- 2\frac{\alpha (\alpha - 1/2)^2 \xi^{2} \Gamma^+(k - 2 \alpha - 2, \xi)}{(\alpha - 1)} \right. \\ 
 	&\hspace{10pt}\left.+ 8 \alpha (\alpha - 1/2) \xi \Gamma^+(k - 2 \alpha - 1,\xi) \right.\\ 
@@ -1137,7 +1215,7 @@ Instead of extracting the scaling of $\gamma(k)$ from its explicit expression, i
 \[
 	\gamma(k) = \frac{\int_0^\infty \rho(y,k) P(y) \alpha e^{-\alpha y} \dd y}{\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y}.
 \]
-The asymptotic behavior for the denominator follows from~\eqref{eq:degree_distribution_P_asymptotics}. Hence, the main term to consider is the numerator
+The asymptotic behavior for the denominator is given by~\eqref{eq:degree_distribution_P_asymptotics}. Hence, the main term to consider is the numerator
 \[
 	\int_0^{\infty} P(y) \, \rho(y,k) \alpha e^{-\alpha y} \, dy,
 \]
@@ -1152,11 +1230,11 @@ and in particular the function $P(y)$. We therefore start with establishing the 
 %\TM{ Here we need a properly spelled out proof of the proposition. (Which Pim was preparing I believe.)}
 
 \begin{proposition}[Asymptotic behavior of $P(y)$]\label{prop:asymptotics_P}
-Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $c_\alpha$ as defined in Proposition~\ref{prop:asymp} Then, as $y \to \infty$, 
+Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $c_{\alpha,\nu}$ as defined in Proposition~\ref{prop:asymp} Then, as $y \to \infty$, 
 \begin{enumerate}
 \item for $\frac{1}{2} < \alpha < \frac{3}{4}$,
 \[
-	P(y) \sim e^{-\frac{y}{2}(4\alpha - 2)} c_\alpha \xi^{4\alpha - 2},
+	P(y) \sim e^{-\frac{y}{2}(4\alpha - 2)} c_{\alpha,\nu} \xi^{4\alpha - 2},
 \]
 \item for $\alpha = \frac{3}{4}$,
 \[
@@ -1186,9 +1264,9 @@ Now consider again variable $z = e^{-y/2}$ and not that $z \to 0$ as $y \to \inf
 \[
 	\frac{3 \alpha - 1}{2^{4 \alpha+1} \alpha (\alpha - 1)^2} 
 			+ \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2(\alpha - 1) \alpha}
-			- \frac{B(2\alpha, 3-4\alpha)}{4(\alpha - 1)} = c_\alpha \xi^{-(4\alpha - 2)},
+			- \frac{B(2\alpha, 3-4\alpha)}{4(\alpha - 1)} = c_{\alpha,\nu} \xi^{-(4\alpha - 2)},
 \]
-with $c_\alpha$ as defined in Proposition~\eqref{prop:asymp}. The proof now follows since for $1/2 < \alpha < 3/4$, the remaining three terms go to zero as $y \to \infty$. For the first of these terms this is true since 
+with $c_{\alpha,\nu}$ as defined in Proposition~\eqref{prop:asymp}. The proof now follows since for $1/2 < \alpha < 3/4$, the remaining three terms go to zero as $y \to \infty$. For the first of these terms this is true since 
 \[
 	e^{(4\alpha - 2)\frac{y}{2}}\left((1 - e^{-\frac{y}{2}})^{2\alpha} - 1\right) = \bigO{e^{(4\alpha - 2)\frac{y}{2}}e^{-\frac{y}{2}}}
 	= \bigO{e^{(4\alpha - 3) \frac{y}{2}}} = \smallO{1}
@@ -1307,9 +1385,9 @@ We split the proof over the different cases for $\alpha$.
 \paragraph{\bm{$1/2 < \alpha < 3/4$}}
 By Proposition~\ref{prop:asymptotics_P} and~\eqref{eq:asymptotics_average_clustering_error_term}  it follows that as $k \to \infty$,
 \begin{align*}
-	\gamma(k) \sim c_\alpha \xi^{-(4\alpha - 2)} \frac{\int_0^{\infty} e^{-(4\alpha - 2)y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y}
+	\gamma(k) \sim c_{\alpha,\nu} \xi^{-(4\alpha - 2)} \frac{\int_0^{\infty} e^{-(4\alpha - 2)y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y}
 		{\int_0^\infty \rho_{y}(k) \alpha e^{-\alpha y} \dd y} 
-	\sim c_\alpha k^{-4\alpha + 2}.
+	\sim c_{\alpha,\nu} k^{-4\alpha + 2}.
 \end{align*}
 where the last line is due to~\eqref{eq:general_clustering_integral_scaling} with $\beta = 2\alpha - 1$.
 

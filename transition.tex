@@ -45,7 +45,7 @@ Recall that $\Gbox$ is obtained by restricting the Poisson point process $\PPP$ 
 %We now turn to the task of calculating the expected number of triangles of a node at height $y$, for both the infinite model and the finite box model. 
 For any $p \in \R \times \R_+$ we define for the finite box model,
 \[
-	T_{\text{box}}(p) = \sum^{\ne}_{p_1, p_2 \in \Pcal \setminus \{p\}} T_{\text{box}}(p,p_1,p_2)
+	T_{\text{box}}(p) = \sum_{p_1, p_2 \in \Pcal \setminus \{p\}, \atop \text{distinct}} T_{\text{box}}(p,p_1,p_2)
 \]
 where the sum is over all distinct pairs in $\Pcal \setminus p$ and
 \[
@@ -53,7 +53,7 @@ where the sum is over all distinct pairs in $\Pcal \setminus p$ and
 \]
 Similarly, for the infinite model we define
 \[
-	T_\infty(y) = \sum_{p_1, p_2 \in \Pcal \setminus (0,y)}^{\ne} T_\infty(y,p_1,p_2),
+	T_\infty(y) = \sum_{p_1, p_2 \in \Pcal \setminus (0,y), \atop \text{distinct}} T_\infty(y,p_1,p_2),
 \]
 where
 \[
@@ -71,12 +71,12 @@ and thus $k_n - C \sqrt{k_n \log(k_n)} \le \mu(y) \le k_n + C \sqrt{k_n \log(k_n
 \begin{lemma}
 Let $\gamma(k_n)$ be defined as in~\eqref{eq:gammakint}. Then as $n \to \infty$
 \begin{equation}\label{eq:alt_gamma_kn}
-	\gamma(k_n) = (1+\smallO{1})\frac{1}{k_n^2 p_{k_n}} \int_{\Kcal_{C}(k_n)} \Exp{T_\infty(y)} \rho(y,k) 
+	\gamma(k_n) = (1+\smallO{1})\frac{1}{k_n^2 \pmf(k_n)} \int_{\Kcal_{C}(k_n)} \Exp{T_\infty(y)} \rho(y,k) 
 				\alpha e^{-\alpha y} \dd y. 
 \end{equation}
 Moreover,
 \begin{equation}\label{eq:alt_c_ast_kn}
-	\Exp{c^\ast(k_n;\Gbox)} = (1 + \smallO{1}) \frac{1}{k_n^2 p_{k_n}} \int_{\Kcal_{C}(k_n)} \Exp{T_{\text{box}}(y)}
+	\Exp{c^\ast(k_n;\Gbox)} = (1 + \smallO{1}) \frac{1}{k_n^2 \pmf(k_n)} \int_{\Kcal_{C}(k_n)} \Exp{T_{\text{box}}(y)}
 		\rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y
 \end{equation}
 as $n \to \infty$,
@@ -95,18 +95,18 @@ where $u_1$ and $u_2$ are independent and distributed according to the probabili
 \end{align*}
 It then follows that,
 \begin{align*}
-	\gamma(k_n) &= \frac{1}{p_{k_n}} \cdot \int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
-	= \frac{1}{p_{k_n}} \int_0^\infty \Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} \rho(y,k) 
+	\gamma(k_n) &= \frac{1}{\pmf(k_n)} \cdot \int_0^\infty P(y) \rho(y,k) \alpha e^{-\alpha y} \dd y
+	= \frac{1}{\pmf(k_n)} \int_0^\infty \Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} \rho(y,k) 
 		\alpha e^{-\alpha y} \dd y.
 \end{align*}
 
 Because $\Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} = \bigO{1}$, uniformly in $y \in \R_+$ and $\mu(y) = (1+\smallO{1}) k_n$ uniformly for $y \in \Kcal_C(k_n)$, by the concentration of heights (Proposition~\ref{prop:concentration_height_general})
 \begin{align*}
-	&\hspace{-30pt} \frac{1}{p_{k_n}} 
+	&\hspace{-30pt} \frac{1}{\pmf(k_n)} 
 		\int_0^\infty \Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} \rho(y,k) \alpha e^{-\alpha y} \dd y \\
-	&= (1+\smallO{1}) \frac{1}{p_{k_n}} 
+	&= (1+\smallO{1}) \frac{1}{\pmf(k_n)} 
 		\int_{\Kcal_C(k_n)} \Exp{T_\infty(y)} \Mu{\BallPo{y}}^{-2} \rho(y,k) \alpha e^{-\alpha y} \dd y \\
-	&= (1+ \smallO{1}) \frac{1}{k_n^2 p_{k_n}} \int_{\Kcal_C(k_n)} \Exp{T_\infty(y)} \rho(y,k) \alpha e^{-\alpha y} \dd y.
+	&= (1+ \smallO{1}) \frac{1}{k_n^2 \pmf(k_n)} \int_{\Kcal_C(k_n)} \Exp{T_\infty(y)} \rho(y,k) \alpha e^{-\alpha y} \dd y.
 \end{align*}
 
 For~\eqref{eq:alt_c_ast_kn} we recall that
@@ -115,10 +115,10 @@ For~\eqref{eq:alt_c_ast_kn} we recall that
 \]
 where $c_{\text{box}}(p)$ can be expressed as
 \[
-	c_{\text{box}}(p) = \frac{1}{\binom{\Dbox(p)}{2}} \sum_{p_1, p_2 \in \Pcal \setminus p}^{\ne} T_{\text{box}}(p,p_1,p_2)
+	c_{\text{box}}(p) = \frac{1}{\binom{\Dbox(p)}{2}} \sum_{p_1, p_2 \in \Pcal \setminus p, \atop \text{distinct}} T_{\text{box}}(p,p_1,p_2)
 	= \frac{T_{\text{box}}(p)}{\binom{\Dbox(p)}{2}}.
 \]
-By the Campbell-Mecje formula
+By the Campbell-Mecke formula
 \begin{align*}
 	\Exp{c^\ast(k_n; \Gbox)} 
 	&= \frac{1}{\Exp{\Nbox(k_n)}} \int_{\Rcal} \Exp{c_{\text{box}}(p)\ind{\Dbox(p) = k_n}} f(x,y) \dd x \dd y\\
@@ -144,11 +144,11 @@ and thus, by applying a concentration of heights argument on $\Mu{\BallPon{y}}^{
 \]
 To finish the argument, we first note that $\Mu{\BallPon{2\log(k_n/\xi)}}^{-2} = (1+\smallO{1})k_n^2$, while
 \[
-	\Exp{N_{\text{box}}(k_n)} = (1+\smallO{1}) n p_{k_n}
+	\Exp{N_{\text{box}}(k_n)} = (1+\smallO{1}) n \pmf(k_n)
 \]
 by Lemma~\ref{lem:average_degree_G_box}. We therefore conclude that
 \[
-	\Exp{c^\ast(k_n; \Gbox)} = (1 + \smallO{1}) \frac{1}{k_n^2 p_{k_n}} \int_{\Kcal_C(k_n)} 
+	\Exp{c^\ast(k_n; \Gbox)} = (1 + \smallO{1}) \frac{1}{k_n^2 \pmf(k_n)} \int_{\Kcal_C(k_n)} 
 		\Exp{T_{\text{box}}(y)} \rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y.
 \]
 \end{proof}
@@ -159,7 +159,7 @@ As a result of this lemma we only need to compare the difference in triangles be
 %\begin{equation}\label{eq:triangle_diff_main_term}
 %	 \left|\int_{\Kcal_{C}(k_n)} \Exp{T_{\text{box}}(y) - T_\infty(y)}
 %	\rho(y,k) \alpha e^{-\alpha y} \, d y \right|
-%	= \smallO{s(k_n)p_{k_n}k_n^2},
+%	= \smallO{s(k_n)\pmf(k_n)k_n^2},
 %\end{equation}
 %which means we have to compute the expected difference in triangles between both models.
 
@@ -179,7 +179,7 @@ To see this, note that for any $p = (x,y)$ with $0 \le y \le R$ we have that $\B
 
 Let us now define the following triangle count function
 \[
-	\widetilde{T}_{\text{box}}(p_0) = \sum_{(p_1, p_2) \in \Pcal \setminus \{p_0\}}^{\ne} 
+	\widetilde{T}_{\text{box}}(p_0) = \sum_{(p_1, p_2) \in \Pcal \setminus \{p_0\}, \atop \text{distinct}}
 		\widetilde{T}_{\text{box}}(p_0,p_1,p_2).
 \]
 where
@@ -189,7 +189,7 @@ where
 Then $\widetilde{T}_{\text{box}}(p_0)$ only counts those triangles attached to $p_0$ that exist in both $\Gbox$ and $\Ginf$ and thus, by definition of the region $\mathcal{T}(p_0,p_1)$,
 \[
 	T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)
-	= \sum_{p_1, p_2 \in \Pcal \setminus \{p_0\}}^{\ne} \ind{p_1 \in \BallPon{p_0}} 
+	= \sum_{p_1, p_2 \in \Pcal \setminus \{p_0\}, \atop \text{distinct}} \ind{p_1 \in \BallPon{p_0}} 
 			\ind{p_2 \in \mathcal{T}(p_0, p_1)}.
 \]
 %Thus, $\widetilde{T}_{\text{box}}(p_0)$ only count those triangles $(p_0,p_1,p_2)$ that also exist in $\Ginf$.
@@ -259,7 +259,7 @@ Define $\Rcal^\prime := (\R \times \R_+) \setminus \Rcal$. Then we can write
 	&\le \left|T_{\mathrm{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right| 
 		+ \left|\widetilde{T}_{\text{box}}(p_0) - T_\infty(y)\right|\\
 	&= \left|T_{\mathrm{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right| 
-		+ \sum_{p_1, p_2 \in \Pcal \cap \Rcal^\prime}^{\ne} T_{\infty}(p_0,p_1,p_2).
+		+ \sum_{p_1, p_2 \in \Pcal \cap \Rcal^\prime, \atop \text{distinct}} T_{\infty}(p_0,p_1,p_2).
 \end{align*}
 Then by the Campbell-Mecke formula
 \begin{align*}
@@ -298,12 +298,12 @@ We can now prove the main result of this section.
 \begin{proof}[Proof of Proposition~\ref{prop:convergence_average_clustering_P_n}]
 First, by Lemma~\ref{lem:appox_triangle_count_box} and~\eqref{eq:alt_c_ast_kn} we have
 \begin{align*}
-	\Exp{c^\ast(k_n;\Gbox)} &= (1 + \smallO{1}) \frac{1}{p_{k_n}} \int_{\Kcal_{C}(k_n)} P(y)
+	\Exp{c^\ast(k_n;\Gbox)} &= (1 + \smallO{1}) \frac{1}{\pmf(k_n)} \int_{\Kcal_{C}(k_n)} P(y)
 		\rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y \\
-	&\hspace{10pt}+ \smallO{s(k_n)}	\frac{1}{p_{k_n}} \int_{\Kcal_{C}(k_n)} P(y)
+	&\hspace{10pt}+ \smallO{s(k_n)}	\frac{1}{\pmf(k_n)} \int_{\Kcal_{C}(k_n)} P(y)
 			\rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y.
 \end{align*}
-By Lemma~\ref{lem:degree_integral} the integral in the second term is $(1+\smallO{1}) p_{k_n}$ and thus the second term is $\smallO{s(k_n)} = \smallO{\gamma(k_n)}$. Hence it remain to prove that the first term is $(1+\smallO{1}) \gamma(y)$. Using~\eqref{eq:alt_gamma_kn} it is enough to show that
+By Lemma~\ref{lem:degree_integral} the integral in the second term is $(1+\smallO{1}) \pmf(k_n)$ and thus the second term is $\smallO{s(k_n)} = \smallO{\gamma(k_n)}$. Hence it remain to prove that the first term is $(1+\smallO{1}) \gamma(y)$. Using~\eqref{eq:alt_gamma_kn} it is enough to show that
 \[
 	\int_{\Kcal_{C}(k_n)} P(y) \rho_{\mathrm{box}}(y,k_n) \alpha e^{-\alpha y} \dd y
 	= (1+\smallO{1}) \int_{\Kcal_{C}(k_n)} P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y.
@@ -369,7 +369,7 @@ which finishes the proof.
 %		e^{-\alpha y_0} \dd y_0\\
 %	&= \bigO{1} \left(\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)} \right) 
 %		\int_{0}^\infty \rho(y_0,k_n) e^{-\alpha y_0} \dd y_0\\
-%	&= \bigO{1} \left(\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)} \right) p_{k_n} = \smallO{s(k_n) p_{k_n} k_n^2},
+%	&= \bigO{1} \left(\log(k_n) n^{-(2\alpha - 1)} + k_n^2 n^{-(4\alpha - 2)} \right) \pmf(k_n) = \smallO{s(k_n) \pmf(k_n) k_n^2},
 %\end{align*}
 %%\TM{ Typo : $e^{-\alpha}$ }
 %where the last part follows from Lemma~\ref{lem:scaling_s_alpha} and the fact that $s(k_n)^2 = \smallO{s(k_n)}$. This establishes~\eqref{eq:triangle_diff_main_term} and hence finishes the proof.
@@ -426,7 +426,7 @@ In particular,
 %\end{align*}
 %where we used that on $\Kcal_{C}(k_n)$, $P(y) = \bigT{s(k_n)}$. This proves the first statement. The second statement follows by observing that
 %\[
-%	\int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y = p_{k_n} \gamma(k_n)
+%	\int_0^\infty P(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y = \pmf(k_n) \gamma(k_n)
 %	= \bigT{k_n^{-(2\alpha + 1)} s(k_n)}.
 %\]
 %\end{proof}

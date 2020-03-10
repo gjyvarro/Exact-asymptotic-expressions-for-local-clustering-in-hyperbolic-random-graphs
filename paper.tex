@@ -9,7 +9,6 @@
 
 %\usepackage{showkeys}
 \usepackage{tocloft}
-
 \usepackage{enumerate}
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -170,7 +169,8 @@
 \newcommand{\BallPon}[1]{\Bcal_{\text{box}}\left(#1\right)}	%	The neighborhood of a point p in the finit box model
 \newcommand{\FatBallHyp}[1]{\check{\Bcal}_{\Po}(#1)}		%
 \newcommand{\BallSym}[1]{\Bcal_{\Po \bigtriangleup \infty}\left(#1\right)}	%	Symmetric difference between balls in the 
-																			%	hyperbolic and infinite limit model
+\newcommand{\BallH}[1]{\Bcal_{H}\left(#1\right)}	 % Ball up to height H.
+%	hyperbolic and infinite limit model
 \newcommand{\BallInter}[1]{\Bcal_{\Po \cap \text{box}}\left(#1\right)}
 
 \newcommand{\Mu}[1]{\mu\left(#1\right)}
@@ -211,20 +211,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\eR}[0]{\ensuremath{{\mathbb R}}}
+\newcommand{\pmf}[0]{\ensuremath{{\pi}}}
 \newcommand{\eN}[0]{\ensuremath{{\mathbb N}}}
 \newcommand{\Ee}[0]{\ensuremath{{\mathbb E}}}
 \newcommand{\Haa}{\ensuremath{{\mathbb H}}}
 \newcommand{\GPo}[0]{\ensuremath{G_{\Po}}}
 \newcommand{\Gbox}[0]{\ensuremath{G_{\mathrm{box}}}}
-\newcommand{\GPoH}{\ensuremath{G_{Po,H}}}
-\newcommand{\GboxH}{\ensuremath{G_{box,H}}}
+%\newcommand{\GboxH}[0]{\ensuremath{G_{\mathrm{box},\leq R/4}}}
+\newcommand{\GboxH}[0]{\ensuremath{G_{\mathrm{box}-}}}
+%\newcommand{\GboxH}[0]{\ensuremath{G_{-}}}
 \newcommand{\Ginf}[0]{\ensuremath{G_{\infty}}}
 \newcommand{\isd}{\stackrel{\text{d}}{=}}
 \newcommand{\Xcal}{\ensuremath{{\mathcal X}}}
 \newcommand{\Ycal}{\ensuremath{{\mathcal Y}}}
 \newcommand{\Fcal}{\ensuremath{\mathcal{F}}}
 \newcommand{\Qcal}{\ensuremath{{\mathcal Q}}}
-\newenvironment{proofof}[1]{\vspace{1ex}\noindent{\bf Proof of #1:}}{\hspace*{\fill}$\blacksquare$\vspace{1ex}}
+\newenvironment{proofof}[1]{\vspace{1ex}\noindent{\bf Proof of #1.}}{\hspace*{\fill}$\blacksquare$\vspace{1ex}}
+\renewenvironment{proof}{\vspace{1ex}\noindent{\bf Proof.}}{\hspace*{\fill}$\blacksquare$\vspace{1ex}}
+\DeclareMathOperator{\Var}{Var}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %								For leaving comments to each other:								  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -284,9 +288,28 @@
 \maketitle
 
 \begin{abstract}
-In this paper we consider the clustering coefficient, and clustering function in a random graph model proposed by Krioukov et al.~in 2010. In this model, nodes are chosen randomly inside a disk in the hyperbolic plane and two nodes are connected if they are at most a certain hyperbolic distance from each other. It has been previously shown that this model has various properties associated with complex networks, including a power-law degree distribution, ``short distances'' and a non-vanishing clustering coefficient. The model is specified using three parameters: the number of nodes $n$, which we think of as going to infinity, and $\alpha, \nu > 0$, which we think of as constant. Roughly speaking, the parameter $\alpha$ controls the power law exponent of the degree sequence and $\nu$ the average degree.
+In this paper we consider the clustering coefficient, and clustering function in a random graph model proposed by Krioukov et al.~in 2010. 
+In this model, nodes are chosen randomly inside a disk in the hyperbolic plane and two nodes are connected if they are at most a certain 
+hyperbolic distance from each other. It has been previously shown that this model has various properties associated with complex networks, 
+including a power-law degree distribution, ``short distances'' and a non-vanishing clustering coefficient. 
+The model is specified using three parameters: the number of nodes $n$, which we think of as going to infinity, and $\alpha, \nu > 0$, 
+which we think of as constant. Roughly speaking, the parameter $\alpha$ controls the power law exponent of the degree sequence 
+and $\nu$ the average degree.
 
-Here we show that the clustering coefficient tends in probability to a constant $\gamma$ that we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. This improves earlier work by Gugelmann et al., who proved that the clustering coefficient remains bounded away from zero with high probability, but left open the issue of convergence to a limiting constant. Similarly, we are able to show that $c(k)$, the average clustering coefficient over all vertices of degree exactly $k$, tends in probability to a limit $\gamma(k)$ which we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. We are able to extend this last result also to sequences $(k_n)_n$ where $k_n$ grows as a function of $n$. Our results show that $\gamma(k)$ scales differently, as $k$ grows, for different ranges of $\alpha$. More precisely, there exists constants $Q_{\alpha,\nu}$ depending on $\alpha$ and $\nu$, such that as $k \to \infty$, $\gamma(k) \sim Q_{\alpha,\nu} k^{2 - 4\alpha}$ if $\frac{1}{2} < \alpha < \frac{3}{4}$, $\gamma(k) \sim Q_{\alpha,\nu} \log(k) k^{-1} $ if $\alpha=\frac{3}{4}$ and $\gamma = Q_{\alpha,\nu} k^{-1}$ when $\alpha > \frac{3}{4}$. These results contradict a prediction of Krioukov et al., which stated that the limiting values $\gamma(k)$ should always scale with $k^{-1}$ as we let $k$ grow. 
+Here we show that the clustering coefficient tends in probability to a constant $\gamma$ that we give explicitly as a closed form 
+expression in terms of $\alpha, \nu$ and certain special functions. 
+This improves earlier work by Gugelmann et al., who proved that the clustering coefficient remains bounded away from zero 
+with high probability, but left open the issue of convergence to a limiting constant. Similarly, we are able to show that 
+$c(k)$, the average clustering coefficient over all vertices of degree exactly $k$, tends in probability to a limit 
+$\gamma(k)$ which we give explicitly as a closed form expression in terms of $\alpha, \nu$ and certain special functions. 
+We are able to extend this last result also to sequences $(k_n)_n$ where $k_n$ grows as a function of $n$. 
+Our results show that $\gamma(k)$ scales differently, as $k$ grows, for different ranges of $\alpha$. 
+More precisely, there exists constants $c_{\alpha,\nu}$ depending on $\alpha$ and $\nu$, such that as $k \to \infty$, 
+$\gamma(k) \sim c_{\alpha,\nu} \cdot k^{2 - 4\alpha}$ if $\frac{1}{2} < \alpha < \frac{3}{4}$, 
+$\gamma(k) \sim c_{\alpha,\nu} \cdot \log(k) \cdot k^{-1} $ 
+if $\alpha=\frac{3}{4}$ and $\gamma(k) \sim c_{\alpha,\nu} \cdot k^{-1}$ when $\alpha > \frac{3}{4}$. 
+These results contradict a conjecture of Krioukov et al., which stated that the limiting values $\gamma(k)$ should always scale 
+with $k^{-1}$ as we let $k$ grow. 
 \end{abstract}
 
 \newpage
@@ -299,11 +322,11 @@ Here we show that the clustering coefficient tends in probability to a constant 
 
 \input{preliminaries}
 
-\input{hyperbolic_degrees}
-
 \input{clustering_infinite_model}
 
 \input{proofs_finite_k}
+
+\input{hyperbolic_degrees}
 
 \input{proofs_infinite_k}
 
@@ -313,10 +336,9 @@ Here we show that the clustering coefficient tends in probability to a constant 
 
 \input{coupling}
 
-\TM{ Maybe a ``conclusion and further work'' section here,  before the references and appendix? \\
-Also, appendix usually comes after references in my experience.}
 
-\paragraph{Acknowledgments} We are grateful to Dmitri Krioukov for pointing us to the problem of local clustering in this model and his helpful insights during discussions of the topic.
+\paragraph{Acknowledgments} We are grateful to Dmitri Krioukov for pointing us to the problem of local clustering in this model 
+and his helpful insights during discussions of the topic.
 
 \bibliographystyle{plain}
 \bibliography{references}

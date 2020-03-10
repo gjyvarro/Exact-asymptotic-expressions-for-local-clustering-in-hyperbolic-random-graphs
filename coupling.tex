@@ -488,7 +488,7 @@ Note that on $\Kcal_{C}(k_n)$ we have that $e^{ty} = \bigT{k_n^{2t}}$. Hence, by
 
 To keep notation concise we abbreviate $\Exp{N_{\Po}(k_n)}$ and $\Exp{\Nbox(k_n)}$ by $\expH$ and $\expP$, respectively. We will also suppress the subscript $n$ in most expressions regarding the graphs $\GPo$ and $\Gbox$. Finally we will write 
 \[
-	T_{\Po}(p) = \sum_{(p_1, p_2) \in \Pcal \setminus \{p\}}^{\ne} T_{\Po}(p,p_1,p_2),
+	T_{\Po}(p) = \sum_{(p_1, p_2) \in \Pcal \setminus \{p\}, \atop \text{distinct}} T_{\Po}(p,p_1,p_2),
 \] 
 with
 \[
@@ -568,16 +568,16 @@ We shall proceed by expanding the integrand and analyzing the individual terms. 
 
 
 
-We need to split the integrand over several terms and then analyze each of these separately. Applying the Campbel-Mecke formula yields
+We need to split the integrand over several terms and then analyze each of these separately. Applying the Campbell-Mecke formula yields
 \begin{align*} 
  &\hspace{-30pt}\Exp{ \left| \ind{\mathrm{deg}_{\Po}(y) = k_n} P_{\Po}(y)
         - \ind{\mathrm{deg}_{\infty}(y) = k_n}  \widetilde{T}_{\mathrm{box}}(y)
         \right|}\leq \\
- & {\mathbb E} \left[ \sum_{(p_1,p_2) \in \Pcal \setminus \{(0,y)\}}^{\not =} 
+ & {\mathbb E} \left[ \sum_{(p_1,p_2) \in \Pcal \setminus \{(0,y)\}, \atop \text{distinct}}
   \left| D_{\Po}(y,k_n-2; \Pcal \setminus \{p_1,p_2 \}) T_{\Po}(y,p_1,p_2) \right. \right.\\
   & \hspace{5cm} 
 \left. \left. - D_{\text{box}} (y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \widetilde{T}_{\text{box}}(y,p_1,p_2)
-   \right| \vphantom{\sum_{p_1,p_2 \in \Pcal \setminus \{(0,y)\}}^{\not =}}\right],
+   \right| \vphantom{\sum_{p_1,p_2 \in \Pcal \setminus \{(0,y)\}, \atop \text{distinct}}}\right],
 \end{align*}
 where the sum ranges over all distinct pairs of points in $\Pcal \setminus \{ (0,y)\}$. In what follows, we will set $\BallSym{p'} = \BallHyp{p'} \bigtriangleup (\BallPo{p'} \cap \Rcal)$ and $\BallInter{p'} =\BallHyp{p'} \cap \BallPon{p'}$ and observe that $\BallInter{y} = \BallHyp{y} \cap \BallPo{y}$. We will now bound the sum that is inside the expectation.
 We will split the sum into different parts, depending on combinations of $p_1, p_2\in \Pcal \setminus \{(0,y)\}$ for which only one of the two terms of the difference is non-zero. Clearly, for this we need that either $p_1 \in \BallInter{y}$ and $p_2 \in \BallSym{p_1}$ or $p_1 \in \BallSym{y}$ and $p_2 \in \BallInter{p_1}$. We will consider the following four cases:
@@ -613,31 +613,31 @@ Observe that when $y_1 < (1-\eps ) R \wedge (R-y)$ and $y_2 \ge (1-\eps ) R \wed
 %\end{enumerate}
 We can now bound the sum by the following expression:
 \begin{align} 
-	&\sum_{(p_1,p_2) \in \Pcal \setminus \{(0,y)\}}^{\not =} 
+	&\sum_{(p_1,p_2) \in \Pcal \setminus \{(0,y)\}, \atop \text{distinct}}
 	  \left| D_{\Po}(y,k_n-2; \Pcal \setminus \{p_1,p_2 \}) T_{\Po} (y,p_1,p_2) \right. \notag \\
 	& \hspace{5cm} \left. - D_{\text{box}} (y,k_n-2;\Pcal \setminus \{p_1,p_2\}) \widetilde{T}_{\text{box}} (y,p_1,p_2)
 	   \right|  \notag \\
-	&\le \hspace{-15pt} \sum_{p_1,p_2\in \Pcal \setminus \{(0,y)\} \atop  y_1, y_2 < (1-\eps)R \wedge (R-y)}^{\ne}
+	&\le \hspace{-15pt} \sum_{p_1,p_2\in \Pcal \setminus \{(0,y)\} \atop  y_1, y_2 < (1-\eps)R \wedge (R-y), \atop \text{distinct}}
 		\hspace{-10pt} \ind{p_1 \in \BallInter{y}} \cdot \ind{p_2 \in \BallSym{p_1}} 
 		\, D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_1}\\
-	&\hspace{10pt}+ \hspace{-15pt} \sum_{p_1,p_2\in \Pcal \setminus \{(0,y)\} \atop  y_1, y_2 < (1-\eps)R \wedge (R-y)}^{\ne} 
+	&\hspace{10pt}+ \hspace{-15pt} \sum_{p_1,p_2\in \Pcal \setminus \{(0,y)\} \atop  y_1, y_2 < (1-\eps)R \wedge (R-y), \atop \text{distinct}}
 		\hspace{-10pt} \ind{p_1 \in \BallInter{y}} \cdot \ind{p_2 \in \BallSym{p_1}} 
 		\, D_{\text{box}} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_2}\\
 	&\hspace{10pt}+  \hspace{-15pt} \sum_{p_1,p_2 \ \in \Pcal \setminus \{(0,y) \} 
-		\atop y_1 \geq (1-\eps) R \wedge (R-y)}^{\ne} \hspace{-10pt}
+		\atop y_1 \geq (1-\eps) R \wedge (R-y), \atop \text{distinct}} \hspace{-10pt}
 		\ind{p_1 \in \BallInter{y}} \cdot \ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}} 
 		\, D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_3} \\
 	&\hspace{10pt}+ \hspace{-15pt} \sum_{p_1,p_2 \ \in \Pcal \setminus \{(0,y) \} 
-		\atop y_1 \geq (1-\eps) R \wedge (R-y)}^{\ne} \hspace{-10pt}
+		\atop y_1 \geq (1-\eps) R \wedge (R-y), \atop \text{distinct}} \hspace{-10pt}
 		\ind{p_1 \in \BallInter{y}} \cdot \ind{p_2 \in \BallSym{p_1}\cap \BallHyp{y}} 
 		\, D_{\text{box}} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_4} \\
 	&\hspace{10pt}+ \hspace{-10pt} \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} 
-		\atop y(p_1) \geq K}^{\ne} \hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
+		\atop y(p_1) \geq K, \atop \text{distinct}} \hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
 		\, D_{\Po} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_5}\\
 	&\hspace{10pt}+ \hspace{-10pt} \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} 
-			\atop y(p_1) \geq K}^{\ne} \hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
+			\atop y(p_1) \geq K, \atop \text{distinct}} \hspace{-10pt} \ind{p_1\in \BallHyp{y}\setminus \BallPo{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}} 
 			\, D_{\text{box}} (y,k_n-2;\Pcal \setminus \{ p_1,p_2\}) \label{eq:sum_5b}\\
-	&\hspace{10pt}+ \hspace{-10pt} \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop \ y(p_1) < K}^{\ne}
+	&\hspace{10pt}+ \hspace{-10pt} \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop \ y(p_1) < K, \atop \text{distinct}}
 		\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}. \label{eq:sum_6}
 %& +  \sum_{p_1,p_2 \in \Pcal \setminus \{(0,y)\}}^{\not =} \ind{p_1,p_2 \in \BallHyp{(0,y)}\cup \BallPo{(0,y)}} \cdot 
 %D_{\Po}(y,k_n-2; \Pcal \setminus \{ p_1,p_2\})  \cdot 
@@ -1562,7 +1562,7 @@ since $k_n = o(n^{1/2})$ and hence~\eqref{eq:int3_to_prove_II} holds. This finis
 %\end{equation*}
 Using the Campbell-Mecke formula, we write 
 \begin{align*}
-	&\hspace{-30pt}\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\}, \ y_1 < K}^{\ne}
+	&\hspace{-30pt}\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\}, \ y_1 < K, \atop \text{distinct}}
 		\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}}\\
 	&\leq  \int_0^K \int_{-I_n}^{I_n}  \int_0^{R} \int_{-I_n}^{I_n}
 		\ind{p_1 \in \BallSym{y}} 
@@ -1584,13 +1584,13 @@ Therefore,
 \]
 and hence
 \begin{align*}
-	\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}^{\ne}
+	\Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K, \atop \text{distinct}}
 	\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}} 
 	= O(1) \cdot e^{2y - R}.
 \end{align*}
 Now, we integrate this over $y$ to obtain that
 \begin{align*}
-	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K}^{\ne}
+	&\hspace{-30pt}\int_{\Kcal_{C}(k_n)} \Exp { \sum_{p_1,p_2 \in\Pcal \setminus \{(0,y)\} \atop y_1 < K, \atop \text{distinct}}
 		\ind{p_1\in \BallSym{y}} \ind{p_2\in \BallHyp{y}\cap \BallPo{y}}} e^{-\alpha y} \dd y\\
 	&= O(1) e^{-R} \int_{\Kcal_{C}(k_n)} e^{2y -\alpha y} \dd y
 		= O(1) n^{-2}

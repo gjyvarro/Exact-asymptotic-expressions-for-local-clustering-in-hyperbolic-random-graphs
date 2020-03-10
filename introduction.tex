@@ -27,9 +27,7 @@ where $|a|_{b} = \min( |a|, b - |a|)$ for $-b\leq a\leq b$.
 \begin{figure}[!t]
 \centering
 \includegraphics[scale=0.3]{figures/KPKVB.png}
-\caption{Simulation $G(n;\alpha, \nu)$ with $\alpha = 0.9$, $\nu = 0.2$ and $n = 5000$.
-%\PvdH{@Tobias: this figure (HyperRGG\_N5000L5.eps) is taken from the figures you send me. Could you fill in the value of $\alpha$ and $\nu$ you used for the simulation.}
-}
+\caption{Simulation $G(n;\alpha, \nu)$ with $\alpha = 0.9$, $\nu = 0.2$ and $n = 5000$.}
 \label{fig:H_graph_example}
 \end{figure}
 
@@ -37,35 +35,21 @@ where $|a|_{b} = \min( |a|, b - |a|)$ for $-b\leq a\leq b$.
 Figure~\ref{fig:H_graph_example} shows a computer simulation of $G(n;\alpha, \nu)$.
 
 
-As observed by Krioukov et al.~\cite{krioukov2010hyperbolic}, and proved rigorously by Gugelmann et al.~\cite{gugelmann2012random}, the degree sequence of the KPKVB model follows a power-law with exponent $2\alpha+1$.
-% More specifically, if $N_k$ denotes the number of vertices of degree exactly $k$ then Gugelmann et al.~\cite{gugelmann2012random} have shown that
-% 
-% \begin{equation}\label{eq:gugeldegseq} 
-% N_k = (1+o(1)) \cdot n \cdot p_k \quad \text{ a.a.s., }
-% \end{equation}
-% 
-% \noindent
-% where $p_k := 2\alpha \cdot \xi^{2\alpha} \cdot \Gamma^+\left(k - 2\alpha, \xi\right) / k!$
-% with, here and in the rest of the paper, $\xi := \frac{4\alpha\nu}{\pi(2\alpha-1)}$ and 
-% $\Gamma^+(a,b) := \int_b^\infty t^{a-1} e^{-t} \text{d}t$ the 
-% {\em upper incomplete gamma function} and, for $(E_n)_n$ a sequence of events, 
-% $E_n$ {\em asymptotically almost surely} (a.a.s.) means that $\Pee(E_n)\to 1$.
-%%In particular $X_n = (1+o(1)) Y_n$ is equivalent to $X_n/Y_n \plim 1$.
-%In fact~\eqref{eq:gugeldegseq} was shown in~\cite{gugelmann2012random} to hold not only when $k$ is constant but 
-%also if $k$ depends on $n$ as long as $k = o( n^\delta )$ for a suitable small constant $\delta = \delta( \alpha )$.
-%Standard asymptotic manipulations show that 
-%
-%$$p_k \sim 2\alpha\xi^{2\alpha} k^{-(2\alpha+1)}, $$
-%
-%as $k\to\infty$.
-%\TM{ \RD{We need to add something like the following} : 
-%In Appendix~\ref{} we settle the minor technical point of showing that~\eqref{eq:gugeldegseq} in fact extends 
-%to all $k$ with $k \ll n^{1/(2\alpha+1)}$, while 
-%$N_k = 0$ a.a.s.~whenever $k \gg n^{1/(2\alpha+1)}$. }
-Gugelmann et al.~\cite{gugelmann2012random} also showed that the average degree converges in probability to the constant $8\nu\alpha^2/ \pi (2\alpha-1)^2$, and they showed that the (local) clustering coefficient is non-vanishing in the sense that it is bounded below by a positive constant a.a.s. Here, and in the rest of the paper, for a sequence $(E_n)_n$ of events, $E_n$ {\em asymptotically almost surely} (a.a.s.) means that $\Prob{E_n} \to 1$ as $n \to \infty$. Here the events $E_n$ might be defined in different probability spaces, in which case $\Pee$ will the corresponding probability measure.
-%Their work however left open the question of whether the clustering coefficient actually converges in probability.
+As observed by Krioukov et al.~\cite{krioukov2010hyperbolic}, and proved rigorously by Gugelmann et al.~\cite{gugelmann2012random}, the 
+degree sequence of the KPKVB model follows a power-law with exponent $2\alpha+1$.
+Gugelmann et al.~\cite{gugelmann2012random} also showed that the average degree converges in probability to the 
+constant $8\nu\alpha^2/ \pi (2\alpha-1)^2$, and they showed that the (local) clustering coefficient is non-vanishing 
+in the sense that it is bounded below by a positive constant a.a.s. 
+Here, and in the rest of the paper, for a sequence $(E_n)_n$ of events, $E_n$ {\em asymptotically almost surely} (a.a.s.) means 
+that $\Prob{E_n} \to 1$ as $n \to \infty$. 
 
-Apart from the degree sequence and clustering, the third main characteristic associated with complex networks, ``short distances'', has also been established in the literature. In~\cite{abdullah2017typical} it is shown that for $\alpha < 1$ the largest component is what is called an \emph{ultra-small world}: if we randomly sample two vertices of the graph then, a.a.s., conditional on them being in the same component, their graph distance is of order $\log\log n$. In~\cite{kiwi2015bound} and~\cite{friedrich2018diameter} a.a.s.~polylogarithmic upper and lower bounds on the graph diameter of the largest component are shown, and in~\cite{muller2017diameter}, these were sharpened to show that $\log n$ is the correct order of the diameter.
+Apart from the degree sequence and clustering, the third main characteristic associated with complex networks, ``short distances'', has 
+also been established in the literature. In~\cite{abdullah2017typical} it is shown that for $\alpha < 1$ the largest component 
+is what is called an \emph{ultra-small world}: if we randomly sample two vertices of the graph then, a.a.s., conditional on them 
+being in the same component, their graph distance is of order $\log\log n$. 
+In~\cite{kiwi2015bound} and~\cite{friedrich2018diameter} a.a.s.~polylogarithmic upper and lower bounds on the graph diameter of 
+the largest component are shown, and in~\cite{muller2017diameter}, these were sharpened to show that $\log n$ is the correct order of 
+the diameter.
 
 Earlier work of the first and third authors with Bode~\cite{bode2015largest} and of the first and third authors~\cite{fountoulakis2018law} has established the ``threshold for a giant component'': if $\alpha < 1$ then there is a unique component of size linear in $n$ no matter how small $\nu$ (i.e. the average degree); if $\alpha > 1$ all components are sublinear no matter the value of $\nu$; and if $\alpha=1$ then there is a critical value $\nu_{\text{c}}$ such that for $\nu < \nu_{\text{c}}$ all components are sublinear and for $\nu > \nu_{\text{c}}$ there is a unique linearly sized component (all of these statements holding a.a.s.). Whether or not there is a giant component if $\alpha=1$ and $\nu=\nu_{\text{c}}$ remains an open problem. In~\cite{kiwi2015bound} and~\cite{kiwi2017second}, Kiwi and Mitsche considered the size of the second largest component and showed that for $\alpha \in (1/2, 1)$, a.a.s., the second largest component has polylogarithmic order with exponent $1/(\alpha -1/2)$.
 
@@ -104,7 +88,9 @@ This assigns to each non-negative integer $k$ the value
 where $N(k)$ denotes the number of vertices of degree exactly $k$ in $G$. In other words, the clustering function assigns to the integer $k$ the average of the local clustering coefficient over all vertices of degree $k$. We remark that, while it might seem natural to consider $c(k)$ to be ``undefined'' when $N(k)=0$, we prefer to use the above definition for technical 
 convenience.  This way $c(k; G(n;\alpha,\nu) )$ is a plain vanilla random variable and we can for instance compute its moments without any issues.
 
-A general expression of the clustering function for KPKVB random graphs is given in~\cite[Equation (59)]{krioukov2010hyperbolic}. The authors conjecture that as $k$ tends to infinity, the clustering function decays as $k^{-1}$. They based this prediction on observations (Figure 8 in \cite{krioukov2010hyperbolic}) in experiments on the infrastructure of the Internet obtained in~\cite{claffy2009internet}. Despite these interesting observations and the attention the KPKVB model has generated since then, the behaviour of the clustering function in KPKVB random graphs had not been completely determined. In particular it has not been established whether it converges as $n\to\infty$ to some suitable limit function, nor how $c(k;G(n; \alpha,\nu))$ scales with $k$. Theorems~\ref{thm:mainkfixed},~\ref{thm:mainktoinfty} and Proposition~\ref{prop:asymp} below settle these questions. Theorem~\ref{thm:mainkfixed} shows that for each fixed $k$, the value $c(k;G(n;\alpha,\nu))$ converges in probability to a constant $\gamma(k)$ that we again give explicitly as a closed form expression involving $\alpha,\nu$ and several classical special functions. Theorem~\ref{thm:mainktoinfty} extends this result to growing sequences satisfying $k \ll n^{1/(2\alpha+1)}$. Proposition~\ref{prop:asymp} clarifies the asymptotic behavior of the limiting function $\gamma(k)$, as $k\to\infty$. This depends on the parameter $\alpha$, and $\gamma(k)$ only scales with $k^{-1}$ when $\alpha > 3/4$, which corresponds to the exponent of the degree distribution exceeding $5/2$. 
+A general expression of the clustering function for KPKVB random graphs is given in~\cite[Equation (59)]{krioukov2010hyperbolic}. 
+The authors conjecture that as $k$ tends to infinity, the clustering function decays as $k^{-1}$. 
+They based this prediction on observations (Figure 8 in \cite{krioukov2010hyperbolic}) in experiments on the infrastructure of the Internet obtained in~\cite{claffy2009internet}. Despite these interesting observations and the attention the KPKVB model has generated since then, the behaviour of the clustering function in KPKVB random graphs had not been completely determined. In particular it has not been established whether it converges as $n\to\infty$ to some suitable limit function, nor how $c(k;G(n; \alpha,\nu))$ scales with $k$. Theorems~\ref{thm:mainkfixed},~\ref{thm:mainktoinfty} and Proposition~\ref{prop:asymp} below settle these questions. Theorem~\ref{thm:mainkfixed} shows that for each fixed $k$, the value $c(k;G(n;\alpha,\nu))$ converges in probability to a constant $\gamma(k)$ that we again give explicitly as a closed form expression involving $\alpha,\nu$ and several classical special functions. Theorem~\ref{thm:mainktoinfty} extends this result to growing sequences satisfying $k \ll n^{1/(2\alpha+1)}$. Proposition~\ref{prop:asymp} clarifies the asymptotic behavior of the limiting function $\gamma(k)$, as $k\to\infty$. This depends on the parameter $\alpha$, and $\gamma(k)$ only scales with $k^{-1}$ when $\alpha > 3/4$, which corresponds to the exponent of the degree distribution exceeding $5/2$. 
 So in particular our findings disprove the abovementioned conjecture of Krioukov et al.~\cite{krioukov2010hyperbolic}.
 
 
@@ -127,7 +113,9 @@ has the integral representation
 see~\cite[p.255 Equation (2)]{erdelyi1953higher}, and let $\MeijerGnew{m}{\ell}{p}{q}{{\bf a}}{{\bf b}}{z}$ denote 
 Meijer's G-Function~\cite{meijer1946gfunction}, see Appendix~\ref{sec:Meijer_G_functions} for more details.
 
-For a sequence $(X_n)_n$ of random variables, we write $X_n \xrightarrow[n\to\infty]{\Pee} X$ to denote that $X_n$ converges in probability to $X$, as $n \to \infty$.
+For a sequence $(X_n)_n$ of random variables, we write $X_n \xrightarrow[n\to\infty]{\Pee} X$ to denote that $X_n$ converges in 
+probability to $X$, and we write $X_n \xrightarrow[n\to\infty]{L_1} X$ if $X_n$ converges to $X$ in the $L_1$ sense 
+(i.e.~if $\Ee |X_n-X| \to 0$.)
 
 %We further adopt standard notations on asymptotic behavior of functions and sequences. That is, for two functions $f$ and $g$, we write $f(n) = \smallO{g(n)}$ as $n \to \infty$ if $\limsup_{n \to \infty} f(n)/g(n) = 0$ and $f(n) = \bigO{g(n)}$ as $n \to \infty$ if $\limsup_{n \to \infty} |f(n)|/g(n) < \infty$. Furthermore, $f(n) = \Omega(g(n))$ as $n \to \infty$ if $\limsup_{n \to \infty} |f(n)/g(n)| > 0$ and $f(n) = \omega(g(n))$ as $n \to \infty$ if $\limsup_{n \to \infty} |f(n)/g(n)| = \infty$. Finally, $f(n) = \bigT{g(n)}$ as $n \to \infty$ if $f(n) = \bigO{g(n)}$ and $g(n) = \Omega(f(n))$.
 
@@ -135,37 +123,10 @@ For a sequence $(X_n)_n$ of random variables, we write $X_n \xrightarrow[n\to\in
 
 \subsection{Main results}\label{ssec:main_results}
 
-Here we summarize our main results regarding the degrees and clustering in the KPKVB model.
-
-\subsubsection{Degrees}
-
-The first rigorous result on the degree distribution in the KPKVB model was given in~\cite{gugelmann2012random}, where they analyzed the fraction of nodes with degree $k$. Although their results allowed $k = k_n$ to scale with $n$ as $k_n = n^\delta$, it did not cover the full range $1 \le k_n \le n-1$. Our main result for the degrees gives this full characterization of the degree distribution.
-
-\begin{theorem}\label{thm:degrees_hyperbolic}
-Let $\alpha >\frac{1}{2}$, denote by $N_n(k)$ the number of vertices with degree $k$ in the KPKVB model $G(n;\alpha,\nu)$ and consider a sequence of integers $k_n$ with $0 \leq k_n \leq n-1$.
-\begin{enumerate}
-\item If $k_n =\smallO{n^{\frac{1}{2\alpha+1}}}$ as $n\rightarrow \infty$, then a.a.s.
-\[
-	N_n(k_n) =(1+o(1)) n p_{k_n},
-\]
-where
-\[
-	p_{k_n} = \int_0^\infty \Pee(Po(\xi e^{\frac{y}{2}})=k_n)\alpha e^{-\alpha y}dy,
-\]
-and $p_{k_n}=\frac{2\alpha \xi^{2\alpha}\Gamma^+(k_n-2\alpha,\xi)}{k_n!}=(1+o(1)) 2\alpha \xi^{2\alpha} k_n^{-(2\alpha+1)}$ as $k_n \rightarrow \infty$.
-\item If $k_n = (1+o(1))c n^{\frac{1}{2\alpha+1}}$ for some fixed $c >0$, then
-\[
-	N_n(k_n) \xrightarrow[n\rightarrow\infty]{d} \operatorname{Po}(2\alpha \xi^{2\alpha} c^{-(2\alpha+1)}).
-\]
-\item If $k_n \gg n^{\frac{1}{2\alpha+1}}$, then a.a.s. $N_n(k_n) = 0$.
-\end{enumerate}
-\end{theorem}
-
-The first result of Theorem~\ref{thm:degrees_hyperbolic} states that the fraction of nodes of degree $k_n$ converges to $p_{k_n}$. Not surprisingly, the limit distribution is the same as found in~\cite{gugelmann2012random}. However, their this result was proved only for $k_n \le n^{\delta^\prime}$, where $\delta^\prime < \min\left\{\frac{2\alpha-1}{4\alpha(2\alpha +1)}, \frac{2(2\alpha -1)}{5(2\alpha + 1)}\right\} < \frac{1}{2\alpha + 1}$. Therefore, our result extends theirs by showing that this converges holds all the way till $n^{\frac{1}{2\alpha + 1}}$ . Moreover, we establish what happens at the boundary, where $k_n$ scales as $n^{\frac{1}{2\alpha + 1}}$ and show that this scaling is indeed the bound for the distribution since $N_n(k_n) = 0$ a.a.s. when $k_n$ grows faster than $n^{\frac{1}{2\alpha + 1}}$.
-
 \subsubsection{The clustering coefficient}
 
-Our first result on the clustering shows the convergence of the local clustering coefficient in the KPKVB model and establishes the limit exactly.
+Our first main result shows the convergence of the local clustering coefficient in the KPKVB model and 
+establishes the limit exactly.
 
 \begin{theorem}\label{thm:clustering_coefficient_hyperbolic}\label{thm:maincc}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ be fixed. Writing $G_n := G(n;\alpha,\nu)$, we have
@@ -219,12 +180,13 @@ A plot of $\gamma$ can be found in Figure~\ref{fig:gamma}.
 \end{figure}
 
 In the above expression for $\gamma$, a factor $\alpha-1$ occurs in the denominator of each term, but we will see that this
-corresponds to a removable singularity. We have not been able to find a closed form expression in terms of known functions in the case when $\alpha=1$, but in Section~\ref{ssec:alphais1} we do provide an explicit expression involving integrals.
+corresponds to a removable singularity. We have not been able to find a closed form expression in terms of standard functions in the case 
+when $\alpha=1$, but in Section~\ref{ssec:alphais1} we do provide an explicit expression involving integrals.
 
 
 \subsubsection{The clustering function}
 
-Our second result is on the clustering function for constant $k$.
+Our second main result is on the clustering function for constant $k$.
 
 \begin{theorem}\label{thm:local_clustering_hyperbolic}\label{thm:mainkfixed}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$ and $k\geq2$ be fixed. 
@@ -232,9 +194,6 @@ Writing $G_n := G(n;\alpha,\nu)$, we have
 
 \[
 	c(k;G_n) \xrightarrow[n\to\infty]{\Pee} \gamma(k),
-\]
-\[
-	\lim_{n \to \infty} \Exp{\left|\frac{c(k;G_n)}{\gamma(k)} - 1\right|} = 0.
 \]
 where $\gamma(k)$ is defined for $\alpha \ne 1$ as 
 \begin{align*}
@@ -246,112 +205,172 @@ where $\gamma(k)$ is defined for $\alpha \ne 1$ as
 &\left.- \xi^{4\alpha-2} \Gamma(2\alpha+1)\MeijerGnew{3}{0}{2}{3}{1,3-2\alpha}{3-4\alpha,-6\alpha+k+2,0}{\xi}  \right)
 \end{align*}
 and for $\alpha = 1$ as the $\alpha\to1$ limit of the above expression.
-% \begin{align*}
-% 	c_\infty(k) &= \frac{9 \eta^3}{2 k!} 	
-% 		\Gamma^+(k-3,\eta)-\frac{\xi^4}{k!}\frac{7+\pi^2}{4}\Gamma^+(k-4,\eta)\\
-% 	&\hspace{10pt}+ \frac{\eta^k}{2k!}\int_0^1 (1-4z+3z^2)\ln(1-z)z^{1-k}e^{-\eta/z}\dd z\\ 
-% 	&\hspace{10pt}+ \frac{\eta^k}{k!}\int_0^1 z^{3-k} \Li_2(z) e^{-\eta/z} \dd z,
-% \end{align*}
-% with $\eta = 4\nu/\pi$ and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm function.
 \end{theorem}
 
 \noindent
 A plot of $\gamma(k)$ can be found in Figure~\ref{fig:gammak}. %
 %
 %
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.6]{figures/ckn10000a08nu0512rep100k2to25Squares.pdf}
     \caption{Plot $\gamma(k)$ for $k$ varying from 2 to 25 on the horizontal axis, for $\alpha=0.8$ and $\nu=\frac{1}{2}$ 
     (blue), $\nu=1$ (purple), $\nu=2$ (green); simulations (squares in corresponding colour) with $n=10000$ and $100$ repetitions.\label{fig:gammak}}
 \end{figure}%
 %
-Again, we remark that the above expression for $\gamma(k)$ appears to have a singularity at $\alpha=1$, but this will turn out to be a removable singularity. Again, we have not been able to find a closed form expression in terms of known functions in the case when $\alpha=1$, but in Section~\ref{ssec:alphais1} we do provide an explicit expression involving integrals.
+Again, we remark that the above expression for $\gamma(k)$ appears to have a singularity at $\alpha=1$, but this will turn out to be a removable singularity. 
+Again, we have not been able to find a closed form expression in terms of standard functions in the case when $\alpha=1$, but in 
+Section~\ref{ssec:alphais1} we do provide an explicit expression involving integrals.
 
 Theorem~\ref{thm:mainkfixed} in fact generalises to increasing sequences $(k_n)_{n \ge 1}$.
 
 \begin{theorem}\label{thm:mainktoinfty}
 Let $\alpha>\frac12, \nu>0$ be fixed and let $k_n$ be a sequence of non-negative integers
 satisfying $1 \ll k_n \ll n^{1/(2\alpha+1)}$. Then, writing $G_n := G(n;\alpha,\nu)$, we have
-\[
-	\E[|c(k_n;G_n)-\gamma(k_n)|] = \smallO{\gamma(k_n)},
-\]
-as $n \to \infty$, where $\gamma(\cdot)$ is as in Theorem~\ref{thm:mainkfixed}. In particular
-\[
-	\lim_{n \to \infty} \Exp{\left|\frac{c(k_n; G_n)}{\gamma(k_n)}- 1 \right|} = 0.
-\]
+
+$$ \frac{c(k_n;G_n)}{\gamma(k_n)} \xrightarrow[n\to\infty]{L_1} 1. $$ 
+
 \end{theorem}
+
+\noindent
+The conclusion of Theorem~\ref{thm:mainktoinfty} is slightly stronger than $c(k_n; G_n)/\gamma(k_n) 
+\xrightarrow[n\to\infty]{\Pee} 1$, which might alternatively be written as $c(k_n;G_n) = (1+o(1)) \gamma(k_n)$ a.a.s., using notation that is common in the random graphs community.
 
 
 \subsubsection{Scaling of $\gamma(k)$}
 
-To clarify the scaling behaviour of $\gamma(k)$ with $k$ we offer the following result.
+
+To clarify the scaling behaviour of $\gamma(k)$ we offer the following result.
 
 \begin{proposition}\label{prop:asymp}
 As $k\to\infty$, we have
 
 $$ \gamma(k) = 
-(1+o(1)) \cdot \left\{ \begin{array}{cl}
-\frac{8\alpha \nu}{\pi\left(4\alpha - 3\right)} \cdot k^{-1} &\text{ if } \alpha > \frac{3}{4}, \\
-\frac{6 \nu}{\pi} \cdot \frac{\log(k)}{k}& \text{ if } \alpha = \frac{3}{4},\\
- c_{\alpha} \cdot k^{2-4\alpha} & \text{ if } \frac12 < \alpha < \frac34, 
+\left\{ \begin{array}{ll}
+(c_{\alpha,\nu}+o(1)) \cdot k^{-1} &\text{ if } \alpha > \frac{3}{4}, \\
+(c_{\alpha,\nu}+o(1)) \cdot \frac{\log(k)}{k}& \text{ if } \alpha = \frac{3}{4},\\
+(c_{\alpha,\nu}+o(1)) \cdot k^{2-4\alpha} & \text{ if } \frac12 < \alpha < \frac34, 
 \end{array} \right.,
 $$
-where $c_{\alpha} := \left( \frac{3\alpha - 1}{2^{4\alpha+1}\alpha(\alpha-1)^2} 
+where 
+
+$$ c_{\alpha,\nu} := 
+\left\{ \begin{array}{cl}
+8\alpha \nu / (\pi\left(4\alpha - 3\right)) & \text{ if } \alpha > \frac{3}{4}, \\
+6 \nu / \pi & \text{ if } \alpha = \frac{3}{4},\\
+ \left( \frac{3\alpha - 1}{2^{4\alpha+1}\alpha(\alpha-1)^2} 
 	+ \frac{(\alpha - \frac{1}{2})B^-(\frac{1}{2},2\alpha + 1, 2\alpha - 2)}{2(\alpha - 1)\alpha} 
-	- \frac{B(2\alpha, 3\alpha - 4)}{4(\alpha - 1)} \right)  \cdot \xi^{4\alpha-2}$.
+	- \frac{B(2\alpha, 3\alpha - 4)}{4(\alpha - 1)} \right)  \cdot \xi^{4\alpha-2} 
+	& \text{ if } \frac12 < \alpha < \frac34.
+\end{array} \right. $$
 \end{proposition}
 
-Note that Theorem~\ref{thm:mainktoinfty} implies that the clustering function of the KPKVB model scales as $\gamma(k)$ as $k$ grows, whose scaling is given in the above result. In particular, this contradicts the scaling conjectured in~\cite{krioukov2010hyperbolic} for $\alpha \leq \frac{3}{4}$, and confirms it only for $\alpha > \frac{3}{4}$.
+Theorem~\ref{thm:mainktoinfty} states that the clustering function of the KPKVB model scales as $\gamma(k)$ as the number of vertices $n\to\infty$, and
+Proposition~\ref{prop:asymp} makes clear how $\gamma(k)$ behaves as $k$ grows.
+In particular, these results contradict the scaling conjectured in~\cite{krioukov2010hyperbolic} for 
+$\alpha \leq \frac{3}{4}$, and confirms it only for $\alpha > \frac{3}{4}$.
 
 We remark that simultaneously and independently Stegehuis, van der Hofstad and van Leeuwaarden~\cite{stegehuis2019scale} used a completely different technique to obtain a similar, though less detailed, result on the $k\to\infty$ scaling of the clustering function in the KPKVB model.
 
-\subsection{Observations}
 
-There are a few other observation to be made regarding our results on clustering.
+\subsection{Additional observations and results}
 
-\paragraph{Uniform convergence.}
 
-Our results for the local clustering function in particular imply uniform convergence of $c(k; G_n)$ for all $2 \le k \le a_n$ where $a_n \ll n^{\frac{1}{2\alpha + 1}}$. To see this let
+There are a few additional remarks we would like to make regarding our results.
+
+\subsubsection{The degree distribution and the range of $k_n$ in Theorem~\ref{thm:mainktoinfty}}
+
+The reader may already have observed that, with a power law exponent of $2\alpha+1$ for the probability mass function of 
+the degree sequence, we would expect $\Theta( n \cdot k^{-(1+2\alpha)} ) = o(1)$ vertices of degree {\em exactly} $k$ whenever
+$k \gg n^{1/(1+2\alpha)}$.
+
+This is the reason why in Theorem~\ref{thm:mainktoinfty} we restrict ourselves to 
+sequences $k_n$ with $k_n \ll n^{1/(1+2\alpha)}$. 
+When  $k_n \gg n^{1/(1+2\alpha)}$ there are no vertices of degree exactly $k_n$ a.a.s., which in particular
+implies that the clustering function equals zero a.a.s.~for any such sequence $k_n$.
+%When $k_n$ is of the same order as $n^{1/(1+2\alpha)}$ then the probability that there are no vertices of degree exactly $k_n$
+%stays bounded away from zero.
+
+As mentioned previously, Gugelmann et al.~\cite{gugelmann2012random} gave a mathematically rigorous result on the degree sequence, which can of course be rephrased as a result on the number of nodes with degree exactly $k$. 
+Their results allow $k = k_n$ to grow with $n$, but unfortunately require that $k_n \leq n^\delta$ with 
+$\delta < \min\left\{\frac{2\alpha-1}{4\alpha(2\alpha +1)}, \frac{2(2\alpha -1)}{5(2\alpha + 1)}\right\} < \frac{1}{2\alpha + 1}$.
+For completeness we offer the following result, which extends that of Gugelmann et al.~to the full range $1 \le k_n \le n-1$. 
+
+\begin{theorem}\label{thm:degrees_hyperbolic}
+Let $\alpha >\frac{1}{2}, \nu > 0$, denote by $N_n(k)$ the number of vertices with degree $k$ in the KPKVB model $G(n;\alpha,\nu)$ and 
+consider a sequence of integers $(k_n)_n$ with $0 \leq k_n \leq n-1$.
+\begin{enumerate}
+\item If $k_n \ll n^{\frac{1}{2\alpha+1}} $ as $n\rightarrow \infty$, then a.a.s.
+
+$$N_n(k_n) = (1+o(1)) \cdot n \cdot \pmf(k_n),$$
+
+where $\pmf(k_n) = 2\alpha \xi^{2\alpha}\Gamma^+(k_n-2\alpha,\xi)/k_n!$.
+
+\item If $k_n = (1+o(1))c n^{\frac{1}{2\alpha+1}}$ for some fixed $c >0$, then
+
+$$ N_n(k_n) \xrightarrow[n\rightarrow\infty]{d} \operatorname{Po}(2\alpha \xi^{2\alpha} c^{-(2\alpha+1)}). $$
+
+\item If $k_n \gg n^{\frac{1}{2\alpha+1}}$, then a.a.s. $N_n(k_n) = 0$.
+\end{enumerate}
+\end{theorem}
+
+
+
+
+\subsubsection{Transition in scaling at $\alpha = 3/4$.}
+
+
+Proposition~\ref{prop:asymp} demonstrates that there is a transition in the scaling of the local clustering 
+function at $\alpha = 3/4$. 
+This corresponds to an exponent $5/2$ for the probability mass function of the degree distribution. 
+This transition is different from those often observed for networks with scale-free degree distributions, where transitions occur at
+integer values of the exponent. 
+At this point, it is unclear what the underlying reason is for the appearance of the transition at this particular half integer 
+exponent. 
+Interestingly, a similar transition point has also been observed for both majority vote models~\cite{chen2015critical} and 
+flocking dynamics~\cite{miguel2018effects} on networks with scale-free degree degree distributions.
+
+
+\subsubsection{Uniform convergence.}
+
+Our results for the local clustering function in fact imply uniform convergence of $c(k; G_n)$ for all $2 \le k \le a_n$ 
+where $a_n \ll n^{\frac{1}{2\alpha + 1}}$. 
+To see this we first observe that for {\em fixed} $k$, the statement $c(k;G_n) \xrightarrow[n\to\infty]{\Pee} \gamma(k)$
+is equivalent to $c(k;G_n)/\gamma(k) \xrightarrow[n\to\infty]{L_1} 1$.
+Now let
 \[
 	b_n = \arg \max_{2 \le k \le a_n} \Exp{\left|\frac{c(k; G_n)}{\gamma(k)} - 1\right|}.
 \]
-Then $b_n \le a_n \ll n^{\frac{1}{2\alpha + 1}}$ and therefore by Theorem~\ref{thm:mainktoinfty}
+Then $b_n \le a_n \ll n^{\frac{1}{2\alpha + 1}}$ and therefore by Theorem~\ref{thm:mainkfixed} and Theorem~\ref{thm:mainktoinfty}
 \[
 	\lim_{n \to \infty} \max_{2 \le k \le a_n} \Exp{\left|\frac{c(k; G_n)}{\gamma(k)} - 1\right|} 
 	= \lim_{n \to \infty}\Exp{\left|\frac{c(b_n; G_n)}{\gamma(b_n)} - 1\right|} = 0.
 \]
 
 
-\paragraph{Near maximum scaling for $k_n$.}
-Our results for the clustering function in the KPKVB model are valid for any sequence of non-negative integers $k_n \to \infty$ such that $k_n \ll n^{\frac{1}{2\alpha + 1}}$. Although one would like to have results for any sequence $k_n \le n-1$, it turns out that $n^{1/(2\alpha + 1)}$ is the near maximum scaling for which Theorem~\ref{thm:clustering_coefficient_hyperbolic} can be true. To see why this is the case note that by definition of the local clustering function~\eqref{eq:def_clustering_function} we have that $c(k_n; G_n) = 0$ if $N_{n}(k_n) = 0$, where $N_n(k_n)$ denotes the number of vertices in a KPKVB graph $G(n; \alpha, \nu)$ with degree $k_n$. It follows by Markov's inequality that for any positive function $f : \R_+ \to \R_+$
-\begin{align*}
-	\Exp{\left|\frac{c(k_n; G_n)}{f(k_n)} - 1\right|} 
-	&\ge \Exp{\left|\frac{c(k_n; G_n)}{f(k_n)} - 1\right|\ind{N_n(k_n) = 0}}\\ 
-	&\ge \Prob{N_{n}(k_n) = 0} \ge 1 - \Exp{N_n(k_n)}.
-\end{align*}
-We shall later establish (see Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}) that $\Exp{N_n(k_n)}$ scales as $n k_n^{-(2\alpha + 1)}$. Therefore if $k_n$ is such that $k_n^{-(2\alpha + 1)} n$ tends to zero as $n \to \infty$ we have that 
-\[
-	\lim_{n \to \infty} \Exp{N_{n}(k_n)} = 0
-\]
-and hence
-\[
-	\lim_{n \to \infty} \Exp{\left|\frac{c(k_n; G_n)}{f(k_n)} - 1\right|} 
-	\ge 1 - \lim_{n \to \infty} \Exp{N_{n}(k_n)} = 1 \ne 0,
-\]
-for any positive function $f$. This implies that we cannot expect a result like that of Theorem~\ref{thm:mainktoinfty} to hold as soon as $k_n \gg n^{\frac{1}{2\alpha + 1}}$.
-
-\paragraph{Transition in scaling at $\bm{\alpha = 3/4}$.}
-
-It follows from Proposition~\ref{prop:asymp} that there is a transition in the scaling of the local clustering function at $\alpha = 3/4$. This corresponds to an exponent $5/2$ for the probability mass function of the degree distribution. This transition is different from those often observed for networks with scale-free degree distributions, where transitions occur at integer values of the exponent. At this point, it is unclear what the underlying reason is for the appearance of the transition at this half exponent. Interestingly, a similar transition point has also been observed for both majority vote models~\cite{chen2015critical} and flocking dynamics~\cite{miguel2018effects} on networks with scale-free degree degree distributions.
 
 \subsection{Outline of the paper}
 
 
-In the next section we will recall some useful tools from the literature and define a series of auxiliary random graph models that will be used in the proofs. In particular, we relate in a series of steps the KPKVB model to an infinite percolation model $\Ginf$ that was used in previous work of the first and third authors~\cite{fountoulakis2018law} on the largest component of the KPKVB model. The value of the limiting constant $\gamma$, respectively limiting clustering function $\gamma(k)$, correspond to the probability that two randomly chosen neighbours of a ``typical point'' in this infinite model are themselves neighbours, respectively the probability of this event conditional on the typical point having exactly $k$ neighbours. These probabilities can be expressed as certain integrals, which we solve explicitly in Section~\ref{sec:Ginf}. 
-In the same section we also prove Proposition~\ref{prop:asymp}, on the asymptotics of $\gamma(k)$. We then proceed to prove Theorems~\ref{thm:maincc} and~\ref{thm:mainkfixed} by relating said probabilities for the typical point of the infinite model to the corresponding clustering coefficient/function in the original KPKVB random graph, using the Campbell-Mecke formula and some other, relatively straightforward considerations.
+In the next section we will recall some useful tools from the literature and define a series of auxiliary random graph models 
+that will be used in the proofs. In particular, we relate in a series of steps the KPKVB model to an infinite percolation model 
+$\Ginf$ that was used in previous work of the first and third authors~\cite{fountoulakis2018law} on the largest component 
+of the KPKVB model. 
+The value of the limiting constant $\gamma$, respectively limiting clustering function $\gamma(k)$, correspond to the probability 
+that two randomly chosen neighbours of a ``typical point'' in this infinite model are themselves neighbours, respectively the 
+probability of this event conditional on the typical point having exactly $k$ neighbours. These probabilities can be expressed as 
+certain integrals, which we solve explicitly in Section~\ref{sec:Ginf}. 
+In the same section we also prove Proposition~\ref{prop:asymp}, on the asymptotics of $\gamma(k)$. 
+We then proceed to prove Theorems~\ref{thm:maincc} and~\ref{thm:mainkfixed} by relating said probabilities for the typical point 
+of the infinite model to the corresponding clustering coefficient/function in the original KPKVB random graph, using the Campbell-Mecke 
+formula and some other, relatively straightforward considerations.
 
-The remaining sections are devoted to the proof of Theorem~\ref{thm:mainktoinfty}, which turns out to be a lot more involved. The main reason for this is that we push the possible scaling of $k_n$ to its maximum and hence a great deal of work is needed to properly control the arising error terms and make sure these are of smaller order than $\gamma(k_n)$. 
+In Section~\ref{sec:degrees} we prove Theorem~\ref{thm:degrees_hyperbolic}, which also doubles as a warm-up for the proof 
+of Theorem~\ref{thm:mainktoinfty} of the clustering function for growing $k$.
+The remaining sections are devoted to the proof of Theorem~\ref{thm:mainktoinfty}, which turns out to be technically involved.
+The main reason for this is that when we push $k_n$ close to the maximum possible value, a great deal of work is needed 
+to properly control the arising error terms.
 
-Finally, the Appendix includes some technical results on Meijer's G-function, Chernoff bounds for Poisson and Binomial random variables and the code used for simulations.
+The Appendix includes some auxiliary results on Meijer's G-function, Chernoff bounds for Poisson and Binomial 
+random variables and the code used for simulations.
 

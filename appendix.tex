@@ -308,7 +308,7 @@ Let $X_n$ be a sum of $n$, possibly dependent, indicators and $c > 0$. Then
 \]
 \end{lemma}
 
-Next we recall two Chernoff bound for Poisson and Binomial random variables. The following Chernoff bound can be found in \cite[Lemma 1.2]{penrose2003random}.
+Next we recall two versions of the Chernoff bound for Poisson and Binomial random variables. They can be found in \cite[Lemma 1.2]{penrose2003random}; note that the Chernoff bound exists in many different versions, the original idea was developed by Chernoff in the context of efficiency of statistical hypothesis testing in \cite{Chernoff1952}):.
 
 \begin{lemma}
 Let $\Po(\lambda)$ denote a Poisson random variable with mean $\lambda$ and let $H(x) = x\log(x) - x + 1$. Then
@@ -334,6 +334,7 @@ Let $\mathrm{Bin}(n,p)$ denote a Binomial random variable with $n$ trials and su
 \end{equation}
 
 The following lemma gives an upper bound on the Binomial distribution for $p = \lambda/n$ in terms a Poisson distribution with mean $\lambda$.
+The following lemma  gives a standard comparison between Binomial and Poisson distribution. We provide a short proof  for completeness.
 
 \begin{lemma}\label{lem:binomial_poisson_bound}
 Let $n \ge 1$, $0 < \lambda < n$. Then, for any integer $0 \le k \le n - 1$,
@@ -343,10 +344,10 @@ Let $n \ge 1$, $0 < \lambda < n$. Then, for any integer $0 \le k \le n - 1$,
 \end{lemma}
 
 \begin{proof}
-Using Stirling's bounds
-\[
-	\sqrt{2\pi} \sqrt{s} s^s e^{-s} \le s! \le e \sqrt{s} s^s e^{-s},
-\]
+Using Stirling's bounds (see e.g.~\cite{Dutkay2013},~\cite{Nanjundiah1959})
+	\[
+	\sqrt{2\pi s} \left(\frac{s}{e}\right)^{-s} \le s! \le e \sqrt{s} \left(\frac{s}{e}\right)^{-s},
+	\]
 we have
 \begin{align*}
 	\Prob{\mathrm{Bin}(n,\lambda/n) = k}
