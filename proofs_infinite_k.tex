@@ -3,7 +3,7 @@
 
 The proof of Theorem~\ref{thm:mainktoinfty} follows the same strategy as outlined in Section~\ref{sec:proof_outline} and executed in Section~\ref{sec:proofs_fixed_k}. However, the fact that $k = k_n \to \infty$ as $n \to \infty$, introduces significant technical challenges, especially for $k_n$ close the the maximum scale $n^{\frac{1}{2\alpha + 1}}$. For example, the coupling between $\GPo$ and $\Gbox$ we use becomes less exact so that we can no longer use Lemma~\ref{lem:coupling_edges} to conclude that triangle counts in $\GPo$ and $\Gbox$ are asymptotically equivalent. Moreover, since we are ultimately interested in recovering the scaling of $c(k_n;G_n)$, which Theorem~\ref{thm:mainktoinfty} claims is $\gamma(k_n)$, we need to show that each step in the strategy outlined in Section~\ref{sec:proof_outline} only introduces error terms that are of smaller order, i.e. that are $\smallO{\gamma(k_n)}$. This will turn out to require a great deal of care in bounding all error terms we encounter.
 
-In this section we explain the challenges associated with each step and give a detailed overview of the structure for the proof of Theorem~\ref{thm:mainktoinfty} using intermediate results for each of the steps. To this end we define the scaling function
+In this section we explain the challenges associated with each step and give a detailed overview of the structure for the proof of Theorem~\ref{thm:mainktoinfty} using intermediate results for each of the steps. We first define the scaling function
 \begin{equation}\label{eq:def_scaling_function}
 	s(k) = \begin{cases}
 		k^{-(4\alpha - 2)} &\mbox{if } \frac{1}{2} < \alpha < \frac{3}{4},\\
@@ -21,22 +21,15 @@ We start with introducing a slightly modified version of the local clustering fu
 \begin{equation}\label{eq:def_local_clustering_ast_general}
 	c^\ast(k;G) = \frac{1}{\Exp{N(k)}} \sum_{v \in V(G) \atop \text{deg}(v)=k} c(v).
 \end{equation}
+
 Notice that the only difference between $c(k;G)$ and $c^\ast(k;G)$ is that we replace $N(k)$ by its expectation $\Exp{N(k)}$. The advantage is that now, the only randomness is in the formation of triangles. In addition, note that since $\Exp{N(k)} > 0$ a case distinction for $N(k)$ is no longer needed for $c^\ast(k;G)$. It is however still relevant since we are eventually interested in $c(k;G)$. Following the notational convention, throughout the remainder of this paper we write $c^\ast(k; \GPo)$ and $c^\ast(k; \Gbox)$ to denote the modified local clustering function in $\GPo$ and $G_{\mathcal{P},n}(\alpha,\nu)$, respectively.
 
 Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theorem~\ref{thm:mainktoinfty} based on the different propositions described below, plus the sections in which theses propositions are proved. Observe that the order in which the intermediate results are proved is reversed with respect to the natural order of reasoning. This does not create any circular logic, since each intermediate result is independent of the others. We choose this order because results proved in the later stages are helpful to deal with error terms coming up in proofs at earlier stages and hence help streamline those proofs. Below briefly describe each of the intermediate steps leading up to the proof of Theorem~\ref{thm:mainktoinfty}. We start with an observation on the dependence between the degree of a point $p = (x,y)$ and its height $y$.
-
-%\subsection{Restricting the height for vertices with degree $k_n$}
+%=======
+%Notice that the only difference between $c(k;G)$ and $c^\ast(k;G)$ is that we replace $N_k$ by its expectation $\Exp{N_k}$. The advantage is that now, the only randomness is in the formation of triangles. In addition, note that since $\Exp{N_k} > 0$ a case distinction for $N_k$ is no longer needed for $c^\ast(k;G)$. It is however still relevant since we are eventually interested in $c(k;G)$. Following the notation convention, throughout the remainder of this paper we write $c^\ast(k; \GPo)$ and $c^\ast(k; \Gbox)$ to denote the modified local clustering function in $\GPo$ and $G_{\mathcal{P},n}(\alpha,\nu)$, respectively.
 %
-%In the proof of Proposition~\ref{prop:asymp} we used a result that allowed us to restrict integration over $y$ to the interval $[a^-(k), a^+(k)]$, with
-%\[
-%	a^\pm(k) = 2\log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi} \vee 1\right).
-%\]
-%The reason for this was that the integrand included the function $\rho(y,k) = \Prob{\Po(\mu(y)) = k}$, where $\Po(\lambda)$ denotes a Poisson random variable with expectation $\lambda$ and Poisson random variables are well concentrated around their mean, i.e. around heights $y$ for which $\mu(y) \approx k$. Since $\mu(y) = \mu(\BallPo{y}) = \xi e^{y/2}$, this implies that integration with respect to $\rho(y,k)$ is concentrated around $y \approx 2\log(k/\xi)$. In the remainder of this paper we will often encounter integrands involving the function $\Prob{\Po(\mu_n(y)) = k_n} := \hat{\rho}_n(y,k_n)$, for some $\mu_n(y)$ which is asymptoticly equivalent to $\mu(y)$. In these cases we also want to be able to restrict our integration around those heights $y$ for which $y \approx 2\log(k_n/\xi)$. Such results are established in Section~\ref{sec:concentration_argument}. Moreover, we prove that if $\mu_n$ corresponds to either $\Mu{\BallHyp{y}}$ or $\Mu{\BallPon{y}}$, then for a certain classs of functions $h$
-%\[
-%	\int_0^\infty h(y) \hat{\rho}_n(y,k_n) \alpha e^{-\alpha y} \dd y 
-%	= (1+\smallO{1}) \int_0^\infty h(y) \rho(y,k_n) \alpha e^{-\alpha y} \dd y,
-%\]
-%i.e. we may replace $\hat{\rho}_n(y,k_n)$ in the integrand with $\rho(y,k_n)$.
+%Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theorem~\ref{thm:mainktoinfty} based on the different propositions described below, plus the sections in which theses propositions are proved. Observe that the order in which the intermediate results are proved is reversed with respect to the natural order of reasoning. This does not create any circular logic, since each intermediate result is independent of the others. We choose this order because results proved in the later stages are helpful to deal with error terms coming up in proofs at earlier stages and hence help streamline those proofs. Below we briefly describe each of the intermediate steps leading up to the proof of Theorem~\ref{thm:mainktoinfty}. We start with an observation on the dependence between the degree of a point $p = (x,y)$ and its height $y$.
+%>>>>>>> Stashed changes
 
 \begin{figure}[!t]
 \centering
@@ -275,6 +268,9 @@ As $n \to \infty$,
 \end{lemma}
 
 We then establish that the modified local clustering function for KPKVB graphs $G_n$ behaves similarly to that in $\GPo$. The proof, found in Section~\ref{ssec:coupling_H_HP}, is based on a standard coupling between a Binomial Point Process and Poisson Point Process.
+%=======
+%We then establish that the modified local clustering function for KPKVB graphs $G_n$ behaves similarly to that in the $\GPo$. The proof, found in Section~\ref{ssec:coupling_H_HP}, is based on the standard coupling between a Binomial Point Process and Poisson Point Process which we already encountered twice, once for the number of nodes with degree $k$ in Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson} and once for the proof of Lemma~\ref{lem:trunc}.
+%>>>>>>> Stashed changes
 
 \begin{proposition}\label{prop:clustering_ast_H_Pois}
 As $n \to \infty$,
@@ -299,7 +295,7 @@ As $n \to \infty$,
 
 %\TM{ Maybe we could replace these three with a statement on $|c(k_n;G_n) - c^\ast(k_n; \Gbox)|$, at least at this point of the paper. This is only the high level description and that is all we need for the ``final proof".}\PvdH{I would vote for keeping them split, since this allows us to clearly point to the main technical challenge we have to overcome to obtain the final result.}
 
-Together, the three results described so far imply that the difference between the clustering function for a KPKVB graph and the adjusted clustering function for the finite box graph $\Gbox$ converges to zero faster than the proposed scaling $\gamma(k_n)$ in Theorem~\ref{thm:mainktoinfty}. Hence, to prove this theorem it is enough to prove it for $c^\ast(k; \Gbox)$. 
+Together, the three results described so far imply that the difference between the clustering function for a KPKVB graph and the adjusted clustering function for the finite box graph $\Gbox$ converges to zero faster than the proposed scaling $\gamma(k_n)$ in Theorem~\ref{thm:mainktoinfty}. Hence, it is enough to prove the result for $c^\ast(k; \Gbox)$. 
 
 \subsection{From the finite box to the infinite model}
 
@@ -314,9 +310,9 @@ As $n \to \infty$,
 \]
 \end{proposition}
 
-This result represents another technical challenge we face when considering $k_n \to \infty$. For the proof, we first identify the specific range of heights that give the main contribution to the triangle count, showing that the triangles coming from nodes with heights outside this range is of smaller order. Then we prove a concentration result for the main term, by carefully analyzing the joint neighbourhoods of two nodes whose heights fall into the identified range. The full details are found in Section~\ref{sec:concentration_c_P_n}.
+This result represents another technical challenge we face when considering $k_n \to \infty$. For the proof, we first identify the specific range of heights that give the main contribution to the triangle count, showing that the triangles coming from nodes with heights outside this range is of smaller order. Then we prove a concentration result for the main term, using that the neighbourhoods of two nodes whose $x$-coordinates are sufficiently separated can be considered to be disjoint (see Section~\ref{ssec:joint_degrees_GPo}). The full details are found in Section~\ref{sec:concentration_c_P_n}.
 
-Assuming this concentration result, we are left to compute expectation $\Exp{c^\ast(k_n; \Gbox)}$ and show that it is asymptotically equivalent to $\gamma(k_n)$ as $n \to \infty$. To accomplish this we move to the infinite limit model $\Ginf$ and show that the difference between the expected value of $c^\ast(k;\Gbox)$ and $\gamma(k_n)$ goes to zero faster than the proposed scaling in Theorem \ref{thm:local_clustering_hyperbolic}.
+Assuming this concentration result, we are left to compute the expectation $\Exp{c^\ast(k_n; \Gbox)}$ and show that it is asymptotically equivalent to $\gamma(k_n)$ as $n \to \infty$. To accomplish this we move to the infinite limit model $\Ginf$ and show that the difference between the expected value of $c^\ast(k;\Gbox)$ and $\gamma(k_n)$ goes to zero faster than the proposed scaling in Theorem \ref{thm:local_clustering_hyperbolic}.
 
 \begin{proposition}[Transition to the infinite limit model]\label{prop:convergence_average_clustering_P_n}
 As $n \to \infty$,

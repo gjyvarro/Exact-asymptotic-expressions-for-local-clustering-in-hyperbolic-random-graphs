@@ -8,6 +8,10 @@ We will first derive Theorem~\ref{thm:mainkfixed}. It will turn out that Theorem
 assuming Theorem~\ref{thm:mainkfixed}.
 
 \subsection{Clustering function for fixed $k$, proving Theorem~\ref{thm:mainkfixed}}
+%=======
+%\subsection{Clustering function, proving Theorem~\ref{thm:mainkfixed}}
+%In this subsection, we want to show that the clustering function of the KPKVB model $c(k; G(n;\alpha,\nu)) \xrightarrow{\Pee} \gamma(k)$ for any fixed $k$. The key idea is that for the poissonized KPKVB model the coupling with the box model is guaranteed to be exact (in the sense that it also preserves edges) for all vertices up to height $H = \frac{R}{4}$ (which is all we need to show the convergence of the clustering function for constant $k$).
+%>>>>>>> Stashed changes
 
 We will now show that the clustering function of the KPKVB model $c(k;G_n) \xrightarrow{\Pee} \gamma(k)$ for a fixed $k$. 
 The key ideas are that the coupling of the Poissonized KPKVB model with the box model is guaranteed to be exact 
@@ -17,6 +21,10 @@ using the Campbell-Mecke formula we obtain integrals that are very similar to th
 %, the conditional expectation of 
 %clustering coefficient of the typical point in the infinite limit model $\Ginf$ conditioned on the typical point having degree $k$.
 
+
+%=======
+%We will encounter the following models: we will start with the KPKVB model $G_n = G(n;\alpha,\nu)$, then the Poissonized KPKVB model $\GPo  = G_{Po}(n;\alpha,\nu)$, moving to the truncated Poissonized KPKVB model $\GPoH$ which is the subgraph of $\GPo$ induced on all vertices with height at most $H$ resp. radial coordinate at least $R-H$, then the coupling will bring us to the truncated box model $\GboxH$ which is the subgraph of the box model $G_{box}$ induced by all vertices with height at most $H$.
+%>>>>>>> Stashed changes
 
 
 We will repeatedly rely on the following observation.
@@ -410,6 +418,79 @@ as desired.
  
  
  
+%=======
+%\subsubsection{Deriving the limit integral expression}
+%\begin{lemma}\label{lem:lim}
+%Let $\alpha > \frac{1}{2}$, $\nu>0$ and $k\geq 2$ be fixed. Then
+%$$c(k;\GboxH)\xrightarrow[n\rightarrow\infty]{\Pee}\gamma(k).$$
+%\end{lemma}
+%%\begin{proof}
+%%We will show that $\E c(k;G_{n,Po,H}) \rightarrow \gamma(k)$ as $n\rightarrow\infty$ and $Var(c(k;G_{n,Po,H})) \rightarrow  0$. From there, the claim will follow by Chebychev's inequality: Let $\epsilon>0$, then $$\Pee(|c(k;G_{n,Po,H})-\E c(k;G_{n,Po,H})|\geq \epsilon)\leq \frac{Var(c(k;G_{n,Po,H}))}{\epsilon^2} = o(1),$$
+%%i.e. $c(k;G_{n,Po,H})-\E c(k;G_{n,Po,H}) \xrightarrow[n\rightarrow\infty]{\Pee} 0$, hence also $c(k;G_{n,Po,H})-\gamma(k) = c(k;G_{n,Po,H})-\E c(k;G_{n,Po,H})+\E c(k;G_{n,Po,H})-\gamma(k) \xrightarrow[n\rightarrow\infty]{\Pee} 0$.
+%%\end{proof}
+%
+%Let $\Rcal_H = \Rcal([0,H])$ denote the truncated box.
+%For a point $p \in H$ corresponding to a vertex $v \in V=V(\GboxH)$, let 
+%\[
+%	h(V,p) = {k \choose 2}^{-1} \sum_{p_1,p_2 \in \BallPon{p}}^{\ne} \1_{\{((p_1, p_2) \in E(\GboxH)\}} \1_{\{ D_{\GboxH}(v)=k\}}.
+%\]
+%Let $X = \frac{1}{n}\sum_{p \in V \cap \Pcal} h(V(G_{box,H}),p)$. Let $Z = \frac{N_{box,H}(k)}{n} = \frac{1}{n}\sum_{p \in V \cap \Pcal} \1_{\{D_{\GboxH}(v)=k\}}$. Then we have that $c(k;\GboxH) = \frac{X}{Z}$. We will show separately that numerator $X$ and denominator $Z$ converge in probability (where the limit of $Z$ is a positive constant). From this, the claim of the lemma will follow as convergence in probability is closed under taking quotients.
+%
+%
+%
+%By the Campbell-Mecke formula, we have
+%\begin{align*}
+%\Exp{ X} = \frac{1}{n}\int_{\Rcal_H} \E h(V,v) f(x,y) \dd x \dd y = \int_0^H \E h(V,(0,y))\alpha e^{-\alpha y} dy.
+%\end{align*}
+%Then, we condition on the additional vertex $(0,y) \in \Rcal_H$ having degree $k$,
+%\begin{align*}
+%\Exp{ X} = \int_0^H \E[h(V,(0,y))|D_{G_{box,H}}(0,y)=k]\Pee(D_{G_{box,H}}(0,y)=k)\alpha e^{-\alpha y}dy.
+%\end{align*}
+%We observe that for $H \rightarrow \infty$, the integrand converges point-wise for $y \in (0,\infty)$ to $P(y)\rho(y,k)\alpha e^{-\alpha y}$ and is always bounded by the integrable function $\alpha e^{-\alpha y}$.
+%Therefore, by the theorem of dominated convergence, as $H \rightarrow \infty$,
+%\begin{align*}
+%\Exp{X} \rightarrow \int_0^\infty P(y)\rho(y,k)\alpha e^{-\alpha y}dy.
+%\end{align*}
+%Note that for $X^2$, the summation can be split into off-diagonal (with $v_1 \not = v_2$) and diagonal (with $v_1=v_2$) terms, i.e. write $X^2 = \frac{1}{n^2}(Y_1+Y_2)$ where 
+%\[
+%	Y_1 = \sum_{p_1, p_1 \in V(G_{box,H})}^{\ne} h(V(G_{box,H}),p_1)h(V(G_{box,H}),p_2),
+%\] 
+%and $Y_2 = \sum_{p_1 \in V(G_{box,H})} h(V(G_{box,H}),p_1)^2$. As $h \leq 1$, $Y_2 \leq n X\leq n$ and so, $\E Y_2 \leq n$, we have by the Campbell-Mecke formula,
+%\begin{align*}
+%\Exp{Y_1} = \int_{\Rcal_H} \int_{\Rcal_H} \E[h(V(G_{box,H}),p_1)h(V(G_{box,H}),p_2)] f(x_1,y_1) f(x_2,y_2) \dd x_1 \dd y_2 \dd x_2 \dd y_2.
+%\end{align*}
+%If $v_1=(x_1,y_1)$ and $v_2=(x_2,y_2)$ have horizontal distance $|x_1-x_2|>2e^H$, their neighbourhood balls are disjoint w.r.t. the connection rule of the truncated box model $\GboxH$. To see this, assume that $v_3=(x_3,y_3)$ is adjacent to both $v_1$ and $v_2$. Then $|x_1-x_3|\leq e^{\frac{1}{2}(y_1+y_3)}$ and $|x_2-x_3|\leq e^{\frac{1}{2}(y_2+y_3)}$. As $y_1, y_2, y_3 \leq H$, it follows that $|x_1-x_3| \leq e^H$ and $|x_2-x_3|\leq e^H$, which implies that $|x_1-x_2| \leq |x_1-x_3|+|x_2-x_3|\leq 2e^H$, contradiction.
+%
+%Due to the disjointedness of the neighbourhood balls and the properties of the Poisson process $h(V,v_1)$ and $h(V,v_2)$ are independent. The horizontal distance is uniform in $[0,\frac{\pi n}{2\nu}]$. Therefore, the probability that two vertices have horizontal distance $\leq 2e^H$ is $\leq \frac{4\nu e^H}{\pi n} = o(1)$. Writing $d_H$ for the horizontal distance, we can continue the calculation of the second moment,
+%\begin{align*}
+%\Exp{ Y_1} &= \int_{} \int_{\substack{\Rcal_H\times \Rcal_H:\\ |x_1-x_2|>2 e^H}} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2)\\
+%&\qquad+\int_{} \int_{\substack{\Rcal_H\times \Rcal_H:\\ |x_1-x_2|\leq2 e^H}} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2) \\
+%&= (1+o(1))\int_{} \int_{\Rcal_H\times \Rcal_H} \E[ h(V,v_1)]\E[h(V,v_2)]\mu(dv_1)\mu(dv_2) \\
+%&= (1+o(1)) (n\E X)^2.
+%\end{align*}
+%It follows that $\Exp{ X^2} = (1+o(1))\Exp{ X}^2$, which implies $Var(X) \rightarrow 0$ using that $\Exp{ X}$ tends to a constant (see above). We conclude
+%\[
+%	X \xrightarrow[n\rightarrow\infty]{\Pee} \int_0^\infty P(y)\rho(y,k)\alpha e^{-\alpha y}dy.
+%\]
+%In a similar way, by the Campbell-Mecke formula,
+%\begin{align*}
+%\Exp{Z} =\frac{1}{n} \int_{\Rcal_H} \Pee(D_{G_{box,H}}(v)=k) \mu(dv) = \int_0^H \Pee(D_{G_{box,H}}(0,y)=k) \alpha e^{-\alpha y}dy.
+%\end{align*}
+%By the theorem of dominated convergence, it follows that
+%\begin{align*}
+%\Exp{ Z} \rightarrow \int_0^\infty \rho(y,k)\alpha e^{-\alpha y}dy.
+%\end{align*}
+%The statement that $Var(Z) \rightarrow 0$ follows by the same steps as for $X$, just using $h(V,v) = \1_{\{D_{\GboxH}(v)=k\}}$ instead. Hence,
+%\begin{align*}
+%\Exp{ Z} \xrightarrow[n\rightarrow\infty]{\Pee} \int_0^\infty \rho(y,k)\alpha e^{-\alpha y}dy.
+%\end{align*}
+%Finally note that 
+%\begin{align*}
+%\gamma(k) = \frac{\int_0^\infty P(y)\rho(y,k)\alpha e^{-\alpha y}dy}{\int_0^\infty \rho(y,k)\alpha e^{-\alpha y}dy}.
+%\end{align*}
+%
+%\subsubsection{Putting everything together}
+%>>>>>>> Stashed changes
 \begin{proofof}{Theorem~\ref{thm:mainkfixed}}
 For completeness, we point out that Theorem~\ref{thm:mainkfixed} follows immediately from 
 Corollaries~\ref{cor:pok},~\ref{cor:GPoGboxH} and Lemma~\ref{lem:ckGboxH}.

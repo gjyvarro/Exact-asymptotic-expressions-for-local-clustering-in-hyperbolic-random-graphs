@@ -59,9 +59,9 @@ where
 \[
 	T_{\infty}(y,p_1,p_2) = \ind{p_1 \in \BallPo{y}}\ind{p_2 \in \BallPo{y}}\ind{p_2 \in \BallPo{p_1}}.
 \]
-Here we slightly abuse notation and write $\BallPo{y}$ for $\BallPo{(0,y)}$. We will adopt this notational convention throughout the remainder of this section, to keep notation concise. We also recall that $\Nbox(k)$ denotes the number of vertices with degree $k$ in $\Gbox$.
+Recall that, slightly abusing notation, we write $\BallPo{y}$ for $\BallPo{(0,y)}$ and that $\Nbox(k)$ denotes the number of vertices with degree $k$ in $\Gbox$.
 
-We will first relate $\gamma(k_n)$ to an integral expression involving $T_\infty(y)$ and $\Exp{c^\ast(k_n;\Gbox)}$ to one involving $\Exp{T_{\text{box}}(y)}$. Recall the definition of $y_{k,C}^\pm$ from~\eqref{eq:def_y_k_C} and the interval $\Kcal_{C}(k_n) = [y_{k_n,C}^-, y_{k_n,C}^+]$. Note that for any $y \in \Kcal_C(k_n)$ it holds that as
+We will first relate $\gamma(k_n)$ to an integral expression involving $T_\infty(y)$ and $\Exp{c^\ast(k_n;\Gbox)}$ to one involving $\Exp{T_{\text{box}}(y)}$. Recall the definition of $y_{k,C}^\pm$ from~\eqref{eq:def_y_k_C} and the interval $\Kcal_{C}(k_n) = [y_{k_n,C}^-, y_{k_n,C}^+]$. Note that for any $y \in \Kcal_C(k_n)$ it holds that
 \begin{equation}\label{eq:def_K_C_set}
 	\frac{k_n - C \sqrt{k_n \log(k_n)}}{\xi} \le e^{\frac{y}{2}}
 	\le \frac{k_n + C \sqrt{k_n \log(k_n)}}{\xi}	
@@ -174,7 +174,7 @@ As a result of this lemma we only need to compare the difference in triangles be
 
 \subsection{Comparing triangles between $\Ginf$ and $\Gbox$}
 
-To analyze $T_{\text{box}}(y_0) - T_\infty(y_0)$ we first reiterate that the difference between the indicator $\ind{p_1 \in \BallPon{p}}$ in the finite box model and $\ind{p_1 \in \BallPo{p}}$ is that in $\Gbox$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R/2}, \frac{\pi}{2} e^{R/2}]$ and we stop at height $y = R$. This induces a difference in triangle counts between both models. 
+To analyze the difference $\left|T_{\text{box}}(y) - T_\infty(y)\right|$ we first reiterate that the difference between the indicator $\ind{p_1 \in \BallPon{p}}$ in the finite box model and $\ind{p_1 \in \BallPo{p}}$ is that in $\Gbox$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R/2}, \frac{\pi}{2} e^{R/2}]$ and we stop at height $y = R$. This induces a difference in triangle counts between both models. 
 To see this, note that for any $p = (x,y)$ with $0 \le y \le R$ we have that $\BallPon{p} = \BallPo{p} \cap \Rcal$. This means that if $p^\prime, p_2 \in \BallPon{p}$ and $p_2 \in \BallPo{p^\prime} \cap \Rcal$ then $p_2 \in \BallPon{p} \cap \BallPon{p^\prime}$ and hence $(p,p^\prime,p_2)$ form a triangle both in $\Gbox$ and $\Ginf$. However, it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}(p,p^\prime)$, see Figure~\ref{fig:comparing_triangles_diff_intersections} for an example of this region. Then, any $p_2 \in \mathcal{T}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $\Gbox$ that is not present in $\Ginf$. Finally, any point $p_2 \in \BallPo{p} \cap \BallPo{p^\prime}$ with height $y_2 > R$ creates a triangle with $p, p^\prime$ in $\Ginf$ but not in $\Gbox$.
 
 Let us now define the following triangle count function
@@ -236,7 +236,7 @@ that $4\alpha^2 > 2$ and hence,
 \]
 \end{proof}
 
-The first key implication of Lemma~\ref{lem:clustering_error_T_term} is that the triangle count in the finite box model is equivalent to $k_n^2 P(y)$, where $P(y)$ is defined in [??].
+The first key implication of Lemma~\ref{lem:clustering_error_T_term} is that the triangle count in the finite box model is equivalent to $k_n^2 P(y)$, where $P(y)$ is defined by~\eqref{eq:def_Py}.
 
 \begin{lemma}\label{lem:appox_triangle_count_box}
 Let $p_0 = (0,y)$. Then uniformly for $y \in \Kcal_C(k_n)$,
@@ -264,18 +264,16 @@ Define $\Rcal^\prime := (\R \times \R_+) \setminus \Rcal$. Then we can write
 Then by the Campbell-Mecke formula
 \begin{align*}
 	\left|\Exp{T_{\text{box}}(p_0) - T_{\infty}(p_0)}\right|
-	&\le \Exp{\left|T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right|}\\
-	&\hspace{10pt}+ \int_{\Rcal^\prime}\int_{\Rcal^\prime} T_{\infty}(p_0,p_1,p_2) f(x_1,y_1) f(x_2,y_2)
-		\dd x_2 \dd y_2 \dd x_1 \dd y_1. 
+	&\le \Exp{\left|T_{\text{box}}(p_0) - \widetilde{T}_{\text{box}}(p_0)\right|}
+		+ \int_{\Rcal^\prime}\int_{\Rcal^\prime} T_{\infty}(p_0,p_1,p_2) \dd \mu(p_1) \dd \mu(p_2). 
 \end{align*}
 
 %\TM{ in the 1st integral we could have restricted to the ball of $p$, and possibly saved a lot. Does that not help? }\PvdH{the first integral is taken care of by another Lemma so it does not matter I think.}
 The first part is taken care of by Lemma~\ref{lem:clustering_error_T_term}. For the other integral we have
 \begin{align*}
-	&\hspace{-30pt}\iint_{\Rcal^\prime} T_{\infty}(p_0,p_1,p_2) f(x_1,y_1) f(x_2,y_2)
-		\dd x_2 \dd y_2 \dd x_1 \dd y_1\\
-	&\le \left(\int_{\Rcal^\prime} \ind{p_1 \in \BallPo{p_0}} f(x_1,y_1) \dd x_1 \dd y_1\right)^2
-		= \bigO{\left(e^{y/2} \int_{R}^\infty e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\right)^2}\\
+	\iint_{\Rcal^\prime} T_{\infty}(p_0,p_1,p_2) \dd \mu(p_1) \dd \mu(p_2)
+	&\le \left(\int_{\Rcal^\prime} \ind{p_1 \in \BallPo{p_0}} f(x_1,y_1) \dd x_1 \dd y_1\right)^2\\
+	&= \bigO{\left(e^{y/2} \int_{R}^\infty e^{-(\alpha - \frac{1}{2})y_1} \dd y_1\right)^2}\\
 	&= \bigO{e^{y} e^{-(2\alpha-1)R}} = \bigO{e^y n^{-(4\alpha - 2)}}.
 \end{align*}
 %\TM{ Typo : $f_{\mu, \nu}$? Also give more details how line 3 follows. }
@@ -382,7 +380,7 @@ which finishes the proof.
 %%\end{align*}
 \end{proof}
 
-From the proof of Proposition~\ref{prop:convergence_average_clustering_P_n} we immediately obtain the following useful corollary, which will be used in Section~\ref{sec:concentration_c_P_n}. 
+From the proof of Proposition~\ref{prop:convergence_average_clustering_P_n} we immediately obtain the following useful corollary, which will be used in Section~\ref{sec:concentration_c_P_n}. Recall from~\eqref{eq:def_stripe} that $\stripknc = \Rcal \cap (\R_+ \times [y_{k_n,C}^-, y_{k_n,C}^+])$.
 
 \begin{corollary}\label{cor:adjusted_triangle_counting_P_n}
 Let $p_0 = (0,y)$. Then, as $n \to \infty$,
@@ -392,7 +390,7 @@ Let $p_0 = (0,y)$. Then, as $n \to \infty$,
 \]
 In particular,
 \[
-	\int_{\Kcal_{C}(k_n)} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(p_0)} f(x,y) \dd x \dd y
+	\int_{\stripknc} \rho_{\text{box}}(y,k_n) \Exp{\widetilde{T}_{\text{box}}(p_0)} f(x,y) \dd x \dd y
 	= \bigT{n k_n^{-(2\alpha - 1)} s(k_n)}.
 \]
 \end{corollary}
@@ -551,41 +549,7 @@ We now come back to computing the expected number of triangles attached to a nod
 
 Recall that $\mathcal{T}(p,p^\prime)$ denotes the region of points which form triangles with $p$ and $p^\prime$ in $\Gbox$ but not in $\Ginf$. Figure \ref{fig:comparing_triangles_diff_intersections} shows an example of a configuration where $\mathcal{T}(p,p^\prime) \ne \emptyset$. We observe that $\mathcal{T}(p,p^\prime) \ne \emptyset$ because the right boundary of the ball $\BallPon{p^\prime}$ exits the right boundary of the box $\Rcal$ and then, since we identified the boundaries, continues from the left so that $\BallPon{p^\prime}$ covers part of the ball $\BallPon{p}$ which would not be covered in the infinite limit model. 
 
-%Note that $\hat{y}_{\text{left}}(p,p^\prime)$ and $\hat{x}_{\text{left}}(p,p^\prime)$ correspond to, respectively, $\hat{y}(p,p^\prime)$ and $\hat{x}(p,p^\prime)$ considered in Section~\ref{ssec:missing_triangles}. The derivation of $\hat{y}_{\text{right}}(p,p^\prime)$ and $\hat{x}_{\text{right}}(p,p^\prime)$ is done in a similar manner and we omit the details here.
-
-To further analyze this, let us introduce some notation. For any $p = (x,y) \in \Rcal$ we will define the left and right boundary functions as, respectively,
-\begin{align}
-	b_p^-(z) &= \begin{cases}
-		2 \log\left(x-z\right) - y &\mbox{if }  -\frac{\pi}{2} e^{R/2} \le z \le x - e^{y/2}  \\
-		2\log\left(\pi e^{R/2} + x - z\right) - y 
-			&\mbox{if } x - e^{(y + R)/2} + \pi e^{R/2} \le z \le \frac{\pi}{2} e^{R/2}\\
-		0 &\mbox{otherwise}
-	\end{cases}\\
-	b_p^+(z) &= \begin{cases}
-		2 \log\left(z-x\right) - y &\mbox{if } x + e^{y/2} \le z \le \frac{\pi}{2} e^{R/2} \\
-		2\log\left(\pi e^{R/2} + z - x\right) - y 
-			&\mbox{if } -\frac{\pi}{2} e^{R/2} \le z \le x + e^{(y + R)/2} - \pi e^{R/2}\\
-		0 &\mbox{otherwise}
-	\end{cases}
-\end{align}
-Note that these functions describe the boundaries of the ball $\BallPon{p}$. In particular, $p^\prime = (x^\prime, y^\prime) \in \BallPon{p}$ if and only if $y^\prime \ge \min\left\{b_p^-(x^\prime), b_p^+(x^\prime)\right\}$.
-
-Since we have identified the left and right boundary of $\Rcal$ we can assume, without loss of generality that $x = 0$. Due to symmetry it is then enough to restrict the analysis to the case where $x^\prime > 0$. 
-%\TM{ does this not depend on $p$? }\PvdH{I do not think so, because we can always take $p = (0,y)$ due to the invariance in the $x$-direction. I have updated the text to better reflect this.} 
-For this case there are two important points in the box $\Rcal$. These are the intersection between the left boundary of $p^\prime$ and the right boundary of $p^\prime$, as it continues from the left side of the box, and the left boundary of $p$. We denote by $(x^\ast(p^\prime), y^\ast(p^\prime))$ the intersection between the left and right boundary of $p^\prime$ and by $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$ the intersection between the left boundary of $p$ and the right boundary of $p^\prime$, see Figure \ref{fig:comparing_triangles_diff_intersections}. 
-
-Let us derive the expressions for the coordinates of these two points, starting with $(x^\ast(p^\prime), y^\ast(p^\prime))$. The $x$-coordinate $x^\ast(p^\prime)$ is the solution to the equation $b_{p^\prime}^+(z) = b_{p^\prime}^-(z)$ for $-\frac{\pi}{2} e^{R/2} \le z \le x + e^{(y + R)/2} - \pi e^{R/2}$. This equation becomes
-\[
-	2\log\left(\pi e^{R/2} + z - x^\prime\right) - y^\prime = 2 \log\left(x^\prime-z\right) - y^\prime,
-\]
-whose solution is $x^\ast(p^\prime) := x^\prime - \frac{\pi}{2} e^{R/2}$. Plugging this into either the left or right hand side of the above equation yields the $y$-coordinate $y^\ast(p^\prime) = 2\log\left(\frac{\pi}{2}e^{R/2}\right) - y^\prime$. In a similar way, the $x$-coordinate $\hat{x}(p,p^\prime)$ is the solution to the equation $b_{p^\prime}^+(z) = b_{p}^-(z)$ for $-\frac{\pi}{2} e^{R/2} \le z \le x + e^{(y + R)/2} - \pi e^{R/2}$, i.e.
-\[
-	2\log\left(\pi e^{R/2} + z - x^\prime\right) - y^\prime = 2 \log\left(x-z\right) - y.
-\] 
-This solution is $\frac{x^\prime - \pi e^{R/2}}{1 + e^{(y^\prime - y)/2}}$ and again $\hat{y}(p,p^\prime)$ is obtained by plugging the solution into either the left or right hand side of the equation, yielding $\hat{y}(p,p^\prime) = 2 \log\left(\frac{\pi e^{R/2} - x^\prime}{e^{y/2} + e^{y^\prime/2}}\right)$.
-
-To summarize we have:
-% After some simple algebra \TM{ I am not a big fan of writing "after some simple algebra" or similar. This is how errors can creep into your argument. Maybe we can just give the details? } we obtain the following expressions for the coordinates of these two points
+The point $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime))$ is the same as $(\hat{x}_{\mathrm{left}}, \hat{y}_{\mathrm{left}})$ from Section~\ref{ssec:joint_degrees_GPo}). Using the same approach as there we can compute the other two coordinates, $x^\ast(p^\prime)$ and $y^\ast(p^\prime)$. In total we have the following four expressions:
 \begin{align*}
 	x^\ast(p^\prime) &= x^\prime - \frac{\pi}{2} e^{R/2}\\
 	y^\ast(p^\prime) &= 2\log\left(\frac{\pi}{2}e^{R/2}\right) - y^\prime\\
@@ -593,7 +557,7 @@ To summarize we have:
 	\hat{y}(p,p^\prime) &= 2 \log\left(\frac{\pi e^{R/2} - x^\prime}{e^{y/2} + e^{y^\prime/2}}\right)
 \end{align*}
 
-The crucial observation is that $\mathcal{T}(p,p^\prime) = \emptyset$ as long as the point $(x^\ast(p^\prime), y^\ast(p^\prime))$ is above the left boundary of $p$. This happens exactly when $y^\ast(p^\prime) > b_p^-(x^\ast(p^\prime))$. Therefore the boundary of this event is given by the equation $y^\ast(p^\prime) = b_p^-(x^\ast(p^\prime))$ which reads
+The crucial observation is that $\mathcal{T}(p,p^\prime) = \emptyset$ as long as the point $(x^\ast(p^\prime), y^\ast(p^\prime))$ is above the left boundary of $p$. This happens exactly when $y^\ast(p^\prime) > b_p^-(x^\ast(p^\prime))$, where $b_p^-(z)$ is defined in~\eqref{eq:def_left_boundary_Bp}. Therefore the boundary of this event is given by the equation $y^\ast(p^\prime) = b_p^-(x^\ast(p^\prime))$ which reads
 \[
 	2\log\left(\frac{\pi}{2}e^{R/2}\right) - y^\prime = 2\log\left(\frac{\pi}{2} e^{R/2} -x^\prime\right) - y.
 \]
@@ -797,8 +761,7 @@ This analysis allows us to compute the expected difference in the number of tria
 \begin{proof}[Proof of Lemma \ref{lem:clustering_error_T_term}]
 Due to symmetry it is enough to show that
 \begin{equation}\label{eq:clustering_error_T_main}
-	\int_0^{R}\int_0^{I_n} \mu\left(\mathcal{T}(p,p_1)\right) f(x_1,y_1) 
-	\dd x_1 \dd y_1 = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
+	\int_0^{R}\int_0^{I_n} \mu\left(\mathcal{T}(p,p_1)\right) \dd \mu(p_1) = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
 \end{equation}
 The proof goes in two stages. First we compute $\mu\left(\mathcal{T}(p,p_1)\right)$ by splitting it over three disjoint regimes with respect to $p_1$, with $x_1 \ge 0$. Then we do the integration with respect to $p_1$.
 

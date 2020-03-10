@@ -131,7 +131,7 @@ We will first consider the case where $y \le 2 \log(\pi/2)$. Here we have
 \begin{align*}
 	\mu(\BallPon{p})
 	&= \int_0^{R} \int_{-e^{\frac{y+y^\prime}{2}}}^{e^{\frac{y+y^\prime}{2}}} 
-		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dy^\prime\\
+		f(x^\prime,y^\prime) \, dx^\prime \, dy^\prime\\
 	&= \frac{2 \alpha \nu}{\pi} e^{\frac{y}{2}} \int_0^{R} e^{-(\alpha - \frac{1}{2})y^\prime} \, dy^\prime\\
 	&= \mu(y)\left(1 - e^{-(\alpha - \frac{1}{2})R}\right),
 \end{align*}
@@ -141,9 +141,9 @@ Now let $y > 2 \log(\pi/2)$ and recall that $\mu(y) = \xi e^{\frac{y}{2}}$ where
 \begin{align*}
 	\mu_{\mathrm{box}}(y)
 	&= \int_0^{h(y)} \int_{-\frac{\pi}{2}e^{\frac{R}{2}}}^{\frac{\pi}{2}e^{\frac{R}{2}}} 
-		\ind{|x^\prime| \le e^{\frac{y+y^\prime}{2}}} f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dy^\prime
+		\ind{|x^\prime| \le e^{\frac{y+y^\prime}{2}}} f(x^\prime,y^\prime) \, dx^\prime \, dy^\prime
 		+ \int_{h(y)}^{R} \int_{-\frac{\pi}{2}e^{\frac{R}{2}}}^{\frac{\pi}{2}e^{\frac{R}{2}}} 
-		f_{\alpha,\nu}(x^\prime,y^\prime) \, dx^\prime \, dy^\prime\\
+		f(x^\prime,y^\prime) \, dx^\prime \, dy^\prime\\
 	&= \frac{2 \alpha \nu}{\pi} e^{\frac{y}{2}} \int_0^{h(y)} e^{-(\alpha - \frac{1}{2})y^\prime} \, dy^\prime
 		+ \alpha \nu e^{\frac{R}{2}} \int_{h(y)}^{R} e^{-\alpha y^\prime} \, dy^\prime \\
 	&= \xi e^{\frac{y}{2}}\left(1 - \left(\frac{\pi}{2}\right)^{-(2\alpha - 1)} 
@@ -401,7 +401,7 @@ We start by deriving expressions for these important coordinates. For this we in
 		2\log\left(\pi e^{R/2} + x - z\right) - y 
 			&\mbox{if } x - e^{(y + R)/2} + \pi e^{R/2} \le z \le \frac{\pi}{2} e^{R/2}\\
 		0 &\mbox{otherwise}
-	\end{cases}\\
+	\end{cases} \label{eq:def_left_boundary_Bp} \\ 
 	b_p^+(z) &= \begin{cases}
 		2 \log\left(z-x\right) - y &\mbox{if } x + e^{y/2} \le z \le \frac{\pi}{2} e^{R/2} \\
 		2\log\left(\pi e^{R/2} + z - x\right) - y 
@@ -745,8 +745,8 @@ The proof of this result requires the following technical lemma which states tha
 	Let $\varphi$ be either $\varphi_{\mathrm{box}}$ or $\varphi_{\Po}$. Then we have that
 	\begin{align*}
 	&\int_\Rcal \cdots \int_\Rcal \varphi(\{p_1,\dots,p_r \}, k_n ;p_1,\dots,p_r) 
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_r,y_r)\dd x_r \dd y_r \\
-	&= (1+o(1))\left(\int_\Rcal  \varphi(\{p_1\}, k_n ;p_1) f(x,y) \dd x \dd y\right)^r .
+		 \dd \mu(p_1) \cdots \dd \mu(p_r) \\
+	&= (1+o(1))\left(\int_\Rcal  \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p)\right)^r .
 	\end{align*}
 \end{lemma}
 
@@ -755,28 +755,27 @@ Let $C>r(2\alpha+1)$ and define the set $A = (\Rcal \times \cdots \times\Rcal) \
 
 For $(p_1,\dots,p_r) \in (\Rcal \times \cdots \times\Rcal) \backslash (\stripknc \times \cdots\times \stripknc)$, there is a $j$, $1\leq j\leq r$, such that $y_j \not \in [y_{k_n,c}^-,y_{k_n,c}^+]$, so that the Chernoff bound (see in~\ref{eq:chernoff_bound_degrees}) yields that $\Prob{D_{\GPo}(v_j)=k_n } = \bigO{k_n^{-C}}$. As, for $1\leq j\leq r$, the event $\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}$ implies the event $\{D_{\GPo}(v_j)=k_n\}$, it follows that $\Prob{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n} = \bigO{k_n^{-C}}$ and hence,
 \begin{align*}
-	\int_A \Pee(D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n) f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_r,y_r)\dd x_r \dd y_r  
-	= O\left(n^r k_n^{-C}\right).
+	\int_A \Pee(D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n) \dd \mu(p_1) \cdots \dd \mu(p_r)	= O\left(n^r k_n^{-C}\right).
 \end{align*}
 
 Next we note that by the concentration of heights (Proposition~\ref{prop:concentration_height_general}) it follows that
 \begin{align*}
-	\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x,y) \dd x \dd y 
-	&= (1+\smallO{1}) \int_\Rcal  \varphi(\{p_1\}, k_n ;p_1) f(x,y) \dd x \dd y\\
+	\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1) 
+	&= (1+\smallO{1}) \int_\Rcal  \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1) \\
 	&= (1+\smallO{1}) 2\alpha \xi^{2\alpha} n k_n^{-(2\alpha + 1)} \numberthis \label{eq:integration_average_degree_stripe}
 \end{align*}
 Since for $C>r(2\alpha+1)$ it holds that $n^r k_n^{-C} = \smallO{\left(n k_n^{-(2\alpha + 1)}\right)^r}$ it now suffices to show that
 \begin{align*}
 	&\int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r \}, k_n ;p_1,\dots,p_r) 
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_r,y_r)\dd x_r \dd y_r \\
-	&= (1+o(1))\left(\int_{\stripknc}  \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r.
+		\dd \mu(p_1)\cdots \dd \mu(p_r) \\
+	&= (1+o(1))\left(\int_{\stripknc}  \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1) \right)^r.
 \end{align*}
 
 We will prove this using induction. More precisely, for every fixed positive integer $s$, we will show by induction on $r$, $1\leq r\leq s$, that for all $p_{r+1},\dots,p_s \in \stripknc$, it holds that
 \begin{align*}
 	&\int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_r,y_r)\dd x_r \dd y_r\\
-	&= (1+o(1))\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r .
+		\dd \mu(p_1) \cdots \dd \mu(p_r)\\
+	&= (1+o(1))\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1)\right)^r .
 \end{align*}
 Note that for $r=s$ this is the claim of the lemma. Throughout the proof $H$ is either $\GPo \cup\{p_1,\dots,p_s\}$ or $\Gbox \cup \{p_1,\dots,p_s\}$, depending on whether $\varphi$ is, respectively, $\varphi_{\Po}$ or $\varphi_{\mathrm{box}}$.
 
@@ -809,37 +808,40 @@ Firstly, we derive an upper bound for the complement $\Fcal_\epsilon(k_n)^c$. No
 and so,
 \begin{align*}
 	&\int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_{r+1}\}, k_n ;p_1,\dots,p_s)
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
+		\dd \mu(p_1) \cdots \dd \mu(p_{r+1})\\
 	&\leq \int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}.
+		\dd \mu(p_1) \cdots \dd \mu(p_{r+1}).
 \end{align*}
 
 For $(p_1,\dots,p_{r+1})\in \Fcal_\epsilon(k_n)^c$, we have that $(p_1,\dots,p_r) \in \left(\stripknc\right)^r$ and $p_{r+1}=(x_{r+1},y_{r+1})$ satisfies $y_{k_n,c}^-\leq y_{r+1}\leq y_{k_n,c}^+$ and $x_{r+1}$ falls into an interval $I_n$ of length $2k_n^{1+\epsilon}$.
 As the integrand $\varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)$ is constant in $x_{r+1}$, we can upper bound the corresponding integration as follows,
 \begin{align*}
 	&\int_{\{(x_{r+1},y_{r+1})\in\stripknc: x_{r+1}\in I_n\}} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s) 
-		f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1} \\
+		\dd \mu(p_{r+1}) \\
 	&= \int_{y_{k_n,c}^-}^{y_{k_n,c}^+} \int_{I_n} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)\frac{\alpha \nu}{\pi} e^{-\alpha y_{r+1}} dx_{r+1}dy_{r+1} \\
 	&\leq 2k_n^{1+\epsilon} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)\int_{y_{k_n,c}^-}^{y_{k_n,c}^+}  \frac{\alpha \nu}{\pi} e^{-\alpha y_{r+1}} dy_{r+1}.
 \end{align*}
 Furthermore, we have that
 \begin{align*}
-\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} e^{-\alpha y_{r+1}}dy_{r+1} \leq \int_{y_{k_n,c}^-}^\infty e^{-\alpha y_{r+1}}dy_{r+1} = \bigO{e^{-\alpha y_{k_n,c}^-}} = \bigO{\left( \frac{k_n-c\sqrt{k_n\ln k_n}}{\xi}\right)^{-2\alpha}} = \bigO{k_n^{-2\alpha}}.
+	\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} e^{-\alpha y_{r+1}}dy_{r+1} 
+	\leq \int_{y_{k_n,c}^-}^\infty e^{-\alpha y_{r+1}}dy_{r+1} 
+	= \bigO{e^{-\alpha y_{k_n,c}^-}} = \bigO{\left( \frac{k_n-c\sqrt{k_n\ln k_n}}{\xi}\right)^{-2\alpha}} 
+	= \bigO{k_n^{-2\alpha}}.
 \end{align*}
 We have thus established that
 \begin{align*}
 	&\int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
+		\dd \mu(p_1) \cdots \dd \mu(p_{r+1})\\
 	&\leq \bigO{k_n^{1+\epsilon} k_n^{-2\alpha}}\int_{\stripknc} \cdots \int_{\stripknc} 
-		\varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s) f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}.
+		\varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s) \dd \mu(p_1) \cdots \dd \mu(p_{r}).
 \end{align*}
 The $r$-fold integral can the bounded from above using the induction hypothesis as
 \begin{align}\label{eq:indhyp}
-	\bigO{k_n^{1+\epsilon-2\alpha}}\left(\int_{\stripknc} \varphi(\{p_1\};p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r .
+	\bigO{k_n^{1+\epsilon-2\alpha}}\left(\int_{\stripknc} \varphi(\{p_1\};p_1) \dd \mu(p_1) \right)^r .
 \end{align}
 Finally, we use that $k_n^{1+\epsilon-2\alpha} = \smallO{\int_{\stripknc} \varphi(\{p_1\};p_1)\mu_n(dp_1)}$. To see this, we will firstly show that $k_n^{1+\epsilon-2\alpha} = \smallO{nk_n^{-(2\alpha+1)}}$ and then apply~\eqref{eq:integration_average_degree_stripe}, which says that
 \begin{align*}
-\int_{\stripknc} \varphi(\{p_1\};p_1) f(x_1,y_1) \dd x_1 \dd y_1 = \bigT{n k_n^{-(2\alpha+1)}}.
+\int_{\stripknc} \varphi(\{p_1\};p_1) \dd \mu(p_1) = \bigT{n k_n^{-(2\alpha+1)}}.
 \end{align*}
 By our choice of $\epsilon$, we have that $\frac{1}{2}+\epsilon<\alpha$, which implies that $\frac{2+\epsilon}{1+2\alpha}<1$, and hence, using $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$,
 \begin{align*}
@@ -848,10 +850,10 @@ By our choice of $\epsilon$, we have that $\frac{1}{2}+\epsilon<\alpha$, which i
 Having shown that $k_n^{1+\epsilon-2\alpha} = \smallO{\int_{\stripknc} \varphi(\{p_1\};p_1)\mu_n(dp_1)}$, we therefore conclude from~\eqref{eq:indhyp} that
 \begin{align*}
 	&\int \int_{\Fcal_\epsilon(k_n)^c} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
+		\dd \mu(p_1) \cdots \dd \mu(p_{r+1})\\
 	&=\smallO{\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)\mu_n(dp_1)}
-		\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1\right)^r  \\
-	&=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)f(x_1,y_1) \dd x_1 \dd y_1\right)^{r+1}}.
+		\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1) \right)^r  \\
+	&=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1)\right)^{r+1}}.
 \end{align*}
 
 For the integration over $\Fcal_\epsilon(k_n)$, recall that by Lemma~\ref{lem:probdegFact}, \[
@@ -862,12 +864,11 @@ For the integration over $\Fcal_\epsilon(k_n)$, recall that by Lemma~\ref{lem:pr
 This implies that
 \begin{align*}
 	&\int \int_{\Fcal_\epsilon(k_n)} \varphi(\{p_1,\dots,p_{r+1}\}, k_n ;p_1,\dots,p_s) 
-		 f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
+		 \dd \mu(p_1) \cdots \dd \mu(p_{r+1})\\
 	&=(1+o(1))\int \int_{\Fcal_\epsilon(k_n)} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s) 
-		\varphi(\{p_{r+1}\};p_1,\dots,p_s) f(x_1,y_1) \dd x_1 \dd y_1 \cdots \\
-	&\hspace{10pt} \times f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1}\\
+		\varphi(\{p_{r+1}\};p_1,\dots,p_s) \dd \mu(p_1) \cdots \dd \mu(p_{r+1}) \\
 	&\hspace{10pt}+\bigO{k_n^{-C}}\int \int_{\Fcal_\epsilon(k_n)} 
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1} =:M+E.
+		\dd \mu(p_1) \cdots \dd \mu(p_{r+1}) =:M+E.
 \end{align*}
 To finish the induction step we have to show that
 \begin{align*}
@@ -889,36 +890,34 @@ As $k_n^{1+\epsilon} = \bigO{n^{\frac{1+\epsilon}{2\alpha+1}}} = o(n)$ for $\eps
 	M &= (1+o(1))\int_{I_n}\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} \varphi(\{p_{r+1}\}, k_n ;p_1,\dots,p_s)
 		\frac{\alpha\nu}{\pi} e^{-\alpha y_{r+1}}dy_{r+1}dx_{r+1}\\
 	&\hspace{15pt} \times \int_{\stripknc} \cdots \int_{\stripknc} 
-		\varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}\\
+		\varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s) \dd \mu(p_1) \cdots \dd \mu(p_{r})\\
 	&=(1+o(1))n\int_{y_{k_n,c}^-}^{y_{k_n,c}^+} \varphi(\{p_{r+1}\}, k_n ;p_1,\dots,p_s)\alpha e^{-\alpha y_{r+1}}dy_{r+1}\\
 	&\hspace{15pt} \times \int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r\};p_1,\dots,p_s)
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}\\
+		\dd \mu(p_1) \cdots \dd \mu(p_{r})\\
 	&=(1+o(1))\int_{\stripknc} \varphi(\{p_{r+1}\}, k_n ;p_1,\dots,p_s)\mu_n(dp_1)\\
 	&\hspace{15pt} \times\int_{\stripknc} \cdots \int_{\stripknc} \varphi(\{p_1,\dots,p_r\}, k_n ;p_1,\dots,p_s)
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r}.
+		\dd \mu(p_1) \cdots \dd \mu(p_{r}).
 \end{align*}
 By applying the base case of the induction to the first factor and the induction hypothesis to the second one, we have derived that
 \begin{align*}
-M&=(1+o(1))\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1 \right)^{r+1}.
+M&=(1+o(1))\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1) \right)^{r+1}.
 \end{align*}
 Finally, for $E$ we observe that
 \begin{align*}
-	E=\bigO{k_n^{-C}}\int \int_{\Fcal_\epsilon(k_n)} 
-	f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r+1},y_{r+1})\dd x_{r+1} \dd y_{r+1} 
-	= \bigO{k_n^{-C}}(1+o(1))n^{r+1}.
+	E=\bigO{k_n^{-C}}\int \int_{\Fcal_\epsilon(k_n)} \dd \mu(p_1) \cdots \dd \mu(p_{r+1}) = \bigO{k_n^{-C}}(1+o(1))n^{r+1}.
 \end{align*}
 Recall that again by~\eqref{eq:integration_average_degree_stripe},
 \begin{align*}
-\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) f(x_1,y_1) \dd x_1 \dd y_1 = \bigT{n k_n^{-(2\alpha+1)}},
+\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1) = \bigT{n k_n^{-(2\alpha+1)}},
 \end{align*}
 which implies that
 \begin{align*}
-\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)f(x_1,y_1) \dd x_1 \dd y_1\right)^{r+1} 
+\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1) \right)^{r+1} 
 = \bigT{n^{r+1}k_n^{-r(2\alpha+1)}}.
 \end{align*}
 For $C>r(2\alpha+1)$, we can conclude that indeed
 \begin{align*}
-E = \bigO{n^{r+1}k_n^{-C}}=\smallO{n^{r+1}k_n^{-r(2\alpha+1)}}=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1)\mu_n(dp_1)\right)^{r+1}}.
+E = \bigO{n^{r+1}k_n^{-C}}=\smallO{n^{r+1}k_n^{-r(2\alpha+1)}}=\smallO{\left(\int_{\stripknc} \varphi(\{p_1\}, k_n ;p_1) \dd \mu(p_1)\right)^{r+1}}.
 \end{align*}
 \end{proof}
 
@@ -947,25 +946,28 @@ By the Campbell-Mecke formula
 	&\Exp{ {N_{\Po}(k_n) \choose r}}=\frac{1}{r!} \E\left[ \sum_{p_1,\dots,p_r\in V(\GPo), \atop \text{distinct}}  
 		\1_{\{D_{\GPo}(p_1)=\dots=D_{\GPo}(p_r)=k_n\}}\right] \\
 	&=\frac{1}{r!} \int_\Rcal \cdots \int_\Rcal \varphi_{\Po}(\{p_1,\dots,p_r\},p_1,\dots,p_r)
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r},
+		\dd \mu(p_1) \cdots \dd \mu(p_{r}),
 \end{align*}
 where we integrate over $r$ additional points which we can think of as being added independently and with the same distribution as the vertices of the Poissonized KPKVB model $\GPo$ in the upper half-plane coordinates.
 
 With $r=1$, it follows that
 \[
 	\Exp{N_{\Po}(k_n)} = \int_\Rcal \varphi_{\Po}(\{p_1\}, k_n ; p_1) f(x_1,y_1) \dd x_1 \dd y_1,
+%=======
+%	\Exp{N_{\Po}(k_n)} = \int_\Rcal \phi_{\Po}(\{p_1\}, k_n ; p_1) \dd \mu(p_1),
+%>>>>>>> Stashed changes
 \]
 which yields that the right-hand side of the claim of the lemma can be rewritten as
 \[
-	\frac{1}{r!}(\Exp{N_{\Po}(k_n)})^r = \frac{1}{r!}\left(\int_\Rcal \phi_{\Po}(\{p_1\}, k_n; p_1) f(x_1,y_1) \dd x_1 \dd y_1,\right)^r.
+	\frac{1}{r!}(\Exp{N_{\Po}(k_n)})^r = \frac{1}{r!}\left(\int_\Rcal \phi_{\Po}(\{p_1\}, k_n; p_1) \dd \mu(p_1)\right)^r.
 \]
 
 Using Lemma~\ref{lem:asympind}, we conclude that
 \begin{align*}
-	&\hspace{-20pt}\Exp{ { N_{\Po}(k_n) \choose r}} \\
+	\Exp{ { N_{\Po}(k_n) \choose r}} 
 	&= \frac{1}{r!} \int_\Rcal \cdots \int_\Rcal 
 		\varphi_{\Po}(\{p_1,\dots,p_r\}, k_n; p_1,\dots,p_r) 
-		f(x_1,y_1) \dd x_1 \dd y_1 \cdots f(x_{r},y_{r})\dd x_{r} \dd y_{r} \\
+		\dd \mu(p_1) \cdots \dd \mu(p_{r}) \\
 	&= (1+o(1))\frac{1}{r!}\left(\int_\Rcal \varphi_{\Po}(\{p_1\}, k_n;p_1) f(x_1,y_1) \dd x_1 \dd y_1 \right)^r \\
 	&= (1+o(1))\frac{1}{r!}(\Exp{N_{\Po}(k_n)})^r.
 \end{align*}
@@ -1006,8 +1008,8 @@ Therefore it remains to consider the first summation.
 Let $D_n(u)$ and $D_{\Po}(u)$ denote the degree of a point $u$ in $G_n$ and $G_{\Po}$, respectively. Then there are two scenarios to consider: 1) either $D_n(u_i) = k_n$ and $D_{\Po}(u_i) \ne k_n$ or 2) $D_n(u_i) \ne k_n$ and $D_{\Po}(u_i) = k_n$. In the first case, since $u_i$ is present in both graphs it follows that $D_{\Po}(u_i) > k_n$. Similarly, for the second case it must hold that $D_n(u_i) < k_n$. Hence we have
 \begin{align*}
 	&\hspace{-30pt}\sum_{i = 1}^n \1_{\left\{u_i \in V_n(k_n) \Delta V_{\Po}(k_n)\right\}}\\
-	&= \sum_{i = 1}^n \1_{\left\{d_n(u_i) = k_n, D_{\Po}(u_i) > k_n\right\}}
-		+ \sum_{i = 1}^n \1_{\left\{d_n(u_i) < k_n, D_{\Po}(u_i) = k_n\right\}}.
+	&= \sum_{i = 1}^n \1_{\left\{D_n(u_i) = k_n, D_{\Po}(u_i) > k_n\right\}}
+		+ \sum_{i = 1}^n \1_{\left\{D_n(u_i) < k_n, D_{\Po}(u_i) = k_n\right\}}.
 \end{align*}
 
 Let us first consider the second summation, i.e. the case where the node has degree smaller than $k_n$ in $G_n$. Taking the expectation gives $n \Prob{D_n < k_n, D_{\Po} = k_n}$, where $D_n$ denotes the degree in the KPKVB model of a point $u$ placed according to the $(\alpha,R)$-quasi uniform distribution. We now observe that because the points $u_1, \dots, u_N$ used to couple the graphs are independent, we can view the graph $G_n$ as being obtained from $\GPo$ by removing $N-n$ points, uniformly at random. Therefore if a point has degree $k_n$ in $\GPo$ but smaller degree in $G_n$, this means that at least one of its neighbors was removed. Denote by $Z(n)$ a random variable with a Hypergeometric distribution, for taking $N-n$ draws from a population of size $N$, where there are $k_n$ good objects. That is, $Z(n)$ denote the number of removed neighbors of a node $u$ with degree $k_n$ in $\GPo$. We then have

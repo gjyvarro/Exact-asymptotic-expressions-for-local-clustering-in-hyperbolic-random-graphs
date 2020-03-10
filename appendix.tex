@@ -362,143 +362,143 @@ we have
 The result then follows by observing that $\left(\frac{n-\lambda}{n - k}\right)^{n - k} e^{\lambda - k} \le 1$ for all $0 < \lambda < n$ and $0 \le k \le n - 1$.
 \end{proof}
 
-The following technical lemma establishes two results that are important in Section~\ref{sec:coupling_H_P_n}.
-
-\begin{lemma}\label{lem:concentration_height_binomial}
-Let $\mathrm{Bin}(m,p)$ denote a Binomial random variable with $m$ trials and success probability $p$, let $k_n \to \infty$ be a sequence of integers such that $k_n = \smallO{n}$ and fix some $C > 0$. Then the following holds for any $s, t > 0$:
-\begin{enumerate}
-\item for any $0 < p_n < 1$ such that $|n p_n - k_n| > C \sqrt{k_n \log(k_n)}$,
-\[
-	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} = \bigO{k_n^{-\frac{C^2}{3}}}.
-\]
-\item for any $0 < p_n < 1$ such that $|n p_n - k_n| \le  C \sqrt{k_n \log(k_n)}$ and any sequence of integers $m_n$ such that $|m_n -n|\le C \sqrt{n \log(n)}$
-\[
-	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} = (1+\smallO{1})\Prob{\mathrm{Bin}(m_n-s,p_n) = k_n}.
-\]
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-First we observe that
-\[
-	\frac{\partial}{\partial x} \Prob{\mathrm{Bin}(m,x) = k} = \binom{m}{k}\left(k x^{k-1}(1-x)^{m-k}
-	- (m-k)x^k (1-x)^{m-k-1}\right).
-\]
-Hence, the function $x \mapsto \Prob{\mathrm{Bin}(m,x) = k}$ attains it maximum at $x = k/m$ and is strictly increasing on $(0,k/m]$ and strictly decreasing on $[k/m,1)$.
-
-We proceed with proving the first statement. Consider the case where $n p_n < k_n - C \sqrt{k_n \log(k_n}$. Define 
-\[
-	q_n = \frac{k_n - C \sqrt{k_n \log(k_n})}{n-t}
-\]
-and set $Y_n = \mathrm{Bin}(n-t,q_n)$. Then, since $q_n < k_n/(n-t)$ we get
-\begin{align*}
-	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} &\le \Prob{Y_n = k_n} \le \Prob{Y_n > k_n-1}
-		= \Prob{Y_n > (1+\delta_n)(n-t)q_n},
-\end{align*}
-with
-\[
-	\delta_n = \frac{k_n - 1 -nq_n}{(n -t)q_n}
-	= \frac{C \sqrt{k_n \log(k_n)} - 1}{k_n - C \sqrt{k_n \log(k_n)}}.
-\]
-By a Chernoff bound we get
-\begin{align*}
-	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} &\le \Prob{Y_n > (1+\delta_n)nq_n}
-		\le e^{-\frac{\delta_n^2 n q_n}{2}} \le e^{-\frac{\delta_n^2 n q_n}{3}}.
-\end{align*}
-The result now follows by observing that $\delta_n^2 n q_n = \Omega\left(C^2 \log(k_n)\right)$.
-
-For the case $n p_n > k_n - C \sqrt{k_n \log(k_n}$ we set $q_n = (k_n + C \sqrt{k_n \log(k_n})/n > k_n/n$ and 
-\[
-	\delta_n = \frac{nq_n - (k_n +1)}{n q_n}
-	= \frac{C \sqrt{k_n \log(k_n)} - 1}{k_n + C \sqrt{k_n \log(k_n)}}.
-\]
-Then, $p_n > q_n > k_n/n$ and $\delta_n^2 n q_n = \Omega\left(C^2 \log(k_n)\right)$. Thus by another Chernoff bound
-\begin{align*}
-	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} &\le \Prob{Y_n = k_n} \le \Prob{Y_n < k_n+1}\\
-	&= \Prob{Y_n < (1-\delta_n)nq_n}
-		\le e^{-\frac{\delta_n^2 n q_n}{3}} = \bigO{k_n^{-\frac{C^2}{3}}}.
-\end{align*}
-
-Now let us prove the second statement. For this we first note that by Stirling's formula
-\[
-	\binom{n-t}{k_n} \sim (2\pi k_n)^{-1/2} \left(\frac{k_n}{n-t}\right)^{-k_n}\left(1 - \frac{k_n}{n-t}\right)^{k_n - (n-t)},
-\]
-and similarly for $\binom{m_n-s}{k_n}$. Therefore
-\begin{align*}
-	\binom{n-t}{k_n} \binom{m_n - s}{k_n}^{-1}
-	&= (1+\smallO{1}) \left(\frac{n - t}{m_n-s}\right)^{k_n}\left(1 - \frac{k_n}{n-t}\right)^{k_n - (n-t)}
-		\left(1 - \frac{k_n}{m_n-s}\right)^{m_n - s - k_n}
-\end{align*}
-and thus
-\begin{align*}
-	\frac{\Prob{\mathrm{Bin}(n-t,p_n) = k_n}}{\Prob{\mathrm{Bin}(m_n-s,p_n) = k_n}}
-	&= (1+\smallO{1}) \left(\frac{n - t - k_n}{n - t - p_n}\right)^{k_n - (n-t)} 
-		\left(\frac{m_n - s - k_n}{m_n-s - p_n}\right)^{k_n - (m_n - s)}
-\end{align*}
-Let us rewrite the first multiplicative term as 
-\[
-	\left(\frac{n - t - k_n}{n - t - p_n}\right)^{k_n - (n-t)} 
-	= \left(1 - \frac{k_n - p_n}{n - t -p_n}\right)^{k_n - (n-t)} := (1-x_n)^{k_n - (n-t)}.
-\]
-Then, using that for all $-1/2 \le x \le 1/2$, $-x - x^2 \le \log(1-x) \le -x$, we get
-\[
-	e^{-(k_n - (n-t))\left(x_n + x_n^2\right)}
-	\le \left(\frac{n - t - k_n}{n - t - p_n}\right)^{k_n - (n-t)}
-	\le e^{-(k_n - (n-t))x_n}.
-\]
-Similarly,
-\[
-	e^{-(m_n - s- k_n)\left(y_n + y_n^2\right)}
-	\le \left(\frac{m_n - s - k_n}{m_n-s - p_n}\right)^{m_n - s - k_n}
-	\le e^{-(m_n - s - k_n)y_n},
-\]
-where
-\[
-	y_n := \frac{k_n - p_n}{m_n - s -p_n}.
-\]
-
-We first show that 
-\begin{equation}\label{eq:binom_upper_bound_for_proof}
-	\lim_{n \to \infty} e^{-(k_n - (n-t))x_n}e^{-(m_n - s - k_n)y_n} = 1.
-\end{equation}
-With some algebra we get
-\begin{align*}
-	&\hspace{-30pt}-(k_n - (n-t))x_n - (m_n - s - k_n)y_n\\
-	&= \left(1 - \frac{k_n -p_n}{n - t -p_n}\right)(k_n - p_n) 
-		- \left(1 - \frac{k_n - p_n}{m_n - s - p_n}\right)(k_n - p_n)\\
-	&= (k_n - p_n)^2 \left(\frac{1}{m_n - s - p_n} - \frac{1}{n - t - p_n}\right)\\
-	&= (k_n - p_n)^2 \, \frac{n - m_n - t + s}{(m_n - s - p_n)(n - t - p_n)}.
-\end{align*}
-Now by our assumptions
-\[
-	(k_n - p_n)^2 = \bigT{k_n \log(k_n)}
-\]
-while
-\[
-	m_n - s - p_n = \bigT{n - t - p_n} = \bigT{n}
-\]
-and
-\[
-	-C \sqrt{n\log(n)} \le n - m_n \le C\sqrt{n \log(n)}.
-\]
-Therefore we conclude that
-\[
-	(k_n - p_n)^2 \, \frac{n - m_n - t + s}{(m_n - s - p_n)(n - t - p_n)} 
-	= \bigT{\frac{k_n \log(k_n) \sqrt{n\log(n)}}{n^2}}
-\]
-from which~\eqref{eq:binom_upper_bound_for_proof} follows. 
-
-In a similar way it follows that
-\[
-	\lim_{n \to \infty} e^{-(k_n - (n-t))x_n^2}e^{-(m_n - s - k_n)y_n^2} = 1,
-\]
-which implies that
-\[
-	\lim_{n \to \infty} \frac{\Prob{\mathrm{Bin}(n-t,p_n) = k_n}}{\Prob{\mathrm{Bin}(m_n-s,p_n) = k_n}}
-	= 1,
-\] 
-as thus finishes the proof.
-\end{proof}
+%The following technical lemma establishes two results that are important in Section~\ref{sec:coupling_H_P_n}.
+%
+%\begin{lemma}\label{lem:concentration_height_binomial}
+%Let $\mathrm{Bin}(m,p)$ denote a Binomial random variable with $m$ trials and success probability $p$, let $k_n \to \infty$ be a sequence of integers such that $k_n = \smallO{n}$ and fix some $C > 0$. Then the following holds for any $s, t > 0$:
+%\begin{enumerate}
+%\item for any $0 < p_n < 1$ such that $|n p_n - k_n| > C \sqrt{k_n \log(k_n)}$,
+%\[
+%	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} = \bigO{k_n^{-\frac{C^2}{3}}}.
+%\]
+%\item for any $0 < p_n < 1$ such that $|n p_n - k_n| \le  C \sqrt{k_n \log(k_n)}$ and any sequence of integers $m_n$ such that $|m_n -n|\le C \sqrt{n \log(n)}$
+%\[
+%	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} = (1+\smallO{1})\Prob{\mathrm{Bin}(m_n-s,p_n) = k_n}.
+%\]
+%\end{enumerate}
+%\end{lemma}
+%
+%\begin{proof}
+%First we observe that
+%\[
+%	\frac{\partial}{\partial x} \Prob{\mathrm{Bin}(m,x) = k} = \binom{m}{k}\left(k x^{k-1}(1-x)^{m-k}
+%	- (m-k)x^k (1-x)^{m-k-1}\right).
+%\]
+%Hence, the function $x \mapsto \Prob{\mathrm{Bin}(m,x) = k}$ attains it maximum at $x = k/m$ and is strictly increasing on $(0,k/m]$ and strictly decreasing on $[k/m,1)$.
+%
+%We proceed with proving the first statement. Consider the case where $n p_n < k_n - C \sqrt{k_n \log(k_n}$. Define 
+%\[
+%	q_n = \frac{k_n - C \sqrt{k_n \log(k_n})}{n-t}
+%\]
+%and set $Y_n = \mathrm{Bin}(n-t,q_n)$. Then, since $q_n < k_n/(n-t)$ we get
+%\begin{align*}
+%	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} &\le \Prob{Y_n = k_n} \le \Prob{Y_n > k_n-1}
+%		= \Prob{Y_n > (1+\delta_n)(n-t)q_n},
+%\end{align*}
+%with
+%\[
+%	\delta_n = \frac{k_n - 1 -nq_n}{(n -t)q_n}
+%	= \frac{C \sqrt{k_n \log(k_n)} - 1}{k_n - C \sqrt{k_n \log(k_n)}}.
+%\]
+%By a Chernoff bound we get
+%\begin{align*}
+%	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} &\le \Prob{Y_n > (1+\delta_n)nq_n}
+%		\le e^{-\frac{\delta_n^2 n q_n}{2}} \le e^{-\frac{\delta_n^2 n q_n}{3}}.
+%\end{align*}
+%The result now follows by observing that $\delta_n^2 n q_n = \Omega\left(C^2 \log(k_n)\right)$.
+%
+%For the case $n p_n > k_n - C \sqrt{k_n \log(k_n}$ we set $q_n = (k_n + C \sqrt{k_n \log(k_n})/n > k_n/n$ and 
+%\[
+%	\delta_n = \frac{nq_n - (k_n +1)}{n q_n}
+%	= \frac{C \sqrt{k_n \log(k_n)} - 1}{k_n + C \sqrt{k_n \log(k_n)}}.
+%\]
+%Then, $p_n > q_n > k_n/n$ and $\delta_n^2 n q_n = \Omega\left(C^2 \log(k_n)\right)$. Thus by another Chernoff bound
+%\begin{align*}
+%	\Prob{\mathrm{Bin}(n-t,p_n) = k_n} &\le \Prob{Y_n = k_n} \le \Prob{Y_n < k_n+1}\\
+%	&= \Prob{Y_n < (1-\delta_n)nq_n}
+%		\le e^{-\frac{\delta_n^2 n q_n}{3}} = \bigO{k_n^{-\frac{C^2}{3}}}.
+%\end{align*}
+%
+%Now let us prove the second statement. For this we first note that by Stirling's formula
+%\[
+%	\binom{n-t}{k_n} \sim (2\pi k_n)^{-1/2} \left(\frac{k_n}{n-t}\right)^{-k_n}\left(1 - \frac{k_n}{n-t}\right)^{k_n - (n-t)},
+%\]
+%and similarly for $\binom{m_n-s}{k_n}$. Therefore
+%\begin{align*}
+%	\binom{n-t}{k_n} \binom{m_n - s}{k_n}^{-1}
+%	&= (1+\smallO{1}) \left(\frac{n - t}{m_n-s}\right)^{k_n}\left(1 - \frac{k_n}{n-t}\right)^{k_n - (n-t)}
+%		\left(1 - \frac{k_n}{m_n-s}\right)^{m_n - s - k_n}
+%\end{align*}
+%and thus
+%\begin{align*}
+%	\frac{\Prob{\mathrm{Bin}(n-t,p_n) = k_n}}{\Prob{\mathrm{Bin}(m_n-s,p_n) = k_n}}
+%	&= (1+\smallO{1}) \left(\frac{n - t - k_n}{n - t - p_n}\right)^{k_n - (n-t)} 
+%		\left(\frac{m_n - s - k_n}{m_n-s - p_n}\right)^{k_n - (m_n - s)}
+%\end{align*}
+%Let us rewrite the first multiplicative term as 
+%\[
+%	\left(\frac{n - t - k_n}{n - t - p_n}\right)^{k_n - (n-t)} 
+%	= \left(1 - \frac{k_n - p_n}{n - t -p_n}\right)^{k_n - (n-t)} := (1-x_n)^{k_n - (n-t)}.
+%\]
+%Then, using that for all $-1/2 \le x \le 1/2$, $-x - x^2 \le \log(1-x) \le -x$, we get
+%\[
+%	e^{-(k_n - (n-t))\left(x_n + x_n^2\right)}
+%	\le \left(\frac{n - t - k_n}{n - t - p_n}\right)^{k_n - (n-t)}
+%	\le e^{-(k_n - (n-t))x_n}.
+%\]
+%Similarly,
+%\[
+%	e^{-(m_n - s- k_n)\left(y_n + y_n^2\right)}
+%	\le \left(\frac{m_n - s - k_n}{m_n-s - p_n}\right)^{m_n - s - k_n}
+%	\le e^{-(m_n - s - k_n)y_n},
+%\]
+%where
+%\[
+%	y_n := \frac{k_n - p_n}{m_n - s -p_n}.
+%\]
+%
+%We first show that 
+%\begin{equation}\label{eq:binom_upper_bound_for_proof}
+%	\lim_{n \to \infty} e^{-(k_n - (n-t))x_n}e^{-(m_n - s - k_n)y_n} = 1.
+%\end{equation}
+%With some algebra we get
+%\begin{align*}
+%	&\hspace{-30pt}-(k_n - (n-t))x_n - (m_n - s - k_n)y_n\\
+%	&= \left(1 - \frac{k_n -p_n}{n - t -p_n}\right)(k_n - p_n) 
+%		- \left(1 - \frac{k_n - p_n}{m_n - s - p_n}\right)(k_n - p_n)\\
+%	&= (k_n - p_n)^2 \left(\frac{1}{m_n - s - p_n} - \frac{1}{n - t - p_n}\right)\\
+%	&= (k_n - p_n)^2 \, \frac{n - m_n - t + s}{(m_n - s - p_n)(n - t - p_n)}.
+%\end{align*}
+%Now by our assumptions
+%\[
+%	(k_n - p_n)^2 = \bigT{k_n \log(k_n)}
+%\]
+%while
+%\[
+%	m_n - s - p_n = \bigT{n - t - p_n} = \bigT{n}
+%\]
+%and
+%\[
+%	-C \sqrt{n\log(n)} \le n - m_n \le C\sqrt{n \log(n)}.
+%\]
+%Therefore we conclude that
+%\[
+%	(k_n - p_n)^2 \, \frac{n - m_n - t + s}{(m_n - s - p_n)(n - t - p_n)} 
+%	= \bigT{\frac{k_n \log(k_n) \sqrt{n\log(n)}}{n^2}}
+%\]
+%from which~\eqref{eq:binom_upper_bound_for_proof} follows. 
+%
+%In a similar way it follows that
+%\[
+%	\lim_{n \to \infty} e^{-(k_n - (n-t))x_n^2}e^{-(m_n - s - k_n)y_n^2} = 1,
+%\]
+%which implies that
+%\[
+%	\lim_{n \to \infty} \frac{\Prob{\mathrm{Bin}(n-t,p_n) = k_n}}{\Prob{\mathrm{Bin}(m_n-s,p_n) = k_n}}
+%	= 1,
+%\] 
+%as thus finishes the proof.
+%\end{proof}
 
 \section{Concentration of heights for vertices with degree $k$}\label{sec:concentration_argument}
 
