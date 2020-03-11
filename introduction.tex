@@ -88,10 +88,10 @@ This assigns to each non-negative integer $k$ the value
 where $N(k)$ denotes the number of vertices of degree exactly $k$ in $G$. In other words, the clustering function assigns to the integer $k$ the average of the local clustering coefficient over all vertices of degree $k$. We remark that, while it might seem natural to consider $c(k)$ to be ``undefined'' when $N(k)=0$, we prefer to use the above definition for technical 
 convenience.  This way $c(k; G(n;\alpha,\nu) )$ is a plain vanilla random variable and we can for instance compute its moments without any issues.
 
-A general expression of the clustering function for KPKVB random graphs is given in~\cite[Equation (59)]{krioukov2010hyperbolic}. 
-The authors conjecture that as $k$ tends to infinity, the clustering function decays as $k^{-1}$. 
-They based this prediction on observations (Figure 8 in \cite{krioukov2010hyperbolic}) in experiments on the infrastructure of the Internet obtained in~\cite{claffy2009internet}. Despite these interesting observations and the attention the KPKVB model has generated since then, the behaviour of the clustering function in KPKVB random graphs had not been completely determined. In particular it has not been established whether it converges as $n\to\infty$ to some suitable limit function, nor how $c(k;G(n; \alpha,\nu))$ scales with $k$. Theorems~\ref{thm:mainkfixed},~\ref{thm:mainktoinfty} and Proposition~\ref{prop:asymp} below settle these questions. Theorem~\ref{thm:mainkfixed} shows that for each fixed $k$, the value $c(k;G(n;\alpha,\nu))$ converges in probability to a constant $\gamma(k)$ that we again give explicitly as a closed form expression involving $\alpha,\nu$ and several classical special functions. Theorem~\ref{thm:mainktoinfty} extends this result to growing sequences satisfying $k \ll n^{1/(2\alpha+1)}$. Proposition~\ref{prop:asymp} clarifies the asymptotic behavior of the limiting function $\gamma(k)$, as $k\to\infty$. This depends on the parameter $\alpha$, and $\gamma(k)$ only scales with $k^{-1}$ when $\alpha > 3/4$, which corresponds to the exponent of the degree distribution exceeding $5/2$. 
-So in particular our findings disprove the above-mentioned conjecture of Krioukov et al.~\cite{krioukov2010hyperbolic}.
+Krioukov et al.~state (\cite{krioukov2010hyperbolic}, last sentence on page 036106-10) that as $k$ tends to infinity, the clustering function decays as $k^{-1}$. This seems to be based on computations that were not included in the paper.
+Despite the attention the KPKVB model has generated since then, the behaviour of the clustering function in KPKVB random graphs has not been rigorously determined yet. In particular it has not been established whether it converges as $n\to\infty$ to some suitable limit function.  
+Theorems~\ref{thm:mainkfixed} and~\ref{thm:mainktoinfty} below settle this question. Theorem~\ref{thm:mainkfixed} shows that for each fixed $k$, the value $c(k;G(n;\alpha,\nu))$ converges in probability to a constant $\gamma(k)$ that we again give explicitly as a closed form expression involving $\alpha,\nu$ and several classical special functions. Theorem~\ref{thm:mainktoinfty} extends this result to growing sequences satisfying $k \ll n^{1/(2\alpha+1)}$. Proposition~\ref{prop:asymp} clarifies the asymptotic behavior of the limiting function $\gamma(k)$, as $k\to\infty$. This depends on the parameter $\alpha$, and $\gamma(k)$ only scales with $k^{-1}$ when $\alpha > 3/4$, which corresponds to the exponent of the degree distribution exceeding $5/2$. 
+So in particular our findings contradict the above-mentioned claim of Krioukov et al.~\cite{krioukov2010hyperbolic}.
 
 
 \subsubsection*{Notation}
@@ -267,7 +267,7 @@ $$ c_{\alpha,\nu} :=
 
 Theorem~\ref{thm:mainktoinfty} states that the clustering function of the KPKVB model scales as $\gamma(k)$ as the number of vertices $n\to\infty$, and
 Proposition~\ref{prop:asymp} makes clear how $\gamma(k)$ behaves as $k$ grows.
-In particular, these results contradict the scaling conjectured in~\cite{krioukov2010hyperbolic} for 
+In particular, these results contradict the scaling claimed in~\cite{krioukov2010hyperbolic} for 
 $\alpha \leq \frac{3}{4}$, and confirms it only for $\alpha > \frac{3}{4}$.
 
 We remark that simultaneously and independently Stegehuis, van der Hofstad and van Leeuwaarden~\cite{stegehuis2019scale} used a completely different technique to obtain a similar, though less detailed, result on the $k\to\infty$ scaling of the clustering function in the KPKVB model.

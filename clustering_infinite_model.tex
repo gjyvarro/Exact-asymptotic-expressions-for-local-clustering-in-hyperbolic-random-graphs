@@ -191,6 +191,7 @@ Hence, given the height $y_i$ of $u_i$, the $x$-coordinate of $u_i$ is uniform i
 With this in mind we define $P(y_0,y_1,y_2)$ to be the probability that $y_0, (x_1,y_1), (x_2,y_2)$ 
 satisfy \\ $|x_1-x_2| \leq e^{(y_1+y_2)/2}$, where $x_1$ and $x_2$ are independent uniform random variables in the intervals
 $[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_0+y_2)},e^{\frac{1}{2}(y_0+y_2)}]$, respectively. We then have that
+
 \begin{equation}\label{eq:delta_P}
  P(y_0) = (\alpha-1/2)^2 \int_0^\infty \int_0^\infty P(y_0, y_1, y_2) e^{-(\alpha-1/2)(y_1+y_2)} 
  \dd y_2 \dd y_1.
@@ -201,12 +202,13 @@ $[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_
 
 To compute the integral~\eqref{eq:delta_P} it will be convenient to use the 
 change of variable $z_i = e^{-y_i/2}$, for $i= 0, 1, 2$. 
-We will write $y_i(z_i)$ to stress the dependence between $y_i$ and $z_i$. 
-The following result completely characterizes $P(y_0,y_1,y_2)$.
+The following result will turn out to be
+all we need to compute the integral~\eqref{eq:delta_P}.
 
 \begin{lemma}\label{lem:triangle_prob_y_coordinates}
+Set $z_i = e^{-y_i/2}$, $i=0,1,2$. We have
 \begin{align*}
-P(y_0(z_0),y_1(z_1),y_2(z_2)) = \begin{cases}
+P(y_0,y_1,y_2) = \begin{cases}
 	1, &\text{ if } z_0 \geq z_1+z_2, z_0 > z_1 > z_2, \\
 	1-G(z_0,z_1,z_2), &\text{ if } z_0 < z_1+z_2, z_0 > z_1 > z_2, \\
 	\frac{z_0}{z_1}, &\text{ if } z_1 \geq z_0+z_2, z_1 > \max(z_0,z_2), \\
@@ -228,9 +230,9 @@ G(a,b,c) = \frac{1}{4}
 We split the proof of this lemma into a couple of smaller pieces. We begin with the following lemma.
 
 \begin{lemma}\label{lem:ordered}
-Let $z_i = e^{-y_i/2}$, $i=0,1,2$. If $y_0<y_1<y_2$ (or equivalently $z_0 > z_1 > z_2$), then
+Write $z_i = e^{-y_i/2}$, $i=0,1,2$. If $y_0<y_1<y_2$ (or equivalently $z_0 > z_1 > z_2$), then
 \begin{align*}
-P(y_0(z_0),y_1(z_1),y_2(z_2)) = \begin{cases}
+P(y_0,y_1,y_2) = \begin{cases}
 1, &\text{ if } z_0 \geq z_1+z_2,  \\
 1-G(z_0,z_1,z_2), &\text{ if } z_0 < z_1+z_2
 \end{cases}
@@ -1003,9 +1005,8 @@ which equals the expression in Theorem~\ref{thm:local_clustering_hyperbolic}. %%
 
 
 
-Although we've already established that $\gamma, \gamma(k)$ can be obtained at $\alpha=1$ by
-taking the $\alpha\to 1$ limit of the expression obtained for $\alpha=1$, it is still helpful
-to derive an alternative, more explicit expression. This is what we will do in the current section.
+We've already established that $\gamma, \gamma(k)$ can be obtained at $\alpha=1$ by
+taking the $\alpha\to 1$ limit of the expression obtained for $\alpha=1$. Here we derive an alternative explicit expression for completene. This is what we will do in the current section.
 
 Recall that $\Gamma^\ast(q,z) = \Gamma^+(q+1,z) + \Gamma^+(q,z)$. We will prove the following.
 
