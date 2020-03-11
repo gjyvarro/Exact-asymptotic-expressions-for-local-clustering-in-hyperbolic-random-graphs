@@ -167,7 +167,7 @@ When analyzing degrees and clustering in the Poissonized KPKVB and related model
 \end{equation}
 where $h(y)$ is some function and $\hat{\mu}(y)$ is $\Mu{\BallHyp{y}}$, $\Mu{\BallPon{y}}$ or $\Mu{\BallPo{y}}$. We will often have to either bound the behavior of such integrals as $k_n \to \infty$ or establish their asymptotic behavior. For this we will utilize that Poisson random variables are well concentrated around their mean. 
 
-In particular, if $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$, we have the following Chernoff bound (c.f. \cite[Lemma 1.2]{penrose2003random})
+Let $\Po(\lambda)$ denote a Poisson random variable with mean $\lambda$. Then we have the following Chernoff bound (c.f. \cite[Lemma 1.2]{penrose2003random})
 \begin{equation}\label{eq:def_chernoff_bound_poisson}
 	\Prob{\left|\mathrm{Po}(\lambda) - \lambda\right| \ge x} \le 2e^{-\frac{x^2}{2(\lambda + x)}}.
 \end{equation}
@@ -188,10 +188,10 @@ Since we can select $C$ to be as big as we want we can make this error as small 
 
 \begin{proposition}[Concentration of heights]\label{prop:concentration_height_general}
 Let $\alpha > \frac{1}{2}$, $\nu > 0$, $(k_n)_{n \ge 1}$ be any positive sequence such that $k_n \to \infty$ and $k_n = \smallO{n}$. Furthermore, let $\hat{\mu}(y)$ denoting either $\Mu{\BallHyp{y}}$, $\Mu{\BallPon{y}}$ or $\Mu{\BallPo{y}}$. Then for any continuous function $h : \R_+ \rightarrow  \R$, such that $h(y) = \bigO{e^{\beta y}}$ as $y \to \infty$ for some $\beta < \alpha$, it holds that
-\begin{equation}\label{eq:error_bound_int_rho_not_K}
+\begin{equation*}%\label{eq:error_bound_int_rho_not_K}
 	\int_0^\infty \hspace{-3pt} h(y) \Prob{\Po(\hat{\mu}(y)) = k_n} \alpha e^{-\alpha y} \dd y
 	\sim \int_{\Kcal_C(k_n)} \hspace{-8pt} h(y) \Prob{\Po(\hat{\mu}(y)) = k_n} \alpha e^{-\alpha y} \dd y,
-\end{equation}
+\end{equation*}
 as $n \to \infty$.
 \end{proposition}
 

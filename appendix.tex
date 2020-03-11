@@ -319,14 +319,16 @@ Let $\Po(\lambda)$ denote a Poisson random variable with mean $\lambda$ and let 
 \end{lemma}
 
 It follows from the above lemma that
-\begin{equation}\label{eq:def_chernoff_bound_poisson}
+\begin{equation*}
 	\Prob{\left|\mathrm{Po}(\lambda) - \lambda\right| \ge x} \le 2e^{-\frac{x^2}{2(\lambda + x)}}.
-\end{equation}
+\end{equation*}
 In particular, if $\lambda_n \to \infty$, then, for any $C>0$,
-\begin{equation}\label{eq:def_chernoff_bound_poisson_C}
+\begin{equation*}
 	\Prob{\left|\mathrm{Po}(\lambda_n) - \lambda_n\right| \ge C \sqrt{\lambda_n\log(\lambda_n)}} \le 2e^{-\frac{C^2 \lambda_n \log(\lambda_n}{2\left(\lambda_n + C\sqrt{\lambda_n\log(\lambda_n)}\right)}}
 	= \bigO{\lambda_n^{-\frac{C^2}{2}}}.
-\end{equation}
+\end{equation*}
+
+Note that these are equations~\eqref{eq:def_chernoff_bound_poisson} and~\eqref{eq:def_chernoff_bound_poisson_C} from the main text.
 
 Let $\mathrm{Bin}(n,p)$ denote a Binomial random variable with $n$ trials and success probability $p$, and $0 < \delta < 1$. Then we have the following well-known Chernoff bound.
 \begin{equation}\label{eq:def_chernoff_bound_binomial}
@@ -801,7 +803,7 @@ $\hat{\mu}_n(\hat{y}_n^- + \epsilon_n) < k_n - \frac{C}{2}\sqrt{k_n \log(n)}$ ca
 
 The conclusion of Lemma~\ref{lem:concentration_heights_mu_approx} is that as long as $\mu_{Po}(y)$ and $\mu_{\mathrm{box}}(y)$ are $(1+\smallO{1})\mu(y)$, uniformly on $[0,(1-\varepsilon)R]$, then indeed the concentration of height result (Lemma~\ref{lem:concentration_argument}) also holds in both $\GPo$ and $\Gbox$. This was proven in Lemma~\ref{lem:average_degree_P_n} and Lemma~\ref{lem:average_degree_G_box}, respectively. For completeness we give the proof of Proposition~\ref{prop:concentration_height_general}.
 
-\begin{proof}[Proof of Proposition~\ref{prop:concentration_height_general}]
+\begin{proofof}{Proposition~\ref{prop:concentration_height_general}}
 The proof for $\hat{\mu}(y) = \mu(y)$ follows directly from Lemma~\ref{lem:concentration_argument}.
 
 Now consider the case $\hat{\mu}(y) = \mu_{Po}(y)$. Then by Lemma~\ref{lem:average_degree_P_n} $\hat{\mu}(y) = (1+\smallO{1}) \mu(y)$, uniformly on $[0,(1-\varepsilon)R]$ and thus in particular on $\Kcal_C(k_n)$. Finally we note that by Lemma~3.3. in \cite{gugelmann2012random} $\hat{\mu}(y)$ is monotonic increasing. The statement then follows by applying Lemma~\ref{lem:concentration_heights_mu_approx}.
@@ -819,7 +821,7 @@ where
 				+ \frac{\nu}{\xi}e^{-(\alpha - \frac{1}{2})R - \frac{y}{2}} - \frac{\nu}{\xi}\left(\frac{\pi}{2}\right)^{-2\alpha} e^{-(\alpha-\frac{1}{2})(R - y)}.
 \]
 Note that $\phi_n(2\log(\pi/2)) = e^{-(\alpha-\frac{1}{2})R}$. In addition, since $|\phi_n(y)| \le \bigO{e^{-(\alpha-\frac{1}{2})\varepsilon R}}$ for $0 \le y \le (1-\varepsilon)R$ we have that $\hat{\mu}(y)$ is monotonic increasing for large enough $n$. The statement now follows by applying Lemma~\ref{lem:concentration_heights_mu_approx}.
-\end{proof}
+\end{proofof}
 
 %If in addition the derivatives of the measures $\mu_{Po}(y)$ and $\mu_{\mathrm{box}}(y)$ are also equivalent to the derivative of $\mu(y)$ we can even replace $\rho_{\Po}(y,k_n)$ and $\rho_{\text{box}}(y,k_n)$ in the integration with $\rho(y,k_n)$. 
 %
@@ -1269,11 +1271,17 @@ Finally, to show~\eqref{eq:derivative_hyp_ball_main_part} we first write
 	&\hspace{10pt}+ \frac{2\alpha \nu}{\pi \Mu{\BallPo{y}}}\left|\int_0^{(1-\delta)(R- y)} 
 		\frac{\Phi(y,y^\prime)}{2} e^{-\alpha y^\prime} \dd y^\prime - I_2(y)\right|.
 \end{align*}
-By Lemma~\ref{lem:hyperbolic_ball_lower_part},
+
+Note that by Lemma~\ref{lem:average_degree_P_n}
+\[
+	\frac{2\nu \alpha}{\pi} \int_{0}^{(1-\delta)(R-y)} \Phi(y,y^\prime) e^{-\alpha y^\prime} \dd y^\prime
+	= (1+\smallO{1})\Mu{\BallPo{y}},
+\]
+uniformly for all $0 \leq y \leq (1-\varepsilon)R$. Therefore
 \[
 	\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R} \left|\frac{2\nu \alpha}{\pi \Mu{\BallPo{y}}} 
-	\int_{0}^{(1-\delta)(R-y)} \Phi(y,y^\prime) \alpha e^{-\alpha y^\prime} \dd y^\prime
-	- 1\right| = 0,
+	\int_{0}^{(1-\delta)(R-y)} \frac{\Phi(y,y^\prime)}{2} e^{-\alpha y^\prime} \dd y^\prime
+	- \frac{1}{2}\right| = 0,
 \] 
 and thus it suffices to show that the $\lim_{n \to \infty} \sup_{0 < y \le (1-\varepsilon)R}$ of the second term goes to zero.
 

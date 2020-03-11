@@ -484,7 +484,7 @@ Note that on $\Kcal_{C}(k_n)$ we have that $e^{ty} = \bigT{k_n^{2t}}$. Hence, by
 \end{align*}
 \end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:couling_c_H_P}] 
+\begin{proofof}{Proposition~\ref{prop:couling_c_H_P}}
 
 To keep notation concise we abbreviate $\Exp{N_{\Po}(k_n)}$ and $\Exp{\Nbox(k_n)}$ by $\expH$ and $\expP$, respectively. We will also suppress the subscript $n$ in most expressions regarding the graphs $\GPo$ and $\Gbox$. Finally we will write 
 \[
@@ -509,7 +509,7 @@ The last term can be rewritten as
 \begin{align*}
 	\left|1 - \frac{\expH}{\expP}\right| \Exp{\widetilde{c}_{\text{box}}(k_n)} = \left|1 - \frac{\expH}{\expP}\right|\gamma(k_n)(1+o(1)),
 \end{align*}
-where we used Proposition~\ref{prop:convergence_average_clustering_P_n} (See Section~\ref{sec:clustering_Pn_to_P}). The first term in this product converges to zero by Lemma~\ref{lem:N_k_HP_P} while the second term scales as $s(k_n)$. Hence
+where we used Proposition~\ref{prop:convergence_average_clustering_P_n} (See Section~\ref{sec:clustering_Pn_to_P}). The first term in this product converges to zero by~\eqref{eq:equivalence_N_HP_P} while the second term scales as $s(k_n)$. Hence
 \[
 	\left|1 - \frac{\expH}{\expP}\right| \Exp{\widetilde{c}_{\text{box}}(k_n)} = \smallO{s(k_n)},
 \]
@@ -535,7 +535,7 @@ and similar for the other term, it follows that
 		- \frac{\ind{\mathrm{deg}_{\mathrm{box}}(y) = k_n}}{\expH}  \widetilde{T}_{\text{box}}(y)\right|} \\
 	&\le \bigT{n^{-1} k_n^{2\alpha + 3}}\left(\rho_{\Po}(y,k_n) + \rho_{\text{box}}(y,k_n)\right).
 \end{align*}
-Therefore, by a concentration of heights argument (c.f. first statement of Lemma~\ref{lem:concentration_argument_rho_approximation}), it is enough to consider the integral
+Therefore, by a concentration of heights argument (c.f. Proposition~\ref{prop:concentration_height_general}), it is enough to consider the integral
 \begin{equation} \label{eq:expectation_total}
 	n \int_{\Kcal_{C}(k_n)} \Exp{\left|\ind{\mathrm{deg}_{\Po}(y) = k_n} T_{\Po}(y)
 		- \ind{\mathrm{deg}_{\mathrm{box}}(y) = k_n} \widetilde{T}_{\mathrm{box}}(y)\right|} e^{-\alpha y} \dd y,
@@ -887,7 +887,7 @@ $|x_1| \leq e^{(y+y_1)/2} (1+o(1))$. This upper bound on $|x_1|$ together with~\
 we integrate over $y_2$, thus ensuring that the integrals are non-zero. 
 
 We conclude that 
-\begin{equation*}\label{eq:intersex_approx}
+\begin{equation*}%\label{eq:intersex_approx}
 	p^\prime \in \FatBallHyp{y}\cap \FatBallHyp{(x_1,y_1)} \Rightarrow y^\prime \ge \hat{y}(x_1,y_1),
 \end{equation*}
 which implies
@@ -1570,7 +1570,7 @@ Using the Campbell-Mecke formula, we write
  	&\leq  \mu (\BallHyp{y})\cdot \int_{-I_n}^{I_n} \int_0^K \ind{p_1 \in \BallSym{y}} 
 		e^{-\alpha y_1}  dx_1 dy_1.
 \end{align*}
-Recall that by Lemma~\ref{lem:average_degree_hyperbolic}, $\Mu{\BallHyp{y}} =O(1) e^{y/2}$. We bound the integral using Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. In particular,~\eqref{eq:asymp1} implies that if $p_1 = (x_1,y_1) \in \BallSym{y}$, then because $y_1 < K$
+Recall that $\Mu{\BallHyp{y}} =O(1) e^{y/2}$. We bound the integral using Lemma~\ref{lem:asymptotics_Omega_hyperbolic}. In particular,~\eqref{eq:asymp1} implies that if $p_1 = (x_1,y_1) \in \BallSym{y}$, then because $y_1 < K$
 \[
 	|x_1 - e^{(y+y_1)/2} |\leq e^{(y+y_1)/2} \cdot K e^{y+y_1- R} = O(1) 
 	e^{(y+y_1)/2} \cdot e^{y- R}.
@@ -1611,7 +1611,7 @@ For $3/4 \le \alpha < 2$ we use that $2\alpha < 6\alpha - 3$, so that $k_n^{2\al
 	k_n^{2\alpha} (\log(k_n) \wedge 1) n^{-2} \le k_n^{2\alpha + 1} n^{-2} = \bigO{n^{-1}} = \smallO{1}.
 \] 
 which completes the proof for~\eqref{eq:sum_6} and thus the proof of Proposition~\ref{prop:couling_c_H_P}.
-\end{proof}
+\end{proofof}
 
 \subsection{Coupling $G_n$ to $\GPo$}\label{ssec:coupling_H_HP}
 
@@ -1743,7 +1743,7 @@ Now that we have established the equivalence of the clustering function between 
 %where we again used that $\sqrt{n \log(n)} k_n = \smallO{n}$.
 %\end{proof}
 
-\begin{proof}[Proof of Proposition~\ref{prop:clustering_ast_H_Pois}]
+\begin{proofof}{Proposition~\ref{prop:clustering_ast_H_Pois}]}
 First we note that Proposition~\ref{prop:couling_c_H_P}, \ref{prop:concentration_local_clustering_P_n} and~\ref{prop:convergence_average_clustering_P_n} together imply that
 \[
 	\Exp{c^\ast(k_n; \GPo)} = (1+\smallO{1})s(k_n)
@@ -1762,7 +1762,7 @@ The difference of the sum of the clustering coefficients therefore comes from al
 	= \smallO{1}\Exp{c^\ast(k_n; \GPo)},
 \end{align*}
 which finishes the proof.
-\end{proof}
+\end{proofof}
 
 Finally we prove Lemma~\ref{lem:clustering_ast_H}, whose statement is
 \[
@@ -1770,7 +1770,7 @@ Finally we prove Lemma~\ref{lem:clustering_ast_H}, whose statement is
 \]
 
 
-\begin{proof}[Proof of Lemma~\ref{lem:clustering_ast_H}]
+\begin{proofof}{Lemma~\ref{lem:clustering_ast_H}}
 Let $0 < \delta < 1$ and define the event
 \begin{align*}
 	A_n &= \left\{\left|N_n(k_n) - \Exp{N_n(k_n)}\right| \le \Exp{N_n(k_n)}^{\frac{1 + \delta}{2}}\right\}.
@@ -1803,7 +1803,7 @@ The second term is clearly $\smallO{s(k_n)}$. The first term is clearly $\smallO
 	\Exp{c^\ast(k_n; G_n)} = \bigO{s(k_n)}.
 \] 
 the first term is also $\smallO{s(k_n)}$.
-\end{proof}
+\end{proofof}
 
 
 

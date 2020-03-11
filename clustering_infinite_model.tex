@@ -73,7 +73,7 @@ Using the transformation of variables $z = \xi e^{\frac{y}{2}}$ (so $dy = \frac{
         \, dy\\
     &= \frac{2\alpha \xi^{2\alpha}}{k!} \int_{\xi}^{\infty} 
     	z^{k -2\alpha-1} e^{-z} \, dz\\
-    &= \frac{2\alpha \xi^{2\alpha}\Gamma^+(k - 2\alpha, \xi)}{k!},
+    &= \frac{2\alpha \xi^{2\alpha}\Gamma^+(k - 2\alpha, \xi)}{k!}, \numberthis \label{eq:def_pk}
 \end{align*}
 where we recall that $\Gamma$ denotes the gamma-function and $\Gamma^{+}$ the upper incomplete gamma-function.
 Note that, unsurprisingly, this is identical to the expression Gugelmann et al.~\cite{gugelmann2012random} gave for the limiting 
@@ -521,12 +521,6 @@ the remaining two points by taking the corresponding limit in $\alpha$.
 This strategy is executed below. 
 It involves the computation of several integrals which are involved and will take up a few pages. 
 The proof is structured using headers, to aid the reader. 
-
-
-%\begin{proof}[Proof of Proposition~\ref{prop:full_expression_delta_P}]\hfill
-
-
-%\paragraph{When $\bm{\alpha \notin \{3/4,1\}}$}
 
 Note that when writing $P(y_0)$ as an integral, see equation~\eqref{eq:delta_P}, by symmetry in the integration 
 variables $y_1$ and $y_2$, we can assume that $y_1<y_2$ in which case either $y_0$ or $y_1$ is the smallest height. 
@@ -1379,7 +1373,7 @@ Note that this implies that if $P(y) = h(y)(1 + \smallO{1})$ as $y \to \infty$, 
 \end{equation}
 as $y \to \infty$.
 
-\begin{proof}[Proof of Proposition~\ref{prop:asymp}]
+\begin{proofof}{Proposition~\ref{prop:asymp}}
 We split the proof over the different cases for $\alpha$.
 
 \paragraph{\bm{$1/2 < \alpha < 3/4$}}
@@ -1459,4 +1453,4 @@ Again, by Proposition~\ref{prop:asymptotics_P}, equation~\eqref{eq:asymptotics_a
 	\gamma(k) \sim \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} \, \frac{\int_0^{\infty} e^{-y/2} \rho(y,k) \alpha  e^{-\alpha y} \dd y} {\int_0^\infty \rho(y,k) \alpha e^{-\alpha y} \dd y} 
 	\sim \frac{\alpha - \frac{1}{2}}{\alpha - \frac{3}{4}} \, \xi k^{-1} = \frac{8\alpha \nu}{\pi(4\alpha - 3)}.
 \]
-\end{proof}
+\end{proofof}

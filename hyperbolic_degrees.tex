@@ -153,10 +153,10 @@ Now let $y > 2 \log(\pi/2)$ and recall that $\mu(y) = \xi e^{\frac{y}{2}}$ where
 	&= \mu(y)\left(1 - \phi_n(y) \right).
 \end{align*}
 where 
-\[
+\begin{equation}\label{eq:def_average_degree_Gbox_phi}
 	\phi_n(y) :=  \left(\frac{\pi}{2}\right)^{-(2\alpha - 1)} \hspace{-3pt} e^{-(\alpha - \frac{1}{2})(R - y)}
 				+ \frac{\nu}{\xi}e^{-(\alpha - \frac{1}{2})R - \frac{y}{2}} - \frac{\nu}{\xi}\left(\frac{\pi}{2}\right)^{-2\alpha} e^{-(\alpha-\frac{1}{2})(R - y)}.
-\]
+\end{equation}
 Since $R - y \ge \varepsilon R$ we have that $|\phi_n(y)|$ is uniformly bounded by
 $\bigO{e^{-(\alpha - \frac{1}{2})\varepsilon R}}$, which is $\smallO{1}$ for $\alpha > \frac{1}{2}$. 
 \end{proof}
@@ -923,7 +923,7 @@ E = \bigO{n^{r+1}k_n^{-C}}=\smallO{n^{r+1}k_n^{-r(2\alpha+1)}}=\smallO{\left(\in
 
 We now proof the result for the factorial moments.
 
-\begin{proof}[Proof of Lemma~\ref{lem:factmoment}]
+\begin{proofof}{Lemma~\ref{lem:factmoment}}
 We give the proof for the Poissonized KPKVB model. The proof for the finite box model $\Gbox$ follows using similar arguments.
 
 First of all, we observe that
@@ -971,7 +971,7 @@ Using Lemma~\ref{lem:asympind}, we conclude that
 	&= (1+o(1))\frac{1}{r!}\left(\int_\Rcal \varphi_{\Po}(\{p_1\}, k_n;p_1) f(x_1,y_1) \dd x_1 \dd y_1 \right)^r \\
 	&= (1+o(1))\frac{1}{r!}(\Exp{N_{\Po}(k_n)})^r.
 \end{align*}
-\end{proof}
+\end{proofof}
 
 \subsection{Coupling $G_n$ to $\GPo$}\label{ssec:coupling_Gn_GPo}
 
@@ -1146,7 +1146,7 @@ which finishes the proof for the case where $N > n$.
 
 We now have all necessary ingredients to prove the main result on the degrees, Theorem~\ref{thm:degrees_hyperbolic}.
 
-\begin{proof}[Proof of Theorem~\ref{thm:degrees_hyperbolic}] 
+\begin{proofof}{Theorem~\ref{thm:degrees_hyperbolic}}
 
 Recall that we shall only give the proof for the case where $k_n \to \infty$, since result (i) for fixed $k = \bigO{1}$ follows from~\cite{gugelmann2012random}.
 
@@ -1231,5 +1231,5 @@ For $k_n \ge n^{1 - \varepsilon}$ we have, by our choice of $\varepsilon$, that 
 	= \bigO{n^{\frac{3}{2} - (2\alpha + 1)(1-\varepsilon)}} = \smallO{1}.
 \]
 \end{enumerate}
-\end{proof}
+\end{proofof}
 

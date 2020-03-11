@@ -54,7 +54,7 @@ Let $\alpha > \frac{1}{2}$, $\nu > 0$ and let $(k_n)_{n \ge 1}$ be any positive 
 
 We first use this result to prove Proposition~\ref{prop:concentration_local_clustering_P_n}. The remainder of this section is devoted to the proof of Proposition~\ref{prop:concentration_tilde_T_P_n}. The final proof can be found in Section~\ref{ssec:concentration_tilde_T}.
 
-\begin{proof}[Proof of Proposition \ref{prop:concentration_local_clustering_P_n}]
+\begin{proofof}{Proposition \ref{prop:concentration_local_clustering_P_n}}
 We bound the expectation as follows,
 \begin{align*}
 	\Exp{\left|c^\ast(k_n; \Gbox) - \Exp{c^\ast(k_n; \Gbox)}\right|} 
@@ -121,7 +121,7 @@ This implies
 	= \smallO{s(k_n)},
 \end{align*}
 which finishes the proof.
-\end{proof}
+\end{proofof}
 
 We note that the above proof establishes the following important result
 
@@ -841,7 +841,7 @@ Let $\mathcal{E}_\varepsilon(k_n)^c$ be the same set but with $|x - x^\prime|_n 
 In particular this allows us to prove that $\Exp{I_{0,0}^\ast} = (1+\smallO{1})\Exp{\widetilde{T}_{\text{box}}(k_n,C)}^2$. 
 On the other hand, the expected number of points in $\mathcal{E}_\varepsilon(k_n)^c$ is $\bigO{k_n^{1+\varepsilon} k_n^{-2\alpha} \Exp{\Nbox(k_n)}} = \smallO{\Exp{\Nbox(k_n)}^2}$, where the latter is the expected number of points in $\Rcal(k_n,C) \times \Rcal(k_n,C)$. Hence we expect the contributions coming from $\mathcal{E}_\varepsilon(k_n)^c$ to be negligible.
 
-\begin{proof}{Proof of Proposition \ref{prop:concentration_tilde_T_P_n}}
+\begin{proofof}{Proposition \ref{prop:concentration_tilde_T_P_n}}
 
 Throughout this proof we set $i = |\{p^\prime, p_1, p_2, p_1^\prime, p_2^\prime\} \cap \BallPon{p}|$, $j = |\{p^\prime\} \cap \BallPon{p}|$ and define $i^\prime, j^\prime$ in a similar way by interchanging the primed and non-primed variables. In addition, we write $\widetilde{D}_{\text{box}}(p,p^\prime,k,\ell)$ to denote the indicator that $|\BallPon{p} \cap (\Pcal \setminus \{p, p^\prime, p_1, p_2, p_1^\prime, p_2^\prime\})| = k$ and $|\BallPon{p^\prime} \cap (\Pcal \setminus \{p, p^\prime, p_1, p_2, p_1^\prime, p_2^\prime\})| = \ell$. Note that this also depend on $\{p_1, p_2, p_1^\prime, p_2^\prime\}$ but we suppressed this to keep notation concise. Similarly we write $D_{\text{box}}(p,p^\prime,k,\ell)$ to denote the indicator that $|\BallPon{p} \cap (\Pcal \setminus \{p, p^\prime\})| = k$ and $|\BallPon{p^\prime} \cap (\Pcal \setminus \{p, p^\prime\})| = \ell$, which now only depends on $p$ and $p^\prime$. Then, by the Campbell-Mecke formula
 \begin{align*}
@@ -1091,4 +1091,4 @@ while for $\alpha \ge \frac{3}{4}$
 We conclude that $k_n = \smallO{n k^{-(2\alpha - 1)}s(k_n)}$ and hence $\Exp{I_{1,1}} = \smallO{\Exp{\widetilde{T}_{\text{box}}(k_n,C)}^2}$.
 
 
-\end{proof}
+\end{proofof}

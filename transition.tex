@@ -293,7 +293,7 @@ where the last part follows from Lemma~\ref{lem:scaling_s_alpha} and the fact th
 
 We can now prove the main result of this section.
 
-\begin{proof}[Proof of Proposition~\ref{prop:convergence_average_clustering_P_n}]
+\begin{proofof}{Proposition~\ref{prop:convergence_average_clustering_P_n}}
 First, by Lemma~\ref{lem:appox_triangle_count_box} and~\eqref{eq:alt_c_ast_kn} we have
 \begin{align*}
 	\Exp{c^\ast(k_n;\Gbox)} &= (1 + \smallO{1}) \frac{1}{\pmf(k_n)} \int_{\Kcal_{C}(k_n)} P(y)
@@ -378,7 +378,7 @@ which finishes the proof.
 %%	\int_{a_n^-}^{a_n^+} \rho(y,k_n) P(y) e^{-\alpha} \dd y
 %%	&= \bigT{1} \Exp{N_{\infty}(k_n)} \gamma(k_n) = \bigT{ s(k_n) k_n^{-(2\alpha + 1)}}.
 %%\end{align*}
-\end{proof}
+\end{proofof}
 
 From the proof of Proposition~\ref{prop:convergence_average_clustering_P_n} we immediately obtain the following useful corollary, which will be used in Section~\ref{sec:concentration_c_P_n}. Recall from~\eqref{eq:def_stripe} that $\stripknc = \Rcal \cap (\R_+ \times [y_{k_n,C}^-, y_{k_n,C}^+])$.
 
@@ -672,7 +672,7 @@ which is displayed by the red curve in Figure \ref{fig:comparing_triangles_diff_
 %    \draw node at (2,1.5) {$x_1 = x + e^{\frac{y + y_1}{2}}$};
 
 \end{tikzpicture}
-\caption{Example for a given $p$ of the boundary function $x^\prime \mapsto b^\ast_p(x^\prime)$, given by the red curve, which determines whether $\mathcal{T}(p,p^\prime) = \emptyset$. We see that when $y^\prime = b^\ast_p(x^\prime)$ then $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime)) = (x^\ast(p^\prime), y^\ast(\prime))$.}
+\caption{Example for a given $p$ of the boundary function $x^\prime \mapsto b^\ast_p(x^\prime)$, given by the red curve, which determines whether $\mathcal{T}(p,p^\prime) = \emptyset$. We see that when $y^\prime = b^\ast_p(x^\prime)$ then $(\hat{x}(p,p^\prime), \hat{y}(p,p^\prime)) = (x^\ast(p^\prime), y^\ast(p^\prime))$.}
 \label{fig:comparing_triangles_diff_analysis}
 \end{figure}
 
@@ -758,7 +758,7 @@ This analysis allows us to compute the expected difference in the number of tria
 \label{fig:comparing_triangles_B_areas}
 \end{figure}
 
-\begin{proof}[Proof of Lemma \ref{lem:clustering_error_T_term}]
+\begin{proofof}{Lemma \ref{lem:clustering_error_T_term}}
 Due to symmetry it is enough to show that
 \begin{equation}\label{eq:clustering_error_T_main}
 	\int_0^{R}\int_0^{I_n} \mu\left(\mathcal{T}(p,p_1)\right) \dd \mu(p_1) = \bigO{y n^{-(2\alpha - 1)} + n^{-(2\alpha-1)} e^{y}}
@@ -1275,4 +1275,4 @@ Proceeding to the second integral, we first note that $e^{(y+y_1)/2} - I_n(1-e^{
 
 
 
-\end{proof}
+\end{proofof}

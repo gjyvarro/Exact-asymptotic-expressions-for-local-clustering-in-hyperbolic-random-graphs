@@ -24,7 +24,9 @@ We start with introducing a slightly modified version of the local clustering fu
 
 Notice that the only difference between $c(k;G)$ and $c^\ast(k;G)$ is that we replace $N(k)$ by its expectation $\Exp{N(k)}$. The advantage is that now, the only randomness is in the formation of triangles. In addition, note that since $\Exp{N(k)} > 0$ a case distinction for $N(k)$ is no longer needed for $c^\ast(k;G)$. It is however still relevant since we are eventually interested in $c(k;G)$. Following the notational convention, throughout the remainder of this paper we write $c^\ast(k; \GPo)$ and $c^\ast(k; \Gbox)$ to denote the modified local clustering function in $\GPo$ and $G_{\mathcal{P},n}(\alpha,\nu)$, respectively.
 
-Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theorem~\ref{thm:mainktoinfty} based on the different propositions described below, plus the sections in which theses propositions are proved. Observe that the order in which the intermediate results are proved is reversed with respect to the natural order of reasoning. This does not create any circular logic, since each intermediate result is independent of the others. We choose this order because results proved in the later stages are helpful to deal with error terms coming up in proofs at earlier stages and hence help streamline those proofs. Below briefly describe each of the intermediate steps leading up to the proof of Theorem~\ref{thm:mainktoinfty}. We start with an observation on the dependence between the degree of a point $p = (x,y)$ and its height $y$.
+Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theorem~\ref{thm:mainktoinfty} based on the different propositions described below, plus the sections in which theses propositions are proved. Observe that the order in which the intermediate results are proved is reversed with respect to the natural order of reasoning. This does not create any circular logic, since each intermediate result is independent of the others. We choose this order because results proved in the later stages are helpful to deal with error terms coming up in proofs at earlier stages and hence help streamline those proofs. Below we briefly describe each of the intermediate steps leading up to the proof of Theorem~\ref{thm:mainktoinfty}. 
+
+%We start with an observation on the dependence between the degree of a point $p = (x,y)$ and its height $y$.
 %=======
 %Notice that the only difference between $c(k;G)$ and $c^\ast(k;G)$ is that we replace $N_k$ by its expectation $\Exp{N_k}$. The advantage is that now, the only randomness is in the formation of triangles. In addition, note that since $\Exp{N_k} > 0$ a case distinction for $N_k$ is no longer needed for $c^\ast(k;G)$. It is however still relevant since we are eventually interested in $c(k;G)$. Following the notation convention, throughout the remainder of this paper we write $c^\ast(k; \GPo)$ and $c^\ast(k; \Gbox)$ to denote the modified local clustering function in $\GPo$ and $G_{\mathcal{P},n}(\alpha,\nu)$, respectively.
 %
@@ -251,7 +253,7 @@ Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theor
 
 \end{tikzpicture}
 
-\caption{Overview of the proof strategy for Theorem \ref{thm:local_clustering_hyperbolic}. The left column denote the models in which the true hyperbolic balls are used while the right column contains the models that use an approximation of these. The most important part is the transition between these to setting which is accomplished by Proposition~\ref{prop:couling_c_H_P}.}
+\caption{Overview of the proof strategy for Theorem \ref{thm:mainktoinfty}. The left column denote the models in which the true hyperbolic balls are used while the right column contains the models that use an approximation of these. The most important part is the transition between these to setting which is accomplished by Proposition~\ref{prop:couling_c_H_P}.}
 \label{fig:overview_proof}
 \end{figure}
 
@@ -331,7 +333,7 @@ We will use the subscripts $n$, $\Po$, $\text{box}$ and $\infty$ to identify pro
 
 We are now ready to prove Theorem~\ref{thm:mainktoinfty}, using the results stated in the previous sections.
 
-\begin{proof}[Proof of Theorem~\ref{thm:mainktoinfty}]
+\begin{proofof}{Theorem~\ref{thm:mainktoinfty}}
 Note that the second of the theorem follows immediately from the first.
 
 To prove the first statement, we rewrite $c(k_n; G_n)$ as
@@ -358,5 +360,5 @@ All of this together yields that:
     \Exp{\left|c(k_n;G_n)-\gamma(k_n)\right|} = \smallO{s(k_n)} = \smallO{\gamma(k_n)},
 \end{align*}
 which establishes the first statement of the theorem and finishes the proof.  
-\end{proof}
+\end{proofof}
 
