@@ -146,14 +146,12 @@ we can also conclude from~\eqref{eq:gugeldegseqaap} and Lemma~\ref{lem:NDGnGPo} 
 
 
 \begin{corollary}\label{cor:NGPok} 
-For every fixed $k\geq 0$ we have 
+For every fixed $k\geq 1$ we have 
 
 $$ \frac{N_{\GPo}(k)}{n} \xrightarrow[n\to\infty]{\Pee} \pmf(k). $$
 
 \end{corollary}
 
-\noindent
-(The case $k=0$ follows from all the other cases together with the fact that the $\pmf(k)$ sum to one.)
 
 In the remainder of this section, we'll denote by $\GboxH$ the subgraph of $\Gbox$ induced by all 
 vertices $(x,y) \in \Vbox = \Pcal \cap \Rcal$ of height at most $R/4$.
@@ -229,7 +227,7 @@ This concludes the proof as we've now shown that under the stated coupling, a.a.
 Analogously to Corollaries~\ref{cor:pok} and~\ref{cor:NGPok} we obtain:
 
 \begin{corollary}\label{cor:GPoHdegseq}
-For every fixed $k$ we have 
+For every fixed $k \geq 1$ we have 
 
 $$\frac{N_{\GboxH}(k)}{n} \xrightarrow[n\to\infty]{\Pee} \pmf(k). $$
 
@@ -520,7 +518,7 @@ For the KPKVB random graph, or any graph for that matter, we have the similar re
 $$ c(G_n) = \sum_{k\geq 2} c(k;G_n) \cdot (N_{G_n}(k)/n). $$
 
 
-By Theorem~\ref{thm:mainkfixed} and~\eqref{eq:gugeldegseqaap} we have, for any fixed $K\geq 2$:
+By Theorem~\ref{thm:mainkfixed} and~\eqref{eq:gugeldegseqaap} we have, for any fixed $k\geq 2$:
 
 \begin{equation}\label{eq:slutskyUB} 
  c(G_n) \geq \sum_{k=2}^K c(k;G_n) \cdot (N_{G_n}(k)/n) \xrightarrow[n\to\infty]{\Pee} \sum_{k=2}^K \gamma(k)\cdot \pmf(k), 
