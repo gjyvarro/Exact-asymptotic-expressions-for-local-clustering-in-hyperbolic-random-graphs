@@ -1,4 +1,4 @@
-\section{From $\Gbox$ to $\Ginf$ (Proving Proposition \ref{prop:convergence_average_clustering_P_n})}\label{sec:clustering_Pn_to_P}
+\section{From \texorpdfstring{$\Gbox$}{G box} to \texorpdfstring{$\Ginf$}{G infinity} (Proving Proposition \ref{prop:convergence_average_clustering_P_n})}\label{sec:clustering_Pn_to_P}
 
 In this section we shall relate the clustering in the finite box model $\Gbox$ to that of the infinite model. The main goal is to prove Proposition~\ref{prop:convergence_average_clustering_P_n} which states that
 \[
@@ -172,7 +172,7 @@ As a result of this lemma we only need to compare the difference in triangles be
 %
 %\TM{ $p$ is supposed to be $p_0$ I assume. }\PvdH{Indeed. It has been corrected.}
 
-\subsection{Comparing triangles between $\Ginf$ and $\Gbox$}
+\subsection{Comparing triangles between \texorpdfstring{$\Ginf$}{G infinity} and \texorpdfstring{$\Gbox$}{G box}}
 
 To analyze the difference $\left|T_{\text{box}}(y) - T_\infty(y)\right|$ we first reiterate that the difference between the indicator $\ind{p_1 \in \BallPon{p}}$ in the finite box model and $\ind{p_1 \in \BallPo{p}}$ is that in $\Gbox$ we identified the boundaries of the interval $[-\frac{\pi}{2}e^{R/2}, \frac{\pi}{2} e^{R/2}]$ and we stop at height $y = R$. This induces a difference in triangle counts between both models. 
 To see this, note that for any $p = (x,y)$ with $0 \le y \le R$ we have that $\BallPon{p} = \BallPo{p} \cap \Rcal$. This means that if $p^\prime, p_2 \in \BallPon{p}$ and $p_2 \in \BallPo{p^\prime} \cap \Rcal$ then $p_2 \in \BallPon{p} \cap \BallPon{p^\prime}$ and hence $(p,p^\prime,p_2)$ form a triangle both in $\Gbox$ and $\Ginf$. However, it could happen that there are points in the intersection $\BallPon{p} \cap \BallPon{p^\prime}$ that are not in $\BallPo{p} \cap \BallPo{p^\prime}$. Let us denote this region by $\mathcal{T}(p,p^\prime)$, see Figure~\ref{fig:comparing_triangles_diff_intersections} for an example of this region. Then, any $p_2 \in \mathcal{T}(p,p^\prime)$ creates a triangle with $p$ and $p^\prime$ in $\Gbox$ that is not present in $\Ginf$. Finally, any point $p_2 \in \BallPo{p} \cap \BallPo{p^\prime}$ with height $y_2 > R$ creates a triangle with $p, p^\prime$ in $\Ginf$ but not in $\Gbox$.

@@ -1,7 +1,7 @@
 
 
 
-\section{Clustering and the degree of the typical point in $\Ginf$\label{sec:Ginf}\label{sec:asymptotics_average_clustering_ast_P}}
+\section{Clustering and the degree of the typical point in \texorpdfstring{$\Ginf$}{G infinity}\label{sec:Ginf}\label{sec:asymptotics_average_clustering_ast_P}}
 
 
 As alluded to earlier, we plan to make use of the Campbell-Mecke formula for comparing the clustering coefficient and function of the (Poissonized) KPKVB random graph 
@@ -107,7 +107,7 @@ Let the random variable $C$ denote the clustering coefficient of the typical poi
 For any fixed value $y_0>0$, the set of points inside $\BallPo{y_0}$ is a Poisson process with intensity $f \cdot 1_{\BallPo{y_0}}$. As $\mu(\BallPo{y_0}) = \mu(y_0) = \xi e^{y_0/2} < \infty$, this can be described alternatively by first picking $N \isd \Po( \mu(y_0) )$ and then taking $N$ i.i.d.~points in $\BallPo{y_0}$ according to the probability density $f \cdot 1_{\BallPo{y_0}} / \mu(y_0)$. (That is, the intensity function of the Poisson point process, but set to zero outside of $\BallPo{y_0}$ and re-normalized in such a way that it integrates to one.) Hence, if we condition on the event that $y$ takes on some fixed value $y_0$ and that there are exactly $k$ points of $\Pcal$ inside $\BallPo{y_0}$, then those $k$ points behave like $k$ i.i.d.~points in $\BallPo{y_0}$ chosen according to the mentioned re-normalized probability density function. This shows that, for every $k\geq 2$:
 \[
 	\CExp{C}{D=k, y=y_0} 
-	= \frac{1}{{k\choose 2}} \Ee\left( \sum_{1\leq i < j \leq k} \1_{\{u_i\in \BallPo{u_j}\}} \right)
+	= \frac{1}{\binom{k}{2}} \Ee\left( \sum_{1\leq i < j \leq k} \1_{\{u_i\in \BallPo{u_j}\}} \right)
 	= \Exp{\1_{\{u_1\in\BallPo{u_2}\}}},
 \]
 where $u_1,\dots, u_n$ are i.i.d.~points in $\BallPo{y_0}$ with the above mentioned density.
@@ -197,7 +197,7 @@ $[-e^{\frac{1}{2}(y_0+y_1)},e^{\frac{1}{2}(y_0+y_1)}]$ and  $[-e^{\frac{1}{2}(y_
  \dd y_2 \dd y_1.
 \end{equation}
 
-\subsubsection{Determining $P(y_0,y_1,y_2)$}
+\subsubsection{Determining \texorpdfstring{$P(y_0,y_1,y_2)$}{P(y0,y1,y2)}}
 
 
 To compute the integral~\eqref{eq:delta_P} it will be convenient to use the 
@@ -489,7 +489,7 @@ To complete the proof for the other cases we note that since $P(y_0,y_1,y_2)$ is
 %
 
 
-\subsubsection{Integrating over $y_1, y_2$}
+\subsubsection{Integrating over \texorpdfstring{$y_1, y_2$}{y1, y2}}
 
 
 Now that we have established the expression for $P(y_0,y_1,y_2)$ we can proceed to compute $P(y_0)$ by integrating over $y_1, y_2$.
@@ -549,7 +549,7 @@ Applying the change of variables $z_i := e^{-y_i/2}$, $i=1,2$, and Lemma~\ref{le
 		\dd z_2\dd z_1 \\
 	&= 4 (\alpha-1/2)^2 \cdot \left( \int_{z_0>z_1>z_2>0} 1 \cdot z_1^{2\alpha-2} z_2^{2\alpha-2} 
 		\dd z_2 \dd z_1 \right. \\
-	&\hspace{10pt} \left. - \int_{{z_0>z_1>z_2>0,}\atop{z_0 < z_1+z_2}} G(z_0,z_1,z_2) \cdot z_1^{2\alpha-2} z_2^{2\alpha-2} 
+	&\hspace{10pt} \left. - \int_{\substack{{z_0>z_1>z_2>0,}\\{z_0 < z_1+z_2}}} G(z_0,z_1,z_2) \cdot z_1^{2\alpha-2} z_2^{2\alpha-2} 
 		\dd z_2 \dd z_1 \right) \\
 	&=: 4 (\alpha-1/2)^2 ( I_{11}(y_0) - I_{12}(y_0)). 
 \end{align*}
@@ -566,7 +566,7 @@ To deal with $I_{12}$ we note that $G(z_0,z_1,z_2)$ is a linear combination of m
 $a,b,c \in \{-1,0,1,2\}$ and $a+b+c=0$. Let us consider the integral $J_{(a,b,c)}(z_0)$ defined by 
 
 \begin{equation}\label{eq:def_Delta_P_computation_int_J_1}
-	J_{a,b,c}(z_0) := z_0^a \int_{{z_0>z_1>z_2>0,}\atop{z_0 < z_1+z_2}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2\dd z_1.
+	J_{a,b,c}(z_0) := z_0^a \int_{\substack{{z_0>z_1>z_2>0,}\\{z_0 < z_1+z_2}}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2\dd z_1.
 \end{equation}
 and note that
 \begin{equation}\label{eq:Delta_P_computation_I12_with_J}
@@ -652,7 +652,7 @@ we get
 		\dd z_2 \dd z_1 \\
 	&= 4 (\alpha-1/2)^2 \cdot \left( \int_{1>z_1>z_0,z_2>0}  z_0 z_1^{2\alpha-3} z_2^{2\alpha-2} 
 		 \dd z_2 \dd z_1 \right. \\
-	&\hspace{10pt}\left. - \int_{{1>z_1>z_0,z_2>0}\atop{z_1 < z_0+z_2}} G(z_1,z_0,z_2) z_0 z_1^{2\alpha-3} 	
+	&\hspace{10pt}\left. - \int_{\substack{{1>z_1>z_0,z_2>0}\\{z_1 < z_0+z_2}}} G(z_1,z_0,z_2) z_0 z_1^{2\alpha-3} 	
 		z_2^{2\alpha-2} \dd z_2 \dd z_1 \right) \\
 	&=: 4 (\alpha-1/2)^2 (I_{21}(y_0) - I_{22}(y_0)). 
 \end{align*}
@@ -669,7 +669,7 @@ We note that the denominators above are non-zero as $\alpha > \frac{1}{2}$ and $
 
 To deal with $I_{22}(y_0)$ we consider the function
 \[
-	J_{a,b,c}^\prime(z_0) := z_0^a \int_{{1>z_1>\max(z_0,z_2); z_0,z_2>0}\atop{z_1 < z_0+z_2}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2 \dd z_1
+	J_{a,b,c}^\prime(z_0) := z_0^a \int_{\substack{{1>z_1>\max(z_0,z_2); z_0,z_2>0}\\{z_1 < z_0+z_2}}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2 \dd z_1
 \]
 and write
 \begin{equation}\label{eq:Delta_P_computation_I22_J}
@@ -781,7 +781,7 @@ Therefore, the previous expression holds for this case as well.
 %%%\end{proof}
 
 
-\subsubsection{Computing $\gamma$ and $\gamma(k)$\label{ssec:exact_expressions_clustering_P}}
+\subsubsection{Computing \texorpdfstring{$\gamma$}{gamma} and \texorpdfstring{$\gamma(k)$}{gamma(k)}\label{ssec:exact_expressions_clustering_P}}
 
 
 
@@ -994,13 +994,14 @@ which equals the expression in Theorem~\ref{thm:local_clustering_hyperbolic}. %%
 
 
 
-\subsubsection{Explicit expressions for $\gamma, \gamma(k)$ when $\alpha=1$.}\label{ssec:alphais1}
+\subsubsection{Explicit expressions for \texorpdfstring{$\gamma, \gamma(k)$}{gamma, gamma(k)} when \texorpdfstring{$\alpha=1$}{alpha equals 1}.}\label{ssec:alphais1}
 
 
 
 
 We've already established that $\gamma, \gamma(k)$ can be obtained at $\alpha=1$ by
-taking the $\alpha\to 1$ limit of the expression obtained for $\alpha=1$. Here we derive an alternative explicit expression for completeness. This is what we will do in the current section.
+taking the $\alpha\to 1$ limit of the expression obtained for $\alpha=1$. Here we derive an alternative explicit expression for completeness. Since the rest of our 
+proofs do not the depend on it the reader could decide to skip this section on a first reading.
 
 Recall that $\Gamma^\ast(q,z) = \Gamma^+(q+1,z) + \Gamma^+(q,z)$. We will prove the following.
 

@@ -22,13 +22,7 @@
 \usepackage{a4wide}
 \usepackage{authblk}
 \usepackage{appendix}
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks = true,
-    urlcolor = {magenta},
-    citecolor = {green},
-    linkcolor = {blue}
-}
+
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,backgrounds,patterns,decorations.markings,decorations.pathreplacing,intersections}
@@ -47,6 +41,16 @@
     commentstyle=\color{green}, % comment color
     keywordstyle=\color{blue}, % keyword color
     stringstyle=\color{red} % string color
+}
+
+\usepackage[nottoc,numbib]{tocbibind}
+\settocbibname{References}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    urlcolor = {magenta},
+    citecolor = {green},
+    linkcolor = {blue}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %											Macros												  %
@@ -284,6 +288,7 @@
 \affil[3]{Department of Physics, Northeastern University, United States.}
 \affil[4]{Bernoulli Institute, University of Groningen, The Netherlands.}
 
+\pgfplotsset{compat=1.14}
 \begin{document}
 
 \maketitle

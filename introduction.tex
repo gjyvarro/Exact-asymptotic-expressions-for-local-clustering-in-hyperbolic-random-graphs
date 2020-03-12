@@ -63,7 +63,7 @@ In this work we study the clustering coefficient in the KPKVB model. In the lite
 We will study the other notion of clustering, the one which is also considered by Krioukov et al.~\cite{krioukov2010hyperbolic} and Gugelmann et al.~\cite{gugelmann2012random}. It is sometimes called the {\em local} clustering coefficient, although we should point out that Gugelmann et al.~actually call it the global clustering coefficient in their paper. For a graph $G$ and a vertex $v\in V(G)$ we define the clustering coefficient {\em of $v$} as:
 \[
 	c(v) := \left\{\begin{array}{cl}
-		\displaystyle \frac{1}{{\text{deg}(v)\choose 2}} \sum_{u,w\sim v} 1_{\{uw \in E(G)\}}, 
+		\displaystyle \frac{1}{\binom{\text{deg}(v)}{2}} \sum_{u,w\sim v} 1_{\{uw \in E(G)\}}, 
 			& \text{ if $\text{deg}(v) \geq 2$, }\\
 		& \\
         0, & \text{ otherwise,}
@@ -81,7 +81,7 @@ In addition to the clustering coefficient, we shall also be interested in the {\
 This assigns to each non-negative integer $k$ the value
 \begin{equation}\label{eq:def_clustering_function}
 	c(k; G) := \begin{cases}
-		\displaystyle \frac{1}{N(k)} \sum_{v \in V(G), \atop \text{deg}(v)=k}  c(v),  &\mbox{ if } N(k) \ge 1,\\
+		\displaystyle \frac{1}{N(k)} \sum_{\substack{v \in V(G), \\ \text{deg}(v)=k}}  c(v),  &\mbox{ if } N(k) \ge 1,\\
 		0, &\mbox{else,}
 	\end{cases}
 \end{equation}
@@ -237,7 +237,7 @@ The conclusion of Theorem~\ref{thm:mainktoinfty} is slightly stronger than $c(k_
 \xrightarrow[n\to\infty]{\Pee} 1$, which might alternatively be written as $c(k_n;G_n) = (1+o(1)) \gamma(k_n)$ a.a.s., using notation that is common in the random graphs community.
 
 
-\subsubsection{Scaling of $\gamma(k)$}
+\subsubsection{Scaling of \texorpdfstring{$\gamma(k)$}{gamma(k)}}
 
 
 To clarify the scaling behaviour of $\gamma(k)$ we offer the following result.
@@ -278,7 +278,7 @@ We remark that simultaneously and independently Stegehuis, van der Hofstad and v
 
 There are a few additional remarks we would like to make regarding our results.
 
-\subsubsection{The degree distribution and the range of $k_n$ in Theorem~\ref{thm:mainktoinfty}}
+\subsubsection{The degree distribution and the range of \texorpdfstring{$k_n$}{kn} in Theorem~\ref{thm:mainktoinfty}}
 
 The reader may already have observed that, with a power law exponent of $2\alpha+1$ for the probability mass function of 
 the degree sequence, we would expect $\Theta( n \cdot k^{-(1+2\alpha)} ) = o(1)$ vertices of degree {\em exactly} $k$ whenever
@@ -317,7 +317,7 @@ $$ N_n(k_n) \xrightarrow[n\rightarrow\infty]{d} \operatorname{Po}(2\alpha \xi^{2
 
 
 
-\subsubsection{Transition in scaling at $\alpha = 3/4$.}
+\subsubsection{Transition in scaling at \texorpdfstring{$\alpha = 3/4$}{alpha equals 3/4}.}
 
 
 Proposition~\ref{prop:asymp} demonstrates that there is a transition in the scaling of the local clustering 

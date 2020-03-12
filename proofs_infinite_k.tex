@@ -1,5 +1,5 @@
 
-\section{Clustering when $k\to\infty$ : overview of the proof strategy}
+\section{Clustering when \texorpdfstring{$k\to\infty$}{k tends to infinity} : overview of the proof strategy}
 
 The proof of Theorem~\ref{thm:mainktoinfty} follows the same strategy as outlined in Section~\ref{sec:proof_outline} and executed in Section~\ref{sec:proofs_fixed_k}. However, the fact that $k = k_n \to \infty$ as $n \to \infty$, introduces significant technical challenges, especially for $k_n$ close the the maximum scale $n^{\frac{1}{2\alpha + 1}}$. For example, the coupling between $\GPo$ and $\Gbox$ we use becomes less exact so that we can no longer use Lemma~\ref{lem:coupling_edges} to conclude that triangle counts in $\GPo$ and $\Gbox$ are asymptotically equivalent. Moreover, since we are ultimately interested in recovering the scaling of $c(k_n;G_n)$, which Theorem~\ref{thm:mainktoinfty} claims is $\gamma(k_n)$, we need to show that each step in the strategy outlined in Section~\ref{sec:proof_outline} only introduces error terms that are of smaller order, i.e. that are $\smallO{\gamma(k_n)}$. This will turn out to require a great deal of care in bounding all error terms we encounter.
 
@@ -281,7 +281,7 @@ As $n \to \infty$,
 \]
 \end{proposition}
 
-\subsection{Coupling of local clustering between $\GPo$ and $\Gbox$}
+\subsection{Coupling of local clustering between \texorpdfstring{$\GPo$}{G Po} and \texorpdfstring{$\Gbox$}{G box}}
 
 The next step is to show that the modified clustering is preserved under the coupling described in Section~\ref{ssec:coupling_H_P}. The proof can be found in Section~\ref{ssec:coupling_HP_ast_P}. This step is one of the key technical challenges we face in proving Theorem~\ref{thm:mainktoinfty}. 
 

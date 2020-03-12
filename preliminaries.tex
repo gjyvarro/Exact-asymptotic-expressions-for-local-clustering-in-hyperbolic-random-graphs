@@ -3,7 +3,7 @@
 
 In this section we recall some definitions and tools that we will need in our proofs.
 
-\subsection{The infinite limit model $\Ginf$\label{ssec:infinite_model}}
+\subsection{The infinite limit model \texorpdfstring{$\Ginf$}{G infinity}\label{ssec:infinite_model}}
 
 We start by recalling the definition of the infinite limit model from~\cite{fountoulakis2018law}.
 Let $\mathcal{P}=\mathcal{P}_{\alpha,\nu}$ be a Poisson point process on $\eR^2$ with intensity function $f=f_{\alpha,\nu}$ given by
@@ -29,7 +29,7 @@ We will denote the intensity measure of the Poisson process $\mathcal{P}$ by $\m
 Borel-measurable subset $S \subseteq \eR^2$ we have $\mu(S) = \int_S f(x,y) \dd x \dd y$. Using the notation $p = (x,y)$ for a point in $\R \times \R_+$ we shall write $\int_S h(p) \dd \mu(p)$ for the integral of $h$ over $S$ with respect to the intensity measure $\mu$, i.e. $\int_S h(p) \dd \mu(p) = \int_{S} h(x,y) f(x,y) \dd x \dd y$.
 
 
-\subsection{The finite box model $\Gbox$\label{ssec:finite_model}}
+\subsection{The finite box model \texorpdfstring{$\Gbox$}{G box}\label{ssec:finite_model}}
 
 
 Recall that in the definition of the KPKVB model we set $R = 2\log(n/\nu)$.
@@ -48,7 +48,7 @@ Similar to the infinite graph, for a point $p \in \Rcal$ we define the ball $\Ba
 \end{equation}
 
 
-\subsection{The Poissonized KPKVB model $\GPo$}
+\subsection{The Poissonized KPKVB model \texorpdfstring{$\GPo$}{G Po}}
 
 
 Imagine that we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ in the hyperbolic plane $\Haa$ chosen according to the $(\alpha, R)$-quasi uniform distribution. In the standard KPKVB random graph $G(n;\alpha,\nu)$ we take $u_1,\dots, u_n$ as our vertex set and add edges between points at hyperbolic distance at most $R = 2\log(n/\nu)$. In the \emph{Poissonized} KPKVB random graph $\GPo := \GPo(n;\alpha,\nu)$, we instead take $N\isd \Po(n)$, a Poisson random variable 
@@ -61,7 +61,7 @@ according to the same rule as before. Equivalently, we could say that the vertex
 Working with the Poissonized model has the advantage that when we take two disjoint regions $A, B$ then the number of points in $A$ and the number of points  in $B$ are independent Poisson-distributed random variables. As we will see, and as is to be expected, switching to the Poissonized model does not significantly alter the limiting behaviour of the clustering coefficient and function.
 
 
-\subsection{Coupling $\GPo$ and $\Gbox$\label{ssec:coupling_H_P}}
+\subsection{Coupling \texorpdfstring{$\GPo$}{G Po} and \texorpdfstring{$\Gbox$}{G box}\label{ssec:coupling_H_P}}
 
 
 The following lemmas from \cite{fountoulakis2018law} establish a useful coupling between the Poissonized KPKVB random graph
@@ -153,7 +153,7 @@ Then, for any natural number $k$ and measurable function $h : \R^k \times \mathc
 
 \begin{equation}\label{eq:def_campbell_mecke}
 \begin{array}{c}
-\displaystyle	\Exp{\sum_{p_1, \dots, p_k \in \Pcal, \atop \text{distinct}} h(p_1, \dots, p_k, \Pcal)} \\
+\displaystyle	\Exp{\sum_{\substack{p_1, \dots, p_k \in \Pcal, \\ \text{distinct}}} h(p_1, \dots, p_k, \Pcal)} \\
 = \\
 \displaystyle \int_{\mathcal{M}} \dots \int_{\mathcal{M}} \Exp{h(x_1,\dots, x_k, \Pcal\cup\{x_1,\dots,x_k\})} \mu(dx_1)\dots\mu(dx_k).
 \end{array}
