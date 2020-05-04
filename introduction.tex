@@ -114,8 +114,7 @@ see~\cite[p.255 Equation (2)]{erdelyi1953higher}, and let $\MeijerGnew{m}{\ell}{
 Meijer's G-Function~\cite{meijer1946gfunction}, see Appendix~\ref{sec:Meijer_G_functions} for more details.
 
 For a sequence $(X_n)_n$ of random variables, we write $X_n \xrightarrow[n\to\infty]{\Pee} X$ to denote that $X_n$ converges in 
-probability to $X$, and we write $X_n \xrightarrow[n\to\infty]{L_1} X$ if $X_n$ converges to $X$ in the $L_1$ sense 
-(i.e.~if $\Ee |X_n-X| \to 0$.)
+probability to $X$. %, and we write $X_n \xrightarrow[n\to\infty]{L_1} X$ if $X_n$ converges to $X$ in the $L_1$ sense (i.e.~if $\Ee |X_n-X| \to 0$.)
 
 %We further adopt standard notations on asymptotic behavior of functions and sequences. That is, for two functions $f$ and $g$, we write $f(n) = \smallO{g(n)}$ as $n \to \infty$ if $\limsup_{n \to \infty} f(n)/g(n) = 0$ and $f(n) = \bigO{g(n)}$ as $n \to \infty$ if $\limsup_{n \to \infty} |f(n)|/g(n) < \infty$. Furthermore, $f(n) = \Omega(g(n))$ as $n \to \infty$ if $\limsup_{n \to \infty} |f(n)/g(n)| > 0$ and $f(n) = \omega(g(n))$ as $n \to \infty$ if $\limsup_{n \to \infty} |f(n)/g(n)| = \infty$. Finally, $f(n) = \bigT{g(n)}$ as $n \to \infty$ if $f(n) = \bigO{g(n)}$ and $g(n) = \Omega(f(n))$.
 
@@ -228,13 +227,12 @@ Theorem~\ref{thm:mainkfixed} in fact generalises to increasing sequences $(k_n)_
 Let $\alpha>\frac12, \nu>0$ be fixed and let $k_n$ be a sequence of non-negative integers
 satisfying $1 \ll k_n \ll n^{1/(2\alpha+1)}$. Then, writing $G_n := G(n;\alpha,\nu)$, we have
 
-$$ \frac{c(k_n;G_n)}{\gamma(k_n)} \xrightarrow[n\to\infty]{L_1} 1. $$ 
+$$ \frac{c(k_n;G_n)}{\gamma(k_n)} \xrightarrow[n\to\infty]{\Pee} 1. $$ 
 
 \end{theorem}
 
 \noindent
-The conclusion of Theorem~\ref{thm:mainktoinfty} is slightly stronger than $c(k_n; G_n)/\gamma(k_n) 
-\xrightarrow[n\to\infty]{\Pee} 1$, which might alternatively be written as $c(k_n;G_n) = (1+o(1)) \gamma(k_n)$ a.a.s., using notation that is common in the random graphs community.
+The statement of Theorem~\ref{thm:mainktoinfty} is equivalent to $c(k_n;G_n) = (1+o(1)) \gamma(k_n)$ a.a.s., using notation that is common in the random graphs community. %$c(k_n; G_n)/\gamma(k_n)\xrightarrow[n\to\infty]{\Pee} 1$, which might alternatively be written as 
 
 
 \subsubsection{Scaling of \texorpdfstring{$\gamma(k)$}{gamma(k)}}
@@ -331,21 +329,21 @@ Interestingly, a similar transition point has also been observed for both majori
 flocking dynamics~\cite{miguel2018effects} on networks with scale-free degree degree distributions.
 
 
-\subsubsection{Uniform convergence.}
+%\subsubsection{Uniform convergence.}
 
-Our results for the local clustering function in fact imply uniform convergence of $c(k; G_n)$ for all $2 \le k \le a_n$ 
-where $a_n \ll n^{\frac{1}{2\alpha + 1}}$. 
-To see this we first observe that for {\em fixed} $k$, the statement $c(k;G_n) \xrightarrow[n\to\infty]{\Pee} \gamma(k)$
-is equivalent to $c(k;G_n)/\gamma(k) \xrightarrow[n\to\infty]{L_1} 1$.
-Now let
-\[
-	b_n = \arg \max_{2 \le k \le a_n} \Exp{\left|\frac{c(k; G_n)}{\gamma(k)} - 1\right|}.
-\]
-Then $b_n \le a_n \ll n^{\frac{1}{2\alpha + 1}}$ and therefore by Theorem~\ref{thm:mainkfixed} and Theorem~\ref{thm:mainktoinfty}
-\[
-	\lim_{n \to \infty} \max_{2 \le k \le a_n} \Exp{\left|\frac{c(k; G_n)}{\gamma(k)} - 1\right|} 
-	= \lim_{n \to \infty}\Exp{\left|\frac{c(b_n; G_n)}{\gamma(b_n)} - 1\right|} = 0.
-\]
+%Our results for the local clustering function in fact imply uniform convergence of $c(k; G_n)$ for all $2 \le k \le a_n$ 
+%where $a_n \ll n^{\frac{1}{2\alpha + 1}}$. 
+%To see this we first observe that for {\em fixed} $k$, the statement $c(k;G_n) \xrightarrow[n\to\infty]{\Pee} \gamma(k)$
+%is equivalent to $c(k;G_n)/\gamma(k) \xrightarrow[n\to\infty]{L_1} 1$.
+%Now let
+%\[
+%	b_n = \arg \max_{2 \le k \le a_n} \Exp{\left|\frac{c(k; G_n)}{\gamma(k)} - 1\right|}.
+%\]
+%Then $b_n \le a_n \ll n^{\frac{1}{2\alpha + 1}}$ and therefore by Theorem~\ref{thm:mainkfixed} and Theorem~\ref{thm:mainktoinfty}
+%\[
+%	\lim_{n \to \infty} \max_{2 \le k \le a_n} \Exp{\left|\frac{c(k; G_n)}{\gamma(k)} - 1\right|} 
+%	= \lim_{n \to \infty}\Exp{\left|\frac{c(b_n; G_n)}{\gamma(b_n)} - 1\right|} = 0.
+%\]
 
 
 

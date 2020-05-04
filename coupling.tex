@@ -1766,43 +1766,64 @@ which finishes the proof.
 
 Finally we prove Lemma~\ref{lem:clustering_ast_H}, whose statement is
 \[
-	\Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|} = \smallO{s(k_n)}.
+\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right| = \smallOp{s(k_n)}.
 \]
+%\[
+%	\Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|} = \smallO{s(k_n)}.
+%\]
 
 
 \begin{proofof}{Lemma~\ref{lem:clustering_ast_H}}
-Let $0 < \delta < 1$ and define the event
-\begin{align*}
-	A_n &= \left\{\left|N_n(k_n) - \Exp{N_n(k_n)}\right| \le \Exp{N_n(k_n)}^{\frac{1 + \delta}{2}}\right\}.
-\end{align*}
+	Since Propositions~\ref{prop:clustering_ast_H_Pois}-\ref{prop:convergence_average_clustering_P_n} imply that
+	\[
+	\Exp{c^\ast(k_n; G_n)} = \bigO{s(k_n)},
+	\]  
+	and since
+	\begin{align*}
+	\frac{|N_n(k_n)-\Exp{N_{n}(k_n)}|}{N_{n}(k_n)} = \smallOp{1},
+	\end{align*}
+	we immediately infer that
+	\begin{align*}
+	\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|
+	%&\le \Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|\1_{A_n}} + \bigO{1 - \Prob{A_n}}\\
+	&= c^\ast(k_n; G_n)\left|\frac{\Exp{N_{n}(k_n)}}{N_{n}(k_n)} - 1\right| = \smallOp{1}.
+	\\
+	%&\qquad\qquad\qquad\qquad\qquad+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}\\
+	%&\le \Exp{c^\ast(k_n; G_n)}\Exp{N_{n}(k_n)}^{-\frac{1 - \delta}{2}} 
+	%+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}.
+	\end{align*}
+%Let $0 < \delta < 1$ and define the event
+%\begin{align*}
+%	A_n &= \left\{\left|N_n(k_n) - \Exp{N_n(k_n)}\right| \le \Exp{N_n(k_n)}^{\frac{1 + \delta}{2}}\right\}.
+%\end{align*}
 
-Since $N_n(k_n) = \sum_{i = 1}^n \ind{\mathrm{deg}_n(u_i) = k_n}$, with $u_i$ sampled according to~\eqref{eq:def_hyperbolic_point_distribution}, it follows from Lemma~\ref{lem:general_concentration_sum_indicators}, with $c = \Exp{N_{n}(k_n)}^{-\frac{1-\delta}{2}}$, that
-\begin{equation}\label{eq:clustering_ast_H_prob_A}
-	\Prob{A_n} \ge 1 - \bigO{e^{-\frac{\Exp{N_{n}(k_n)}^\delta}{2}}} = 1 - \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}},
-\end{equation}
-where for the last part we used that $\Exp{N_n(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$ (cf. Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}).
+%Since $N_n(k_n) = \sum_{i = 1}^n \ind{\mathrm{deg}_n(u_i) = k_n}$, with $u_i$ sampled according to~\eqref{eq:def_hyperbolic_point_distribution}, it follows from Lemma~\ref{lem:general_concentration_sum_indicators}, with $c = \Exp{N_{n}(k_n)}^{-\frac{1-\delta}{2}}$, that
+%\begin{equation}\label{eq:clustering_ast_H_prob_A}
+%	\Prob{A_n} \ge 1 - \bigO{e^{-\frac{\Exp{N_{n}(k_n)}^\delta}{2}}} = 1 - \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}},
+%\end{equation}
+%where for the last part we used that $\Exp{N_n(k_n)} = \bigT{n k_n^{-(2\alpha + 1)}}$ (cf. Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}).
 
-On the event $A_n$
-\[
-	\left|\frac{\Exp{N_{n}(k_n)}}{N_{n}(k_n)} - 1\right| 
-	\le \frac{\Exp{N_{n}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{n}(k_n)}+\Exp{N_{n}(k_n)}^{\frac{1 + \delta}{2}}}
-	\le \Exp{N_{n}(k_n)}^{-\frac{1 - \delta}{2}}.
-\]
+%On the event $A_n$
+%\[
+%	\left|\frac{\Exp{N_{n}(k_n)}}{N_{n}(k_n)} - 1\right| 
+%	\le \frac{\Exp{N_{n}(k_n)}^{\frac{1 + \delta}{2}}}{\Exp{N_{n}(k_n)}+\Exp{N_{n}(k_n)}^{\frac{1 + \delta}{2}}}
+%	\le \Exp{N_{n}(k_n)}^{-\frac{1 - \delta}{2}}.
+%\]
 
-Therefore we have
-\begin{align*}
-	\Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|}
-	&\le \Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|\ind{A_n}} + \bigO{1 - \Prob{A_n}}\\
-	&= \Exp{c^\ast(k_n; G_n)\left|\frac{\Exp{N_{n}(k_n)}}{N_{n}(k_n)} - 1\right|\ind{A_n}}
-		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}\\
-	&\le \Exp{c^\ast(k_n; G_n)}\Exp{N_{n}(k_n)}^{-\frac{1 - \delta}{2}} 
-		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}.
-\end{align*}
-The second term is clearly $\smallO{s(k_n)}$. The first term is clearly $\smallO{\Exp{c^\ast(k_n; G_n)}}$ and since Propositions~\ref{prop:clustering_ast_H_Pois}-\ref{prop:convergence_average_clustering_P_n} imply that
-\[
-	\Exp{c^\ast(k_n; G_n)} = \bigO{s(k_n)}.
-\] 
-the first term is also $\smallO{s(k_n)}$.
+%Therefore we have
+%\begin{align*}
+%	\Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|}
+%	&\le \Exp{\left|c^\ast(k_n; G_n) - c(k_n; G_n)\right|\ind{A_n}} %+ \bigO{1 - \Prob{A_n}}\\
+%	&= \Exp{c^\ast(k_n; G_n)\left|\frac{\Exp{N_{n}(k_n)}}{N_{n}(k_n)} - 1\right|\ind{A_n}}
+%		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}\\
+%	&\le \Exp{c^\ast(k_n; G_n)}\Exp{N_{n}(k_n)}^{-\frac{1 - \delta}{2}} 
+%		+ \bigO{e^{-\frac{n^\delta k_n^{-\delta(2\alpha + 1)}}{2}}}.
+%\end{align*}
+%The second term is clearly $\smallO{s(k_n)}$. The first term is clearly $\smallO{\Exp{c^\ast(k_n; G_n)}}$ and since Propositions~\ref{prop:clustering_ast_H_Pois}-\ref{prop:convergence_average_clustering_P_n} imply that
+%\[
+%	\Exp{c^\ast(k_n; G_n)} = \bigO{s(k_n)}.
+%\] 
+%the first term is also $\smallO{s(k_n)}$.
 \end{proofof}
 
 

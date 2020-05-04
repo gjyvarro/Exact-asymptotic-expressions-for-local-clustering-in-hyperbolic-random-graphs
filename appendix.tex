@@ -299,16 +299,16 @@ which finishes the proof.
 
 Here we summarize several known results for random variables and provide one technical lemma for Binomial random variables.
 
-We start with the following concentration result which follows from~\cite[Theorem 4]{freedman1973another}, together with the note directly after it.
+%We start with the following concentration result which follows from~\cite[Theorem 4]{freedman1973another}, together with the note directly after it.
 
-\begin{lemma}\label{lem:general_concentration_sum_indicators}
-Let $X_n$ be a sum of $n$, possibly dependent, indicators and $c > 0$. Then
-\[
-	\Prob{|X_n - \Exp{X_n}| > c \Exp{X_n}} \le 2 e^{-\frac{c^2 \Exp{X_n}^2}{2}}.
-\]
-\end{lemma}
+%\begin{lemma}\label{lem:general_concentration_sum_indicators}
+%Let $X_n$ be a sum of $n$, possibly dependent, indicators and $c > 0$. Then
+%\[
+%	\Prob{|X_n - \Exp{X_n}| > c \Exp{X_n}} \le 2 e^{-\frac{c^2 \Exp{X_n}^2}{2}}.
+%\]
+%\end{lemma}
 
-Next we recall two versions of the Chernoff bound for Poisson and Binomial random variables. They can be found in \cite[Lemma 1.2]{penrose2003random}; note that the Chernoff bound exists in many different versions, the original idea was developed by Chernoff in the context of efficiency of statistical hypothesis testing in \cite{Chernoff1952}):.
+First of all, we recall two versions of the Chernoff bound for Poisson and Binomial random variables. They can be found in \cite[Lemma 1.2]{penrose2003random}; note that the Chernoff bound exists in many different versions, the original idea was developed by Chernoff in the context of efficiency of statistical hypothesis testing in \cite{Chernoff1952}):.
 
 \begin{lemma}
 Let $\Po(\lambda)$ denote a Poisson random variable with mean $\lambda$ and let $H(x) = x\log(x) - x + 1$. Then
@@ -1395,5 +1395,215 @@ For[r=1,r<=reps,r++,V = ConstantArray[0,{n,2}];
 		If[nrdegk>0,Plotingdatak[[r,k,2]]=1.0*result/nrdegk]];]
 Print[Mean[Plotingdatak]];
 \end{lstlisting}
+
+\section{Explicit expressions for \texorpdfstring{$\gamma, \gamma(k)$}{gamma, gamma(k)} when \texorpdfstring{$\alpha=1$}{alpha equals 1}.}\label{ssec:alphais1}
+
+
+
+
+We've already established that $\gamma, \gamma(k)$ can be obtained at $\alpha=1$ by
+taking the $\alpha\to 1$ limit of the expression obtained for $\alpha=1$. Here we derive an alternative explicit expression for completeness. Since the rest of our 
+proofs do not the depend on it the reader could decide to skip this section on a first reading.
+
+Recall that $\Gamma^\ast(q,z) = \Gamma^+(q+1,z) + \Gamma^+(q,z)$. We will prove the following.
+
+\begin{proposition}\label{prop:gammaais1}
+If $\alpha=1$ then 
+\begin{align*} 
+\gamma &= \frac{575 - 12 \pi^2}{576} + \frac{\eta^4(7 + \pi^2)\Gamma^\ast(-4, \eta)}{4}\\
+ 	&\hspace{10pt}- \frac{1}{2} \int_0^1 (1 - 4z + 3z^3)\log(1-z)(z + \eta)e^{-\eta/z} \dd z\\
+ 	&\hspace{10pt}- \int_0^1 \Li_2(z)(z^3 + \eta z^2) e^{-\eta/z} \dd z,		
+ \end{align*}
+and
+\begin{align*}
+ \gamma(k) &= \frac{9 \eta^3}{2 k!} \Gamma^+(k-3,\eta)-\frac{\xi^4}{k!}\frac{7+\pi^2}{4}\Gamma^+(k-4,\eta)\\
+ 	&\hspace{10pt}+ \frac{\eta^k}{2k!}\int_0^1 (1-4z+3z^2)\ln(1-z)z^{1-k}e^{-\eta/z}\dd z\\ 
+ 	&\hspace{10pt}+ \frac{\eta^k}{k!}\int_0^1 z^{3-k} \Li_2(z) e^{-\eta/z} \dd z,
+ \end{align*}
+with $\eta = 4\nu/\pi$ and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm 
+function.
+\end{proposition}
+
+
+Naturally, the proof proceeds by proving the analogue of Lemma~\ref{lem:Paneq1}:
+
+
+\begin{lemma}\label{lem:Pais1}
+If $\alpha = 1$, then
+	\begin{align*}
+	&P(y) =\frac{9}{4} e^{-\frac{1}{2}y} + \frac{1 - 4 e^{-\frac{1}{2}y} + 3 e^{-y}}{4}\ln(1 - e^{-\frac{1}{2}y}) - \frac{7+\pi^2}{8}
+e^{-y}  + 
+\frac{1}{2}e^{-y}\Li_2(e^{-y})
+	\end{align*}
+	where $\Li_2(z)=\int_0^z \frac{\ln(1-t)}{t}dt$ is the dilogarithm function.
+\end{lemma}
+
+
+\begin{proof}
+We want to compute the limit $\lim_{\alpha \rightarrow 1} P_\alpha(y_0(z_0))$. For $\alpha \neq 1$, we label the terms as follows:
+%\begin{align*}
+%&P_\alpha(y_0(z_0)) \\
+%&= \frac{1}{\alpha-1}\left(s_1(\alpha,z_0)+s_2(\alpha,z_0)+s_3(\alpha,z_0)+s_4(\alpha,z_0) 
+%+s_5(\alpha,z_0)+s_6(\alpha,z_0)+s_7(\alpha,z_0)\right)
+%\end{align*}
+\begin{align*}
+&P_\alpha(y_0(z_0)) \\
+&= \frac{1}{\alpha-1}\left(s_1(\alpha,z_0)+s_2(\alpha,z_0)+\frac{1}{\alpha-1}(s_3(\alpha,z_0)+s_4(\alpha,z_0)) 
++s_5(\alpha,z_0)+s_6(\alpha,z_0)+s_7(\alpha,z_0)\right)
+\end{align*}
+where
+\begin{align*}
+s_1(\alpha,z_0) &= -\frac{1}{8 \alpha}\\
+s_2(\alpha,z_0) &= (\alpha-1/2)z_0 \\
+s_3(\alpha,z_0) &= - \frac{(\alpha - 1/2)^2 z_0^2}{4}\\
+s_4(\alpha,z_0) &= z_0^{-2 + 4 \alpha} \frac{2^{-4 \alpha-1} (3 \alpha - 1)}{\alpha}\\
+s_5(\alpha,z_0) &= z_0^{-2 + 4 \alpha} \frac{(\alpha - 1/2 ) B^-(1/2; 1 + 2 \alpha, -2 + 2 \alpha)}{2\alpha}\\
+s_6(\alpha,z_0) &= \frac{(1 - z_0)^{2 \alpha}}{8 \alpha} \\
+s_7(\alpha,z_0) &= - \frac{z_0^{4 \alpha - 2} B^-(1 - z_0; 2 \alpha, 3 - 4 \alpha)}{4}
+\end{align*}
+Now, we consider the functions $s_i(\alpha) = s_i(\alpha,z_0)$ as functions of $\alpha$ only and compute their Taylor 
+expansion at $\alpha=1$, for $i\in \{1,2,5,6,7\}$ up to linear and for $i\in \{3,4\}$ up to quadratic order, i.e. we 
+write $s_i(\alpha) = s_i(1)+s_i'(1)(\alpha-1)+o(\alpha-1)$ for $i\in \{1,2,5,6,7\}$ and 
+$s_i(\alpha)=s_i(1)+s_i'(1)(\alpha-1)+\frac{s_i''(1)}{2}(\alpha-1)^2+o((\alpha-1)^2)$ for $i\in \{3,4\}$. Using these expansions, we can rewrite
+%\begin{align*}
+%&P(y_0(z_0)) = \frac{1}{\alpha-1}\left( \sum_{i\in \{1,2,5,6,7\}} s_i(1)+\sum_{i\in\{1,2,5,6,7\}} 
+%s_i'(1)(\alpha-1)+o(\alpha-1) \right. \\
+%&\left.+\frac{1}{\alpha-1}(s_3(1)+s_4(1)+(s_3'(1)+s_4'(1))(\alpha-1)+\frac{1}{2}(s_3''(1)+s_4''(1))(\alpha-1)^2 +o((\alpha-1)^2)) \right)
+%\end{align*}
+\begin{align*}
+&P(y_0(z_0)) = \frac{1}{\alpha-1}\left( \sum_{i\in \{1,2,5,6,7\}} s_i(1)+\sum_{i\in\{1,2,5,6,7\}} 
+s_i'(1)(\alpha-1)+o(\alpha-1) \right. \\
+&\left.+\frac{s_3(1)+s_4(1)}{\alpha-1} + s_3'(1)+s_4'(1)+\frac{1}{2}(s_3''(1)+s_4''(1))(\alpha-1) +o((\alpha-1)) \right)
+\end{align*}
+In order to continue, we compute:
+\begin{align*}
+s_1(\alpha) &=-\frac{1}{8}+\frac{1}{8}(\alpha-1)+o(\alpha-1) \\
+s_2(\alpha) &=\frac{1}{2}z_0 +z_0 (\alpha-1)+o(\alpha-1) \\
+%s_3(\alpha) &= -\frac{1}{16}z_0^2 -\frac{1}{4}z_0^2(\alpha-1)-\frac{1}{4}z_0^2(\alpha-1)^2+o( (\alpha-1)^2) \\
+s_3(\alpha) &= -\frac{1}{16}z_0^2 -\frac{1}{4}z_0^2(\alpha-1)-\frac{1}{2}z_0^2(\alpha-1)^2+o( (\alpha-1)^2) \\
+%s_4(\alpha) &= \frac{1}{16}z_0^2 +\frac{z_0^2}{4}\left(\frac{1}{8}+\ln\frac{z_0}{2}\right)(\alpha-1)\\
+%&\qquad+\frac{z_0^2}{8}\left(4\left(\ln\frac{z_0}{2}\right)^2+\ln\frac{z_0}{2} - \frac{1}{4}\right)(\alpha-1)^2+o( (\alpha-1)^2)\\
+s_4(\alpha) &= \frac{1}{16}z_0^2 +\frac{z_0^2}{4}\left(\frac{1}{8}+\ln\frac{z_0}{2}\right)(\alpha-1)\\
+&\qquad+\frac{z_0^2}{8}\left(8\left(\ln\frac{z_0}{2}\right)^2+2\ln\frac{z_0}{2} - \frac{1}{2}\right)(\alpha-1)^2+o( (\alpha-1)^2)\\
+s_5(\alpha) &= \frac{z_0^2}{4} B^-(1/2;3,0) +o(\alpha-1) \\
+	&\hspace{10pt}+ z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0) +1/2\int_0^{\frac{1}{2}} \ln(t(1-t))t^2(1-t)^{-1} \dd t \right)  (\alpha-1)+o (\alpha-1)\\
+s_6(\alpha) &= \frac{(1-z_0)^2}{8}+\frac{(1-z_0)^2}{4} (\ln(1-z_0)-1/2 )(\alpha-1 + \smallO{a-1})\\
+%s_7(\alpha) &= -\frac{z_0^2}{4}B^-(1-z_0;2,-1) - z_0^2 \left(\ln(z_0)B^-(1-z_0;2,-1) \right. \\
+%&\qquad \left.+\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2}dt \right) (\alpha-1)+o(\alpha-1)
+s_7(\alpha) &= -\frac{z_0^2}{4}B^-(1-z_0;2,-1) +o(\alpha-1) \\
+	&\hspace{10pt}- z_0^2 \left(\ln(z_0)B^-(1-z_0;2,-1) 
+		+\int_0^{1-z_0} t(1-t)^{-2}\ln\left(\frac{\sqrt{t}}{1-t}\right)t(1-t)^{-2} \dd t \right) (\alpha-1).
+\end{align*}
+Based on this we see that
+\begin{align*}
+s_3(1)+s_4(1)=-\frac{1}{16}z_0^2+\frac{1}{16}z_0^2 =0
+\end{align*}
+and
+\begin{align*}
+&\sum_{i\in \{1,2,5,6,7\}} s_i(1) + s_3'(1)+s_4'(1) \\
+&= -\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\frac{z_0^2}{4}\ln(\frac{z_0}{2}) 
++\frac{z_0^2}{4}B^-(1/2;3,0)+\frac{(1-z_0)^2}{8}-\frac{z_0^2}{4}B^-(1-z_0;2,-1) \\
+&=-\frac{1}{8}+\frac{1}{2}z_0-\frac{1}{4}z_0^2+\frac{z_0^2}{32}+\left(\frac{z_0^2}{4}\ln(z_0)-\frac{z_0^2}{4}\ln 2\right) 
++\left(-\frac{5z_0^2}{32}+\frac{z_0^2}{4}\ln2\right) \\ 
+&\hspace{50pt}+\left(\frac{1}{8}-\frac{z_0}{4}+\frac{z_0^2}{8}\right)+\left(\frac{z_0^2}{4}-\frac{z_0}{4}-\frac{z_0^2}{4}\ln z_0\right) &=0,
+\end{align*}
+using that %$B^-(\frac{1}{2};3,0)=-\frac{5}{8}+\ln 2$ and $B^-(1-z_0;2,-1)=-1+z_0^{-1}+\ln z_0$.
+\begin{align*}
+B^-(\frac{1}{2};3,0)&=\int_0^\frac{1}{2}t^2(1-t)^-1dt=\int_\frac{1}{2}^1 (1-s)^2 s^{-1}ds\\
+&=\int_\frac{1}{2}^1 s^{-1}-2+sds = -2+\frac{1}{2}-\ln\frac{1}{2}+1-\frac{1}{8}=-\frac{5}{8}+\ln 2
+\end{align*}
+and
+\begin{align*}
+B^-(1-z_0;2,-1)&=\int_0^{1-z_0} t(1-t)^{-2}dt = \int_{z_0}^1 (1-s)s^{-2}ds \\
+&=\int_{z_0}^1 s^{-2}-s^{-1}ds = -1+z_0^{-1}+\ln z_0.
+\end{align*}
+
+
+Finally, it follows that as $\alpha \to 1$,
+\begin{align*}
+P(y_0(z_0)) = \sum_{i \in\{1,2,5,6,7\}} s_i'(1)+\frac{1}{2}(s_3''(1)+s_4''(1)) + o(1)
+\end{align*}
+Therefore, the desired value of $\lim_{\alpha \rightarrow 1} P(y_0(z_0))$ is given by
+\begin{align*}
+&\sum_{i \in\{1,2,5,6,7\}} s_i'(1)+\frac{1}{2}(s_3''(1)+s_4''(1))\\
+	&=\frac{1}{8}+z_0-\frac{z_0^2}{4}+\frac{z_0^2}{8}(4(\ln\frac{z_0}{2})^2+\ln\frac{z_0}{2} - \frac{1}{4}) 
+		+\frac{(1-z_0)^2}{4} (\ln(1-z_0)-1/2 )\\
+	&\hspace{10pt}+z_0^2\left(\left(\ln(z_0)+\frac{1}{4}\right) B^-(1/2;3,0)+ \frac{1}{2}\int_0^{\frac{1}{2}} 
+		\ln(t(1-t)) \, t^2(1-t)^{-1} \dd t \right) \\
+	&\hspace{10pt}- z_0^{2}\left(\ln(z_0)B^-(1-z_0;2,-1)+\int_0^{1-z_0}\ln\left(\frac{\sqrt{t}}{1-t}\right)t(1-t)^{-2} 
+		\dd t \right) \\
+	&=\frac{1}{8}+z_0-\frac{z_0^2}{4}+\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2
+		+\frac{z_0^2}{8}\ln\frac{z_0}{2} - \frac{z_0^2}{32} \\
+	&\hspace{10pt}-\frac{5}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2-\frac{5z_0^2}{32} +\frac{z_0^2 \ln2}{4}\\
+	&\hspace{10pt}+z_0^2/2\int_0^{\frac{1}{2}} \ln(t(1-t)) \, t^2(1-t)^{-1}\dd t \\
+	&\hspace{10pt}+\frac{(1-z_0)^2}{4}\ln(1-z_0) -\frac{1}{8}+\frac{z_0}{4}-\frac{z_0^2}{8}\\
+	&\hspace{10pt}+ z_0^2\ln(z_0)-z_0 \ln z_0-z_0^2(\ln z_0)^2
+		-z_0^2\int_0^{1-z_0} \ln\left(\frac{\sqrt{t}}{1-t}\right)t(1-t)^{-2}  \dd t \\
+	&=\frac{5}{4}z_0-\frac{9}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} 
+		+\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
+	&\hspace{10pt}+\frac{3}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}
+		+z_0^2/2\int_0^{\frac{1}{2}} \ln(t(1-t)) \, t^2(1-t)^{-1} \dd t \\
+	&\hspace{10pt}-z_0 \ln z_0-z_0^2(\ln z_0)^2-z_0^2\int_0^{1-z_0} \ln\left(\frac{\sqrt{t}}{1-t}\right)t(1-t)^{-2} \dd t \\
+	&=\frac{5}{4}z_0-\frac{9}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} 
+		+\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
+	&\hspace{10pt}+\frac{3}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}
+		+z_0^2/2(11/8 -1/4 \ln 2 -3/2\ln(2)^2 -  \Li_2(1/2)) \\
+	&\hspace{10pt}-z_0 \ln z_0-z_0^2(\ln z_0)^2+z_0(1 + \frac{1}{2}(2-z_0) \ln(z_0) 
+		+ \frac{1}{2}z_0 \ln(z_0)^2 - \frac{1}{2} (1-z_0) \ln(1-z_0) \\
+	&\hspace{10pt}+\frac{1}{2}z_0 \Li_2(z_0)) - z_0^2   -\frac{1}{2}  z_0^2\Li_2(1) \\
+	&=\frac{9}{4}z_0-\frac{25}{16}z_0^2 +\frac{z_0^2}{2}(\ln\frac{z_0}{2})^2+\frac{z_0^2}{8}\ln\frac{z_0}{2} 
+		+\frac{(1-z_0)^2}{4}\ln(1-z_0) \\
+	&\hspace{10pt}-\frac{1}{8}z_0^2\ln(z_0)+z_0^2\ln(z_0)\ln 2+\frac{z_0^2 \ln2}{4}
+		+z_0^2/2(11/8 -1/4 \ln 2 -3/2\ln(2)^2 \\
+	&\hspace{10pt}- \Li_2(1/2)-\Li_2(1)+\Li_2(z_0)) -\frac{1}{2}z_0^2(\ln z_0)^2 - \frac{1}{2} z_0(1-z_0) \ln(1-z_0)
+\end{align*}
+where we used that
+\begin{align*}
+	z_0^2/2\int_0^{\frac{1}{2}} \ln(t)t^2(1-t)^{-1}+\ln(1-t)t^2(1-t)^{-1} \dd t
+	&= 11/8 -1/4 \ln 2 -3/2\ln(2)^2 -  \Li_2(1/2),
+\end{align*}
+and
+\begin{align*}
+	&z_0^2\int_0^{1-z_0} 1/2\ln(t)t(1-t)^{-2}-t\ln(1-t)(1-t)^{-2} \dd t\\
+	&= -\frac{1}{z_0} (1 + \frac{1}{2}(2-z_0) \ln(z_0) + \frac{1}{2}z_0 \ln(z_0)^2 - \frac{1}{2} (1-z_0) \ln(1-z_0) +\frac{1}{2}z_0 \Li_2(z_0))+1   +\frac{1}{2}  \Li_2(1).
+\end{align*}
+By expanding the squares and collecting terms, the last expression can be simplified to
+\begin{align*}
+&\frac{9}{4} z_0 + \frac{1 - 4 z_0 + 3 z_0^2}{4}\ln(1 - z_0) + 
+z_0^2 \left(-7/8 - \frac{\ln(2)^2+2\Li_2(1/2) + 2\Li_2(1)}{4} \right) + 
+\frac{1}{2}z_0^2 \Li_2(z) \\
+=&\frac{9}{4} z_0 + \frac{1 - 4 z_0 + 3 z_0^2}{4}\ln(1 - z_0) - \frac{7+\pi^2}{8}
+z_0^2  + 
+\frac{1}{2}z_0^2 \Li_2(z)
+\end{align*}
+which finishes the computation.
+\end{proof}
+
+
+
+\begin{proofof}{Proposition~\ref{prop:gammaais1}}
+It suffices to find the value of $J$ and $I^{(k)}$ 
+at $\alpha = 1$. We can do this by computing the integrals with the expression for $P(y)$ that we found for $\alpha=1$, i.e.
+\begin{align*}
+	J &= 2\alpha\int_0^1 \left(\frac{9}{4} z + \frac{1 - 4 z + 3 z^2}{4}\ln(1 - z) - \frac{7+\pi^2}{8}
+		z^2  + \frac{1}{2}z^2 \Li_2(z)\right) z^{2\alpha -1} \dd z \\
+	&=\frac{575-12\pi^2}{576}
+\end{align*}
+and 
+\begin{align*}
+	I^{(k)} &= \frac{2\alpha \xi^k}{k!}\int_0^1 \left(\frac{9}{4} z + \frac{1 - 4 z + 3 z^2}{4}\ln(1 - z) 
+		- \frac{7+\pi^2}{8}	z^2  + \frac{1}{2}z^2 \Li_2(z) \right)z^{2\alpha-k-1} e^{-\xi/z} \dd z \\
+	&= \frac{2 \eta^k}{k!}\int_0^1 \left(\frac{9}{4} z + \frac{1 - 4 z + 3 z^2}{4}\ln(1 - z) 
+		- \frac{7+\pi^2}{8} z^2  + \frac{1}{2}z^2 \Li_2(z) \right)z^{1-k} e^{-\eta/z} \dd z \\
+	&= \frac{9 \eta^k}{2 k!}\eta^{3-k}\Gamma^+(k-3,\eta)-\frac{\eta^k}{k!}\frac{7+\pi^2}{4}\eta^{4-k}\Gamma^+(k-4,\eta)\\
+	&\hspace{10pt}+ \frac{\eta^k}{2k!}\int_0^1 (1-4z+3z^2)\ln(1-z)z^{1-k}e^{-\eta/z}dz+\frac{\eta^k}{k!}\int_0^1 z^{3-k} 
+		\Li_2(z) e^{-\eta/z} \dd z \\
+	&=\frac{9 \eta^3}{2 k!}\Gamma^+(k-3,\eta)-\frac{\eta^4}{k!}\frac{7+\pi^2}{4}\Gamma^+(k-4,\eta)\\
+	&\hspace{10pt}+ \frac{\eta^k}{2k!}\int_0^1 (1-4z+3z^2)\ln(1-z)z^{1-k}e^{-\eta/z}dz+\frac{\eta^k}{k!}\int_0^1 z^{3-k} 
+		\Li_2(z) e^{-\eta/z} \dd z
+\end{align*}
+where $\eta = \frac{4\nu}{\pi}$ and and $\Li_2(z) = \sum_{t = 1}^\infty z^t/t^2$, the dilogarithm function. 
+Plugging this into ~\eqref{eq:gammaint} and~\eqref{eq:gammakint} yields the expressions in the statement of the proposition.
+\end{proofof}
 
 \end{appendices}
