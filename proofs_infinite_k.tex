@@ -337,30 +337,28 @@ We will use the subscripts $n$, $\Po$, $\text{box}$ and $\infty$ to identify pro
 We are now ready to prove Theorem~\ref{thm:mainktoinfty}, using the results stated in the previous sections.
 
 \begin{proofof}{Theorem~\ref{thm:mainktoinfty}}
-Note that the second of the theorem follows immediately from the first.
-
-To prove the first statement, we rewrite $c(k_n; G_n)$ as
+We first rewrite $c(k_n; G_n)$ as
 \begin{align*}
     c(k_n;G_n)-\gamma(k_n) &= \left(c(k_n;G_n)-c^\ast(k_n;G_n)\right)
     	+ \left(c^\ast(k_n;G_n)-c^\ast(k_n; \GPo)\right)\\
     &\hspace{10pt}+ \left(c^\ast(k_n; \GPo)-c^\ast(k_n; \Gbox)\right)
-    	+ \left(c^\ast(k_n; \Gbox)-\E c^\ast(k_n; \Gbox)\right)\\
-    &\hspace{10pt}+ \E c^\ast(k_n; \Gbox)-\gamma(k_n)
+    	+ \left(c^\ast(k_n; \Gbox)-\Exp{c^\ast(k_n; \Gbox)}\right)\\
+    &\hspace{10pt}+ \Exp{c^\ast(k_n; \Gbox)}-\gamma(k_n)
 \end{align*}
-Then, we take absolute values and apply the triangle inequality. By monotonicity of expectation, we can apply it to both sides and obtain
+Then, we take absolute values and apply the triangle inequality. 
 \begin{align*}
-    \Exp{\left|c(k_n;G_n)-\gamma(k_n)\right|} 
-    &\le \Exp{\left|c(k_n;G_n)-c^\ast(k_n;G_n)\right|}
-    	+\Exp{\left|c^\ast(k_n;G_n)-c^\ast(k_n; \GPo)\right|}\\
-    &\hspace{10pt}+ \Exp{\left|c^\ast(k_n; \GPo)-c^\ast(k_n; \Gbox)\right|} 
-    	+ \Exp{\left|c^\ast(k_n; \Gbox)-\E c^\ast(k_n; \Gbox)\right|}\\
+    \left|c(k_n;G_n)-\gamma(k_n)\right|
+    &\le \left|c(k_n;G_n)-c^\ast(k_n;G_n)\right|
+    	+\left|c^\ast(k_n;G_n)-c^\ast(k_n; \GPo)\right|\\
+    &\hspace{10pt}+ \left|c^\ast(k_n; \GPo)-c^\ast(k_n; \Gbox)\right|
+    	+ \left|c^\ast(k_n; \Gbox)-\Exp{c^\ast(k_n; \Gbox)}\right|\\
     &+ \left|\Exp{c^\ast(k_n; \Gbox)}-\gamma(k_n)\right|
 \end{align*}
-At this point, the lemmas and propositions presented above in this section can be applied in order to show that all summands are $\smallO{\gamma(k_n)}$: Lemma~\ref{lem:clustering_ast_H} for the transition to the modified clustering function in the first term, Proposition~\ref{prop:clustering_ast_H_Pois} for the Poissonization in the second term, Proposition~\ref{prop:couling_c_H_P} for the coupling between the Poissonized KPKVB and the finite box model in the third term, Proposition~\ref{prop:concentration_local_clustering_P_n} for the concentration in the fourth term and finally Proposition~\ref{prop:convergence_average_clustering_P_n} for the transition to the infinite limit model. 
+The first term is $\smallOp{s(k_n)}$ by Lemma~\ref{lem:clustering_ast_H}. For the other terms, the propositions presented above in this section can be applied in order to show that the expectation of each difference is $\smallO{s(k_n)}$: Proposition~\ref{prop:clustering_ast_H_Pois} for the Poissonization in the second term, Proposition~\ref{prop:couling_c_H_P} for the coupling between the Poissonized KPKVB and the finite box model in the third term, Proposition~\ref{prop:concentration_local_clustering_P_n} for the concentration in the fourth term and finally Proposition~\ref{prop:convergence_average_clustering_P_n} for the transition to the infinite limit model. 
 
-All of this together yields that:
+In particular, this implies that all terms are $\smallOp{s(k_n)}$. We thus conclude that
 \begin{align*}
-    \Exp{\left|c(k_n;G_n)-\gamma(k_n)\right|} = \smallO{s(k_n)} = \smallO{\gamma(k_n)},
+    \left|c(k_n;G_n)-\gamma(k_n)\right| = \smallOp{s(k_n)} = \smallOp{\gamma(k_n)},
 \end{align*}
 which establishes the first statement of the theorem and finishes the proof.  
 \end{proofof}
