@@ -51,7 +51,7 @@ Similar to the infinite graph, for a point $p \in \Rcal$ we define the ball $\Ba
 \subsection{The Poissonized KPKVB model \texorpdfstring{$\GPo$}{G Po}}
 
 
-Imagine that we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ in the hyperbolic plane $\Haa$ chosen according to the $(\alpha, R)$-quasi uniform distribution. In the standard KPKVB random graph $G(n;\alpha,\nu)$ we take $u_1,\dots, u_n$ as our vertex set and add edges between points at hyperbolic distance at most $R = 2\log(n/\nu)$. In the \emph{Poissonized} KPKVB random graph $\GPo := \GPo(n;\alpha,\nu)$, we instead take $N\isd \Po(n)$, a Poisson random variable 
+Imagine that we have an infinite supply of i.i.d.~points $u_1, u_2, \dots$ in the hyperbolic plane $\Haa$ chosen according to a distribution we'll define shortly, in~\eqref{eq:def_quasi_uniform_density} below. In the standard KPKVB random graph $G(n;\alpha,\nu)$ we take $u_1,\dots, u_n$ as our vertex set and add edges between points at hyperbolic distance at most $R = 2\log(n/\nu)$. In the \emph{Poissonized} KPKVB random graph $\GPo := \GPo(n;\alpha,\nu)$, we instead take $N\isd \Po(n)$, a Poisson random variable 
 with mean $n$, independent of our i.i.d.~sequence of points and let the vertex set be $u_1,\dots, u_N$ and add edges 
 according to the same rule as before. Equivalently, we could say that the vertex set consists of the points of a Poisson point process with intensity function $n g$, where $g$ denotes the probability density of the $(\alpha,R)$-quasi uniform distribution. That is,
 \begin{equation}\label{eq:def_quasi_uniform_density}
@@ -101,7 +101,7 @@ This can be rephrased as $p'\in \BallHyp{p}$ iff.~either $y+y'\geq R$ or $y+y'<R
 	|x-x'|_{\pi e^{R/2}} \leq \Phi(y,y^\prime) := \frac{1}{2}e^{R/2} \arccos\left( \frac{\cosh(R-y) \cosh(R-y^\prime) - \cosh R}{\sinh(R-y) \sinh(R-y^\prime)} \right).
 \end{equation}
 
-The following lemma provides useful bounds on the function $\Phi(r,r^\prime)$. Note that in~\cite{fountoulakis2018law} the function $\Phi$ is written in terms of where $r := R - y, r^\prime := R - y^\prime$. 
+The following lemma provides useful bounds on the function $\Phi(r,r^\prime)$. Note that in~\cite{fountoulakis2018law} the function $\Phi$ is written in terms of $r := R - y, r^\prime := R - y^\prime$. 
 
 \begin{lemma}[{\cite[Lemma 28]{fountoulakis2018law}}]\label{lem:asymptotics_Omega_hyperbolic}
 There exists a constant $K>0$ such that, for every $\varepsilon > 0$ and for $R$ sufficiently large, the following holds.
@@ -180,7 +180,9 @@ For our application these Chernoff bounds imply that if $y$ is such that $\hat{\
 \begin{equation}\label{eq:def_y_k_C}
 	y_{k,C}^\pm = 2 \log\left(\frac{k \pm C \sqrt{k \log(k)}}{\xi}\right),
 \end{equation}
-where we set $y_{k,C}^- = 0$ if $k - C \sqrt{k \log(k)} < \xi$ and likewise if $k + C \sqrt{k \log(k)} < \xi$ we set $y_{k,C}^+=0$, but  note that as we consider $k\rightarrow\infty$, we can assume that this case does not occur. For convenience we write $\Kcal_C(k_n) := [y_{k_n,C}^-, y_{k_n,C}^+]$. Then we can show that for all $y$ outside $\Kcal_C(k_n)$
+where we set $y_{k,C}^- = 0$ if $k - C \sqrt{k \log(k)} < \xi$ (recall that we define $\xi := 4\alpha\nu/\pi(2\alpha-1)$ throughout the paper) 
+and likewise if $k + C \sqrt{k \log(k)} < \xi$ 
+we set $y_{k,C}^+=0$, but  note that as we consider $k\rightarrow\infty$, we can assume that this case does not occur. For convenience we write $\Kcal_C(k_n) := [y_{k_n,C}^-, y_{k_n,C}^+]$. Then we can show that for all $y$ outside $\Kcal_C(k_n)$
 \begin{equation}\label{eq:chernoff_bound_degrees}
 	\Prob{\Po(\hat{\mu}(y)) = k_n} \le \bigO{k_n^{-\frac{C^2}{2}}}.
 \end{equation}
@@ -196,7 +198,7 @@ as $n \to \infty$.
 \end{proposition}
 
 
-The key implication of Proposition~\ref{prop:concentration_height_general} is that if the function $h(y)$ does not increase too fast, then we can restrict integration to the interval $\Kcal_C(y)$. The full details associated with these concentration of heights and the proof of Proposition~\ref{prop:concentration_height_general} can be found in the Section~\ref{sec:concentration_argument} of the Appendix.
+The key implication of Proposition~\ref{prop:concentration_height_general} is that if the function $h(y)$ does not increase too fast, then we can restrict integration to the interval $\Kcal_C(k_n)$. The full details associated with these concentration of heights and the proof of Proposition~\ref{prop:concentration_height_general} can be found in the Section~\ref{sec:concentration_argument} of the Appendix.
 
 %To see this result in action consider the finite box model $\Gbox$. Then 
 %\[

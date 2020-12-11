@@ -11,7 +11,7 @@ In some computations the height $y$ will be fixed, but eventually we shall take 
 independent of $\Pcal$.
 We refer to $(0,y)$ as ``the typical point''.
 
-To provide some intu\"{\i}tion for this definition and name, note that we can alternatively view $\Pcal$ as follows. 
+To provide some intuition for this definition and name, note that we can alternatively view $\Pcal$ as follows. 
 We take a constant intensity Poisson process on $\eR$ corresponding to the $x$-coordinates, and to each point
 we attach a random ``mark'', corresponding to the $y$-coordinate, where the marks are i.i.d.~exponentially distributed with parameter $\alpha$.
 
@@ -48,13 +48,13 @@ $$ \begin{array}{rcl}
 
 Before considering clustering we briefly investigate the distribution of the degree of 
 the typical point. 
-For $p = (x,y) \in \eR\times[0,\infty)$ we define
+For $y \geq 0$ we define
 \begin{equation}
-	\rho(p,k) := \Prob{\Po(\mu(y)) = k},
+	\rho(y,k) := \Prob{\Po(\mu(y)) = k},
 \end{equation}
 
 where $\Po(\lambda)$ denotes a Poisson random variable with mean $\lambda$. 
-We will often write $\rho(y,k)$ instead of $\rho(p,k)$.
+%We will often write $\rho(y,k)$ instead of $\rho(p,k)$.
 
 Let the random variable $D$ denote the degree of the typical point.
 Since the typical point has a height that is independent of the Poisson process and exponential($\alpha$)-distributed:
@@ -84,6 +84,12 @@ Using Stirling's approximation to the gamma function, we find that
 	\pmf(k) \sim 2\alpha\xi^{2\alpha} k^{-(2\alpha + 1)}
 	\quad \text{as } k \to \infty.
 \end{equation}
+
+\noindent
+(In a bit more detail: we use that 
+$\Gamma(a,b) = (1+o_a(1))\cdot \Gamma(a)$ if $a$ tends to infinity and $b$ remains constant, and that 
+$\Gamma(a+1) = (1+o_a(1))\cdot \sqrt{2\pi a} \cdot (a/e)^{a}$ as $a$ tends to infinity by Stirling's approximation. For a proof of Stirling's approximation to the $\Gamma$ function, also for non-integer values of the argument, see for instance~\cite{DiaconisFreedman}.)
+
 
 By a similar computation we have the following result, which will be useful later on. For any $\beta > 0$, as $k \to \infty$
 
@@ -533,10 +539,10 @@ This gives half the value of $P(y_0)$ and hence
 where $I_1$ and $I_2$ are given by:
 \begin{align*}
 	I_1(y_0) &:= \int_{0<y_0<y_1<y_2} P(y_0,y_1,y_2) \cdot (\alpha-1/2)^2 e^{-(\alpha-1/2)(y_1+y_2)}  \dd y_2 \dd y_1 \\ 
-	I_2(y_0) &:= \int_{0<y_1<y_0,y_2} P(y_0,y_1,y_2) \cdot (\alpha-1/2)^2 e^{-(\alpha-1/2)(y_1+y_2)} \dd y_2 \dd y_1 \\ 
+	I_2(y_0) &:= \int_{0<y_1<\min(y_0,y_2)} P(y_0,y_1,y_2) \cdot (\alpha-1/2)^2 e^{-(\alpha-1/2)(y_1+y_2)} \dd y_2 \dd y_1 \\ 
 \end{align*}
 
-We proceed with computing each of these two integrals, each of which is split in two parts. 
+We proceed with computing these two integrals, each of which is split into two parts.
 The final expressions of those four integrals can be found 
 in~\eqref{eq:Delta_P_computation_I11}, \eqref{eq:Delta_P_computation_I12}, \eqref{eq:Delta_P_computation_I21} 
 and~\eqref{eq:Delta_P_computation_I22}.
@@ -648,18 +654,18 @@ to obtain
 We will follow a similar strategy as for $I_1(y_0)$. First, using the change of variables $z_i := e^{-y_i/2}$, $i=1,2$,
 we get
 \begin{align*}
-	I_2(y_0) &= 4 (\alpha-1/2)^2 \cdot \int_{1>z_1>z_2,z_0>0} P(y_0,y_1(z_1),y_2(z_2)) z_1^{2\alpha-2} z_2^{2\alpha-2} 
+	I_2(y_0) &= 4 (\alpha-1/2)^2 \cdot \int_{1>z_1>\max(z_2,z_0), \atop z_0,z_2>0} P(y_0,y_1(z_1),y_2(z_2)) z_1^{2\alpha-2} z_2^{2\alpha-2} 
 		\dd z_2 \dd z_1 \\
-	&= 4 (\alpha-1/2)^2 \cdot \left( \int_{1>z_1>z_0,z_2>0}  z_0 z_1^{2\alpha-3} z_2^{2\alpha-2} 
+	&= 4 (\alpha-1/2)^2 \cdot \left( \int_{1>z_1>\max(z_0,z_2)>0, \atop z_0,z_2>0}  z_0 z_1^{2\alpha-3} z_2^{2\alpha-2} 
 		 \dd z_2 \dd z_1 \right. \\
-	&\hspace{10pt}\left. - \int_{\substack{{1>z_1>z_0,z_2>0}\\{z_1 < z_0+z_2}}} G(z_1,z_0,z_2) z_0 z_1^{2\alpha-3} 	
+	&\hspace{10pt}\left. - \int_{{1>z_1>\max(z_0,z_2),}\atop{z_0,z_2>0,\atop{z_1 < z_0+z_2}}} G(z_1,z_0,z_2) z_0 z_1^{2\alpha-3} 	
 		z_2^{2\alpha-2} \dd z_2 \dd z_1 \right) \\
 	&=: 4 (\alpha-1/2)^2 (I_{21}(y_0) - I_{22}(y_0)). 
 \end{align*}
 
 We start with the easy integral:
 \begin{align*}
-	I_{21}(y_0) &= z_0 \int_{1>z_1>\max(z_2,z_0);z_0,z_2>0} z_1^{2\alpha-3} z_2^{2\alpha-2}  \dd z_2 \dd z_1   
+	I_{21}(y_0) &= z_0 \int_{1>z_1>\max(z_2,z_0),\atop z_0,z_2>0} z_1^{2\alpha-3} z_2^{2\alpha-2}  \dd z_2 \dd z_1   
 		= z_0 \int_{z_0}^1 \int_{0}^{z_1} z_1^{2\alpha-3} z_2^{2\alpha-2}  \dd z_2 \dd z_1\\
 	&= z_0 \int_{z_0}^1 \left[ \frac{z_2^{2\alpha-1}}{2\alpha-1}\right]_{0}^{z_1} z_1^{2\alpha-3} \dd z_1 
 		= \frac{z_0}{2\alpha-1}  \int_{z_0}^1 z_1^{4\alpha-4} \dd z_1
@@ -669,7 +675,7 @@ We note that the denominators above are non-zero as $\alpha > \frac{1}{2}$ and $
 
 To deal with $I_{22}(y_0)$ we consider the function
 \[
-	J_{a,b,c}^\prime(z_0) := z_0^a \int_{\substack{{1>z_1>\max(z_0,z_2); z_0,z_2>0}\\{z_1 < z_0+z_2}}} z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2 \dd z_1
+	J_{a,b,c}^\prime(z_0) := z_0^a \int_{ {1>z_1>\max(z_0,z_2),} \atop{{z_0,z_2>0,}\atop{z_1 < z_0+z_2}} } z_1^{b+2\alpha-2} z_2^{c+2\alpha-2} \dd z_2 \dd z_1
 \]
 and write
 \begin{equation}\label{eq:Delta_P_computation_I22_J}
