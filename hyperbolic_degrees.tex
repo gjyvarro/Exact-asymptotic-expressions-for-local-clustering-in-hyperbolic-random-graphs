@@ -48,7 +48,7 @@ Let $\alpha > \frac{1}{2}$, $\varepsilon >0$ and $0 \leq y \leq (1-\epsilon)R$. 
 \end{lemma}
 
 \begin{proof}
-Recall that when $y^\prime \ge R - y$ then $p^\prime \in \BallHyp{y}$ while for $y^\prime < R - y$ this is true when~\eqref{eq:def_Omega_hyperbolic} holds. We does split the integral for $\mu_{Po,n}(y)$ accordingly, into two integrals $I_1$ and $I_2$,
+Recall that when $y^\prime \ge R - y$ then $p^\prime \in \BallHyp{y}$ while for $y^\prime < R - y$ this is true when~\eqref{eq:def_Omega_hyperbolic} holds. We split the integral for $\mu_{Po,n}(y)$ accordingly, into two integrals $I_1$ and $I_2$,
 \begin{align*}
 \mu_{\Po}(y) 
 &= \int_0^{R-y} 2\Phi(y,y_1)\frac{\alpha\nu}{\pi}e^{-\alpha y_1} dy_1+\int_{R-y}^R \frac{\pi n}{\nu} \frac{\alpha \nu}{\pi}e^{-\alpha y_1}dy_1 =: I_1+I_2.
@@ -180,7 +180,7 @@ We will show that
 	\int_0^{(1-\varepsilon)R} \Prob{\Po(\mu_{\Po}(y)) = k_n} \alpha e^{-\alpha y} \dd y
 	= (1+o(1))\int_0^\infty \Pee(\Po(\xi e^{\frac{z}{2}})=k_n) \alpha e^{-\alpha z} \dd z.
 \]
-This implies the result because the last integral equals $(1+o(1))2\alpha \xi^{2\alpha} k_n^{-(2\alpha+1)} = (1+o(1))\pmf(k_n)$.
+This implies the result because the last integral equals $(1+o(1))2\alpha \xi^{2\alpha} k_n^{-(2\alpha+1)} = (1+o(1))\pmf(k_n)$. Where the last asymptotic equality follows from~\eqref{eq:degree_distribution_P_asymptotics}.
 
 Define the function $z(y)=2\ln\frac{\mu_{\Po}(y)}{\xi}$ (note that $z(y)$ is well-defined as $\mu_{Po,n}(y)\geq 0$ and that $z(y)$ is bijective because $\mu_{\Po}(y)$ is strictly monotone increasing and continuous, see Lemma~3.3. in \cite{gugelmann2012random}). By rearranging, we have that
 \begin{align*}
@@ -547,7 +547,7 @@ and in addition define, for any $0 < \varepsilon < 1$, the following set
 	\mathcal{E}_{\varepsilon}(k_n) = \left\{(p,p^\prime) \in \stripknc
 		\, : \,  |x - x^\prime|_n > k_n^{1 + \varepsilon} \right\}, 
 \end{equation}
-where $|x|_n = \min\{|x|, \pi e^{R/2} - |x|\}$ denotes the norm on the finite box $\Rcal$ where the left and right boundaries are identified. Then for any two points $p,p^\prime \in \mathcal{E}_\varepsilon(k_n)$ the expect number of joint neighbours is $\smallO{k_n}$.
+where $|x|_n = \min\{|x|, \pi e^{R/2} - |x|\}$ denotes the norm on the finite box $\Rcal$ where the left and right boundaries are identified. Then for any two points $p,p^\prime \in \mathcal{E}_\varepsilon(k_n)$ the expected number of joint neighbours is $\smallO{k_n}$.
 
 \begin{lemma}\label{cor:expected_common_neighbours_Ecal_set}
 Fix $0 < \varepsilon < 1$ and let $\varepsilon^\prime = \min\{\varepsilon(2\alpha - 1),\varepsilon\}$. Then for all $(p,p^\prime) \in \mathcal{E}_\varepsilon(k_n)$, as $n \to \infty$,
@@ -921,7 +921,7 @@ E = \bigO{n^{r+1}k_n^{-C}}=\smallO{n^{r+1}k_n^{-r(2\alpha+1)}}=\smallO{\left(\in
 \end{align*}
 \end{proof}
 
-We now proof the result for the factorial moments.
+We now prove the result for the factorial moments.
 
 \begin{proofof}{Lemma~\ref{lem:factmoment}}
 We give the proof for the Poissonized KPKVB model. The proof for the finite box model $\Gbox$ follows using similar arguments.
@@ -1047,7 +1047,7 @@ In addition we have that $\Prob{Z(n,t) = t} \le \bigO{1} \frac{\Exp{Z(n,t)}}{t}$
 \begin{align*}
 	\sum_{t = 1}^{N-n} \Prob{Z(n,t) = t}\Prob{D_{\Po} = k_n + t}
 	&\le \bigO{1} \sum_{t = 1}^{N-n} \frac{\Exp{Z(n,t)}}{t}\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right)\\
-	&= \bigO{1} \sum_{t = 1}^{N-n} \frac{(N-m)(k_n + t)}{N}\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right)\\
+	&= \bigO{1} \sum_{t = 1}^{N-n} \frac{(N-n)(k_n + t)}{N}\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right)\\
 	&= \bigO{\sqrt{\frac{\log n}{n}}} \sum_{t = 1}^{N-n} \frac{k_n}{t}
 		\left(\pmf(k_n + t) + n^{-2\alpha(1-\varepsilon)}\right)\\
 	&\hspace{10pt}+ \bigO{\sqrt{\frac{\log n}{n}}} \sum_{t = 1}^{N-n}
@@ -1170,7 +1170,7 @@ As $N_n(k_n)=N_{Po}(k_n)+N_n(k_n)-N_{Po}(k_n) = N_{Po}(k_n)\pm |N_n(k_n)-N_{Po}(
 \item Let $\zeta = 2\alpha \xi^{2\alpha}c^{-(2\alpha+1)} \in \R$.
 The proof consists of showing that $\Exp{{N_{Po}(k_n) \choose r} } \rightarrow \frac{\zeta^r}{r!}$ for every positive integer $r$.% and then applying \cite[Theorem 8.3.1]{alon2016probabilistic}.
 
-If $k_n=(1+o(1))c n^{\frac{1}{2\alpha+1}}$, then by Lemma~\ref{lem:expnnkn},
+If $k_n=(1+o(1))c n^{\frac{1}{2\alpha+1}}$, for some positive constant $c > 0$. then by Lemma~\ref{lem:expnnkn},
 \begin{align*}
 	\Exp{N_{Po}(k_n)} &= (1+o(1))2\alpha \xi^{2\alpha} n (1+o(1))^{-(2\alpha+1)} c^{-(2\alpha+1)}n^{-1} \\
 	&= (1+o(1))2\alpha \xi^{2\alpha} c^{-(2\alpha+1)}=(1+o(1))\zeta,

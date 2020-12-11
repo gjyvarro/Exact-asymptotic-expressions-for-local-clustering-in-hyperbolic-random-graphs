@@ -68,7 +68,7 @@ implies that
 \begin{equation}\label{eq:symm_diff_upper_P} 
 (\BallHyp{p} \bigtriangleup \BallPo{p})  \cap \Rcal ([R - y + 2 \ln \frac{\pi}{2},R]) = \emptyset,
 \end{equation}
-where $A \bigtriangleup B$ denotes the symmetric difference of the sets $A$ and $B$. We can now compute the expected number of points in $\BallHyp{p} \bigtriangleup \BallPo{p}$, i.e. those that belong are a neighbor of $p$ in only one of the two models.
+where $A \bigtriangleup B$ denotes the symmetric difference of the sets $A$ and $B$. We can now compute the expected number of points in $\BallHyp{p} \bigtriangleup \BallPo{p}$, i.e. those vertices that are neighbors of $p$ in only one of the two models.
 
 \begin{lemma}\label{lem:sym_diff_measure_H_P}
 Let $0 \le y_n <R$ be such that $R - y_n \to \infty$ and write $p_n = (x_n, y_n)$. Then we have, as $n \to \infty$,
@@ -76,14 +76,14 @@ Let $0 \le y_n <R$ be such that $R - y_n \to \infty$ and write $p_n = (x_n, y_n)
 	\mu (\BallHyp{p_n} \bigtriangleup \BallPo{p_n} ) 
 	= \Theta (1) \cdot \begin{cases} 
 		e^{(1/2-\alpha)R + \alpha y_n}, & \mbox{if } \alpha < 3/2 \\
-		(R-y_n) e^{3y/2 - R}, & \mbox{if }\alpha = 3/2\\
+		(R-y_n) e^{3y_n/2 - R}, & \mbox{if }\alpha = 3/2\\
 		e^{3y_n/2 - R}, &  \mbox{if } \alpha > 3/2 
 	\end{cases}.
 \]
 \end{lemma}
 
 \begin{proof}
-Let $r_n := R - y$. Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for such a $p_n$, if a point $p$ belongs to $\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([0,r_n])$ then 
+Let $r_n := R - y_n$. Lemma~\ref{lem:asymptotics_Omega_hyperbolic} implies that for such a $p_n$, if a point $p$ belongs to $\BallHyp{p_n} \bigtriangleup \BallPo{p_n} \cap \Rcal ([0,r_n])$ then 
 \[
 	|x_n - x| = \Theta(1) \cdot e^{\frac{3}{2} (y_n + y) - R}.
 \]

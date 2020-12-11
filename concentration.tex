@@ -76,9 +76,15 @@ and therefore
 For the expectation of $\widetilde{T}_{\text{box}}(k_n,C)$ we use that 
 \[
 	\CExp{\widetilde{T}_{\text{box}}(p)}{\Dbox(p) = k_n}
-= \binom{k_n}{2} \Mu{\BallPon{y}}^{-2} \Exp{\widetilde{T}_{\text{box}}(p)},
+= \binom{k_n}{2} \Mu{\BallPon{y}}^{-2} \Exp{\widetilde{T}_{\text{box}}(p)}.
 \] 
-to get
+Recall that for $y \in \Rcal(k_n,C)$
+\[
+	\Mu{\BallPon{y}}^{-2} = (1+\smallO{1})\Mu{y}^{-2} = (1+\smallO{1})k_n^{-2},
+\]
+where the error term is uniform in $y$.
+
+We thus obtain
 \begin{align*}
 	\Exp{\widetilde{T}_{\text{box}}(k_n,C)} 
 	&= \int_{\Rcal(k_n,C)} \CExp{\widetilde{T}_{\text{box}}(p)}{\Dbox(p) = k_n}

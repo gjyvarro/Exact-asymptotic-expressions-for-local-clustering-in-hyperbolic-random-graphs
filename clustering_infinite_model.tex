@@ -309,17 +309,17 @@ P(y_0,y_1,y_2) = \begin{cases}
 
 	\draw [red,line width=1pt] (\leftintvandvvv,\vvv) -- (\rightintvandvvv,\vvv);
 
-    \draw node[fill,black!60!green, circle, inner sep=0pt, minimum size=5pt] (p2) at (\uuu,\vvv) {};
-    \path (p2)+(0.25,-0.2) node {\color{black!60!green}$p_2$};
+    \draw node[fill,black!20!green, circle, inner sep=0pt, minimum size=5pt] (p2) at (\uuu,\vvv) {};
+    \path (p2)+(0.25,-0.2) node {\color{black!20!green}$p_2$};
     
 	%Boundaries p_2 = (\uuu,\vvv)
 	
 	%Right boundary
 	\pgfmathsetmacro{\rightbounduuuvvv}{\uuu+exp((\vvv)/2)}
-	\draw[domain=\rightbounduuuvvv:\r,smooth,variable=\x,black!60!green,line width=1pt] plot (\x, {2*ln(\x-\uuu)-\vvv});
+	\draw[domain=\rightbounduuuvvv:\r,smooth,variable=\x,black!20!green,line width=1pt] plot (\x, {2*ln(\x-\uuu)-\vvv});
     %Left boundary
     \pgfmathsetmacro{\leftbounduuuvvv}{\uuu-exp((\vvv)/2)}
-    \draw[domain=\leftbounduuuvvv:-\r,smooth,variable=\x,black!60!green,line width=1pt] plot (\x, {2*ln(\uuu-\x)-\vvv});
+    \draw[domain=\leftbounduuuvvv:-\r,smooth,variable=\x,black!20!green,line width=1pt] plot (\x, {2*ln(\uuu-\x)-\vvv});
 
 	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\leftintvandvvv,\vvv) {};
 	\path (\leftintvandvvv,\vvv)+(-0.5,-0.5) node[red] {$-e^{\frac{y_0 + y_2}{2}}$};
@@ -390,17 +390,17 @@ P(y_0,y_1,y_2) = \begin{cases}
 	
 
 
-    \draw node[fill,black!60!green, circle, inner sep=0pt, minimum size=5pt] (p2) at (\uuu,\vvv) {};
-    \path (p2)+(-0.2,0.2) node {\color{black!60!green}$p_2$};
+    \draw node[fill,black!20!green, circle, inner sep=0pt, minimum size=5pt] (p2) at (\uuu,\vvv) {};
+    \path (p2)+(-0.2,0.2) node {\color{black!20!green}$p_2$};
     
 	%Boundaries p_2 = (\uuu,\vvv)
 	
 	%Right boundary
 	\pgfmathsetmacro{\rightbounduuuvvv}{\uuu+exp((\vvv)/2)}
-	\draw[domain=\rightbounduuuvvv:\r,smooth,variable=\x,black!60!green,line width=1pt] plot (\x, {2*ln(\x-\uuu)-\vvv});
+	\draw[domain=\rightbounduuuvvv:\r,smooth,variable=\x,black!20!green,line width=1pt] plot (\x, {2*ln(\x-\uuu)-\vvv});
     %Left boundary
     \pgfmathsetmacro{\leftbounduuuvvv}{\uuu-exp((\vvv)/2)}
-    \draw[domain=\leftbounduuuvvv:-\r,smooth,variable=\x,black!60!green,line width=1pt] plot (\x, {2*ln(\uuu-\x)-\vvv});
+    \draw[domain=\leftbounduuuvvv:-\r,smooth,variable=\x,black!20!green,line width=1pt] plot (\x, {2*ln(\uuu-\x)-\vvv});
 
 	\draw node[fill,red, circle, inner sep=0pt, minimum size=3pt] at (\leftintvandvvv,\vvv) {};
 	\path (\leftintvandvvv,\vvv)+(-0.5,-0.55) node[red] {$-e^{\frac{y_0 + y_2}{2}}$};
