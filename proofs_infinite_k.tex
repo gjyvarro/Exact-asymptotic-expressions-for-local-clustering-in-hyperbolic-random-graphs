@@ -261,9 +261,10 @@ Figure~\ref{fig:overview_proof} shows a schematic overview of the proof of Theor
 \subsection{Adjusted clustering and the Poissonized KPKVB model}\label{ssec:KPKVB_to_GPo_infinite_k}
 
 Recall that the first step for the fixed $k$ case was to show that the transition from the KPKVB graph $G_n = G(n;\alpha,\nu)$ to the Poissonized version $\GPo$ did not influence clustering. Here we first make a transition from the local clustering function $c(k_n; G_n)$ to the adjusted version $c^\ast(k_n; G_n)$. The following lemma justifies working with this modified version. The proof uses a concentration result for $N_{n}(k_n)$ and full details can be found in Section~\ref{ssec:coupling_H_HP}.
-
+For a sequence of random variables $(X_n)_{n\in \mathbb{N}}$ and a sequence $(a_n)_{n \in \mathbb{N}}$, we write $X_n = \smallOp{a_n}$ to 
+denote that $X_n/a_n \stackrel{\mathbb{P}}{\to} 0$ as $n\to \infty$. 
 \begin{lemma}\label{lem:clustering_ast_H}
-As $n \to \infty$,
+As $n\to \infty$ 
 \[
 \left|c^\ast(k_n; G_n) - c(k_n; G_n)\right| = \smallOp{s(k_n)}.
 \]
@@ -272,7 +273,7 @@ As $n \to \infty$,
 %\]
 \end{lemma}
 
-We then establish that the modified local clustering function for KPKVB graphs $G_n$ behaves similarly to that in $\GPo$. The proof, found in Section~\ref{ssec:coupling_H_HP}, is based on a standard coupling between a Binomial Point Process and Poisson Point Process.
+We then establish that the modified local clustering function for KPKVB graphs $G_n$ behaves similarly to that in $\GPo$. The proof, found in Section~\ref{ssec:coupling_H_HP}, is based on a standard coupling between a Binomial Point Process and Poisson Point Process. 
 %=======
 %We then establish that the modified local clustering function for KPKVB graphs $G_n$ behaves similarly to that in the $\GPo$. The proof, found in Section~\ref{ssec:coupling_H_HP}, is based on the standard coupling between a Binomial Point Process and Poisson Point Process which we already encountered twice, once for the number of nodes with degree $k$ in Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson} and once for the proof of Lemma~\ref{lem:trunc}.
 %>>>>>>> Stashed changes

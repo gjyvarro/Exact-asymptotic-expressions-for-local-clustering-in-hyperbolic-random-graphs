@@ -1175,9 +1175,9 @@ If $k_n=(1+o(1))c n^{\frac{1}{2\alpha+1}}$, for some positive constant $c > 0$. 
 	\Exp{N_{Po}(k_n)} &= (1+o(1))2\alpha \xi^{2\alpha} n (1+o(1))^{-(2\alpha+1)} c^{-(2\alpha+1)}n^{-1} \\
 	&= (1+o(1))2\alpha \xi^{2\alpha} c^{-(2\alpha+1)}=(1+o(1))\zeta,
 \end{align*}
-which implies $\Exp{N_{Po}(k_n)} \rightarrow \zeta$ (as $\zeta$ is a positive constant). From Lemma~\ref{lem:factmoment}, it then follows that $\Exp{{N_{Po}(k_n) \choose r}} =(1+o(1))\frac{(\Exp{ N_{Po}(k_n)})^r}{r!}\rightarrow \frac{\zeta^r}{r!}$. Thus, it follows from \cite[Theorem 8.3.1]{alon2016probabilistic} that $N_{Po}(k_n) \xrightarrow{d} Po(\zeta)$ for the Poissonized version.
+which implies $\Exp{N_{Po}(k_n)} \rightarrow \zeta$ (as $\zeta$ is a positive constant). From Lemma~\ref{lem:factmoment}, it then follows that $\Exp{{N_{Po}(k_n) \choose r}} =(1+o(1))\frac{(\Exp{ N_{Po}(k_n)})^r}{r!}\rightarrow \frac{\zeta^r}{r!}$. Thus, it follows from \cite[Theorem 8.3.1]{alon2016probabilistic} that $N_{Po}(k_n) \xrightarrow{d} \mathrm{Po}(\zeta)$ for the Poissonized version.
 
-Finally, since $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$, by Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}, $\Exp{| N_n(k_n) - N_{Po}(k_n)|} = o(\Exp{N_{Po}(k_n)}) = o(\zeta)$, from which it follows that $\Prob{|N_n(k_n)-N_{Po}(k_n)|\geq 1} \leq \Exp{ |N_n(k_n)-N_{Po}(k_n)|} = o(\zeta)$. Hence, it also holds in the original KPKVB model that $N_n(k_n) \xrightarrow{d} Po(\zeta)$.
+Finally, since $k_n = \bigO{n^{\frac{1}{2\alpha+1}}}$, by Lemma~\ref{lem:diff_Nk_hyperbolic_binomial_poisson}, $\Exp{| N_n(k_n) - N_{Po}(k_n)|} = o(\Exp{N_{Po}(k_n)}) = o(\zeta)$, from which it follows that $\Prob{|N_n(k_n)-N_{Po}(k_n)|\geq 1} \leq \Exp{ |N_n(k_n)-N_{Po}(k_n)|} = o(\zeta)$. Hence, it also holds in the original KPKVB model that $N_n(k_n) \xrightarrow{d} \mathrm{Po}(\zeta)$.
 
 \item We will show that in this case $\Exp{N_n(k_n)} = o(1)$. This then implies, by Markov's inequality,
 \[
